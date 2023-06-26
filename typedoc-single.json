@@ -1,0 +1,6 @@
+{
+  "entryPoints": ["./projects/layline/src/index.ts"],
+  "sourceLinkTemplate": "",
+  "excludePrivate": true,
+  "excludeProtected": true
+}
