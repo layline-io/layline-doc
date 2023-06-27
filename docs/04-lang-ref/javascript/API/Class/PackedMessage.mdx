@@ -1,0 +1,107 @@
+---
+custom_edit_url: null
+---
+
+# PackedMessage
+<div className="doc-side">
+<div className="doc-main-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/PackedMessage.ts#L9)
+
+</div>
+</div>
+
+<div className="doc-subtitle">
+
+A packed message represents an ordinary [Message](Message), but in a compressed format.
+This is useful in case you need to retain a large number or messages in memory, and reduce memory overhead.
+
+The only way to create a packed message is by invoking the '[Message.pack](./Message#pack)' method.
+
+</div>
+
+```ts
+class PackedMessage
+```
+
+<div className="doc-summary doc-methods">
+<h3 className="doc-summary-title">Methods</h3>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#unpack">unpack</a></div>
+<div className="doc-summary-desc">
+
+Unpacks a previously packed message.
+
+```js
+// Pack message
+const packedMsg = message.pack();
+
+// Unpack message
+const unpackedMsg = packedMsg.unpack();
+```
+
+</div>
+</div>
+</div>
+
+## Constructor
+
+```ts
+new PackedMessage(): PackedMessage
+```
+
+## Methods
+
+<div className="doc-header-hidden">
+
+### unpack {#unpack}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">unpack</span>
+
+<span className="doc-type">
+
+[Message](Message)
+
+</span>
+
+</summary>
+
+```ts
+unpack(): Message
+```
+
+<div className="doc-desc">
+
+Unpacks a previously packed message.
+
+```js
+// Pack message
+const packedMsg = message.pack();
+
+// Unpack message
+const unpackedMsg = packedMsg.unpack();
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Unpacked [Message](Message)
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/PackedMessage.ts#L24)
+
+</div>
+
+</div>

@@ -1,0 +1,635 @@
+---
+custom_edit_url: null
+---
+
+# Status
+<div className="doc-side">
+<div className="doc-main-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/Status.ts#L26)
+
+</div>
+</div>
+
+<div className="doc-subtitle">
+
+## What
+The abstract Status class provides methods to create a new Status object based on an existing *Status Code*.
+
+Status codes are defined by creating an **Environment Status Asset** within your Project.
+Within this Asset you can create one or more **Vendors** which in turn may have a number of `Status` entries.
+
+Each of those Status entries has the following structure:
+* ID: A unique number
+* Logical name: A name which uniquely identifies a Status, e.g. `FIELD_UNKNOWN`
+* Language: One of the supported language codes, e.g. `en`
+* Message: The actual Status message. The message may contain placeholders, e.g. `The field with name %1 is unknown`.
+  In this example, the placeholder `%1` is filled with the respective value when creating the *Status* using method create.
+
+## How to use
+
+Based on the Vendor and the logical status name which you have defined, you can create a new Status.
+The `Status` can then be attached to a message or a passed as a result code when rolling back a stream (example).
+
+## Definition
+
+</div>
+
+```ts
+class Status
+```
+
+<div className="doc-summary doc-methods">
+<h3 className="doc-summary-title">Methods</h3>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#create">create</a></div>
+<div className="doc-summary-desc">
+
+Invoke to create a Status.
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#getVendorByName">getVendorByName</a></div>
+<div className="doc-summary-desc">
+
+Get the vendor instance from the list of defined vendors.
+You must have defined the vendor in an Environment Status Asset.
+The string passed in `Status.getVendorByName('myVendorLongName')`
+is the long name of the Vendor definition within that Asset.
+Check documentation for "Environment Status Asset" for more info.
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#getCode">getCode</a></div>
+<div className="doc-summary-desc">
+
+Returns the code of a Status.
+
+Example:
+```js
+// Get the status code
+const code = status.getCode();
+// Result: 4711
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#getMessage">getMessage</a></div>
+<div className="doc-summary-desc">
+
+Returns the uncompiled message of a Status.
+If it includes placeholders, these will not be filled.
+
+Example:
+```js
+// Get the status message. Placeholders defined in a Status are not replaced with parameters, if any.
+const message = status.getMessage();
+// Result: "The name is %1, %2."
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#getParameters">getParameters</a></div>
+<div className="doc-summary-desc">
+
+Returns an array of parameters which may have been passed to the Status upon creation.
+See: create
+
+Example:
+```js
+// Get array of parameters.
+const paramArray = status.getParameters();
+// Result: ["Doe", "John"]
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#getSubStatus">getSubStatus</a></div>
+<div className="doc-summary-desc">
+
+Returns an array of States which are sub states to the current Status.
+
+Example:
+```js
+// Get array of States.
+const statusArray = status.getSubStatus();
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#getVendor">getVendor</a></div>
+<div className="doc-summary-desc">
+
+Returns the vendor of a Status.
+
+Example:
+```js
+// Get array of parameters.
+const VENDOR_INFO = status.getVendor();
+```
+
+</div>
+</div>
+</div>
+
+## Constructor
+
+```ts
+new Status(): Status
+```
+
+## Methods
+
+<div className="doc-header-hidden">
+
+### create {#create}
+
+</div>
+
+<span className="badge badge--info">static</span>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">create</span>
+
+<span className="doc-type">
+
+[Status](Status)
+
+</span>
+
+</summary>
+
+```ts
+create(vendor: VendorInfo, statusCode: string, ...args: string[]): Status
+```
+
+<div className="doc-desc">
+
+Invoke to create a Status.
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">vendor</span>
+
+<div className="doc-type">
+
+[VendorInfo](VendorInfo)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+Status messages can be distinguished by vendor. Pass a [VendorInfo](VendorInfo) here. Obtain it with getVendorByName
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">statusCode</span>
+
+<div className="doc-type">
+
+string
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+The `statusCode` which must be defined within your Environment Status Asset of your Project. This code will be used to identify the Status which you want to add.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">args</span>
+
+<div className="doc-type">
+
+string[]
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A comma separated list of arguments which will be used to fill in the placeholders in the predefined Status message, if any
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Instance of newly created Status.
+
+Example:
+```js
+// Assume we have - among others - the following status defined using a Environment Status Asset:
+// Logical name: "ILLEGAL_VALUE"
+// Message: "Field with name '%1' contains illegal value '%2'."
+
+
+// Get the vendor instance from the list of defined vendors.
+// You must have defined the vendor in an Environment Status Asset.
+// The string passed in `Status.getVendorByName('myVendorLongName')`
+// is the long name of the Vendor definition within that Asset.
+// Check documentation for "Environment Status Asset" for more info.
+const VENDOR = Status.getVendorByName('MyVendorLongName');
+
+// Create the Status
+const STATUS = Status.create(
+     VENDOR,
+     'ILLEGAL_VALUE',
+     'LastName',
+     'Putin'
+);
+
+// In the above, the message placeholders %1 and %2 will be replaced by "LastName" and "Putin".
+// So the final message is "Field with name 'LastName' contains illegal value 'Putin'."
+```
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/Status.ts#L61)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getVendorByName {#getVendorByName}
+
+</div>
+
+<span className="badge badge--info">static</span>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getVendorByName</span>
+
+<span className="doc-type">
+
+[VendorInfo](VendorInfo)
+
+</span>
+
+</summary>
+
+```ts
+getVendorByName(vendorLongName: string): VendorInfo
+```
+
+<div className="doc-desc">
+
+Get the vendor instance from the list of defined vendors.
+You must have defined the vendor in an Environment Status Asset.
+The string passed in `Status.getVendorByName('myVendorLongName')`
+is the long name of the Vendor definition within that Asset.
+Check documentation for "Environment Status Asset" for more info.
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">vendorLongName</span>
+
+<div className="doc-type">
+
+string
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+The long name of the vendor as defined in the specific Environment Status Asset.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Instance of [VendorInfo](VendorInfo)
+
+Example:
+```js
+const VENDOR_INFO = Status.getVendorByName('MyVendorLongName');
+```
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/Status.ts#L159)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getCode {#getCode}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getCode</span>
+
+<span className="doc-type">
+
+string
+
+</span>
+
+</summary>
+
+```ts
+getCode(): string
+```
+
+<div className="doc-desc">
+
+Returns the code of a Status.
+
+Example:
+```js
+// Get the status code
+const code = status.getCode();
+// Result: 4711
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+- Status code
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/Status.ts#L76)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getMessage {#getMessage}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getMessage</span>
+
+<span className="doc-type">
+
+string
+
+</span>
+
+</summary>
+
+```ts
+getMessage(): string
+```
+
+<div className="doc-desc">
+
+Returns the uncompiled message of a Status.
+If it includes placeholders, these will not be filled.
+
+Example:
+```js
+// Get the status message. Placeholders defined in a Status are not replaced with parameters, if any.
+const message = status.getMessage();
+// Result: "The name is %1, %2."
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+- Status message
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/Status.ts#L93)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getParameters {#getParameters}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getParameters</span>
+
+<span className="doc-type">
+
+string[]
+
+</span>
+
+</summary>
+
+```ts
+getParameters(): string[]
+```
+
+<div className="doc-desc">
+
+Returns an array of parameters which may have been passed to the Status upon creation.
+See: create
+
+Example:
+```js
+// Get array of parameters.
+const paramArray = status.getParameters();
+// Result: ["Doe", "John"]
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+- Array of Status parameters which were passed when Status was created.
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/Status.ts#L109)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getSubStatus {#getSubStatus}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getSubStatus</span>
+
+<span className="doc-type">
+
+string[]
+
+</span>
+
+</summary>
+
+```ts
+getSubStatus(): string[]
+```
+
+<div className="doc-desc">
+
+Returns an array of States which are sub states to the current Status.
+
+Example:
+```js
+// Get array of States.
+const statusArray = status.getSubStatus();
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+- Array of States which are sub states to the current Status.
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/Status.ts#L124)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getVendor {#getVendor}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getVendor</span>
+
+<span className="doc-type">
+
+[VendorInfo](VendorInfo)
+
+</span>
+
+</summary>
+
+```ts
+getVendor(): VendorInfo
+```
+
+<div className="doc-desc">
+
+Returns the vendor of a Status.
+
+Example:
+```js
+// Get array of parameters.
+const VENDOR_INFO = status.getVendor();
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+- [VendorInfo](VendorInfo) structure.
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/Status.ts#L139)
+
+</div>
+
+</div>

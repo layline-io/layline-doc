@@ -32,7 +32,7 @@ This UI helps to define the connection parameters for a S3 compatible storage en
 
 ### Name & Description
 
-<img class="frame" src="./.asset-connection-aws_images/6f1da8c1.png" alt="Name & Description (Connection S3)"></img>
+![](.asset-connection-aws_images/6f1da8c1.png "Name & Description (Connection S3)")
 
 **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
 
@@ -42,7 +42,7 @@ The **`Asset Usage`** box shows how many times this Asset is used and which part
 
 ### Required roles
 
-<img class="frame" src="./.asset-connection-kafka-images/c2e6ec39.png" alt="Required Roles (Connection S3)"></img>
+![](.asset-connection-kafka-images/c2e6ec39.png "Required Roles (Connection S3)")
 
 In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching roles.
 If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all Nodes (no restriction).
@@ -52,11 +52,11 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 Use these settings to define the AWS connection parameters.
 
-<img class="frame" src="./.asset-connection-aws_images/0ee82ceb.png" alt="Server Settings (Connection AWS)"></img>
+![](.asset-connection-aws_images/0ee82ceb.png "Server Settings (Connection AWS)")
 
 #### Authentication Mode
 
-<img class="frame" src="./.asset-connection-aws_images/8b92ada5.png" alt="Authentication Mode (Connection AWS)"></img>
+![](.asset-connection-aws_images/8b92ada5.png "Authentication Mode (Connection AWS)")
 
 Select the mode of authentication accepted by the endpoint. Choice of:
 
@@ -85,42 +85,42 @@ If you have selected `Access key / Secret key credentials` as the Authentication
 then you will have to enter the Access Key and Secrete here respectively.
 Both are made available to you by the endpoint provider (e.g. AWS or your compatible setup).
 
-<img class="frame" src="./.asset-connection-aws_images/82f074a4.png" alt="Access Key and Secret - manual entry (Connection S3)"></img>
+![](.asset-connection-aws_images/82f074a4.png "Access Key and Secret - manual entry (Connection S3)")
 
 * **`Access Key`**: Enter the Access Key you want to use to access the endpoint. 
 You can use ${...} placeholders to expand variables defined in [environment variables](/assets/resources/asset-resource-environment.html). 
 
-<img class="frame" src="./.asset-connection-aws_images/6db64fab.png" alt="Access Key as placeholder"></img>
+![](.asset-connection-aws_images/6db64fab.png "Access Key as placeholder")
 
 * **`Use Secret`**: Check this box, if you have a configured a secret and want to reference this here
 instead of entering the Secret directly.
 Pick one of the Secrets in the list. The Secret must have been defined in a [Secrets Resource](/assets/resources/asset-resource-secret.md).
 You cannot manually enter a secret here.
 
-<img class="frame" src="./.asset-connection-aws_images/79a368d8.png" alt="Connection AWS - Use Secret"></img>
+![](.asset-connection-aws_images/79a368d8.png "Connection AWS - Use Secret")
 
 * **`Use alternative provider`**: Check this box, if you do not want to connect to Amazon AWS, but an alternative, compatible provider with a different URL.
 
-<img class="frame" src="./.asset-connection-aws_images/3154d354.png" alt="Connection AWS - Use alternative provider"></img>
+![](.asset-connection-aws_images/3154d354.png "Connection AWS - Use alternative provider")
 
 or use a placeholder:
 
-<img class="frame" src="./.asset-connection-aws_images/733e35fc.png" alt="Connection AWS - Use alternative provider with placeholder"></img>
+![](.asset-connection-aws_images/733e35fc.png "Connection AWS - Use alternative provider with placeholder")
 
 #### Connection test
 
 The UI will constantly try to verify your connection credentials and show the results at the bottom of the box:
 
-<img class="frame" src="./.asset-connection-aws_images/cb0f4340.png" alt="Connection AWS - Connection testing in progress"></img>
+![](.asset-connection-aws_images/cb0f4340.png "Connection AWS - Connection testing in progress")
 
 In case you have used placeholders you must also have specified a test environment, so that the system understands what to replace the placeholders with when testing.
 When a connection could be established, you will see:
 
-<img class="frame" src="./.asset-connection-aws_images/d43aa264.png" alt="Connection AWS - Connection successful"></img>
+![](.asset-connection-aws_images/d43aa264.png "Connection AWS - Connection successful")
 
 In case the connection failed, it will display failure. When hovering over the red text, you will be able to see the details of the problem:
 
-<img class="frame" src="./.asset-connection-aws_images/5dce7c94.png" alt="Connection AWS - Connection failed"></img>
+![](.asset-connection-aws_images/5dce7c94.png "Connection AWS - Connection failed")
 
 ## Related Topics
 

@@ -1,0 +1,832 @@
+---
+custom_edit_url: null
+---
+
+# JavaScriptProcessor
+<div className="doc-side">
+<div className="doc-main-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/JavaScriptProcessor.ts#L10)
+
+</div>
+</div>
+
+<div className="doc-subtitle">
+
+This isn't an actual class, but a placeholder for _hooks_ which are available within a Javascript Asset.
+Hooks are automatically invoked as part of a Javascript Assets normal lifecycle.
+Read more about JS-lifecycle in the [introduction](/lang-ref/javascript/api/).
+
+</div>
+
+```ts
+class JavaScriptProcessor
+```
+
+<div className="doc-summary doc-methods">
+<h3 className="doc-summary-title">Methods</h3>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#onCommit">onCommit</a></div>
+<div className="doc-summary-desc">
+
+Invoked when a Stream is committed.
+Use this to perform potential final tasks when a stream ends.
+
+Example:
+```js
+function onCommit() {
+    if (connection) {
+        connection.commitTransaction();
+        connection.closeConnection();
+        connection = null;
+    }
+}
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#onInit">onInit</a></div>
+<div className="doc-summary-desc">
+
+`onInit` is invoked upon instantiation of the Javascript Asset.
+Use this method to perform any initialization actions, e.g. acquiring a database connection, initializing data structures which are used within the script, etc.
+Note, that this method is only invoked one upon startup of the Project.
+
+```js
+function onInit() {
+    OUTPUT_PORT = processor.getOutputPort('Output');
+}
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#onMessage">onMessage</a></div>
+<div className="doc-summary-desc">
+
+This is one of the most important methods which you will use every time within a Javascript Asset.
+layline.io is a reactive messaging system, meaning a script within a Javascript Asset is triggered by the delivery of a message to this Javascript Asset.
+You can consider the `onMessage` method as a starting point for processing within Javascript Asset.
+
+Example:
+```js
+
+// Get the output port
+const OUTPUT_PORT = processor.getOutputPort('MyOutput');
+
+function onMessage(message) {
+   if (message.type.Header) {
+       // do nothing
+   } else if (message.type.Trailer) {
+       // do something with the trailer
+   } else if (message.type.Detail) {
+        // invoke a self-defined function which handles the message.
+        handleDetail(message);
+   }
+
+   stream.emit(OUTPUT_PORT, message);
+}
+
+function handleDetail(detail) {
+    // do something with the message
+}
+
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#onPrepareCommit">onPrepareCommit</a></div>
+<div className="doc-summary-desc">
+
+Invoked before a Stream is finally committed.
+Use this method to do any preparatory work before a Stream is finally committed.
+
+Example:
+```js
+function onPrepareCommit() {
+    // Invoke custom function to write errors which we gathered during stream processing
+    WriteAllRejectErrors();
+}
+
+functionWriteAllRejectErrors () {
+    // ...
+}
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#onPrepareRetry">onPrepareRetry</a></div>
+<div className="doc-summary-desc">
+
+Invoked when a "prepare-retry" signal is emitted by layline.io.
+
+Example:
+```js
+function onPrepareRetry() {
+    if (connection) {
+        try {
+            connection.rollbackTransaction();
+            connection.closeConnection();
+        } catch (err) {
+        } finally {
+            connection = null;
+        }
+    }
+}
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#onPullMessage">onPullMessage</a></div>
+<div className="doc-summary-desc">
+
+Signals readiness to receive the next message from a connected downstream Processor.
+
+layline.io is a reactive system.
+This means, that in a network of Processors (Actors), each Processor can signal to connected Processors that it wants to push, or pull messages, thus managing smooth message flow without the risk of clogging.
+
+The `onPullMessage` method is triggered by a downstream Processor B to a directly connected upstream Processor A, that it is ready to receive the next message.
+You usually do not need to use this method, since reactive message flow is managed automatically by default between Processors.
+But in some circumstances it makes sense to actually wait for the downstream Processor to pull instead of just emitting messages to it.
+
+Let's say Processor B which is connected to upstream Processor A is ready for the next message to be processed.
+B signals this readiness to A, which A can react to by listening on the `onPullMessage` with A then emitting the next message.
+
+**Practical example:**
+
+A Workflow is processing Streams.
+Each Stream has 100,000 messages where two records each need to be correlated to form a new message to then be sent downstream, resulting in a total of 50,000 downstream messages.
+You cannot correlate them, however until all 100,000 messages have been received.
+This implies, that no messages leave Processor A, until the Stream has been completely received (e.g. marked by an ending message) and all messages have been correlated.
+_(To not store all of them in memory, Processor A may use a queue Service for storage. See example below.)_
+During that phase Processor B is idling.
+
+Normally, you would say that once the last message has been received, we can instantly correlate all messages to then send the resulting 50,000 messages downstream to Processor B all in one go.
+A sudden spike of a wave of these messages is not economical for a reactive system and may take a toll on memory consumption and performance.
+To avoid this, instead of simply emitting messages when Processor A is ready, you can wait for Processor B to be ready and then send one message at a time until all messages have been emitted.
+
+This is what `onPullMessage` allows you to implement.
+
+Example:
+```js
+// Invoked each a downstream Processor is ready for the next message.
+function onPullMessage() {
+    let message = null;
+    let emitted = false;
+    if (streamComplete) { // Stream was fully received
+       message = queue.ReadMessage(); // Read one message
+       if (message) {
+           stream.emit(MY_OUTPUT_PORT, message); // emit the message
+       }
+    }
+
+    if (!message) {
+        queue.closeConnection();
+        queue = null;
+    }
+}
+```
+
+**NOTE:**
+In case you have two or more downstream Processors connected to the current Javascript processor, you are unable to tell which of the downstream Processors is ready for the next message.
+This should be of no concern. You can simply send the next message out to the correct Processor.
+The system will behave in a balanced manner following standard reactive rules.
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#onRollback">onRollback</a></div>
+<div className="doc-summary-desc">
+
+Invoked when a rollback signal is issued by the system.
+Perform and "undo" and cleanup tasks here.
+
+Example:
+```js
+function onRollback() {
+  if (connection) {
+      try {
+          connection.rollbackTransaction();
+          connection.closeConnection();
+      } catch (err) {
+      } finally {
+          connection = null;
+      }
+  }
+}
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#onStreamEnd">onStreamEnd</a></div>
+<div className="doc-summary-desc">
+
+Invoked when current stream ends.
+Use this to run potential clean up tasks.
+
+Example:
+```js
+function onStreamEnd() {
+     // Report in case some customer data could not be found during stream processing
+     if (numCustomerDataNotFound > 0) {
+         stream.logInfo(numCustomerDataNotFound + ' customers could not be found in the database.')
+     }
+}
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#onStreamStart">onStreamStart</a></div>
+<div className="doc-summary-desc">
+
+Invoked when current stream is starting.
+Use this to run potential stream startup initialization tasks on every new Stream.
+
+Example:
+```js
+function onStreamStart() {
+    streamId = stream.getId();
+    fileName = stream.getName();
+}
+```
+
+</div>
+</div>
+</div>
+
+## Constructor
+
+```ts
+new JavaScriptProcessor(): JavaScriptProcessor
+```
+
+## Methods
+
+<div className="doc-header-hidden">
+
+### onCommit {#onCommit}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">onCommit</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+onCommit(): void
+```
+
+<div className="doc-desc">
+
+Invoked when a Stream is committed.
+Use this to perform potential final tasks when a stream ends.
+
+Example:
+```js
+function onCommit() {
+    if (connection) {
+        connection.commitTransaction();
+        connection.closeConnection();
+        connection = null;
+    }
+}
+```
+
+</div>
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/JavaScriptProcessor.ts#L27)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### onInit {#onInit}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">onInit</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+onInit(): void
+```
+
+<div className="doc-desc">
+
+`onInit` is invoked upon instantiation of the Javascript Asset.
+Use this method to perform any initialization actions, e.g. acquiring a database connection, initializing data structures which are used within the script, etc.
+Note, that this method is only invoked one upon startup of the Project.
+
+```js
+function onInit() {
+    OUTPUT_PORT = processor.getOutputPort('Output');
+}
+```
+
+</div>
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/JavaScriptProcessor.ts#L41)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### onMessage {#onMessage}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">onMessage</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+onMessage(message: Message): void
+```
+
+<div className="doc-desc">
+
+This is one of the most important methods which you will use every time within a Javascript Asset.
+layline.io is a reactive messaging system, meaning a script within a Javascript Asset is triggered by the delivery of a message to this Javascript Asset.
+You can consider the `onMessage` method as a starting point for processing within Javascript Asset.
+
+Example:
+```js
+
+// Get the output port
+const OUTPUT_PORT = processor.getOutputPort('MyOutput');
+
+function onMessage(message) {
+   if (message.type.Header) {
+       // do nothing
+   } else if (message.type.Trailer) {
+       // do something with the trailer
+   } else if (message.type.Detail) {
+        // invoke a self-defined function which handles the message.
+        handleDetail(message);
+   }
+
+   stream.emit(OUTPUT_PORT, message);
+}
+
+function handleDetail(detail) {
+    // do something with the message
+}
+
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">message</span>
+
+<div className="doc-type">
+
+[Message](Message)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+The message which currently needs to be handled by the script
+
+</div>
+
+</div>
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/JavaScriptProcessor.ts#L76)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### onPrepareCommit {#onPrepareCommit}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">onPrepareCommit</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+onPrepareCommit(): void
+```
+
+<div className="doc-desc">
+
+Invoked before a Stream is finally committed.
+Use this method to do any preparatory work before a Stream is finally committed.
+
+Example:
+```js
+function onPrepareCommit() {
+    // Invoke custom function to write errors which we gathered during stream processing
+    WriteAllRejectErrors();
+}
+
+functionWriteAllRejectErrors () {
+    // ...
+}
+```
+
+</div>
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/JavaScriptProcessor.ts#L96)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### onPrepareRetry {#onPrepareRetry}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">onPrepareRetry</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+onPrepareRetry(): void
+```
+
+<div className="doc-desc">
+
+Invoked when a "prepare-retry" signal is emitted by layline.io.
+
+Example:
+```js
+function onPrepareRetry() {
+    if (connection) {
+        try {
+            connection.rollbackTransaction();
+            connection.closeConnection();
+        } catch (err) {
+        } finally {
+            connection = null;
+        }
+    }
+}
+```
+
+</div>
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/JavaScriptProcessor.ts#L118)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### onPullMessage {#onPullMessage}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">onPullMessage</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+onPullMessage(): void
+```
+
+<div className="doc-desc">
+
+Signals readiness to receive the next message from a connected downstream Processor.
+
+layline.io is a reactive system.
+This means, that in a network of Processors (Actors), each Processor can signal to connected Processors that it wants to push, or pull messages, thus managing smooth message flow without the risk of clogging.
+
+The `onPullMessage` method is triggered by a downstream Processor B to a directly connected upstream Processor A, that it is ready to receive the next message.
+You usually do not need to use this method, since reactive message flow is managed automatically by default between Processors.
+But in some circumstances it makes sense to actually wait for the downstream Processor to pull instead of just emitting messages to it.
+
+Let's say Processor B which is connected to upstream Processor A is ready for the next message to be processed.
+B signals this readiness to A, which A can react to by listening on the `onPullMessage` with A then emitting the next message.
+
+**Practical example:**
+
+A Workflow is processing Streams.
+Each Stream has 100,000 messages where two records each need to be correlated to form a new message to then be sent downstream, resulting in a total of 50,000 downstream messages.
+You cannot correlate them, however until all 100,000 messages have been received.
+This implies, that no messages leave Processor A, until the Stream has been completely received (e.g. marked by an ending message) and all messages have been correlated.
+_(To not store all of them in memory, Processor A may use a queue Service for storage. See example below.)_
+During that phase Processor B is idling.
+
+Normally, you would say that once the last message has been received, we can instantly correlate all messages to then send the resulting 50,000 messages downstream to Processor B all in one go.
+A sudden spike of a wave of these messages is not economical for a reactive system and may take a toll on memory consumption and performance.
+To avoid this, instead of simply emitting messages when Processor A is ready, you can wait for Processor B to be ready and then send one message at a time until all messages have been emitted.
+
+This is what `onPullMessage` allows you to implement.
+
+Example:
+```js
+// Invoked each a downstream Processor is ready for the next message.
+function onPullMessage() {
+    let message = null;
+    let emitted = false;
+    if (streamComplete) { // Stream was fully received
+       message = queue.ReadMessage(); // Read one message
+       if (message) {
+           stream.emit(MY_OUTPUT_PORT, message); // emit the message
+       }
+    }
+
+    if (!message) {
+        queue.closeConnection();
+        queue = null;
+    }
+}
+```
+
+**NOTE:**
+In case you have two or more downstream Processors connected to the current Javascript processor, you are unable to tell which of the downstream Processors is ready for the next message.
+This should be of no concern. You can simply send the next message out to the correct Processor.
+The system will behave in a balanced manner following standard reactive rules.
+
+</div>
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/JavaScriptProcessor.ts#L175)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### onRollback {#onRollback}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">onRollback</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+onRollback(): void
+```
+
+<div className="doc-desc">
+
+Invoked when a rollback signal is issued by the system.
+Perform and "undo" and cleanup tasks here.
+
+Example:
+```js
+function onRollback() {
+  if (connection) {
+      try {
+          connection.rollbackTransaction();
+          connection.closeConnection();
+      } catch (err) {
+      } finally {
+          connection = null;
+      }
+  }
+}
+```
+
+</div>
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/JavaScriptProcessor.ts#L198)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### onStreamEnd {#onStreamEnd}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">onStreamEnd</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+onStreamEnd(): void
+```
+
+<div className="doc-desc">
+
+Invoked when current stream ends.
+Use this to run potential clean up tasks.
+
+Example:
+```js
+function onStreamEnd() {
+     // Report in case some customer data could not be found during stream processing
+     if (numCustomerDataNotFound > 0) {
+         stream.logInfo(numCustomerDataNotFound + ' customers could not be found in the database.')
+     }
+}
+```
+
+</div>
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/JavaScriptProcessor.ts#L215)
+
+</div>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### onStreamStart {#onStreamStart}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">onStreamStart</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+onStreamStart(): void
+```
+
+<div className="doc-desc">
+
+Invoked when current stream is starting.
+Use this to run potential stream startup initialization tasks on every new Stream.
+
+Example:
+```js
+function onStreamStart() {
+    streamId = stream.getId();
+    fileName = stream.getName();
+}
+```
+
+</div>
+
+</details>
+
+<div className="doc-source">
+
+[source](https://github.com/layline-io/layline-docusaurus/blob/28d5da4/projects/layline/src/classes/JavaScriptProcessor.ts#L231)
+
+</div>
+
+</div>

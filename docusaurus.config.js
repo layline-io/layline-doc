@@ -6,9 +6,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'layline.io Documentation',
+  title: 'layline.io',
   tagline: 'event processing. simplified',
   favicon: 'img/favicons/favicon.ico',
+  noIndex: false,
 
   // Set the production url of your site here
   url: 'https://doc.layline.io',
@@ -46,15 +47,13 @@ const config = {
           includeCurrentVersion: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: [
@@ -73,7 +72,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/social/6_h630_twitter.png',
       navbar: {
-        title: 'layline.io Documentation',
+        title: 'layline.io',
         logo: {
           alt: 'layline.io',
           src: 'img/logo/layline_logo.svg',
@@ -87,15 +86,9 @@ const config = {
           },
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'mainSidebar',
             position: 'left',
-            label: 'Tutorial',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
+            label: 'Documentation',
           },
         ],
       },
@@ -106,25 +99,17 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Documentation',
+                to: '/docs/category/concepts',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'layline.io',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'Company Web-Presence',
+                href: 'https://layline.io',
               },
             ],
           },
@@ -133,20 +118,44 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://layline.io/blog',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} layline.io GmbH.`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 5,
+      },
+
+      algolia: {
+        // The application ID provided by Algolia
+        appId: 'YH0WXW3VX4',
+
+        // Public API key: it is safe to commit it
+        apiKey: 'd29e1f7a10e0f659e70557836ca83c73',
+
+        indexName: 'layline_doc',
+
+        // Optional: see doc section below
+        contextualSearch: true,
+
+        // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+        // externalUrlRegex: 'external\\.com|domain\\.com',
+
+        // Optional: Algolia search parameters
+        // searchParameters: {},
+
+        // Optional: path for search page that enabled by default (`false` to disable it)
+        // searchPagePath: 'search',
+
+        //... other Algolia params
       },
     }),
 

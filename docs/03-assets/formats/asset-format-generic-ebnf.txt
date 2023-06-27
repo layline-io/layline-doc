@@ -1,0 +1,302 @@
+/* layline.io Generic Format Grammar Language
+ * Version: 1.0
+ * Date:    2020-03-01
+ */
+
+
+grammar ::= format
+
+
+format ::= 'format'
+'{'
+(
+  (
+    "name" |
+    "description"? |
+    "start-element"? |
+    "target-namespace"?
+  ) "=" string |
+  'elements' '=' '[' ( (Choice | ListTerminal | MultiPart | Separated | Sequence) ','?)+ ']'
+)+
+'}'
+
+
+
+Choice ::=
+  '{'
+      (
+        'name' '=' string |
+        'type = "Choice"' |
+        ('mapping' '=' MessageMapping)? |
+        ('[' (ElementReference ','?)+ ']')
+     )+
+  '}'
+
+
+ListTerminal ::=
+  '{'
+      (
+        'name' '=' string |
+        'regular-expression' '=' string |
+        'element' '=' ElementPart |
+        ('states' '=' '[' (string ','?)+ ']')? |
+        'type = "ListTerminal"' |
+        ('mapping' '=' MessageMapping)? |
+        Action? |
+        'separator-regular-expression' '=' string |
+        'separator' '=' string |
+        'terminator-regular-expression' '=' string |
+        'terminator' '=' string |
+        'reference' '=' ('[' (ElementReference ','?)+ ']')
+       )+
+  '}'
+
+
+MultiPart ::=
+  '{'
+    (
+      'name' '=' string |
+      'type = "MultiPart"' |
+      ('mapping' '=' MessageMapping)? |
+      'regular-expression' '=' string |
+      ('states' '=' '[' (string ','?)+ ']') |
+      Action? |
+      'parts' '=' ('[' (ElementPart ','?)+ ']') |
+      'token-group-length-formula' '=' Formula
+    )+
+  '}'
+
+
+
+Separated ::=
+  '{'
+    (
+      'name' '=' string |
+      'type = "ListTerminal"' |
+      ('mapping' '=' MessageMapping)? |
+      'regular-expression' '=' string |
+      ('states' '=' '[' ( string ','? )+ ']' )? |
+      Action? |
+      'separator-regular-expression' '=' string |
+      'separator' '=' string |
+      'terminator-regular-expression' '=' string |
+      'terminator' '=' string |
+      'parts' '=' ('[' (ElementPart ','? )+ ']' ) |
+      'reference' '=' ('[' ( ElementReference ','? )+ ']')
+    )+
+  '}'
+
+
+
+Sequence ::=
+'{'
+    (
+      'name' '=' string |
+      'type = "Sequence"' |
+      ('mapping' '=' MessageMapping)? |
+      'reference' '=' ('[' (ElementReference ','? )+ ']' )?
+    )+
+'}'
+
+
+
+ElementPart ::= Calculated | Fixed | RegExpr
+
+
+Calculated ::=
+'{'
+    (
+      'name' '=' string |
+      'type = "Calculated"' |
+      'value' '=' Value |
+      ('input-exists-formula' '=' Formula)? |
+      'input-length-formula' '=' Formula |
+      ('justification' '=' string)? |
+      ('pad-char' '=' string)? |
+      ('strip-chars' '=' string)? |
+      ('null-output-value' '=' string)?
+    )+
+'}'
+
+Fixed ::=
+'{'
+    (
+      'name' '=' string |
+      'type = "Fixed"' |
+      'value' '=' Value |
+      'length' '=' integer |
+      ('justification' '=' string)? |
+      ('pad-char' '=' string)? |
+      ('strip-chars' '=' string)? |
+      ('null-regular-expression' '=' string)? |
+      ('null-output-value' '=' string)?
+    )+
+'}'
+
+
+RegExpr ::=
+'{'
+    (
+      'name' '=' string |
+      'type = "RegExpr"' |
+      'value' '=' Value |
+      'length' '=' integer |
+      ('justification' '=' string)? |
+      ('pad-char' '=' string)? |
+      ('strip-chars' '=' string)? |
+      ('min-length' '=' integer)? |
+      ('max-length' '=' integer)? |
+      ('null-regular-expression' '=' string)? |
+      ('null-output-value' '=' string)?
+    )+
+'}'
+
+
+Value ::=
+  'value' '=' '{'
+      (
+        Binary.ByteString |
+        Binary.HexString |
+        Binary.Long |
+        Text.DateTime |
+        Text.Decimal |
+        Text.Double |
+        Text.Integer |
+        Text.Long |
+        Text.String
+      )
+  '}'
+
+
+Binary.ByteString ::= (
+          'type = "Binary.ByteString"'
+          ('null-input-value' '=' string)?
+        )
+
+
+Binary.HexString ::= (
+          'type = "Binary.HexString"'
+          ('null-input-value' '=' string)?
+        )
+
+Binary.Long ::= (
+          'type = "Binary.Long"'
+          (
+            ('null-input-value' '=' integer)? |
+            ('byte-order' '=' string)?
+          )+
+        )
+
+Text.Date ::= (
+          'type = "Text.Date"'
+          (
+            ('null-input-value' '=' string)? |
+            ('format' '=' string)? |
+            ('alternative-formats' '=' '[' ( (string) ','?)+ ']') |
+          )+
+        )
+
+Text.DateTime ::= (
+          'type = "Text.DateTime"'
+          (
+            ('null-input-value' '=' string)? |
+            ('format' '=' string)?
+          )+
+        )
+
+Text.Decimal ::= (
+          'type = "Text.Decimal"'
+          (
+            ('null-input-value' '=' string)? |
+            ('fixed-precision' '=' integer)? |
+            ('min-fractional-digits' '=' integer)? |
+            ('max-fractional-digits' '=' integer)? |
+            ('decimal-separator' '=' string)? |
+            ('grouping-separator' '=' string)? |
+            ('use-grouping' '=' boolean)? |
+          )+
+        )
+
+Text.Double ::= (
+          'type = "Text.Double"'
+          (
+            ('null-input-value' '=' string)? |
+            ('fixed-precision' '=' integer)? |
+            ('min-fractional-digits' '=' integer)? |
+            ('max-fractional-digits' '=' integer)? |
+            ('decimal-separator' '=' string)? |
+            ('grouping-separator' '=' string)? |
+            ('use-grouping' '=' boolean)? |
+          )+
+        )
+
+Text.Integer ::= (
+          'type = "Text.Integer"'
+          (
+            ('null-input-value' '=' integer)? |
+            ('base' '=' string)?
+          )+
+        )
+
+Text.Long ::= (
+          'type = "Text.Long"'
+          (
+            ('null-input-value' '=' integer)? |
+            ('base' '=' string)?
+          )+
+        )
+
+Text.String ::= (
+          'type = "Text.String"'
+          (
+            ('null-input-value' '=' string)? |
+            ('encoding' '=' string)?
+          )+
+        )
+
+ElementReference ::=
+'{'
+    (
+        'name' '=' string
+      | ('mapping' '=' MessageMapping)?
+      | 'referenced-element' '=' string
+      | ('min-occurs' '=' integer)?
+      | ('max-occurs' '=' integer)?
+    )+
+'}'
+
+
+MessageMapping ::=
+'{'
+    (
+        'message' '=' string
+      | ('element' '=' string)?
+    )+
+'}'
+
+
+
+Action ::=
+    'action' '=' '"'
+        (
+          'pushState' |
+          'popState' |
+          'changeState'
+        ) '(' state ')' '"'
+
+
+Formula ::= SimpleScript
+
+
+boolean ::= '"' (true|false) '"'
+
+string ::= '"' [a-zA-Z0-9-]+ '"'
+
+integer ::= [0-9]+
+
+decimal ::= [0-9]* ("." [0-9])+
+
+comment ::= ('//' string) | ('/*' string '*/')
+
+
+

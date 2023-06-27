@@ -1,0 +1,1174 @@
+---
+title: Release Notes
+description: Release Notes
+---
+
+:::note Can't find what you are looking for?
+Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
+Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
+:::
+
+
+## 1.0.7
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-620** System.Date support in internal message
+
+**SPA-622** Throttling for pollable sources
+
+**SPA-623** Date value support
+
+**SERVER-695** Better DateTime, Date and Time support in JavaScript and Database Services
+
+**SERVER-696** Date support in Message
+
+**SERVER-697** Throttling for pollable sources
+
+**SERVER-699** Support for MinIO S3
+
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-621** FTP connection editor does not always show the connection test result
+
+## 1.0.6
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-619** JDBC service functions should be displayed alphabetical ordered
+
+**SERVER-694** JavaScript load function has to avoid duplicated loading of the same script
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SERVER-693** Stream shutdown and termination grace period can not be configured
+
+## 1.0.5
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SERVER-685** Service supervision needed
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-613** Incorrect asset dependencies
+
+**SPA-618** Renaming of source files fails
+
+**SERVER-690** JavaScript method stream.getMetadata\(\) returns incorrect value
+
+**SERVER-691** Renaming of source files fails
+
+**SERVER-692** Calculation of componenents affected by environment changes incomplete
+
+
+## 1.0.4
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-608** Email support
+
+**SPA-610** SMB support
+
+**SPA-611** SERVER-681  Clearance system for files to process
+
+**SPA-614** Add a create sub folders option to all directory sinks \(FTP, SMB and Filesystem\)
+
+**SERVER-451** Email support
+
+**SERVER-675** Move tika parser to a separate plugin since the tika library has some very old dependencies
+
+**SERVER-681** Clearance system for files to process
+
+**SERVER-682** Switch to Temurin jdk8u352-b08 runtime
+
+**SERVER-683** Dynamic sub directory creation for SMB, FTP and Filesystem source
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-609** Can not select the root script for a JavaScript processor
+
+**SPA-615** Adding or deleting assets externally is not correctly reflected in the UI
+
+**SPA-616** Selecting different Workflow in Workflow in workflow diagram jumps to AssetEditor
+
+**SPA-617** Monaco Editor hover can lead to error "emitter.reject"
+
+**SERVER-678** NFA of regular expression uses too much memory
+
+**SERVER-679** Generic format: optional flag was not evaluated correctly for element with null regular expression
+
+**SERVER-680** Access coordinator throws exception when owner information contains corrupt data
+
+**SERVER-684** S3 session actor fails to resolve connection for child assets
+
+**SERVER-686** AWS connection fails if user has no SQS permissions
+
+**SERVER-687** Kafka source provides negative offset lags
+
+**SERVER-688** Direct deployment switch fails due to missing update order
+
+
+## 1.0.3
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-599** Validate JSON format for Arguments in Javascript Asset Editor
+
+**SPA-603** Pinia session store
+
+**SPA-605** Rebuild MainLayout to be tabbed instead of using routes
+
+**SPA-606** Switch to direct file tree manipulations
+
+**SERVER-206** Message failures should include the message number/id
+
+**SERVER-668** Switch the config server's default journal from leveldb to h2
+
+**SERVER-669** Remove session ids from the reactive engine's REST interface
+
+**SERVER-670** Switch to direct file tree manipulations
+
+**SERVER-673** Remove freenet specific settings from docker images
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-596** Save button is not always visible
+
+**SPA-597** Exceptions when logging out of the config server while there is an active cluster connection
+
+**SPA-598** Direct activation of monitoring after a config server logout does not show any data
+
+**SPA-601** Deleting child of an Asset in Asset Editor throws error
+
+**SPA-604** SPA does not send all formats to configuration server to calculate data dictionary updates
+
+**SPA-607** Override parent arguments checkbox does not work
+
+**SERVER-551** An invalid mongo db url leads to a permanent actor restart without any backoff
+
+**SERVER-650** Types defined in DataDictionaryFormats do not show up in Intellisense
+
+**SERVER-671** REST server address contains an additional http:// or https:// if it is configured in the canonical name
+
+
+
+## 1.0.2
+<br/>
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-600** Cannot add Processor in Workflow diagram
+
+## 1.0.1
+<br/>
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-595** Logout of config server user leads to exceptions and failures
+
+## 1.0.0
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-13**URL handling in monitoring mode
+
+**SPA-527** Memorize scroll position in Asset Editors
+
+**SPA-534** AWS EventBridge support
+
+**SPA-565** Usage of plain source code files
+
+**SPA-571** Change scheduler monitoring interface from websocket to http rest
+
+**SPA-573** Add Kafka Connection Checker settings to the Kafka Connection
+
+**SPA-575** Handling of cluster node role information
+
+**SPA-577** Change deployment monitoring interface from websocket to http rest
+
+**SPA-581** Remove the monitoring websocket interface
+
+**SPA-582** NavigateTo should support locations without an asset uuid \(like source files\)
+
+**SPA-583** Improved NavigateTo support
+
+**SPA-586** Pollable source should support a stable time
+
+**SPA-590** Improved user storage REST interface
+
+**SPA-591** Store file store settings in file system
+
+**SPA-593** Make the failure handling more robust
+
+**SERVER-140** Improve the error handling for input mapping errors
+
+**SERVER-441** Sniffer: Enable to view data from workflow/processor during processing
+
+**SERVER-507** Encapsulate Source, Sink, Service and Processor constructor actions in a try-catch block
+
+**SERVER-529** Access coordinator shall release acquired files, when the source does not exist anymore
+
+**SERVER-598** AWS EventBridge support
+
+**SERVER-642** Usage of plain source code files
+
+**SERVER-646** JavaScript double conversion for BigInteger and BigDecimal as it is already done for Long
+
+**SERVER-651** Add Kafka Connection Checker settings to the Kafka Connection
+
+**SERVER-652** Change scheduler monitoring interface from websocket to http rest
+
+**SERVER-653** load\(\) feature for JavaScript scripts
+
+**SERVER-654** Reactive engine shall provide role information via its rest interface
+
+**SERVER-656** Change deployment monitoring interface from websocket to http rest
+
+**SERVER-657** Remove the monitoring websocket interface
+
+**SERVER-658** Improved NavigateTo support
+
+**SERVER-661** Pollable source should support a stable time
+
+**SERVER-662** Provide stream metadata information like file size, modification time etc.
+
+**SERVER-666** Improved user storage REST interface
+
+**SERVER-667** Store file store settings in file system
+
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-501** Workflow Viewer -> Diagram "jumps back" upon refresh of data
+
+**SPA-574** When a workflow is delete in the workflow view, it is still available in the deployment workflow selector
+
+**SPA-576** The conflicted asset is not passed to the DeploymentAssetEditorLauncher
+
+**SPA-578** Encryption selection dialog -> login problem
+
+**SPA-579** Unable to delete Asset
+
+**SPA-584** Fix reloading of externally changed Project
+
+**SPA-585** Creating a new Test, does not set project to modified
+
+**SPA-587** Vue reactivity problem on project load
+
+**SPA-588** Project not loaded when a parent asset was deleted
+
+**SPA-589** Last Asset is not closed properly in both AssetEditor and DeploymentTabEditor
+
+**SPA-592** Non-deterministic failures while closing the project
+
+**SPA-594** Extraction of server status in Connection.ts leads to an exception
+
+**SERVER-157** Direct activation of a deployment from another deployment does not work without DeploymentRoot inbetween
+
+**SERVER-491** Direct switch of active deployments does not work
+
+**SERVER-616** AkkaStreamExecutor does not handle the termination of its source actor
+
+**SERVER-641** Project version is not updated when for instance git branch is changed
+
+**SERVER-644** Configuration server logs erroneous plugin initialization message
+
+**SERVER-645** Garbage collection in ClusterMonitor fails when a Interface.state can not be determined due do inconsistent events
+
+**SERVER-647** Build failure when a deployment references a non-existing environment or secret asset
+
+**SERVER-648** JsonAsset in the data dictionary format needs an ordered selector list
+
+**SERVER-649** Mapping processor scenarios without mapping steps lead to a null pointer exception
+
+**SERVER-659** FTP connection: missing retry when initial connect fails
+
+**SERVER-660** Retry necessary, when a service dependency is unavailable
+
+**SERVER-663** Can not append to AnyArray from within JavaScript
+
+**SERVER-664** Snapshot of registry storage is not JSON serializable
+
+**SERVER-665** Reactive engine does not provide the canonical rest server address
+
+
+## 0.9.16
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SERVER-393** Shelf
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SERVER-655** ServiceSourceActor fails to poll the service
+
+## 0.9.15
+<br/>
+
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SERVER-643** Add loss of precision check for the automatic JavaScript conversion of Long to Double values
+
+**SPA-568** GoJS license update
+
+**SPA-569** Filter & Routing -> Group Box should have max height
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-566** HTTP service editor does not save the data dictionary types
+
+**SPA-567** Scheduler overviews can sometimes throw \(insignificant\) errors if Deployments are deactivated
+
+**SPA-570** Cluster Login no longer working.
+
+**SPA-572** Operations -> Scheduler -> Sometimes wrongly shows "no active deployment"
+
+## 0.9.14
+<br/>
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-467** Uncaught exception in filter of access coordinator
+
+**SPA-464** Prevent continuous polling of clusters that are not selected anymore
+
+**SPA-458** Cluster login dialog during deployment does not default to login when enter button is pressed
+
+**SPA-455** New assets are not selectable in Workflow -> add from existing asset
+
+**SERVER-561** JavaScript: Closing a connection for the second time leads to a NullPointer exception
+
+**SERVER-560** Rest server does not handle the AuthenticationFailedException with a 4xx failure
+
+**SERVER-559** Generic format does not provide the context information for mapping errors
+
+**SERVER-553** Clusternodes in failure state are not show with their correct address in cluster node view \(state is used instead\)
+
+**SERVER-552** Timer input processor fails if more than two instances of the same stream run on the same cluster node
+
+**SERVER-544** HTTP service does not allow service functions with an empty path
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-469** Store generic format definitions in a version control system friendly manner
+
+**SPA-468** Store JavaScripts in a version control system friendly manner
+
+**SPA-466** Asynchronous/synchronous service calls from JavaScript
+
+**SPA-465** Compatible SPA and Server status classes
+
+**SPA-463** Individual slider positions for all tabs in audit view
+
+**SPA-462** Live view for log files
+
+**SPA-461** Persistent state for all cluster component viewers
+
+**SPA-460** Rest interface to get the state of the sniffer directory
+
+**SPA-459** Improved display of cluster node failures
+
+**SPA-457** Add metrics to Workflow view in Engine-State Viewer
+
+**SPA-456** REST interface to get workflow metrics
+
+**SPA-454** Bugfixes and improvements in HTTP format configuration
+
+**SPA-453** REST interface to get workflow detail information
+
+**SPA-452** Generic Workflow Viewer
+
+**SPA-427** Consistent HTTP error handling
+
+**SERVER-566** Store generic format definitions in a version control system friendly manner
+
+**SERVER-565** Store JavaScripts in a version control system friendly manner
+
+**SERVER-563** Separated terminal element has to support optional fields at the end of the record
+
+**SERVER-562** Improved mapping error messages
+
+**SERVER-557** Log status information when node tries to connect to the cluster
+
+**SERVER-556** Live view for log files
+
+**SERVER-555** Rest interface to get the state of the sniffer directory
+
+**SERVER-554** Improved detection of cluster node failures
+
+**SERVER-550** Create own leveldbjni-all jar which also includes the libleveldbjni.so for arm7l \(32bit raspberry pi\)
+
+**SERVER-549** Include sample scripts for the linux systemd to the installer
+
+**SERVER-548** Installer for AARCH64 needed.
+
+**SERVER-547** REST interface to get workflow metrics
+
+**SERVER-546** Move HTTP service, source and format into a separate module
+
+**SERVER-545** Environment and secret settings have to be expandable from within JavaScript
+
+**SERVER-543** Convert DataDictionary class into an interface
+
+**SERVER-542** REST interface to get workflow detail information
+
+**SERVER-541** Asynchronous invocation of service functions
+
+
+## 0.9.13
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-549** Clean up StringUtils.ts
+
+**SPA-550** Replace Workflow Palette with Toolbar Drop Down
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-551** SPA sometimes fails to read the user specific registry due to a race condition
+
+**SPA-553** Display failures in q-table components with more than one row in a slot \(Sniffer, LogView\)
+
+**SERVER-626** MessageInput processor does not send messages to its sniffer session
+
+
+## 0.9.12
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-315** Sniffer: Enable to view data from workflow/processor during processing
+
+**SPA-539** Improve polling behavior of operations view
+
+**SPA-540** Service proxy
+
+**SPA-545** DataDictionary resource
+
+**SPA-547** MessageTreeViewer not performing with large result set
+
+**SPA-548** Add an "Execute again" button on the function execution result tab
+
+**SERVER-613** Service proxy
+
+**SERVER-614** JavaScript processor: array maniplulation methods needed
+
+**SERVER-619** DataDictionary resource
+
+**SERVER-625** StringUtils class for JavaScript
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-536** Missing editor for the System.AnyMap type
+
+**SPA-537** Function Editors \(MonacoEditor\) sometimes do not display script, even though there should be content
+
+**SPA-538** Workflow Editor --> Displays wrong workflow with wrong diagram when adding new workflow in AssetEditor
+
+**SPA-541** Workflow Editor -> Deleting workflow from within Asset Editor when Workflow was selected in Diagram, does not remove asset view from Workflow Diagram
+
+**SPA-542** Data Dictionary base types contain 2x "Byte String", but not "Character"
+
+**SPA-543** Null reference exception when adding a processor asset to a workflow after another processor has been deleted
+
+**SPA-544** Frame output processor does not indicate its dependency changes
+
+**SPA-546** DirectorySourceEditor fails to save the settings correctly
+
+**SERVER-617** Kafka lag metric sometimes has negative values
+
+**SERVER-618** JSMessageMirror's default value method throws a null pointer exception if the message is not valid anymore
+
+**SERVER-620** Message does not support the initialization from JSArrayNodeMirror nodes
+
+**SERVER-622** JavaScript message interface does not support setting properties of a Map or AnyMap
+
+**SERVER-623** Sniffer does not close sessions, when a configuration is shut down
+
+**SERVER-624** In JavaScript the message has to return all numerical values as Integer or Double when using property access
+
+
+## 0.9.11
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SERVER-356** Metric for input source backlog needed
+
+**SERVER-611** Remove old V1 logfile rest interface
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SERVER-608** QueueService can not be deployed \(null pointer exception\) when the "service specific directories" box is not ticked
+
+**SERVER-610** Queue service does not shut down
+
+**SERVER-612** UDP service does not provide its data dictionary information
+
+
+## 0.9.10
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-524** Provide sink metrics for the engine state view
+
+**SPA-525** Update the Websocket sink to the current layline.io version
+
+**SPA-528** Asset Editor -> Active tab which is outside of view, should be scrolled into view to show that it is open.
+
+**SPA-529** Asset Editor should provide a drop-down selector to switch between open tabs, instead of just relying on the tab bar.
+
+**SPA-532** StreamBoundaryController -> Matching -> Add State Transition types FORWARD\_MESSAGE\_AND\_END\_DOWNSTREAM and START\_DOWNSTREAM\_AND\_FORWARD\_MESSAGE
+
+**SPA-535** ASN.1 format editor should provide a list of available converters
+
+**SERVER-595** Provide sink metrics for the engine state view
+
+**SERVER-596** Update the Websocket sink to the current layline.io version
+
+**SERVER-597** StreamBoundaryController cases need a name
+
+**SERVER-604** Hex converter needed for ASN.1 grammars
+
+**SERVER-605** Support for converter overrides in ASN.1 sequence and choice elements
+
+**SERVER-606** Add Ericsson SGSN timestamp converter
+
+**SERVER-607** ASN.1 plugin: provide REST interface to get the list of available converters
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-523** Mapping-Processor: can not add more than one sub step to a condition
+
+**SPA-526** StreamBoundaryController -> Matching -> Inheritance not working correctly
+
+**SPA-531** StreamBoundaryController -> Descendants not stored in the correct way. Causes deployment issues.
+
+**SPA-533** StreamBoundaryController -> Matching -> Forward Message& End Downstream does not require Stream Result in UI
+
+**SERVER-593** Lag metric value of the Kafka source actor is incorrect
+
+**SERVER-594** Backlog metric of Pollable source actor is incorrect
+
+**SERVER-599** Null pointer exception in deployment of stream boundary controller
+
+**SERVER-600** StreamBoundary controller should check for "null" transitions during export
+
+**SERVER-601** StreamBoundary controller action StartDownstreamAndForwardMessage does not forward the message
+
+**SERVER-602** Various StreamBoundaryController bugs
+
+**SERVER-603** Flow processor statistic values will not be reset on workflow shutdown
+
+
+## 0.9.9
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-498** Workflow selection in EngineConfig should be ordered alphabetical
+
+**SPA-508** Viewer for service source
+
+**SPA-514** Workflow instance view shall display stream name in the rightmost column
+
+**SPA-518** Viewer for AWS connection and SNS/SQS sink source
+
+**SPA-519** Connections should directly follow Workflows in the engine state view
+
+**SPA-522** Generic sink/source metric handling
+
+**SERVER-575** Support for ASN.1 TBCD and IA5 string
+
+**SERVER-584** ConfigServer should use the name of the base asset instead of null when saving derived assets
+
+**SERVER-585** Filter and Routing processor needs message duplication
+
+**SERVER-588** JavaScript interface for the status registry
+
+**SERVER-590** Add missing runtime detail information to all components
+
+**SERVER-592** Generic sink/source metric handling
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-502** Mapping processor steps can not be reordered
+
+**SPA-503** Asset Mapping Editor --> Sometimes step types are not updated when type is changed
+
+**SPA-504** Monaco editor emits its input null value as empty string when mounted
+
+**SPA-505** Message creation editor in some cases does not emit its modifications
+
+**SPA-507** Adding an emit port to a filter & routing rule leads to an exception
+
+**SPA-509** WorkflowEditor -> Cannot add an input processor, if previously a input processor was added and deleted
+
+**SPA-510** StreamBoundaryController --> Diagram not showing / cannot change Target State / cannot change stream name
+
+**SPA-511** StreamBoundaryController --> Condition equals change type throws error.
+
+**SPA-512** StreamBoundaryController -> Matching -> States are not saved
+
+**SPA-513** StreamBoundaryController -> Matching -> Condition data is not saved.
+
+**SPA-515** StreamBoundaryController -> Matching -> Changing state transition does not change project modified state
+
+**SPA-516** StreamBoundaryController -> Matching -> Error when trying to delete state
+
+**SPA-517** StreamBoundaryController -> Matching -> State transition data is not saved
+
+**SPA-521** StreamBoundaryController -> Matching -> State variables not saved / MatchingContext variables not saved
+
+**SERVER-583** Mapping processor steps can not be reordered
+
+**SERVER-586** Kafka connection details are not registered in Jackson type registry
+
+**SERVER-587** ServiceSource does not provide runtime details
+
+**SERVER-589** Kafka source does not provide offset and lag information
+
+
+## 0.9.8
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-45** FTP editor --> Add FTP connection test
+
+**SPA-478** AWS SQS input support
+
+**SPA-488** Support the declaration of Aerospike service functions
+
+**SPA-489** Message accessor input can not handle the array syntax \[\]
+
+**SPA-490** Create data type icons for data dictionary elements
+
+**SPA-493** Common AWS connection
+
+**SPA-496** AWS SNS support
+
+**SPA-500** Debugging rest interface to query the state of a workflow instance
+
+**SERVER-569** AWS SQS input support
+
+**SERVER-570** Inheritance of data dictionary elements should support a type changed in a derived declaration
+
+**SERVER-571** Common AWS connection
+
+**SERVER-572** Retry option for layctl command
+
+**SERVER-573** Support for quoted element parts
+
+**SERVER-574** AWS SNS support
+
+**SERVER-578** StreamBoundary processor shall report its debug stream state
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-391** Inheritable Checkbox shows it is derived, even if it does not have a parent.
+
+**SPA-479** Aerospike Service -> Cannot save defined functions
+
+**SPA-480** Workflow diagram used in sniffer, may throw error when no link to display data for can be found.
+
+**SPA-482** Http error handling throws error itself in case sub-status needs to be be assigned to error.
+
+**SPA-483** Cannot delete member in Data Dictionary
+
+**SPA-487** Inheritance in DataDictionary component not working. Data Dictionary component does not display type when loaded.
+
+**SPA-491** Error "isDeleted of undefined ..." thrown in Aerospike Service Editor upon invoking configured Asset
+
+**SPA-492** Warning thrown because "hasError" not defined in AerospikeCollectionsCard.vue
+
+**SPA-495** Environment Settings show "Duplicate Property" on save
+
+**SPA-497** Various issues when adding a workflow
+
+**SPA-499** Workflow links are not visually connected anymore.
+
+**SERVER-576** StreamMonitor fails to recover \(StreamMonitorEventSourced.kt:246\)
+
+**SERVER-577** Retry handling does not work correctly \(due to the parallel service call changes\)
+
+**SERVER-579** Stream output processor does not close the output, when the end of the input stream leads to a parsing error
+
+**SERVER-580** Shutdown problems when using the FTP sink
+
+**SERVER-581** JDBC service fails to execute stream function requests
+
+**SERVER-582** Null reference exceptions in commit phase of input service processor
+
+
+## 0.9.7
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SERVER-567** AWS SQS output support
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+
+## 0.9.6
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SERVER-568** Config server fails to export default StreamRetry andEventRetry failure handling asset
+
+## 0.9.5
+<br/>
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-427** Consistent HTTP error handling
+
+**SPA-452** Generic Workflow Viewer
+
+**SPA-453** REST interface to get workflow detail information
+
+**SPA-454** Bugfixes and improvements in HTTP format configuration
+
+**SPA-456** REST interface to get workflow metrics
+
+**SPA-457** Add metrics to Workflow view in Engine-State Viewer
+
+**SPA-459** Improved display of cluster node failures
+
+**SPA-460** Rest interface to get the state of the sniffer directory
+
+**SPA-461** Persistent state for all cluster component viewers
+
+**SPA-462** Live view for log files
+
+**SPA-463** Individual slider positions for all tabs in audit view
+
+**SPA-465** Compatible SPA and Server status classes
+
+**SPA-466** Asynchronous/synchronous service calls from JavaScript
+
+**SPA-468** Store JavaScripts in a version control system friendly manner
+
+**SPA-469** Store generic format definitions in a version control system friendly manner
+
+**SERVER-541** Asynchronous invocation of service functions
+
+**SERVER-542** REST interface to get workflow detail information
+
+**SERVER-543** Convert DataDictionary class into an interface
+
+**SERVER-545** Environment and secret settings have to be expandable from within JavaScript
+
+**SERVER-546** Move HTTP service, source and format into a separate module
+
+**SERVER-547** REST interface to get workflow metrics
+
+**SERVER-548** Installer for AARCH64 needed.
+
+**SERVER-549** Include sample scripts for the linux systemd to the installer
+
+**SERVER-550** Create own leveldbjni-all jar which also includes the libleveldbjni.so for arm7l \(32bit raspberry pi\)
+
+**SERVER-554** Improved detection of cluster node failures
+
+**SERVER-555** Rest interface to get the state of the sniffer directory
+
+**SERVER-556** Live view for log files
+
+**SERVER-557** Log status information when node tries to connect to the cluster
+
+**SERVER-562** Improved mapping error messages
+
+**SERVER-563** Separated terminal element has to support optional fields at the end of the record
+
+**SERVER-565** Store JavaScripts in a version control system friendly manner
+
+**SERVER-566** Store generic format definitions in a version control system friendly manner
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-455** New assets are not selectable in Workflow -> add from existing asset
+
+**SPA-458** Cluster login dialog during deployment does not default to login when enter button is pressed
+
+**SPA-464** Prevent continuous polling of clusters that are not selected anymore
+
+**SPA-467** Uncaught exception in filter of access corrdinator
+
+**SERVER-544** HTTP service does not allow service functions with an empty path
+
+**SERVER-552** Timer input processor fails if more than two instances of the same stream run on the same cluster node
+
+**SERVER-553** Clusternodes in failure state are not show with their correct address in cluster node view \(state is used instead\)
+
+**SERVER-559** Generic format does not provide the context information for mapping errors
+
+**SERVER-560** Rest server does not handle the AuthenticationFailedException with a 4xx failure
+
+**SERVER-561** JavaScript: Closing a connection for the second time leads to a NullPointer exception
+
+## 0.9.4
+<br/>
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-451** Shelf fails to paste messages in the root folder
+
+**SPA-450** Timestamp in Status Entry displays is misleading
+
+**SPA-449** Inheritance for failure handling does not work
+
+**SPA-447** Failure notification should allow string and error as parameter
+
+**SPA-444** Project Workflow: Adding new processor to workflow, does not display processor icon
+
+**SERVER-540** Activation controller state is reported as "unconnected", when no tag is assigned
+
+**SERVER-539** Recovery state of the scheduler master is always reported as FAILURE
+
+**SERVER-538** JavaScript Status.Create\(...\) fails for null arguments with a Java NullPointer exception
+
+**SERVER-537** Auditing kind FORMAT does not exist.
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-448** Message sniffer
+
+**SPA-446** Improve tooltips
+
+**SPA-445** Integrate Documentation into Configuration Center
+
+**SPA-443** Project Workflow: Palette should only be visible with Workflow open
+
+**SERVER-535** Message sniffer
+
+
+
+## 0.9.3
+<br/>
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-441** Deployment is not possible \(due to changes in 0.9.3\)
+
+**SPA-440** Exception in Settings view
+
+**SPA-437** Can copy processors in Workflow through CTRL-Drag on a processor --> this creates a fake copy of the processor
+
+**SPA-436** DataDictionary Editor --> Emptying a field leads to editor crash.
+
+**SPA-426** Generic Format Asset --> Sample Messages --> Copy button does not work
+
+**SPA-425** Opening an Asset with a script editor \(Javascript, Arguments, etc\), sets asset to modified
+
+**SPA-423** Pollable source metric viewer throws exception when used with a pre 0.9 server
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-434** Rename SimpleScript to QuickScript
+
+**SPA-433** Use composition API for MonacoEditor component
+
+**SPA-432** Mark Quick Script fields with QS-Icon
+
+**SPA-431** ASN.1 support
+
+**SPA-430** Copy and paste of workflows
+
+**SPA-429** Common Copy/Paste behavior in all project tabs
+
+**SPA-428** Paste of assets in test tab leads to an exception
+
+**SPA-424** Support of runtime failures for sources
+
+**SERVER-534** Security storage should be able to import keys from the file system
+
+**SERVER-533** Rename SimpleScript to QuickScript
+
+**SERVER-531** ASN.1 support
+
+**SERVER-530** Enable user authentication in all reactive engine rest controllers
+
+**SERVER-528** Pollable source should report runtime failures.
+
+**SERVER-527** Move format generic to a separate plugin module
+
+## 0.9.2
+<br/>
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-422** Input UDP Asset: Error "ref is not defined"
+
+**SPA-421** SimpleScript Monaco Editor --> context menu layer problem --> see image
+
+**SPA-420** Service Input Processor Asset throws errors when creating/opening it in the UI
+
+**SPA-419** Input Message Processor Asset throws errors when creating/opening it in the UI
+
+**SPA-418** UDP Input Processor Asset throws errors when creating/opening it in the UI
+
+**SPA-416** Missing function configuration card in cassandra service editor.
+
+**SPA-413** Language server protocol is not working
+
+**SPA-363** Editing a value in a sorted environment asset triggers an unsorting and editing in a wrong value field
+
+**SPA-322** MessageAccessorInput.vue does not support better name matching anymore.
+
+**SPA-321** MessageAccessorInput.vue does not support inheritance
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-414** Use SQL syntax highlighting for the JDBC service
+
+**SERVER-526** Use new InheritableMessageAccessor component in JDBC service editor
+
+**SERVER-43** Intellisense for message accessors
+
+**SERVER-42** API for UI to test FTP connections
+
+**SERVER-21** Language Server Protocol
+
+## 0.9.1
+<br/>
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-412** Generic asset dependencies for processors and workflows do not work anymore
+
+**SERVER-525** Language server protocol is not working
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-415** Use JSON syntax highlighting for the cassandra driver arguments
+
+**SPA-411** Show startup time in cluster overview
+
+**SERVER-524** Show startup time in cluster overview
+
+**SERVER-29** Language Protocol Server GenericFormat/HOCON
+
+
+## 0.9.0
+<br/>
+
+<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+
+**SPA-405** GoJS version cannot be greater than 2.1.x
+
+**SPA-401** LanguageClient error when invoking Monaco Editor
+
+**SPA-396** Unable to add new project from unzipped project file
+
+**SPA-394** Intellisense menu in MonacoEditor.vue shows with great offset at wrong position
+
+**SPA-393** “editorOptions” passed as string and not as reference in JdbcFunctionEditor.vue
+
+**SPA-392** Wrong wording “Encrypted Password” of function to substitute macros in passwords in credentials
+
+**SPA-384** External asset change dialog pops up when saving new assets
+
+**SPA-383** InheritableSecretSelect.vue > props are non optional
+
+**SPA-382** Fix “Unknown” Editors to work with generic MonacoEditor
+
+**SPA-378** Name of assets in AssetEditor not changing when modified in related editor
+
+**SPA-374** Error “Couldn't start client Sample Language Client”
+
+**SPA-373** Workflow View -> show error if not all ports connected
+
+**SPA-372** Date time picker not functioning properly any more
+
+**SPA-371** Narrow input -> Entry is displaced below field
+
+**SPA-370** Uncaught exception when a service function without result is called
+
+**SPA-367** Editing a value in a sorted secret asset triggers an unsorting and editing in a wrong value field
+
+**SPA-366** Sorting in Secrets and Environments —> not saved
+
+**SPA-365** Components containing MonacoEditor.vue signal “modified” on mount
+
+**SPA-358** Missing model in Workflow.js —> setDependencyForNode
+
+**SPA-357** Enable to post-load assets from list of assetUuids
+
+**SPA-356** DeploymentTree does not display dependencies in Deployment Storage View
+
+**SPA-355** Clusters are not updated in Cluster-drop down
+
+**SPA-33** Fix icons in asset tree view
+
+**SERVER-522** Reactive streams dry out for non tree graphs
+
+**SERVER-506** Deploy all flag in engine configuration is not evaluated.
+
+**SERVER-505** ExclusivePartitionController fails to revoke the partition on failures
+
+**SERVER-498** Delete file system notification is not sent for assets deleted by the config server itself
+
+**SERVER-489** JDBC service fails to handle non-existing optional parameters
+
+**SERVER-488** Activation of a deployment in the deployment storage does not always succeed
+
+**SERVER-487** Deletion of workflows from within the workflow view does not work
+
+**SERVER-486** Reactive engine fails to activate workflows without flow processors
+
+**SERVER-485** Generic format: empty tokens at the end of the stream are reported as failures
+
+**SERVER-464** Mapping failures are not handled
+
+**SERVER-461** Filesystem source does not evaluate the filter regular expression
+
+**SERVER-460** Text.Double and Text.Decimal values are using grouping characters as default
+
+**SERVER-260** Export of workflows with unconnected ports is possible
+
+**SERVER-71** Bad error message when deploying unconnected ports.
+
+
+<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+
+**SPA-256** Import/Export assets/messages
+
+**SPA-408** Adjust S3 GUI to the available features of the 0.9.0 version
+
+**SPA-406** S3 source needs filter, prefix and suffix regular expression configuration
+
+**SPA-403** 0.9.0 improvements
+
+**SPA-400** Use crontab control for all crontab configurations
+
+**SPA-399** Security storage
+
+**SPA-398** Improvement of StatusTooltip.vue
+
+**SPA-397** FTP connection asset
+
+**SPA-395** Kafka connection asset
+
+**SPA-390** Introduction of Connection asset class
+
+**SPA-387** Update of the S3 GUI
+
+**SPA-385** Rename “delete project” to “remove project”
+
+**SPA-381** GUI for new Time/Count based splitter mode of the StreamBoundary processor
+
+**SPA-380** User authentication for the Kafka client
+
+**SPA-379** Typescript interface for the persistent state of the SPA
+
+**SPA-377** Usage of typescript for further SPA components
+
+**SPA-376** Usage of codingame monaco language client
+
+**SPA-375** Service test UI
+
+**SPA-369** Default output names of input processors contain spaces
+
+**SPA-361** Stream input processor needs "rollback on mapping errors" configuration
+
+**SPA-359** Configuration server has to monitor the file system for external changes
+
+**SPA-350** Export project \(or parts\) as zip file
+
+**SPA-341** UI for the timer based source
+
+**SPA-316** Testing configuration in deployments
+
+**SPA-255** Import/Export messages/assets
+
+**SPA-252** Service-Testing during configuration
+
+**SPA-224** Change PortConfigurationCard to normal input fields instead of popup edits
+
+**SPA-222** Input UDP Editor
+
+**SPA-167** StreamBoundary processor needs a splitting mode based on time and/or messages
+
+**SPA-53** Cluster node roles in assets
+
+**SPA-25** Project wide renaming of node into processor
+
+**SPA-18** FormatJSON Editor
+
+**SERVER-520** Update FTP for the usage of subfolders
+
+**SERVER-519** Handling of subdirectories and file prefixes/suffices
+
+**SERVER-517** 0.9.0 improvements
+
+**SERVER-514** Try to remove external configuration files \(keystores, certificates ...\)
+
+**SERVER-513** FTP connection asset
+
+**SERVER-512** Kafka connection asset
+
+**SERVER-511** Introduction of Connection asset class
+
+**SERVER-510** Kafka source shall provide the lag as a metric
+
+**SERVER-509** Update S3 plugin with features of the newest version
+
+**SERVER-504** Remove Kotlin usage from module layline-engine-testkit
+
+**SERVER-503** User authentication for the Kafka client
+
+**SERVER-501** Service tests require a unique UUID for all service functions.
+
+**SERVER-495** Automatic keep-alive Ping support for WebSocket connections
+
+**SERVER-493** Convert the config server to Reactive Streams typed
+
+**SERVER-492** Remove "SLF4J: The following set of substitute loggers ..." message at startup
+
+**SERVER-490** Special handling of UnrecognizedPropertyException when reading assets
+
+**SERVER-484** Port format and service controllers/actors to Reactive Streams typed
+
+**SERVER-476** Evaluation of cluster node roles before Sink, Source and Service activation
+
+**SERVER-475** Evaluation of cluster node roles before workflow activation
+
+**SERVER-474** Introduce right to get Private Keys
+
+**SERVER-459** Configuration server has to monitor the file system for external changes
+
+**SERVER-458** Export project \(or parts\) as zip file
+
+**SERVER-457** Import of zipped projects
+
+**SERVER-450** Timer based source
+
+**SERVER-444** Testing configuration in deployments
+
+**SERVER-442** Service-Testing during configuration
+
+**SERVER-233** StreamBoundary processor needs a splitting mode based on time and/or messages
+
+
+<br/>
+
+---
+
+## No Release Notes are published prior to 0.9.0.
