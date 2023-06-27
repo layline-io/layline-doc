@@ -2,7 +2,6 @@
 title: Connection FTP/SFTP
 description: Connection FTP/SFTP
 tags:
-
 - connection
 - ftp
 - sftp
@@ -22,7 +21,7 @@ Defines the connection parameters for an FTP/SFTP endpoint. This Asset is requir
 
 ### Name & Description
 
-<img class="frame" src="./.asset-connection-ftp_images/1294e3a1.png" alt="Name & Description (Connection FTP)"></img>
+![1294e3a1.png](.asset-connection-ftp_images%2F1294e3a1.png "Name & Description (Connection FTP)")
 
 **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
 
@@ -32,7 +31,7 @@ The **`Asset Usage`** box shows how many times this Asset is used and which part
 
 ### Required roles
 
-<img class="frame" src="./.asset-connection-ftp_images/c2e6ec39.png" alt="Required Roles (Connection Kafka)"></img>
+![c2e6ec39.png](.asset-connection-ftp_images%2Fc2e6ec39.png "Required Roles (Connection FTP)")
 
 In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching
 roles.
@@ -42,7 +41,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 #### Host
 
-<img class="frame" src="./.asset-connection-ftp_images/c30f8a5b.png" alt="Host Settings (Connection FTP)"></img>
+![c30f8a5b.png](.asset-connection-ftp_images%2Fc30f8a5b.png "Host Settings (Connection FTP)")
 
 * **`Host`** : Host name of the FTP host, e.g. 'ftp.myhost.com'.
 
@@ -55,7 +54,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 #### Communication
 
-<img class="frame" src="./.asset-connection-ftp_images/0f10f17e.png" alt="Communication (Connection FTP)"></img>
+![0f10f17e.png](.asset-connection-ftp_images%2F0f10f17e.png "Communication (Connection FTP)")
 
 * **`Use SFTP`** : Activate if you want to use the SFTP protocol.
 
@@ -68,7 +67,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 For FTP/SFTP, layline.io supports a number of different authentication methods:
 
-<img class="frame" src="./.asset-connection-ftp_images/60f3285a.png" alt="Security Settings Authentication (Connection FTP)"></img>
+![60f3285a.png](.asset-connection-ftp_images%2F60f3285a.png "Security Settings Authentication (Connection FTP)")
 
 **`Authentication type`**:
 
@@ -90,15 +89,15 @@ For FTP/SFTP, layline.io supports a number of different authentication methods:
 While you are entering and changing Kafka Settings parameters, layline.io frequently tries to connect to the endpoint.
 The status of these attempts are displayed at the bottom of the Kafka Settings group box.
 
-<img class="frame" src="./.asset-connection-ftp_images/d911654b.png" alt="Connection Test Result positive (Connection FTP)"></img>
+![d911654b.png](.asset-connection-ftp_images%2Fd911654b.png "Connection Test Result positive (Connection FTP)")
 
 In case of error, you can hover the mouse over the red output and view what the problem is:
 
-<img class="frame" src="./.asset-connection-ftp_images/d57aef44.png" alt="Connection Test Result negative (Connection FTP)"></img>
+![d57aef44.png](.asset-connection-ftp_images%2Fd57aef44.png "Connection Test Result negative (Connection FTP)")
 
 This usually helps to resolve the issue.
 
-::: warning Attention: Connection is not tested between browser and endpoint
+:::note Attention: Connection is not tested between browser and endpoint
 Please note that the connection test is not performed between your web browser and the backend.
 Connection data is rather sent to the Configuration Server first, which then tries to establish the connection between itself and the endpoint.
 In case you run into a connection error, please therefore check whether the endpoint can be reached from the viewpoint of the Configuration Server.
@@ -116,7 +115,7 @@ In case you run into a connection error, please therefore check whether the endp
 
 ## Potential problems
 
-::: warning Can't find what you are looking for?
+:::note Can't find what you are looking for?
 Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
 Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
 :::

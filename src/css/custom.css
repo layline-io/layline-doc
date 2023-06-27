@@ -28,3 +28,20 @@
   --ifm-color-primary-lightest: #ff8964;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+[data-theme='light'] .tab {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 10px;
+}
+[data-theme='dark'] .tab {
+  background-color: #0a0a0a;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.frame {
+  border-radius: 5px;
+  box-shadow: 0 0 0.5em lightgray;
+}
+

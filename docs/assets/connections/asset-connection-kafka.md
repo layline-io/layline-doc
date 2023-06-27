@@ -117,7 +117,7 @@ In case of error, you can hover the mouse over the red output and view what the 
 
 This usually helps to resolve the issue.
 
-::: warning Attention: Connection is not tested between browser and endpoint
+:::note Attention: Connection is not tested between browser and endpoint
 Please note that the connection test is not performed between your web browser and the backend. 
 Connection data is rather sent to the Configuration Server first, which then tries to establish the connection between itself and the endpoint.
 In case you run into a connection error, please therefore check whether the endpoint can be reached from the viewpoint of the Configuration Server. 
@@ -142,7 +142,7 @@ In case you run into a connection error, please therefore check whether the endp
 
 ## Potential problems
 
-::: warning Can't find what you are looking for?
+:::note Can't find what you are looking for?
 Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
 Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
 :::
