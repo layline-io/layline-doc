@@ -21,8 +21,8 @@ const config = {
   // organizationName: 'facebook', // Usually your GitHub org/user name.
   // projectName: 'docusaurus', // Usually your repo name.
 
-  onBrokenLinks: 'ignore ',
-  onBrokenMarkdownLinks: 'ignore',
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn',
   // onBrokenLinks: 'throw',
   // onBrokenMarkdownLinks: 'warn',
 
