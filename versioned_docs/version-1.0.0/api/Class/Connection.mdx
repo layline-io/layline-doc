@@ -1,0 +1,483 @@
+---
+custom_edit_url: null
+---
+
+# Connection
+
+```ts
+class Connection
+```
+
+<div className="doc-summary doc-methods">
+<h3 className="doc-summary-title">Methods</h3>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#FUNCTION_NAME">FUNCTION_NAME</a></div>
+<div className="doc-summary-desc">
+
+When defining a Service which supports connections, you normally also define one or more **functions** to perform actions.
+With a JDBC Service this could be functions like `INSERT`, `UPDATE`, `SELECT`, and so on.
+In the process you will also have defined a name for each function, e.g. `MyInsert`.
+
+#### Invocation
+
+Let's assume you have defined a function named `MyInsert` which inserts a record into a database.
+`MyInsert` expects three parameters `DeviceID`, `Measurement`, and `Timestamp`.
+All of these functions expect a [Message](Message) as input. The message must contain the expected parameters.
+You can pass this in either
+* As an already existing message
+* A message which you created using [datadictionary.createMessage](./DataDictionary#createmessage)
+* A JSON object in the expected format (see example below). This will then be implicitly converted to a message format.
+
+Example:
+```js
+// Record insert
+function onMessage(message) {
+    // Insert record to the DB using function "MyInsert"
+    // Please note that we pass a JSON object here, which will be automatically
+    // converted to a {@link Message} to match the expected parameter
+    const insertResult = connection.MyInsert(
+        {
+            DeviceID: message.data.IOT.DEVICE_ID,
+            Measurement: message.data.IOT.MEASUREMENT,
+            Timestamp: message.data.IOT.TIMESTAMP
+        }
+    )
+}
+
+```
+
+**FUNCTION_NAME** therefore is a placeholder for the actual function name which you have assigned to the Insert statement in our example.
+
+#### Result handling
+
+A call to the Service always returns a [Message](Message) as well.
+
+The structure of the result Message depends on the Service function we invoked.
+
+Let's assume we have a function to select all customer data by last name and zip code from a database.
+The function's name shall be `SelectCustomersByNameAndZip`.
+It receives two arguments `ZipCode` and `LastName` and returns an array which includes the former two parameters as well as `FirstName`.
+For the purpose of demonstration we simply output the result to the stream log. Normally you would use the data for your further processing requirements.
+
+Example:
+```js
+function onMessage(message) {
+    let resultMessage = null;
+    let firstName = null;
+    let lastName = null;
+
+    if (connection) {
+        // Selecting all customers with the same zip code and last name
+        resultMessage = connection.SelectCustomersByNameAndZip(
+            {
+                ZipCode: message.data.CUSTOMER.ZIP_CODE,
+                LastName: message.data.CUSTOMER.LAST_NAME
+            }
+        );
+    }
+
+    // Because we know that we invoked a function from a JDBC Service, we also know that the
+    // result data is in the form of an array. This depends on the type of Service involved.
+    // We cycle through result set and output to stream log.
+    // NOTE the use of record.data to access the result.
+    resultMessage.data.forEach(function(record) {
+        stream.logInfo("Full Name: ", record.FirstName, " ", record.LastName, ", Zip: ", record.ZipCode);
+    });
+
+    // Access the third element in the result set:
+    if (record.data.length > 2) {
+         const thirdRecord = record.data[2];
+    }
+}
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#beginTransaction">beginTransaction</a></div>
+<div className="doc-summary-desc">
+
+Starts a new transaction, if the Service supports transactions (e.g. the JDBC Service).
+
+```js
+ if (connection) {
+     connection.beginTransaction();
+ }
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#closeConnection">closeConnection</a></div>
+<div className="doc-summary-desc">
+
+Closes an open connection
+
+```js
+if (connection) {
+    connection.closeConnection();
+}
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#commitTransaction">commitTransaction</a></div>
+<div className="doc-summary-desc">
+
+Commits a transaction, in case the underlying Service supports transactions (e.g. JDBC Service).
+
+```js
+if (connection) {
+    connection.commitTransaction();
+}
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#rollbackTransaction">rollbackTransaction</a></div>
+<div className="doc-summary-desc">
+
+Rolls a transaction back, in case the Service connection supports transactions.
+
+```js
+ if (connection) {
+     connection.rollbackTransaction();
+ }
+```
+
+</div>
+</div>
+</div>
+
+## Constructor
+
+```ts
+new Connection(): Connection
+```
+
+## Methods
+
+<div className="doc-header-hidden">
+
+### FUNCTION_NAME {#FUNCTION_NAME}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">FUNCTION_NAME</span>
+
+<span className="doc-type">
+
+[Message](Message)
+
+</span>
+
+</summary>
+
+```ts
+FUNCTION_NAME(message: Message): Message
+```
+
+<div className="doc-desc">
+
+When defining a Service which supports connections, you normally also define one or more **functions** to perform actions.
+With a JDBC Service this could be functions like `INSERT`, `UPDATE`, `SELECT`, and so on.
+In the process you will also have defined a name for each function, e.g. `MyInsert`.
+
+#### Invocation
+
+Let's assume you have defined a function named `MyInsert` which inserts a record into a database.
+`MyInsert` expects three parameters `DeviceID`, `Measurement`, and `Timestamp`.
+All of these functions expect a [Message](Message) as input. The message must contain the expected parameters.
+You can pass this in either
+* As an already existing message
+* A message which you created using [datadictionary.createMessage](./DataDictionary#createmessage)
+* A JSON object in the expected format (see example below). This will then be implicitly converted to a message format.
+
+Example:
+```js
+// Record insert
+function onMessage(message) {
+    // Insert record to the DB using function "MyInsert"
+    // Please note that we pass a JSON object here, which will be automatically
+    // converted to a {@link Message} to match the expected parameter
+    const insertResult = connection.MyInsert(
+        {
+            DeviceID: message.data.IOT.DEVICE_ID,
+            Measurement: message.data.IOT.MEASUREMENT,
+            Timestamp: message.data.IOT.TIMESTAMP
+        }
+    )
+}
+
+```
+
+**FUNCTION_NAME** therefore is a placeholder for the actual function name which you have assigned to the Insert statement in our example.
+
+#### Result handling
+
+A call to the Service always returns a [Message](Message) as well.
+
+The structure of the result Message depends on the Service function we invoked.
+
+Let's assume we have a function to select all customer data by last name and zip code from a database.
+The function's name shall be `SelectCustomersByNameAndZip`.
+It receives two arguments `ZipCode` and `LastName` and returns an array which includes the former two parameters as well as `FirstName`.
+For the purpose of demonstration we simply output the result to the stream log. Normally you would use the data for your further processing requirements.
+
+Example:
+```js
+function onMessage(message) {
+    let resultMessage = null;
+    let firstName = null;
+    let lastName = null;
+
+    if (connection) {
+        // Selecting all customers with the same zip code and last name
+        resultMessage = connection.SelectCustomersByNameAndZip(
+            {
+                ZipCode: message.data.CUSTOMER.ZIP_CODE,
+                LastName: message.data.CUSTOMER.LAST_NAME
+            }
+        );
+    }
+
+    // Because we know that we invoked a function from a JDBC Service, we also know that the
+    // result data is in the form of an array. This depends on the type of Service involved.
+    // We cycle through result set and output to stream log.
+    // NOTE the use of record.data to access the result.
+    resultMessage.data.forEach(function(record) {
+        stream.logInfo("Full Name: ", record.FirstName, " ", record.LastName, ", Zip: ", record.ZipCode);
+    });
+
+    // Access the third element in the result set:
+    if (record.data.length > 2) {
+         const thirdRecord = record.data[2];
+    }
+}
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">message</span>
+
+<div className="doc-type">
+
+[Message](Message)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+You pass a [Message](Message) in which contains the necessary parameters for the function to execute.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+The returned result is also in the form of a [Message](Message). Access the data through `result.data`.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### beginTransaction {#beginTransaction}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">beginTransaction</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+beginTransaction(): void
+```
+
+<div className="doc-desc">
+
+Starts a new transaction, if the Service supports transactions (e.g. the JDBC Service).
+
+```js
+ if (connection) {
+     connection.beginTransaction();
+ }
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Nothing
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### closeConnection {#closeConnection}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">closeConnection</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+closeConnection(): void
+```
+
+<div className="doc-desc">
+
+Closes an open connection
+
+```js
+if (connection) {
+    connection.closeConnection();
+}
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Nothing
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### commitTransaction {#commitTransaction}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">commitTransaction</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+commitTransaction(): void
+```
+
+<div className="doc-desc">
+
+Commits a transaction, in case the underlying Service supports transactions (e.g. JDBC Service).
+
+```js
+if (connection) {
+    connection.commitTransaction();
+}
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Nothing
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### rollbackTransaction {#rollbackTransaction}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">rollbackTransaction</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+rollbackTransaction(): void
+```
+
+<div className="doc-desc">
+
+Rolls a transaction back, in case the Service connection supports transactions.
+
+```js
+ if (connection) {
+     connection.rollbackTransaction();
+ }
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Nothing
+
+</details>
+
+</div>
