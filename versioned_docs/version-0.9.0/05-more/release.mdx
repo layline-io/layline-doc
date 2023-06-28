@@ -3,6 +3,21 @@ title: Release Notes
 description: Release Notes
 ---
 
+
+export const Badge = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '5px',
+      color: '#fff',
+      padding: '0.5rem',
+      'margin-top': '10px'
+    }}>
+    {children}
+  </span>
+);
+
+
 :::note Can't find what you are looking for?
 Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
 Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
@@ -12,7 +27,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 1.0.7
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-620** System.Date support in internal message
 
@@ -29,31 +44,31 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 **SERVER-699** Support for MinIO S3
 
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-621** FTP connection editor does not always show the connection test result
 
 ## 1.0.6
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-619** JDBC service functions should be displayed alphabetical ordered
 
 **SERVER-694** JavaScript load function has to avoid duplicated loading of the same script
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SERVER-693** Stream shutdown and termination grace period can not be configured
 
 ## 1.0.5
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SERVER-685** Service supervision needed
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-613** Incorrect asset dependencies
 
@@ -69,7 +84,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 1.0.4
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-608** Email support
 
@@ -89,7 +104,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SERVER-683** Dynamic sub directory creation for SMB, FTP and Filesystem source
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-609** Can not select the root script for a JavaScript processor
 
@@ -117,7 +132,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 1.0.3
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-599** Validate JSON format for Arguments in Javascript Asset Editor
 
@@ -137,7 +152,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SERVER-673** Remove freenet specific settings from docker images
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-596** Save button is not always visible
 
@@ -162,21 +177,21 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 1.0.2
 <br/>
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-600** Cannot add Processor in Workflow diagram
 
 ## 1.0.1
 <br/>
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-595** Logout of config server user leads to exceptions and failures
 
 ## 1.0.0
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-13**URL handling in monitoring mode
 
@@ -245,7 +260,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 **SERVER-667** Store file store settings in file system
 
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-501** Workflow Viewer -> Diagram "jumps back" upon refresh of data
 
@@ -303,11 +318,11 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.16
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SERVER-393** Shelf
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SERVER-655** ServiceSourceActor fails to poll the service
 
@@ -315,7 +330,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 <br/>
 
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SERVER-643** Add loss of precision check for the automatic JavaScript conversion of Long to Double values
 
@@ -323,7 +338,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SPA-569** Filter & Routing -> Group Box should have max height
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-566** HTTP service editor does not save the data dictionary types
 
@@ -336,7 +351,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.14
 <br/>
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-467** Uncaught exception in filter of access coordinator
 
@@ -358,7 +373,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SERVER-544** HTTP service does not allow service functions with an empty path
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-469** Store generic format definitions in a version control system friendly manner
 
@@ -428,13 +443,13 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.13
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-549** Clean up StringUtils.ts
 
 **SPA-550** Replace Workflow Palette with Toolbar Drop Down
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-551** SPA sometimes fails to read the user specific registry due to a race condition
 
@@ -446,7 +461,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.12
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-315** Sniffer: Enable to view data from workflow/processor during processing
 
@@ -468,7 +483,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SERVER-625** StringUtils class for JavaScript
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-536** Missing editor for the System.AnyMap type
 
@@ -502,13 +517,13 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.11
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SERVER-356** Metric for input source backlog needed
 
 **SERVER-611** Remove old V1 logfile rest interface
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SERVER-608** QueueService can not be deployed \(null pointer exception\) when the "service specific directories" box is not ticked
 
@@ -520,7 +535,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.10
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-524** Provide sink metrics for the engine state view
 
@@ -548,7 +563,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SERVER-607** ASN.1 plugin: provide REST interface to get the list of available converters
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-523** Mapping-Processor: can not add more than one sub step to a condition
 
@@ -576,7 +591,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.9
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-498** Workflow selection in EngineConfig should be ordered alphabetical
 
@@ -602,7 +617,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SERVER-592** Generic sink/source metric handling
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-502** Mapping processor steps can not be reordered
 
@@ -644,7 +659,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.8
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-45** FTP editor --> Add FTP connection test
 
@@ -676,7 +691,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SERVER-578** StreamBoundary processor shall report its debug stream state
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-391** Inheritable Checkbox shows it is derived, even if it does not have a parent.
 
@@ -716,26 +731,26 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.7
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SERVER-567** AWS SQS output support
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 
 ## 0.9.6
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SERVER-568** Config server fails to export default StreamRetry andEventRetry failure handling asset
 
 ## 0.9.5
 <br/>
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-427** Consistent HTTP error handling
 
@@ -801,7 +816,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SERVER-566** Store generic format definitions in a version control system friendly manner
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-455** New assets are not selectable in Workflow -> add from existing asset
 
@@ -826,7 +841,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.4
 <br/>
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-451** Shelf fails to paste messages in the root folder
 
@@ -846,7 +861,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SERVER-537** Auditing kind FORMAT does not exist.
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-448** Message sniffer
 
@@ -863,7 +878,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.3
 <br/>
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-441** Deployment is not possible \(due to changes in 0.9.3\)
 
@@ -879,7 +894,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SPA-423** Pollable source metric viewer throws exception when used with a pre 0.9 server
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-434** Rename SimpleScript to QuickScript
 
@@ -912,7 +927,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.2
 <br/>
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-422** Input UDP Asset: Error "ref is not defined"
 
@@ -934,7 +949,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 
 **SPA-321** MessageAccessorInput.vue does not support inheritance
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-414** Use SQL syntax highlighting for the JDBC service
 
@@ -949,13 +964,13 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.1
 <br/>
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-412** Generic asset dependencies for processors and workflows do not work anymore
 
 **SERVER-525** Language server protocol is not working
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-415** Use JSON syntax highlighting for the cassandra driver arguments
 
@@ -969,7 +984,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 ## 0.9.0
 <br/>
 
-<Badge text="BUG FIXES" type="error" vertical="middle"/><br/>
+<Badge color="red">BUG FIXES</Badge><br/><br/>
 
 **SPA-405** GoJS version cannot be greater than 2.1.x
 
@@ -1046,7 +1061,7 @@ Should you have questions or suggestions, please don't hesitate to contact us at
 **SERVER-71** Bad error message when deploying unconnected ports.
 
 
-<Badge text="NEW FEATURES" type="tip" vertical="middle"/><br/>
+<Badge color="green">NEW FEATURES</Badge><br/><br/>
 
 **SPA-256** Import/Export assets/messages
 
