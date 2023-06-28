@@ -1,5 +1,5 @@
 ---
-title: QuickScript
+title: QuickScript Language Reference
 description: QuickScript language reference.
 ---
 # QuickScript
@@ -17,22 +17,23 @@ If you have suggestions, then please submit them to [support@layline.io](mailto:
 
 ## Where can I use QuickScript?
 
-QuickScript can be used in various places throughout the configuration of a layline.io Project. One example would be in the [Mapping Asset](/assets/processors-flow/asset-flow-mapping.md). Therein and within the definition the individual mappings, you can use QuickScript to apply minor transformations and checks in order to determine the value to be mapped.
+QuickScript can be used in various places throughout the configuration of a layline.io Project. One example would be in the [Mapping Asset](/docs/assets/processors-flow/asset-flow-mapping). 
+Therein and within the definition the individual mappings, you can use QuickScript to apply minor transformations and checks in order to determine the value to be mapped.
 
 In the example below (1) spaces contained in element source.SMSC.SUPLSERVICE are wiped out using the `strReplace` method.
 
-![cff9bae6.png](.quick-script_images%2Fcff9bae6.png "QuickScript Example (QuickScript)")
+![cff9bae6.png](.quick-script_images/cff9bae6.png "QuickScript Example (QuickScript)")
 
 Another example (2) shows how a string can be easily padded we three leading zeros.
 
-![00a0f1e6.png](.quick-script_images%2F00a0f1e6.png "QuickScript Example (QuickScript)")
+![00a0f1e6.png](.quick-script_images/00a0f1e6.png "QuickScript Example (QuickScript)")
 
 Other places where `QuickScript` can be used:
 
-- [Kafka Output Processor](/assets/processors-output/asset-output-kafka.md) --> in the routing rules
-- [Filter & Routing Processor](/assets/processors-flow/asset-flow-filterrouting.md) --> in the filter & routing rules
-- [Mapping Processor](/assets/processors-flow/asset-flow-mapping.md) --> in the mapping assignments
-- [Generic Format](/assets/formats/asset-format-generic.md) --> in the grammar definition
+- [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka) --> in the routing rules
+- [Filter & Routing Processor](/docs/assets/processors-flow/asset-flow-filterrouting) --> in the filter & routing rules
+- [Mapping Processor](/docs/assets/processors-flow/asset-flow-mapping) --> in the mapping assignments
+- [Generic Format](/docs/assets/formats/asset-format-generic) --> in the grammar definition
 
 
 ## Language Reference
@@ -320,18 +321,18 @@ Determines whether a string starts with the characters of a specified string, re
 ##### strExpand
 
 Expands an environment variables which is enclosed in a string, into its underlying value.
-This environment variable may have been defined in [Resource Environment Asset](/assets/resources/asset-resource-environment) or was defined via on system level.
+This environment variable may have been defined in [Resource Environment Asset](/docs/assets/resources/asset-resource-environment) or was defined via on system level.
 :::tip
 layline.io is internally using the StringSubstitutor method which provides additional functionality. You can learn more about it [here](https://commons.apache.org/proper/commons-text/apidocs/org/apache/commons/text/StringSubstitutor.html) under section "_Using Interpolation_".
 :::
 
 
-| **strExpand**  | Description                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Signature**  | `strExpand(String input)`                                                                                                                                                                                                                                                                                                                                    |
-| **Parameters** | `input` - String to be expanded.                                                                                                                                                                                                                                                                                                                             |
-| **Returns**    | `String` - Expanded string. See example.                                                                                                                                                                                                                                                                                                                     |
-| **Example**    | Assuming that`lay:myEnvionmentVar` has been defined as "MyVar" in [Resource Environment Asset](/assets/resources/asset-resource-environment.md):<br/>`strExpand("This is ${lay:myEnvionmentVar}") // Replaces the environment variable lay:myEnvironmentVar and returns "This is MyVar".`<br/>`strExpand("${date:yyyy-MM-dd}")  // Expands to current date.` |
+| **strExpand**  | Description                                                                                                                                                                                                                                                                                                                                                    |
+| ---------------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Signature**  | `strExpand(String input)`                                                                                                                                                                                                                                                                                                                                      |
+| **Parameters** | `input` - String to be expanded.                                                                                                                                                                                                                                                                                                                               |
+| **Returns**    | `String` - Expanded string. See example.                                                                                                                                                                                                                                                                                                                       |
+| **Example**    | Assuming that`lay:myEnvionmentVar` has been defined as "MyVar" in [Resource Environment Asset](/docs/assets/resources/asset-resource-environment):<br/>`strExpand("This is ${lay:myEnvionmentVar}") // Replaces the environment variable lay:myEnvironmentVar and returns "This is MyVar".`<br/>`strExpand("${date:yyyy-MM-dd}")  // Expands to current date.` |
 
 ##### strTrimString
 

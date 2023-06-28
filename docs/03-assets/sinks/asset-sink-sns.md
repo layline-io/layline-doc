@@ -9,7 +9,7 @@ description: Sink SNS Asset. Use this to define the technical parameters for a A
 
 Defines the outbound connection parameters for a AWS SNS sink.
 
-::: tip Oops! We are still working on the documentation.
+:::tip Oops! We are still working on the documentation.
 In the meantime, please don't hesitate to contact us at support@layline.io .
 :::
 

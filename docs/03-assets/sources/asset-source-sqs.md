@@ -14,7 +14,7 @@ tags:
 
 Defines the specific bucket and folder source of an AWS SQS connected endpoint. 
 
-::: tip Oops! We are still working on the documentation.
+:::tip Oops! We are still working on the documentation.
 In the meantime, please don't hesitate to contact us at support@layline.io .
 :::
 
