@@ -136,12 +136,12 @@ const config = {
 
       algolia: {
         // The application ID provided by Algolia
-        appId: 'YH0WXW3VX4',
+        appId: '6XU9IX6WDZ',
 
         // Public API key: it is safe to commit it
-        apiKey: 'd29e1f7a10e0f659e70557836ca83c73',
+        apiKey: 'e386b391287602844466168503c03beb',
 
-        indexName: 'layline_doc',
+        indexName: 'layline',
 
         // Optional: see doc section below
         contextualSearch: true,
