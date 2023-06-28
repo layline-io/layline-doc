@@ -28,3 +28,9 @@ Explainer about what layline.io is and the motivation behind it.
 [Take me there](/docs/concept/introduction)
 
 ---
+
+## Corporate Website
+
+[https://layline.io](https://layline.io)
+
+---

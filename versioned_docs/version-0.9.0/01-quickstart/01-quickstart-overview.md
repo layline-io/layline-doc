@@ -6,7 +6,7 @@ description: Short overview of installation and run options for layline.io.
 
 Greetings Earthling and a big THANK YOU for your interest in our brainchild: layline.io!
 
-You probably came to this part of the documentation because you are interested in layline.io. If you still need to know more, you should take a look at [What is layline.io?](https://doc.layline.io/doc/introduction/introduction#motivation) and then return here if you like what you read.
+You probably came to this part of the documentation because you are interested in layline.io. If you still need to know more, you should take a look at [What is layline.io?](https://doc.layline.io/docs/concept/introduction#motivation) and then return here if you like what you read.
 
 In this part of the documentation we will help you to get started with layline.io on a single-instance standalone installation. That is either on your laptop or another standalone machine. This section will not talk about how to install layline.io in an container orchestration environment such as Kubernetes or in a distributed Cluster (just to name some examples).
 

@@ -108,7 +108,7 @@ const config = {
             title: 'layline.io',
             items: [
               {
-                label: 'Company Web-Presence',
+                label: 'Corporate Website',
                 href: 'https://layline.io',
               },
             ],
@@ -153,7 +153,7 @@ const config = {
         // searchParameters: {},
 
         // Optional: path for search page that enabled by default (`false` to disable it)
-        // searchPagePath: 'search',
+        searchPagePath: 'search',
 
         //... other Algolia params
       },
