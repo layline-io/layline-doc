@@ -8,13 +8,13 @@ description: Example on how to use Services and Service Functions.
 ## Introduction
 
 A typical thing you would want to do in your script is to access external data sources for read and write.
-Access to such data sources/sinks is typically provided via [Services](/assets/services/asset-service-introduction)
+Access to such data sources/sinks is typically provided via [Services](/docs/assets/services/asset-service-introduction)
 which can be accessed from within your script.
 We will show you an example on how this works in principle, which can then be used with any type of service.
 
 ## Defining a Service
 
-layline.io provides the feature of [Service Assets](/assets/services/asset-service-introduction) in order to
+layline.io provides the feature of [Service Assets](/docs/assets/services/asset-service-introduction) in order to
 transparently access external data sources/sinks. Please refer to that part of the documentation on how Services in
 layline.io work and how to set them up.
 
@@ -27,7 +27,7 @@ Example outline:
 * Using the Service within
 
 To learn how to create a JDBC Service please refer
-to [Service JDBC](/assets/services/asset-service-jdbc.html#link-enrichcustomer-processor-to-jdbc-service).
+to [Service JDBC](/docs/assets/services/asset-service-jdbc#link-enrichcustomer-processor-to-jdbc-service).
 
 ### Service Configuration
 
@@ -35,7 +35,7 @@ to [Service JDBC](/assets/services/asset-service-jdbc.html#link-enrichcustomer-p
 
 We have defined the following query:
 
-![7eda9354.png](.js-example-read-reference-data_images%2F7eda9354.png "Function definition (Example JDB Service)")
+![7eda9354.png](.js-example-read-reference-data_images/7eda9354.png "Function definition (Example JDB Service)")
 
 * (1) Function by the name of `GetCallTypeData`
 * (2) A SQL-statement which queries a table for specific information
@@ -45,19 +45,19 @@ We have defined the following query:
 
 Results are also mapped to the `Training.CallType` data type:
 
-![951ffe7b.png](.js-example-read-reference-data_images%2F951ffe7b.png "Result mapping (Example JDB Service)")
+![951ffe7b.png](.js-example-read-reference-data_images/951ffe7b.png "Result mapping (Example JDB Service)")
 
 #### Data Dictionary
 
 Finally, here is the definition for `Training.CallType`:
 
-![e2c0753d.png](.js-example-read-reference-data_images%2Fe2c0753d.png "Data Dictionary Training.CallType Definition (Example JDB Service)")
+![e2c0753d.png](.js-example-read-reference-data_images/e2c0753d.png "Data Dictionary Training.CallType Definition (Example JDB Service)")
 
 ### Assign Service to Javascript Asset
 
 Assign the Service to the Javascript Asset in which you want to use the Service:
 
-![9c1ebd28.png](.js-example-read-reference-data_images%2F9c1ebd28.png "Assign JDB Service to Javascript Asset (Example JDB Service)")
+![9c1ebd28.png](.js-example-read-reference-data_images/9c1ebd28.png "Assign JDB Service to Javascript Asset (Example JDB Service)")
 
 Please note that we have checked `Use synchronous services as default`. This means that all Service Function calls will
 be handled synchronously (wait until done). In case you want asynchronous function handling (Promise style), then
@@ -105,7 +105,7 @@ function getCallTypeNameById(callType) {
 ```
 
 :::note: Service functions return a Message
-Note how the Service function returns a [Message](/lang-ref/javascript/api/classes/Message.html#message-2) as a result
+Note how the Service function returns a [Message](/docs/lang-ref/javascript/API/Class/Message#message-2) as a result
 type.
 
 Since SQL-queries always return arrays, you can find the results in `message.data` as an array. If we are only expecting
@@ -152,7 +152,7 @@ Instead of querying data, you can - of course - also issue other valid DML state
 
 Here is an example of an INSERT. Let's assume we have configured the following Function in a JDBC Service:
 
-![5d2c4d85.png](.js-example-read-reference-data_images%2F5d2c4d85.png "Service Function for Insert (Example JDB Service)")
+![5d2c4d85.png](.js-example-read-reference-data_images/5d2c4d85.png "Service Function for Insert (Example JDB Service)")
 
 Note, how the INSERT-statement returns `file_id`. This is an auto-increment field in the database which is returned
 after an insert into table `file_all_tbl`.
@@ -251,8 +251,8 @@ Make sure you always do `connection = null` after use of your connection, in ord
 
 These examples should explain how to use Services in principle. Small differences may apply based on the type of Service
 you are using.
-There is for example a difference between [Service Aerospike](/assets/services/asset-service-aerospike.html)
-and [Service JDBC](/assets/services/asset-service-jdbc.html#link-enrichcustomer-processor-to-jdbc-service).
+There is for example a difference between [Service Aerospike](/docs/assets/services/asset-service-aerospike)
+and [Service JDBC](/docs/assets/services/asset-service-jdbc#link-enrichcustomer-processor-to-jdbc-service).
 For details on how to use the individual service please refer to the respective Service documentation.
 
 ---

@@ -14,20 +14,20 @@ Defines output parameters to output to a Kafka topic.
 
 This Asset is used within a Workflow definition.
 
-![](.asset-output-kafka_images/e7e2e553.png "Asset Dependency Graph (Output Kafka)")
+![](.asset-output-kafka_images/9b3202ba.png "Asset Dependency Graph (Output Kafka)")
 
 ## Prerequisites
 
 You need:
 **A defined Format**
 
-* [Format Generic](/assets/formats/asset-format-generic.md)
-* [Format Data Dictionary](/assets/formats/asset-format-data-dictionary.md)
-* [Format ASN.1](/assets/formats/asset-format-asn1.md)
+* [Format Generic](/docs/assets/formats/asset-format-generic)
+* [Format Data Dictionary](/docs/assets/formats/asset-format-data-dictionary)
+* [Format ASN.1](/docs/assets/formats/asset-format-asn1)
 
 **A Kafka Sink:**
 
-* [Sink Kafka](/assets/sinks/asset-sink-kafka.md)
+* [Sink Kafka](/docs/assets/sinks/asset-sink-kafka)
 
 ## Configuration
 
@@ -63,7 +63,7 @@ If you have defined such a format, then you can select it from the list of avail
 
 ### Kafka Sink
 
-You need to assign a [Kafka Sink](/assets/sinks/asset-sink-kafka.md). The Sink defines which topics can be written to.
+You need to assign a [Kafka Sink](/docs/assets/sinks/asset-sink-kafka). The Sink defines which topics can be written to.
 The Sink must have been previously defined.
 
 ![](.asset-output-kafka_images/407783b7.png "Format (Output Kafka)")
@@ -104,15 +104,15 @@ In case you have not, or don't want to define very specific rules (see below), y
 ###### Use default
 
 When selecting the option `Use default` we define a default topic to write data to.
-To define this, we can use [QuickScript](/lang-ref/quick-script.md).
+To define this, we can use [QuickScript](/docs/lang-ref/quickscript/quickscript).
 
 Let's assume your default topic name is "mytopic", then you simply enter `"mytopic""` (include quotes) in the field.
 In our example we have entered `strExpand("${lay:derivedDataTopic}")`.
 This also is QuickScript which means that
 
-1. the name of the topic is in an environment variable `derivedDataTopic` which is defined in an [Environment Asset](/assets/resources/asset-resource-environment.md),
+1. the name of the topic is in an environment variable `derivedDataTopic` which is defined in an [Environment Asset](/docs/assets/resources/asset-resource-environment),
    and
-2. this environment variable is expanded by the QuickScript function [`strExpand`](/lang-ref/quick-script.html#strexpand).
+2. this environment variable is expanded by the QuickScript function [`strExpand`](/docs/lang-ref/quickscript/quickscript#strexpand).
 
 For Kafka topics which are partitioned we can define which partition to write the data to:
 

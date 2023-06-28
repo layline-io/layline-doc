@@ -14,12 +14,12 @@ tags:
 
 Defines the inbound connection parameters for a Kafka Source. This Asset is required by:
 
-* [Kafka Input Processor](/assets/processors-input/asset-input-kafka.md)
+* [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
 
 ## Prerequisite
 
 You need:
-* [Kafka Connection](/assets/connections/asset-connection-kafka.md)
+* [Kafka Connection](/docs/assets/connections/asset-connection-kafka)
 
 ## Configuration
 
@@ -44,7 +44,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ![](.asset-source-kafka-images/a44e1dd8.png "Kafka Connection (Kafka Source Asset)")
 
-Select the [Kafka Connection](/assets/connections/asset-connection-kafka.md) to use with this Asset.
+Select the [Kafka Connection](/docs/assets/connections/asset-connection-kafka) to use with this Asset.
 If it does not exist, you need to create it first.
 
 #### Additional Kafka Properties
@@ -53,7 +53,7 @@ Use this section to add configuration parameters available for Kafka Platform su
 
 ![](.asset-source-kafka-images/a7a64876.png "Additional Kafka Properties (Kafka Source Asset)")
 
-For a list of available properties please check [Confluent Consumer Configurations](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html).
+For a list of available properties please check [Confluent Consumer Configurations](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs).
 
 ::: warning Attention: Kafka properties take precedence
 Please note that properties defined here, take precedence over all other settings you may have provided in this UI. 
@@ -72,13 +72,13 @@ Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** and **`Group Id`*
 ## Related Topics
 
 ### Internal
-* [Kafka Input Processor](/assets/processors-input/asset-input-kafka.md)
-* [Kafka Output Processor](/assets/processors-output/asset-output-kafka.md)
-* [Kafka Sink](/assets/sinks/asset-sink-kafka.md)
-* [Kafka Connection](/assets/connections/asset-connection-kafka.md)
+* [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
+* [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka)
+* [Kafka Sink](/docs/assets/sinks/asset-sink-kafka)
+* [Kafka Connection](/docs/assets/connections/asset-connection-kafka)
 
 ### External
-* [Confluent Kafka: Consumer Configurations](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html)
+* [Confluent Kafka: Consumer Configurations](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs)
 
 ## Potential problems
 

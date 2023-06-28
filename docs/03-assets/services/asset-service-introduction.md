@@ -27,7 +27,7 @@ Conceptually, this is what it looks like:
 
 What's happening here, is that a Processor (JavaScript Processor in image) makes use of a Service (JDBC Service in image) in a request/response pattern. 
 
-Services are usually used from within [Javascript Processor Assets](/assets/processors-flow/asset-flow-javascript).
+Services are usually used from within [Javascript Processor Assets](/docs/assets/processors-flow/asset-flow-javascript).
 
 ### Service configuration
 

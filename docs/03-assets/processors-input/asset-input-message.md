@@ -14,14 +14,14 @@ Defines input parameters to ingest data from a Timer Source.
 
 This Asset is used within a Workflow definition.
 
-![](.asset-input-message_images/3ca9f2c6.png "Asset Dependency Graph (Input Message)")
+![](.asset-input-message_images/0363922a.png "Asset Dependency Graph (Input Message)")
 
 ## Prerequisites
 
 You need:
 **A Timer Source**
 
-* [Timer Source](/assets/sources/asset-source-timer.md)
+* [Timer Source](/docs/assets/sources/asset-source-timer)
 
 ## Configuration
 
@@ -62,7 +62,7 @@ A Workflow shutdown at most goes through three phases:
 
 ### Source
 
-You need to assign a [Timer Source](/assets/sources/asset-source-timer.md). 
+You need to assign a [Timer Source](/docs/assets/sources/asset-source-timer). 
 The Timer Source defines when a message is triggered and what the content of that message is.
 
 ![](.asset-input-message_images/e8a26a3e.png "Timer Source (Input Message)")
@@ -107,7 +107,7 @@ When setting to `Retry Stream`, the system will retry a failed action for a conf
 
 ### Internal
 
-* [Timer Source](/assets/sources/asset-source-timer.md)
+* [Timer Source](/docs/assets/sources/asset-source-timer)
 
 :::note Can't find what you are looking for?
 Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.

@@ -7,7 +7,7 @@ sidebar_position: 1
 ## Introduction
 
 In order to allow for complex message processing and applying custom business logic to message handling, layline.io
-provides the [Javascript Asset](/assets/processors-flow/asset-flow-javascript).
+provides the [Javascript Asset](/docs/assets/processors-flow/asset-flow-javascript).
 This asset enables you to apply theoretically any kind of scriptable logic when handling messages.
 
 Popular examples are:
@@ -22,7 +22,7 @@ and potentially anything you can imagine when handling data.
 
 Using the Javascript Asset is not mandatory of course.
 Many challenges you may be facing can be accomplished using the out-of-the-box Assets whcih layline.io provides without
-resorting to Javascript.
+resorting to Javascript./lang-ref/javascript/API/Class/JavaScriptProcessor#onmessage
 But in many instances, an intermittent scripting processor inserted into a Workflow can go a long way in enabling you to
 execute logic which would be otherwise hard to implement using pure UI elements.
 
@@ -50,14 +50,14 @@ You can use none, one or as many of these Assets within your Project and within 
 
 Since layline.io is a reactive system, a Javascript Asset receiving a message automatically starts processing this
 message with the underlying script you provided.
-One of the key methods here is [onMessage](/lang-ref/javascript/api/classes/JavaScriptProcessor#onmessage):
+One of the key methods here is [onMessage](/docs/lang-ref/javascript/API/Class/JavaScriptProcessor#onmessage):
 
-![](./.javascript_introduction_images/dd7f7e80.png)
+![](.01-javascript_introduction_images/0af63f8c.png)
 
 Just like `onMessage` is a _hook_, the Javascript Asset provides a number of additional hooks which are automatically
 invoked as part of a Javascript Asset's lifecycle.
 A complete list of these hooks can be found in
-the [JavaScript Processor Reference](/lang-ref/javascript/api/classes/JavaScriptProcessor).
+the [JavaScript Processor Reference](/docs/lang-ref/javascript/API/Class/JavaScriptProcessor).
 
 The following sequence graph shows a typical lifecycle of a Javascript Processor:
 
@@ -115,12 +115,12 @@ function onInit() {
 **3. onStreamStart()**
 
 When a Workflow starts processing a Stream, a Workflow-wide Stream-start event is issued.
-You can hook on to this event using the [onInit()](/lang-ref/javascript/api/classes/JavaScriptProcessor#oninit) Method.
+You can hook on to this event using the [onInit()](/docs/lang-ref/javascript/API/Class/JavaScriptProcessor#oninit) Method.
 
 **4. onMessage()**
 
 Every time Javascript Processor is fed with an event by an upstream Processor,
-the [onMessage()](/lang-ref/javascript/api/classes/JavaScriptProcessor#onmessage) hook is invoked.
+the [onMessage()](/docs/lang-ref/javascript/API/Class/JavaScriptProcessor#onmessage) hook is invoked.
 It is therefore central to message processing:
 
 ```js
@@ -148,7 +148,7 @@ function handleDetail(detail) {
 **5. onStreamEnd()**
 
 Finally, when a Stream comes to an end,
-the ([onStreamEnd()](/lang-ref/javascript/api/classes/JavaScriptProcessor#onstreamend)) hooks is automatically called.
+the ([onStreamEnd()](/docs/lang-ref/javascript/API/Class/JavaScriptProcessor#onstreamend)) hooks is automatically called.
 Write your code here for finalizing actions regarding the processing of a stream:
 
 ```js
@@ -172,7 +172,7 @@ file and reuse it in many other scripts.
 
 ### Creating a reusable script
 
-![69ffe351.png](.javascript_introduction_images%2F69ffe351.png "Reusing Javascript (Javascript Introduction)")
+![69ffe351.png](.01-javascript_introduction_images/69ffe351.png "Reusing Javascript (Javascript Introduction)")
 
 Here we have created a file `util.js` (1) which contains one function which we want to reuse on other scripts (2).
 You can write your script as you like. All you need to know is that:
@@ -208,7 +208,7 @@ the content of the script wherever you placed you load-command. So the outcome o
 layline.io will check for the existence of loaded scripts upon deployment.
 If the script cannot be found, layline.io will show an error, and you have to correct the problem.
 
-![0c6ce2e5.png](.javascript_introduction_images%2F0c6ce2e5.png "Deployment error due to wrong script reference (Javascript Introduction)")
+![0c6ce2e5.png](.01-javascript_introduction_images/0c6ce2e5.png "Deployment error due to wrong script reference (Javascript Introduction)")
 
 ## Error handling
 
@@ -218,7 +218,7 @@ Javascript is an interpreted language (not compiled). You can therefore encounte
 Most of them show up when trying to start a Workflow containing a Javascript Processor.
 In this case the Workflow will not start and the cause of error is displayed:
 
-![21d8ce9c.png](.javascript_introduction_images%2F21d8ce9c.png "Workflow activation failure due to Javascript runtime error (Javascript Introduction)")
+![21d8ce9c.png](.01-javascript_introduction_images/21d8ce9c.png "Workflow activation failure due to Javascript runtime error (Javascript Introduction)")
 
 #### Forced errors
 
@@ -250,7 +250,7 @@ Throwing an error which you do not catch yourself with a `try ... catch` clause,
 For this purpose a Javascript Asset provides a number configuration options (which you will also find in other Asset
 configurations):
 
-![](./.javascript_introduction_images/b928ab0d.png)
+![](./.01-javascript_introduction_images/b928ab0d.png)
 
 It is here that you can define what layline.io should do in case of an uncaught error during each stage of Stream
 processing:

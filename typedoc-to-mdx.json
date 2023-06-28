@@ -1,5 +1,5 @@
 {
-  "outDir": "./docs/lang-ref/javascript/API",
+  "outDir": "./docs/04-lang-ref/javascript/API",
   "typedoc": "./typedoc-single.json",
   "tsconfig": "./tsconfig.json",
   "baseUrl": ""

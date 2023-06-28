@@ -21,7 +21,7 @@ What will be relevant is that something should happen, and the timer source make
 
 ## Used by
 
-* [Input Message](/assets/processors-input/asset-input-message.md)
+* [Input Message](/docs/assets/processors-input/asset-input-message)
 
 ## Configuration
 
@@ -188,7 +188,7 @@ The `FireTime` is the time when the timer was actually fired. This only applies 
 ## Related Topics
 
 ### Internal
-* [Input Message](/assets/processors-input/asset-input-message.md)
+* [Input Message](/docs/assets/processors-input/asset-input-message)
 
 ### External
 * [Cron](https://en.wikipedia.org/wiki/Cron)

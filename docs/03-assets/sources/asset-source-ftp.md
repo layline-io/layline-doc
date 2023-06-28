@@ -13,12 +13,12 @@ tags:
 Defines the specific bucket and folder source of a FTP connected endpoint.
 This Asset is required by:
 
-* [Stream Input Processor](/assets/processors-input/asset-input-stream.md)
+* [Stream Input Processor](/docs/assets/processors-input/asset-input-stream)
 
 ## Prerequisite
 
 You need:
-* [FTP Connection](/assets/connections/asset-connection-ftp.md)
+* [FTP Connection](/docs/assets/connections/asset-connection-ftp)
 
 ## Configuration
 
@@ -86,7 +86,7 @@ Pick one of the following self-explanatory settings:
 
 ![](.asset-source-ftp_images/df31d8ca.png "FTP Connection (FTP Source)")
 
-Select the previously configured [FTP Connection](/assets/connections/asset-connection-ftp.md) to use for this Source.
+Select the previously configured [FTP Connection](/docs/assets/connections/asset-connection-ftp) to use for this Source.
 
 ### Directories
 
@@ -103,7 +103,7 @@ An FTP source requires the definition of three different directories:
 
 * **`Input Directory`** : The directory to read files from.
 The path of the directory must be accessible to the Reactive Engine trying to access the FTP source.
-  You can use ${...} placeholders to expand variables defined in [environment variables](/assets/resources/asset-resource-environment.html).
+  You can use ${...} placeholders to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Filter regular expression`** : Regular expression to filter which files in the directory are pulled.  
 
@@ -122,7 +122,7 @@ E.g. `.zip` will lead to only those files read which filename ends with `zip` pr
 
 * **`Done Directory`** : The directory to which files are moved when fully processed.
 The path of the directory must be accessible to the Reactive Engine trying to access the FTP source.
-  You can use ${...} placeholders to expand variables defined in [environment variables](/assets/resources/asset-resource-environment.html).
+  You can use ${...} placeholders to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Done prefix`** : Prefix to add to the filename of the processed file after move to the done directory.
 E.g. `done_` will add the `done_`-prefix to the beginning of the filename when moved to the done directory.
@@ -137,7 +137,7 @@ E.g. `_done` will add the `_done`-suffix to the end of the filename when moved t
 
 * **`Error Directory`** : The directory to which files are moved in case of a problem with the file during processing.
 The path of the directory must be accessible to the Reactive Engine trying to access the FTP source.
-  You can use ${...} placeholders to expand variables defined in [environment variables](/assets/resources/asset-resource-environment.html).
+  You can use ${...} placeholders to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
   * **`Error prefix`** : Prefix to add to the filename of the processed file after move to the error directory.
   E.g. `error_` will add the `error_`-prefix to the beginning of the filename when moved to the error directory.
@@ -149,8 +149,8 @@ The path of the directory must be accessible to the Reactive Engine trying to ac
 ## Related Topics
 
 ### Internal
-* [FTP Connection](/assets/connections/asset-connection-ftp.md)
-* [FTP Sink](/assets/sinks/asset-sink-ftp.md)
+* [FTP Connection](/docs/assets/connections/asset-connection-ftp)
+* [FTP Sink](/docs/assets/sinks/asset-sink-ftp)
 
 ### External
 * [Cron on Wikipedia](https://en.wikipedia.org/wiki/Cron)

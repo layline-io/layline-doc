@@ -7,7 +7,7 @@ description: Javascript Asset. Use this to add custom logic to modify event cont
 
 ## Purpose
 
-![](.asset-flow-javascript_images/17e70b3f.png "Asset Dependency Graph (Javascript Flow Processor)")
+![](.asset-flow-javascript_images/f332d000.png "Asset Dependency Graph (Javascript Flow Processor)")
 
 The Javascript Asset allows you to define detailed business logic which you may want to apply to a flow of messages.
 Here are some examples:
@@ -26,7 +26,7 @@ You need:
 
 * A Source Script which should be executed within this asset.
 * Knowledge on how to work with Javascript in layline.io. Please check
-  the [Javascript Language Reference](/lang-ref/javascript/api) to learn about this.
+  the [Javascript Language Reference](/docs/lang-ref/javascript/javascript_introduction) to learn about this.
 
 ## Configuration
 
@@ -75,15 +75,15 @@ The root script to be executed within this Asset is then selected here:
 
 ![](.asset-flow-javascript_images/03da4a4c.png "Root Script (Javascript)")
 
-::: tip Javascript Language Reference
+:::tip Javascript Language Reference
 To understand how a Source must be structured to work in a Javascript Asset, please consult
-the [Javascript Language Reference](/lang-ref/javascript/api).
+the [Javascript Language Reference](/docs/lang-ref/javascript/javascript_introduction).
 :::
 
 ### Service Mappings
 
 Javascripts may make use of Services which you may have
-configured [here](/assets/services/asset-service-introduction.html#purpose-of-services). These methods could be database
+configured [here](/docs/assets/services/asset-service-introduction#purpose-of-services). These methods could be database
 operations, HTTP-request and whatever else Services do provide.
 
 Let's say your Javascript invokes a HTTP-Service which provides a method to retrieve the current Bitcoin price via a
@@ -101,7 +101,7 @@ REST-Api. Let's also assume that the name of the Service to be linked is `BTCSer
 You can pass arguments to the assigned script. This may be useful when reusing the same script in various different
 Javascript Assets and Workflows, but the script should behave slightly different in each of those instances.
 Passing arguments from a Javascript Asset to can provide this functionality. Please check the `getArguments()`
-method [here](/lang-ref/javascript/api/classes/Processor.html#getarguments), on how to retrieve arguments in the script.
+method [here](/docs/lang-ref/javascript/API/Class/Processor#getarguments), on how to retrieve arguments in the script.
 
 ![](.asset-flow-javascript_images/140789d3.png "Arguments (Javascript)")
 
@@ -114,7 +114,7 @@ Entering invalid JSON will cause problems when using the Arguments in the underl
 
 ### Failure Handling
 
-Please see section [Forced Errors](/lang-ref/javascript/api/#forced-errors) to understand how to use these settings.
+Please see section [Forced Errors](/docs/lang-ref/javascript/javascript_introduction#forced-errors) to understand how to use these settings.
 
 ![](.asset-flow-javascript_images/9f6e7657.png "Failure Handling (Javascript)")
 

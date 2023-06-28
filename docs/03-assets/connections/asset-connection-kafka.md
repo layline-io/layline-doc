@@ -13,8 +13,8 @@ tags:
 
 Defines the connection parameters for a Kafka endpoint. This Asset is required by:
 
-* [Kafka Source](/assets/sources/asset-source-kafka.md)
-* [Kafka Sink](/assets/sinks/asset-sink-kafka.md)
+* [Kafka Source](/docs/assets/sources/asset-source-kafka)
+* [Kafka Sink](/docs/assets/sinks/asset-sink-kafka)
 
 ## Configuration
 
@@ -55,7 +55,7 @@ If SSL is enabled, and you have either a truststore and optionally a keystore, t
 This entry is equivalent to the `ssl.truststore.location` property. 
 Example: `/var/private/ssl/kafka.server.truststore.jks`
 
-* **`Use identitity certificate`**: Select the secret necessary to decrypt the truststore. If this list is empty, then you first need to create it [here](/assets/resources/asset-resource-secret.md).
+* **`Use identitity certificate`**: Select the secret necessary to decrypt the truststore. If this list is empty, then you first need to create it [here](/docs/assets/resources/asset-resource-secret).
 This entry is equivalent to the `ssl.truststore.password` property.
 Example: `1234`
 
@@ -63,11 +63,11 @@ Example: `1234`
 This entry is equivalent to the `ssl.keystore.location` property.
 Example: `/var/private/ssl/kafka.server.keystore.jks`
 
-* **`Keystore password secret`**: Select the secret necessary to decrypt the keystore. If this list is empty, then you first need to create it [here](/assets/resources/asset-resource-secret.md).
+* **`Keystore password secret`**: Select the secret necessary to decrypt the keystore. If this list is empty, then you first need to create it [here](/docs/assets/resources/asset-resource-secret).
 This entry is equivalent to the `ssl.keystore.password` property.
 Example: `test1234`
   
-* **`Key password secret`**:  Password secret for decryption of Key in Keystore. If this list is empty, then you first need to create it [here](/assets/resources/asset-resource-secret.md).
+* **`Key password secret`**:  Password secret for decryption of Key in Keystore. If this list is empty, then you first need to create it [here](/docs/assets/resources/asset-resource-secret).
 This entry is equivalent to the `ssl.key.password` property.
 Example: `test1234`
 
@@ -102,7 +102,7 @@ For _SASL / PLAIN_ and _SCRAM_ based authentication you need to consider the fol
 Tick the `Do not substitute macro terms in password` checkbox if you do not want to have macros (if any) replaced in a password, but rather keep the raw string as the password. 
 If - for example - your password is `pass_${env:MYVAR}_word` and you do not want the term `${env:MYVAR}` to be interpreted as a macro and then replaced with the MYVAR environment variable, then tick this box to keep the raw string value. 
 
-* **`User/Secret`**: Enter a `Username` and select a `Secret` from the drop-down list. It the list is empty, then you need to first [create a secret](/assets/resources/asset-resource-secret.md) to be able to assign it here.
+* **`User/Secret`**: Enter a `Username` and select a `Secret` from the drop-down list. It the list is empty, then you need to first [create a secret](/docs/assets/resources/asset-resource-secret) to be able to assign it here.
 
 #### Connection Test Result:
 
@@ -126,11 +126,11 @@ In case you run into a connection error, please therefore check whether the endp
 ## Related Topics
 
 ### Internal
-* [Kafka Source](/assets/sources/asset-source-kafka.md)
-* [Kafka Sink](/assets/sinks/asset-sink-kafka.md)
-* [Kafka Input Processor](/assets/processors-input/asset-input-kafka.md)
-* [Kafka Output Processor](/assets/processors-output/asset-output-kafka.md)
-* [Create and manage secrets](/assets/resources/asset-resource-secret.md)
+* [Kafka Source](/docs/assets/sources/asset-source-kafka)
+* [Kafka Sink](/docs/assets/sinks/asset-sink-kafka)
+* [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
+* [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka)
+* [Create and manage secrets](/docs/assets/resources/asset-resource-secret)
 
 ### External
 * [Confluent Kafka: Authentication Methods Overview](https://docs.confluent.io/platform/current/kafka/overview-authentication-methods.html)

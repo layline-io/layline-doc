@@ -10,12 +10,12 @@ description: Sink Kafka Asset. Use this to define the technical parameters for a
 
 Defines the outbound connection parameters for a Kafka sink. This Asset is required by:
 
-* [Kafka Output Processor](/assets/processors-output/asset-output-kafka.md)
+* [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka)
 
 ## Prerequisite
 
 You need:
-* [Kafka Connection](/assets/connections/asset-connection-kafka.md)
+* [Kafka Connection](/docs/assets/connections/asset-connection-kafka)
 
 ## Configuration
 
@@ -40,7 +40,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ![](.asset-sink-kafka-images/a44e1dd8.png "Kafka Connection (Kafka Sink)")
 
-Select the [Kafka Connection](/assets/connections/asset-connection-kafka.md) to use with this Asset.
+Select the [Kafka Connection](/docs/assets/connections/asset-connection-kafka) to use with this Asset.
 If it does not exist, you need to create it first.
 
 
@@ -59,7 +59,7 @@ Use this section to add configuration parameters available for Kafka Platform su
 
 ![](.asset-sink-kafka-images/9cf62f34.png "Additional Kafka Properties (Kafka Sink)")
 
-For a list of available properties please check [Confluent Producer Configurations](https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html).
+For a list of available properties please check [Confluent Producer Configurations](https://docs.confluent.io/platform/current/installation/configuration/producer-configs).
 
 ::: warning Attention: Kafka properties take precedence
 Please note that properties defined here, take precedence over all other settings you may have provided in this UI. 
@@ -78,13 +78,13 @@ Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** in the new table 
 ## Related Topics
 
 ### Internal
-* [Kafka Input Processor](/assets/processors-input/asset-input-kafka.md)
-* [Kafka Output Processor](/assets/processors-output/asset-output-kafka.md)
-* [Kafka Source](/assets/sources/asset-source-kafka.md)
-* [Create and manage secrets](/assets/resources/asset-resource-secret.md)
+* [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
+* [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka)
+* [Kafka Source](/docs/assets/sources/asset-source-kafka)
+* [Create and manage secrets](/docs/assets/resources/asset-resource-secret)
 
 ### External
-* [Confluent Kafka: Producer Configurations](https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html)
+* [Confluent Kafka: Producer Configurations](https://docs.confluent.io/platform/current/installation/configuration/producer-configs)
 
 
 ## Potential problems

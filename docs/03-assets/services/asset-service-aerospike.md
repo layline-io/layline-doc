@@ -9,7 +9,7 @@ description: Aerospike Service Asset. Use this to connect and work with a Aerosp
 
 Defines a service to interface with an Aerospike store.
 
-![](.asset-service-aerospike_images/76d35cff.png "Asset Dependency Graph (Service Aerospike)")
+![](.asset-service-aerospike_images/e553b5a5.png "Asset Dependency Graph (Service Aerospike)")
 
 ::: warning Note: Only works with Aerospike Scalar data types
 Please note, that the Aerospike Service for the moment only supports Aerospike primitive data types.
@@ -140,7 +140,7 @@ configurable schema.
 There is a good chance that defining Collections will be easier and sufficient for you. You can use Functions and
 Collections concurrently, however.
 
-::: tip
+:::tip
 Please note that a Collection as defined here is not equivalent to Aerospike’s Collection data type.
 :::
 
@@ -171,7 +171,7 @@ The logical record structure looks like this:
 
 Let's further assume that in Aerospike this is stored in a Namespace/Set/Bins setup like so:
 
-![](.asset-service-aerospike_images/a00433d5.png "Aerospike structure (Service Aerospike)")
+![](.asset-service-aerospike_images/3d4c2660.png "Aerospike structure (Service Aerospike)")
 
 In our example records are stored with the MSISDN as the key.
 
@@ -247,7 +247,7 @@ more detail when defining the `History` Bin a bit further below.
 
 * **`Format`**: This option will allow you to reference a Format which you have defined previously. An example would be
   that the Bin holds a comma separated record structure for which you have defined
-  a  [Generic Format](file:///assets/formats/asset-format-generic.md) . If you assign this Format here, then it will be
+  a  [Generic Format](file:///assets/formats/asset-format-generic) . If you assign this Format here, then it will be
   applied to decode the bin content using this Format, as well as encode the
   structure when writing the data. This is extra helpful in the case that the content of a Bin is of a structure which
   cannot easily be defined using a Data Dictionary structure (see below), for
@@ -343,7 +343,7 @@ created, the following functions will be created:
 
 As you can tell a Collection name is simply prepended by `Read`, `Write`, and `Delete` for the respective functionality.
 
-::: tip
+:::tip
 If you only want to have a `Read` function you can achieve the same by configuring a corresponding Function, instead of
 a Collection.
 :::

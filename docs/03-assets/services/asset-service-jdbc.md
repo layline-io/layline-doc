@@ -9,7 +9,7 @@ description: JDBC Service Asset. Use this to connect to a JDBC data source.
 
 Defines a service to interface with a JDBC data source.
 
-![](.asset-service-jdbc_images/82f13707.png "Asset Dependency Graph (Service JDBC)")
+![](.asset-service-jdbc_images/6ca59550.png "Asset Dependency Graph (Service JDBC)")
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ JDBC requires a connection which is requires an address, username and password.
 ![](.asset-service-jdbc_images/b1913a15.png "JDBC Connection (Service JDBC)")
 
 You can use ${...} placeholders to expand variables defined
-in [environment variables](/assets/resources/asset-resource-environment.html):
+in [environment variables](/docs/assets/resources/asset-resource-environment):
 
 ![](.asset-service-jdbc_images/8d1cf687.png "JDBC Connection with placeholders (Service JDBC)")
 
@@ -223,8 +223,8 @@ if (jdbcData && jdbcData.data.length > 0) {
 }
 ```
 
-::: tip Note: Service functions return a Message
-Note how the Service function returns a [Message](/lang-ref/javascript/api/classes/Message.html#message-2) as a result
+:::tip Note: Service functions return a Message
+Note how the Service function returns a [Message](/docs/lang-ref/javascript/API/Class/Message#message-2) as a result
 type.
 
 Since SQL-queries always return arrays, you can find the results in `message.data` as an array. If we are only expecting

@@ -2,7 +2,7 @@
 title: Main
 ---
 
-![logo_name_for_light_background.svg](..%2F..%2Fstatic%2Fimg%2Flogo%2Flogo_name_for_light_background.svg)
+![logo_name_for_light_background.svg](../../static/img/logo/logo_name_for_light_background.svg)
 
 # layline.io Documentation
 
@@ -22,9 +22,9 @@ Showcase on how to get up and running quickly, including a sample workflow.
 
 ---
 
-## Concepts
-Get an introduction about what layline.io is, the motivation behind it, and some general concepts behind layline.io.
+## What is layline.io?
+Explainer about what layline.io is and the motivation behind it.
 
-[Take me there](/docs/category/concept)
+[Take me there](/docs/concept/introduction)
 
 ---

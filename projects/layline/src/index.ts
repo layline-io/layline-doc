@@ -1,21 +1,21 @@
 // Classes
-import Connection from "./classes/Connection";
-import DataDictionary from "./classes/DataDictionary";
-import EntityDeclaration from "@site/projects/layline/src/classes/EntityDeclaration";
-import JavaScriptProcessor from "@site/projects/layline/src/classes/JavaScriptProcessor";
-import Message from "@site/projects/layline/src/classes/Message";
-import MessageNode from "@site/projects/layline/src/classes/MessageNode";
-import OutputPort from "@site/projects/layline/src/classes/OutputPort";
-import PackedMessage from "@site/projects/layline/src/classes/PackedMessage";
-import Processor from "@site/projects/layline/src/classes/Processor";
-import {Service} from "@site/projects/layline/src/classes/Service";
-import Status from "@site/projects/layline/src/classes/Status";
-import Stream from "@site/projects/layline/src/classes/Stream";
-import VendorInfo from "@site/projects/layline/src/classes/VendorInfo";
+import Connection from "@site/projects/layline/src/Class/Connection";
+import DataDictionary from "@site/projects/layline/src/Class/DataDictionary";
+import EntityDeclaration from "@site/projects/layline/src/Class/EntityDeclaration";
+import JavaScriptProcessor from "@site/projects/layline/src/Class/JavaScriptProcessor";
+import Message from "@site/projects/layline/src/Class/Message";
+import MessageNode from "@site/projects/layline/src/Class/MessageNode";
+import OutputPort from "@site/projects/layline/src/Class/OutputPort";
+import PackedMessage from "@site/projects/layline/src/Class/PackedMessage";
+import Processor from "@site/projects/layline/src/Class/Processor";
+import {Service} from "@site/projects/layline/src/Class/Service";
+import Status from "@site/projects/layline/src/Class/Status";
+import Stream from "@site/projects/layline/src/Class/Stream";
+import VendorInfo from "@site/projects/layline/src/Class/VendorInfo";
 
 // Enums
-import JavaType from "@site/projects/layline/src/enums/JavaType";
-import Severity from "@site/projects/layline/src/enums/Severity";
+import JavaType from "@site/projects/layline/src/Enum/JavaType";
+import Severity from "@site/projects/layline/src/Enum/Severity";
 
 export {
     Connection,

@@ -14,20 +14,20 @@ Defines input parameters to ingest data from a Kafka topic.
 
 This Asset is used within a Workflow definition.
 
-![](.asset-input-kafka_images/ce98af04.png "Asset Dependency Graph (Input Kafka)")
+![](.asset-input-kafka_images/30aa0966.png "Asset Dependency Graph (Input Kafka)")
 
 ## Prerequisites
 
 You need:
 **A defined Format**
 
-* [Format Generic](/assets/formats/asset-format-generic.md)
-* [Format Data Dictionary](/assets/formats/asset-format-data-dictionary.md)
-* [Format ASN.1](/assets/formats/asset-format-asn1.md)
+* [Format Generic](/docs/assets/formats/asset-format-generic)
+* [Format Data Dictionary](/docs/assets/formats/asset-format-data-dictionary)
+* [Format ASN.1](/docs/assets/formats/asset-format-asn1)
 
 **A Kafka Sink:**
 
-* [Source Kafka](/assets/sources/asset-source-kafka.md)
+* [Source Kafka](/docs/assets/sources/asset-source-kafka)
 
 ## Configuration
 
@@ -75,7 +75,7 @@ If you have defined such a format, then you can select it from the list of avail
 
 ### Kafka Source
 
-You need to assign a [Kafka Source](/assets/sources/asset-source-kafka.md). The Source defines which topics can be read from.
+You need to assign a [Kafka Source](/docs/assets/sources/asset-source-kafka). The Source defines which topics can be read from.
 The Source must have been previously defined.
 
 ![](.asset-input-kafka_images/cd27054a.png "Format (Input Kafka)")
@@ -127,7 +127,7 @@ You can read more about this in the [Kafka Documentation here](https://kafka.apa
 
 Define one or more topics that this input processor should read from.
 If you have defined a consumer group then the topics which you define here will be accessed with the same consumer group.
-You can use ${...} placeholders to expand variables defined in [environment variables](/assets/resources/asset-resource-environment.html).
+You can use ${...} placeholders to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 ![](.asset-input-kafka_images/c65fca67.png "Topics (Input Kafka)")
 
@@ -162,7 +162,7 @@ The SavePoint commit mode has no equivalent in Kafka. This actually represents "
 There are mechanisms within layline.io which allow to trigger a so called "upstream savepoint" based on certain conditions.
 If such a savepoint is triggered, this is then propagated back up. In this case the then current offset will be committed back to Kafka.
 
-An example can be found in the [Stream Boundary Controller Asset](/assets/processors-flow/asset-flow-streamboundary) where a savepoint can be triggered upon configurable conditions.
+An example can be found in the [Stream Boundary Controller Asset](/docs/assets/processors-flow/asset-flow-streamboundary) where a savepoint can be triggered upon configurable conditions.
 So if you have a Stream Boundary Controller in you Workflow, then a savepoint can be triggered from within that Processor.
 
 **Example:** Stream Boundary Controller SavePoint trigger
@@ -229,7 +229,7 @@ When setting to `Retry Stream`, the system will retry a failed action for a conf
 
 ### Internal
 
-* [Stream Boundary Controller Asset](/assets/processors-flow/asset-flow-streamboundary)
+* [Stream Boundary Controller Asset](/docs/assets/processors-flow/asset-flow-streamboundary)
 
 ### External
 

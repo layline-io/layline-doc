@@ -13,12 +13,12 @@ tags:
 Defines the outbound connection parameters for an FTP sink. 
 This Asset is required by:
 
-* [Stream Output Processor](/assets/processors-output/asset-output-stream.md)
+* [Stream Output Processor](/docs/assets/processors-output/asset-output-stream)
 
 ## Prerequisite
 
 You need:
-* [FTP Connection](/assets/connections/asset-connection-ftp.md)
+* [FTP Connection](/docs/assets/connections/asset-connection-ftp)
 
 ## Configuration
 
@@ -43,7 +43,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ![](.asset-sink-ftp_images/067b010e.png "FTP Connection (FTP Sink Asset)")
 
-Select the [FTP Connection](/assets/connections/asset-connection-ftp.md) to use with this Asset.
+Select the [FTP Connection](/docs/assets/connections/asset-connection-ftp) to use with this Asset.
 If it does not exist, you need to create it first.
 
 ### Directories
@@ -60,7 +60,7 @@ An FTP sink allows the definition of three different directories:
 
 * **`Output Directory`** : The directory to write output files to.
   The path of the directory must be accessible to the Reactive Engine trying to access the FTP Sink.
-  You can use ${...} placeholders to expand variables defined in [environment variables](/assets/resources/asset-resource-environment.html).
+  You can use ${...} placeholders to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Output prefix`** : Prefix to add to the filename of the processed file when writing to the output directory.
   E.g. `out_` will add the `out_`-prefix to the beginning of the filename when written to the output directory.
@@ -81,7 +81,7 @@ An FTP sink allows the definition of three different directories:
   Should you encounter a temporary file in a temporary directory even though there is no current processing ongoing, then this is likely a residue from a crash which needs to be further investigated. 
   
   The path of the directory must be accessible to the Reactive Engine trying to access the FTP Sink.
-  You can use ${...} placeholders to expand variables defined in [environment variables](/assets/resources/asset-resource-environment.html).
+  You can use ${...} placeholders to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Temporary prefix`** : Prefix to add to the filename of the temporary file when writing to the temporary directory.
   E.g. `temp_` will add the `temp_`-prefix to the beginning of the filename when written to the output directory.
@@ -96,7 +96,7 @@ An FTP sink allows the definition of three different directories:
 
 * **`Error Directory`** : The directory to which files are moved in case of a problem with the file during processing.
   The path of the directory must be accessible to the Reactive Engine trying to access the FTP source.
-  You can use ${...} placeholders to expand variables defined in [environment variables](/assets/resources/asset-resource-environment.html).
+  You can use ${...} placeholders to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Error prefix`** : Prefix to add to the filename of the processed file after move to the error directory.
   E.g. `error_` will add the `error_`-prefix to the beginning of the filename when moved to the error directory.
@@ -124,9 +124,9 @@ There are two more settings which you can use to optimize file output:
 ## Related Topics
 
 ### Internal
-* [Stream Output Processor](/assets/processors-output/asset-output-stream.md)
-* [FTP Source](/assets/sources/asset-source-ftp.md)
-* [FTP Connection](/assets/connections/asset-connection-ftp.md)
+* [Stream Output Processor](/docs/assets/processors-output/asset-output-stream)
+* [FTP Source](/docs/assets/sources/asset-source-ftp)
+* [FTP Connection](/docs/assets/connections/asset-connection-ftp)
 
 
 ## Potential problems
