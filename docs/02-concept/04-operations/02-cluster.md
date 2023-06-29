@@ -1,6 +1,6 @@
 ---
 title: Cluster
-description: Learn how to operate a Reactive Cluster from within the Configuration Center. 
+description: Learn how to operate a Reactive Cluster from within the Configuration Center.
 ---
 
 # Cluster

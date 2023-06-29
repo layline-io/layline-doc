@@ -10,7 +10,7 @@ Next to creating Workflows, the Configuration Center also supports you in **moni
 
 Only one Cluster can be managed at a time. Which cluster you work with, is determined by the selection in the drop-down box **(1)**:
 
-![](.introduction-images/2021-11-04-12-10-13.png "Cluster architecture (Operations --> ")
+![](.01-introduction-images/2021-11-04-12-10-13.png "Cluster architecture (Operations --> ")
 
 
 The setup of Clusters available for selection can only be done in an open Project under [Project --> Deployments](/docs/concept/wf-config/deployment#creating-a-cluster-asset). It is possible to either define 
@@ -18,11 +18,11 @@ The setup of Clusters available for selection can only be done in an open Projec
 1. Project dependent Clusters **(1)**: Clusters which are part of a Project and only available when the Project is opened.
 2. Global Clusters **(2)**: These Clusters are also available for selection when no Project is opened.
 
-![](.introduction-images/2021-11-04-12-11-32.png "Types of Clusters (Operations --> ")
+![](.01-introduction-images/2021-11-04-12-11-32.png "Types of Clusters (Operations --> ")
 
 It is then possible to select these Clusters in the Cluster Tab **(1)**:
 
-![](.introduction-images/2021-11-04-12-13-58.png "Selecting Clusters (Operations --> ")
+![](.01-introduction-images/2021-11-04-12-13-58.png "Selecting Clusters (Operations --> ")
 
 ### Next
 

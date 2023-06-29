@@ -1,6 +1,6 @@
 ---
 title: Where Next
-description: Explore further steps after installation. 
+description: Explore further steps after installation.
 ---
 
 ### Where next
