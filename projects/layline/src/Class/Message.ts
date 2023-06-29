@@ -243,7 +243,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {BigInteger} Number in Java native BigInteger type.
      */
-    static getBigInteger(accessor: EntityDeclaration): BigInteger {
+    getBigInteger(accessor: EntityDeclaration): BigInteger {
         return
     }
 
@@ -261,7 +261,7 @@ class Message {
      * @param {Boolean} [defaultValue] - Default value if no Boolean value could be retrieved from message.
      * @return {Boolean} Number in Java native Boolean type.
      */
-    static getBoolean(accessor: EntityDeclaration): Boolean {
+    getBoolean(accessor: EntityDeclaration): Boolean {
         return
     }
 
@@ -278,7 +278,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {JavaType.Byte} Java native Byte type.
      */
-    static getByte(accessor: EntityDeclaration): JavaType.Byte {
+    getByte(accessor: EntityDeclaration): JavaType.Byte {
         return
     }
 
@@ -295,7 +295,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {JavaType.ByteString} ByteString type.
      */
-    static getByteString(accessor: EntityDeclaration): JavaType.ByteString {
+    getByteString(accessor: EntityDeclaration): JavaType.ByteString {
         return
     }
 
@@ -312,7 +312,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {JavaType.Character} Character in Java native char type.
      */
-    static getCharacter(accessor: EntityDeclaration): JavaType.Character {
+    getCharacter(accessor: EntityDeclaration): JavaType.Character {
         return
     }
 
@@ -329,7 +329,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {JavaType.OffsetDateTime} A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
      */
-    static getDateTime(accessor: EntityDeclaration): JavaType.OffsetDateTime {
+    getDateTime(accessor: EntityDeclaration): JavaType.OffsetDateTime {
         return
     }
 
@@ -346,7 +346,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {JavaType.BigDecimal} BigDecimal in Java native char type.
      */
-    static getDecimal(accessor: EntityDeclaration):JavaType.BigDecimal {
+    getDecimal(accessor: EntityDeclaration):JavaType.BigDecimal {
         return
     }
 
@@ -363,7 +363,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {JavaType.Double} Double in Java native char type.
      */
-    static getDouble(accessor: EntityDeclaration): JavaType.Double {
+    getDouble(accessor: EntityDeclaration): JavaType.Double {
         return
     }
 
@@ -379,7 +379,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {JavaType.Integer} Integer in Java native char type.
      */
-    static getInt(accessor: EntityDeclaration): JavaType.Integer {
+    getInt(accessor: EntityDeclaration): JavaType.Integer {
         return
     }
 
@@ -395,7 +395,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {JavaType.Long} Long in Java native char type.
      */
-    static getLong(accessor: EntityDeclaration): JavaType.Long {
+    getLong(accessor: EntityDeclaration): JavaType.Long {
         return
     }
 
@@ -410,7 +410,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {Object} Object in Java native char type.
      */
-    static getObject(accessor: EntityDeclaration): Object {
+    getObject(accessor: EntityDeclaration): Object {
         return;
     }
 
@@ -426,7 +426,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @return {string} The value as string.
      */
-    static getString(accessor: EntityDeclaration): String {
+    getString(accessor: EntityDeclaration): String {
         return;
     }
 
@@ -440,7 +440,7 @@ class Message {
      * @param {Severity} severity - Severity to check against.
      * @return {boolean} - True, if match found, else false.
      */
-    static hasStatusAttached(severity: Severity) {
+    hasStatusAttached(severity: Severity) {
         return;
     }
 
@@ -454,7 +454,7 @@ class Message {
      *
      * @return {number} - Number of States attached to the message.
      */
-    static getNumStatusAttached() {
+    getNumStatusAttached() {
         return;
     }
 
@@ -489,7 +489,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {BigInteger} value - A native BigInteger value or a value which can be implicitly converted to such.
      * */
-    static setBigInteger(accessor: EntityDeclaration, value: BigInteger): void {
+    setBigInteger(accessor: EntityDeclaration, value: BigInteger): void {
     }
 
 
@@ -503,7 +503,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {Byte} value - A native Byte value or a value which can be implicitly converted to such.
      * */
-    static setBoolean(accessor: EntityDeclaration, value: Boolean): void {
+    setBoolean(accessor: EntityDeclaration, value: Boolean): void {
     }
 
 
@@ -524,7 +524,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {number|string} value - A native Byte value or a value which can be implicitly converted to such.
      * */
-    static setByte(accessor: EntityDeclaration, value: number | string): void {
+    setByte(accessor: EntityDeclaration, value: number | string): void {
     }
 
 
@@ -541,7 +541,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {ByteString} value - A native ByteString value or a value which can be implicitly converted to such.
      * */
-    static setByteString(accessor: EntityDeclaration, value: string): void {
+    setByteString(accessor: EntityDeclaration, value: string): void {
     }
 
 
@@ -555,7 +555,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {JavaType.Character} value - A native Character value or a value which can be implicitly converted to such.
      * */
-    static setCharacter(accessor: EntityDeclaration, value: JavaType.Character): void {
+    setCharacter(accessor: EntityDeclaration, value: JavaType.Character): void {
     }
 
 
@@ -569,7 +569,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {JavaType.OffsetDateTime} value - A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
      * */
-    static setDateTime(accessor: EntityDeclaration, value: JavaType.OffsetDateTime): void {
+    setDateTime(accessor: EntityDeclaration, value: JavaType.OffsetDateTime): void {
     }
 
 
@@ -585,7 +585,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number} value - A value which can be represented as a Decimal.
      * */
-    static setDecimal(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number): void {
+    setDecimal(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number): void {
     }
 
 
@@ -601,7 +601,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number} value - A value which can be represented as a Double.
      * */
-    static setDouble(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | Number): void {
+    setDouble(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | Number): void {
     }
 
 
@@ -617,7 +617,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {JavaType.String | JavaType.Integer | JavaType.Long | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number} value - A value which can be represented as a Int.
      * */
-    static setInt(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | BigInteger | Number): void {
+    setInt(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | BigInteger | Number): void {
     }
 
 
@@ -633,7 +633,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number} value - A value which can be represented as a Long.
      * */
-    static setLong(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number): void {
+    setLong(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number): void {
     }
 
 
@@ -648,7 +648,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {Object} value - A value which can be represented as a Object.
      * */
-    static setObject(accessor: EntityDeclaration, value: Object): void {
+    setObject(accessor: EntityDeclaration, value: Object): void {
     }
 
 
@@ -664,7 +664,7 @@ class Message {
      * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
      * @param {String} value - A value which can be represented as a String.
      * */
-    static setString(accessor: EntityDeclaration, value: Object): void {
+    setString(accessor: EntityDeclaration, value: Object): void {
     }
 
 
@@ -677,7 +677,7 @@ class Message {
      * ```
      *
      * */
-    static toString(): void {
+    toString(): void {
     }
 
 

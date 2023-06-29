@@ -43,18 +43,6 @@ Invoke to create a Status.
 </div>
 </div>
 <div className="doc-summary-item">
-<div className="doc-summary-name"><a href="#getVendorByName">getVendorByName</a></div>
-<div className="doc-summary-desc">
-
-Get the vendor instance from the list of defined vendors.
-You must have defined the vendor in an Environment Status Asset.
-The string passed in `Status.getVendorByName('myVendorLongName')`
-is the long name of the Vendor definition within that Asset.
-Check documentation for "Environment Status Asset" for more info.
-
-</div>
-</div>
-<div className="doc-summary-item">
 <div className="doc-summary-name"><a href="#getCode">getCode</a></div>
 <div className="doc-summary-desc">
 
@@ -129,6 +117,18 @@ const VENDOR_INFO = status.getVendor();
 
 </div>
 </div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#getVendorByName">getVendorByName</a></div>
+<div className="doc-summary-desc">
+
+Get the vendor instance from the list of defined vendors.
+You must have defined the vendor in an Environment Status Asset.
+The string passed in `Status.getVendorByName('myVendorLongName')`
+is the long name of the Vendor definition within that Asset.
+Check documentation for "Environment Status Asset" for more info.
+
+</div>
+</div>
 </div>
 
 ## Constructor
@@ -144,8 +144,6 @@ new Status(): Status
 ### create {#create}
 
 </div>
-
-<span className="badge badge--info">static</span>
 
 <div className="doc-entry">
 
@@ -269,81 +267,6 @@ const STATUS = Status.create(
 
 // In the above, the message placeholders %1 and %2 will be replaced by "LastName" and "Putin".
 // So the final message is "Field with name 'LastName' contains illegal value 'Putin'."
-```
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getVendorByName {#getVendorByName}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getVendorByName</span>
-
-<span className="doc-type">
-
-[VendorInfo](VendorInfo)
-
-</span>
-
-</summary>
-
-```ts
-getVendorByName(vendorLongName: string): VendorInfo
-```
-
-<div className="doc-desc">
-
-Get the vendor instance from the list of defined vendors.
-You must have defined the vendor in an Environment Status Asset.
-The string passed in `Status.getVendorByName('myVendorLongName')`
-is the long name of the Vendor definition within that Asset.
-Check documentation for "Environment Status Asset" for more info.
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">vendorLongName</span>
-
-<div className="doc-type">
-
-string
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-The long name of the vendor as defined in the specific Environment Status Asset.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-Instance of [VendorInfo](VendorInfo)
-
-Example:
-```js
-const VENDOR_INFO = Status.getVendorByName('MyVendorLongName');
 ```
 
 </details>
@@ -580,6 +503,79 @@ const VENDOR_INFO = status.getVendor();
 <h4 className="doc-comment-title">Returns</h4>
 
 - [VendorInfo](VendorInfo) structure.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getVendorByName {#getVendorByName}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getVendorByName</span>
+
+<span className="doc-type">
+
+[VendorInfo](VendorInfo)
+
+</span>
+
+</summary>
+
+```ts
+getVendorByName(vendorLongName: string): VendorInfo
+```
+
+<div className="doc-desc">
+
+Get the vendor instance from the list of defined vendors.
+You must have defined the vendor in an Environment Status Asset.
+The string passed in `Status.getVendorByName('myVendorLongName')`
+is the long name of the Vendor definition within that Asset.
+Check documentation for "Environment Status Asset" for more info.
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">vendorLongName</span>
+
+<div className="doc-type">
+
+string
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+The long name of the vendor as defined in the specific Environment Status Asset.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Instance of [VendorInfo](VendorInfo)
+
+Example:
+```js
+const VENDOR_INFO = Status.getVendorByName('MyVendorLongName');
+```
 
 </details>
 

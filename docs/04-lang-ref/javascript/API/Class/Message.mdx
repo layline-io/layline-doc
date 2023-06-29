@@ -83,6 +83,74 @@ class Message
 <div className="doc-summary doc-methods">
 <h3 className="doc-summary-title">Methods</h3>
 <div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#addStatus">addStatus</a></div>
+<div className="doc-summary-desc">
+
+Adds a [Status](Status) to a message.
+The [Status](Status) must have been created with [Status.create](Status#Status.create) or otherwise instantiated.
+
+Example:
+```js
+ if (error) {
+     message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_VALUE', valueString));
+ }
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#clone">clone</a></div>
+<div className="doc-summary-desc">
+
+Creates a full clone of a [Message](Message)
+
+```js
+clonedMessage = message.clone();
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#exists">exists</a></div>
+<div className="doc-summary-desc">
+
+Checks if a known data structure is recognized within a given [Message](Message).
+Data structures are spawned into existence by the definition of data formats (Format Assets).
+You can test a particular [Message](Message) on whether a specific structure is present within
+a message by using this method.
+
+This is typically used to check whether a meessage is of a certain type, or not.
+
+Example:
+```js
+// Get the access path to a structure within the compiled data dictionary
+const MY_RECORD_TYPE = dataDictionary.type.MyFormat.Detail;
+
+// Test message against the existence of the data dictionary structure.
+if (message.exists(MY_RECORD_TYPE)) {
+    ...
+}
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#findStatus">findStatus</a></div>
+<div className="doc-summary-desc">
+
+Check whether a message carries a specified status.
+```js
+const VENDOR = Status.getVendorByName('MyVendorLongName');
+
+const foundStatusArray = detail.findStatus(function(status) { ",
+     // Code 9 means 'DISCARD'",
+     return status.vendorId === VENDOR.id && status.code === 9; ",
+ });",
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
 <div className="doc-summary-name"><a href="#getBigInteger">getBigInteger</a></div>
 <div className="doc-summary-desc">
 
@@ -163,6 +231,19 @@ const c = message.getCharacter(dataDictionary.type.Detail.CSV.FIELD);
 </div>
 </div>
 <div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#getCrc64">getCrc64</a></div>
+<div className="doc-summary-desc">
+
+Creates a CRC 64 checksum from specified node within a [Message](Message).
+
+Example:
+```js
+const crc64 = message.getCrc64(message.data.CSV);
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
 <div className="doc-summary-name"><a href="#getDateTime">getDateTime</a></div>
 <div className="doc-summary-desc">
 
@@ -233,6 +314,34 @@ const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
 </div>
 </div>
 <div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#getMessageDigest">getMessageDigest</a></div>
+<div className="doc-summary-desc">
+
+Returns a calculated digest for a given message
+Example:
+```js
+
+// Option: 1. Return digest considering complete message content.
+// Digest calculation defaults to MD5 hash and no lower case.
+const md5DigestFull = message.getMessageDigest();
+
+// Option: 2. Return digest for full message content based on MD5 hash.
+// Returned digest will be lower case only.
+const md5DigestFullLower = message.getMessageDigest("MD5", true);
+
+// Option: 3. Calculate digest considering specific data structures within message only.
+recordAccessorForMD5 = [
+    dataDictionary.type.Detail.CSV.RECORD_TYPE,
+    dataDictionary.type.Detail.CSV.LAST_NAME,
+    dataDictionary.type.Detail.CSV.FIRST_NAME
+]
+
+const md5Digest = message.getMessageDigest("MD5", true, recordAccessorForMD5);
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
 <div className="doc-summary-name"><a href="#getNumStatusAttached">getNumStatusAttached</a></div>
 <div className="doc-summary-desc">
 
@@ -258,6 +367,22 @@ const o = message.getObject(dataDictionary.type.Detail.CSV.FIELD);
 </div>
 </div>
 <div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#getStatus">getStatus</a></div>
+<div className="doc-summary-desc">
+
+Retrieves a Status by index from the list of States attached to a message.
+A message keeps track of related States in a Status array attached to it.
+This list may be empty or filled with one more States.
+
+Example:
+```js
+// Retrieve the first Status from the list of States attached to the message.
+const status = message.getStatus(0);
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
 <div className="doc-summary-name"><a href="#getString">getString</a></div>
 <div className="doc-summary-desc">
 
@@ -278,6 +403,22 @@ Checks if a message has a [Status](Status) attached which matches a particular S
 
 ```js
 const result = message.hasStatusAttached(Severity.ERROR);
+```
+
+</div>
+</div>
+<div className="doc-summary-item">
+<div className="doc-summary-name"><a href="#pack">pack</a></div>
+<div className="doc-summary-desc">
+
+Packs the message into a memory efficient format.
+
+```js
+// Pack message
+const packedMsg = message.pack();
+
+// Unpack message
+const unpackedMsg = packedMsg.unpack();
 ```
 
 </div>
@@ -463,147 +604,6 @@ stream.logInfo("Current message: " + message.toString());
 
 </div>
 </div>
-<div className="doc-summary-item">
-<div className="doc-summary-name"><a href="#addStatus">addStatus</a></div>
-<div className="doc-summary-desc">
-
-Adds a [Status](Status) to a message.
-The [Status](Status) must have been created with [Status.create](Status#Status.create) or otherwise instantiated.
-
-Example:
-```js
- if (error) {
-     message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_VALUE', valueString));
- }
-```
-
-</div>
-</div>
-<div className="doc-summary-item">
-<div className="doc-summary-name"><a href="#clone">clone</a></div>
-<div className="doc-summary-desc">
-
-Creates a full clone of a [Message](Message)
-
-```js
-clonedMessage = message.clone();
-```
-
-</div>
-</div>
-<div className="doc-summary-item">
-<div className="doc-summary-name"><a href="#exists">exists</a></div>
-<div className="doc-summary-desc">
-
-Checks if a known data structure is recognized within a given [Message](Message).
-Data structures are spawned into existence by the definition of data formats (Format Assets).
-You can test a particular [Message](Message) on whether a specific structure is present within
-a message by using this method.
-
-This is typically used to check whether a meessage is of a certain type, or not.
-
-Example:
-```js
-// Get the access path to a structure within the compiled data dictionary
-const MY_RECORD_TYPE = dataDictionary.type.MyFormat.Detail;
-
-// Test message against the existence of the data dictionary structure.
-if (message.exists(MY_RECORD_TYPE)) {
-    ...
-}
-```
-
-</div>
-</div>
-<div className="doc-summary-item">
-<div className="doc-summary-name"><a href="#findStatus">findStatus</a></div>
-<div className="doc-summary-desc">
-
-Check whether a message carries a specified status.
-```js
-const VENDOR = Status.getVendorByName('MyVendorLongName');
-
-const foundStatusArray = detail.findStatus(function(status) { ",
-     // Code 9 means 'DISCARD'",
-     return status.vendorId === VENDOR.id && status.code === 9; ",
- });",
-```
-
-</div>
-</div>
-<div className="doc-summary-item">
-<div className="doc-summary-name"><a href="#getCrc64">getCrc64</a></div>
-<div className="doc-summary-desc">
-
-Creates a CRC 64 checksum from specified node within a [Message](Message).
-
-Example:
-```js
-const crc64 = message.getCrc64(message.data.CSV);
-```
-
-</div>
-</div>
-<div className="doc-summary-item">
-<div className="doc-summary-name"><a href="#getMessageDigest">getMessageDigest</a></div>
-<div className="doc-summary-desc">
-
-Returns a calculated digest for a given message
-Example:
-```js
-
-// Option: 1. Return digest considering complete message content.
-// Digest calculation defaults to MD5 hash and no lower case.
-const md5DigestFull = message.getMessageDigest();
-
-// Option: 2. Return digest for full message content based on MD5 hash.
-// Returned digest will be lower case only.
-const md5DigestFullLower = message.getMessageDigest("MD5", true);
-
-// Option: 3. Calculate digest considering specific data structures within message only.
-recordAccessorForMD5 = [
-    dataDictionary.type.Detail.CSV.RECORD_TYPE,
-    dataDictionary.type.Detail.CSV.LAST_NAME,
-    dataDictionary.type.Detail.CSV.FIRST_NAME
-]
-
-const md5Digest = message.getMessageDigest("MD5", true, recordAccessorForMD5);
-```
-
-</div>
-</div>
-<div className="doc-summary-item">
-<div className="doc-summary-name"><a href="#getStatus">getStatus</a></div>
-<div className="doc-summary-desc">
-
-Retrieves a Status by index from the list of States attached to a message.
-A message keeps track of related States in a Status array attached to it.
-This list may be empty or filled with one more States.
-
-Example:
-```js
-// Retrieve the first Status from the list of States attached to the message.
-const status = message.getStatus(0);
-```
-
-</div>
-</div>
-<div className="doc-summary-item">
-<div className="doc-summary-name"><a href="#pack">pack</a></div>
-<div className="doc-summary-desc">
-
-Packs the message into a memory efficient format.
-
-```js
-// Pack message
-const packedMsg = message.pack();
-
-// Unpack message
-const unpackedMsg = packedMsg.unpack();
-```
-
-</div>
-</div>
 </div>
 
 ## Constructor
@@ -641,2117 +641,6 @@ object
 </div>
 
 ## Methods
-
-<div className="doc-header-hidden">
-
-### getBigInteger {#getBigInteger}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getBigInteger</span>
-
-<span className="doc-type">
-
-Uint8Array
-
-</span>
-
-</summary>
-
-```ts
-getBigInteger(accessor: EntityDeclaration): Uint8Array
-```
-
-<div className="doc-desc">
-
-Return a BigInteger typed value from a message field.
-Important!: Please note that this method returns a Java object "Big Integer" (a Java native data type).
-Because of this you cannot reliably use simple Javascript number operators without risking implicit conversion errors.
-
-
-Example:
-```js
-const n = message.getBigInteger(dataDictionary.type.Detail.CSV.A_REALLY_BIG_NUMBER_FIELD);
-
-// Compare BigInteger to another BigInteger
-const BigInteger = Java.type("java.math.BigInteger");
-x = new BigInteger(123); // x now a java type BigInteger
-
-x == 123; // -> "true", via implicit conversion --> be careful here, because x will be implicitly be converted to JS number and may lose precision
-x.equals(123); // -> "false", because comparing different data types (BigInteger / Number)
-x.equals(new BigInteger(123)); // -> "true"
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-Number in Java native BigInteger type.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getBoolean {#getBoolean}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getBoolean</span>
-
-<span className="doc-type">
-
-Boolean
-
-</span>
-
-</summary>
-
-```ts
-getBoolean(accessor: EntityDeclaration): Boolean
-```
-
-<div className="doc-desc">
-
-Return the Boolean typed value from a message field.
-Important!: Please note that this method returns a Java object "Boolean" (a Java native data type).
-
-Example:
-```js
-const b = message.getBoolean(dataDictionary.type.Detail.CSV.A_BOOLEAN_FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-Number in Java native Boolean type.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getByte {#getByte}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getByte</span>
-
-<span className="doc-type">
-
-Byte
-
-</span>
-
-</summary>
-
-```ts
-getByte(accessor: EntityDeclaration): Byte
-```
-
-<div className="doc-desc">
-
-Return the Byte typed value from a message field.
-Important!: Please note that this method returns a Java object "Byte" (a Java native data type).
-
-Example:
-```js
-const b = message.getByte(dataDictionary.type.Detail.CSV.A_BYTE_FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-Java native Byte type.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getByteString {#getByteString}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getByteString</span>
-
-<span className="doc-type">
-
-ByteString
-
-</span>
-
-</summary>
-
-```ts
-getByteString(accessor: EntityDeclaration): ByteString
-```
-
-<div className="doc-desc">
-
-Return the ByteString typed value from a message field.
-Important!: Please note that this method returns a "ByteString" typed value (a Java native data type).
-
-Example:
-```js
-const b = message.getByteString(dataDictionary.type.Detail.CSV.FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-ByteString type.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getCharacter {#getCharacter}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getCharacter</span>
-
-<span className="doc-type">
-
-Character
-
-</span>
-
-</summary>
-
-```ts
-getCharacter(accessor: EntityDeclaration): Character
-```
-
-<div className="doc-desc">
-
-Return a Character typed value from a message field.
-Important!: Please note that this method returns a "char" typed value (a Java native data type).
-
-Example:
-```js
-const c = message.getCharacter(dataDictionary.type.Detail.CSV.FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-Character in Java native char type.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getDateTime {#getDateTime}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getDateTime</span>
-
-<span className="doc-type">
-
-OffsetDateTime
-
-</span>
-
-</summary>
-
-```ts
-getDateTime(accessor: EntityDeclaration): OffsetDateTime
-```
-
-<div className="doc-desc">
-
-Return a OffsetDateTime typed value from a message field.
-Important!: Please note that this method returns a "[OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html)" typed value (a Java native data type).
-
-Example:
-```js
-const dt = message.getDateTime(dataDictionary.type.Detail.CSV.FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getDecimal {#getDecimal}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getDecimal</span>
-
-<span className="doc-type">
-
-BigDecimal
-
-</span>
-
-</summary>
-
-```ts
-getDecimal(accessor: EntityDeclaration): BigDecimal
-```
-
-<div className="doc-desc">
-
-Return a BigDecimal typed value from a message field.
-Important!: Please note that this method returns a "BigDecimal" typed value (a Java native data type).
-
-Example:
-```js
-const dec = message.getDecimal(dataDictionary.type.Detail.CSV.FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-BigDecimal in Java native char type.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getDouble {#getDouble}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getDouble</span>
-
-<span className="doc-type">
-
-Double
-
-</span>
-
-</summary>
-
-```ts
-getDouble(accessor: EntityDeclaration): Double
-```
-
-<div className="doc-desc">
-
-Return a Double typed value from a message field.
-Important!: Please note that this method returns a "Double" typed value (a Java native data type).
-
-Example:
-```js
-const dbl = message.getDouble(dataDictionary.type.Detail.CSV.FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-Double in Java native char type.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getInt {#getInt}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getInt</span>
-
-<span className="doc-type">
-
-Integer
-
-</span>
-
-</summary>
-
-```ts
-getInt(accessor: EntityDeclaration): Integer
-```
-
-<div className="doc-desc">
-
-Return a Int typed value from a message field.
-Important!: Please note that this method returns a "Integer" typed value (a Java native data type).
-
-Example:
-```js
-const int = message.getInt(dataDictionary.type.Detail.CSV.FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-Integer in Java native char type.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getLong {#getLong}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getLong</span>
-
-<span className="doc-type">
-
-Long
-
-</span>
-
-</summary>
-
-```ts
-getLong(accessor: EntityDeclaration): Long
-```
-
-<div className="doc-desc">
-
-Return a Long typed value from a message field.
-Important!: Please note that this method returns a "Long" typed value (a Java native data type).
-
-Example:
-```js
-const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-Long in Java native char type.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getNumStatusAttached {#getNumStatusAttached}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getNumStatusAttached</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-getNumStatusAttached(): void
-```
-
-<div className="doc-desc">
-
-Gets the number of States [Status](Status) attached.
-
-```js
-const result = message.getNumStatusAttached();
-```
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-- Number of States attached to the message.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getObject {#getObject}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getObject</span>
-
-<span className="doc-type">
-
-Object
-
-</span>
-
-</summary>
-
-```ts
-getObject(accessor: EntityDeclaration): Object
-```
-
-<div className="doc-desc">
-
-Return a Object value a message field.
-
-Example:
-```js
-const o = message.getObject(dataDictionary.type.Detail.CSV.FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-Object in Java native char type.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### getString {#getString}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">getString</span>
-
-<span className="doc-type">
-
-String
-
-</span>
-
-</summary>
-
-```ts
-getString(accessor: EntityDeclaration): String
-```
-
-<div className="doc-desc">
-
-Return a String typed value from a message field.
-
-Example:
-```js
-const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-The value as string.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### hasStatusAttached {#hasStatusAttached}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">hasStatusAttached</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-hasStatusAttached(severity: Severity): void
-```
-
-<div className="doc-desc">
-
-Checks if a message has a [Status](Status) attached which matches a particular Severity.
-
-```js
-const result = message.hasStatusAttached(Severity.ERROR);
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">severity</span>
-
-<div className="doc-type">
-
-[Severity](../Enum/Severity)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-Severity to check against.
-
-</div>
-
-</div>
-
-<h4 className="doc-comment-title">Returns</h4>
-
-- True, if match found, else false.
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setBigInteger {#setBigInteger}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setBigInteger</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setBigInteger(accessor: EntityDeclaration, value: Uint8Array): void
-```
-
-<div className="doc-desc">
-
-Sets a BigInteger value in a message target field.
-
-```js
-const BigInteger = Java.type("java.math.BigInteger");
-bigInt = new BigInteger(123); // x now a java type BigInteger
-
-message.setBigInteger(dataDictionary.type.Detail.CSV.FIELD, bigInt)
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-Uint8Array
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A native BigInteger value or a value which can be implicitly converted to such.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setBoolean {#setBoolean}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setBoolean</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setBoolean(accessor: EntityDeclaration, value: Boolean): void
-```
-
-<div className="doc-desc">
-
-Sets a Boolean value in a message target field.
-
-```js
-message.setBoolean(dataDictionary.type.Detail.CSV.FIELD, true)
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-Boolean
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A native Byte value or a value which can be implicitly converted to such.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setByte {#setByte}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setByte</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setByte(accessor: EntityDeclaration, value: string | number): void
-```
-
-<div className="doc-desc">
-
-Sets a Byte value in a message target field.
-
-```js
-const Byte = Java.type("java.math.Byte");
-b = new Byte(123); // b now a java type Byte
-
-message.setByte(dataDictionary.type.Detail.CSV.FIELD, b)
-// or
-message.setByte(dataDictionary.type.Detail.CSV.FIELD, 7)
-// or
-message.setByte(dataDictionary.type.Detail.CSV.FIELD, 'X')
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-string&nbsp;|&nbsp;number
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A native Byte value or a value which can be implicitly converted to such.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setByteString {#setByteString}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setByteString</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setByteString(accessor: EntityDeclaration, value: string): void
-```
-
-<div className="doc-desc">
-
-Sets a ByteString value in a message target field.
-
-```js
-const ByteString = Java.type("java.math.ByteString");
-b = new ByteString("XYZ"); // b now a java type ByteString
-
-message.setByteString(dataDictionary.type.Detail.CSV.FIELD, b)
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-string
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A native ByteString value or a value which can be implicitly converted to such.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setCharacter {#setCharacter}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setCharacter</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setCharacter(accessor: EntityDeclaration, value: Character): void
-```
-
-<div className="doc-desc">
-
-Sets a Character value in a message target field.
-
-```js
-message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, 'c')
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-Character
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A native Character value or a value which can be implicitly converted to such.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setDateTime {#setDateTime}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setDateTime</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setDateTime(accessor: EntityDeclaration, value: OffsetDateTime): void
-```
-
-<div className="doc-desc">
-
-Sets a OffsetDateTime value in a message target field.
-
-```js
-message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, "2022-12-03T10:15:30+01:00")
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-OffsetDateTime
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setDecimal {#setDecimal}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setDecimal</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setDecimal(accessor: EntityDeclaration, value: BigDecimal | BigInteger | Double | Integer | Long | Number | String): void
-```
-
-<div className="doc-desc">
-
-Sets a Decimal value in a message target field.
-Internally represented as a Java BigDecimal.
-Will try to infer result from passed value.
-
-```js
-message.setDecimal(dataDictionary.type.Detail.CSV.FIELD, 123.45)
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-BigDecimal&nbsp;|&nbsp;BigInteger&nbsp;|&nbsp;Double&nbsp;|&nbsp;Integer&nbsp;|&nbsp;Long&nbsp;|&nbsp;Number&nbsp;|&nbsp;String
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A value which can be represented as a Decimal.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setDouble {#setDouble}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setDouble</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setDouble(accessor: EntityDeclaration, value: Number | BigDecimal | BigInteger | Double | Integer | Long | String): void
-```
-
-<div className="doc-desc">
-
-Sets a Double value in a message target field.
-Internally represented as a Java Double.
-Will try to infer result from passed value.
-
-```js
-message.setDouble(dataDictionary.type.Detail.CSV.FIELD, 123.45)
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-Number&nbsp;|&nbsp;BigDecimal&nbsp;|&nbsp;BigInteger&nbsp;|&nbsp;Double&nbsp;|&nbsp;Integer&nbsp;|&nbsp;Long&nbsp;|&nbsp;String
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A value which can be represented as a Double.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setInt {#setInt}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setInt</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setInt(accessor: EntityDeclaration, value: Number | Uint8Array | BigDecimal | Double | Integer | Long | String): void
-```
-
-<div className="doc-desc">
-
-Sets a Int value in a message target field.
-Internally represented as a Java Int.
-Will try to infer result from passed value.
-
-```js
-message.setInt(dataDictionary.type.Detail.CSV.FIELD, 123)
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-Number&nbsp;|&nbsp;Uint8Array&nbsp;|&nbsp;BigDecimal&nbsp;|&nbsp;Double&nbsp;|&nbsp;Integer&nbsp;|&nbsp;Long&nbsp;|&nbsp;String
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A value which can be represented as a Int.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setLong {#setLong}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setLong</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setLong(accessor: EntityDeclaration, value: BigDecimal | BigInteger | Double | Integer | Long | Number | String): void
-```
-
-<div className="doc-desc">
-
-Sets a Long value in a message target field.
-Internally represented as a Java Long.
-Will try to infer result from passed value.
-
-```js
-message.setLong(dataDictionary.type.Detail.CSV.FIELD, 12345)
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-BigDecimal&nbsp;|&nbsp;BigInteger&nbsp;|&nbsp;Double&nbsp;|&nbsp;Integer&nbsp;|&nbsp;Long&nbsp;|&nbsp;Number&nbsp;|&nbsp;String
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A value which can be represented as a Long.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setObject {#setObject}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setObject</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setObject(accessor: EntityDeclaration, value: Object): void
-```
-
-<div className="doc-desc">
-
-Sets a Object value in a message target field.
-
-```js
-const obj = [1, 2, 3, 4, 5];
-message.setObject(dataDictionary.type.Detail.CSV.FIELD, obj)
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-Object
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A value which can be represented as a Object.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### setString {#setString}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">setString</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-setString(accessor: EntityDeclaration, value: Object): void
-```
-
-<div className="doc-desc">
-
-Sets a Object value in a message target field.
-
-```js
-message.setString(dataDictionary.type.Detail.CSV.FIELD, "XYZ")
-// or simply
-message.data.CSV.FIELD = "XYZ"
-```
-
-</div>
-
-<h4>Parameters</h4>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">accessor</span>
-
-<div className="doc-type">
-
-[EntityDeclaration](EntityDeclaration)
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
-
-</div>
-
-</div>
-
-<div className="doc-param">
-
-<div className="doc-param-header">
-
-<span className="doc-name">value</span>
-
-<div className="doc-type">
-
-Object
-
-</div>
-
-</div>
-
-<div className="doc-desc">
-
-A value which can be represented as a String.
-
-</div>
-
-</div>
-
-</details>
-
-</div>
-
-<div className="doc-header-hidden">
-
-### toString {#toString}
-
-</div>
-
-<span className="badge badge--info">static</span>
-
-<div className="doc-entry">
-
-<details open className="doc-method">
-
-<summary className="doc-member">
-
-<span className="doc-name">toString</span>
-
-<span className="doc-type">
-
-void
-
-</span>
-
-</summary>
-
-```ts
-toString(): void
-```
-
-<div className="doc-desc">
-
-Returns the message in a string representation.
-
-Example:
-```js
-stream.logInfo("Current message: " + message.toString());
-```
-
-</div>
-
-</details>
-
-</div>
 
 <div className="doc-header-hidden">
 
@@ -3058,6 +947,366 @@ Function
 
 <div className="doc-header-hidden">
 
+### getBigInteger {#getBigInteger}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getBigInteger</span>
+
+<span className="doc-type">
+
+Uint8Array
+
+</span>
+
+</summary>
+
+```ts
+getBigInteger(accessor: EntityDeclaration): Uint8Array
+```
+
+<div className="doc-desc">
+
+Return a BigInteger typed value from a message field.
+Important!: Please note that this method returns a Java object "Big Integer" (a Java native data type).
+Because of this you cannot reliably use simple Javascript number operators without risking implicit conversion errors.
+
+
+Example:
+```js
+const n = message.getBigInteger(dataDictionary.type.Detail.CSV.A_REALLY_BIG_NUMBER_FIELD);
+
+// Compare BigInteger to another BigInteger
+const BigInteger = Java.type("java.math.BigInteger");
+x = new BigInteger(123); // x now a java type BigInteger
+
+x == 123; // -> "true", via implicit conversion --> be careful here, because x will be implicitly be converted to JS number and may lose precision
+x.equals(123); // -> "false", because comparing different data types (BigInteger / Number)
+x.equals(new BigInteger(123)); // -> "true"
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Number in Java native BigInteger type.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getBoolean {#getBoolean}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getBoolean</span>
+
+<span className="doc-type">
+
+Boolean
+
+</span>
+
+</summary>
+
+```ts
+getBoolean(accessor: EntityDeclaration): Boolean
+```
+
+<div className="doc-desc">
+
+Return the Boolean typed value from a message field.
+Important!: Please note that this method returns a Java object "Boolean" (a Java native data type).
+
+Example:
+```js
+const b = message.getBoolean(dataDictionary.type.Detail.CSV.A_BOOLEAN_FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Number in Java native Boolean type.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getByte {#getByte}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getByte</span>
+
+<span className="doc-type">
+
+Byte
+
+</span>
+
+</summary>
+
+```ts
+getByte(accessor: EntityDeclaration): Byte
+```
+
+<div className="doc-desc">
+
+Return the Byte typed value from a message field.
+Important!: Please note that this method returns a Java object "Byte" (a Java native data type).
+
+Example:
+```js
+const b = message.getByte(dataDictionary.type.Detail.CSV.A_BYTE_FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Java native Byte type.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getByteString {#getByteString}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getByteString</span>
+
+<span className="doc-type">
+
+ByteString
+
+</span>
+
+</summary>
+
+```ts
+getByteString(accessor: EntityDeclaration): ByteString
+```
+
+<div className="doc-desc">
+
+Return the ByteString typed value from a message field.
+Important!: Please note that this method returns a "ByteString" typed value (a Java native data type).
+
+Example:
+```js
+const b = message.getByteString(dataDictionary.type.Detail.CSV.FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+ByteString type.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getCharacter {#getCharacter}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getCharacter</span>
+
+<span className="doc-type">
+
+Character
+
+</span>
+
+</summary>
+
+```ts
+getCharacter(accessor: EntityDeclaration): Character
+```
+
+<div className="doc-desc">
+
+Return a Character typed value from a message field.
+Important!: Please note that this method returns a "char" typed value (a Java native data type).
+
+Example:
+```js
+const c = message.getCharacter(dataDictionary.type.Detail.CSV.FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Character in Java native char type.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
 ### getCrc64 {#getCrc64}
 
 </div>
@@ -3120,6 +1369,356 @@ const crc64 = message.getCrc64(message.data.CSV);
 <h4 className="doc-comment-title">Returns</h4>
 
 CRC 64 checksum
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getDateTime {#getDateTime}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getDateTime</span>
+
+<span className="doc-type">
+
+OffsetDateTime
+
+</span>
+
+</summary>
+
+```ts
+getDateTime(accessor: EntityDeclaration): OffsetDateTime
+```
+
+<div className="doc-desc">
+
+Return a OffsetDateTime typed value from a message field.
+Important!: Please note that this method returns a "[OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html)" typed value (a Java native data type).
+
+Example:
+```js
+const dt = message.getDateTime(dataDictionary.type.Detail.CSV.FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getDecimal {#getDecimal}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getDecimal</span>
+
+<span className="doc-type">
+
+BigDecimal
+
+</span>
+
+</summary>
+
+```ts
+getDecimal(accessor: EntityDeclaration): BigDecimal
+```
+
+<div className="doc-desc">
+
+Return a BigDecimal typed value from a message field.
+Important!: Please note that this method returns a "BigDecimal" typed value (a Java native data type).
+
+Example:
+```js
+const dec = message.getDecimal(dataDictionary.type.Detail.CSV.FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+BigDecimal in Java native char type.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getDouble {#getDouble}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getDouble</span>
+
+<span className="doc-type">
+
+Double
+
+</span>
+
+</summary>
+
+```ts
+getDouble(accessor: EntityDeclaration): Double
+```
+
+<div className="doc-desc">
+
+Return a Double typed value from a message field.
+Important!: Please note that this method returns a "Double" typed value (a Java native data type).
+
+Example:
+```js
+const dbl = message.getDouble(dataDictionary.type.Detail.CSV.FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Double in Java native char type.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getInt {#getInt}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getInt</span>
+
+<span className="doc-type">
+
+Integer
+
+</span>
+
+</summary>
+
+```ts
+getInt(accessor: EntityDeclaration): Integer
+```
+
+<div className="doc-desc">
+
+Return a Int typed value from a message field.
+Important!: Please note that this method returns a "Integer" typed value (a Java native data type).
+
+Example:
+```js
+const int = message.getInt(dataDictionary.type.Detail.CSV.FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Integer in Java native char type.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getLong {#getLong}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getLong</span>
+
+<span className="doc-type">
+
+Long
+
+</span>
+
+</summary>
+
+```ts
+getLong(accessor: EntityDeclaration): Long
+```
+
+<div className="doc-desc">
+
+Return a Long typed value from a message field.
+Important!: Please note that this method returns a "Long" typed value (a Java native data type).
+
+Example:
+```js
+const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Long in Java native char type.
 
 </details>
 
@@ -3257,6 +1856,119 @@ Array of [EntityDeclaration](EntityDeclaration) on which to calculate the digest
 
 <div className="doc-header-hidden">
 
+### getNumStatusAttached {#getNumStatusAttached}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getNumStatusAttached</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+getNumStatusAttached(): void
+```
+
+<div className="doc-desc">
+
+Gets the number of States [Status](Status) attached.
+
+```js
+const result = message.getNumStatusAttached();
+```
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+- Number of States attached to the message.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### getObject {#getObject}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getObject</span>
+
+<span className="doc-type">
+
+Object
+
+</span>
+
+</summary>
+
+```ts
+getObject(accessor: EntityDeclaration): Object
+```
+
+<div className="doc-desc">
+
+Return a Object value a message field.
+
+Example:
+```js
+const o = message.getObject(dataDictionary.type.Detail.CSV.FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+Object in Java native char type.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
 ### getStatus {#getStatus}
 
 </div>
@@ -3329,6 +2041,143 @@ Index of Status to retrieve.
 
 <div className="doc-header-hidden">
 
+### getString {#getString}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">getString</span>
+
+<span className="doc-type">
+
+String
+
+</span>
+
+</summary>
+
+```ts
+getString(accessor: EntityDeclaration): String
+```
+
+<div className="doc-desc">
+
+Return a String typed value from a message field.
+
+Example:
+```js
+const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+The value as string.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### hasStatusAttached {#hasStatusAttached}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">hasStatusAttached</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+hasStatusAttached(severity: Severity): void
+```
+
+<div className="doc-desc">
+
+Checks if a message has a [Status](Status) attached which matches a particular Severity.
+
+```js
+const result = message.hasStatusAttached(Severity.ERROR);
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">severity</span>
+
+<div className="doc-type">
+
+[Severity](../Enum/Severity)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+Severity to check against.
+
+</div>
+
+</div>
+
+<h4 className="doc-comment-title">Returns</h4>
+
+- True, if match found, else false.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
 ### pack {#pack}
 
 </div>
@@ -3370,6 +2219,1103 @@ const unpackedMsg = packedMsg.unpack();
 <h4 className="doc-comment-title">Returns</h4>
 
 - Packed message.
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setBigInteger {#setBigInteger}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setBigInteger</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setBigInteger(accessor: EntityDeclaration, value: Uint8Array): void
+```
+
+<div className="doc-desc">
+
+Sets a BigInteger value in a message target field.
+
+```js
+const BigInteger = Java.type("java.math.BigInteger");
+bigInt = new BigInteger(123); // x now a java type BigInteger
+
+message.setBigInteger(dataDictionary.type.Detail.CSV.FIELD, bigInt)
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+Uint8Array
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A native BigInteger value or a value which can be implicitly converted to such.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setBoolean {#setBoolean}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setBoolean</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setBoolean(accessor: EntityDeclaration, value: Boolean): void
+```
+
+<div className="doc-desc">
+
+Sets a Boolean value in a message target field.
+
+```js
+message.setBoolean(dataDictionary.type.Detail.CSV.FIELD, true)
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+Boolean
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A native Byte value or a value which can be implicitly converted to such.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setByte {#setByte}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setByte</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setByte(accessor: EntityDeclaration, value: string | number): void
+```
+
+<div className="doc-desc">
+
+Sets a Byte value in a message target field.
+
+```js
+const Byte = Java.type("java.math.Byte");
+b = new Byte(123); // b now a java type Byte
+
+message.setByte(dataDictionary.type.Detail.CSV.FIELD, b)
+// or
+message.setByte(dataDictionary.type.Detail.CSV.FIELD, 7)
+// or
+message.setByte(dataDictionary.type.Detail.CSV.FIELD, 'X')
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+string&nbsp;|&nbsp;number
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A native Byte value or a value which can be implicitly converted to such.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setByteString {#setByteString}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setByteString</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setByteString(accessor: EntityDeclaration, value: string): void
+```
+
+<div className="doc-desc">
+
+Sets a ByteString value in a message target field.
+
+```js
+const ByteString = Java.type("java.math.ByteString");
+b = new ByteString("XYZ"); // b now a java type ByteString
+
+message.setByteString(dataDictionary.type.Detail.CSV.FIELD, b)
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+string
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A native ByteString value or a value which can be implicitly converted to such.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setCharacter {#setCharacter}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setCharacter</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setCharacter(accessor: EntityDeclaration, value: Character): void
+```
+
+<div className="doc-desc">
+
+Sets a Character value in a message target field.
+
+```js
+message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, 'c')
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+Character
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A native Character value or a value which can be implicitly converted to such.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setDateTime {#setDateTime}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setDateTime</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setDateTime(accessor: EntityDeclaration, value: OffsetDateTime): void
+```
+
+<div className="doc-desc">
+
+Sets a OffsetDateTime value in a message target field.
+
+```js
+message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, "2022-12-03T10:15:30+01:00")
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+OffsetDateTime
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setDecimal {#setDecimal}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setDecimal</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setDecimal(accessor: EntityDeclaration, value: BigDecimal | BigInteger | Double | Integer | Long | Number | String): void
+```
+
+<div className="doc-desc">
+
+Sets a Decimal value in a message target field.
+Internally represented as a Java BigDecimal.
+Will try to infer result from passed value.
+
+```js
+message.setDecimal(dataDictionary.type.Detail.CSV.FIELD, 123.45)
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+BigDecimal&nbsp;|&nbsp;BigInteger&nbsp;|&nbsp;Double&nbsp;|&nbsp;Integer&nbsp;|&nbsp;Long&nbsp;|&nbsp;Number&nbsp;|&nbsp;String
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A value which can be represented as a Decimal.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setDouble {#setDouble}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setDouble</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setDouble(accessor: EntityDeclaration, value: Number | BigDecimal | BigInteger | Double | Integer | Long | String): void
+```
+
+<div className="doc-desc">
+
+Sets a Double value in a message target field.
+Internally represented as a Java Double.
+Will try to infer result from passed value.
+
+```js
+message.setDouble(dataDictionary.type.Detail.CSV.FIELD, 123.45)
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+Number&nbsp;|&nbsp;BigDecimal&nbsp;|&nbsp;BigInteger&nbsp;|&nbsp;Double&nbsp;|&nbsp;Integer&nbsp;|&nbsp;Long&nbsp;|&nbsp;String
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A value which can be represented as a Double.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setInt {#setInt}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setInt</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setInt(accessor: EntityDeclaration, value: Number | Uint8Array | BigDecimal | Double | Integer | Long | String): void
+```
+
+<div className="doc-desc">
+
+Sets a Int value in a message target field.
+Internally represented as a Java Int.
+Will try to infer result from passed value.
+
+```js
+message.setInt(dataDictionary.type.Detail.CSV.FIELD, 123)
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+Number&nbsp;|&nbsp;Uint8Array&nbsp;|&nbsp;BigDecimal&nbsp;|&nbsp;Double&nbsp;|&nbsp;Integer&nbsp;|&nbsp;Long&nbsp;|&nbsp;String
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A value which can be represented as a Int.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setLong {#setLong}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setLong</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setLong(accessor: EntityDeclaration, value: BigDecimal | BigInteger | Double | Integer | Long | Number | String): void
+```
+
+<div className="doc-desc">
+
+Sets a Long value in a message target field.
+Internally represented as a Java Long.
+Will try to infer result from passed value.
+
+```js
+message.setLong(dataDictionary.type.Detail.CSV.FIELD, 12345)
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+BigDecimal&nbsp;|&nbsp;BigInteger&nbsp;|&nbsp;Double&nbsp;|&nbsp;Integer&nbsp;|&nbsp;Long&nbsp;|&nbsp;Number&nbsp;|&nbsp;String
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A value which can be represented as a Long.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setObject {#setObject}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setObject</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setObject(accessor: EntityDeclaration, value: Object): void
+```
+
+<div className="doc-desc">
+
+Sets a Object value in a message target field.
+
+```js
+const obj = [1, 2, 3, 4, 5];
+message.setObject(dataDictionary.type.Detail.CSV.FIELD, obj)
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+Object
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A value which can be represented as a Object.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### setString {#setString}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">setString</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+setString(accessor: EntityDeclaration, value: Object): void
+```
+
+<div className="doc-desc">
+
+Sets a Object value in a message target field.
+
+```js
+message.setString(dataDictionary.type.Detail.CSV.FIELD, "XYZ")
+// or simply
+message.data.CSV.FIELD = "XYZ"
+```
+
+</div>
+
+<h4>Parameters</h4>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">accessor</span>
+
+<div className="doc-type">
+
+[EntityDeclaration](EntityDeclaration)
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+[EntityDeclaration](EntityDeclaration) describing the access path to the field value.
+
+</div>
+
+</div>
+
+<div className="doc-param">
+
+<div className="doc-param-header">
+
+<span className="doc-name">value</span>
+
+<div className="doc-type">
+
+Object
+
+</div>
+
+</div>
+
+<div className="doc-desc">
+
+A value which can be represented as a String.
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<div className="doc-header-hidden">
+
+### toString {#toString}
+
+</div>
+
+<div className="doc-entry">
+
+<details open className="doc-method">
+
+<summary className="doc-member">
+
+<span className="doc-name">toString</span>
+
+<span className="doc-type">
+
+void
+
+</span>
+
+</summary>
+
+```ts
+toString(): void
+```
+
+<div className="doc-desc">
+
+Returns the message in a string representation.
+
+Example:
+```js
+stream.logInfo("Current message: " + message.toString());
+```
+
+</div>
 
 </details>
 

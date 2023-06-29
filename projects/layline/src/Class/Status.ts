@@ -58,7 +58,7 @@ class Status {
      * // So the final message is "Field with name 'LastName' contains illegal value 'Putin'."
      * ```
      */
-    static create(vendor: VendorInfo, statusCode: string, ...args: string[]): Status {
+    create(vendor: VendorInfo, statusCode: string, ...args: string[]): Status {
         return;
     }
 
@@ -156,7 +156,7 @@ class Status {
      * const VENDOR_INFO = Status.getVendorByName('MyVendorLongName');
      * ```
      */
-    static getVendorByName(vendorLongName: string): VendorInfo {
+    getVendorByName(vendorLongName: string): VendorInfo {
         return;
     }
 
