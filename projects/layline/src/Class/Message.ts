@@ -157,7 +157,7 @@ class Message {
 
 
     /**
-     * Creates a CRC 64 checksum from specified node within a {@link Message}.
+     * Creates a CRC 64 checksum from specified node within a {@link (Message)}.
      *
      * Example:
      * ```js
