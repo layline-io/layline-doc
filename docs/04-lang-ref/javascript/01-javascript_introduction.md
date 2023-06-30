@@ -1,7 +1,7 @@
 ---
 title: Welcome to Javascript
 description: Learn about how to use Javascript in your layline.io Projects.
-sidebar_position: 1
+sidebar_position: 0
 ---
 
 ## Introduction
@@ -22,7 +22,7 @@ and potentially anything you can imagine when handling data.
 
 Using the Javascript Asset is not mandatory of course.
 Many challenges you may be facing can be accomplished using the out-of-the-box Assets whcih layline.io provides without
-resorting to Javascript./lang-ref/javascript/API/Class/JavaScriptProcessor#onmessage
+resorting to Javascript./lang-ref/javascript/API/classes/JavaScriptProcessor#onmessage
 But in many instances, an intermittent scripting processor inserted into a Workflow can go a long way in enabling you to
 execute logic which would be otherwise hard to implement using pure UI elements.
 
@@ -50,14 +50,14 @@ You can use none, one or as many of these Assets within your Project and within 
 
 Since layline.io is a reactive system, a Javascript Asset receiving a message automatically starts processing this
 message with the underlying script you provided.
-One of the key methods here is [onMessage](/docs/lang-ref/javascript/API/Class/JavaScriptProcessor#onmessage):
+One of the key methods here is [onMessage](/docs/lang-ref/javascript/API/classes/JavaScriptProcessor#onmessage):
 
 ![](.01-javascript_introduction_images/0af63f8c.png)
 
 Just like `onMessage` is a _hook_, the Javascript Asset provides a number of additional hooks which are automatically
 invoked as part of a Javascript Asset's lifecycle.
 A complete list of these hooks can be found in
-the [JavaScript Processor Reference](/docs/lang-ref/javascript/API/Class/JavaScriptProcessor).
+the [JavaScript Processor Reference](/docs/lang-ref/javascript/API/classes/JavaScriptProcessor).
 
 The following sequence graph shows a typical lifecycle of a Javascript Processor:
 
@@ -115,12 +115,12 @@ function onInit() {
 **3. onStreamStart()**
 
 When a Workflow starts processing a Stream, a Workflow-wide Stream-start event is issued.
-You can hook on to this event using the [onInit()](/docs/lang-ref/javascript/API/Class/JavaScriptProcessor#oninit) Method.
+You can hook on to this event using the [onInit()](/docs/lang-ref/javascript/API/classes/JavaScriptProcessor#oninit) Method.
 
 **4. onMessage()**
 
 Every time Javascript Processor is fed with an event by an upstream Processor,
-the [onMessage()](/docs/lang-ref/javascript/API/Class/JavaScriptProcessor#onmessage) hook is invoked.
+the [onMessage()](/docs/lang-ref/javascript/API/classes/JavaScriptProcessor#onmessage) hook is invoked.
 It is therefore central to message processing:
 
 ```js
@@ -148,7 +148,7 @@ function handleDetail(detail) {
 **5. onStreamEnd()**
 
 Finally, when a Stream comes to an end,
-the ([onStreamEnd()](/docs/lang-ref/javascript/API/Class/JavaScriptProcessor#onstreamend)) hooks is automatically called.
+the ([onStreamEnd()](/docs/lang-ref/javascript/API/classes/JavaScriptProcessor#onstreamend)) hooks is automatically called.
 Write your code here for finalizing actions regarding the processing of a stream:
 
 ```js

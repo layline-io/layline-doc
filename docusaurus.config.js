@@ -58,8 +58,6 @@ const config = {
         theme: {
           customCss: [
               require.resolve('./src/css/custom.css'),
-              require.resolve('./src/css/theme.css'),
-              // require.resolve("typedoc-to-mdx/css/theme.css") // theme.min.css is also available
           ],
         },
       }),
@@ -163,7 +161,28 @@ const config = {
     mermaid: true,
     // theme: {light: 'neutral', dark: 'forest'},
   },
+
   themes: ['@docusaurus/theme-mermaid'],
+
+  plugins: [
+    [
+      'docusaurus-plugin-typedoc',
+
+      // Plugin / TypeDoc options
+      {
+        out: "./04-lang-ref/javascript/02-API",
+        entryPoints: ["./projects/layline/src/index.ts"],
+        tsconfig: './tsconfig.json',
+        // plugin: ['typedoc-plugin-frontmatter'],
+        readme: "./projects/layline/src/index.md",
+        sidebar: {
+          autoConfiguration: true
+        },
+        watch: process.env.TYPEDOC_WATCH, // to instantly recompile changes to typescript files in dev mode
+      },
+    ],
+  ],
+
 };
 
 module.exports = config;

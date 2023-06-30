@@ -1,21 +1,22 @@
+
 // Classes
-import Connection from "@site/projects/layline/src/Class/Connection";
-import DataDictionary from "@site/projects/layline/src/Class/DataDictionary";
-import EntityDeclaration from "@site/projects/layline/src/Class/EntityDeclaration";
-import JavaScriptProcessor from "@site/projects/layline/src/Class/JavaScriptProcessor";
-import Message from "@site/projects/layline/src/Class/Message";
-import MessageNode from "@site/projects/layline/src/Class/MessageNode";
-import OutputPort from "@site/projects/layline/src/Class/OutputPort";
-import PackedMessage from "@site/projects/layline/src/Class/PackedMessage";
-import Processor from "@site/projects/layline/src/Class/Processor";
-import {Service} from "@site/projects/layline/src/Class/Service";
-import Status from "@site/projects/layline/src/Class/Status";
-import Stream from "@site/projects/layline/src/Class/Stream";
-import VendorInfo from "@site/projects/layline/src/Class/VendorInfo";
+import Connection from "./Classes/Connection";
+import DataDictionary from "./Classes/DataDictionary";
+import EntityDeclaration from "./Classes/EntityDeclaration";
+import JavaScriptProcessor from "./Classes/JavaScriptProcessor";
+import Message from "./Classes/Message";
+import MessageNode from "./Classes/MessageNode";
+import OutputPort from "./Classes/OutputPort";
+import PackedMessage from "./Classes/PackedMessage";
+import Processor from "./Classes/Processor";
+import {Service} from "./Classes/Service";
+import Status from "./Classes/Status";
+import Stream from "./Classes/Stream";
+import VendorInfo from "./Classes/VendorInfo";
 
 // Enums
-import JavaType from "@site/projects/layline/src/Enum/JavaType";
-import Severity from "@site/projects/layline/src/Enum/Severity";
+import JavaType from "./Enums/JavaType";
+import Severity from "./Enums/Severity";
 
 export {
     Connection,

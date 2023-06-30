@@ -101,7 +101,7 @@ REST-Api. Let's also assume that the name of the Service to be linked is `BTCSer
 You can pass arguments to the assigned script. This may be useful when reusing the same script in various different
 Javascript Assets and Workflows, but the script should behave slightly different in each of those instances.
 Passing arguments from a Javascript Asset to can provide this functionality. Please check the `getArguments()`
-method [here](/docs/lang-ref/javascript/API/Class/Processor#getarguments), on how to retrieve arguments in the script.
+method [here](/docs/lang-ref/javascript/API/classes/Processor#getarguments), on how to retrieve arguments in the script.
 
 ![](.asset-flow-javascript_images/140789d3.png "Arguments (Javascript)")
 
