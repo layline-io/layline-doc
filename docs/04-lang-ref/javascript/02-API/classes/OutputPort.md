@@ -1,0 +1,41 @@
+---
+id: "OutputPort"
+title: "Class: OutputPort"
+sidebar_label: "OutputPort"
+sidebar_position: 0
+custom_edit_url: null
+---
+
+Instance of an output port of a Processor
+
+## Constructors
+
+### constructor
+
+• **new OutputPort**()
+
+## Methods
+
+### getPeerProcessorName
+
+▸ **getPeerProcessorName**(): `string`
+
+Returns the name of the processor that this processor is attached to.
+
+```js
+// Get the output port by name
+const OUTPUT_PORT = processor.getOutputPort('My-Output-Port');
+
+// Now get the name of the processor that this output port is connected ti.
+let peerProcessorName = OUTPUT_PORT.getPeerProcessorName();
+```
+
+#### Returns
+
+`string`
+
+Name of Processor which this output port is connected to.
+
+#### Defined in
+
+Classes/OutputPort.ts:19
