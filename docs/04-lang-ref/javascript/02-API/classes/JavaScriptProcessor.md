@@ -40,10 +40,6 @@ function onCommit() {
 
 `void`
 
-#### Defined in
-
-Classes/JavaScriptProcessor.ts:27
-
 ___
 
 ### onInit
@@ -63,10 +59,6 @@ function onInit() {
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/JavaScriptProcessor.ts:41
 
 ___
 
@@ -113,10 +105,6 @@ function handleDetail(detail) {
 
 `void`
 
-#### Defined in
-
-Classes/JavaScriptProcessor.ts:76
-
 ___
 
 ### onPrepareCommit
@@ -141,10 +129,6 @@ functionWriteAllRejectErrors () {
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/JavaScriptProcessor.ts:96
 
 ___
 
@@ -172,10 +156,6 @@ function onPrepareRetry() {
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/JavaScriptProcessor.ts:118
 
 ___
 
@@ -239,10 +219,6 @@ The system will behave in a balanced manner following standard reactive rules.
 
 `void`
 
-#### Defined in
-
-Classes/JavaScriptProcessor.ts:175
-
 ___
 
 ### onRollback
@@ -271,10 +247,6 @@ function onRollback() {
 
 `void`
 
-#### Defined in
-
-Classes/JavaScriptProcessor.ts:198
-
 ___
 
 ### onStreamEnd
@@ -298,10 +270,6 @@ function onStreamEnd() {
 
 `void`
 
-#### Defined in
-
-Classes/JavaScriptProcessor.ts:215
-
 ___
 
 ### onStreamStart
@@ -322,7 +290,3 @@ function onStreamStart() {
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/JavaScriptProcessor.ts:231

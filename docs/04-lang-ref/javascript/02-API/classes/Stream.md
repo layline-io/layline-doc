@@ -50,10 +50,6 @@ stream.emit(message, OUTPUT_PORT);
 
 void
 
-#### Defined in
-
-Classes/Stream.ts:32
-
 ___
 
 ### getId
@@ -73,10 +69,6 @@ Example:
 ```js
 const STREAM_ID = stream.getId();
 ```
-
-#### Defined in
-
-Classes/Stream.ts:47
 
 ___
 
@@ -196,10 +188,6 @@ const msgMetadata = stream.getMetadata();
 }
 ```
 
-#### Defined in
-
-Classes/Stream.ts:162
-
 ___
 
 ### getName
@@ -227,10 +215,6 @@ const STREAM_NAME = stream.getName();
 
 Stream name
 
-#### Defined in
-
-Classes/Stream.ts:185
-
 ___
 
 ### logError
@@ -254,10 +238,6 @@ stream.logError('Ran into the following problem: ' + problem);
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/Stream.ts:200
 
 ___
 
@@ -283,10 +263,6 @@ stream.logFatal('Ran into the following problem: ' + problem);
 
 `void`
 
-#### Defined in
-
-Classes/Stream.ts:215
-
 ___
 
 ### logInfo
@@ -310,10 +286,6 @@ stream.logInfo('Here is some interesting information: ' + info);
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/Stream.ts:230
 
 ___
 
@@ -339,10 +311,6 @@ stream.logWarning('Here is a warning: ' + warning);
 
 `void`
 
-#### Defined in
-
-Classes/Stream.ts:245
-
 ___
 
 ### requestRetry
@@ -367,10 +335,6 @@ stream.requestRetry(Status.create(VENDOR, 'DB_NOT_AVAILABLE'), 30000);
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/Stream.ts:261
 
 ___
 
@@ -403,10 +367,6 @@ stream.requestRollback(Status.create(VENDOR, 'SEQ_NUMBER_UNKNOWN', fileInfo.sequ
 
 `void`
 
-#### Defined in
-
-Classes/Stream.ts:282
-
 ___
 
 ### setDoneName
@@ -435,10 +395,6 @@ stream.setDoneName('New-Stream-Name').setDonePath('/my/specific/path')
 `internal`
 
 Stream: The manipulated stream.
-
-#### Defined in
-
-Classes/Stream.ts:299
 
 ___
 
@@ -469,10 +425,6 @@ stream.setDoneName('New-Stream-Name').setDonePath('/my/specific/path')
 
 Stream: The manipulated stream.
 
-#### Defined in
-
-Classes/Stream.ts:318
-
 ___
 
 ### setErrorName
@@ -501,10 +453,6 @@ stream.setErrorName('New-Stream-Name').setErrorPath('/my/specific/path')
 `internal`
 
 Stream: The manipulated stream.
-
-#### Defined in
-
-Classes/Stream.ts:337
 
 ___
 
@@ -535,10 +483,6 @@ stream.setErrorName('New-Stream-Name').setErrorPath('/my/specific/path')
 
 Stream: The manipulated stream.
 
-#### Defined in
-
-Classes/Stream.ts:356
-
 ___
 
 ### setOutputName
@@ -568,10 +512,6 @@ stream.setOutputName('New-Stream-Name').setOutputPath('/my/specific/path')
 
 Stream: The manipulated stream.
 
-#### Defined in
-
-Classes/Stream.ts:375
-
 ___
 
 ### setOutputPath
@@ -600,10 +540,6 @@ stream.setOutputName('New-Stream-Name').setOutputPath('/my/specific/path')
 `internal`
 
 Stream: The manipulated stream.
-
-#### Defined in
-
-Classes/Stream.ts:394
 
 ___
 
@@ -644,10 +580,6 @@ stream.setProcessorOutputName('New-Stream-Name').setProcessorOutputPath('/my/spe
 
 `internal`
 
-#### Defined in
-
-Classes/Stream.ts:424
-
 ___
 
 ### setProcessorOutputPath
@@ -686,7 +618,3 @@ stream.setProcessorOutputName('New-Stream-Name').setProcessorOutputPath('/my/spe
 #### Returns
 
 `internal`
-
-#### Defined in
-
-Classes/Stream.ts:454

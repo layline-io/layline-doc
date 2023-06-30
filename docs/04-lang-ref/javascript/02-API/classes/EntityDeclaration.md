@@ -27,7 +27,3 @@ Return string representation of EntityDeclaration path
 #### Returns
 
 `string`
-
-#### Defined in
-
-Classes/EntityDeclaration.ts:11

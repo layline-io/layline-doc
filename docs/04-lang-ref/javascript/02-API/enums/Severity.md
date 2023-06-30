@@ -21,19 +21,11 @@ Example use:
 
 • **ERROR** = ``2``
 
-#### Defined in
-
-Enums/Severity.ts:16
-
 ___
 
 ### FATAL
 
 • **FATAL** = ``3``
-
-#### Defined in
-
-Enums/Severity.ts:17
 
 ___
 
@@ -41,16 +33,8 @@ ___
 
 • **INFO** = ``0``
 
-#### Defined in
-
-Enums/Severity.ts:14
-
 ___
 
 ### WARNING
 
 • **WARNING** = ``1``
-
-#### Defined in
-
-Enums/Severity.ts:15

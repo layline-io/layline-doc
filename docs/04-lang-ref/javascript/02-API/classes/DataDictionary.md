@@ -40,7 +40,3 @@ let message = dataDictionary.createMessage(dataDictionary.type.MyCorp.MyStructur
 [`Message`](Message.md)
 
 Message created from the data dictionary structure
-
-#### Defined in
-
-Classes/DataDictionary.ts:23

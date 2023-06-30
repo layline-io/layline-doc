@@ -12,19 +12,11 @@ custom_edit_url: null
 
 • **BigDecimal** = ``"java.math.BigDecimal"``
 
-#### Defined in
-
-Enums/JavaType.ts:2
-
 ___
 
 ### BigInteger
 
 • **BigInteger** = ``"java.math.BigInteger"``
-
-#### Defined in
-
-Enums/JavaType.ts:3
 
 ___
 
@@ -32,19 +24,11 @@ ___
 
 • **Byte** = ``"java.lang.Byte"``
 
-#### Defined in
-
-Enums/JavaType.ts:4
-
 ___
 
 ### ByteString
 
 • **ByteString** = ``"java.lang.ByteString"``
-
-#### Defined in
-
-Enums/JavaType.ts:5
 
 ___
 
@@ -52,19 +36,11 @@ ___
 
 • **Character** = ``"java.lang.Character"``
 
-#### Defined in
-
-Enums/JavaType.ts:6
-
 ___
 
 ### Double
 
 • **Double** = ``"java.lang.Double"``
-
-#### Defined in
-
-Enums/JavaType.ts:7
 
 ___
 
@@ -72,19 +48,11 @@ ___
 
 • **Integer** = ``"java.lang.Integer"``
 
-#### Defined in
-
-Enums/JavaType.ts:8
-
 ___
 
 ### Long
 
 • **Long** = ``"java.lang.Long"``
-
-#### Defined in
-
-Enums/JavaType.ts:9
 
 ___
 
@@ -92,26 +60,14 @@ ___
 
 • **Number** = ``"java.lang.Number"``
 
-#### Defined in
-
-Enums/JavaType.ts:10
-
 ___
 
 ### OffsetDateTime
 
 • **OffsetDateTime** = ``"java.time.OffsetDateTime"``
 
-#### Defined in
-
-Enums/JavaType.ts:11
-
 ___
 
 ### String
 
 • **String** = ``"java.lang.String"``
-
-#### Defined in
-
-Enums/JavaType.ts:12

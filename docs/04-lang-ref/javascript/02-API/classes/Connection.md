@@ -136,10 +136,6 @@ function onMessage(message) {
 
 The returned result is also in the form of a [Message](Message.md). Access the data through `result.data`.
 
-#### Defined in
-
-Classes/Connection.ts:161
-
 ___
 
 ### beginTransaction
@@ -159,10 +155,6 @@ Starts a new transaction, if the Service supports transactions (e.g. the JDBC Se
 `void`
 
 Nothing
-
-#### Defined in
-
-Classes/Connection.ts:46
 
 ___
 
@@ -184,10 +176,6 @@ if (connection) {
 
 Nothing
 
-#### Defined in
-
-Classes/Connection.ts:61
-
 ___
 
 ### commitTransaction
@@ -208,10 +196,6 @@ if (connection) {
 
 Nothing
 
-#### Defined in
-
-Classes/Connection.ts:76
-
 ___
 
 ### rollbackTransaction
@@ -231,7 +215,3 @@ Rolls a transaction back, in case the Service connection supports transactions.
 `void`
 
 Nothing
-
-#### Defined in
-
-Classes/Connection.ts:176

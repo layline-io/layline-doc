@@ -26,10 +26,6 @@ To retrieve vendor information use the [getVendor()](./Status#getvendor) method
 
 Internal ID of a Vendor
 
-#### Defined in
-
-Classes/VendorInfo.ts:14
-
 ___
 
 ### longName
@@ -38,10 +34,6 @@ ___
 
 Long name of a vendor,, e.g. "layline.io"
 
-#### Defined in
-
-Classes/VendorInfo.ts:16
-
 ___
 
 ### shortName
@@ -49,7 +41,3 @@ ___
 • **shortName**: `string`
 
 Short name of a vendor, e.g. "LAY"
-
-#### Defined in
-
-Classes/VendorInfo.ts:15

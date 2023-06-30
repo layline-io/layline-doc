@@ -28,10 +28,6 @@ custom_edit_url: null
 
 `string`
 
-#### Defined in
-
-Classes/Processor.ts:15
-
 ___
 
 ### getArguments
@@ -57,10 +53,6 @@ let myProp = args.myProp;
 
 Configured arguments as a Javascript object
 
-#### Defined in
-
-Classes/Processor.ts:35
-
 ___
 
 ### getName
@@ -80,10 +72,6 @@ processor.getName();
 `string`
 
 Processor name
-
-#### Defined in
-
-Classes/Processor.ts:51
 
 ___
 
@@ -111,10 +99,6 @@ let OUTPUT_PORT = processor.getOutputPort('Output');
 
 Output port instance information.
 
-#### Defined in
-
-Classes/Processor.ts:67
-
 ___
 
 ### logError
@@ -138,10 +122,6 @@ processor.logError('Ran into the following problem: ' + problem);
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/Processor.ts:83
 
 ___
 
@@ -167,10 +147,6 @@ processor.logFatal('Ran into the following problem: ' + problem);
 
 `void`
 
-#### Defined in
-
-Classes/Processor.ts:98
-
 ___
 
 ### logInfo
@@ -195,10 +171,6 @@ processor.logInfo('Here is some interesting information: ' + info);
 
 `void`
 
-#### Defined in
-
-Classes/Processor.ts:113
-
 ___
 
 ### logWarning
@@ -222,7 +194,3 @@ processor.logWarning('Here is a warning: ' + warning);
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/Processor.ts:128

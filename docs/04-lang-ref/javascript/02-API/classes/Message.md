@@ -78,10 +78,6 @@ onDetail (message) {
 
 • **data**: `object` = `null`
 
-#### Defined in
-
-Classes/Message.ts:80
-
 ## Methods
 
 ### addStatus
@@ -110,10 +106,6 @@ Example:
 
 `void`
 
-#### Defined in
-
-Classes/Message.ts:99
-
 ___
 
 ### clone
@@ -131,10 +123,6 @@ clonedMessage = message.clone();
 [`Message`](Message.md)
 
 A copy of a Message
-
-#### Defined in
-
-Classes/Message.ts:111
 
 ___
 
@@ -172,10 +160,6 @@ if (message.exists(MY_RECORD_TYPE)) {
 
 - True, if it exists, else false.
 
-#### Defined in
-
-Classes/Message.ts:136
-
 ___
 
 ### findStatus
@@ -203,10 +187,6 @@ const foundStatusArray = detail.findStatus(function(status) { ",
 [`Status`](Status.md)
 
 - Array of found States. Empty array if nothing found.
-
-#### Defined in
-
-Classes/Message.ts:154
 
 ___
 
@@ -243,10 +223,6 @@ x.equals(new BigInteger(123)); // -> "true"
 
 Number in Java native BigInteger type.
 
-#### Defined in
-
-Classes/Message.ts:246
-
 ___
 
 ### getBoolean
@@ -272,10 +248,6 @@ const b = message.getBoolean(dataDictionary.type.Detail.CSV.A_BOOLEAN_FIELD);
 `Boolean`
 
 Number in Java native Boolean type.
-
-#### Defined in
-
-Classes/Message.ts:264
 
 ___
 
@@ -303,10 +275,6 @@ const b = message.getByte(dataDictionary.type.Detail.CSV.A_BYTE_FIELD);
 
 Java native Byte type.
 
-#### Defined in
-
-Classes/Message.ts:281
-
 ___
 
 ### getByteString
@@ -332,10 +300,6 @@ const b = message.getByteString(dataDictionary.type.Detail.CSV.FIELD);
 [`ByteString`](../enums/JavaType.md#bytestring)
 
 ByteString type.
-
-#### Defined in
-
-Classes/Message.ts:298
 
 ___
 
@@ -363,10 +327,6 @@ const c = message.getCharacter(dataDictionary.type.Detail.CSV.FIELD);
 
 Character in Java native char type.
 
-#### Defined in
-
-Classes/Message.ts:315
-
 ___
 
 ### getCrc64
@@ -391,10 +351,6 @@ const crc64 = message.getCrc64(message.data.CSV);
 `string`
 
 CRC 64 checksum
-
-#### Defined in
-
-Classes/Message.ts:170
 
 ___
 
@@ -422,10 +378,6 @@ const dt = message.getDateTime(dataDictionary.type.Detail.CSV.FIELD);
 
 A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
 
-#### Defined in
-
-Classes/Message.ts:332
-
 ___
 
 ### getDecimal
@@ -451,10 +403,6 @@ const dec = message.getDecimal(dataDictionary.type.Detail.CSV.FIELD);
 [`BigDecimal`](../enums/JavaType.md#bigdecimal)
 
 BigDecimal in Java native char type.
-
-#### Defined in
-
-Classes/Message.ts:349
 
 ___
 
@@ -482,10 +430,6 @@ const dbl = message.getDouble(dataDictionary.type.Detail.CSV.FIELD);
 
 Double in Java native char type.
 
-#### Defined in
-
-Classes/Message.ts:366
-
 ___
 
 ### getInt
@@ -512,10 +456,6 @@ const int = message.getInt(dataDictionary.type.Detail.CSV.FIELD);
 
 Integer in Java native char type.
 
-#### Defined in
-
-Classes/Message.ts:382
-
 ___
 
 ### getLong
@@ -541,10 +481,6 @@ const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
 [`Long`](../enums/JavaType.md#long)
 
 Long in Java native char type.
-
-#### Defined in
-
-Classes/Message.ts:398
 
 ___
 
@@ -586,10 +522,6 @@ const md5Digest = message.getMessageDigest("MD5", true, recordAccessorForMD5);
 
 `string`
 
-#### Defined in
-
-Classes/Message.ts:201
-
 ___
 
 ### getNumStatusAttached
@@ -607,10 +539,6 @@ const result = message.getNumStatusAttached();
 `void`
 
 - Number of States attached to the message.
-
-#### Defined in
-
-Classes/Message.ts:457
 
 ___
 
@@ -636,10 +564,6 @@ const o = message.getObject(dataDictionary.type.Detail.CSV.FIELD);
 `Object`
 
 Object in Java native char type.
-
-#### Defined in
-
-Classes/Message.ts:413
 
 ___
 
@@ -669,10 +593,6 @@ const status = message.getStatus(0);
 
 - Status or undefined if no Status found with that index.
 
-#### Defined in
-
-Classes/Message.ts:220
-
 ___
 
 ### getString
@@ -698,10 +618,6 @@ const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
 
 The value as string.
 
-#### Defined in
-
-Classes/Message.ts:429
-
 ___
 
 ### hasStatusAttached
@@ -726,10 +642,6 @@ const result = message.hasStatusAttached(Severity.ERROR);
 
 - True, if match found, else false.
 
-#### Defined in
-
-Classes/Message.ts:443
-
 ___
 
 ### pack
@@ -751,10 +663,6 @@ const unpackedMsg = packedMsg.unpack();
 [`PackedMessage`](PackedMessage.md)
 
 - Packed message.
-
-#### Defined in
-
-Classes/Message.ts:475
 
 ___
 
@@ -782,10 +690,6 @@ message.setBigInteger(dataDictionary.type.Detail.CSV.FIELD, bigInt)
 
 `void`
 
-#### Defined in
-
-Classes/Message.ts:492
-
 ___
 
 ### setBoolean
@@ -808,10 +712,6 @@ message.setBoolean(dataDictionary.type.Detail.CSV.FIELD, true)
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/Message.ts:506
 
 ___
 
@@ -843,10 +743,6 @@ message.setByte(dataDictionary.type.Detail.CSV.FIELD, 'X')
 
 `void`
 
-#### Defined in
-
-Classes/Message.ts:527
-
 ___
 
 ### setByteString
@@ -873,10 +769,6 @@ message.setByteString(dataDictionary.type.Detail.CSV.FIELD, b)
 
 `void`
 
-#### Defined in
-
-Classes/Message.ts:544
-
 ___
 
 ### setCharacter
@@ -900,10 +792,6 @@ message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, 'c')
 
 `void`
 
-#### Defined in
-
-Classes/Message.ts:558
-
 ___
 
 ### setDateTime
@@ -926,10 +814,6 @@ message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, "2022-12-03T10:15:30+
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/Message.ts:572
 
 ___
 
@@ -956,10 +840,6 @@ message.setDecimal(dataDictionary.type.Detail.CSV.FIELD, 123.45)
 
 `void`
 
-#### Defined in
-
-Classes/Message.ts:588
-
 ___
 
 ### setDouble
@@ -984,10 +864,6 @@ message.setDouble(dataDictionary.type.Detail.CSV.FIELD, 123.45)
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/Message.ts:604
 
 ___
 
@@ -1014,10 +890,6 @@ message.setInt(dataDictionary.type.Detail.CSV.FIELD, 123)
 
 `void`
 
-#### Defined in
-
-Classes/Message.ts:620
-
 ___
 
 ### setLong
@@ -1043,10 +915,6 @@ message.setLong(dataDictionary.type.Detail.CSV.FIELD, 12345)
 
 `void`
 
-#### Defined in
-
-Classes/Message.ts:636
-
 ___
 
 ### setObject
@@ -1070,10 +938,6 @@ message.setObject(dataDictionary.type.Detail.CSV.FIELD, obj)
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/Message.ts:651
 
 ___
 
@@ -1100,10 +964,6 @@ message.data.CSV.FIELD = "XYZ"
 
 `void`
 
-#### Defined in
-
-Classes/Message.ts:667
-
 ___
 
 ### toString
@@ -1120,7 +980,3 @@ stream.logInfo("Current message: " + message.toString());
 #### Returns
 
 `void`
-
-#### Defined in
-
-Classes/Message.ts:680

@@ -179,6 +179,7 @@ const config = {
           autoConfiguration: true
         },
         watch: process.env.TYPEDOC_WATCH, // to instantly recompile changes to typescript files in dev mode
+        disableSources: true,
       },
     ],
   ],

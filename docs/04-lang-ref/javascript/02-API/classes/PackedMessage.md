@@ -38,7 +38,3 @@ const unpackedMsg = packedMsg.unpack();
 [`Message`](Message.md)
 
 Unpacked [Message](Message.md)
-
-#### Defined in
-
-Classes/PackedMessage.ts:24

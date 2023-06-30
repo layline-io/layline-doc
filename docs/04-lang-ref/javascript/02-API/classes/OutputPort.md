@@ -35,7 +35,3 @@ let peerProcessorName = OUTPUT_PORT.getPeerProcessorName();
 `string`
 
 Name of Processor which this output port is connected to.
-
-#### Defined in
-
-Classes/OutputPort.ts:19

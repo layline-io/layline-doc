@@ -79,10 +79,6 @@ const STATUS = Status.create(
 // So the final message is "Field with name 'LastName' contains illegal value 'Putin'."
 ```
 
-#### Defined in
-
-Classes/Status.ts:61
-
 ___
 
 ### getCode
@@ -103,10 +99,6 @@ const code = status.getCode();
 `string`
 
 - Status code
-
-#### Defined in
-
-Classes/Status.ts:76
 
 ___
 
@@ -130,10 +122,6 @@ const message = status.getMessage();
 
 - Status message
 
-#### Defined in
-
-Classes/Status.ts:93
-
 ___
 
 ### getParameters
@@ -156,10 +144,6 @@ const paramArray = status.getParameters();
 
 - Array of Status parameters which were passed when Status was created.
 
-#### Defined in
-
-Classes/Status.ts:109
-
 ___
 
 ### getSubStatus
@@ -180,10 +164,6 @@ const statusArray = status.getSubStatus();
 
 - Array of States which are sub states to the current Status.
 
-#### Defined in
-
-Classes/Status.ts:124
-
 ___
 
 ### getVendor
@@ -203,10 +183,6 @@ const VENDOR_INFO = status.getVendor();
 [`VendorInfo`](VendorInfo.md)
 
 - [VendorInfo](VendorInfo.md) structure.
-
-#### Defined in
-
-Classes/Status.ts:139
 
 ___
 
@@ -236,7 +212,3 @@ Example:
 ```js
 const VENDOR_INFO = Status.getVendorByName('MyVendorLongName');
 ```
-
-#### Defined in
-
-Classes/Status.ts:159
