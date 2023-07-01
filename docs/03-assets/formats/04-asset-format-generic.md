@@ -1094,17 +1094,16 @@ elements = [
 ##### Value
 
 The following list of elements exist:
-
-* [Binary.ByteString](#binary-bytestring)
-* [Binary.HexString](#binary-hexstring)
-* [Binary.Long](#binary-long)
-* [Text.Date](#text-date)
-* [Text.DateTime](#text-datetime)
-* [Text.Decimal](#text-decimal)
-* [Text.Double](#text-double)
-* [Text.Integer](#text-integer)
-* [Text.Long](#text-long)
-* [Text.String](#text-string)
+* [Binary.ByteString](binarybytestring)
+* [Binary.HexString](#binaryhexstring)
+* [Binary.Long](#binarylong)
+* [Text.Date](#textdate)
+* [Text.DateTime](#textdatetime)
+* [Text.Decimal](#textdecimal)
+* [Text.Double](#textdouble)
+* [Text.Integer](#textinteger)
+* [Text.Long](#textlong)
+* [Text.String](#textstring)
 
 **Syntax Diagram:**
 
@@ -1228,7 +1227,7 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 ###### Text.Date
 
 A Date value in text format.
-For DateTime handling see [Text.DateTime](#text-datetime). 
+For DateTime handling see [Text.DateTime](#textdatetime). 
 
 **Syntax Diagram:**
 
@@ -1241,12 +1240,12 @@ For DateTime handling see [Text.DateTime](#text-datetime).
 **Properties:**
 
 
-| Attribute           | Type                | Description                                                                                                                                                                                                    | Optional | Default    |
-|---------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|------------|
-| type                | "Text.Date"         | Specifies the type of value                                                                                                                                                                                    |          |            |
-| format              | [string](#string)   | Reference: [Date/Time format](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html). Do not use time formats here. See [Text.DateTime](#text-datetime) to handle DateTime values. |    X     | "uuuuMMdd" |
-| null-input-value    | [string](#string)   | Value that will be used when the element part is classified as null. Format like "2011-12-03"                                                                                                                  |    X     | not set    |
-| alternative-formats | [[string](#string)] | An array of strings representing date formats, e.g. ["uuuuMMdd", "uuMMdd"]. Will try value defined in "format" first (see above)                                                                               |    X     | not set    |
+| Attribute           | Type                | Description                                                                                                                                                                                                     | Optional | Default    |
+|---------------------|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|------------|
+| type                | "Text.Date"         | Specifies the type of value                                                                                                                                                                                     |          |            |
+| format              | [string](#string)   | Reference: [Date/Time format](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html). Do not use time formats here. See [Text.DateTime](#textdatetime) to handle DateTime values.   |    X     | "uuuuMMdd" |
+| null-input-value    | [string](#string)   | Value that will be used when the element part is classified as null. Format like "2011-12-03"                                                                                                                   |    X     | not set    |
+| alternative-formats | [[string](#string)] | An array of strings representing date formats, e.g. ["uuuuMMdd", "uuMMdd"]. Will try value defined in "format" first (see above)                                                                                |    X     | not set    |
 
 **Example:**
 
@@ -1268,7 +1267,7 @@ For DateTime handling see [Text.DateTime](#text-datetime).
 
 ###### Text.DateTime
 
-A DateTime value in text format. For handling pure Date formats see [Text.Date](#text-date).
+A DateTime value in text format. For handling pure Date formats see [Text.Date](#textdate).
 
 **Syntax Diagram:**
 
@@ -1284,7 +1283,7 @@ A DateTime value in text format. For handling pure Date formats see [Text.Date](
 | Attribute        | Type              | Description                                                                                                                                                               | Optional | Default          |
 |------------------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|------------------|
 | type             | "Text.DateTime"   | Specifies the type of value                                                                                                                                               |          |                  |
-| format           | [string](#string) | Referemce: [Date/Time format](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html). To handle pure date formats see [Text.Date](#text-date) |    X     | "yyyyMMddHHmmss" |
+| format           | [string](#string) | Referemce: [Date/Time format](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html). To handle pure date formats see [Text.Date](#textdate) |    X     | "yyyyMMddHHmmss" |
 | null-input-value | [string](#string) | Value that will be used when the element part is classified as null. Format like "2011-12-03T10:15:30+01:00"                                                              |    X     | not set          |
 
 **Example:**
