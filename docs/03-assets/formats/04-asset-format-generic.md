@@ -288,7 +288,11 @@ It represents the bracket of every grammar.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/format.png "Format Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -379,7 +383,11 @@ Use this if there are different options of what the next strcuture could be.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Choice.png "Choice Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -439,7 +447,11 @@ Like the [Choice](#choice) element, this element does not parse data, but furthe
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Sequence.png "Sequence Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -516,7 +528,11 @@ Id,Name,Surname,Street,City                      // First line contains column h
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/ListTerminal.png "ListTerminal Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -636,7 +652,11 @@ Use this if you
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/MultiPart.png "MultiPart Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -714,7 +734,11 @@ Because the lexical analyzer has no length information for the record, the regul
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Separated.png "Separated Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -807,7 +831,11 @@ A terminal element part which has a length calculated from some data in the inpu
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Calculated.png "Calculated Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -848,7 +876,11 @@ A terminal element part with a fixed length.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Fixed.png "Fixed Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -891,7 +923,11 @@ A terminal element part which is detected using a regular expression.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/RegExpr.png "Regular Expression Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -939,7 +975,11 @@ The MessageMapping specifies, how the current element is mapped into a layline.i
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/MessageMapping.png "MessageMapping Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -986,7 +1026,11 @@ E.g. the Sequence is a sequence of Header, Details, and a Footer element.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/ElementReference.png "ElementReference Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -1064,7 +1108,11 @@ The following list of elements exist:
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Value.png "Value Syntax Diagram (Format Generic)")
+
+</div>
 
 ###### Binary.ByteString
 
@@ -1072,7 +1120,11 @@ A binary ByteString value. The bytes from the input will be directly mapped into
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Binary.ByteString.png "Binary.ByteString Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -1105,7 +1157,11 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Binary.HexString.png "Binary.HexString Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -1138,7 +1194,11 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Binary.Long.png "Binary.Long Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -1172,7 +1232,11 @@ For DateTime handling see [Text.DateTime](#text-datetime).
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Text.Date.png "Text.Date Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -1208,7 +1272,11 @@ A DateTime value in text format. For handling pure Date formats see [Text.Date](
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Text.DateTime.png "Text.DateTime Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -1242,7 +1310,11 @@ A Decimal value in text format.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Text.Decimal.png "Text.Decimal Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -1280,7 +1352,11 @@ A Double value in text format.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Text.Double.png "Text.Double Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -1320,7 +1396,11 @@ A 32-bit whole number value in text format.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Text.Integer.png "Text.Integer Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -1358,7 +1438,11 @@ A 64-bit long value in text format.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Text.Long.png "Text.Long Syntax Diagram (Format Generic)")
+
+</div>
 
 **Properties:**
 
@@ -1393,7 +1477,12 @@ A String value.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Text.String.png "Text.String Syntax Diagram (Format Generic)")
+
+</div>
+
 
 **Properties:**
 
@@ -1441,7 +1530,11 @@ It is possible to push multiple states.
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Action.png "Action Syntax Diagram (Format Generic)")
+
+</div>
 
 ##### Formula
 
@@ -1455,7 +1548,11 @@ Please check the [QuickScript Language Reference](/docs/lang-ref/quickscript/qui
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/Formula.png "Formula Syntax Diagram (Format Generic)")
+
+</div>
 
 **Example:**
 
@@ -1481,19 +1578,31 @@ Please check the [QuickScript Language Reference](/docs/lang-ref/quickscript/qui
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/boolean.png "Boolean Syntax Diagram (Format Generic)")
+
+</div>
 
 ###### string
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/string.png "String Syntax Diagram (Format Generic)")
+
+</div>
 
 ###### integer
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/integer.png "Integer Syntax Diagram (Format Generic)")
+
+</div>
 
 ###### decimal
 
@@ -1507,13 +1616,21 @@ This data type is based on Java's BigDecimal data type from which the descriptio
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/decimal.png "Decimal Syntax Diagram (Format Generic)")
+
+</div>
 
 ###### comment
 
 **Syntax Diagram:**
 
+<div className="imgWhiteBackground">
+
 ![](.grammar-images/comment.png "Comment Syntax Diagram (Format Generic)")
+
+</div>
 
 #### Sample File Testing
 
