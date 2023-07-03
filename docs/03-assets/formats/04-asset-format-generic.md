@@ -1094,7 +1094,7 @@ elements = [
 ##### Value
 
 The following list of elements exist:
-* [Binary.ByteString](binarybytestring)
+* [Binary.ByteString](#binarybytestring)
 * [Binary.HexString](#binaryhexstring)
 * [Binary.Long](#binarylong)
 * [Text.Date](#textdate)
