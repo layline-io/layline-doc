@@ -10,6 +10,7 @@ Enumeration for use of Severity levels in [Message](../Classes/Message)
 
 Example use:
 ```js
+// Adding a severity status to a message:
  if (error) {
      message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_VALUE', valueString));
  }

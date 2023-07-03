@@ -3,6 +3,7 @@
  *
  * Example use:
  * ```js
+ * // Adding a severity status to a message:
  *  if (error) {
  *      message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_VALUE', valueString));
  *  }

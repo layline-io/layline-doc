@@ -97,10 +97,13 @@ In case of error, you can hover the mouse over the red output and view what the 
 
 This usually helps to resolve the issue.
 
-:::note Attention: Connection is not tested between browser and endpoint
+:::info Attention: Connection is not tested between browser and endpoint
 Please note that the connection test is not performed between your web browser and the backend.
 Connection data is rather sent to the Configuration Server first, which then tries to establish the connection between itself and the endpoint.
 In case you run into a connection error, please therefore check whether the endpoint can be reached from the viewpoint of the Configuration Server.
+
+This also does not warrant, that a connection can be established from your deployment on a Reactive Engine, as this will only be evaluated at runtime of the Workflow utilizing this Connection Asset.
+The Reactive Engine must be able to reach the configured endpoint, or otherwise connection at runtime will fail.
 :::
 
 ## Related Topics
@@ -113,7 +116,7 @@ In case you run into a connection error, please therefore check whether the endp
 * [Stream Output Processor](/docs/assets/processors-output/asset-output-stream)
 * [Create and manage secrets](/docs/assets/resources/asset-resource-secret)
 
-## Potential problems
+---
 
 :::note Can't find what you are looking for?
 Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.

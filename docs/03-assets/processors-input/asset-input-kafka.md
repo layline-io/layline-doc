@@ -127,7 +127,7 @@ You can read more about this in the [Kafka Documentation here](https://kafka.apa
 
 Define one or more topics that this input processor should read from.
 If you have defined a consumer group then the topics which you define here will be accessed with the same consumer group.
-You can use ${...} placeholders to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 ![](.asset-input-kafka_images/c65fca67.png "Topics (Input Kafka)")
 

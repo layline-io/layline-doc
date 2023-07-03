@@ -8,7 +8,6 @@ tags:
 
 # Connection Kafka
 
-
 ## Purpose
 
 Defines the connection parameters for a Kafka endpoint. This Asset is required by:
@@ -102,7 +101,8 @@ For _SASL / PLAIN_ and _SCRAM_ based authentication you need to consider the fol
 Tick the `Do not substitute macro terms in password` checkbox if you do not want to have macros (if any) replaced in a password, but rather keep the raw string as the password. 
 If - for example - your password is `pass_${env:MYVAR}_word` and you do not want the term `${env:MYVAR}` to be interpreted as a macro and then replaced with the MYVAR environment variable, then tick this box to keep the raw string value. 
 
-* **`User/Secret`**: Enter a `Username` and select a `Secret` from the drop-down list. It the list is empty, then you need to first [create a secret](/docs/assets/resources/asset-resource-secret) to be able to assign it here.
+* **`User/Secret`**: 
+Enter a `Username` and select a `Secret` from the drop-down list. It the list is empty, then you need to first [create a secret](/docs/assets/resources/asset-resource-secret) to be able to assign it here.
 
 #### Connection Test Result:
 
@@ -117,10 +117,13 @@ In case of error, you can hover the mouse over the red output and view what the 
 
 This usually helps to resolve the issue.
 
-:::note Attention: Connection is not tested between browser and endpoint
-Please note that the connection test is not performed between your web browser and the backend. 
+:::info Attention: Connection is not tested between browser and endpoint
+Please note that the connection test is not performed between your web browser and the backend.
 Connection data is rather sent to the Configuration Server first, which then tries to establish the connection between itself and the endpoint.
-In case you run into a connection error, please therefore check whether the endpoint can be reached from the viewpoint of the Configuration Server. 
+In case you run into a connection error, please therefore check whether the endpoint can be reached from the viewpoint of the Configuration Server.
+
+This also does not warrant, that a connection can be established from your deployment on a Reactive Engine, as this will only be evaluated at runtime of the Workflow utilizing this Connection Asset.
+The Reactive Engine must be able to reach the configured endpoint, or otherwise connection at runtime will fail.
 :::
 
 ## Related Topics
@@ -140,10 +143,9 @@ In case you run into a connection error, please therefore check whether the endp
 * [Create a keystore and truststore using self-signed certificate](https://unix.stackexchange.com/questions/347116/how-to-create-keystore-and-truststore-using-self-signed-certificate).
 
 
-## Potential problems
+---
 
 :::note Can't find what you are looking for?
 Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
 Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
 :::
-
