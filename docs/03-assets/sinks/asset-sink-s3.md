@@ -10,13 +10,18 @@ description: Sink S3 Asset. Use this to define the technical parameters for a AW
 Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.
 Next to Amazon's S3 there are now various object storage providers which grant S3 compatible access to their storage solutions as well (e.g. Google Cloud Storage, IONOS, et al).
 
-This UI helps to define the outbound connection parameters for a AWS S3 sink. This Asset is required by:
+This UI helps to define the outbound connection parameters for a AWS S3 sink.
 
-* [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka)
+### This Asset is required by:
 
-## Prerequisite
+| Asset type        | Link                                                                        |
+|-------------------|-----------------------------------------------------------------------------|
+| Output Processors | [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka) |
+
+### Prerequisite
 
 You need:
+
 * [Kafka Connection](/docs/assets/connections/asset-connection-kafka)
 
 ## Configuration
@@ -35,7 +40,8 @@ The **`Asset Usage`** box shows how many times this Asset is used and which part
 
 ![](.asset-sink-kafka-images/c2e6ec39.png "Required Roles (S3 Sink Asset)")
 
-In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching roles.
+In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching
+roles.
 If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all Nodes (no restriction).
 
 ### Kafka Connection
@@ -45,15 +51,14 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 Select the [Kafka Connection](/docs/assets/connections/asset-connection-kafka) to use with this Asset.
 If it does not exist, you need to create it first.
 
-
 ### Kafka Producer Settings
 
 #### General
 
 ![](.asset-sink-kafka-images/bbbe60a1.png "Genereal Kafka Producer Settings (S3 Sink Asset)")
 
-* **`Parallelism`**: Tuning parameter of how many messages can be sent to Kafka in parallel. 
-If nothing is specified, the default is _10,000_.
+* **`Parallelism`**: Tuning parameter of how many messages can be sent to Kafka in parallel.
+  If nothing is specified, the default is _10,000_.
 
 #### Additional Kafka Properties
 
@@ -64,7 +69,7 @@ Use this section to add configuration parameters available for Kafka Platform su
 For a list of available properties please check [Confluent Producer Configurations](https://docs.confluent.io/platform/current/installation/configuration/producer-configs).
 
 ::: warning Attention: Kafka properties take precedence
-Please note that properties defined here, take precedence over all other settings you may have provided in this UI. 
+Please note that properties defined here, take precedence over all other settings you may have provided in this UI.
 You can use this to add, or override Kafka properties using these settings.
 :::
 
@@ -76,18 +81,18 @@ In case you want to exclusively write to one or more partitions, then **`Enable 
 
 Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** in the new table row.
 
-
 ## Related Topics
 
 ### Internal
+
 * [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
 * [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka)
 * [Kafka Source](/docs/assets/sources/asset-source-kafka)
 * [Create and manage secrets](/docs/assets/resources/asset-resource-secret)
 
 ### External
-* [Confluent Kafka: Producer Configurations](https://docs.confluent.io/platform/current/installation/configuration/producer-configs)
 
+* [Confluent Kafka: Producer Configurations](https://docs.confluent.io/platform/current/installation/configuration/producer-configs)
 
 ## Potential problems
 

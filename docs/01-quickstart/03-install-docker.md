@@ -116,7 +116,7 @@ We can do so in the *Operations* section of the UI (1):
 
 ![76edd61c.png](.install-docker_images/76edd61c.png "Operations of Reactive Cluster in Docker Image (Quickstart)")
 
-Depending on whether your host system is MacOS/Linux or Windows, pick the respectively named Cluster from the drop down menu (2).
+Depending on whether your host system is MacOS/Linux or Windows, pick the respectively named Cluster from the drop-down menu (2).
 
 You are currently logged in to the Configuration Server only. To monitor the Reactive Cluster you also need to separately log in to it (3).
 The credentials for the Cluster are user "*admin*" and password "*admin*".

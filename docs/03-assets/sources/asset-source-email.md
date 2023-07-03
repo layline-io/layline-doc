@@ -1,17 +1,20 @@
 ---
-title: Sink SMB
-description: Sink SMB Asset. Use this to define the technical parameters for a SMB sink connection.
+title: Source Email
+description: Source Email Asset. Use this to define the technical parameters for an Email source connection.
 tags:
-  - sink
-  - smb
-  - windows
+  - source
+  - email
+  - microsoft 365
+  - pop3
+  - smtp
+  - imap
 ---
 
-# Sink SMB
+# Source Email
 
 ## Purpose
 
-Defines the specific sink parameters for a SMB connected endpoint. 
+Defines the specific source parameters for a Email connected endpoint. 
 
 :::tip Oops! We are still working on the documentation.
 In the meantime, please don't hesitate to contact us at support@layline.io .
@@ -21,3 +24,4 @@ In the meantime, please don't hesitate to contact us at support@layline.io .
 Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
 Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
 :::
+

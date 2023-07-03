@@ -11,10 +11,14 @@ tags:
 
 ## Purpose
 
-Defines the connection parameters for a SMB endpoint. This Asset is required by:
+Defines the connection parameters for a SMB endpoint.
 
-* [SMB Source](/docs/assets/sources/asset-source-smb)
-* [SMB Sink](/docs/assets/sinks/asset-sink-smb)
+### This Asset is required by:
+
+| Asset type | Link                                                |
+|------------|-----------------------------------------------------|
+| Source     | [SMB Source](/docs/assets/sources/asset-source-smb) |
+| Sink       | [SMB Sink](/docs/assets/sinks/asset-sink-smb)       |
 
 ## Configuration
 
@@ -61,13 +65,13 @@ You have two options to authenticate against the SMB endpoint:
 ![Username and Password (Connection SMB)](.asset-connection-smb_images/bdbf6d1b.png)
 
 * **`Credential Type`**:
-  Select `User/Passsword` from the drop down box.
+  Select `User/Passsword` from the drop-down box.
 
-* **`Username`**:
-  Your username (macro supported).
+* **`Username`** (_macro supported_):
+  Your username.
 
-* **`Password`**:
-  Your SMB password (macro supported).
+* **`Password`** (_macro supported_):
+  Your SMB password.
 
 * **`Do not substitute macro terms in password`**:
   Check this box, if your password contains wording which could be mistaken as a macro (`${...}`) but should not be replaced by layline.io.
@@ -75,13 +79,15 @@ You have two options to authenticate against the SMB endpoint:
 ##### Username and Secret
 
 * **`Credential Type`**:
-  Select `User/Secret` from the drop down box.
+  Select `User/Secret` from the drop-down box.
 
-* **`Username`**:
-  Your username (macro supported).
+* **`Username`** (_macro supported_):
+  Your username.
 
 * **`Secret`**:
-  Select a `Secret` from the drop-down list. It the list is empty, then you need to first [create a secret](/docs/assets/resources/asset-resource-secret) to be able to assign it here.
+  Select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](/docs/assets/resources/asset-resource-secret) to be able to assign it here.
+
+  Please [follow this link to "Advanced Concepts"](/docs/concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
 
 #### Connection Test Result:
 
@@ -102,7 +108,6 @@ In case you run into a connection error, please therefore check whether the endp
 This also does not warrant, that a connection can be established from your deployment on a Reactive Engine, as this will only be evaluated at runtime of the Workflow utilizing this Connection Asset.
 The Reactive Engine must be able to reach the configured endpoint, or otherwise connection at runtime will fail.
 :::
-
 
 :::tip Fields marked with "**macro supported**"
 You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).

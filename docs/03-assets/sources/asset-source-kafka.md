@@ -9,16 +9,20 @@ tags:
 
 # Source Kafka
 
-
 ## Purpose
 
-Defines the inbound connection parameters for a Kafka Source. This Asset is required by:
+Defines the inbound connection parameters for a Kafka Source.
 
-* [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
+### This Asset is required by:
 
-## Prerequisite
+| Asset type       | Link                                                                     |
+|------------------|--------------------------------------------------------------------------|
+| Input Processors | [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka) |
+
+### Prerequisite
 
 You need:
+
 * [Kafka Connection](/docs/assets/connections/asset-connection-kafka)
 
 ## Configuration
@@ -37,7 +41,8 @@ The **`Asset Usage`** box shows how many times this Asset is used and which part
 
 ![](.asset-source-kafka-images/c2e6ec39.png "Required Roles (Kafka Source Asset)")
 
-In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching roles.
+In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching
+roles.
 If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all Nodes (no restriction).
 
 ### Kafka Connection
@@ -56,7 +61,7 @@ Use this section to add configuration parameters available for Kafka Platform su
 For a list of available properties please check [Confluent Consumer Configurations](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs).
 
 ::: warning Attention: Kafka properties take precedence
-Please note that properties defined here, take precedence over all other settings you may have provided in this UI. 
+Please note that properties defined here, take precedence over all other settings you may have provided in this UI.
 You can use this to add, or override Kafka properties using these settings.
 :::
 
@@ -66,18 +71,19 @@ In case you want to exclusively access one or more partitions, then **`Enable ex
 
 ![](.asset-source-kafka-images/1b7cc1c6.png "Exclusive partition access (Kafka Source Asset)")
 
-Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** and **`Group Id`** of the consumer group in the new table row.   
-
+Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** and **`Group Id`** of the consumer group in the new table row.
 
 ## Related Topics
 
 ### Internal
+
 * [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
 * [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka)
 * [Kafka Sink](/docs/assets/sinks/asset-sink-kafka)
 * [Kafka Connection](/docs/assets/connections/asset-connection-kafka)
 
 ### External
+
 * [Confluent Kafka: Consumer Configurations](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs)
 
 ## Potential problems

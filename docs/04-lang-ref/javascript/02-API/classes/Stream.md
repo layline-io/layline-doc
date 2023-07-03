@@ -344,7 +344,7 @@ ___
 
 Requests to roll back the currently processed stream.
 
-To roll back a stream, you may issue a [requestRollback](Stream.md#requestrollback-76) to signal to layline.io that you want this stream rolled back and provide a [Status](Status.md) which describes the reason for the rollback.
+To roll back a stream, you may issue a [requestRollback](Stream.md#requestrollback) to signal to layline.io that you want this stream rolled back and provide a [Status](Status.md) which describes the reason for the rollback.
 
 Example:
 ```js

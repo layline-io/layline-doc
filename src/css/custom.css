@@ -50,3 +50,11 @@
   padding: 15px;
   border-radius: 5px;
 }
+
+[data-theme='light'] code {
+  background-color: #f0f0f0;
+}
+
+[data-theme='dark'] code {
+  background-color: #606060;
+}

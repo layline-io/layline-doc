@@ -2,9 +2,9 @@
 title: Connection FTP/SFTP
 description: Connection FTP/SFTP
 tags:
-- connection
-- ftp
-- sftp
+  - connection
+  - ftp
+  - sftp
 
 ---
 
@@ -12,10 +12,14 @@ tags:
 
 ## Purpose
 
-Defines the connection parameters for an FTP/SFTP endpoint. This Asset is required by:
+Defines the connection parameters for an FTP/SFTP endpoint.
 
-* [FTP Source](/docs/assets/sources/asset-source-ftp)
-* [FTP Sink](/docs/assets/sinks/asset-sink-ftp)
+### This Asset is required by:
+
+| Asset type | Link                                                |
+|------------|-----------------------------------------------------|
+| Source     | [FTP Source](/docs/assets/sources/asset-source-ftp) |
+| Sink       | [FTP Sink](/docs/assets/sinks/asset-sink-ftp)       |
 
 ## Configuration
 
@@ -78,8 +82,11 @@ For FTP/SFTP, layline.io supports a number of different authentication methods:
   If - for example - your password is `pass_${env:MYVAR}_word` and you do not want the term `${env:MYVAR}` to be interpreted as a macro and then replaced with the MYVAR environment variable, then tick
   this box to keep the raw string value.
 
-* **`User/Secret`** : Enter a `Username` and select a `Secret` from the drop-down list. It the list is empty, then you need to first [create a secret](/docs/assets/resources/asset-resource-secret) to be
+* **`User/Secret`** : Enter a `Username` and select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](/docs/assets/resources/asset-resource-secret) to
+  be
   able to assign it here.
+
+  Please [follow this link to "Advanced Concepts"](/docs/concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
 
 * **`Private Key`** : Authentication by public/private key. Enter a `Username` and enter the `Fingerprint` of this private key. You can either enter the value manually, or pick from a list of known
   fingerprints If the list is empty, then you need to first [create a private/public key pair] (/advanced/secret-management#concept) to be able to assign it here.
