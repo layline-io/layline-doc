@@ -9,7 +9,7 @@ description: Sink Kafka Asset. Use this to define the technical parameters for a
 
 Defines the outbound connection parameters for a Kafka sink.
 
-### This Asset is required by:
+### This Asset can be used by:
 
 | Asset type        | Link                                                                        |
 |-------------------|-----------------------------------------------------------------------------|

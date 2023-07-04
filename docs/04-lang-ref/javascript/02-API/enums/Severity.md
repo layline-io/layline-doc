@@ -6,7 +6,7 @@ sidebar_position: 0
 custom_edit_url: null
 ---
 
-Enumeration for use of Severity levels in [Message](../Classes/Message)
+Enumeration for use of Severity levels in [Message](../classes/Message)
 
 Example use:
 ```js

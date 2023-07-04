@@ -40,9 +40,18 @@
   padding: 10px;
 }
 
-.frame {
+[data-theme='light'] .frame {
   border-radius: 5px;
   box-shadow: 0 0 0.5em lightgray;
+  width: fit-content;
+  height: fit-content;
+}
+
+[data-theme='dark'] .frame {
+  border-radius: 5px;
+  background-color: white;
+  width: fit-content;
+  height: fit-content;
 }
 
 .imgWhiteBackground {

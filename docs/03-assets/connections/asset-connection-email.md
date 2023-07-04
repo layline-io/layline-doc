@@ -16,7 +16,7 @@ tags:
 
 Defines the connection parameters for an Email endpoint.
 
-### This Asset is required by:
+### This Asset can be used by:
 
 | Asset type | Link                                                    |
 |------------|---------------------------------------------------------|

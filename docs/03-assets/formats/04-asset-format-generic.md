@@ -4,11 +4,20 @@ description: Generic Format
 tags:
   - format
   - generic
+  - csv
+  - ascii
+  - binary
 ---
 
 # Generic Format
 
 ## Purpose
+
+Most of the time you are probably dealing with data that comes in some sort of structured data. 
+This could be simple CSV formats, complex hierarchical ASCII formats, binary formats, a mix of all of the above or something else.
+Use your imagination.
+
+The _Generic Format Asset_ is here to help you configure these specific data formats. Incoming data will be parsed and made available for further processing downstream.
 
 The _Generic Format Asset_ uses a specialized form of **grammar language** to support you in defining a structured data format you may want to ingest, output, and generally work with.
 The grammar language is based on regular expressions, i.e. defining data structures which can be identified using regular expressions.
@@ -35,7 +44,7 @@ In addition to this, **and very importantly so**, the grammar also enables you t
 
 We will explain all of this in this document.
 
-### This Asset is required by:
+### This Asset can be used by:
 
 | Asset type        | Link                                                                |
 |-------------------|---------------------------------------------------------------------|
@@ -49,7 +58,7 @@ We will explain all of this in this document.
 
 ### Name & Description
 
-![](.asset-format-generic-images/575d9316.png "Name & Description (Format Generic)")
+![Name & Description (Format ASN.1)](.asset-format-generic-images/575d9316.png)
 
 **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
 

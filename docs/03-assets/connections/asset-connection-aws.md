@@ -14,7 +14,7 @@ tags:
 
 To enable the connection to AWS cloud services or an AWS compatible endpoint.
 
-### This Asset is required by:
+### This Asset can be used by:
 
 | Asset type | Link                                                |
 |------------|-----------------------------------------------------|

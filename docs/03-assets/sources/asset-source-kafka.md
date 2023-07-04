@@ -13,7 +13,7 @@ tags:
 
 Defines the inbound connection parameters for a Kafka Source.
 
-### This Asset is required by:
+### This Asset can be used by:
 
 | Asset type       | Link                                                                     |
 |------------------|--------------------------------------------------------------------------|

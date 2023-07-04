@@ -13,7 +13,7 @@ tags:
 
 Defines the connection parameters for a SMB endpoint.
 
-### This Asset is required by:
+### This Asset can be used by:
 
 | Asset type | Link                                                |
 |------------|-----------------------------------------------------|

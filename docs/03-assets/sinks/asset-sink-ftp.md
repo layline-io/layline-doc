@@ -12,7 +12,7 @@ tags:
 
 Defines the outbound connection parameters for an FTP sink.
 
-### This Asset is required by:
+### This Asset can be used by:
 
 | Asset type        | Link                                                                          |
 |-------------------|-------------------------------------------------------------------------------|

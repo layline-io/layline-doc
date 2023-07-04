@@ -12,7 +12,7 @@ Next to Amazon's S3 there are now various object storage providers which grant S
 
 This UI helps to define the outbound connection parameters for a AWS S3 sink.
 
-### This Asset is required by:
+### This Asset can be used by:
 
 | Asset type        | Link                                                                        |
 |-------------------|-----------------------------------------------------------------------------|

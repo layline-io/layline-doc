@@ -12,7 +12,7 @@ tags:
 
 Defines the connection parameters for a Kafka endpoint.
 
-### This Asset is required by:
+### This Asset can be used by:
 
 | Asset type | Link                                                    |
 |------------|---------------------------------------------------------|

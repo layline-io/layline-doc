@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/docusaurus-typedoc2mdx.iml" filepath="$PROJECT_DIR$/.idea/docusaurus-typedoc2mdx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/layline-doc.iml" filepath="$PROJECT_DIR$/.idea/layline-doc.iml" />
     </modules>
   </component>
 </project>

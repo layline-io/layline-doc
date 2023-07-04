@@ -12,7 +12,7 @@ tags:
 
 Defines the specific bucket and folder source of a FTP connected endpoint.
 
-### This Asset is required by:
+### This Asset can be used by:
 
 | Asset type       | Link                                                                       |
 |------------------|----------------------------------------------------------------------------|
