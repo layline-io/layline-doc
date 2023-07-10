@@ -13,7 +13,7 @@ tags:
 
 ## Purpose
 
-Most of the time you are probably dealing with data that comes in some sort of structured data. 
+Most of the time you are probably dealing with data that comes in some sort of structured data.
 This could be simple CSV formats, complex hierarchical ASCII formats, binary formats, a mix of all of the above or something else.
 Use your imagination.
 
@@ -100,354 +100,169 @@ Looking at an example-grammar should help us to understand how it works.
 This example is for a simple comma-separated-format.
 Please note, that virtually any other structured data format can be defined using the grammar language.
 
-```json
+```
 format {
-  name
-  =
-  "Bank Transactions"
+  name = "Bank Transactions"
   // Name of the grammar for internal purposes.
-  description
-  =
-  "Random bank transactions"
+  description = "Random bank transactions"
   // Description
 
-  start-element
-  =
-  "File"
+  start-element = "File"
   //
-  target-namespace
-  =
-  "BankIn"
+  target-namespace = "BankIn"
 
-  elements
-  = [
+  elements = [
   // #####################################################################
   // ### File sequence
   // #####################################################################
   {
-    name
-    =
-    "File"
-    type
-    =
-    "Sequence"
-    references
-    =
-  [
+    name = "File"
+    type = "Sequence"
+    references = [
     {
-      name
-      =
-      "Header"
-      referenced-element
-      =
-      "Header"
+      name = "Header"
+      referenced-element = "Header"
     },
     {
-      name
-      =
-      "Details"
-      max-occurs
-      =
-      "unlimited"
-      referenced-element
-      =
-      "Detail"
+      name = "Details"
+      max-occurs = "unlimited"
+      referenced-element = "Detail"
     },
     {
-      name
-      =
-      "Trailer"
-      referenced-element
-      =
-      "Trailer"
+      name = "Trailer"
+      referenced-element = "Trailer"
     }
-  ]
-},
+    ]
+  },
   // #####################################################################
   // ### Header record 
   // #####################################################################
   {
-    name
-    =
-    "Header"
-    type
-    =
-    "Separated"
-    regular-expression
-    =
-    "H"
-    separator-regular-expression
-    =
-    ";"
-    separator
-    =
-    ";"
-    terminator-regular-expression
-    =
-    "\n"
-    terminator
-    =
-    "\n"
+    name = "Header"
+    type = "Separated"
+    regular-expression = "H"
+    separator-regular-expression = ";"
+    separator = ";"
+    terminator-regular-expression = "\n"
+    terminator = "\n"
 
-    mapping
-    =
-  {
-    message
-    =
-    "Header"
-    element
-    =
-    "BT_IN"
-  }
+    mapping = {
+      message = "Header"
+      element = "BT_IN"
+    }
 
-  parts
-  =
-  [
+    parts = [
     {
-      name
-      =
-      "RECORD_TYPE"
-      type
-      =
-      "RegExpr"
-      regular-expression
-      =
-      "[^;\n]*"
-      value.type
-      =
-      "Text.String"
+      name = "RECORD_TYPE"
+      type = "RegExpr"
+      regular-expression = "[^;\n]*"
+      value.type = "Text.String"
     },
     {
-      name
-      =
-      "FILENAME"
-      type
-      =
-      "RegExpr"
-      regular-expression
-      =
-      "[^;\n]*"
-      value.type
-      =
-      "Text.String"
+      name = "FILENAME"
+      type = "RegExpr"
+      regular-expression = "[^;\n]*"
+      value.type = "Text.String"
     }
-  ]
-},
+    ]
+  },
   // #####################################################################
   // ### Detail record
   // #####################################################################
   {
-    name
-    =
-    "Detail"
-    type
-    =
-    "Separated"
-    regular-expression
-    =
-    "D"
-    separator-regular-expression
-    =
-    ";"
-    separator
-    =
-    ";"
-    terminator-regular-expression
-    =
-    "\n"
-    terminator
-    =
-    "\n"
+    name = "Detail"
+    type = "Separated"
+    regular-expression = "D"
+    separator-regular-expression = ";"
+    separator = ";"
+    terminator-regular-expression = "\n"
+    terminator = "\n"
 
-    mapping
-    =
-  {
-    message
-    =
-    "Detail"
-    element
-    =
-    "BT_IN"
-  }
+    mapping = {
+      message = "Detail"
+      element = "BT_IN"
+    }
 
-  parts
-  =
-  [
+    parts = [
     {
-      name
-      =
-      "RECORD_TYPE"
-      type
-      =
-      "RegExpr"
-      regular-expression
-      =
-      "[^;\n]*"
-      value.type
-      =
-      "Text.String"
+      name = "RECORD_TYPE"
+      type = "RegExpr"
+      regular-expression = "[^;\n]*"
+      value.type = "Text.String"
     },
     {
-      name
-      =
-      "DATE"
-      type
-      =
-      "RegExpr"
-      regular-expression
-      =
-      "[^;\n]*"
-      value
-      =
-    {
-      type
-      =
-      "Text.DateTime"
-      format
-      =
-      "dd-MMM-uuuu"
-    }
-  },
-    {
-      name
-      =
-      "DESCRIPTION"
-      type
-      =
-      "RegExpr"
-      regular-expression
-      =
-      "[^;\n]*"
-      value
-      =
-    {
-      type
-      =
-      "Text.String"
-    }
-  },
-    {
-      name
-      =
-      "DEPOSITS"
-      type
-      =
-      "RegExpr"
-      regular-expression
-      =
-      "[^;\n]*"
-      value
-      =
-    {
-      type
-      =
-      "Text.Decimal"
-    }
-  },
-    {
-      name
-      =
-      "WITHDRAWALS"
-      type
-      =
-      "RegExpr"
-      regular-expression
-      =
-      "[^;\n]*"
-      value.type
-      =
-      "Text.Decimal"
+      name = "DATE"
+      type = "RegExpr"
+      regular-expression = "[^;\n]*"
+      value = {
+        type = "Text.DateTime"
+        format = "dd-MMM-uuuu"
+      }
     },
     {
-      name
-      =
-      "BALANCE"
-      type
-      =
-      "RegExpr"
-      regular-expression
-      =
-      "[^;\n]*"
-      value
-      =
+      name = "DESCRIPTION"
+      type = "RegExpr"
+      regular-expression = "[^;\n]*"
+      value = {
+        type = "Text.String"
+      }
+    },
     {
-      type
-      =
-      "Text.Decimal"
+      name = "DEPOSITS"
+      type = "RegExpr"
+      regular-expression = "[^;\n]*"
+      value = {
+        type = "Text.Decimal"
+      }
+    },
+    {
+      name = "WITHDRAWALS"
+      type = "RegExpr"
+      regular-expression = "[^;\n]*"
+      value.type = "Text.Decimal"
+    },
+    {
+      name = "BALANCE"
+      type = "RegExpr"
+      regular-expression = "[^;\n]*"
+      value = {
+        type = "Text.Decimal"
+      }
     }
-  }
-  ]
-},
+    ]
+  },
   // #####################################################################
   // # Trailer record                                             
   // #####################################################################
   {
-    name
-    =
-    "Trailer"
-    type
-    =
-    "Separated"
-    regular-expression
-    =
-    "T"
-    separator-regular-expression
-    =
-    ";"
-    separator
-    =
-    ";"
-    terminator-regular-expression
-    =
-    "\r?\n"
-    terminator
-    =
-    "\n"
+    name = "Trailer"
+    type = "Separated"
+    regular-expression = "T"
+    separator-regular-expression = ";"
+    separator = ";"
+    terminator-regular-expression = "\r?\n"
+    terminator = "\n"
 
-    mapping
-    =
-  {
-    message
-    =
-    "Trailer"
-    element
-    =
-    "BT_IN"
-  }
+    mapping = {
+      message = "Trailer"
+      element = "BT_IN"
+    }
 
-  parts
-  =
-  [
+    parts = [
     {
-      name
-      =
-      "RECORD_TYPE"
-      type
-      =
-      "RegExpr"
-      regular-expression
-      =
-      "[^;\n]*"
-      value.type
-      =
-      "Text.String"
+      name = "RECORD_TYPE"
+      type = "RegExpr"
+      regular-expression = "[^;\n]*"
+      value.type = "Text.String"
     },
     {
-      name
-      =
-      "RECORD_COUNT"
-      type
-      =
-      "RegExpr"
-      regular-expression
-      =
-      "[^;\n]*"
-      value.type
-      =
-      "Text.Integer"
+      name = "RECORD_COUNT"
+      type = "RegExpr"
+      regular-expression = "[^;\n]*"
+      value.type = "Text.Integer"
     }
-  ]
-}
+    ]
+  }
 ]
 }
 
@@ -500,67 +315,38 @@ It represents the bracket of every grammar.
 
 **Example:**
 
-```json
+```
 format {
-  name
-  =
-  "Bank Transactions"
-  description
-  =
-  "Random bank transactions"
+  name = "Bank Transactions"
+  description = "Random bank transactions"
 
-  start-element
-  =
-  "File"
-  target-namespace
-  =
-  "BankIn"
+  start-element = "File"
+  target-namespace = "BankIn"
 
-  elements
-  = [
+  elements = [
   // #####################################################################
   // ### File sequence
   // #####################################################################
   {
-    name
-    =
-    "File"
-    type
-    =
-    "Sequence"
-    references
-    =
-  [
+    name = "File"
+    type = "Sequence"
+    references = [
     {
-      name
-      =
-      "Header"
-      referenced-element
-      =
-      "Header"
+      name = "Header"
+      referenced-element = "Header"
     },
     {
-      name
-      =
-      "Details"
-      max-occurs
-      =
-      "unlimited"
-      referenced-element
-      =
-      "Detail"
+      name = "Details"
+      max-occurs = "unlimited"
+      referenced-element = "Detail"
     },
     {
-      name
-      =
-      "Trailer"
-      referenced-element
-      =
-      "Trailer"
+      name = "Trailer"
+      referenced-element = "Trailer"
     }
   ]
 },
-  ...
+...
 ```
 
 ##### Elements
@@ -622,36 +408,23 @@ Use this if there are different options of what the next strcuture could be.
 
 **Example:**
 
-```json
+```
 ...
 // #####################################################################
 // ### Detail choice
 // #####################################################################
 {
-  name
-  =
-  "DetailChoice"
-  type
-  =
-  "Choice"
-  references
-  = [
+  name = "DetailChoice"
+  type = "Choice"
+  references = [
   {
-    name
-    =
-    "Carment_19_2"
-    referenced-element
-    =
-    "DETAIL_19_2"
+    name = "Carment_19_2"
+    referenced-element = "DETAIL_19_2"
     // Next element must be either DETAIL_19_2 as defined below ...
   },
   {
-    name
-    =
-    "Carment_19_3"
-    referenced-element
-    =
-    "DETAIL_19_3"
+    name = "Carment_19_3"
+    referenced-element = "DETAIL_19_3"
     // ... or this element
   }
 ]
@@ -660,13 +433,13 @@ Use this if there are different options of what the next strcuture could be.
 // ### Detail Carmen 19.2 record
 // #####################################################################
 {
-name = "DETAIL_19_2                         // Is being referenced from above
-type = "Separated"
-regular-expression = "XYZ(;([^;\n]*)){60}\n"
-separator-regular-expression = ";"
-separator = ";"
-terminator-regular-expression = "\n"
-terminator = "\n"
+  name = "DETAIL_19_2                         // Is being referenced from above
+  type = "Separated"
+  regular-expression = "XYZ(;([^;\n]*)){60}\n"
+  separator-regular-expression = ";"
+  separator = ";"
+  terminator-regular-expression = "\n"
+  terminator = "\n"
 
 ...
 ```
@@ -705,53 +478,31 @@ In this example the file structure is defined as such that it
 2. must be followed by `0..n` records of type Detail
 3. must be followed by one record of type Trailer
 
-```json
+```
 ...
 elements = [
   // #####################################################################
   // ### File sequence
   // #####################################################################
   {
-    name
-    =
-    "File"
-    type
-    =
-    "Sequence"
-    references
-    =
-  [
+    name = "File"
+    type = "Sequence"
+    references = [
     {
-      name
-      =
-      "Header"
-      referenced-element
-      =
-      "Header"
+      name = "Header"
+      referenced-element = "Header"
       // First element must be defined element "Header"
     },
     {
-      name
-      =
-      "Details"
-      min-occurs
-      =
-      0
-      max-occurs
-      =
-      "unlimited"
-      referenced-element
-      =
-      "DetailChoice"
+      name = "Details"
+      min-occurs = 0
+      max-occurs = "unlimited"
+      referenced-element = "DetailChoice"
       // 0..n elements "Detail" must follow "Header"
     },
     {
-      name
-      =
-      "Trailer"
-      referenced-element
-      =
-      "Trailer"
+      name = "Trailer"
+      referenced-element = "Trailer"
       // Last element must be defined element "Trailer" 
     }
   ]
@@ -815,174 +566,87 @@ Id,Name,Surname,Street,City                      // First line contains column h
 This example works for the example data above.
 At first we detect and parse the Header columns, and following this then all Detail records.
 
-```json
-
-
+```
 ...
 elements = [
   // File sequence
   {
-    name
-    =
-    "File"
-    type
-    =
-    "Sequence"
-    references
-    =
-  [
+    name = "File"
+    type = "Sequence" 
+    references = [
     {
-      name
-      =
-      "Header"
-      type
-      =
-      "Reference"
-      referenced-element
-      =
-      "Header"
+      name = "Header"
+      type = "Reference"
+      referenced-element = "Header"
     },
     {
-      name
-      =
-      "Details"
-      type
-      =
-      "Reference"
-      max-occurs
-      =
-      "unlimited"
-      referenced-element
-      =
-      "Detail"
+      name = "Details"
+      type = "Reference"
+      max-occurs = "unlimited"
+      referenced-element = "Detail"
     }
-  ]
-},
+    ]
+  },
   // Header sequence
   {
-    name
-    =
-    "Header"
+    name = "Header"
     // Element name
-    type
-    =
-    "ListTerminal"
+    type = "ListTerminal"
     // The fixed type name "ListTerminal"
-    regular-expression
-    =
-    ".*\n"
+    regular-expression = ".*\n"
     // Matching data
-    action
-    =
-    "pushState(DETAIL_STATE)"
+    action = "pushState(DETAIL_STATE)"
     // This element, switches the parser state to "DETAIL_STATE"
 
-
-    separator-regular-expression
-    =
-    ","
+    separator-regular-expression = ","
     // regex to find the separator
-    separator
-    =
-    ","
-    terminator-regular-expression
-    =
-    "\r?\n"
+    separator = ","
+    terminator-regular-expression = "\r?\n"
     // regex to find the terminator
-    terminator
-    =
-    "\n"
+    terminator = "\n"
 
-    mapping
-    =
-  {
-    message
-    =
-    "Header"
+    mapping = {
+      message = "Header"
     // message will be mapped as a message of type "Header"
-    element
-    =
-    "XYZ"
-  }
+      element = "XYZ"
+    }
 
-  element
-  =
+    element = {
+      // This example defines an element of type "RegExpr"
+      name = "RecordId"
+      type = "RegExpr"
+      regular-expression = "[^,\r\n]*"
+      // Regular expresssion to find the element
+      value.type = "Text.String"
+      // Type of ALL found elements. Can only be one type for all.
+    }
+  },
   {
-    // This example defines an element of type "RegExpr"
-    name
-    =
-    "RecordId"
-    type
-    =
-    "RegExpr"
-    regular-expression
-    =
-    "[^,\r\n]*"
-    // Regular expresssion to find the element
-    value.type
-    =
-    "Text.String"
-    // Type of ALL found elements. Can only be one type for all.
-  }
-},
-  {
-    name
-    =
-    "Detail"
-    type
-    =
-    "ListTerminal"
-    regular-expression
-    =
-    ".*\n"
-    states
-    =
-  [
-    "DETAIL_STATE"
-    // Parser state must be in "DETAIL_STATE" for this element to be parsed (see above).
-  ]
+    name = "Detail"
+    type = "ListTerminal"
+    regular-expression = ".*\n"
+    states = [
+      "DETAIL_STATE"
+      // Parser state must be in "DETAIL_STATE" for this element to be parsed (see above).
+    ]
 
-  separator-regular-expression
-  =
-  ","
-  separator
-  =
-  ","
-  terminator-regular-expression
-  =
-  "\r?\n"
-  terminator
-  =
-  "\n"
+    separator-regular-expression = ","
+    separator = ","
+    terminator-regular-expression = "\r?\n"
+    terminator = "\n"
 
-  mapping
-  =
-  {
-    message
-    =
-    "Detail"
-    element
-    =
-    "OMS"
-  }
+    mapping = {
+      message = "Detail"
+      element = "OMS"
+    }
 
-  element
-  =
-  {
-    name
-    =
-    "RecordId"
-    type
-    =
-    "RegExpr"
-    regular-expression
-    =
-    "[^,\r\n]*"
-    value.type
-    =
-    "Text.String"
+    element = {
+      name = "RecordId"
+      type = "RegExpr"
+      regular-expression = "[^,\r\n]*"
+      value.type = "Text.String"
+    }
   }
-}
 ]
 ...
 ```
@@ -1027,107 +691,59 @@ Use this if you
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "Person"
+  name = "Person"
   // Element name
-  type
-  =
-  "MultiPart"
+  type = "MultiPart"
   // Of fixed type "MultiPart"
-  regular-expression
-  =
-  ".*\n"
+  regular-expression = ".*\n"
   // Regular expression to detect this element. Terminated by by new line
 
-  mapping
-  = {
-  message
-  =
-  "Person"
-  element
-  =
-  "Data"
-}
+  mapping = {
+    message = "Person"
+    element = "Data"
+  }
 
-parts = [
+  parts = [
   // Array of elements which make up the MultiPart element
   {
-    name
-    =
-    "RecordId"
+    name = "RecordId"
     // The first element is the Record ID
-    type
-    =
-    "Fixed"
+    type = "Fixed"
     // of fixed length
-    length
-    =
-    3
+    length = 3
     // Length is 3
-    justification
-    =
-    "left"
+    justification = "left"
     // left justified
-    pad-char
-    =
-    " "
+    pad-char = " "
     // padded with spaces
-    value.type
-    =
-    "Text.String"
+    value.type = "Text.String"
     // data type is "String"
   },
   {
-    name
-    =
-    "Surname"
-    type
-    =
-    "Fixed"
-    length
-    =
-    20
-    justification
-    =
-    "left"
-    pad-char
-    =
-    " "
-    value
-    =
-  {
-    type
-    =
-    "Text.String"
-    encoding
-    =
-    "utf-8"
-  }
-},
+    name = "Surname"
+    type = "Fixed"
+    length = 20
+    justification = "left"
+    pad-char = " "
+    value = {
+      type = "Text.String"
+      encoding = "utf-8"
+    }
+  },
   ...
 
   {
-    name
-    =
-    "EOL"
-    type
-    =
-    "RegExpr"
-    regular-expression
-    =
-    "\r?\n*"
-    value.type
-    =
-    "Text.String"
+    name = "EOL"
+    type = "RegExpr"
+    regular-expression = "\r?\n*"
+    value.type = "Text.String"
   }
 ]
 }
 ...
-
 ```
 
 ###### Separated
@@ -1168,106 +784,54 @@ Because the lexical analyzer has no length information for the record, the regul
 
 **Example:**
 
-```json
+```
 ...
 //==================
 // Header sequence
 //==================
 {
-  name
-  =
-  "Header"
-  type
-  =
-  "Separated"
-  regular-expression
-  =
-  "10.*\n"
-  separator-regular-expression
-  =
-  ","
-  separator
-  =
-  ","
-  terminator-regular-expression
-  =
-  "\r?\n"
-  terminator
-  =
-  "\n"
+  name = "Header"
+  type = "Separated"
+  regular-expression = "10.*\n"
+  separator-regular-expression = ","
+  separator = ","
+  terminator-regular-expression = "\r?\n"
+  terminator = "\n"
 
-  mapping
-  = {
-  message
-  =
-  "Header"
-  element
-  =
-  "CSV"
-}
+  mapping = {
+    message = "Header"
+    element = "CSV"
+  }
 
-parts = [
+  parts = [
   {
-    name
-    =
-    "RecordId"
-    type
-    =
-    "RegExpr"
-    regular-expression
-    =
-    "[^,\r\n]*"
-    value.type
-    =
-    "Text.String"
+    name = "RecordId"
+    type = "RegExpr"
+    regular-expression = "[^,\r\n]*"
+    value.type = "Text.String"
   },
   {
-    name
-    =
-    "Sender"
-    type
-    =
-    "RegExpr"
-    regular-expression
-    =
-    "[^,\r\n]*"
-    value
-    =
-  {
-    type
-    =
-    "Text.String"
-    encoding
-    =
-    "utf-8"
-  }
-},
+    name = "Sender"
+    type = "RegExpr"
+    regular-expression = "[^,\r\n]*"
+    value = {
+      type = "Text.String"
+      encoding = "utf-8"
+    }
+  },
   ...
   {
-    name
-    =
-    "ZoneOffset"
-    type
-    =
-    "RegExpr"
-    regular-expression
-    =
-    "[^,\r\n]*"
-    value
-    =
-  {
-    type
-    =
-    "Text.String"
-    encoding
-    =
-    "utf-8"
+    name = "ZoneOffset"
+    type  "RegExpr"
+    regular-expression = "[^,\r\n]*"
+    value = {
+      type = "Text.String"
+      encoding = "utf-8"
+    }
   }
-}
-]
+  ]
 },
 ...
-
 ```
 
 ##### Element Parts
@@ -1312,33 +876,19 @@ A terminal element part which has a length calculated from some data in the inpu
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "Bitmap3"
-  type
-  =
-  "Calculated"
-  input-exists-formula
-  =
-  "bitIsSet(Bitmap1,31)"
-  input-length-formula
-  =
-  "8"
-  value
-  = {
-  type
-  =
-  "Text.Long"
-  base
-  =
-  16
-}
+  name = "Bitmap3"
+  type = "Calculated"
+  input-exists-formula = "bitIsSet(Bitmap1,31)"
+  input-length-formula = "8"
+  value = { 
+    type = "Text.Long"
+    base = 16
+  }
 },
 ...
-
 ```
 
 ###### Fixed
@@ -1369,39 +919,20 @@ A terminal element part with a fixed length.
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "CREATE_DATE"
-  type
-  =
-  "Fixed"
-  length
-  =
-  14
-  justification
-  =
-  "left"
-  null-regular-expression
-  =
-  "[ \t]*"
-  value
-  = {
-  type
-  =
-  "Text.DateTime"
-  format
-  =
-  "uuuuMMddHHmmss"
-  null-input-value
-  =
-  "1970-01-01T00:00:00Z"
+  name = "CREATE_DATE"
+  type = "Fixed"
+  length = 14
+  justification = "left"
+  null-regular-expression  "[ \t]*"
+  value = {
+    type  "Text.DateTime"
+    format = "uuuuMMddHHmmss"
+    null-input-value = "1970-01-01T00:00:00Z"
 }
-},
 ...
-
 ```
 
 ###### RegExpr
@@ -1434,24 +965,15 @@ A terminal element part which is detected using a regular expression.
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "RECORD_TYPE"
-  type
-  =
-  "RegExpr"
-  regular-expression
-  =
-  "[^;\n]*"
-  value.type
-  =
-  "Text.Integer"
+  name = "RECORD_TYPE"
+  type = "RegExpr"
+  regular-expression = "[^;\n]*"
+  value.type = "Text.Integer"
 },
 ...
-
 ```
 
 ##### Message Mapping
@@ -1484,42 +1006,23 @@ The MessageMapping specifies, how the current element is mapped into a layline.i
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "DETAIL_Carmen_19_3"
-  type
-  =
-  "Separated"
-  regular-expression
-  =
-  "GSM(;([^;\n]*)){61}\n"
-  separator-regular-expression
-  =
-  ";"
-  separator
-  =
-  ";"
-  terminator-regular-expression
-  =
-  "\n"
-  terminator
-  =
-  "\n"
+  name = "DETAIL_Carmen_19_3"
+  type = "Separated"
+  regular-expression = "GSM(;([^;\n]*)){61}\n"
+  separator-regular-expression = ";"
+  separator = ";"
+  terminator-regular-expression = "\n"
+  terminator = "\n"
 
-  mapping
-  = {
-  message
-  =
-  "Detail"
-  element
-  =
-  "D1_GSM"
+  mapping = {
+    message = "Detail"
+    element = "D1_GSM"
+  }
 }
 ...
-
 ```
 
 ##### Element Reference
@@ -1556,94 +1059,57 @@ E.g. the Sequence is a sequence of Header, Details, and a Footer element.
 
 **Example:**
 
-```json
+```
 ...
 elements = [
   // #####################################################################
   // ### File sequence
   // #####################################################################
   {
-    name
-    =
-    "File"
-    type
-    =
-    "Sequence"
+    name = "File"
+    type="Sequence"
     // Example for "Sequence"
-    references
-    =
-  [
+    references = [
     {
-      name
-      =
-      "Header"
+      name = "Header"
       // Reference name is "Header"
-      referenced-element
-      =
-      "Header"
+      referenced-element = "Header"
       // The actually referenced element is also called "Header". It must be defined elsewhere in the grammar.
     },
     {
-      name
-      =
-      "Details"
+      name = "Details"
       // Reference name is "Details"
-      min-occurs
-      =
-      0
+      min-occurs = 0
       // Must occur zero times --> so it is optional
-      max-occurs
-      =
-      "unlimited"
+      max-occurs = "unlimited"
       // Can occur an unlimited number of times
-      referenced-element
-      =
-      "DetailChoice"
+      referenced-element = "DetailChoice"
       // The actually referenced element is called "DetailChoice". It must be defined elsewhere in the grammar.
     },
     {
-      name
-      =
-      "Trailer"
+      name = "Trailer"
       // Reference name is "Trailer"
-      referenced-element
-      =
-      "Trailer"
+      referenced-element = "Trailer"
       // The actually referenced element is also called "Trailer". It must be defined elsewhere in the grammar.
     }
   ]
 },
-  // #####################################################################
-  // ### Header record
-  // #####################################################################
-  {
-    name
-    =
-    "Header  "
+// #####################################################################
+// ### Header record
+// #####################################################################
+{
+    name = "Header"
     // This is the element being referenced above. 
-    type
-    =
-    "MultiPart"
-    regular-expression
-    =
-    "10"
+    type = "MultiPart"
+    regular-expression = "10"
+    
+    mapping = {
+      message = "Header"
+      element = "D2_AID"
+    }
 
-    mapping
-    =
-  {
-    message
-    =
-    "Header"
-    element
-    =
-    "D2_AID"
-  }
-
-  parts
-  =
-  [
-    ...
-
+    parts = [
+...
 
 ```
 
@@ -1691,30 +1157,18 @@ A binary ByteString value. The bytes from the input will be directly mapped into
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "F65_ReservedForIsoUse"
-  type
-  =
-  "Calculated"
-  input-exists-formula
-  =
-  "bitIsSet(Bitmap3,31)"
-  input-length-formula
-  =
-  "8"
-  value
-  = {
-  type
-  =
-  "Binary.ByteString"
-}
+  name = "F65_ReservedForIsoUse"
+  type = "Calculated"
+  input-exists-formula = "bitIsSet(Bitmap3,31)"
+  input-length-formula = "8"
+  value = {
+    type = "Binary.ByteString"
+  }
 },
 ...
-
 ```
 
 ###### Binary.HexString
@@ -1738,30 +1192,18 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "F65_ReservedForIsoUse"
-  type
-  =
-  "Calculated"
-  input-exists-formula
-  =
-  "bitIsSet(Bitmap3,31)"
-  input-length-formula
-  =
-  "8"
-  value
-  = {
-  type
-  =
-  "Binary.HexString"
-}
+  name = "F65_ReservedForIsoUse"
+  type = "Calculated"
+  input-exists-formula = "bitIsSet(Bitmap3,31)"
+  input-length-formula = "8"
+  value = {
+    type = "Binary.HexString"
+  }
 },
 ...
-
 ```
 
 ###### Binary.Long
@@ -1786,24 +1228,15 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "MessageLength"
-  type
-  =
-  "Fixed"
-  length
-  =
-  2
-  value
-  = {
-  type
-  =
-  "Binary.Long"
-}
+  name = "MessageLength"
+  type = "Fixed"
+  length = 2
+  value = {
+    type = "Binary.Long"
+  }
 },
 ...
 
@@ -1833,34 +1266,19 @@ For DateTime handling see [Text.DateTime](#textdatetime).
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "ReceiptDate"
-  type
-  =
-  "RegExpr"
-  regular-expression
-  =
-  "[^,\r\n]*"
-  value
-  = {
-  type
-  =
-  "Text.Date"
-  format
-  =
-  "uuuuMMdd"
-  alternative-formats
-  = [
-  "uuMMdd"
-]
-}
+  name = "ReceiptDate"
+  type = "RegExpr"
+  regular-expression = "[^,\r\n]*"
+  value = {
+    type = "Text.Date"
+    format = "uuuuMMdd"
+    alternative-formats = ["uuMMdd"]
+  }
 },
 ...
-
 ```
 
 ###### Text.DateTime
@@ -1885,27 +1303,15 @@ A DateTime value in text format. For handling pure Date formats see [Text.Date](
 
 **Example:**
 
-```json
-...
+```
 {
-  name
-  =
-  "Created"
-  type
-  =
-  "RegExpr"
-  regular-expression
-  =
-  "[^,\r\n]*"
-  value
-  = {
-  type
-  =
-  "Text.DateTime"
-  format
-  =
-  "uuuuMMddHHmmss"
-}
+  name = "Created"
+  type = "RegExpr"
+  regular-expression = "[^,\r\n]*"
+  value = {
+    type = "Text.DateTime"
+    format = "uuuuMMddHHmmss"
+  }
 },
 ...
 
@@ -1938,24 +1344,15 @@ A Decimal value in text format.
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "TOTAL_CHARGE"
-  type
-  =
-  "RegExpr"
-  regular-expression
-  =
-  "[^;\n]*"
-  value
-  = {
-  type
-  =
-  "Text.Decimal"
-}
+  name = "TOTAL_CHARGE"
+  type = "RegExpr"
+  regular-expression = "[^;\n]*"
+  value = {
+    type = "Text.Decimal"
+  }
 },
 ...
 
@@ -1988,35 +1385,19 @@ A Double value in text format.
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "X"
-  type
-  =
-  "RegExpr"
-  regular-expression
-  =
-  "[^ \r\n]*"
-  value
-  = {
-  type
-  =
-  "Text.Double"
-  decimal-separator
-  =
-  "."
-  grouping-separator
-  =
-  ","
-  use-grouping
-  =
-  "true"
-}
+  name = "X"
+  type = "RegExpr"
+  regular-expression = "[^ \r\n]*"
+  value = {
+    type = "Text.Double"
+    decimal-separator = "."
+    grouping-separator = ","
+    use-grouping = "true"
+  }
 }, ...
-
 ```
 
 ###### Text.Integer
@@ -2041,40 +1422,21 @@ A 32-bit whole number value in text format.
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "RECORD_SIZE"
-  type
-  =
-  "Fixed"
-  length
-  =
-  4
-  justification
-  =
-  "right"
-  pad-char
-  =
-  "0"
-  strip-chars
-  =
-  " "
-  null-regular-expression
-  =
-  "[ \t]*"
-  value {
-  type
-  =
-  "Text.Integer"
-  null-input-value
-  =
-  0
-}
+  name = "RECORD_SIZE"
+  type = "Fixed"
+  length = 4
+  justification = "right"
+  pad-char = "0"
+  strip-chars = " "
+  null-regular-expression = "[ \t]*"
+  value = { 
+    type = "Text.Integer"
+    null-input-value = 0
+  }
 }, ...
-
 ```
 
 ###### Text.Long
@@ -2099,33 +1461,19 @@ A 64-bit long value in text format.
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "Age"
-  type
-  =
-  "Fixed"
-  length
-  =
-  3
-  justification
-  =
-  "left"
-  pad-char
-  =
-  " "
-  value
-  = {
-  type
-  =
-  "Text.Long"
-}
+  name = "Age"
+  type = "Fixed"
+  length = 3
+  justification = "left"
+  pad-char = " "
+  value = {
+    type = "Text.Long"
+  }
 },
 ...
-
 ```
 
 ###### Text.String
@@ -2151,30 +1499,18 @@ A String value.
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "F25_PointOfServiceConditionCode"
-  type
-  =
-  "Calculated"
-  input-exists-formula
-  =
-  "bitIsSet(Bitmap1,7)"
-  input-length-formula
-  =
-  "2"
-  value
-  = {
-  type
-  =
-  "Text.String"
-}
+  name = "F25_PointOfServiceConditionCode"
+  type = "Calculated"
+  input-exists-formula = "bitIsSet(Bitmap1,7)"
+  input-length-formula = "2"
+  value = {
+    type = "Text.String"
+  }
 },
 ...
-
 ```
 
 ##### Action
@@ -2224,30 +1560,17 @@ Please check the [QuickScript Language Reference](/docs/lang-ref/quickscript/qui
 
 **Example:**
 
-```json
+```
 ...
 {
-  name
-  =
-  "Bitmap3"
-  type
-  =
-  "Calculated"
-  input-exists-formula
-  =
-  "bitIsSet(Bitmap1,31)"
-  input-length-formula
-  =
-  "8"
-  value
-  = {
-  type
-  =
-  "Text.Long"
-  base
-  =
-  16
-}
+  name = "Bitmap3"
+  type = "Calculated"
+  input-exists-formula = "bitIsSet(Bitmap1,31)"
+  input-length-formula = "8"
+  value = {
+    type = "Text.Long"
+    base = 16
+  }
 },
 ...
 

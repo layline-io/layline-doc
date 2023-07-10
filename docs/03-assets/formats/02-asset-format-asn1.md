@@ -218,7 +218,7 @@ Explore the `Message Creation` box:
   }
   ``` 
 
-With the message creation parameters specified, we can now test the configured ASN.1 format with real data. 
+With the message creation parameters specified, we can now test the configured ASN.1 format with real data.
 
 ### Sample File Testing
 

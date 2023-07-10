@@ -297,7 +297,7 @@ In the _Format Definition_ section of the Format, we simply insert the following
 
 ::: details Format Definition
 
-```json
+```
 format {
   name = "Bank Transactions"
   description = "Random bank transactions"
