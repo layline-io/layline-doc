@@ -13,7 +13,7 @@ tags:
 
 One thing which sets layline.io apart from other message processors (e.g. Kafka), is that it was designed to understand
 your data from the outset.
-It's not enough to just push data around. If you need to work with data you need to understand it. Hence the capability
+It's not enough to just push data around. If you need to work with data you need to understand it. Hence, the capability
 to define data formats of any kind.
 
 :::tip First: Read about the Data Dictionary concept
@@ -25,7 +25,7 @@ If you are not familiar with the concept of the Data Dictionary in layline.io, p
 ## What is the purpose of the Data Dictionary Asset?
 
 As explained in the [Data Dictionary Concept](/docs/concept/data-dictionary), layline.io creates a global internal Data Dictionary based on all the data formats defined by you.
-There my be cases, however, where this is not enough, and where you want to store additional information alongside a message which traverses the system.
+There might be cases, however, where this is not enough, and where you want to store additional information alongside a message which traverses the system.
 
 Some examples:
 
@@ -116,7 +116,7 @@ We will explain the configuration using an example, configuring the following da
 
 Depicted by the arrows, we can see that elements `EngineType` and `PowerEnum` are reused elsewhere in the Data Dictionary.
 It is also possible to reference elements which are defined in other formats (e.g. Generic Format, another Data Dictionary, etc.).
-If you are using elements from another format, then please make sure you observe what we wrote on [Forrmat Dependencies](#format-dependencies) above.
+If you are using elements from another format, then please make sure you observe what we wrote on [Format Dependencies](#format-dependencies) above.
 
 #### Declaring Root Element
 
@@ -146,11 +146,11 @@ On the right hand panel you will see that the type defaults to "_Namespace_".
 We can now continue by declaring the individual members (properties) of the enumeration.
 Click on `Declare Element`.
 
-![PowerEnun Declare Element (Format Data Dictionary)](.03-asset-format-data-dictionary_images/0f674855.png)
+![PowerEnum Declare Element (Format Data Dictionary)](.03-asset-format-data-dictionary_images/0f674855.png)
 
 and define the following elements:
 
-![PowerEnun Element Declaration](.03-asset-format-data-dictionary_images/7e60b638.png)
+![PowerEnum Element Declaration](.03-asset-format-data-dictionary_images/7e60b638.png)
 
 We are done declaring the `PowerEnum` data dictionary type.
 
