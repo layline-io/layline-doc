@@ -1660,7 +1660,7 @@ If you select the `Sample Messages` tab, you should see your data in a structure
 
 To copy a part of the structure, click the copy button next to it.
 
-::: warning There are two caveats with this approach:
+:::caution There are two caveats with this approach:
 
 1. Only works with ASCII data. Binary data viewing will be available shortly.
 2. Only works with files. In other words: If you are working with streaming data / real-time data you have to put your data structures in a file first, to test whether data matches grammar.

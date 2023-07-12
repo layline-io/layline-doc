@@ -32,7 +32,7 @@ You need:
 
 ### Name & Description
 
-![](.asset-flow-javascript_images/0f67058e.png "Name & Description (Javascript)")
+![Name & Description ((Javascript Flow Asset))](.asset-flow-javascript_images/0f67058e.png "Name & Description (Javascript)")
 
 * **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
 
@@ -40,6 +40,25 @@ You need:
 
 The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it. Click to expand
 and then click to follow, if any.
+
+### Asset dependency
+
+Use this section to add Formats which you plan to use as part of your filtering and routing rules.
+
+**Why do I have to add formats here?**  
+Doesn't the system know which Formats I am using?
+layline.io automatically understands when you are using Formats as part of your input and output processors and automatically mounts them at runtime.
+But when you are referencing Formats which are not used as part of an input or output Processor directly, but rather referenced in a [Javascript Flow Processor](/docs/assets/processors-flow/asset-flow-javascript) or [Quickscript](/docs/category/quickscript), then the system may not be aware that you are using this format within any of those scripts.
+This would result in a runtime error.
+
+To avoid this, you can explicitly mention the Formats you are referencing in your scripts.
+This ensures, that these Formats will always be mounted at runtime.
+So it is best practice to add Formats which are referenced in this Asset here.
+
+![Asset Dependency (Javascript Flow Asset)](.asset-flow-javascript_images/56e288c3.png)
+
+To add formats click on `Add Dependency` and select the Format you wish to add as a dependency.
+Repeat for any other Format dependency.
 
 ### Input Ports
 
@@ -59,8 +78,6 @@ As is true for Input Ports, a Javascript Processor can have one-to-many Output P
 Workflow.
 
 ![](.asset-flow-javascript_images/5d782757.png "Output Ports (Javascript)")
-
-A Javascript processor can only have one output port from which it sends ingested data downstream in the Workkflow.
 
 A port can have a name and description. Names must exist and be unique within the processor.
 
@@ -108,7 +125,7 @@ method [here](/docs/lang-ref/javascript/API/classes/Processor#getarguments), on 
 In case you are entering arguments (1), the editor will check for valid JSON and outline this in case it is invalid.
 You can format the JSON entries with a click on `Format JSON (2)`.
 
-::: warning Invalid JSON
+:::caution Invalid JSON
 Entering invalid JSON will cause problems when using the Arguments in the underlying script.
 :::
 
