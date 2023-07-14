@@ -6,6 +6,8 @@ tags:
 - kafka
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Output Kafka
 
 ## Purpose
@@ -164,9 +166,6 @@ If rule 1 matches then the message is stored in topic `"mytopic"`. If rule 1 did
 If none of the rules matches, then the default handling kicks in (see above).
 In that case the message will be stored in topic described by `strExpand("${lay:derivedDataTopic}")`.
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
+---
 
-
+<WipDisclaimer></WipDisclaimer>

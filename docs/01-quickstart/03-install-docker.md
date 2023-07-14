@@ -2,6 +2,9 @@
 title: Ready-to-run Docker Image
 description: Download and run the ready-to-run Docker image of layline.io.
 ---
+
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 ## Installation Requirements
 
 [//]: # (Docker image version <Badge :text="$var.currentDockerVersion" type="tip" vertical="middle"/><br>)
@@ -246,7 +249,4 @@ The docker image comes with a number of pre-conconfigured directories. Let us ta
 
 ---
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io.
-:::
+<WipDisclaimer></WipDisclaimer>

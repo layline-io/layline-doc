@@ -3,6 +3,8 @@ title: Sink S3
 description: Sink S3 Asset. Use this to define the technical parameters for a AWS S3 sink connection.
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Sink S3
 
 ## Purpose
@@ -96,8 +98,6 @@ Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** in the new table 
 
 ## Potential problems
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
+---
 
+<WipDisclaimer></WipDisclaimer>

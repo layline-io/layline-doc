@@ -7,6 +7,8 @@ tags:
   - message
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Data Dictionary Format
 
 ## What is the Data Dictionary?
@@ -369,7 +371,7 @@ Next, we add the conditions for when these should be selected, based on the inco
   The Path conforms with _JSON-Path_. Other allowed operators:
 
   | Operator                  | Description                                                     |
-    |---------------------------|-----------------------------------------------------------------|
+      |---------------------------|-----------------------------------------------------------------|
   | $                         | The root element to query. This starts all path expressions.    |
   | @                         | The current node being processed by a filter predicate.         |
   | *                         | Wildcard. Available anywhere a name or numeric are required.    |
@@ -380,8 +382,8 @@ Next, we add the conditions for when these should be selected, based on the inco
   | [start:end]               | Array slice operator                                            |
   | [?(<expression\>)]        | Filter expression. Expression must evaluate to a boolean value. |
 
-  Our implementation of JSON-path is based off of the Jaymark-Library which contains other useful functions for JSON-Path evaluation. 
-  You can find the full list [here](https://github.com/json-path/JsonPath).  
+  Our implementation of JSON-path is based off of the Jaymark-Library which contains other useful functions for JSON-Path evaluation.
+  You can find the full list [here](https://github.com/json-path/JsonPath).
 
 * **`Expected Value`**: The value which must be met to match the condition.
 
@@ -391,35 +393,35 @@ We could be adding additional conditions which have to be met. For example if a 
 
 ![Encoding: Adding multiple selector conditions (Format Data Dictionary)](.03-asset-format-data-dictionary_images/d8418308.png)
 
-Now, in our example when reading the data back out of Kafka, we may  have an Input Processor which `Format` is linked to this Data Dictionary `MyNewDataDictionary`:
+Now, in our example when reading the data back out of Kafka, we may have an Input Processor which `Format` is linked to this Data Dictionary `MyNewDataDictionary`:
 
 ![Linking Format to Input Processor (Format Data Dictionary)](.03-asset-format-data-dictionary_images/1f2abef2.png)
 
 When data is now read through this Input Processor, the incoming data will be parsed by the applied Data Dictionary Format `MyNewDataDictionary`.
 
-Let's also say following the Input Processor we again have a Javascript Flow Processor. 
+Let's also say following the Input Processor we again have a Javascript Flow Processor.
 This could then access the data like with any other applied format like so:
 
 ```js title="Accessing parse data of Format MyNewDataDictionary"
 function onMessage(message) {
-  if (message.type.Record.Boat) {
-    onBoat(message);
-  } else if (message.type.Record.Car) {
-    onCar(message);
-  } else {
-      throw "Unknown Record Type";
-  }
-}
-
-function onBoat (detail) {
-    if (detail.data.Properties.Length > 10) {
-        ...
+    if (message.type.Record.Boat) {
+        onBoat(message);
+    } else if (message.type.Record.Car) {
+        onCar(message);
+    } else {
+        throw "Unknown Record Type";
     }
 }
 
-function onCar (detail) {
+function onBoat(detail) {
+    if (detail.data.Properties.Length > 10) {
+    ...
+    }
+}
+
+function onCar(detail) {
     if (detail.data.Properties.Model === "Mustang") {
-        ...
+    ...
     }
 }
 ```
@@ -428,12 +430,7 @@ function onCar (detail) {
 To understand how to work with the Data Dictionary in Javascript, [check here](/docs/category/javascript).
 :::
 
-
-
 ---
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io.
-:::
+<WipDisclaimer></WipDisclaimer>
 

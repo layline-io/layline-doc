@@ -10,6 +10,8 @@ tags:
   - imap
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Source Email
 
 ## Purpose
@@ -20,8 +22,6 @@ Defines the specific source parameters for a Email connected endpoint.
 In the meantime, please don't hesitate to contact us at support@layline.io .
 :::
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
+---
 
+<WipDisclaimer></WipDisclaimer>

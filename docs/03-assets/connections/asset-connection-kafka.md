@@ -6,6 +6,8 @@ tags:
   - kafka
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Connection Kafka
 
 ## Purpose
@@ -159,8 +161,4 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 * [Create a keystore and truststore using self-signed certificate](https://unix.stackexchange.com/questions/347116/how-to-create-keystore-and-truststore-using-self-signed-certificate).
 
 ---
-
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
+<WipDisclaimer></WipDisclaimer>

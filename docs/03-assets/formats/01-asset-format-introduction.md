@@ -3,6 +3,8 @@ title: Formats Introduction
 description: Understanding, configuring and using Formats.
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 ## Purpose
 
 Event data commonly comes in some form of structured data format.
@@ -16,24 +18,23 @@ This approach is not only expensive, but limits your freedom in working with suc
 
 layline.io tries to blaze a different trail in that it provides configurations for specific categories of data structures and APIs.
 
-
 ## Configuring formats
 
 **Generic Format Grammar**
 
 The _Generic Format Grammar_ for example features a whole grammar language to enable you to:
+
 1. **Define** the grammar of an arbitrary structured data format.
 2. **Test** the grammar with real-life data while in edit-mode.
 
 **Data Dictionary Format**
 
-The internal _Data Dictionary_  allows creating structured **internal** data formats in a UI-driven fashion instead of a grammar-language as you would with the Generic Format. 
+The internal _Data Dictionary_  allows creating structured **internal** data formats in a UI-driven fashion instead of a grammar-language as you would with the Generic Format.
 
 **HTTP Format**
 
-An HTTP interface again requires a different approach in that you basically define different types of requests with data attached to them. 
+An HTTP interface again requires a different approach in that you basically define different types of requests with data attached to them.
 Therefore, configuration interface for this type of format looks very different also.
-
 
 ## What does layline.io do with configured formats
 
@@ -41,7 +42,6 @@ When deploying a Project with one or more formats, layline.io tries to compile a
 Upon success, it has put all of them into one large "tree" with each format in its own namespace (branch) within this tree.
 It's important, that the naming of your formats at the top level is unique so that each format ends up in its own namespace.
 In the Generic Format for example there are dedicated namespace fields so that you can uniquely name them.
-
 
 Below you see an excerpt of a Generic Grammar format:
 
@@ -57,11 +57,8 @@ Or like this within a Scripting Asset:
 
 ![](.asset-format-introduction_images/6181d78f.png "Grammar Format Example (Format Introduction)")
 
-
 ## Information missing in the documentation?
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io.
-:::
+---
 
+<WipDisclaimer></WipDisclaimer>

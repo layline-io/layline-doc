@@ -6,6 +6,8 @@ tags:
 - kafka
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Input Kafka
 
 ## Purpose
@@ -239,9 +241,6 @@ When setting to `Retry Stream`, the system will retry a failed action for a conf
 * [Kafka auto.offset.reset](https://kafka.apache.org/documentation/#consumerconfigs_auto.offset.reset)
 * [Kafka enable.auto.commit](https://kafka.apache.org/documentation/#consumerconfigs_enable.auto.commit)
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
+---
 
-
+<WipDisclaimer></WipDisclaimer>

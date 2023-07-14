@@ -6,6 +6,8 @@ tags:
   - asn.1
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # ASN.1 Format
 
 ## Purpose
@@ -286,8 +288,4 @@ We plan to display proper error messages in the UI in a future version.
 
 
 ---
-
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io.
-:::
+<WipDisclaimer></WipDisclaimer>

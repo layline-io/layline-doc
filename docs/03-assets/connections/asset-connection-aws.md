@@ -8,6 +8,8 @@ tags:
   - Amazon
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Connection AWS
 
 ## Purpose
@@ -167,8 +169,4 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 * [Working with AWS Credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html).
 
 ---
-
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
+<WipDisclaimer></WipDisclaimer>

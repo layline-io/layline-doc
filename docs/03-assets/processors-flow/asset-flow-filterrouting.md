@@ -6,6 +6,10 @@ tags:
   - route
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
+import FailureHandling from '/docs/snippets/assets/_failure-handling.md';
+
 # Filter & Routing
 
 ## Purpose
@@ -32,26 +36,9 @@ None
 The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it. Click to expand
 and then click to follow, if any.
 
-### Asset dependency
+### Asset Dependencies
 
-Use this section to add Formats which you plan to use as part of your filtering and routing rules.
-
-**Why do I have to add formats here?**  
-Doesn't the system know which Formats I am using?
-layline.io automatically understands when you are using Formats as part of your input and output processors and automatically mounts them at runtime.
-But when you are referencing Formats which are not used as part of an input or output Processor directly, but rather referenced in
-a [Javascript Flow Processor](/docs/assets/processors-flow/asset-flow-javascript) or [Quickscript](/docs/category/quickscript), then the system may not be aware that you are using this format within
-any of those scripts.
-This would result in a runtime error.
-
-To avoid this, you can explicitly mention the Formats you are referencing in your scripts.
-This ensures, that these Formats will always be mounted at runtime.
-So it is best practice to add Formats which are referenced in this Asset here.
-
-![Asset Dependency (FR Flow Asset)](.asset-flow-filterrouting_images/56e288c3.png)
-
-To add formats click on `Add Dependency` and select the Format you wish to add as a dependency.
-Repeat for any other Format dependency.
+<AssetDependency></AssetDependency>
 
 ### Input Ports
 
@@ -184,87 +171,11 @@ rule will not be done.
 
 ### Failure Handling
 
+<FailureHandling></FailureHandling>
+
 Processing within a Flow Processor like this one can fail for various reasons.
+
 In this section you can define how the system should behave in case of such problems.
-
-#### Failure Types
-
-Four types of failures are observable:
-
-1. **`Stream start failure handling`**: A problem occurred in this Asset when starting a new stream.
-2. **`Stream end failure handling`**: A problem occurred in this Asset when ending a stream.
-3. **`Message failure handling`**: A problem occurred when handling a specific message in this Asset.
-4. **`Rollback commit failure handling`**: A problem occurred during system issued rollback or commit procedure.
-
-#### Failure Type Reactions
-
-Each of these failure types can be responded to with four different reactions:
-
-##### `Ignore`
-
-Don't do anything.
-
-##### `Rollback Stream`
-
-Rollback the complete stream. In the case of batch/file processing for example the complete file (which represents the stream) will be rolled back and put into error.
-
-:::caution
-A rollback signal will be issued to all participating Workflow Processors.
-Each Processor needs to ensure itself how to deal with a rollback.
-A Javascript Flow Processor, for example, which directly interacts with a database will have to react to a [rollback signal](/docs/lang-ref/javascript/API/classes/JavaScriptProcessor#onrollback):
-
-```js title="Rollback example in Javascript"
-   function onRollback() {
-    if (connection) {
-        try {
-            connection.rollbackTransaction();
-            connection.closeConnection();
-        } catch (err) {
-        } finally {
-            connection = null;
-        }
-    }
-}
-```
-
-:::
-
-##### `Retry Stream`
-
-Don't simply give up. Try to process the whole stream again.
-This option allows you to define how often and in what intervals the retries should be performed.
-
-![Failure Handling Retry Stream (FR Flow Asset)](.asset-flow-filterrouting_images/fca3f27b.png)
-
-**Stream Retry Settings**
-
-* **`Max. Retries`**: The number of retries which should be performed. For example "_5_".
-* **`Min. Backoff [ms]`**: Wait at least x milliseconds between each retry. For example "_12000_" (12 seconds).
-* **`Max. Backoff [ms]`**: Wait at max x milliseconds between each retry. For example "_150000_" (150 seconds).
-
-Based on these parameters, the system will try to balance the defined number of retries within the time boundaries of min. backoff and max. backoff.  
-Taken the example numbers from above, the five retries would happen in this timespan:
-
-![Failure Retry Stream Handling (FR Flow Asset)](.asset-flow-filterrouting_images/f8bf0209.png)
-
-##### `Retry Event/Message`
-
-Pick this reaction if you want to retry processing the current message.
-As is the case with the [Retry Stream](#retry-stream) reaction you can define how often and in what intervals the retries should be performed.
-
-![Failure Retry Event/Message Handling (FR Flow Asset)](.asset-flow-filterrouting_images/6b7e1e15.png)
-
-The settings are the same as with the [Retry Stream](#retry-stream) reaction. So please refer to this.
-There is one additional setting, however, which is `When final retry failed`.
-
-You here have the option to decide what to do if the message cannot be processed, even after the final retry:
-
-* **`Ignore`**: Don't do anything.
-* **`Rollback Stream`**: Fallback to rolling back the whole stream.
-* **`Retry Stream`**: Retry the whole stream once again.
-  If you pick this option then you can again define all relevant [Retry Stream](#retry-stream) parameters.
-
-  ![Failure Retry Event/Message -> Retry Stream Handling (FR Flow Asset)](.asset-flow-filterrouting_images/db677ef3.png)
 
 ## My filter and routing requirements cannot be met.
 
@@ -274,9 +185,5 @@ the message.
 
 
 ---
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
 
-
+<WipDisclaimer></WipDisclaimer>

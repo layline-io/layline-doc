@@ -3,6 +3,8 @@ title: Aerospike Service
 description: Aerospike Service Asset. Use this to connect and work with a Aerospike data source.
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Aerospike Service
 
 ## Purpose
@@ -527,9 +529,6 @@ Logical functions for read, write, and delete:
 If working with a Collection, then prepend `Read`, `Write`, or `Delete` to the Collection name in the formulas above. If
 using a Function, then simply use the Function name.
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
+---
 
-
+<WipDisclaimer></WipDisclaimer>

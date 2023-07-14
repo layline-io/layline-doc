@@ -3,6 +3,10 @@ title: Javascript
 description: Javascript Asset. Use this to add custom logic to modify event content, filter, route, enrich, etc.
 ---
 
+import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
+import FailureHandling from '/docs/snippets/assets/_failure-handling.md';
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Javascript Flow Processor
 
 ## Purpose
@@ -41,24 +45,9 @@ You need:
 The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it. Click to expand
 and then click to follow, if any.
 
-### Asset dependency
+### Asset Dependencies
 
-Use this section to add Formats which you plan to use as part of your filtering and routing rules.
-
-**Why do I have to add formats here?**  
-Doesn't the system know which Formats I am using?
-layline.io automatically understands when you are using Formats as part of your input and output processors and automatically mounts them at runtime.
-But when you are referencing Formats which are not used as part of an input or output Processor directly, but rather referenced in a [Javascript Flow Processor](/docs/assets/processors-flow/asset-flow-javascript) or [Quickscript](/docs/category/quickscript), then the system may not be aware that you are using this format within any of those scripts.
-This would result in a runtime error.
-
-To avoid this, you can explicitly mention the Formats you are referencing in your scripts.
-This ensures, that these Formats will always be mounted at runtime.
-So it is best practice to add Formats which are referenced in this Asset here.
-
-![Asset Dependency (Javascript Flow Asset)](.asset-flow-javascript_images/56e288c3.png)
-
-To add formats click on `Add Dependency` and select the Format you wish to add as a dependency.
-Repeat for any other Format dependency.
+<AssetDependency></AssetDependency>
 
 ### Input Ports
 
@@ -137,8 +126,6 @@ Please see section [Forced Errors](/docs/lang-ref/javascript/javascript_introduc
 
 ---
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
+<WipDisclaimer></WipDisclaimer>
+
 

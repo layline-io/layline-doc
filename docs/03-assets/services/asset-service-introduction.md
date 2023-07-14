@@ -3,6 +3,8 @@ title: Services Introduction
 description: Understanding, configuring and using Services.
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 ## Purpose of Services
 
 Probably the easiest way to describe the concept of a service within layline.io, is to claim that _Services_ that of an external function calls.
@@ -117,8 +119,6 @@ It is important to know, that there may be slight variances between the differen
 For example the return values of function calls may differ as well as how to reference function names, etc.
 This will be outlined in the documentation for each Service.
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io.
-:::
+---
 
+<WipDisclaimer></WipDisclaimer>

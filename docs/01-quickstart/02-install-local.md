@@ -6,6 +6,7 @@ description: Perform a complete local installation and run it.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import vars from '/variables.js'
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 ## Download
 
@@ -494,7 +495,4 @@ The problem should be fixed.
 
 ---
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io.
-:::
+<WipDisclaimer></WipDisclaimer>

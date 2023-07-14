@@ -8,6 +8,8 @@ tags:
 
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Connection FTP
 
 ## Purpose
@@ -124,9 +126,4 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 * [Create and manage secrets](/docs/assets/resources/asset-resource-secret)
 
 ---
-
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
-
+<WipDisclaimer></WipDisclaimer>

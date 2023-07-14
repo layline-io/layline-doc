@@ -7,6 +7,8 @@ tags:
   - confluent
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Source Kafka
 
 ## Purpose
@@ -88,8 +90,6 @@ Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** and **`Group Id`*
 
 ## Potential problems
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
+---
 
+<WipDisclaimer></WipDisclaimer>

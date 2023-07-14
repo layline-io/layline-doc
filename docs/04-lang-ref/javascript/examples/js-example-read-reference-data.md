@@ -3,6 +3,8 @@ title: Use Services
 description: Example on how to use Services and Service Functions.
 ---
 
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+
 # Use Services within your Script
 
 ## Introduction
@@ -257,7 +259,4 @@ For details on how to use the individual service please refer to the respective 
 
 ---
 
-:::note Can't find what you are looking for?
-Please note, that the creation of the online documentation is **Work-In-Progress**. It is constantly being updated.
-Should you have questions or suggestions, please don't hesitate to contact us at support@layline.io .
-:::
+<WipDisclaimer></WipDisclaimer>
