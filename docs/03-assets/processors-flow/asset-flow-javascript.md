@@ -6,6 +6,8 @@ description: Javascript Asset. Use this to add custom logic to modify event cont
 import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
 import FailureHandling from '/docs/snippets/assets/_failure-handling.md';
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+import InputPorts from '/docs/snippets/assets/_input-ports.md';
+import OutputPorts from '/docs/snippets/assets/_output-ports.md';
 
 # Javascript Flow Processor
 
@@ -36,7 +38,7 @@ You need:
 
 ### Name & Description
 
-![Name & Description ((Javascript Flow Asset))](.asset-flow-javascript_images/0f67058e.png "Name & Description (Javascript)")
+![Name & Description (Javascript Flow Asset)](.asset-flow-javascript_images/0f67058e.png "Name & Description (Javascript)")
 
 * **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
 
@@ -51,24 +53,11 @@ and then click to follow, if any.
 
 ### Input Ports
 
-![](.asset-flow-javascript_images/a7716e4f.png "Input Ports (Javasscript)")
-
-A Javascript processor can have one or more input ports from which it receives data to process.
-**It must have at least one input port.**
-
-A port can have a name and description. Names must exist and be unique within the processor.
-
-You can add an input port by clicking on `Add Port` (1), or remove an input port by clicking on `Delete`.
-You cannot delete the port if it is the last one within the processor.
+<InputPorts></InputPorts>
 
 ### Output Ports
 
-As is true for Input Ports, a Javascript Processor can have one-to-many Output Ports to send messages on within the
-Workflow.
-
-![](.asset-flow-javascript_images/5d782757.png "Output Ports (Javascript)")
-
-A port can have a name and description. Names must exist and be unique within the processor.
+<OutputPorts></OutputPorts>
 
 ### Root Script
 
@@ -92,7 +81,7 @@ Javascripts may make use of Services which you may have
 configured [here](/docs/assets/services/asset-service-introduction#purpose-of-services). These methods could be database
 operations, HTTP-request and whatever else Services do provide.
 
-Let's say your Javascript invokes a HTTP-Service which provides a method to retrieve the current Bitcoin price via a
+Let's say your Javascript invokes an HTTP-Service which provides a method to retrieve the current Bitcoin price via a
 REST-Api. Let's also assume that the name of the Service to be linked is `BTCService`.
 
 1. Add a Service Mapping by clicking on `Add Service Mapping` (1).

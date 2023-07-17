@@ -4,13 +4,17 @@ description: Filter & Routing Asset. Use this to filter unwanted events and/or r
 tags:
   - filter
   - route
+  - quickscript
 ---
 
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
+import AssetConditions from '/docs/snippets/assets/_asset-conditions.md';
 import FailureHandling from '/docs/snippets/assets/_failure-handling.md';
+import InputPorts from '/docs/snippets/assets/_input-ports.md';
+import OutputPorts from '/docs/snippets/assets/_output-ports.md';
 
-# Filter & Routing
+# Filter & Routing Flow Processor
 
 ## Purpose
 
@@ -42,26 +46,13 @@ and then click to follow, if any.
 
 ### Input Ports
 
-![Input Ports (FR Flow Asset)](.asset-flow-filterrouting_images/8e166418.png)
-
-A Javascript processor can have one or more input ports from which it receives data to process.
-**It must have at least one input port, however.**
-
-A port can have a name and description. Names must exist and be unique within the processor.
-
-You can add an input port by clicking on `Add Port`, or remove an input port by clicking on `Delete`.
-You cannot delete the port if it is the last one within the processor.
+<InputPorts></InputPorts>
 
 In the case of this Asset, any message received through one of the Input Ports will be subjected to the rules which will be defined below.
 
 ### Output Ports
 
-As is true for Input Ports, a Filter 6 Routing Processor can have one-to-many Output Ports to send messages on within the
-Workflow.
-
-![Output Ports (FR Flow Asset)](.asset-flow-filterrouting_images/7e20d707.png)
-
-A port can have a name and description. Names must exist and be unique within the processor.
+<OutputPorts></OutputPorts>
 
 The routing rules you define can target any of the Output Ports defined here.
 
@@ -111,7 +102,7 @@ A new rule is added. The details of the rule are represented in the panel to the
 
 #### Conditions that must be fulfilled
 
-You can choose whether you want none, at least one (OR) or all rules (AND) of the configured conditions condition to be true in order to have a positive outcome of the complete rule.
+You can choose whether you want none, at least one (OR) or all rules (AND) of the configured conditions condition to be true in order to have a positive outcome of the complete rule:
 
 ![Conditions that must be fulfilled (FR Flow Asset)](.asset-flow-filterrouting_images/e025c16d.png)
 
@@ -124,30 +115,7 @@ You can choose whether you want none, at least one (OR) or all rules (AND) of th
 
 #### Conditions
 
-In you picked either option `At least one` or `All` from the previous section, then you can now enter conditions for when the rule should evaluate to true.
-Click `ADD CONDITION` to add your first condition.
-
-![Conditions Add (FR Flow Asset)](.asset-flow-filterrouting_images/6db418ff.png)
-
-You can then start entering conditions in [Quickscript](/docs/category/quickscript) language:
-
-![Condition Quickscript (FR Flow Asset)](.asset-flow-filterrouting_images/779187ab.png)
-
-The system will support you in this quest. When you start typing, you will be presented with options for autocomplete.
-
-Let's fill in some conditions:
-
-![Condition Quickscript Two Conditions (FR Flow Asset)](.asset-flow-filterrouting_images/9cce97e9.png)
-
-**Explanation:**
-This rule will now evaluate to true, if
-
-1. The message includes a data dictionary structure `Record.Boat`, and
-2. The length of the boat is greater than 10.
-
-Depending on what you selected in the [Conditions Options](#conditions-that-must-be-fulfilled), either all or at least one of these conditions must be met.
-
-Enter as many conditions as necessary.
+<AssetConditions></AssetConditions>
 
 #### Emit Ports
 
