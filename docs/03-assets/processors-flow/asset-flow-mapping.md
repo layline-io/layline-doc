@@ -24,7 +24,7 @@ The Mapping Processor helps to accomplish this task based on simple mapping rule
 ## Prerequisites
 
 Before using this Asset, we recommend configuring the Formats you plan to use, first.
-This will help the Intellisense feature in the mapping configuration to help set it up.
+This will help the Intellisense feature in the mapping configuration to help with the setup.
 
 ## Configuration
 
