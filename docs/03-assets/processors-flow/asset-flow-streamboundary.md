@@ -2,7 +2,8 @@
 title: Stream Boundary
 description: Stream Boundary Controller. Use this asset to chunks of data from a continuous stream of data.
 tags:
-  - mapping
+  - stream
+  - split
 ---
 
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
@@ -14,6 +15,8 @@ import OutputPorts from '/docs/snippets/assets/_output-ports.md';
 # Stream Boundary
 
 ## Purpose
+
+![Stream Boundary Asset (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/9bccfd9c.png)
 
 The Stream Boundary Controller allows you to split a stream of data into chunks of consecutive streams based on specific conditions.
 Imagine a continuous stream of data being read from a Kafka topic which you want to turn into individual files.
@@ -29,7 +32,7 @@ This will help the Intellisense feature in the mapping configuration to help wit
 
 ### Name & Description
 
-![Name & Description (Stream Boundary Asset)](.asset-flow-streamboundary_images/6f497f41.png)
+![Name & Description (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/6f497f41.png)
 
 * **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
 
@@ -61,7 +64,7 @@ There are two distinct options on how to do determine the rules for stream split
 1. Based on Volume ann/or time: The stream will be split based on a preset number of messages or time passed or specific times (e.g. at the full hour).
 2. Based on stream content: The stream will be split based on the criteria in the content of the stream, e.g. at the appearance of a special type of message or specific content in the message.
 
-![Boundary Controller Type (Stream Boundary Asset)](.asset-flow-streamboundary_images/8e83ce05.png)
+![Boundary Controller Type (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/8e83ce05.png)
 
 Depending on which type you pick for your purposes the configuration differs.
 
@@ -80,7 +83,7 @@ This Controller Type allow you to split the stream based on
 Defines when the new stream should be started.
 You have two options:
 
-![Stream Start Mode (Stream Boundary)](.asset-flow-streamboundary_images/a845393c.png)
+![Stream Start Mode (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/a845393c.png)
 
 1. `On first message`: The outgoing stream will be started, whenever the first message passes through.
    This option makes the most sense when you for example define that a new stream should be started for each 1.000 messages passing through.
@@ -92,7 +95,7 @@ You have two options:
 By its nature, the Stream Boundary Controller creates multiple new streams from an incoming message stream.
 At this point you define the naming convention for the newly created streams:
 
-![Name of the split stream (Stream Boundary)](.asset-flow-streamboundary_images/5e2d478d.png)
+![Name of the split stream (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/5e2d478d.png)
 
 As you can see from the example above, you can use [Macros](/docs/lang-ref/macros) here.
 In this case we chose to include a constant `MyStreamName-` plus the current date and time in the newly created stream name.
@@ -101,7 +104,7 @@ In this case we chose to include a constant `MyStreamName-` plus the current dat
 
 In this box you define the criteria upon which the current stream shall be committed and a new stream started (i.e. the splitting criteria).
 
-![Stream Termination Criteria (Stream Boundary)](.asset-flow-streamboundary_images/c6384bbb.png)
+![Stream Termination Criteria (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/c6384bbb.png)
 
 In our example above we have defined the following
 
@@ -112,15 +115,15 @@ In our example above we have defined the following
 - **`Maximum duration of a split stream`** (e.g. 60s): Start a new stream every 60 seconds from start of new stream.
   Accepts the following notations:
 
-  | What         | Unit |
-                              |--------------|---------------------------|
+  | What         | Unit                     |
+  |--------------|--------------------------|
   | MILLISECONDS | ms, millis, milliseconds |
   | MICROSECONDS | us, micros, microseconds |
-  | NANOSECONDS  | ns, nanos, nanoseconds |
-  | DAYS         | d, days |
-  | HOURS        | h, hours |
-  | SECONDS      | s, seconds |
-  | MINUTES      | m, minutes |
+  | NANOSECONDS  | ns, nanos, nanoseconds   |
+  | DAYS         | d, days                  |
+  | HOURS        | h, hours                 |
+  | SECONDS      | s, seconds               |
+  | MINUTES      | m, minutes               |
 
 - **`Cron expression on when stream shall be terminated`** (e.g. "0 0 * ? * * *"): Strictly time based condition on when current stream should be closed.
   Enter a cron term here.
@@ -150,7 +153,7 @@ and trailer marker messages.
 
 **Example Data Stream:**
 
-![Incoming Stream Example (Stream Boundary)](.asset-flow-streamboundary_images/15cf0046.png)
+![Incoming Stream Example (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/15cf0046.png)
 
 #### Finite State Machine
 
@@ -179,7 +182,7 @@ So basically we have two states, each one with its own conditions:
     * Processing `Details` and `Trailer` message.
     * If we receive a `Header`, that's an error.
 
-![Controller States (Stream Boundary)](.asset-flow-streamboundary_images/1fd6113c.png)
+![Controller States (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/1fd6113c.png)
 
 The UI supports you in entering these states and related conditions.
 We will explain how to do this, using our example:
@@ -192,22 +195,44 @@ In addition to representing a `State`, States can also forward messages as outpu
 
 To add a State, click on `+ ADD STATE`.
 
-![Adding State (Stream Boundary)](.asset-flow-streamboundary_images/4b4a86fe.png)
+![Adding State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/4b4a86fe.png)
 
 A State will be automatically inserted in the table below.
 Name the State `Header`.
 
-![Name State (Stream Boundary)](.asset-flow-streamboundary_images/f06ea25d.png)
+![Name State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/f06ea25d.png)
 
 Add another State `In Transaction`.
 You now have two States. The States do not contain and `Cases` and conditions yet.
 
 In the graph above the table, you should be able to see your two States:
 
-![Two States (Stream Boundary)](.asset-flow-streamboundary_images/4b0ee520.png)
+![Two States (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/4b0ee520.png)
 
 Add as many states as your model requires.
 You can also add or remove States later.
+
+##### Setting the Initial State
+
+A State Machine must start somewhere.
+It's the same with this State Machine which is why you must set the initial state of the state machine here:
+
+![Setting the Initial State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/24bc6499.png)
+
+##### State Variables
+
+The current version of the UI, already allows you to define State Variables.
+State Variables serve the purpose of passing values from one State to another.
+
+As an example you could pass a field `StreamId` from the `Header` message in the `Header` State, to the `In Transaction` State.
+
+![State Variables (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/9939aa98.png)
+
+In that State you could then use the value, e.g. to check whether the data you are processing in the `In Transaction` State stems from the same StreamId by comparing contained StreamId information with that from the variable.
+
+:::caution
+This feature is currently not supported. You can therefore define variables at this stage, but not use them.
+:::
 
 #### Cases
 
@@ -222,11 +247,11 @@ By default, it will forward the current message.
 
 To further our example, let's add a Case which transitions state to the `In Transaction` state when a Header type message is encountered, and also forwards the Header message downstream.
 
-![Add Case (Stream Boundary)](.asset-flow-streamboundary_images/25f8ac02.png)
+![Add Case (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/25f8ac02.png)
 
 We now have a new `Case` for which we can enter the details:
 
-![New Case (Stream Boundary)](.asset-flow-streamboundary_images/21a8b253.png)
+![New Case (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/21a8b253.png)
 
 A `Case` is split between
 
@@ -246,7 +271,7 @@ Currently two operations are supported:
 
 Examples Conditions:
 
-![Example Conditions (Stream Boundary)](.asset-flow-streamboundary_images/c01ab4c8.png)
+![Example Conditions (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/c01ab4c8.png)
 
 For the purpose of our example we only need the first condition.
 
@@ -256,11 +281,11 @@ Actions and State Transition define what should happen if the previously defined
 You basically define
 
 1. **Splitter Action**: What should happen with the message.
-2. **Target State**: Whether a State Transition should be triggered and where to.  
+2. **Target State**: Whether a State Transition should be triggered and where to.
 
 **`Splitter Action` options**:
 
-![Splitter Action (Stream Boundary)](.asset-flow-streamboundary_images/cf8b3d7d.png)
+![Splitter Action (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/cf8b3d7d.png)
 
 | Splitter Action                        | Effect                                                                                                                                                                                      | Other options                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   |
 |----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -280,24 +305,27 @@ If you select an option which does not forward the message, then the original me
 
 **Target State**:
 
-![Target State (Stream Boundary)](.asset-flow-streamboundary_images/79176e5f.png)
+![Target State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/79176e5f.png)
 
 The `Target State` defines which State should be assumed if the conditions of this `Case` match.
 You can pick of one of the existing States which you have defined.
 
 **Reprocess event in target state**
 
-![Reprocess event (Stream Boundary)](.asset-flow-streamboundary_images/ce0b27bf.png)
+As we have learned, in the Controller Type "Message Matching", a message can trigger a State change.
+You may want to reprocess this message in the new state. In this case, check this box.
+
+![Reprocess event (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/ce0b27bf.png)
 
 Revisiting the State Graph at the top of the table, this now reflects the state transition condition which you have just configured:
 
-![State Graph (Stream Boundary)](.asset-flow-streamboundary_images/c2b4b9f0.png)
+![State Graph (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/c2b4b9f0.png)
 
 #### Complete Example Configuration
 
 If we complete all settings based on our example, we come up with the following:
 
-![Complete Example Configuration (Stream Boundary)](.asset-flow-streamboundary_images/7a40c3be.png)
+![Complete Example Configuration (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/7a40c3be.png)
 
 ### Failure Handling
 
