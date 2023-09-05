@@ -11,6 +11,8 @@ import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
 import FailureHandling from '/docs/snippets/assets/_failure-handling.md';
 import InputPorts from '/docs/snippets/assets/_input-ports.md';
 import OutputPorts from '/docs/snippets/assets/_output-ports.md';
+import OutputPortsSingle from '/docs/snippets/assets/_output-ports-single.md';
+
 
 # Stream Boundary
 
@@ -51,7 +53,7 @@ and then click to follow, if any.
 
 ### Output Ports
 
-<OutputPorts></OutputPorts>
+<OutputPortsSingle></OutputPortsSingle>
 
 ### Boundary Controller
 
@@ -195,15 +197,15 @@ In addition to representing a `State`, States can also forward messages as outpu
 
 To add a State, click on `+ ADD STATE`.
 
-![Adding State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/4b4a86fe.png)
+![Adding State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/c7d792e0.png)
 
-A State will be automatically inserted in the table below.
-Name the State `Header`.
+A State will be automatically inserted in the table below. 
+We name the State `Header`.
 
-![Name State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/f06ea25d.png)
+![Name State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/768c80db.png)
 
 Add another State `In Transaction`.
-You now have two States. The States do not contain and `Cases` and conditions yet.
+You now have two States. The States do not contain any `Cases` yet.
 
 In the graph above the table, you should be able to see your two States:
 
@@ -217,7 +219,7 @@ You can also add or remove States later.
 A State Machine must start somewhere.
 It's the same with this State Machine which is why you must set the initial state of the state machine here:
 
-![Setting the Initial State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/24bc6499.png)
+![Setting the Initial State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/6cc02492.png)
 
 ##### State Variables
 
@@ -226,7 +228,7 @@ State Variables serve the purpose of passing values from one State to another.
 
 As an example you could pass a field `StreamId` from the `Header` message in the `Header` State, to the `In Transaction` State.
 
-![State Variables (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/9939aa98.png)
+![State Variables (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/9b7b3e04.png)
 
 In that State you could then use the value, e.g. to check whether the data you are processing in the `In Transaction` State stems from the same StreamId by comparing contained StreamId information with that from the variable.
 
@@ -242,16 +244,16 @@ This feature is currently not supported. You can therefore define variables at t
 1. messages are forwarded / inhibited, and
 2. State-transitions are performed.
 
-There is always a default `Case` which is triggered when nothing else fires.
+You may have noticed, that there is always a default `Case` which you can configure on `State` level. It is triggered when nothing else fires.
 By default, it will forward the current message.
 
 To further our example, let's add a Case which transitions state to the `In Transaction` state when a Header type message is encountered, and also forwards the Header message downstream.
 
-![Add Case (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/25f8ac02.png)
+![Add Case (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/fdf511b0.png)
 
 We now have a new `Case` for which we can enter the details:
 
-![New Case (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/21a8b253.png)
+![New Case (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/216f2497.png)
 
 A `Case` is split between
 
@@ -271,7 +273,7 @@ Currently two operations are supported:
 
 Examples Conditions:
 
-![Example Conditions (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/c01ab4c8.png)
+![Example Conditions (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/1511c3e3.png)
 
 For the purpose of our example we only need the first condition.
 
@@ -285,7 +287,7 @@ You basically define
 
 **`Splitter Action` options**:
 
-![Splitter Action (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/cf8b3d7d.png)
+![Splitter Action (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/0d357b7e.png)
 
 | Splitter Action                        | Effect                                                                                                                                                                                      | Other options                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   |
 |----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -305,7 +307,7 @@ If you select an option which does not forward the message, then the original me
 
 **Target State**:
 
-![Target State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/79176e5f.png)
+![Target State (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/ea7fc47b.png)
 
 The `Target State` defines which State should be assumed if the conditions of this `Case` match.
 You can pick of one of the existing States which you have defined.
@@ -315,17 +317,17 @@ You can pick of one of the existing States which you have defined.
 As we have learned, in the Controller Type "Message Matching", a message can trigger a State change.
 You may want to reprocess this message in the new state. In this case, check this box.
 
-![Reprocess event (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/ce0b27bf.png)
+![Reprocess event (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/04ce59a6.png)
 
 Revisiting the State Graph at the top of the table, this now reflects the state transition condition which you have just configured:
 
-![State Graph (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/c2b4b9f0.png)
+![State Graph (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/9e463a64.png)
 
 #### Complete Example Configuration
 
 If we complete all settings based on our example, we come up with the following:
 
-![Complete Example Configuration (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/7a40c3be.png)
+![Complete Example Configuration (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/1273b915.png)
 
 ### Failure Handling
 
