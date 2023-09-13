@@ -14,7 +14,6 @@
  * @class
  */
 class MessageNode {
-
 }
 
 export default MessageNode;

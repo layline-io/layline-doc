@@ -17,7 +17,7 @@ Each of those Status entries has the following structure:
 * Logical name: A name which uniquely identifies a Status, e.g. `FIELD_UNKNOWN`
 * Language: One of the supported language codes, e.g. `en`
 * Message: The actual Status message. The message may contain placeholders, e.g. `The field with name %1 is unknown`.
-  In this example, the placeholder `%1` is filled with the respective value when creating the *Status* using method [create](Status.md#create).
+  In this example, the placeholder `%1` is filled with the respective value when creating the *Status* using method [create](Status.md#create-8).
 
 ## How to use
 
@@ -33,53 +33,6 @@ The `Status` can then be attached to a message or a passed as a result code when
 • **new Status**()
 
 ## Methods
-
-### create
-
-▸ **create**(`vendor`, `statusCode`, `...args`): [`Status`](Status.md)
-
-Invoke to create a Status.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `vendor` | [`VendorInfo`](VendorInfo.md) | Status messages can be distinguished by vendor. Pass a [VendorInfo](VendorInfo.md) here. Obtain it with [getVendorByName](Status.md#getvendorbyname) |
-| `statusCode` | `string` | The `statusCode` which must be defined within your Environment Status Asset of your Project. This code will be used to identify the Status which you want to add. |
-| `...args` | `string`[] | A comma separated list of arguments which will be used to fill in the placeholders in the predefined Status message, if any |
-
-#### Returns
-
-[`Status`](Status.md)
-
-Instance of newly created Status.
-
-Example:
-```js
-// Assume we have - among others - the following status defined using a Environment Status Asset:
-// Logical name: "ILLEGAL_VALUE"
-// Message: "Field with name '%1' contains illegal value '%2'."
-
-// Get the vendor instance from the list of defined vendors.
-// You must have defined the vendor in an Environment Status Asset.
-// The string passed in `Status.getVendorByName('myVendorLongName')`
-// is the long name of the Vendor definition within that Asset.
-// Check documentation for "Environment Status Asset" for more info.
-const VENDOR = Status.getVendorByName('MyVendorLongName');
-
-// Create the Status
-const STATUS = Status.create(
-     VENDOR,
-     'ILLEGAL_VALUE',
-     'LastName',
-     'Putin'
-);
-
-// In the above, the message placeholders %1 and %2 will be replaced by "LastName" and "Putin".
-// So the final message is "Field with name 'LastName' contains illegal value 'Putin'."
-```
-
-___
 
 ### getCode
 
@@ -129,7 +82,7 @@ ___
 ▸ **getParameters**(): `string`[]
 
 Returns an array of parameters which may have been passed to the Status upon creation.
-See: [create](Status.md#create)
+See: [create](Status.md#create-8)
 
 Example:
 ```js
@@ -186,9 +139,56 @@ const VENDOR_INFO = status.getVendor();
 
 ___
 
+### create
+
+▸ `Static` **create**(`vendor`, `statusCode`, `...args`): [`Status`](Status.md)
+
+Invoke to create a Status.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `vendor` | [`VendorInfo`](VendorInfo.md) | Status messages can be distinguished by vendor. Pass a [VendorInfo](VendorInfo.md) here. Obtain it with [getVendorByName](Status.md#getvendorbyname-8) |
+| `statusCode` | `string` | The `statusCode` which must be defined within your Environment Status Asset of your Project. This code will be used to identify the Status which you want to add. |
+| `...args` | `string`[] | A comma separated list of arguments which will be used to fill in the placeholders in the predefined Status message, if any |
+
+#### Returns
+
+[`Status`](Status.md)
+
+Instance of newly created Status.
+
+Example:
+```js
+// Assume we have - among others - the following status defined using a Environment Status Asset:
+// Logical name: "ILLEGAL_VALUE"
+// Message: "Field with name '%1' contains illegal value '%2'."
+
+// Get the vendor instance from the list of defined vendors.
+// You must have defined the vendor in an Environment Status Asset.
+// The string passed in `Status.getVendorByName('myVendorLongName')`
+// is the long name of the Vendor definition within that Asset.
+// Check documentation for "Environment Status Asset" for more info.
+const VENDOR = Status.getVendorByName('MyVendorLongName');
+
+// Create the Status
+const STATUS = Status.create(
+     VENDOR,
+     'ILLEGAL_VALUE',
+     'LastName',
+     'Putin'
+);
+
+// In the above, the message placeholders %1 and %2 will be replaced by "LastName" and "Putin".
+// So the final message is "Field with name 'LastName' contains illegal value 'Putin'."
+```
+
+___
+
 ### getVendorByName
 
-▸ **getVendorByName**(`vendorLongName`): [`VendorInfo`](VendorInfo.md)
+▸ `Static` **getVendorByName**(`vendorLongName`): [`VendorInfo`](VendorInfo.md)
 
 Get the vendor instance from the list of defined vendors.
 You must have defined the vendor in an Environment Status Asset.
