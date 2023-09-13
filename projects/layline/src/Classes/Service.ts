@@ -57,4 +57,8 @@
  *
  */
 export abstract class Service {
+    /** @hidden **/
+    constructor() {
+    }
+
 }

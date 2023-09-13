@@ -14,6 +14,10 @@
  * @class
  */
 class MessageNode {
+    /** @hidden **/
+    constructor() {
+    }
+
 }
 
 export default MessageNode;

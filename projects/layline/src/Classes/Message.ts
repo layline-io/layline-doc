@@ -77,7 +77,12 @@ class Message {
     /**
      *
      */
-    data: object = null;
+    data: object;
+
+    /** @hidden **/
+    constructor() {
+    }
+
 
     /**
      * Adds a {@link Status} to a message.

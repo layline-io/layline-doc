@@ -10,12 +10,6 @@ EntityDeclaration is the base class for all entities declared in the DataDiction
 
 **`Abstract`**
 
-## Constructors
-
-### constructor
-
-• **new EntityDeclaration**()
-
 ## Methods
 
 ### toString

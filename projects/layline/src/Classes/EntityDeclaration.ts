@@ -5,6 +5,10 @@
  */
 class EntityDeclaration {
 
+    /** @hidden **/
+    constructor() {
+    }
+
     /**
      * Return string representation of EntityDeclaration path
      */

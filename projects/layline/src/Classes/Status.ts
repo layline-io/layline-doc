@@ -25,6 +25,10 @@ import VendorInfo from './VendorInfo';
 
 class Status {
 
+    /** @hidden **/
+    constructor() {
+    }
+
     /**
      * Invoke to create a Status.
      * @param {VendorInfo} vendor Status messages can be distinguished by vendor. Pass a {@link VendorInfo} here. Obtain it with {@link Status.getVendorByName}

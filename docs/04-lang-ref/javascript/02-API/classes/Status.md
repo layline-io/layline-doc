@@ -17,7 +17,7 @@ Each of those Status entries has the following structure:
 * Logical name: A name which uniquely identifies a Status, e.g. `FIELD_UNKNOWN`
 * Language: One of the supported language codes, e.g. `en`
 * Message: The actual Status message. The message may contain placeholders, e.g. `The field with name %1 is unknown`.
-  In this example, the placeholder `%1` is filled with the respective value when creating the *Status* using method [create](Status.md#create-8).
+  In this example, the placeholder `%1` is filled with the respective value when creating the *Status* using method [create](Status.md#create-56).
 
 ## How to use
 
@@ -25,12 +25,6 @@ Based on the Vendor and the logical status name which you have defined, you can 
 The `Status` can then be attached to a message or a passed as a result code when rolling back a stream (example).
 
 ## Definition
-
-## Constructors
-
-### constructor
-
-• **new Status**()
 
 ## Methods
 
@@ -82,7 +76,7 @@ ___
 ▸ **getParameters**(): `string`[]
 
 Returns an array of parameters which may have been passed to the Status upon creation.
-See: [create](Status.md#create-8)
+See: [create](Status.md#create-56)
 
 Example:
 ```js
@@ -149,7 +143,7 @@ Invoke to create a Status.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `vendor` | [`VendorInfo`](VendorInfo.md) | Status messages can be distinguished by vendor. Pass a [VendorInfo](VendorInfo.md) here. Obtain it with [getVendorByName](Status.md#getvendorbyname-8) |
+| `vendor` | [`VendorInfo`](VendorInfo.md) | Status messages can be distinguished by vendor. Pass a [VendorInfo](VendorInfo.md) here. Obtain it with [getVendorByName](Status.md#getvendorbyname-56) |
 | `statusCode` | `string` | The `statusCode` which must be defined within your Environment Status Asset of your Project. This code will be used to identify the Status which you want to add. |
 | `...args` | `string`[] | A comma separated list of arguments which will be used to fill in the placeholders in the predefined Status message, if any |
 

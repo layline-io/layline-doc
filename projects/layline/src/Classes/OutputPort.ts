@@ -3,6 +3,10 @@
  */
 class OutputPort {
 
+    /** @hidden **/
+    constructor() {
+    }
+
     /**
      * Returns the name of the processor that this processor is attached to.
      *

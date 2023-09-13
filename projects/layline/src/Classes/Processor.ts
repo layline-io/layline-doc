@@ -12,6 +12,10 @@ import OutputPort from "./OutputPort";
 
 class Processor {
 
+    /** @hidden **/
+    constructor() {
+    }
+
     expandString(toExpand: string): string {
         return;
     }

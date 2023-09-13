@@ -11,6 +11,10 @@ import * as Stream from "stream";
  */
 class stream {
 
+    /** @hidden **/
+    constructor() {
+    }
+
     /**
      * Emit a message to the specified output port.
      * Once emitted, the context of the message is lost.

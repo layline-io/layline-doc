@@ -8,6 +8,10 @@ import Message from "./Message";
  */
 class PackedMessage {
 
+    /** @hidden **/
+    constructor() {
+    }
+
     /**
      * Unpacks a previously packed message.
      *

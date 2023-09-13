@@ -32,6 +32,10 @@ import Message from "./Message";
  */
 class Connection {
 
+    /** @hidden **/
+    constructor() {
+    }
+
     /**
      * Starts a new transaction, if the Service supports transactions (e.g. the JDBC Service).
      *

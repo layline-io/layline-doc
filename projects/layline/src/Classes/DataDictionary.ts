@@ -6,6 +6,10 @@ import Message from "./Message";
  */
 class DataDictionary {
 
+    /** @hidden **/
+    constructor() {
+    }
+
     /**
      * Creates a message from a data dictionary access path.
      *

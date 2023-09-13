@@ -11,12 +11,6 @@ This is useful in case you need to retain a large number or messages in memory, 
 
 The only way to create a packed message is by invoking the '[Message.pack](./Message#pack)' method.
 
-## Constructors
-
-### constructor
-
-• **new PackedMessage**()
-
 ## Methods
 
 ### unpack

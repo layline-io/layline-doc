@@ -10,12 +10,6 @@ This isn't an actual class, but a placeholder for _hooks_ which are available wi
 Hooks are automatically invoked as part of a Javascript Assets normal lifecycle.
 Read more about JS-lifecycle in the [introduction](/docs/lang-ref/javascript/javascript_introduction).
 
-## Constructors
-
-### constructor
-
-• **new JavaScriptProcessor**()
-
 ## Methods
 
 ### onCommit

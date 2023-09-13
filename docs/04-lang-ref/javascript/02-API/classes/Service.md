@@ -61,9 +61,3 @@ Depending on the type of service you are addressing you have different options w
 A JDBC Service for example exposes a [Connection](Connection.md) whereas a HTTP Service does not.
 
 **Check the respective Service Asset documentation on how to use the Service within a Javascript Asset.**
-
-## Constructors
-
-### constructor
-
-• **new Service**()

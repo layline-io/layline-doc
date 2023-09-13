@@ -35,12 +35,6 @@ function onStreamStart() {
 }
 ```
 
-## Constructors
-
-### constructor
-
-• **new Connection**()
-
 ## Methods
 
 ### FUNCTION\_NAME

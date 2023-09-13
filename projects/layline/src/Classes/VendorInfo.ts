@@ -14,6 +14,11 @@ class VendorInfo {
     public id: number;
     public shortName: string;
     public longName: string;
+
+    /** @hidden **/
+    constructor() {
+    }
+
 }
 
 export default VendorInfo;

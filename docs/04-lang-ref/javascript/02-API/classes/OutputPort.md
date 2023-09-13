@@ -8,12 +8,6 @@ custom_edit_url: null
 
 Instance of an output port of a Processor
 
-## Constructors
-
-### constructor
-
-• **new OutputPort**()
-
 ## Methods
 
 ### getPeerProcessorName

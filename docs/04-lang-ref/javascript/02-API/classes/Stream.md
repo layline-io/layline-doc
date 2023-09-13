@@ -10,12 +10,6 @@ custom_edit_url: null
 It does not require instantiation and is available for access in any script-based Processor, e.g. the Javascript Processor.
 It provides a number of functions which can - and sometimes have to - be invoked to control stream processing.
 
-## Constructors
-
-### constructor
-
-• **new Stream**()
-
 ## Methods
 
 ### emit
@@ -344,7 +338,7 @@ ___
 
 Requests to roll back the currently processed stream.
 
-To roll back a stream, you may issue a [requestRollback](Stream.md#requestrollback-8) to signal to layline.io that you want this stream rolled back and provide a [Status](Status.md) which describes the reason for the rollback.
+To roll back a stream, you may issue a [requestRollback](Stream.md#requestrollback-56) to signal to layline.io that you want this stream rolled back and provide a [Status](Status.md) which describes the reason for the rollback.
 
 Example:
 ```js

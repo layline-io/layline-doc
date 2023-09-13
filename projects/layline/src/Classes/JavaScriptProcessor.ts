@@ -9,6 +9,10 @@ import Message from "./Message";
  */
 class JavaScriptProcessor {
 
+    /** @hidden **/
+    constructor() {
+    }
+
     /**
      * Invoked when a Stream is committed.
      * Use this to perform potential final tasks when a stream ends.
