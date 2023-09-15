@@ -3,4 +3,6 @@ Workflow.
 
 ![Output Ports](._output-ports-single_images/a2fe874a.png)
 
-A port can have a name and description. A port name must exist and be unique within the processor.
+A port can have a name and description. A Port Name is mandatory.
+
+You cannot delete the only Output Port.
