@@ -7,7 +7,7 @@ tags:
 ---
 
 import OutputPorts from '/docs/snippets/assets/_output-ports.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling.md';
+import FailureHandling from '/docs/snippets/assets/_failure-handling-input.md';
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 # Input Kafka
@@ -18,7 +18,7 @@ Defines input parameters to ingest data from a Kafka topic.
 
 This Asset is used within a Workflow definition.
 
-![](.asset-input-kafka_images/30aa0966.png "Asset Dependency Graph (Input Kafka)")
+![](.asset-input-kafka_images/e82b6aa8.png "Asset Dependency Graph (Input Kafka)")
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ A Workflow shutdown at most goes through three phases:
 
 ### Format
 
-Data written to a Kafka topic must be written in a format which must have been defined by you previously.
+Data read from a Kafka topic must be read in a format which must have been previously defined by you.
 
 ![](.asset-input-kafka_images/e540a2a7.png "Format (Input Kafka)")
 

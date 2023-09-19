@@ -1,11 +1,14 @@
 ---
 title: Throttle
 description: Throttle Asset. Use this asset to slow down processing of a stream.
+tags:
+  - throttle
+  - speed
 ---
 
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling.md';
+import FailureHandling from '/docs/snippets/assets/_failure-handling-flow.md';
 import InputPorts from '/docs/snippets/assets/_input-ports-single.md';
 import OutputPorts from '/docs/snippets/assets/_output-ports-single.md';
 
@@ -17,7 +20,8 @@ import OutputPorts from '/docs/snippets/assets/_output-ports-single.md';
 
 The Throttle Asset allows you to slow down processing speed within the leg of a Workflow where this Processor is inserted.
 
-Typical use cases are when you do not want to overburden an external system with too many requests in too little time. Using the Throttle Asset you can control throughput based on only a few parameters.
+Typical use cases are when you do not want to overburden an external system with too many requests in too little time. Using the Throttle Asset you can control throughput based on only a few
+parameters.
 
 ## Prerequisites
 
@@ -59,10 +63,11 @@ What does this setting define?:
 
 - **`Messages per Period`**: The number of messages which are allowed to pass per time period (interval).
 
-- **`Temporal amount of Period`**: This value is best described in the connection with the next parameter `Temporal unit of Period`. Let's assume the unit is `Second`, and the amount which we enter in this field is `2`. This defines, that message throughput should be limited by e.g. 500 (defined in `Messages per Period`) message for each two second interval. 
+- **`Temporal amount of Period`**: This value is best described in the connection with the next parameter `Temporal unit of Period`.
+  Let's assume the unit is `Second`, and the amount which we enter field is `2`.
+  This defines, that message throughput should be limited by e.g. 500 (defined in `Messages per Period`) message for each two second interval.
 
 - **`Temporal unit of Period`**: The interval unit, e.g. `Seconds`, `Minutes`, etc..
-
 
 ---
 

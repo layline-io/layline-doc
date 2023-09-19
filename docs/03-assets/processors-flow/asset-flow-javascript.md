@@ -4,7 +4,7 @@ description: Javascript Asset. Use this to add custom logic to modify event cont
 ---
 
 import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling.md';
+import FailureHandling from '/docs/snippets/assets/_failure-handling-flow.md';
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 import InputPorts from '/docs/snippets/assets/_input-ports.md';
 import OutputPorts from '/docs/snippets/assets/_output-ports.md';

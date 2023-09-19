@@ -7,14 +7,14 @@ tags:
 ---
 
 import OutputPorts from '/docs/snippets/assets/_output-ports.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling.md';
+import FailureHandling from '/docs/snippets/assets/_failure-handling-input.md';
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 # Input Message
 
 ## Purpose
 
-Defines input parameters to ingest data from a Timer Source.
+Defines input parameters to ingest data from a Message Source.
 
 This Asset is used within a Workflow definition.
 
@@ -23,9 +23,9 @@ This Asset is used within a Workflow definition.
 ## Prerequisites
 
 You need:
-**A Timer Source**
 
-* [Timer Source](/docs/assets/sources/asset-source-timer)
+* [Timer Source](/docs/assets/sources/asset-source-timer), or
+* [Email Source](/docs/assets/sources/asset-source-email)
 
 ## Configuration
 
@@ -62,8 +62,8 @@ A Workflow shutdown at most goes through three phases:
 
 ### Source
 
-You need to assign a [Timer Source](/docs/assets/sources/asset-source-timer). 
-The Timer Source defines when a message is triggered and what the content of that message is.
+You need to assign either a [Timer Source](/docs/assets/sources/asset-source-timer) or [Email Source](/docs/assets/sources/asset-source-email). 
+The Source defines the physical parameters to obtain the data.
 
 ![](.asset-input-message_images/e8a26a3e.png "Timer Source (Input Message)")
 

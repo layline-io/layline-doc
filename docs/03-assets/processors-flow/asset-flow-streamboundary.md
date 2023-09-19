@@ -8,7 +8,7 @@ tags:
 
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling.md';
+import FailureHandling from '/docs/snippets/assets/_failure-handling-flow.md';
 import InputPorts from '/docs/snippets/assets/_input-ports.md';
 import OutputPorts from '/docs/snippets/assets/_output-ports.md';
 import OutputPortsSingle from '/docs/snippets/assets/_output-ports-single.md';

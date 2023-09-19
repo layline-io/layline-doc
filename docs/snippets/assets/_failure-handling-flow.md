@@ -49,7 +49,7 @@ A Javascript Flow Processor, for example, which directly interacts with a databa
 Don't simply give up. Try to process the whole stream again.
 This option allows you to define how often and in what intervals the retries should be performed.
 
-![Failure Handling Retry Stream](._failure-handling_images/fca3f27b.png)
+![Failure Handling Retry Stream](._failure-handling-flow_images/fca3f27b.png)
 
 **Stream Retry Settings**
 
@@ -60,14 +60,14 @@ This option allows you to define how often and in what intervals the retries sho
 Based on these parameters, the system will try to balance the defined number of retries within the time boundaries of min. backoff and max. backoff.  
 Taken the example numbers from above, the five retries would happen in this timespan:
 
-![Failure Retry Stream Handling](._failure-handling_images/dd9ce7d7.png)
+![Failure Retry Stream Handling](._failure-handling-flow_images/dd9ce7d7.png)
 
 ##### `Retry Event/Message`
 
 Pick this reaction if you want to retry processing the current message.
 As is the case with the [Retry Stream](#retry-stream) reaction you can define how often and in what intervals the retries should be performed.
 
-![Failure Retry Event/Message Handling](._failure-handling_images/6b7e1e15.png)
+![Failure Retry Event/Message Handling](._failure-handling-flow_images/6b7e1e15.png)
 
 The settings are the same as with the [Retry Stream](#retry-stream) reaction. So please refer to this.
 There is one additional setting, however, which is `When final retry failed`.
@@ -79,5 +79,5 @@ You here have the option to decide what to do if the message cannot be processed
 * **`Retry Stream`**: Retry the whole stream once again.
   If you pick this option then you can again define all relevant [Retry Stream](#retry-stream) parameters.
 
-  ![Failure Retry Event/Message -> Retry Stream Handling](._failure-handling_images/db677ef3.png)
+  ![Failure Retry Event/Message -> Retry Stream Handling](._failure-handling-flow_images/db677ef3.png)
 
