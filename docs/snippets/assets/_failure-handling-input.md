@@ -1,14 +1,21 @@
-
 Processing within an Input Processor like this one can fail.
-In this section you can define how the system should behave in case problems.
+In this section, you can define how the system should behave in case of problems.
 
-#### Failure Reaction
+#### Failure Types
+
+One type of failure is observable:
+
+| # | Failure observables / Reaction                                                         | Ignore | Retry Event/Message | Retry Stream | Rollback Stream | 
+|:--|----------------------------------------------------------------------------------------|:------:|:-------------------:|:------------:|:---------------:|
+| 1 | **`Source failure handling`**<br/>A problem occurred with the Source of the messsages. |        |                     |      ✔       |        ✔        |
+
+#### Failure Type Reactions
 
 The following two failure reactions are supported.
 
 ##### `Rollback Stream`
 
-Rollback the complete stream. 
+Rollback the complete stream.
 In the case of batch/file processing for example the complete file (which represents the stream) will be rolled back and put into error.
 This is the default behavior.
 

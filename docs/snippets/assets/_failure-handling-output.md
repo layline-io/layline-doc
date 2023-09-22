@@ -1,20 +1,17 @@
-Processing within a Flow Processor like this one can fail for various reasons.
+Processing within an Output Processor like this one can fail for various reasons.
 In this section you can define how the system should behave in case of such problems.
 
 #### Failure Types
 
-Four types of failures are observable:
+Two types of failures are observable:
 
-| # | Failure observables / Reaction                                                                                   | Ignore | Retry Event/Message | Retry Stream | Rollback Stream | 
-|:--|------------------------------------------------------------------------------------------------------------------|:------:|:-------------------:|:------------:|:---------------:|
-| 1 | **`Stream start failure handling`**<br/>A problem occurred in this Asset when starting a new stream.             |   ✔    |          ✔          |      ✔       |        ✔        |
-| 2 | **`Stream end failure handling`**<br/>A problem occurred in this Asset when ending a stream.                     |   ✔    |          ✔          |      ✔       |        ✔        |
-| 3 | **`Message failure handling`**<br/>A problem occurred when handling a specific message in this Asset.            |   ✔    |          ✔          |      ✔       |        ✔        |
-| 4 | **`Rollback commit failure handling`**<br/>A problem occurred during system issued rollback or commit procedure. |   ✔    |          ✔          |      ✔       |        ✔        |
+| # | Failure observables / Reaction                                                       | Ignore | Retry Event/Message | Retry Stream | Rollback Stream | 
+|:--|--------------------------------------------------------------------------------------|:------:|:-------------------:|:------------:|:---------------:|
+| 1 | **Sink failure handling**<br/>A problem occurred during the output of a stream       |        |                     |      ✔       |        ✔        |
+| 2 | **Event write failure handling**<br/>A problem occurred during writing of a message. |   ✔    |          ✔          |      ✔       |        ✔        |
+
 
 #### Failure Type Reactions
-
-Each of these failure types can be responded to with four different reactions:
 
 ##### `Ignore`
 
@@ -50,7 +47,7 @@ A Javascript Flow Processor, for example, which directly interacts with a databa
 Don't simply give up. Try to process the whole stream again.
 This option allows you to define how often and in what intervals the retries should be performed.
 
-![Failure Handling Retry Stream](._failure-handling-flow_images/fca3f27b.png)
+![](._failure-handling-output_images/f979442a.png "Failure Handling Retry Stream")
 
 **Stream Retry Settings**
 
@@ -61,14 +58,14 @@ This option allows you to define how often and in what intervals the retries sho
 Based on these parameters, the system will try to balance the defined number of retries within the time boundaries of min. backoff and max. backoff.  
 Taken the example numbers from above, the five retries would happen in this timespan:
 
-![Failure Retry Stream Handling](._failure-handling-flow_images/dd9ce7d7.png)
+![](._failure-handling-output_images/02003323.png "Failure Retry Stream Handling")
 
 ##### `Retry Event/Message`
 
 Pick this reaction if you want to retry processing the current message.
 As is the case with the [Retry Stream](#retry-stream) reaction you can define how often and in what intervals the retries should be performed.
 
-![Failure Retry Event/Message Handling](._failure-handling-flow_images/6b7e1e15.png)
+![](._failure-handling-output_images/80f81ca6.png "Failure Retry Event/Message Handling")
 
 The settings are the same as with the [Retry Stream](#retry-stream) reaction. So please refer to this.
 There is one additional setting, however, which is `When final retry failed`.
@@ -80,5 +77,5 @@ You here have the option to decide what to do if the message cannot be processed
 * **`Retry Stream`**: Retry the whole stream once again.
   If you pick this option then you can again define all relevant [Retry Stream](#retry-stream) parameters.
 
-  ![Failure Retry Event/Message -> Retry Stream Handling](._failure-handling-flow_images/db677ef3.png)
+  ![](._failure-handling-output_images/7eb5b4b1.png "Failure Retry Event/Message -> Retry Stream Handling")
 

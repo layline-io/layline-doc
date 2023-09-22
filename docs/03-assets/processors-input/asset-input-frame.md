@@ -15,7 +15,8 @@ import OutputPorts from '/docs/snippets/assets/_output-ports-single.md';
 
 ## Purpose
 
-Let's first understand why this is called a _Frame_ Input Asset. It's a generic term for sources which provide data in the form of datagrams.
+Let's first understand why this is called a _Frame_ Input Asset. 
+It's a generic term for Sources which provide data in the form of datagrams.
 Within layline.io these are for example SQS and UDP Source Assets.
 
 So if you are working with any of these Sources, then you need this Frame Input Asset to be able to get data from the Source.  

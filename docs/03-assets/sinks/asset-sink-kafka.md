@@ -56,8 +56,8 @@ If it does not exist, you need to create it first.
 
 ![](.asset-sink-kafka-images/bbbe60a1.png "General Kafka Producer Settings (Kafka Sink)")
 
-* **`Parallelism`**: Tuning parameter of how many messages can be sent to Kafka in parallel.
-  If nothing is specified, the default is _10,000_.
+* **`Parallelism`** : In order to accelerate writing to a Kafka topic, you can parallelize this process.
+  Entering `100` here, for example allows layline.io to have 100 messages "in-flight" to Kafka in parallel to be written to a Kafka topic.
 
 #### Additional Kafka Properties
 
