@@ -33,7 +33,7 @@ None
 
 ![Name & Description (FR Flow Asset)](.asset-flow-filterrouting_images/91f8dc02.png)
 
-* **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+* **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 * **`Description`** : Enter a description.
 

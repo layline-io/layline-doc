@@ -20,7 +20,8 @@ import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 Let's first understand why this is called a _Frame_ Output Asset.
 It's a generic term for Sinks which receive data in the form of datagrams.
-Within layline.io these are for example Kafka, SNS, and more. See [Prerequisites](#prerequisites) for a full list.
+Within layline.io these are, for example, Kafka, SNS, and more.
+See [Prerequisites](#prerequisites) for a full list.
 
 If you are working with any of these Sinks, then you need this Frame Output Asset to be able to output data to the Source.
 
@@ -45,7 +46,7 @@ You need:
 
 ![](.asset-output-frame_images/5f5dbaef.png "Name & Description (Output Frame)")
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 
@@ -76,7 +77,7 @@ If you want to output data to EventBridge, then you need to configure the settin
 
 ![Parallel requests (Output Frame)](.asset-output-frame_images/22cde544.png)
 
-In order to accelerate writing to a EventBridge, you can parallelize this process.
+In order to accelerate writing to an EventBridge, you can parallelize this process.
 Entering `100` here (example) allows layline.io to have 100 messages "in-flight" to EventBridge in parallel.
 
 ### Routing Rules
@@ -86,7 +87,7 @@ By creating granular rules, we can specify that certain data goes to certain tar
 
 #### Default behavior
 
-In case a message cannot be matched by any rule, you can define a default behavior of what to do:
+In case any rule cannot match a message, you can define a default behavior of what to do:
 
 ![EventBridge Default behavior (Output Frame)](.asset-output-frame_images/5c1a78f7.png)
 
@@ -96,7 +97,7 @@ In case a message cannot be matched by any rule, you can define a default behavi
 
 #### Managing Routing Rules
 
-Next you can define individual routing rules for messages which shall be output to EventBridge.
+Next, you can define individual routing rules for messages which shall be output to EventBridge.
 Rules are evaluated in order. The first one takes precedence over the second and so forth.
 Use the respective buttons to add or move a new rule in the designated space:
 
@@ -108,7 +109,7 @@ Let's assume our condition for routing messages are as follows:
 
 ##### Conditions
 
-First you define the conditions under which the individual message should match the rule.
+First, you define the conditions under which the individual message should match the rule.
 
 You can pick whether `all` conditions must be fulfilled, `at least one` of the rules must be met, or `none`.
 
@@ -133,12 +134,12 @@ In case the conditions are met, the message is then forwarded to an [EventBridge
   An Event Bus reference can be selected from Event Buses which you have already defined in an [Event Bridge Sink](/docs/assets/sinks/asset-sink-eventbridge),
   or you can define a term which returns the Event Bus name through a [Quickscript](/docs/lang-ref/quickscript/quickscript) term.
 
-    * **Constant**: Pick this option to select from Event Buses which you have defined in an in an [Event Bridge Sink](/docs/assets/sinks/asset-sink-eventbridge).
-      Select the available Event Buses from the drop down on the right:
+    * **Constant**: Pick this option to select from Event Buses which you have defined in an [Event Bridge Sink](/docs/assets/sinks/asset-sink-eventbridge).
+      Select the available Event Buses from the drop-down on the right:
 
   ![Select pre-configured Event Bus (Output Frame)](.asset-output-frame_images/bc80c560.png)
 
-    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to a Event Bus name.
+    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to an Event Bus name.
       You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
@@ -160,8 +161,7 @@ The structure looks like [this](https://docs.aws.amazon.com/eventbridge/latest/u
     "ARN"
   ],
   "detail": {
-    JSON
-    object
+    JSON object
   }
 }
 ```
@@ -205,7 +205,7 @@ The structure looks like [this](https://docs.aws.amazon.com/eventbridge/latest/u
   ![](.asset-output-frame_images/a46df20b.png "Event detail message accessor (Output Frame)")
 
   In the example above, the branch "Detail.Boat" from the message is output to EventBridge in JSON format.
-  To learn more about messages and data dictionary please check [here](/docs/concept/data-dictionary).
+  To learn more about messages and data dictionary, please check [here](/docs/concept/data-dictionary).
 
 * **`Resources`**: Define EventBridge Resource names here.
 
@@ -232,13 +232,13 @@ The structure looks like [this](https://docs.aws.amazon.com/eventbridge/latest/u
 The Kafka Output Processor gives you granular control to which topic data is written and how.
 For this purpose we distinguish between two `Routing Modes`:
 
-1. **`Routing Table`** : This mode allows you to define default as well as specific data-driven rules to which topics data is written to.
+1. **`Routing Table`** : This mode allows you to define default as well as specific data-driven rules to which topic data is written to.
    Pick this mode when you want to have detailed control over topic access.
 
 2. **`Exclusive Partition`** : This mode enables you to gain exclusive access to a Kafka partition.
    Pick this mode if you want to make sure you are the only one writing to a specific Kafka partition.
-   An example would be multiple inputs reading from files and writing their content to Kakfa.
-   However, you want to ensure, that one file's contents are always written to one partition only.
+   An example would be multiple inputs reading from files and writing their content to Kafka.
+   However, you want to ensure that one file's contents are always written to one partition only.
 
 ![Routing Modes (Output Frame)](.asset-output-frame_images/317cae17.png)
 
@@ -249,7 +249,7 @@ By creating granular rules, we can specify that certain data goes to certain top
 
 #### Default behavior
 
-In case a message cannot be matched by any rule, you can define a default behavior of what to do:
+In case any rule cannot match a message, you can define a default behavior of what to do:
 
 ![Default behavior (Output Frame)](.asset-output-frame_images/09193941.png)
 
@@ -271,7 +271,7 @@ Let's assume our condition for routing messages are as follows:
 
 ##### Conditions
 
-First you define the conditions under which the individual message should match the rule.
+First, you define the conditions under which the individual message should match the rule.
 
 You can pick whether `all` conditions must be fulfilled, `at least one` of the rules must be met, or `none`.
 
@@ -286,7 +286,7 @@ You will probably have simple rules most of the time, however.
 
 ##### Destination
 
-In case the conditions are met, the message is then forwarded to the topic an in the format you define.
+In case the conditions are met, the message is then forwarded to the topic and in the format you define.
 
 * **`Format`**: Pick a format in which you would like to output the data to Kafka.
   You must have pre-defined the format [here](/docs/category/formats).
@@ -301,7 +301,7 @@ In case the conditions are met, the message is then forwarded to the topic an in
   by the QuickScript function `strExpand`.
   Using QuickScript here allows you to make decisions on the outcome of the topic name, beyond simply putting a hard-coded name here.
   If you do want to output all messages to a hard-coded topic then simply enter the topic name here.
-  Make sure that you put quotes around it, since this is a QuickScript field and if you want the outcome to be a string, it must be quoted.
+  Make sure that you put quotes around it, since this is a QuickScript field, and if you want the outcome to be a string, it must be quoted.
 
   ![Destination (Output Frame)](.asset-output-frame_images/372b0658.png)
 
@@ -319,7 +319,7 @@ In case the conditions are met, the message is then forwarded to the topic an in
 In our example we have created another routing rule `MyOtherRoutingRule` **below** the first rule.
 
 The order of rules is important, as they will be evaluated in this order.
-If you need to change the order you can do so by using the `Move Up` and `Move Down` buttons at the top of the Routing Rules section.
+If you need to change the order, you can do so by using the `Move Up` and `Move Down` buttons at the top of the Routing Rules section.
 
 ![Move Rule (Output Frame)](.asset-output-frame_images/d3dedd0f.png)
 
@@ -332,9 +332,9 @@ If you need to change the order you can do so by using the `Move Up` and `Move D
 
 ### Exclusive Partition Mode
 
-Use this mode, in case you want to write to a multi-partitioned Kafka topic, and you specifically want obtain exclusive access to a topic partition.
+Use this mode, in case you want to write to a multi-partitioned Kafka topic, and you specifically want to obtain exclusive access to a topic partition.
 
-What this entails, is that each instance of a Workflow running this Asset as a Processor, will try to obtain exclusive access one of the partitions of a topic configured.
+What this entails is that each instance of a Workflow running this Asset as a Processor, will try to obtain exclusive access to one of the partitions of a topic configured.
 
 **Example:**
 
@@ -342,13 +342,13 @@ Setting the scene:
 
 1. You have a Kafka topic which is divided into 10 partitions.
 2. You are processing files on the input (example) and **want to process multiple files in parallel**.
-3. Results of this processing shall be written to a Kafka topic.
-4. You want to ensure, that data from each file is written subsequently and in order to the topic.
+3. The results of this processing shall be written to a Kafka topic.
+4. You want to ensure that data from each file is written subsequently and in order to the topic.
    Data from different files should not be "mixed" in the topic.
-   The reason for this is, that you want to be able to read the data back out from the topics through some other consumer,
+   The reason for this is that you want to be able to read the data back out from the topics through some other consumer,
    and this consumer expects the data of each stream transaction (file) to be in consecutive order.
 
-In this case you would
+In this case, you would
 
 1. create a workflow which writes to the Kafka topic, and
 2. instantiate the Workflow 10 times.
@@ -408,7 +408,7 @@ Use the respective buttons to add or move a new rule in the designated space:
 
 ##### Conditions
 
-First you define the conditions under which the individual message should match the rule.
+First, you define the conditions under which the individual message should match the rule.
 
 You can pick whether `all` conditions must be fulfilled, `at least one` of the rules must be met, or `none`.
 
@@ -439,14 +439,14 @@ In case the conditions are met, the message is then forwarded to SNS in the form
   A Kinesis data stream is a category through which you can send and receive real-time streaming data.
   It acts as a durable and ordered log of the data records. The stream parameter is used to identify the stream to which you want to send or receive data.
 
-    * **Constant**: Pick this option to select from Streams which you have defined in an [Kinesis Sink](/docs/assets/sinks/asset-sink-kinesis).
+    * **Constant**: Pick this option to select from Streams which you have defined in a [Kinesis Sink](/docs/assets/sinks/asset-sink-kinesis).
       Select an available stream from the drop-down on the right:
 
       ![](.asset-output-frame_images/9e956db9.png "Select pre-configured Kinesis Stream (Output Frame)")
 
       Alternatively, simply enter the name of the stream.
 
-    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to a SNS topic name.
+    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to an SNS topic name.
       You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
@@ -513,7 +513,7 @@ Use the respective buttons to add or move a new rule in the designated space:
 
 ##### Conditions
 
-First you define the conditions under which the individual message should match the rule.
+First, you define the conditions under which the individual message should match the rule.
 
 You can pick whether `all` conditions must be fulfilled, `at least one` of the rules must be met, or `none`.
 
@@ -547,13 +547,13 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 
       Alternatively, simply enter the name of the topic.
 
-    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to a SNS topic name.
+    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to an SNS topic name.
       You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/bbe776b5.png "Define a calculated SNS Topic term")
 
-* **`Message Group Id`**: Enter a term (Constant) or a QuickScript (Calculated) which is passed as the "Message Group Id" to SNS.
+* **`Message Group Id`**: Enter a term (Constant) or a QuickScript (Calculated) which is passed as the "Message Group ID" to SNS.
 
   ![](.asset-output-frame_images/f1820b0d.png "SNS Message Group Id (Output Frame)")
 
@@ -642,7 +642,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 
   You have the choice of the following options:
 
-    * **`Constant`**: Enter a fixed subject identifier. Otherwise leave empty.
+    * **`Constant`**: Enter a fixed subject identifier. Otherwise, leave empty.
 
     * **`Calculated`**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which returns a subject string.
       This is especially useful if the message contains a specific field which contains the necessary information.
@@ -672,7 +672,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 
   For each attribute you have to define
 
-    * **`Name`**: Enter a unique attribute name. Avoid whitespaces.
+    * **`Name`**: Enter a unique attribute name. Avoid spaces.
     * **`Type`**: Pick a type from `String`, `Number`, or `Binary`. The binary type is useful in the context of calculated content.
     * **`Mode`**: Pick `Constant` for a fixed value, or `Calculated` for a value derived from a QuickScript term. This can include information retrieved from the current message.
     * **`Value`**: The value depending on what you picked in `Mode`.
@@ -719,7 +719,7 @@ Use the respective buttons to add or move a new rule in the designated space:
 
 ##### Conditions
 
-First you define the conditions under which the individual message should match the rule.
+First, you define the conditions under which the individual message should match the rule.
 
 You can pick whether `all` conditions must be fulfilled, `at least one` of the rules must be met, or `none`.
 
@@ -753,13 +753,13 @@ In case the conditions are met, the message is then forwarded to SQS in the form
 
       Alternatively, simply enter the name of the topic.
 
-    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to a SNS topic name.
+    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to an SNS topic name.
       You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/8ce31e60.png "Define a calculated SQS Topic term")
 
-* **`Message Group Id`**: Enter a term (Constant) or a QuickScript (Calculated) which is passed as the "Message Group Id" to SNS.
+* **`Message Group Id`**: Enter a term (Constant) or a QuickScript (Calculated) which is passed as the "Message Group ID" to SNS.
 
   ![](.asset-output-frame_images/6646c58c.png "SQS Message Group Id (Output Frame)")
 
@@ -815,10 +815,10 @@ In case the conditions are met, the message is then forwarded to SQS in the form
   The purpose of attributes in SQS is to:
 
     1. Provide Custom Metadata: Message attributes can hold custom metadata relevant to a message, such as message IDs, timestamps, sender information, or any other contextual data. These attributes
-       can help in enhancing the understanding and processing of messages.
+       can help to enhance the understanding and processing of messages.
 
     2. Control Message Handling: Attributes can influence how messages are handled by SQS. For example, the Visibility Timeout attribute determines how long a message remains invisible to other
-       consumers once a consumer starts processing it. Redrive Policy attributes control how dead-letter queues are used for failed messages.
+       consumers once a consumer starts processing it. Re-drive Policy attributes control how dead-letter queues are used for failed messages.
 
     3. Enable Message Filtering: Message attributes can be used to define message filtering policies. Subscribers can subscribe to a specific subset of messages based on attribute values, filtering
        out unwanted or unrelated messages and only receiving the ones that match certain criteria.
@@ -826,7 +826,7 @@ In case the conditions are met, the message is then forwarded to SQS in the form
     4. Facilitate Delayed Queuing: Attributes like the Delay Seconds attribute allow you to specify a delay for message delivery. Messages with a delay are retained in the queue but are not
        immediately available for consumption, effectively introducing a delay before they become visible.
 
-  By utilizing attributes, SQS provides flexibility and extensibility in working with messages, enabling metadata organization, control over message handling,
+  By utilizing attributes, SQS provides flexibility and extensibility in working with messages, enabling the metadata organization, control over message handling,
 
   You can enter any number of additional attributes in the respective table:
 
@@ -834,7 +834,7 @@ In case the conditions are met, the message is then forwarded to SQS in the form
 
   For each attribute you have to define
 
-    * **`Name`**: Enter a unique attribute name. Avoid whitespaces.
+    * **`Name`**: Enter a unique attribute name. Avoid spaces.
     * **`Type`**: Pick a type from `String`, `Number`, or `Binary`. The binary type is useful in the context of calculated content.
     * **`Mode`**: Pick `Constant` for a fixed value, or `Calculated` for a value derived from a QuickScript term. This can include information retrieved from the current message.
     * **`Value`**: The value depending on what you picked in `Mode`.

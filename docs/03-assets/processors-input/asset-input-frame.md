@@ -38,7 +38,7 @@ You need:
 
 ![Name & Description (Input Frame)](.asset-input-frame_images/66d96753.png)
 
-* **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+* **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 * **`Description`** : Enter a description.
 

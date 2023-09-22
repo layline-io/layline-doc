@@ -40,7 +40,7 @@ You need:
 
 ![Name & Description (Javascript Flow Asset)](.asset-flow-javascript_images/0f67058e.png "Name & Description (Javascript)")
 
-* **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+* **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 * **`Description`** : Enter a description.
 

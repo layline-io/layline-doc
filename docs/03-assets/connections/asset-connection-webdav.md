@@ -25,7 +25,7 @@ Defines the connection parameters for a WebDav endpoint.
 
 ![Name & Description (Connection WebDav)](.asset-connection-webdav_images/75395c1a.png)
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

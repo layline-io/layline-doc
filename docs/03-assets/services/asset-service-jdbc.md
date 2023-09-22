@@ -23,7 +23,7 @@ None
 
 ![](.asset-service-jdbc_images/651091bb.png "Name & Description (Service JDBC)")
 
-* **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+* **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 * **`Description`** : Enter a description.
 

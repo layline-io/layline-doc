@@ -27,7 +27,7 @@ None
 
 ![](.asset-service-aerospike_images/1de2b729.png "Name & Description (Service Aerospike)")
 
-* **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+* **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 * **`Description`** : Enter a description.
 

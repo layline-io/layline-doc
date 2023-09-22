@@ -36,7 +36,7 @@ This will help the Intellisense feature in the mapping configuration to help wit
 
 ![Name & Description (Stream Boundary Flow Asset)](.asset-flow-streamboundary_images/6f497f41.png)
 
-* **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+* **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 * **`Description`** : Enter a description.
 

@@ -28,7 +28,7 @@ None.
 
 ![](.asset-output-devnull_images/9c666d13.png "Name & Description (Output DevNull)")
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

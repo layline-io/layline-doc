@@ -32,7 +32,7 @@ To enable the connection to AWS cloud services or an AWS compatible endpoint.
 
 ![6f1da8c1.png](.asset-connection-aws_images/6f1da8c1.png "Name & Description (Connection AWS)")
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

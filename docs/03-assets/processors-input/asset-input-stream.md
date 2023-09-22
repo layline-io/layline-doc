@@ -43,7 +43,7 @@ You need:
 
 ![](.asset-input-stream_images/af24a1af.png "Name & Description (Input Stream)")
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

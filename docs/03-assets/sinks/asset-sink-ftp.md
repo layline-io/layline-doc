@@ -32,7 +32,7 @@ You need:
 
 ![](.asset-sink-ftp_images/969490a2.png "Name & Description (FTP Sink Asset)")
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

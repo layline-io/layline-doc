@@ -33,7 +33,7 @@ You need:
 
 ![](.asset-input-service_images/f4f98c4c.png "Name & Description (Input Service)")
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

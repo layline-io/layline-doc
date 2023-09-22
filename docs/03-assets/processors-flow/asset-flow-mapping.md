@@ -32,7 +32,7 @@ This will help the Intellisense feature in the mapping configuration to help wit
 
 ![Name & Description (Mapping Flow Asset)](.asset-flow-mapping_images/9a2b7358.png)
 
-* **`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+* **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 * **`Description`** : Enter a description.
 

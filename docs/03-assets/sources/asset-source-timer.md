@@ -30,7 +30,7 @@ What will be relevant is that something should happen, and the timer source make
 
 ![](.asset-source-timer_images/20d6a78a.png "Name & Description (Timer Source)")
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

@@ -33,7 +33,7 @@ You need:
 
 ![](.asset-source-kafka-images/ba82f88d.png "Name & Description (Kafka Source Asset)")
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

@@ -28,7 +28,7 @@ Defines the connection parameters for an Email endpoint.
 
 ![Name & Description (Connection Email)](.asset-connection-email_images/45509d51.png)
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

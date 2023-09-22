@@ -26,7 +26,7 @@ Defines the connection parameters for a SMB endpoint.
 
 ![Name & Description (Connection SMB)](.asset-connection-smb_images/0243a9e1.png)
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

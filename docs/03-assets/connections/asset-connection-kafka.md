@@ -27,7 +27,7 @@ Defines the connection parameters for a Kafka endpoint.
 
 ![Name & Description (Connection Kafka)](./.asset-connection-kafka-images/d524b928.png)
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

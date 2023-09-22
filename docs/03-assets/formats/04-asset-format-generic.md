@@ -62,7 +62,7 @@ We will explain all of this in this document.
 
 ![Name & Description (Format ASN.1)](.asset-format-generic-images/575d9316.png)
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

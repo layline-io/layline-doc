@@ -33,7 +33,7 @@ You need:
 
 ![](.asset-input-message_images/2200e5f0.png "Name & Description (Input Message)")
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 

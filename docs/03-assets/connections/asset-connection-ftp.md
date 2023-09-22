@@ -29,7 +29,7 @@ Defines the connection parameters for an FTP/SFTP endpoint.
 
 ![1294e3a1.png](.asset-connection-ftp_images/1294e3a1.png "Name & Description (Connection FTP)")
 
-**`Name`** : Name of the Asset. Whitespaces are not allowed in the name.
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
 **`Description`** : Enter a description.
 
