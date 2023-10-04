@@ -60,7 +60,7 @@ We will explain all of this in this document.
 
 ### Name & Description
 
-![Name & Description (Format ASN.1)](.asset-format-generic-images/575d9316.png)
+![Name & Description (Format ASN.1)](.04-asset-format-generic_images/575d9316.png)
 
 **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
@@ -77,7 +77,7 @@ Potential issues are highlighted.
 Hints can be shown by hovering over the red squiggly underlines.
 Hovering over property names shows clues about the purpose of the property.
 
-![](.asset-format-generic-images/fa5d21d1.png "Format Definition (Format Generic)")
+![](.04-asset-format-generic_images/fa5d21d1.png "Format Definition (Format Generic)")
 
 The next section now describes the grammar language, which is entered in the Format Editor.
 
@@ -1651,14 +1651,14 @@ This is where you can upload a sample file with real-life data to see whether yo
 In the image below we have loaded a small sample file for our example grammar which we have introduced at the beginning of this description.
 It has a Header, two Detail records, and a Trailer record.
 
-![](.asset-format-generic-images/a625269c.png "Sample File View (Format Generic)")
+![](.04-asset-format-generic_images/a625269c.png "Sample File View (Format Generic)")
 
 If your file matches the grammar, you will see that the editor has split the data up in fields of alternating color (black and red).
 Hovering the mouse over a field will show a popup with information about the field (see "**BankIn.Detail.Balance**" in the image above.)
 
 If you select the `Sample Messages` tab, you should see your data in a structured format:
 
-![](.asset-format-generic-images/ef908314.png "Sample Message View (Format Generic)")
+![](.04-asset-format-generic_images/ef908314.png "Sample Message View (Format Generic)")
 
 To copy a part of the structure, click the copy button next to it.
 
@@ -1674,7 +1674,7 @@ There are a number of reasons why the grammar may not match the data. Let's take
 
 1. Grammar contains red squiggly lines under items:
 
-![](.asset-format-generic-images/c8f79c84.png "In case of error (Format Generic)")
+![](.04-asset-format-generic_images/c8f79c84.png "In case of error (Format Generic)")
 
 This indicates a problem with the grammar. Hover over the marked item and check the popup which should show the cause of the problem.
 

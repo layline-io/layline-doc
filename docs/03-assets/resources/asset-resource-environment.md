@@ -17,9 +17,21 @@ I.e. file directories, IP-addresses, database paths, any many more parameters ar
 
 It is therefore important that these physical environment settings are separate from the logical configuration, and only combined within the individual target system to from a runnable configuration.
 
-## Configuring and using environment variables
+## Configuration
 
-The Environment Asset allows you to define a number of key-value pair tuples. 
+### Name & Description
+
+![](.asset-resource-environment_images/c99ea69a.png "Name & Description (Environment Asset)")
+
+**`Name`** : Name of the Asset. Spaces are not allowed in the name.
+
+**`Description`** : Enter a description.
+
+The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it. Click to expand and then click to follow, if any.
+
+### Configuring and using environment variables
+
+The Environment Asset allows you to define a number of key-value pair tuples.
 
 Example:
 
@@ -29,16 +41,16 @@ In the table the key is on the left (Property) and the associated value on the r
 Enter as many key-value-pairs as necessary.
 
 These environment variables can then be used in the configuration like so:
- 
+
 ![](.asset-resource-environment_images/6f2f1446.png "Association between environment property and its use in an Asset setting (Environment Asset)")
 
 To learn more about how to use environment variables within layline.io settings, please read [here](/docs/lang-ref/macros#lay).
 
-## The Role of Environment Assets
+### The Role of Environment Assets
 
-### For Deployment
+#### For Deployment
 
-In case you have configured Environment Variables and are using them within configuration settings of other Assets (that's the idea, anyway), 
+In case you have configured Environment Variables and are using them within configuration settings of other Assets (that's the idea, anyway),
 then you will have to make sure, that the Deployment knows which Environment Variables it has to use, in order to replace the variables with the actual values which you have configured.
 
 You therefore need to add one or more Environment Assets to the Deployment Configuration, so that it knows what values to use when replacing the environment variables of the sort `${lay:dbUrl}`.
@@ -49,24 +61,36 @@ And because you have a
 2. A Testing Environment on a Test Cluster, and
 3. A Production Environment
 
-you will likely have three different Environment Assets, each of which holds the same keys, but with different values to serve each of the distinct environments: 
+you will likely have three different Environment Assets, each of which holds the same keys, but with different values to serve each of the distinct environments:
 
 ![](.asset-resource-environment_images/90dfbb11.png "Different Environment Assets for different")
 
-### For Testing
+#### For Testing
 
-Some aspects of your Project are "testable" without having to deploy it to a Reactive Cluster. 
+Some aspects of your Project are "testable" without having to deploy it to a Reactive Cluster.
 An example is an AWS Connection Asset in which the access key is configured to be an environment variable `awsAccessKey`.
 
 - We have an Environment Asset "EnvAndrew".
 - In that Asset we have an Environment Variable `awsAccessKey`.
 - We have set up a Test Environment "NewTestEnvironment". Assigned to this is the Environment Asset "EnvAndrew".
 - We create an AWS Connection Asset in which we use the Environment Variable through a macro `${lay:awsAccessKey}`.
-- Because the Project in the UI uses the Test Environment, and the Test Environment uses the Environment Asset "EnvAndrew", the AWS Connection Asset knows how to resolve the macro at configuration time, and thus can test the connection.
+- Because the Project in the UI uses the Test Environment, and the Test Environment uses the Environment Asset "EnvAndrew", the AWS Connection Asset knows how to resolve the macro at configuration
+  time, and thus can test the connection.
 
 Hope this makes sense.
 
 ![](.asset-resource-environment_images/fe4e5fc0.png)
+
+### Renaming Environment Variables
+
+:::caution Renaming Environment Variables
+If you decide to rename your environment variables, the references to them will not be automatically renamed.
+So, if you rename, but do not rename the references, then the link between them will be lost.
+You will also get an error when trying to deploy a Project and environment variables cannot be resolved.
+
+Use the `Search` functionality to find all references to an Environment Variable.
+:::
+
 
 ---
 
