@@ -16,6 +16,20 @@ class Processor {
     constructor() {
     }
 
+    /**
+     * Expands and environment variable in a string.
+     * This is useful if you want to use environment variables in your Javascript Processor.
+     * For example, if you want to use the `LAYLINE_HOME` environment variable, you can do so like this:
+     * ```js
+     * // Get the username which is defined in one of your environment resources:
+     * let username = processor.expandString('${lay:username}');
+     * ```
+     *
+     * Check out the [macro](/docs/lang-ref/macros) documentation for more information on how to address expandable strings.
+     *
+     * @return {string} Expanded string
+     * @param toExpand
+     */
     expandString(toExpand: string): string {
         return;
     }

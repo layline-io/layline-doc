@@ -1,6 +1,10 @@
 ---
 title: Aerospike Service
 description: Aerospike Service Asset. Use this to connect and work with a Aerospike data source.
+tags:
+  - aerospike
+  - database
+  - service
 ---
 
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
@@ -522,12 +526,20 @@ try {
 Logical functions for read, write, and delete:
 
 * **Read**: `rxServices.<Logical Service Name>.<Collection or Functionname>({Key: key})`
-* **Write
-  **: `rxServices.<Logical Service Name>.<Collection or Functionname>({Key: key, Bin: {bin1:value, bin2: value, ...}})`
+* **Write**: `rxServices.<Logical Service Name>.<Collection or Functionname>({Key: key, Bin: {bin1:value, bin2: value, ...}})`
 * **Delete**: `rxServices.<Logical Service Name>.<Collection or Functionname>({Key: key})`
 
 If working with a Collection, then prepend `Read`, `Write`, or `Delete` to the Collection name in the formulas above. If
 using a Function, then simply use the Function name.
+
+## Test
+
+Most Service Assets allow you to test their functionality directly out of the Web-UI. 
+This saves you having to deploy the Project to a Reactive Cluster only to test the Service functions.
+
+To test functions switch to the `Test` tab:
+
+
 
 ---
 

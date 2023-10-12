@@ -260,6 +260,13 @@ try {
 
 It works the same for any other JDBC compliant statement.
 
+## Test
+
+Most Service Assets allow you to test their functionality directly out of the Web-UI.
+This saves you having to deploy the Project to a Reactive Cluster only to test the Service functions.
+
+To test functions switch to the `Test` tab:
+
 
 
 ---
