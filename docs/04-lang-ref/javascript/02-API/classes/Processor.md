@@ -14,10 +14,10 @@ custom_edit_url: null
 
 Expands and environment variable in a string.
 This is useful if you want to use environment variables in your Javascript Processor.
-For example, if you want to use the `LAYLINE_HOME` environment variable, you can do so like this:
+For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](/docs/assets/resources/asset-resource-environment) you can do so like this:
 ```js
 // Get the username which is defined in one of your environment resources:
-let username = processor.expandString('${lay:username}');
+let username = processor.expandString('${lay:USERNAME}');
 ```
 
 Check out the [macro](/docs/lang-ref/macros) documentation for more information on how to address expandable strings.
