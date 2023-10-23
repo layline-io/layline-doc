@@ -247,7 +247,7 @@ ___
 
 ### getByte
 
-▸ **getByte**(`accessor`): [`Byte`](../enums/JavaType.md#byte-40)
+▸ **getByte**(`accessor`): [`Byte`](../enums/JavaType.md#byte)
 
 Return the Byte typed value from a message field.
 Important!: Please note that this method returns a Java object "Byte" (a Java native data type).
@@ -265,7 +265,7 @@ const b = message.getByte(dataDictionary.type.Detail.CSV.A_BYTE_FIELD);
 
 #### Returns
 
-[`Byte`](../enums/JavaType.md#byte-40)
+[`Byte`](../enums/JavaType.md#byte)
 
 Java native Byte type.
 
@@ -273,7 +273,7 @@ ___
 
 ### getByteString
 
-▸ **getByteString**(`accessor`): [`ByteString`](../enums/JavaType.md#bytestring-40)
+▸ **getByteString**(`accessor`): [`ByteString`](../enums/JavaType.md#bytestring)
 
 Return the ByteString typed value from a message field.
 Important!: Please note that this method returns a "ByteString" typed value (a Java native data type).
@@ -291,7 +291,7 @@ const b = message.getByteString(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Returns
 
-[`ByteString`](../enums/JavaType.md#bytestring-40)
+[`ByteString`](../enums/JavaType.md#bytestring)
 
 ByteString type.
 
@@ -299,7 +299,7 @@ ___
 
 ### getCharacter
 
-▸ **getCharacter**(`accessor`): [`Character`](../enums/JavaType.md#character-40)
+▸ **getCharacter**(`accessor`): [`Character`](../enums/JavaType.md#character)
 
 Return a Character typed value from a message field.
 Important!: Please note that this method returns a "char" typed value (a Java native data type).
@@ -317,7 +317,7 @@ const c = message.getCharacter(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Returns
 
-[`Character`](../enums/JavaType.md#character-40)
+[`Character`](../enums/JavaType.md#character)
 
 Character in Java native char type.
 
@@ -350,7 +350,7 @@ ___
 
 ### getDateTime
 
-▸ **getDateTime**(`accessor`): [`OffsetDateTime`](../enums/JavaType.md#offsetdatetime-40)
+▸ **getDateTime**(`accessor`): [`OffsetDateTime`](../enums/JavaType.md#offsetdatetime)
 
 Return a OffsetDateTime typed value from a message field.
 Important!: Please note that this method returns a "[OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html)" typed value (a Java native data type).
@@ -368,7 +368,7 @@ const dt = message.getDateTime(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Returns
 
-[`OffsetDateTime`](../enums/JavaType.md#offsetdatetime-40)
+[`OffsetDateTime`](../enums/JavaType.md#offsetdatetime)
 
 A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
 
@@ -376,7 +376,7 @@ ___
 
 ### getDecimal
 
-▸ **getDecimal**(`accessor`): [`BigDecimal`](../enums/JavaType.md#bigdecimal-40)
+▸ **getDecimal**(`accessor`): [`BigDecimal`](../enums/JavaType.md#bigdecimal)
 
 Return a BigDecimal typed value from a message field.
 Important!: Please note that this method returns a "BigDecimal" typed value (a Java native data type).
@@ -394,7 +394,7 @@ const dec = message.getDecimal(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Returns
 
-[`BigDecimal`](../enums/JavaType.md#bigdecimal-40)
+[`BigDecimal`](../enums/JavaType.md#bigdecimal)
 
 BigDecimal in Java native char type.
 
@@ -402,7 +402,7 @@ ___
 
 ### getDouble
 
-▸ **getDouble**(`accessor`): [`Double`](../enums/JavaType.md#double-40)
+▸ **getDouble**(`accessor`): [`Double`](../enums/JavaType.md#double)
 
 Return a Double typed value from a message field.
 Important!: Please note that this method returns a "Double" typed value (a Java native data type).
@@ -420,7 +420,7 @@ const dbl = message.getDouble(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Returns
 
-[`Double`](../enums/JavaType.md#double-40)
+[`Double`](../enums/JavaType.md#double)
 
 Double in Java native char type.
 
@@ -428,7 +428,7 @@ ___
 
 ### getInt
 
-▸ **getInt**(`accessor`): [`Integer`](../enums/JavaType.md#integer-40)
+▸ **getInt**(`accessor`): [`Integer`](../enums/JavaType.md#integer)
 
 Return a Int typed value from a message field.
 Important!: Please note that this method returns a "Integer" typed value (a Java native data type).
@@ -446,7 +446,7 @@ const int = message.getInt(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Returns
 
-[`Integer`](../enums/JavaType.md#integer-40)
+[`Integer`](../enums/JavaType.md#integer)
 
 Integer in Java native char type.
 
@@ -454,7 +454,7 @@ ___
 
 ### getLong
 
-▸ **getLong**(`accessor`): [`Long`](../enums/JavaType.md#long-40)
+▸ **getLong**(`accessor`): [`Long`](../enums/JavaType.md#long)
 
 Return a Long typed value from a message field.
 Important!: Please note that this method returns a "Long" typed value (a Java native data type).
@@ -472,7 +472,7 @@ const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Returns
 
-[`Long`](../enums/JavaType.md#long-40)
+[`Long`](../enums/JavaType.md#long)
 
 Long in Java native char type.
 
@@ -780,7 +780,7 @@ message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, 'c')
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | [`Character`](../enums/JavaType.md#character-40) | A native Character value or a value which can be implicitly converted to such. |
+| `value` | [`Character`](../enums/JavaType.md#character) | A native Character value or a value which can be implicitly converted to such. |
 
 #### Returns
 
@@ -803,7 +803,7 @@ message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, "2022-12-03T10:15:30+
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | [`OffsetDateTime`](../enums/JavaType.md#offsetdatetime-40) | A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00". |
+| `value` | [`OffsetDateTime`](../enums/JavaType.md#offsetdatetime) | A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00". |
 
 #### Returns
 
@@ -828,7 +828,7 @@ message.setDecimal(dataDictionary.type.Detail.CSV.FIELD, 123.45)
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | [`BigDecimal`](../enums/JavaType.md#bigdecimal-40) \| [`BigInteger`](../enums/JavaType.md#biginteger-40) \| [`Double`](../enums/JavaType.md#double-40) \| [`Integer`](../enums/JavaType.md#integer-40) \| [`Long`](../enums/JavaType.md#long-40) \| [`Number`](../enums/JavaType.md#number-40) \| [`String`](../enums/JavaType.md#string-40) | A value which can be represented as a Decimal. |
+| `value` | [`BigDecimal`](../enums/JavaType.md#bigdecimal) \| [`BigInteger`](../enums/JavaType.md#biginteger) \| [`Double`](../enums/JavaType.md#double) \| [`Integer`](../enums/JavaType.md#integer) \| [`Long`](../enums/JavaType.md#long) \| [`Number`](../enums/JavaType.md#number) \| [`String`](../enums/JavaType.md#string) | A value which can be represented as a Decimal. |
 
 #### Returns
 
@@ -853,7 +853,7 @@ message.setDouble(dataDictionary.type.Detail.CSV.FIELD, 123.45)
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | `Number` \| [`BigDecimal`](../enums/JavaType.md#bigdecimal-40) \| [`BigInteger`](../enums/JavaType.md#biginteger-40) \| [`Double`](../enums/JavaType.md#double-40) \| [`Integer`](../enums/JavaType.md#integer-40) \| [`Long`](../enums/JavaType.md#long-40) \| [`String`](../enums/JavaType.md#string-40) | A value which can be represented as a Double. |
+| `value` | `Number` \| [`BigDecimal`](../enums/JavaType.md#bigdecimal) \| [`BigInteger`](../enums/JavaType.md#biginteger) \| [`Double`](../enums/JavaType.md#double) \| [`Integer`](../enums/JavaType.md#integer) \| [`Long`](../enums/JavaType.md#long) \| [`String`](../enums/JavaType.md#string) | A value which can be represented as a Double. |
 
 #### Returns
 
@@ -878,7 +878,7 @@ message.setInt(dataDictionary.type.Detail.CSV.FIELD, 123)
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | `Number` \| `Uint8Array` \| [`BigDecimal`](../enums/JavaType.md#bigdecimal-40) \| [`Double`](../enums/JavaType.md#double-40) \| [`Integer`](../enums/JavaType.md#integer-40) \| [`Long`](../enums/JavaType.md#long-40) \| [`String`](../enums/JavaType.md#string-40) | A value which can be represented as a Int. |
+| `value` | `Number` \| `Uint8Array` \| [`BigDecimal`](../enums/JavaType.md#bigdecimal) \| [`Double`](../enums/JavaType.md#double) \| [`Integer`](../enums/JavaType.md#integer) \| [`Long`](../enums/JavaType.md#long) \| [`String`](../enums/JavaType.md#string) | A value which can be represented as a Int. |
 
 #### Returns
 
@@ -903,7 +903,7 @@ message.setLong(dataDictionary.type.Detail.CSV.FIELD, 12345)
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | [`BigDecimal`](../enums/JavaType.md#bigdecimal-40) \| [`BigInteger`](../enums/JavaType.md#biginteger-40) \| [`Double`](../enums/JavaType.md#double-40) \| [`Integer`](../enums/JavaType.md#integer-40) \| [`Long`](../enums/JavaType.md#long-40) \| [`Number`](../enums/JavaType.md#number-40) \| [`String`](../enums/JavaType.md#string-40) | A value which can be represented as a Long. |
+| `value` | [`BigDecimal`](../enums/JavaType.md#bigdecimal) \| [`BigInteger`](../enums/JavaType.md#biginteger) \| [`Double`](../enums/JavaType.md#double) \| [`Integer`](../enums/JavaType.md#integer) \| [`Long`](../enums/JavaType.md#long) \| [`Number`](../enums/JavaType.md#number) \| [`String`](../enums/JavaType.md#string) | A value which can be represented as a Long. |
 
 #### Returns
 

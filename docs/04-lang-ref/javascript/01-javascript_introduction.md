@@ -4,6 +4,8 @@ description: Learn about how to use Javascript in your layline.io Projects.
 sidebar_position: 0
 ---
 
+import FailureHandling from '/docs/snippets/assets/_failure-handling-flow.md';
+
 ## Introduction
 
 In order to allow for complex message processing and applying custom business logic to message handling, layline.io
@@ -250,27 +252,11 @@ Throwing an error which you do not catch yourself with a `try ... catch` clause,
 For this purpose a Javascript Asset provides a number configuration options (which you will also find in other Asset
 configurations):
 
+
+
 ![](./.01-javascript_introduction_images/b928ab0d.png)
 
-It is here that you can define what layline.io should do in case of an uncaught error during each stage of Stream
-processing:
-
-* Stream Start
-* Stream End
-* Message --> during `onMessage` processing
-* Prepare commit
-
-In case you defined `Retry Stream` or `Retry Event/Message` you have to define additional parameters:
-
-* `Max. retries`: Maximum number of times the action should be retried.
-* `Min.Backoff [ms]`: Minimum time between retries
-* `Max.Backoff [ms]`: Maximum time between retries
-* `When final retry failed`: Action to take after retries did not lead to successful processing.
-
-In case minimum and maximum timeouts differ, layline.io will gradually increase timeout times between each retry up to
-the maximum retry time.
-This can help resolve problems which are incurred by timing problems, e.g. during infrastructure network problems or in
-case dependent connected systems have intermittent issues catching up.
+<FailureHandling></FailureHandling>
 
 ## Summary
 

@@ -12,12 +12,13 @@ custom_edit_url: null
 
 ▸ **expandString**(`toExpand`): `string`
 
-Expands and environment variable in a string.
-This is useful if you want to use environment variables in your Javascript Processor.
+Expands all macros contained in a string.
 For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](/docs/assets/resources/asset-resource-environment) you can do so like this:
 ```js
 // Get the username which is defined in one of your environment resources:
-let username = processor.expandString('${lay:USERNAME}');
+let username = processor.expandString('The username is ${lay:USERNAME}.');
+
+// Output: "The username is layline.", where "layline" is the value of the USERNAME environment variable.
 ```
 
 Check out the [macro](/docs/lang-ref/macros) documentation for more information on how to address expandable strings.

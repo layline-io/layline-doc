@@ -5,7 +5,8 @@ description: Perform a complete local installation and run it.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import vars from '/variables.js'
+
+[//]: # (import vars from '/variables.js')
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 ## Download

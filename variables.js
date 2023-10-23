@@ -1,5 +1,5 @@
 module.exports = {
-    version: {
-        currentVersion: "9.9.9"
-    },
-};
+  "version": {
+    "currentVersion": "1.2.2"
+  }
+}

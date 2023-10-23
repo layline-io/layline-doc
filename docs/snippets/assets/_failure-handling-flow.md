@@ -78,7 +78,23 @@ You here have the option to decide what to do if the message cannot be processed
 * **`Ignore`**: Don't do anything.
 * **`Rollback Stream`**: Fallback to rolling back the whole stream.
 * **`Retry Stream`**: Retry the whole stream once again.
-  If you pick this option then you can again define all relevant [Retry Stream](#retry-stream) parameters.
+  If you pick this option, then you can again define all relevant [Retry Stream](#retry-stream) parameters.
 
   ![Failure Retry Event/Message -> Retry Stream Handling](._failure-handling-flow_images/db677ef3.png)
+
+:::caution Only works for specific Source Types within a Workflow
+A Workflow has one Input Processor which is responsible for reading data from a Source.
+Sources are for example files, databases, or message queues.
+
+The settings for `Retry Event/Message` and `Retry Stream` only work for specific Source Types which a Workflow uses.
+These are:
+- [Email](/docs/assets/sources/asset-source-email)
+- [File](/docs/assets/sources/asset-source-file)
+- [FTP](/docs/assets/sources/asset-source-ftp)
+- [S3](/docs/assets/sources/asset-source-s3)
+- [SMB](/docs/assets/sources/asset-source-smb)
+- [WebDav](/docs/assets/sources/asset-source-webdav)
+
+
+:::
 

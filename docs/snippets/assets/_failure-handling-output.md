@@ -5,10 +5,10 @@ In this section you can define how the system should behave in case of such prob
 
 Two types of failures are observable:
 
-| # | Failure observables / Reaction                                                       | Ignore | Retry Event/Message | Retry Stream | Rollback Stream | 
-|:--|--------------------------------------------------------------------------------------|:------:|:-------------------:|:------------:|:---------------:|
-| 1 | **Sink failure handling**<br/>A problem occurred during the output of a stream       |        |                     |      ✔       |        ✔        |
-| 2 | **Event write failure handling**<br/>A problem occurred during writing of a message. |   ✔    |          ✔          |      ✔       |        ✔        |
+| # | Failure observables / Reaction                                                         | Ignore | Retry Event/Message | Retry Stream | Rollback Stream | 
+|:--|----------------------------------------------------------------------------------------|:------:|:-------------------:|:------------:|:---------------:|
+| 1 | **`Sink failure handling`**<br/>A problem occurred during the output of a stream       |        |                     |      ✔       |        ✔        |
+| 2 | **`Event write failure handling`**<br/>A problem occurred during writing of a message. |   ✔    |          ✔          |      ✔       |        ✔        |
 
 
 #### Failure Type Reactions
