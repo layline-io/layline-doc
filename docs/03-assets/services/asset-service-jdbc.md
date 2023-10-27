@@ -60,7 +60,7 @@ in [environment variables](/docs/assets/resources/asset-resource-environment):
 
 ### Service Functions
 
-Services are accessed from other Assets via invoking _Functions_.
+Services are accessed from other Assets via invocations of _Functions_.
 This is where you define such functions.
 In the context of JDBC, a Service Function encapsulates any valid DML (data manipulation) or even DDL (data definition)
 statement.

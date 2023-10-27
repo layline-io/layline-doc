@@ -179,7 +179,7 @@ Let's further assume that in Aerospike this is stored in a Namespace/Set/Bins se
 
 ![](.asset-service-aerospike_images/3d4c2660.png "Aerospike structure (Service Aerospike)")
 
-In our example records are stored with the MSISDN as the key.
+In our example, records are stored with the MSISDN as the key.
 
 ### Service Functions
 

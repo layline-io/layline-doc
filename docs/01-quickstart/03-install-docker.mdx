@@ -1,9 +1,14 @@
+---
+title: Install with Docker
+description: Perform a docker installation.
+---
+
+
 import CodeBlock from '@theme/CodeBlock';
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 import {version} from '/variables.js';
 
 ## Installation Requirements
-
 
 We assume Docker is installed on your system. If not, install it first: [Developers - Docker](https://www.docker.com/get-started/) .
 
@@ -22,7 +27,7 @@ The following terminal command will download and run the layline.io docker conta
 
 Should the external ports already be in use on your installation target, then change them to an open port to your end.
 
-<CodeBlock language='zsh'>
+```
     # EXAMPLE for Version 1.2.2
     | => docker run -p 5841:5841 -p 5842:5842 docker.io/layline/layline-samples:1.2.2
     Unable to find image 'layline/layline-samples:1.2.2' locally
@@ -70,7 +75,7 @@ Should the external ports already be in use on your installation target, then ch
     22-05-05 14:45:20.977 INFO Layline.DeploymentStorage.Deployments - [LAY-11510] recovery of the deployment database completed
     22-05-05 14:45:21.031 INFO ConfigServer.SecurityStorage - [LAY-12212] successfully created the cluster's default RSA key
     22-05-05 14:45:21.034 INFO Layline - [LAY-11009] all system components are up and running
-</CodeBlock>
+```
 
 That's it! You're all set.
 
