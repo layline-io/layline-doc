@@ -472,6 +472,8 @@ Now let’s finally use the service within JavaScript:
 
 Signature: `rxServices.<Logical Service Name>.<Read<Collection> or Functionname>({Key: key})`
 
+Example: `services.CustomerData.ReadCustomerData({Key: msisdn})`
+
 ```javascript
 let aerospikeData = null;
 try {
@@ -495,6 +497,8 @@ processor.logInfo('History: ' + aerospikeData.data.Bin.History.PaymentType);
 ##### Insert/Update to Aerospike
 
 Signature: `rxServices.<Logical Service Name>.<Write<Collection> or Functionname>({Key: key, Bin: {bin1:value, bin2: value, ...}})`
+
+Example: `services.CustomerData.WriteCustomerData({Key: msisdn, Bin: {MSISDN: msisdn, History: msisdnData.history}})`
 
 Properties: 
 * **`Key`**: is the key of the record to be written. 
@@ -528,6 +532,8 @@ try {
 
 Signature: `rxServices.<Logical Service Name>.<Delete<Collection> or Functionname>({Key: key})`
 
+Example: `services.CustomerData.DeleteCustomerData({Key: msisdn})` 
+
 ```javascript
 try {
     services.CustomerData.DeleteCustomerData(
@@ -544,8 +550,6 @@ Most Service Assets allow you to test their functionality directly out of the We
 This saves you having to deploy the Project to a Reactive Cluster only to test the Service functions.
 
 To test functions switch to the `Test` tab:
-
-
 
 ---
 

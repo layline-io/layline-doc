@@ -262,6 +262,10 @@ Now let’s finally use the service within JavaScript:
 
 ##### Reading from Hazelcast Source
 
+Signature: `rxServices.<Logical Service Name>.<Collection>Read(key)`
+
+Example: `services.MyHazelcastService.CustomerRead(customer_id)`
+
 ```javascript
 let hazelcastData = null; // will receive a message type
 let customer_id = 1234;
@@ -291,6 +295,10 @@ If we are only expecting one row as a result, we can test it with `hazelcastData
 
 ##### Insert/Update to Hazelcast
 
+Signature: `rxServices.<Logical Service Name>.<Collection>Write({Key: key, Value: {property1:value, property2: value, ...}})`
+
+Example: `services.MyHazelcastService.CustomerWrite({Key: customer_id, Value: {Name: name, Address: address}})`
+
 ```javascript
 let customer_id = 1234;
 try {
@@ -310,6 +318,10 @@ try {
 
 ##### Delete from Hazelcast
 
+Signature: `services.<Logical Service Name>.<Collection>Delete(key)`
+
+Example: `services.MyHazelcastService.CustomerDelete(customer_id)`
+
 ```javascript
 let customer_id = 1234;
 try {
@@ -319,16 +331,20 @@ try {
 }
 ```
 
-#### Summary
+##### Get Collection Size
 
-Logical functions for read, write, and delete:
+Signature: `services.<Logical Service Name>.<Collection>Size(key)`
 
-* **Read**: `rxServices.<Logical Service Name>.<Collection>Read(key)`
-* **Write**: `rxServices.<Logical Service Name>.<Collection>Write({Key: key, Value: {property1:value, property2: value, ...}})`
-* **Delete**: `rxServices.<Logical Service Name>.<Collection>Delete(key)`
-* **Size**: `rxServices.<Logical Service Name>.<Collection>Size(key)`
+Example: `services.MyHazelcastService.CustomerSize(customer_id)`
 
-If working with a Collection, then prepend `Read`, `Write`, or `Delete` to the Collection name in the formulas above.
+```javascript
+let size = 0;
+try {
+  size = services.MyHazelcastService.CustomerSize();
+} catch (error) {
+...
+}
+```
 
 ## Test
 
