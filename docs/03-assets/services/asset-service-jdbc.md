@@ -9,7 +9,7 @@ import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 ## Purpose
 
-Defines a service to interface with a JDBC data source.
+Define a service to interface with a JDBC data source.
 
 ![](.asset-service-jdbc_images/6ca59550.png "Asset Dependency Graph (Service JDBC)")
 
@@ -184,7 +184,7 @@ How is it configured?
 
 #### Link EnrichCustomer Processor to JDBC Service
 
-To us the JDBC Service in the JavaScript Processor, we first have to **assign the Service within the JavaScript
+To use the JDBC Service in the JavaScript Processor, we first have to **assign the Service within the JavaScript
 Processor** like so:
 
 ![](.asset-service-jdbc_images/4b602e49.png "Link Service to JavaScript Asset (Service JDBC)")

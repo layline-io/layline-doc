@@ -13,7 +13,7 @@ import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 # Cassandra Service
 
-Defines a service to interface with a Cassandra or AWS Keyspaces store.
+Define a service to interface with a Cassandra or AWS Keyspaces store.
 
 ![](.asset-service-cassandra_images/8f7203ba.png "Asset Dependency Graph (Service Cassandra)")
 
@@ -58,7 +58,7 @@ It should contain IPs or hostnames of Cassandra cluster nodes, optionally with p
 * **`Local data center`** : Name of the Cassandra local datacenter. To find your datacenter name, check in your Cassandra node's `cassandra-rackdc.properties` file.
   Leave blank if using AWS Keyspaces.
 
-* **`Keyspace`** : Name of the Keyspace if working with AWS Keyspaces. Not relevant for Cassandra.
+* **`Keyspace`** : Name of the Keyspace.
 
 * **`Parallelism`** :
   This is a performance tuning parameter.
@@ -119,8 +119,12 @@ Example:
 
 ![](.asset-service-cassandra_images/3b87273c.png "Typesafe Configuration (Service Cassandra)")
 
-:::note
+:::note HOCON format
 Please note that the notation follows [HOCON format](https://www.w3schools.io/file/hocon-introduction).
+:::
+
+:::note Use of macros
+As you can see from the example above, you can use [Macros](/docs/lang-ref/macros) within the Typesafe Configuration.
 :::
 
 ### Data Dictionary
@@ -210,7 +214,7 @@ How is it configured?
 
 #### Link EnrichCustomer Processor to Cassandra Service
 
-To us the Cassandra Service in the JavaScript Processor, we first have to **assign the Service within the JavaScript
+To use the Cassandra Service in the JavaScript Processor, we first have to **assign the Service within the JavaScript
 Processor** like so:
 
 ![](.asset-service-cassandra_images/08048d0d.png "Link Service to JavaScript Asset (Service Cassandra)")

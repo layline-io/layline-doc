@@ -13,7 +13,7 @@ import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 ## Purpose
 
-Defines a service to interface with an Aerospike store.
+Define a service to interface with an Aerospike store.
 
 ![](.asset-service-aerospike_images/e553b5a5.png "Asset Dependency Graph (Service Aerospike)")
 
@@ -131,8 +131,7 @@ You have two options on how to work with data in Aerospike using this Service:
 2. Collections
 
 Service Functions allow you to define a schema that you either want to read, write, or delete from/to.
-You can for example define a Function which writes a specific Bin in a given Namespace and Set, and name the Function “
-_UpdateThisSpecificField_”.
+You can for example define a Function which writes a specific Bin in a given Namespace and Set, and name the Function “_UpdateThisSpecificField_”.
 
 Collections on the other hand allow you to define a schema and will automatically create respective read, write, AND
 delete from/to methods. You can for example define a Collection “CustomerData”
@@ -215,16 +214,16 @@ Configure the MSISDN Bin from our example.
 
 To create the Bin click on `ADD BIN` . This will create a Bin we want to read in this Function.
 
-![](.asset-service-aerospike_images/e3ff0622.png "Create BIn (Service Aerospike)")
+![](.asset-service-aerospike_images/0690c1de.png "Create Bin (Service Aerospike)")
 
 Enter additional values:
 
 **Bin**
 
-* `Aerospike bin name` (3): Name of the Bin. Must be the name of the Bin in Aerospike.
-* `Aerospike bin type` (4): This is the type of how the data is stored in Aerospike. Note that Aerospike automatically
+* `Aerospike bin name` (2): Name of the Bin. Must be the name of the Bin in Aerospike.
+* `Aerospike bin type` (3): This is the type of how the data is stored in Aerospike. Note that Aerospike automatically
   deduces the data from its content.
-* `Property name in parameter/result message` (5): This is the property name of how the value of the Bin will be read
+* `Property name in parameter/result message` (4): This is the property name of how the value of the Bin will be read
   and set within layline.io’ internal message structure. This become clear when we
   describe how the data is referenced when working with it.
 
@@ -235,11 +234,11 @@ e.g. a Bin of type String in Aerospike is a String in layline.io. It gets more
 interesting with complex data types. This is where Data Dictionary definitions come into play. We will look at this in
 more detail when defining the `History` Bin a bit further below.
 
-* **`Encoding type`** (6): You use the encoding type to define how values and structure are decoded into layline.io
+* **`Encoding type`** (5): You use the encoding type to define how values and structure are decoded into layline.io
   structures when reading from the source, an encoded respectively when writing to the
   source (Aerospike). You can choose between three different encoding types:
 
-    * **`Value`** (6): This option supports one-to-one mapping of primitive encoding types, e.g. String to String, or
+    * **`Value`** (5): This option supports one-to-one mapping of primitive encoding types, e.g. String to String, or
       Boolean to Boolean. You can also map a String to an Integer for example which will
       map a number which is stored in a String on Aerospike into an Integer on layline.io. Be careful, however, because
       these implicit type conversions must work or it will create an error.
@@ -347,7 +346,7 @@ created, the following functions will be created:
 * **`Write`**: `WriteCustomerData`
 * **`Delete`**: `DeleteCustomerData`
 
-As you can tell a Collection name is simply prepended by `Read`, `Write`, and `Delete` for the respective functionality.
+As you can tell, a Collection name is simply prepended by `Read`, `Write`, and `Delete` for the respective functionality.
 
 :::tip
 If you only want to have a `Read` function you can achieve the same by configuring a corresponding Function, instead of
@@ -454,7 +453,7 @@ How is it configured?
 
 #### Link Tap3Debug Processor to Aerospike Service
 
-To us the Aerospike Service in the JavaScript Processor, we first have to **assign the Service within the JavaScript
+To use the Aerospike Service in the JavaScript Processor, we first have to **assign the Service within the JavaScript
 Processor** like so:
 
 ![](.asset-service-aerospike_images/e4fa2b71.png "Link Service to JavaScript Asset (Service Aerospike)")
@@ -470,6 +469,8 @@ Processor** like so:
 Now let’s finally use the service within JavaScript:
 
 ##### Reading from Aerospike
+
+Signature: `rxServices.<Logical Service Name>.<Read<Collection> or Functionname>({Key: key})`
 
 ```javascript
 let aerospikeData = null;
@@ -493,6 +494,17 @@ processor.logInfo('History: ' + aerospikeData.data.Bin.History.PaymentType);
 
 ##### Insert/Update to Aerospike
 
+Signature: `rxServices.<Logical Service Name>.<Write<Collection> or Functionname>({Key: key, Bin: {bin1:value, bin2: value, ...}})`
+
+Properties: 
+* **`Key`**: is the key of the record to be written. 
+* **`Bin`**: is an object which contains the Bins to be written.
+* **`WritePolicy`**: This is where you can define some Aerospike specific write policies.
+  * **`Generation [number]`**: This is the generation of the record. If the record has been updated since the last read, then the write will fail. If not defined, then write will always succeed.
+  * **`Expiration [number]`**: This is the time in seconds after which the record will be deleted from Aerospike. If not defined, then the record will not expire.
+  * **`GenerationPolicy`**: This defines the generation policy. If not defined, then the generation policy is `NONE`. If set to `EXPECT_GEN_EQUAL`, then the write will only succeed if the generation of the record is equal to the generation defined in the `Generation` property. If set to `EXPECT_GEN_GT`, then write will only succeed if the generation of the record is greater than the generation defined in the `Generation` property.
+  * **`RecordExistsAction`**: This defines what to do if the record already exists. If not defined, then the record will not be written. If set to `UPDATE`, then the record will be updated. If set to `UPDATE_ONLY`, then the record will only be updated if it already exists. If set to `REPLACE`, then the record will be replaced. If set to `REPLACE_ONLY`, then the record will only be replaced if it already exists. If set to `CREATE_ONLY`, then the record will only be created if it does not exist.
+
 ```javascript
 try {
     services.CustomerData.WriteCustomerData(
@@ -501,7 +513,10 @@ try {
             Bin: {
                 MSISDN: msisdn,
                 History: msisdnData.history
-            }
+            },
+          WritePolicy: {
+            Expiration: 3600
+          }
         }
     )
 } catch (error) {
@@ -510,6 +525,8 @@ try {
 ```
 
 ##### Deleting from Aerospike
+
+Signature: `rxServices.<Logical Service Name>.<Delete<Collection> or Functionname>({Key: key})`
 
 ```javascript
 try {
@@ -521,20 +538,9 @@ try {
 }
 ```
 
-#### Summary
-
-Logical functions for read, write, and delete:
-
-* **Read**: `rxServices.<Logical Service Name>.<Collection or Functionname>({Key: key})`
-* **Write**: `rxServices.<Logical Service Name>.<Collection or Functionname>({Key: key, Bin: {bin1:value, bin2: value, ...}})`
-* **Delete**: `rxServices.<Logical Service Name>.<Collection or Functionname>({Key: key})`
-
-If working with a Collection, then prepend `Read`, `Write`, or `Delete` to the Collection name in the formulas above. If
-using a Function, then simply use the Function name.
-
 ## Test
 
-Most Service Assets allow you to test their functionality directly out of the Web-UI. 
+Most Service Assets allow you to test their functionality directly out of the Web-UI.
 This saves you having to deploy the Project to a Reactive Cluster only to test the Service functions.
 
 To test functions switch to the `Test` tab:
