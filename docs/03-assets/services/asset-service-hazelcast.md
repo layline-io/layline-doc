@@ -127,12 +127,14 @@ In the table, add the collections which you want to work with. Click `Add Collec
 
 When defining a Collection, layline.io automatically creates four different functions for reading, writing and deleting data, as well as getting the size of the Collection.
 
-* **`Read`**: `CustomerRead`
-* **`Write`**: `CustomerWrite`
-* **`Delete`**: `CustomerDelete`
-* **`Size`**: `CustomerSize`
+| **Function** | **Signature**                                                                                                    | Returns                                                                             | **Description**                  | **Example**                                                                                                  |
+|--------------|------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|----------------------------------|--------------------------------------------------------------------------------------------------------------|
+| Read         | `services.<Logical Service Name>.Read<Collection>(key)`                                                          | [Message](/docs/lang-ref/javascript/API/classes/Message) or null if nothing found   | Read data from the Collection.   | `services.MyHazelcastService.ReadCustomer(customer_id)`                                                      |
+| Write        | `services.<Logical Service Name>.Write<Collection>({Key: key, Value: {property1:value, property2: value, ...}})` | null                                                                                | Write data to the Collection.    | `services.MyHazelcastService.WriteCustomer({Key: customer_id, Value: {Name: 'John', Address: 'MyAddress'}})` |
+| Delete       | `services.<Logical Service Name>.Delete<Collection>(key)`                                                        | [Message](/docs/lang-ref/javascript/API/classes/Message) or null if nothing deleted | Delete data from the Collection. | `services.MyHazelcastService.DeleteCustomer(customer_id)`                                                    |
+| Size         | `services.<Logical Service Name>.Size<Collection>(key)`                                                          | Number                                                                              | Get the size of the Collection.  | `services.MyHazelcastService.SizeCustomer()`                                                                 |
 
-As you can tell, a Collection name is simply appended by `Read`, `Write`, and `Size` for the respective functionality.
+As you can tell, a Collection name is simply prepended by `Read`, `Write`, and `Size` for the respective functionality.
 
 ### Portable Types
 
@@ -230,7 +232,7 @@ Now we add a list of member fields which make up the sequence:
 
 To later reference the `Name` field, we can use the path `MyNamespace.Customer.Name`, and so forth.
 
-### Example: Using the Hazelcast Service
+## Example: Using the Hazelcast Service
 
 The Hazelcast Service can be used from within a JavaScript Asset.
 In our example we have a simple Workflow which reads a file with customer-related data (1), then in the next step (2) reads the corresponding customer data from a Hazelcast source,
@@ -244,7 +246,7 @@ This Processor reads additional customer information from Hazelcast using the Ha
 
 How is it configured?
 
-#### Link EnrichCustomer Processor to Hazelcast Service
+### Link EnrichCustomer Processor to Hazelcast Service
 
 To use the Hazelcast Service in the JavaScript Processor, we first have to **assign the Service within the JavaScript
 Processor** like so:
@@ -256,22 +258,22 @@ Processor** like so:
 * **`Logical Service Name`**: The name by which we want to use the Service within JavaScript. This could be the
   exact same name as the Service or a name which you can choose. Must not include whitespaces.
 
-#### Access the Service from within JavaScript
+### Access the Service from within JavaScript
 
 Now let’s finally use the service within JavaScript:
 
-##### Reading from Hazelcast Source
+#### Reading from Hazelcast Source
 
-Signature: `rxServices.<Logical Service Name>.<Collection>Read(key)`
+Signature: `services.<Logical Service Name>.<Collection>Read(key)`
 
-Example: `services.MyHazelcastService.CustomerRead(customer_id)`
+Example: `services.MyHazelcastService.ReadCustomer(customer_id)`
 
 ```javascript
 let hazelcastData = null; // will receive a message type
 let customer_id = 1234;
 try {
     // Invoke service function.
-    hazelcastData = services.MyHazelcastService.CustomerRead(customer_id);
+    hazelcastData = services.MyHazelcastService.ReadCustomer(customer_id);
 } catch (error) {
     // handle error
 }
@@ -293,54 +295,54 @@ You can find the results in `message.data` as an array.
 If we are only expecting one row as a result, we can test it with `hazelcastData.data.length > 0` and access the first row with `hazelcastData.data[0]`.
 :::
 
-##### Insert/Update to Hazelcast
+#### Insert/Update to Hazelcast
 
-Signature: `rxServices.<Logical Service Name>.<Collection>Write({Key: key, Value: {property1:value, property2: value, ...}})`
+Signature: `services.<Logical Service Name>.<Collection>Write({Key: key, Value: {property1:value, property2: value, ...}})`
 
-Example: `services.MyHazelcastService.CustomerWrite({Key: customer_id, Value: {Name: name, Address: address}})`
+Example: `services.MyHazelcastService.WriteCustomer({Key: customer_id, Value: {Name: name, Address: address}})`
 
 ```javascript
 let customer_id = 1234;
 try {
-  services.MyHazelcastService.CustomerWrite(
-          {
+    services.MyHazelcastService.WriteCustomer(
+        {
             Key: customer_id,
             Value: {
-              Name: name,
-              Address: address
+                Name: name,
+                Address: address
             }
-          }
-  )
+        }
+    )
 } catch (error) {
 ...
 }
 ```
 
-##### Delete from Hazelcast
+#### Delete from Hazelcast
 
 Signature: `services.<Logical Service Name>.<Collection>Delete(key)`
 
-Example: `services.MyHazelcastService.CustomerDelete(customer_id)`
+Example: `services.MyHazelcastService.DeleteCustomer(customer_id)`
 
 ```javascript
 let customer_id = 1234;
 try {
-  services.MyHazelcastService.CustomerDelete(customer_id);
+    services.MyHazelcastService.DeleteCustomer(customer_id);
 } catch (error) {
 ...
 }
 ```
 
-##### Get Collection Size
+#### Get Collection Size
 
 Signature: `services.<Logical Service Name>.<Collection>Size(key)`
 
-Example: `services.MyHazelcastService.CustomerSize(customer_id)`
+Example: `services.MyHazelcastService.SizeCustomer(customer_id)`
 
 ```javascript
 let size = 0;
 try {
-  size = services.MyHazelcastService.CustomerSize();
+    size = services.MyHazelcastService.SizeCustomer();
 } catch (error) {
 ...
 }

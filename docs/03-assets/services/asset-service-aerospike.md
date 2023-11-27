@@ -342,9 +342,11 @@ When defining a Collection, layline.io automatically creates three different fun
 deleting data from/to the Collection. For the Collection `CustomerData` which we have
 created, the following functions will be created:
 
-* **`Read`**: `ReadCustomerData`
-* **`Write`**: `WriteCustomerData`
-* **`Delete`**: `DeleteCustomerData`
+| **Function** | **Signature**                                                                                 | Returns                                                                             | **Description**            | **Example**                                                                                      |
+|--------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|----------------------------|--------------------------------------------------------------------------------------------------|
+| Read         | `services.<Logical Service Name>.Read<BinName>(key: String)`                                  | [Message](/docs/lang-ref/javascript/API/classes/Message) or null of nothing found   | Read data from Aerospike   | `services.CustomerData.ReadCustomerData({Key: "017212345678"})`                                  |
+| Write        | `services.<Logical Service Name>.Write<BinName>(key: String, Bin: {...}, WritePolicy: {...})` | null                                                                                | Write data to Aerospike    | `services.CustomerData.WriteCustomerData({Key: "017212345678", Bin: {...}, WritePolicy: {...}})` |
+| Delete       | `services.<Logical Service Name>.Delete<BinName>(key: String)`                                | [Message](/docs/lang-ref/javascript/API/classes/Message) or null if nothing deleted | Delete data from Aerospike | `services.CustomerData.DeleteCustomerData({Key: "017212345678"})`                                |
 
 As you can tell, a Collection name is simply prepended by `Read`, `Write`, and `Delete` for the respective functionality.
 
@@ -470,7 +472,7 @@ Now let’s finally use the service within JavaScript:
 
 ##### Reading from Aerospike
 
-Signature: `rxServices.<Logical Service Name>.<Read<Collection> or Functionname>({Key: key})`
+Signature: `services.<Logical Service Name>.<Read<Collection> or Functionname>({Key: key})`
 
 Example: `services.CustomerData.ReadCustomerData({Key: msisdn})`
 
@@ -496,18 +498,23 @@ processor.logInfo('History: ' + aerospikeData.data.Bin.History.PaymentType);
 
 ##### Insert/Update to Aerospike
 
-Signature: `rxServices.<Logical Service Name>.<Write<Collection> or Functionname>({Key: key, Bin: {bin1:value, bin2: value, ...}})`
+Signature: `services.<Logical Service Name>.<Write<Collection> or Functionname>({Key: key, Bin: {bin1:value, bin2: value, ...}})`
 
 Example: `services.CustomerData.WriteCustomerData({Key: msisdn, Bin: {MSISDN: msisdn, History: msisdnData.history}})`
 
-Properties: 
-* **`Key`**: is the key of the record to be written. 
+Properties:
+
+* **`Key`**: is the key of the record to be written.
 * **`Bin`**: is an object which contains the Bins to be written.
 * **`WritePolicy`**: This is where you can define some Aerospike specific write policies.
-  * **`Generation [number]`**: This is the generation of the record. If the record has been updated since the last read, then the write will fail. If not defined, then write will always succeed.
-  * **`Expiration [number]`**: This is the time in seconds after which the record will be deleted from Aerospike. If not defined, then the record will not expire.
-  * **`GenerationPolicy`**: This defines the generation policy. If not defined, then the generation policy is `NONE`. If set to `EXPECT_GEN_EQUAL`, then the write will only succeed if the generation of the record is equal to the generation defined in the `Generation` property. If set to `EXPECT_GEN_GT`, then write will only succeed if the generation of the record is greater than the generation defined in the `Generation` property.
-  * **`RecordExistsAction`**: This defines what to do if the record already exists. If not defined, then the record will not be written. If set to `UPDATE`, then the record will be updated. If set to `UPDATE_ONLY`, then the record will only be updated if it already exists. If set to `REPLACE`, then the record will be replaced. If set to `REPLACE_ONLY`, then the record will only be replaced if it already exists. If set to `CREATE_ONLY`, then the record will only be created if it does not exist.
+    * **`Generation [number]`**: This is the generation of the record. If the record has been updated since the last read, then the write will fail. If not defined, then write will always succeed.
+    * **`Expiration [number]`**: This is the time in seconds after which the record will be deleted from Aerospike. If not defined, then the record will not expire.
+    * **`GenerationPolicy`**: This defines the generation policy. If not defined, then the generation policy is `NONE`. If set to `EXPECT_GEN_EQUAL`, then the write will only succeed if the generation
+      of the record is equal to the generation defined in the `Generation` property. If set to `EXPECT_GEN_GT`, then write will only succeed if the generation of the record is greater than the
+      generation defined in the `Generation` property.
+    * **`RecordExistsAction`**: This defines what to do if the record already exists. If not defined, then the record will not be written. If set to `UPDATE`, then the record will be updated. If set
+      to `UPDATE_ONLY`, then the record will only be updated if it already exists. If set to `REPLACE`, then the record will be replaced. If set to `REPLACE_ONLY`, then the record will only be
+      replaced if it already exists. If set to `CREATE_ONLY`, then the record will only be created if it does not exist.
 
 ```javascript
 try {
@@ -518,9 +525,9 @@ try {
                 MSISDN: msisdn,
                 History: msisdnData.history
             },
-          WritePolicy: {
-            Expiration: 3600
-          }
+            WritePolicy: {
+                Expiration: 3600
+            }
         }
     )
 } catch (error) {
@@ -530,9 +537,9 @@ try {
 
 ##### Deleting from Aerospike
 
-Signature: `rxServices.<Logical Service Name>.<Delete<Collection> or Functionname>({Key: key})`
+Signature: `services.<Logical Service Name>.<Delete<Collection> or Functionname>({Key: key})`
 
-Example: `services.CustomerData.DeleteCustomerData({Key: msisdn})` 
+Example: `services.CustomerData.DeleteCustomerData({Key: msisdn})`
 
 ```javascript
 try {

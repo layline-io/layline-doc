@@ -13,7 +13,7 @@ import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 # Cassandra Service
 
-Define a service to interface with a Cassandra or AWS Keyspaces store.
+Define a service to interface with a Cassandra or an Cassandra compatible store (e.g.AWS Keyspaces).
 
 ![](.asset-service-cassandra_images/8f7203ba.png "Asset Dependency Graph (Service Cassandra)")
 
@@ -56,7 +56,9 @@ It should contain IPs or hostnames of Cassandra cluster nodes, optionally with p
 ![](.asset-service-cassandra_images/1013cbff.png "Data Center, Keyspace, Parallelism (Service Cassandra)")
 
 * **`Local data center`** : Name of the Cassandra local datacenter. To find your datacenter name, check in your Cassandra node's `cassandra-rackdc.properties` file.
-  Leave blank if using AWS Keyspaces.
+  If you are using AWS Keyspaces, then enter the region name here, then set the value for local-datacenter to the Region you're connecting to. 
+  For example, if you are connecting to `cassandra.us-east-2.amazonaws.com`, then set the local data center to `us-east-2`. 
+  For all available AWS Regions, see [Service endpoints](https://docs.aws.amazon.com/keyspaces/latest/devguide/programmatic.endpoints.html) for Amazon Keyspaces.
 
 * **`Keyspace`** : Name of the Keyspace.
 
