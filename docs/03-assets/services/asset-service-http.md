@@ -9,6 +9,8 @@ tags:
 
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 import CredentialType from '/docs/snippets/assets/_credential-type.md';
+import Testcase from '/docs/snippets/assets/_asset-service-test.md';
+
 
 # HTTP Service
 
@@ -271,12 +273,9 @@ You can find the results in `message.data` as an array.
 If we are only expecting one row as a result, we can test it with `httpData.data.length > 0` and access the first row with `httpData.data[0]`.
 :::
 
-## Test
+## Service Testing
 
-Most Service Assets allow you to test their functionality directly out of the Web-UI.
-This saves you having to deploy the Project to a Reactive Cluster only to test the Service functions.
-
-To test functions switch to the `Test` tab:
+<Testcase></Testcase>
 
 
 ---
