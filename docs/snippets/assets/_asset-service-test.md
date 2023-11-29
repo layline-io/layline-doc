@@ -6,13 +6,13 @@ In this way, you save time and effort by testing your Services without having to
 Once you have configured your Service(s), you can test them:
 Within your Asset Configuration tab (1), switch to the `Test` tab (2) to test your Service.
 
-![](./._asset-service-test_images/1701160618044.png "Service Test Facility")
+![](./._asset-service-test_images/1701255376670.png "Service Test Facility")
 
 ### Test Facility Toolbar
 
 The toolbar provides the following options:
 
-![](./._asset-service-test_images/1701104460107.png "Service Test Facility Toolbar")
+![](./._asset-service-test_images/1701255592478.png "Service Test Facility Toolbar")
 
 The Testing tab provides two major views:
 
@@ -33,7 +33,7 @@ I.e. each Testcase groups a number of indidivual tests which can be executed ind
 
 Click `Add Testcase` in the toolbar to add a new testcase:
 
-![](./._asset-service-test_images/1701160642454.png "Add Testcase")
+![](./._asset-service-test_images/1701255703825.png "Add Testcase")
 
 A new Testcase is added. 
 It is automatically named `New<Service Asset Name>Test` (3) and added to the list of Testcases (2).
@@ -100,11 +100,11 @@ There are two ways on how to trigger execution:
 
 * **Option 2**: Switch to the **Testcase execution** view by clicking on the leftmost icon in the toolbar (1) select the test to execute, and then hit the `play` button next to the test.
 
-  ![](./._asset-service-test_images/1701177495343.png "Switching to Testcase Execution")
+  ![](./._asset-service-test_images/1701255817430.png "Switching to Testcase Execution")
 
 Each option will take us to the Testcase execution view:
 
-![](./._asset-service-test_images/1701184439382.png "Testcase Execution")
+![](./._asset-service-test_images/1701256082610.png "Testcase Execution")
 
 In this view you can find the `Testcase` (1) and the `Tests` (2) we have created. 
 If we had created additional tests for this Testcase, they would be listed here as well.
@@ -116,16 +116,16 @@ We can now either execute all tests, or run them individually:
 * **`Run all Tests`** (1): Click this button to execute all tests.
 * **`Run Testcase`** (2): Click this button to a Testcase with all its underlying individual tests.
 
-  ![](./._asset-service-test_images/1701184956217.png "Run all tests")
+  ![](./._asset-service-test_images/1701256339004.png "Run all tests")
 
 * **`Run individual Test`** (3): Click this button next to a test to execute this individual test.
 
-  ![](./._asset-service-test_images/1701185135788.png "Run individual Test")
+  ![](./._asset-service-test_images/1701256419402.png "Run individual Test")
 
 Once a test has been executed, the question mark will be replaced by a green check mark or a red cross depending on whether the test was successful or not.
 
 The right hand-panel will show the results of the test execution respectively:
 
-![](./._asset-service-test_images/1701185705000.png "Testcase Execution Results")
+![](./._asset-service-test_images/1701256629525.png "Testcase Execution Results")
 
 In case of errors, the system will show the error message for further investigation.
