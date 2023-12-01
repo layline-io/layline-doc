@@ -4,6 +4,7 @@ description: JDBC Service Asset. Use this to connect to a JDBC data source.
 ---
 
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+import Testcase from '/docs/snippets/assets/_asset-service-test.md';
 
 # JDBC Service
 
@@ -260,14 +261,9 @@ try {
 
 It works the same for any other JDBC compliant statement.
 
-## Test
+## Service Testing
 
-Most Service Assets allow you to test their functionality directly out of the Web-UI.
-This saves you having to deploy the Project to a Reactive Cluster only to test the Service functions.
-
-To test functions switch to the `Test` tab:
-
-
+<Testcase></Testcase>
 
 ---
 

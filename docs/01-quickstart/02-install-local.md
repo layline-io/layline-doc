@@ -440,7 +440,7 @@ It's time to check if we can start the web-based Configuration Center.
 The **Configuration Center** is served by the **Configuration Server**. So make sure that it is up and running.
 :::
 
-Open a web browser and enter the url: `https://localhost:5841`.
+Open a web browser and enter the url: `http://localhost:5841`.
 In case you have installed the Configuration Server on another machine reachable through a different url, then enter the respective url instead of `localhost`.
 Should you have changed the port number during installation, you also need to change the port number to what you have set it to.
 
