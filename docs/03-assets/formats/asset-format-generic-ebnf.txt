@@ -1,6 +1,7 @@
 /* layline.io Generic Format Grammar Language
  * Version: 1.0
  * Date:    2020-03-01
+ * Created with https://www.bottlecaps.de/rr/ui
  */
 
 
@@ -171,6 +172,7 @@ Value ::=
 Binary.ByteString ::= (
           'type = "Binary.ByteString"'
           ('null-input-value' '=' string)?
+          ('quote-char' '=' string)?
         )
 
 

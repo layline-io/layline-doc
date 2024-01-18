@@ -301,7 +301,7 @@ It represents the bracket of every grammar.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/format.png "Format Syntax Diagram (Format Generic)")
+![](.grammar-images/format.svg "Format Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -395,7 +395,7 @@ Use this if there are different options of what the next strcuture could be.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Choice.png "Choice Syntax Diagram (Format Generic)")
+![](.grammar-images/Choice.svg "Choice Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -460,7 +460,7 @@ Like the [Choice](#choice) element, this element does not parse data, but furthe
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Sequence.png "Sequence Syntax Diagram (Format Generic)")
+![](.grammar-images/Sequence.svg "Sequence Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -543,7 +543,7 @@ Id,Name,Surname,Street,City                      // First line contains column h
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/ListTerminal.png "ListTerminal Syntax Diagram (Format Generic)")
+![](.grammar-images/ListTerminal.svg "ListTerminal Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -674,7 +674,7 @@ Use this if you
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/MultiPart.png "MultiPart Syntax Diagram (Format Generic)")
+![](.grammar-images/MultiPart.svg "MultiPart Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -763,7 +763,7 @@ Because the lexical analyzer has no length information for the record, the regul
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Separated.png "Separated Syntax Diagram (Format Generic)")
+![](.grammar-images/Separated.svg "Separated Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -858,7 +858,7 @@ A terminal element part which has a length calculated from some data in the inpu
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Calculated.png "Calculated Syntax Diagram (Format Generic)")
+![](.grammar-images/Calculated.svg "Calculated Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -901,7 +901,7 @@ A terminal element part with a fixed length.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Fixed.png "Fixed Syntax Diagram (Format Generic)")
+![](.grammar-images/Fixed.svg "Fixed Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -945,7 +945,7 @@ A terminal element part which is detected using a regular expression.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/RegExpr.png "Regular Expression Syntax Diagram (Format Generic)")
+![](.grammar-images/RegExpr.svg "Regular Expression Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -995,7 +995,7 @@ The MessageMapping specifies, how the current element is mapped into a layline.i
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/MessageMapping.png "MessageMapping Syntax Diagram (Format Generic)")
+![](.grammar-images/MessageMapping.svg "MessageMapping Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1045,7 +1045,7 @@ E.g. the Sequence is a sequence of Header, Details, and a Footer element.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/ElementReference.png "ElementReference Syntax Diagram (Format Generic)")
+![](.grammar-images/ElementReference.svg "ElementReference Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1122,6 +1122,7 @@ The following list of elements exist:
 * [Binary.ByteString](#binarybytestring)
 * [Binary.HexString](#binaryhexstring)
 * [Binary.Long](#binarylong)
+* [Text.BigInteger](#textbiginteger)
 * [Text.Date](#textdate)
 * [Text.DateTime](#textdatetime)
 * [Text.Decimal](#textdecimal)
@@ -1134,7 +1135,7 @@ The following list of elements exist:
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Value.png "Value Syntax Diagram (Format Generic)")
+![](.grammar-images/Value.svg "Value Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1146,16 +1147,19 @@ A binary ByteString value. The bytes from the input will be directly mapped into
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Binary.ByteString.png "Binary.ByteString Syntax Diagram (Format Generic)")
+![](.grammar-images/Binary.ByteString.svg "Binary.ByteString Syntax Diagram (Format Generic)")
 
 </div>
 
 **Properties:**
 
-| Attribute        | Type                | Description                                                         | Optional | Default |
-|------------------|---------------------|---------------------------------------------------------------------|:--------:|---------|
-| type             | "Binary.ByteString" | Specifies the type of value                                         |          |         |
-| null-input-value | [string](#string)   | Value that will be used when the element part is classified as null |    X     | not set |
+| Attribute        | Type                | Description                                                                                                                                                                                                  | Optional | Default |
+|------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|---------|
+| type             | "Binary.ByteString" | Specifies the type of value                                                                                                                                                                                  |          |         |
+| null-input-value | [string](#string)   | Value that will be used when the element part is classified as null                                                                                                                                          |    X     | not set |       
+| quote-char       | [string](#string)   | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set |       
+| escape-char      | [string](#string)   | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set |       
+| escape-set       | [string](#string)   | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set |       
 
 **Example:**
 
@@ -1181,16 +1185,19 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Binary.HexString.png "Binary.HexString Syntax Diagram (Format Generic)")
+![](.grammar-images/Binary.HexString.svg "Binary.HexString Syntax Diagram (Format Generic)")
 
 </div>
 
 **Properties:**
 
-| Attribute        | Type               | Description                                                         | Optional | Default |
-|------------------|--------------------|---------------------------------------------------------------------|:--------:|---------|
-| type             | "Binary.HexString" | Specifies the type of value                                         |          |         |
-| null-input-value | [string](#string)  | Value that will be used when the element part is classified as null |    X     | not set |
+| Attribute        | Type               | Description                                                                                                                                                                                                  | Optional | Default |
+|------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|---------|
+| type             | "Binary.HexString" | Specifies the type of value                                                                                                                                                                                  |          |         |
+| null-input-value | [string](#string)  | Value that will be used when the element part is classified as null                                                                                                                                          |    X     | not set |
+| quote-char       | [string](#string)  | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set |       
+| escape-char      | [string](#string)  | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set |       
+| escape-set       | [string](#string)  | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set |       
 
 **Example:**
 
@@ -1216,17 +1223,20 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Binary.Long.png "Binary.Long Syntax Diagram (Format Generic)")
+![](.grammar-images/Binary.Long.svg "Binary.Long Syntax Diagram (Format Generic)")
 
 </div>
 
 **Properties:**
 
-| Attribute        | Type                | Description                                                                                                                      | Optional | Default      |
-|------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------|:--------:|--------------|
-| type             | "Binary.Long"       | Specifies the type of value                                                                                                      |          |              |
-| null-input-value | [integer](#integer) | Value that will be used when the element part is classified as null                                                              |    X     | not set      |
-| byte-order       | [string](#string)   | Byte order of the data "BIG_ENDIAN", "BIG-ENDIAN", "BIGENDIAN", "MSBF", "LITTLE_ENDIAN", "LITTLE-ENDIAN", "LITTLEENDIAN", "LSBF" |    X     | "BIG-ENDIAN" |
+| Attribute        | Type                | Description                                                                                                                                                                                                  | Optional | Default      |
+|------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|--------------|
+| type             | "Binary.Long"       | Specifies the type of value                                                                                                                                                                                  |          |              |
+| null-input-value | [integer](#integer) | Value that will be used when the element part is classified as null                                                                                                                                          |    X     | not set      |
+| byte-order       | [string](#string)   | Byte order of the data "BIG_ENDIAN", "BIG-ENDIAN", "BIGENDIAN", "MSBF", "LITTLE_ENDIAN", "LITTLE-ENDIAN", "LITTLEENDIAN", "LSBF"                                                                             |    X     | "BIG-ENDIAN" |
+| quote-char       | [string](#string)   | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set      |       
+| escape-char      | [string](#string)   | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set      |       
+| escape-set       | [string](#string)   | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set      |       
 
 **Example:**
 
@@ -1244,6 +1254,49 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 
 ```
 
+###### Text.BigInteger
+
+A 64-bit whole number value in text format.
+
+**Syntax Diagram:**
+
+<div className="imgWhiteBackground">
+
+![](.grammar-images/Text.BigInteger.svg "Text.BigInteger Syntax Diagram (Format Generic)")
+
+</div>
+
+**Properties:**
+
+| Attribute        | Type               | Description                                                                                                                                                                                                  | Optional | Default |
+|------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|---------|
+| type             | "Text.BigInteger"  | Specifies the type of value                                                                                                                                                                                  |          |         |
+| base             | [integer](#number) | Base of encoded text value (8, 10, 16, ...).                                                                                                                                                                 |    X     | 10      |
+| null-input-value | [integer](#number) | Value that will be used when the element part is classified as null.                                                                                                                                         |    X     | not set |
+| quote-char       | [string](#string)  | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set |       
+| escape-char      | [string](#string)  | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set |       
+| escape-set       | [string](#string)  | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set |       
+
+**Example:**
+
+```
+...
+{
+  name = "RECORD_SIZE"
+  type = "Fixed"
+  length = 4
+  justification = "right"
+  pad-char = "0"
+  strip-chars = " "
+  null-regular-expression = "[ \t]*"
+  value = { 
+    type = "Text.BigInteger"
+    null-input-value = 0
+  }
+}, ...
+```
+
+
 ###### Text.Date
 
 A Date value in text format.
@@ -1253,7 +1306,7 @@ For DateTime handling see [Text.DateTime](#textdatetime).
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Text.Date.png "Text.Date Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.Date.svg "Text.Date Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1265,6 +1318,9 @@ For DateTime handling see [Text.DateTime](#textdatetime).
 | format              | [string](#string)   | Reference: [Date/Time format](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html). Do not use time formats here. See [Text.DateTime](#textdatetime) to handle DateTime values. |    X     | "uuuuMMdd" |
 | null-input-value    | [string](#string)   | Value that will be used when the element part is classified as null. Format like "2011-12-03"                                                                                                                 |    X     | not set    |
 | alternative-formats | [[string](#string)] | An array of strings representing date formats, e.g. ["uuuuMMdd", "uuMMdd"]. Will try value defined in "format" first (see above)                                                                              |    X     | not set    |
+| quote-char          | [string](#string)   | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                 |    X     | not set    |       
+| escape-char         | [string](#string)   | Allows you to define an additional character which should be treated as an escape character.                                                                                                                  |    X     | not set    |       
+| escape-set          | [string](#string)   | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\""  |    X     | not set    |       
 
 **Example:**
 
@@ -1291,17 +1347,20 @@ A DateTime value in text format. For handling pure Date formats see [Text.Date](
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Text.DateTime.png "Text.DateTime Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.DateTime.svg "Text.DateTime Syntax Diagram (Format Generic)")
 
 </div>
 
 **Properties:**
 
-| Attribute        | Type              | Description                                                                                                                                                              | Optional | Default          |
-|------------------|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|------------------|
-| type             | "Text.DateTime"   | Specifies the type of value                                                                                                                                              |          |                  |
-| format           | [string](#string) | Referemce: [Date/Time format](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html). To handle pure date formats see [Text.Date](#textdate) |    X     | "yyyyMMddHHmmss" |
-| null-input-value | [string](#string) | Value that will be used when the element part is classified as null. Format like "2011-12-03T10:15:30+01:00"                                                             |    X     | not set          |
+| Attribute        | Type              | Description                                                                                                                                                                                                  | Optional | Default          |
+|------------------|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|------------------|
+| type             | "Text.DateTime"   | Specifies the type of value                                                                                                                                                                                  |          |                  |
+| format           | [string](#string) | Reference: [Date/Time format](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html). To handle pure date formats see [Text.Date](#textdate)                                     |    X     | "yyyyMMddHHmmss" |
+| null-input-value | [string](#string) | Value that will be used when the element part is classified as null. Format like "2011-12-03T10:15:30+01:00"                                                                                                 |    X     | not set          |
+| quote-char       | [string](#string) | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set          |       
+| escape-char      | [string](#string) | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set          |       
+| escape-set       | [string](#string) | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set          |       
 
 **Example:**
 
@@ -1327,22 +1386,25 @@ A Decimal value in text format.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Text.Decimal.png "Text.Decimal Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.Decimal.svg "Text.Decimal Syntax Diagram (Format Generic)")
 
 </div>
 
 **Properties:**
 
-| Attribute             | Type                | Description                                                                                     | Optional | Default |
-|-----------------------|---------------------|-------------------------------------------------------------------------------------------------|:--------:|---------|
-| type                  | "Text.Decimal"      | Specifies the type of value                                                                     |          |         |
-| fixed-precision       | [integer](#integer) | Use a fixed precision                                                                           |    X     | not set |
-| min-fractional-digits | [integer](#integer) | Minimum number of fractional digits on the output side                                          |    X     | 0       |
-| max-fractional-digits | [integer](#integer) | Maximum number of fractional digits on the output side                                          |    X     | 6       |
-| null-input-value      | [string](#string)   | Value that will be used when the element part is classified as null as standard decimal string. |    X     | not set |
-| decimal-separator     | [string](#string)   | Value used to detect decimal separation, e.g. "." in the US.                                    |    X     | not set |
-| grouping-separator    | [string](#string)   | Value used to detect thousands grouping separator, e.g. "," in the US.                          |    X     | not set |
-| use-grouping          | [boolean](#boolean) | Used for grouping thousands values when writing decimals. See "grouping-separator".             |    X     | false   |
+| Attribute             | Type                | Description                                                                                                                                                                                                  | Optional | Default |
+|-----------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|---------|
+| type                  | "Text.Decimal"      | Specifies the type of value                                                                                                                                                                                  |          |         |
+| fixed-precision       | [integer](#integer) | Use a fixed precision                                                                                                                                                                                        |    X     | not set |
+| min-fractional-digits | [integer](#integer) | Minimum number of fractional digits on the output side                                                                                                                                                       |    X     | 0       |
+| max-fractional-digits | [integer](#integer) | Maximum number of fractional digits on the output side                                                                                                                                                       |    X     | 6       |
+| null-input-value      | [string](#string)   | Value that will be used when the element part is classified as null as standard decimal string.                                                                                                              |    X     | not set |
+| decimal-separator     | [string](#string)   | Value used to detect decimal separation, e.g. "." in the US.                                                                                                                                                 |    X     | not set |
+| grouping-separator    | [string](#string)   | Value used to detect thousands grouping separator, e.g. "," in the US.                                                                                                                                       |    X     | not set |
+| use-grouping          | [boolean](#boolean) | Used for grouping thousands values when writing decimals. See "grouping-separator".                                                                                                                          |    X     | false   |
+| quote-char            | [string](#string)   | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set |       
+| escape-char           | [string](#string)   | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set |       
+| escape-set            | [string](#string)   | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set |       
 
 **Example:**
 
@@ -1368,22 +1430,25 @@ A Double value in text format.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Text.Double.png "Text.Double Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.Double.svg "Text.Double Syntax Diagram (Format Generic)")
 
 </div>
 
 **Properties:**
 
-| Attribute             | Type                | Description                                                                                     | Optional | Default |
-|-----------------------|---------------------|-------------------------------------------------------------------------------------------------|----------|---------|
-| type                  | "Text.Double"       | Specifies the type of value                                                                     |          |         |
-| fixed-precision       | [integer](#integer) | Use a fixed precision                                                                           | X        | not set |
-| min-fractional-digits | [integer](#integer) | Minimum number of fractional digits on the output side                                          | X        | 0       |
-| max-fractional-digits | [integer](#integer) | Maximum number of fractional digits on the output side                                          | X        | 6       |
-| null-input-value      | [string](#string)   | Value that will be used when the element part is classified as null as standard decimal string. | X        | not set |
-| decimal-separator     | [string](#string)   | Value used to detect decimal separation, e.g. "." in the US.                                    | X        | not set |
-| grouping-separator    | [string](#string)   | Value used to detect thousands grouping separator, e.g. "," in the US.                          | X        | not set |
-| use-grouping          | [boolean](#boolean) | Used for grouping thousands values when writing decimals. See "grouping-separator".             | X        | false   |
+| Attribute             | Type                | Description                                                                                                                                                                                                  | Optional | Default |
+|-----------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
+| type                  | "Text.Double"       | Specifies the type of value                                                                                                                                                                                  |          |         |
+| fixed-precision       | [integer](#integer) | Use a fixed precision                                                                                                                                                                                        | X        | not set |
+| min-fractional-digits | [integer](#integer) | Minimum number of fractional digits on the output side                                                                                                                                                       | X        | 0       |
+| max-fractional-digits | [integer](#integer) | Maximum number of fractional digits on the output side                                                                                                                                                       | X        | 6       |
+| null-input-value      | [string](#string)   | Value that will be used when the element part is classified as null as standard decimal string.                                                                                                              | X        | not set |
+| decimal-separator     | [string](#string)   | Value used to detect decimal separation, e.g. "." in the US.                                                                                                                                                 | X        | not set |
+| grouping-separator    | [string](#string)   | Value used to detect thousands grouping separator, e.g. "," in the US.                                                                                                                                       | X        | not set |
+| use-grouping          | [boolean](#boolean) | Used for grouping thousands values when writing decimals. See "grouping-separator".                                                                                                                          | X        | false   |
+| quote-char            | [string](#string)   | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                | X        | not set |       
+| escape-char           | [string](#string)   | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 | X        | not set |       
+| escape-set            | [string](#string)   | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" | X        | not set |       
 
 **Example:**
 
@@ -1410,17 +1475,20 @@ A 32-bit whole number value in text format.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Text.Integer.png "Text.Integer Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.Integer.svg "Text.Integer Syntax Diagram (Format Generic)")
 
 </div>
 
 **Properties:**
 
-| Attribute        | Type               | Description                                                          | Optional | Default |
-|------------------|--------------------|----------------------------------------------------------------------|:--------:|---------|
-| type             | "Text.Integer"     | Specifies the type of value                                          |          |         |
-| base             | [integer](#number) | Base of encoded text value (8, 10, 16).                              |    X     | 10      |
-| null-input-value | [integer](#number) | Value that will be used when the element part is classified as null. |    X     | not set |
+| Attribute        | Type               | Description                                                                                                                                                                                                  | Optional | Default |
+|------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|---------|
+| type             | "Text.Integer"     | Specifies the type of value                                                                                                                                                                                  |          |         |
+| base             | [integer](#number) | Base of encoded text value (8, 10, 16).                                                                                                                                                                      |    X     | 10      |
+| null-input-value | [integer](#number) | Value that will be used when the element part is classified as null.                                                                                                                                         |    X     | not set |
+| quote-char       | [string](#string)  | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set |       
+| escape-char      | [string](#string)  | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set |       
+| escape-set       | [string](#string)  | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set |       
 
 **Example:**
 
@@ -1449,17 +1517,20 @@ A 64-bit long value in text format.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Text.Long.png "Text.Long Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.Long.svg "Text.Long Syntax Diagram (Format Generic)")
 
 </div>
 
 **Properties:**
 
-| Attribute        | Type               | Description                                                          | Optional | Default |
-|------------------|--------------------|----------------------------------------------------------------------|----------|---------|
-| type             | "Text.Long"        | Specifies the type of value                                          |          |         |
-| base             | [integer](#number) | Base of encoded text value (8, 10, 16).                              | X        | 10      |
-| null-input-value | [integer](#number) | Value that will be used when the element part is classified as null. | X        | not set |
+| Attribute        | Type               | Description                                                                                                                                                                                                  | Optional | Default |
+|------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
+| type             | "Text.Long"        | Specifies the type of value                                                                                                                                                                                  |          |         |
+| base             | [integer](#number) | Base of encoded text value (8, 10, 16).                                                                                                                                                                      | X        | 10      |
+| null-input-value | [integer](#number) | Value that will be used when the element part is classified as null.                                                                                                                                         | X        | not set |
+| quote-char       | [string](#string)  | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                | X        | not set |       
+| escape-char      | [string](#string)  | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 | X        | not set |       
+| escape-set       | [string](#string)  | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" | X        | not set |       
 
 **Example:**
 
@@ -1486,18 +1557,21 @@ A String value.
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Text.String.png "Text.String Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.String.svg "Text.String Syntax Diagram (Format Generic)")
 
 </div>
 
 
 **Properties:**
 
-| Attribute        | Type                | Description                                                                                                                               | Optional | Default |
-|------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
-| type             | "Text.String"       | Specifies the type of value                                                                                                               |          |         |
-| encoding         | [string](#string)   | Used string encoding ([standard Java character set names](https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html). | X        | "UTF-8" |
-| null-input-value | [integer](#integer) | Value that will be used when the element part is classified as null.                                                                      | X        | not set |
+| Attribute        | Type                | Description                                                                                                                                                                                                  | Optional | Default |
+|------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
+| type             | "Text.String"       | Specifies the type of value                                                                                                                                                                                  |          |         |
+| encoding         | [string](#string)   | Used string encoding ([standard Java character set names](https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html).                                                                    | X        | "UTF-8" |
+| null-input-value | [integer](#integer) | Value that will be used when the element part is classified as null.                                                                                                                                         | X        | not set |
+| quote-char       | [string](#string)   | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                | X        | not set |       
+| escape-char      | [string](#string)   | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 | X        | not set |       
+| escape-set       | [string](#string)   | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" | X        | not set |       
 
 **Example:**
 
@@ -1538,7 +1612,7 @@ The following action can be performed when a state should change:
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Action.png "Action Syntax Diagram (Format Generic)")
+![](.grammar-images/Action.svg "Action Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1556,7 +1630,7 @@ Please check the [QuickScript Language Reference](/docs/lang-ref/quickscript/qui
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/Formula.png "Formula Syntax Diagram (Format Generic)")
+![](.grammar-images/Formula.svg "Formula Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1586,7 +1660,7 @@ Please check the [QuickScript Language Reference](/docs/lang-ref/quickscript/qui
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/boolean.png "Boolean Syntax Diagram (Format Generic)")
+![](.grammar-images/boolean.svg "Boolean Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1596,7 +1670,7 @@ Please check the [QuickScript Language Reference](/docs/lang-ref/quickscript/qui
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/string.png "String Syntax Diagram (Format Generic)")
+![](.grammar-images/string.svg "String Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1606,7 +1680,7 @@ Please check the [QuickScript Language Reference](/docs/lang-ref/quickscript/qui
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/integer.png "Integer Syntax Diagram (Format Generic)")
+![](.grammar-images/integer.svg "Integer Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1624,7 +1698,7 @@ This data type is based on Java's BigDecimal data type from which the descriptio
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/decimal.png "Decimal Syntax Diagram (Format Generic)")
+![](.grammar-images/decimal.svg "Decimal Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1634,7 +1708,7 @@ This data type is based on Java's BigDecimal data type from which the descriptio
 
 <div className="imgWhiteBackground">
 
-![](.grammar-images/comment.png "Comment Syntax Diagram (Format Generic)")
+![](.grammar-images/comment.svg "Comment Syntax Diagram (Format Generic)")
 
 </div>
 
