@@ -1,7 +1,6 @@
 /* layline.io Generic Format Grammar Language
  * Version: 1.0
  * Date:    2020-03-01
- * Created with https://www.bottlecaps.de/rr/ui
  */
 
 
@@ -159,6 +158,8 @@ Value ::=
         Binary.ByteString |
         Binary.HexString |
         Binary.Long |
+        Text.BigInteger |
+        Text.Date |
         Text.DateTime |
         Text.Decimal |
         Text.Double |
@@ -171,21 +172,44 @@ Value ::=
 
 Binary.ByteString ::= (
           'type = "Binary.ByteString"'
-          ('null-input-value' '=' string)?
-          ('quote-char' '=' string)?
+          (
+              ('null-input-value' '=' string)? |
+              ('quote-char' '=' string)? |
+              ('escape-char' '=' string)? |
+              ('escape-set' '=' string)?
+          )+
         )
 
 
 Binary.HexString ::= (
           'type = "Binary.HexString"'
-          ('null-input-value' '=' string)?
+          (
+              ('null-input-value' '=' string)? |
+              ('quote-char' '=' string)? |
+              ('escape-char' '=' string)? |
+              ('escape-set' '=' string)?
+          )+
         )
 
 Binary.Long ::= (
           'type = "Binary.Long"'
           (
             ('null-input-value' '=' integer)? |
-            ('byte-order' '=' string)?
+            ('byte-order' '=' string)? |
+            ('quote-char' '=' string)? |
+            ('escape-char' '=' string)? |
+            ('escape-set' '=' string)?
+          )+
+        )
+
+Text.BigInteger ::= (
+          'type = "Text.BigInteger"'
+          (
+            ('null-input-value' '=' integer)? |
+            ('base' '=' string)? |
+            ('quote-char' '=' string)? |
+            ('escape-char' '=' string)? |
+            ('escape-set' '=' string)?
           )+
         )
 
@@ -195,6 +219,9 @@ Text.Date ::= (
             ('null-input-value' '=' string)? |
             ('format' '=' string)? |
             ('alternative-formats' '=' '[' ( (string) ','?)+ ']') |
+            ('quote-char' '=' string)? |
+            ('escape-char' '=' string)? |
+            ('escape-set' '=' string)?
           )+
         )
 
@@ -202,7 +229,10 @@ Text.DateTime ::= (
           'type = "Text.DateTime"'
           (
             ('null-input-value' '=' string)? |
-            ('format' '=' string)?
+            ('format' '=' string)? |
+            ('quote-char' '=' string)? |
+            ('escape-char' '=' string)? |
+            ('escape-set' '=' string)?
           )+
         )
 
@@ -216,6 +246,9 @@ Text.Decimal ::= (
             ('decimal-separator' '=' string)? |
             ('grouping-separator' '=' string)? |
             ('use-grouping' '=' boolean)? |
+            ('quote-char' '=' string)? |
+            ('escape-char' '=' string)? |
+            ('escape-set' '=' string)?
           )+
         )
 
@@ -229,6 +262,9 @@ Text.Double ::= (
             ('decimal-separator' '=' string)? |
             ('grouping-separator' '=' string)? |
             ('use-grouping' '=' boolean)? |
+            ('quote-char' '=' string)? |
+            ('escape-char' '=' string)? |
+            ('escape-set' '=' string)?
           )+
         )
 
@@ -236,7 +272,10 @@ Text.Integer ::= (
           'type = "Text.Integer"'
           (
             ('null-input-value' '=' integer)? |
-            ('base' '=' string)?
+            ('base' '=' string)? |
+            ('quote-char' '=' string)? |
+            ('escape-char' '=' string)? |
+            ('escape-set' '=' string)?
           )+
         )
 
@@ -244,7 +283,10 @@ Text.Long ::= (
           'type = "Text.Long"'
           (
             ('null-input-value' '=' integer)? |
-            ('base' '=' string)?
+            ('base' '=' string)? |
+            ('quote-char' '=' string)? |
+            ('escape-char' '=' string)? |
+            ('escape-set' '=' string)?
           )+
         )
 
@@ -252,7 +294,10 @@ Text.String ::= (
           'type = "Text.String"'
           (
             ('null-input-value' '=' string)? |
-            ('encoding' '=' string)?
+            ('encoding' '=' string)? |
+            ('quote-char' '=' string)? |
+            ('escape-char' '=' string)? |
+            ('escape-set' '=' string)?
           )+
         )
 
