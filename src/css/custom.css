@@ -4,6 +4,11 @@
  * work well for content-centric websites.
  */
 
+h1, h2, h3, h4, h5, h6 {
+  color: #ff5722; /* Set the color for H1 headings */
+}
+
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #ff6838;

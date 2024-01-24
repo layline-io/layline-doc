@@ -242,9 +242,6 @@ We know that the Scheduler display is not perfect. But it serves the purpose for
 
 
 
-
-
-
 ### Access Coordinator
 
 The "_**Access Coordinator**_" **(1)** is a process (Controller) which manages access to sources and resources. 
@@ -299,7 +296,10 @@ To free up a resource you need to select it **(5)** and click `Revoke selected` 
 ![](.02-cluster_images/2021-11-08-17-26-53.png "Freeing up resources (Operations --> Cluster)")
 
 
+### AI Storage
 
+The "_**AI Storage**_" is a process (Controller) which manages AI models.
+![](./.02-cluster_images/1705932603589.png)
 
 ### User Storage
 

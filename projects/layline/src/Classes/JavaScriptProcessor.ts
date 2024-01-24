@@ -66,7 +66,7 @@ class JavaScriptProcessor {
      *         handleDetail(message);
      *    }
      *
-     *    stream.emit(OUTPUT_PORT, message);
+     *    stream.emit(message, OUTPUT_PORT);
      * }
      *
      * function handleDetail(detail) {
@@ -159,7 +159,7 @@ class JavaScriptProcessor {
      *     if (streamComplete) { // Stream was fully received
      *        message = queue.ReadMessage(); // Read one message
      *        if (message) {
-     *            stream.emit(MY_OUTPUT_PORT, message); // emit the message
+     *            stream.emit(message, MY_OUTPUT_PORT); // emit the message
      *        }
      *     }
      *

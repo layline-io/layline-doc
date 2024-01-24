@@ -139,7 +139,7 @@ function onMessage(message) {
         handleDetail(message);
     }
 
-    stream.emit(OUTPUT_PORT, message);
+    stream.emit(message, OUTPUT_PORT);
 }
 
 function handleDetail(detail) {

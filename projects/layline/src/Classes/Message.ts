@@ -43,7 +43,7 @@ import PackedMessage from "./PackedMessage";
  *     }
  *
  *     // send the message on through OUTPUT_PORT of Processor
- *     stream.emit(OUTPUT_PORT, message);
+ *     stream.emit(message, OUTPUT_PORT);
  * }
  * ...
  *

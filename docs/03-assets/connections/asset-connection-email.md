@@ -38,9 +38,11 @@ Defines the connection parameters for an Email endpoint.
 
 The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it. Click to expand and then click to follow, if any.
 
-### Required roles
+### Classifier Type
 
-![Required Roles (Connection SMB)](./.asset-connection-email_images/c2e6ec39.png)
+![Classifier Model](./.asset-connection-email_images/1705999656625.png)
+
+
 
 ### Email Connection Type
 

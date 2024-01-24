@@ -14,7 +14,7 @@ It provides a number of functions which can - and sometimes have to - be invoked
 
 ### emit
 
-▸ **emit**(`outputPort`, `message`): `void`
+▸ **emit**(`message`, `outputPort`): `void`
 
 Emit a message to the specified output port.
 Once emitted, the context of the message is lost.
@@ -35,8 +35,8 @@ stream.emit(message, OUTPUT_PORT);
 
 | Name | Type |
 | :------ | :------ |
-| `outputPort` | [`OutputPort`](OutputPort.md) |
 | `message` | [`Message`](Message.md) |
+| `outputPort` | [`OutputPort`](OutputPort.md) |
 
 #### Returns
 
@@ -338,7 +338,7 @@ ___
 
 Requests to roll back the currently processed stream.
 
-To roll back a stream, you may issue a [requestRollback](Stream.md#requestrollback) to signal to layline.io that you want this stream rolled back and provide a [Status](Status.md) which describes the reason for the rollback.
+To roll back a stream, you may issue a [requestRollback](Stream.md#requestrollback-6) to signal to layline.io that you want this stream rolled back and provide a [Status](Status.md) which describes the reason for the rollback.
 
 Example:
 ```js

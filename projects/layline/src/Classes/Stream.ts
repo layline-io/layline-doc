@@ -29,11 +29,11 @@ class stream {
      * stream.emit(message, OUTPUT_PORT);
      * ```
      *
-     * @param outputPort
      * @param message
+     * @param outputPort
      * @return void
      */
-    emit(outputPort: OutputPort, message: Message): void {
+    emit(message: Message, outputPort: OutputPort): void {
     }
 
 
