@@ -15,6 +15,12 @@ As with all documentation, this also is work-in-progress. In case you don't find
 
 ---
 
+## General Documentation
+
+[Take me there](/docs/index)
+
+---
+
 ## Quick Start
 Showcase on how to get up and running quickly, including a sample workflow.
 

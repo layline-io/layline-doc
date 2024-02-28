@@ -1296,7 +1296,6 @@ A 64-bit whole number value in text format.
 }, ...
 ```
 
-
 ###### Text.Date
 
 A Date value in text format.
