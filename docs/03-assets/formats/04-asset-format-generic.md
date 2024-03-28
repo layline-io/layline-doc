@@ -51,10 +51,10 @@ We will explain all of this in this document.
 | Asset type        | Link                                                                |
 |-------------------|---------------------------------------------------------------------|
 | Input Processors  | [Stream Input](/docs/assets/processors-input/asset-input-stream)    |
-|                   | [UDP Input](/docs/assets/processors-input/asset-input-udp)          |
+|                   | [Frame Input](/docs/assets/processors-input/asset-input-frame)      |
 |                   | [Kafka Input](/docs/assets/processors-input/asset-input-kafka)      |
 | Output Processors | [Stream Output](/docs/assets/processors-output/asset-output-stream) |
-|                   | [Kafka Output](/docs/assets/processors-output/asset-output-kafka)   |
+|                   | [Frame Output](/docs/assets/processors-output/asset-output-frame)   |
 
 ## Configuration
 
@@ -1769,13 +1769,13 @@ to set up your format!
 **Input Processors**
 
 * [Stream Input](/docs/assets/processors-input/asset-input-stream)
-* [UDP Input](/docs/assets/processors-input/asset-input-udp)
+* [Frame Input](/docs/assets/processors-input/asset-input-frame)
 * [Kafka Input](/docs/assets/processors-input/asset-input-kafka)
 
 **Output Processors**
 
 * [Stream Output](/docs/assets/processors-output/asset-output-stream)
-* [Kafka Output](/docs/assets/processors-output/asset-output-kafka)
+* [Frame Output Processor](/docs/assets/processors-output/asset-output-frame)
 
 ### External
 

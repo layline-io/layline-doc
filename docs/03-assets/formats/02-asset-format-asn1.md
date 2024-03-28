@@ -40,7 +40,7 @@ We will ensure that your case will be accommodated in the short term.
 | Input Processors  | [Kafka Input](/docs/assets/processors-input/asset-input-kafka)                       |
 |                   | [Request-Response Input](/docs/assets/processors-input/asset-input-request-response) |
 |                   | [Stream Input](/docs/assets/processors-input/asset-input-stream)                     |
-|                   | [UDP Input](/docs/assets/processors-input/asset-input-udp)                           |
+|                   | [Frame Input](/docs/assets/processors-input/asset-input-frame)                       |
 | Output Processors | [Stream Output](/docs/assets/processors-output/asset-output-stream)                  |
 
 ## Configuration

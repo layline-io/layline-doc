@@ -149,7 +149,7 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 * [Kafka Source](/docs/assets/sources/asset-source-kafka)
 * [Kafka Sink](/docs/assets/sinks/asset-sink-kafka)
 * [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
-* [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka)
+* [Frame Output Processor](/docs/assets/processors-output/asset-output-frame)
 * [Create and manage secrets](/docs/assets/resources/asset-resource-secret)
 
 ### External

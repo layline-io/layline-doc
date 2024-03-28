@@ -18,7 +18,7 @@ This UI helps to define the outbound connection parameters for a AWS S3 sink.
 
 | Asset type        | Link                                                                        |
 |-------------------|-----------------------------------------------------------------------------|
-| Output Processors | [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka) |
+| Output Processors | [Frame Output Processor](/docs/assets/processors-output/asset-output-frame) |
 
 ### Prerequisite
 
@@ -88,8 +88,8 @@ Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** in the new table 
 ### Internal
 
 * [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
-* [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka)
 * [Kafka Source](/docs/assets/sources/asset-source-kafka)
+* [Frame Output Processor](/docs/assets/processors-output/asset-output-frame)
 * [Create and manage secrets](/docs/assets/resources/asset-resource-secret)
 
 ### External

@@ -102,7 +102,7 @@ These will be available for selection here. You can check how many buckets could
 * **`Prefix (2)`**: If you pick a valid bucket (1), then available prefixes (folders) will be available for selection here. 
 You can check how many prefixes could be found for a given bucket at (6)  
 
-* **`Use path style bucket access (3)`**: The S3 API allows accessing objects via legacy "_path style_ (e.g. _https://s3.amazonaws.com/etargett-public/images/example.jpeg_)" or "_virtual hosted style_ (e.g. https://etargett-public.s3.amazonaws.com/images/example.jpeg)".
+* **`Use path style bucket access (3)`**: The S3 API allows accessing objects via legacy "_path style_" or "_virtual hosted style_".
 Check this box if you want to access objects via legacy path style access. You can read more about this [here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html)
 
 * **`Include sub folders (4)`**: Check this box if you want sub-folders to be included when querying the source.

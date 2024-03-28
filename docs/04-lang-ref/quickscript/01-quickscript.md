@@ -33,7 +33,7 @@ Another example (2) shows how a string can be easily padded we three leading zer
 
 Other places where `QuickScript` can be used:
 
-- [Kafka Output Processor](/docs/assets/processors-output/asset-output-kafka) --> in the routing rules
+- [Frame Output Processor](/docs/assets/processors-output/asset-output-frame) --> in the routing rules
 - [Filter & Routing Processor](/docs/assets/processors-flow/asset-flow-filterrouting) --> in the filter & routing rules
 - [Mapping Processor](/docs/assets/processors-flow/asset-flow-mapping) --> in the mapping assignments
 - [Generic Format](/docs/assets/formats/asset-format-generic) --> in the grammar definition

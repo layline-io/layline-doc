@@ -37,7 +37,6 @@ You need:
 * [SMB Source](/docs/assets/sources/asset-source-smb)
 * [TCP Source](/docs/assets/sources/asset-source-tcp)
 * [WebDav Source](/docs/assets/sources/asset-source-webdav)
-* [WebSocket Source](/docs/assets/sources/asset-source-websocket)
 
 ### Name & Description
 

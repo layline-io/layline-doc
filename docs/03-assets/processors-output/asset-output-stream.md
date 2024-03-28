@@ -32,7 +32,6 @@ You need:
 * [Sink FTP](/docs/assets/sinks/asset-sink-ftp)
 * [Sink S3](/docs/assets/sinks/asset-sink-s3)
 * [Sink SMB](/docs/assets/sinks/asset-sink-smb)
-* [Sink TCP](/docs/assets/sinks/asset-sink-tcp)
 * [Sink WebDav](/docs/assets/sinks/asset-sink-webdav)
 * [Sink WebSocket](/docs/assets/sinks/asset-sink-websocket)
 
