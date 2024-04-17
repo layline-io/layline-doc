@@ -63,6 +63,7 @@ Next we fill in the details:
   
   This list contains all Service functions which are defined in the Service Asset.
   Pick the one you want to test.
+
   ![](./._asset-service-test_images/1701167323839.png "Selecting a Service Function")
 
    Once a Service function is selected, the system will automatically create a skeleton to fill in the respective parameters for the selected Service function.

@@ -135,8 +135,11 @@ On the left-hand tree, select `Controllers --> Deployment Storage`. There we can
 
 Instead of deploying directly to Cluster, you may want to deploy to a File instead. This is useful, if you want to exchange Deployments asynchronously. A good example would be to transfer a Deployment to another Cluster outside of current reach, or simply to send a Deployment to someone else via email.
 
-To deploy to a file select `Write to File` **(1)** from the "_Deploy to Cluster_" box. Enter a path and filename where to store the Deployment file **(2)**.
+To deploy to a file select `Write to File` **(1)** from the "_Deploy to Cluster_" box. Enter the name of the file where to store the Deployment file **(2)**. 
 
 The Deployment will be stored in a JSON-file which can be used for [upload in a Cluster](/docs/concept/operations/cluster#deploy-from-file).
 
-![](.deployment-images/2021-11-04-12-21-40.png "Deploy to zip File (Workflow Deployment)")
+If your browser is set to download files to a specific folder always (e.g. to the Downloads folder on your machine, which is the default in most browsers), then you can find it there.
+Should your browser settings be such that you are asked where to store the file, then you can select the location yourself.
+
+![](.deployment-images/1713358760484.png "Deploy to zip File (Workflow Deployment)")
