@@ -62,7 +62,7 @@ As usual for regular expression-based mapping, it is important to ensure the rig
 
 
 
-**Note**: layline.io provides a default _**Prometheus Mapping**_ that can be downloaded from Git here (add link). 
+**Note**: layline.io provides a default _**Prometheus Mapping**_ that can be downloaded from Git [here](https://github.com/layline-io-sample-projects/sample-metrics-mapping). 
 This allows to import a standard mapping to get a first glance on using metrics. 
 The mapping can be re-configured resp. enhanced to project specific needs at any time.
 
@@ -89,7 +89,7 @@ More Details on Workflow Deployment can be found [here](../wf-config/deployment)
 The next reactive cluster activation of the deployment will generate metrics that can be accessed resp. 
 exported through the url: ` http://localhost:5842>/engine/prometheus` 
 (pls. exchange *localhost* and *port* information according to individual setup). 
-You can view the exported information in your web browser and it will look something like this:
+You can view the exported information in your web browser, and it will look something like this:
 
 ![layline.io Metrics screenshot](./.04-prometheus-extension_images/Screenshot19-04-2024Metrics.png "layline.io Metrics screenshot")
 
@@ -195,8 +195,8 @@ for customized dashboards as well:
 The third level in this counter reflects the <_**connectionName**_\>. Hence, for the following element we will see one counter 
 per configured connection
 
-| **No.** | **Metric**                                        | **Usage**                      |
-|---------|---------------------------------------------------|--------------------------------|
+| **No.** | **Metric**                                          | **Usage**                      |
+|---------|-----------------------------------------------------|--------------------------------|
 | 1       | Counter.Connection.<_**connectionName**_\>.Failures | number of connection failures  |
 
 ### Configuring Prometheus and Grafana using Docker
