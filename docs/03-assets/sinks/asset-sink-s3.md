@@ -12,25 +12,24 @@ import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.
 Next to Amazon's S3 there are now various object storage providers which grant S3 compatible access to their storage solutions as well (e.g. Google Cloud Storage, IONOS, et al).
 
-This UI helps to define the outbound connection parameters for a AWS S3 sink.
+This UI helps to define the outbound connection parameters for an AWS S3 sink.
 
 ### This Asset can be used by:
 
-| Asset type        | Link                                                                        |
-|-------------------|-----------------------------------------------------------------------------|
-| Output Processors | [Frame Output Processor](/docs/assets/processors-output/asset-output-frame) |
+| Asset type        | Link                                                                          |
+|-------------------|-------------------------------------------------------------------------------|
+| Output Processors | [Stream Output Processor](/docs/assets/processors-output/asset-output-stream) |
 
 ### Prerequisite
 
 You need:
-
-* [Kafka Connection](/docs/assets/connections/asset-connection-kafka)
+* [AWS Connection](/docs/assets/connections/asset-connection-aws)
 
 ## Configuration
 
 ### Name & Description
 
-![](.asset-sink-kafka-images/c6e06d17.png "Name & Description (S3 Sink Asset)")
+![](.asset-sink-s3_images/Screenshot22-04-2024NameandDescription_S3_Sink_Asset.png "Name & Description (S3 Sink Asset)")
 
 **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
@@ -46,55 +45,52 @@ In case you are deploying to a Cluster which is running (a) Reactive Engine Node
 roles.
 If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all Nodes (no restriction).
 
-### Kafka Connection
+### S3 Settings
 
-![](.asset-sink-kafka-images/a44e1dd8.png "Kafka Connection (S3 Sink Asset)")
+![](.asset-sink-s3_images/Screenshot23-04-2024S3-Sink-Settings.png "S3 Settings (S3 Sink Asset)")
 
-Select the [Kafka Connection](/docs/assets/connections/asset-connection-kafka) to use with this Asset.
-If it does not exist, you need to create it first.
+#### S3 Connection (A)
 
-### Kafka Producer Settings
+Select the [S3 Connection](/docs/assets/connections/asset-connection-aws) to use for this Asset. If it does not exist, you need to create it first.
 
-#### General
+#### S3 Bucket (B)
 
-![](.asset-sink-kafka-images/bbbe60a1.png "Genereal Kafka Producer Settings (S3 Sink Asset)")
+* **`S3 bucket name (B)`**: Once you picked a S3 Connection above the system will try to test the connection and list bucket names it can find.
+  These will be available for selection here. You can check how many buckets could be found at (6)
 
-* **`Parallelism`**: Tuning parameter of how many messages can be sent to Kafka in parallel.
-  If nothing is specified, the default is _10,000_.
+* **`Prefix (1)`**: If you pick a valid bucket (B), then available prefixes (folders) will be available for selection here.
+  You can check how many prefixes could be found for a given bucket at (7)
 
-#### Additional Kafka Properties
+* **`Object Prefix / Object Suffix (2)`**: You can narrow down your bucket selection further by putting object prefix / suffix filters. 
 
-Use this section to add configuration parameters available for Kafka Platform such as `compression.type` or even `ssl.keystore.key`.
+* **`"Object already exists"-Handling (3)`**: Define your required handling in case the object "in process" already exists.
 
-![](.asset-sink-kafka-images/9cf62f34.png "Additional Kafka Properties (S3 Sink Asset)")
+![](.asset-sink-s3_images/Screenshot2024-04-23S3-Sink-ObjectExistsHandling.png "S3 Settings - Object Exists Handling (S3 Sink Asset)")
 
-For a list of available properties please check [Confluent Producer Configurations](https://docs.confluent.io/platform/current/installation/configuration/producer-configs).
 
-:::caution Attention: Kafka properties take precedence
-Please note that properties defined here, take precedence over all other settings you may have provided in this UI.
-You can use this to add, or override Kafka properties using these settings.
-:::
+* **`Use path style bucket access (4)`**: The S3 API allows accessing objects via legacy "_path style_" or "_virtual hosted style_".
+  Check this box if you want to access objects via legacy path style access. You can read more about this [here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html)
 
-#### Exclusive partition access
+* **`Include sub folders (5)`**: Check this box if you want sub-folders to be included when querying the source.
+  This means that all objects from sub-folders within a bucket/prefix combination will be considered for processing.
 
-In case you want to exclusively write to one or more partitions, then **`Enable exclusive partition access`**.
+While you are entering and changing S3 bucket parameters, layline.io frequently tries to connect to the endpoint and retrieve bucket and prefix information.
+The status of these attempts is displayed at the bottom of the group box.
 
-![](.asset-sink-kafka-images/b78d3b53.png "Exclusive partition access (S3 Sink Asset)")
 
-Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** in the new table row.
+
 
 ## Related Topics
 
 ### Internal
 
-* [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
-* [Kafka Source](/docs/assets/sources/asset-source-kafka)
-* [Frame Output Processor](/docs/assets/processors-output/asset-output-frame)
-* [Create and manage secrets](/docs/assets/resources/asset-resource-secret)
+* [S3 Connection](/docs/assets/connections/asset-connection-aws)
+* [S3 Source](/docs/assets/sources/asset-source-s3)
 
 ### External
-
-* [Confluent Kafka: Producer Configurations](https://docs.confluent.io/platform/current/installation/configuration/producer-configs)
+* [Cron on Wikipedia](https://en.wikipedia.org/wiki/Cron)
+* [Cron editor online from crontab guru](https://crontab.guru/)
+* [AWS Virtual hosting of buckets](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html)
 
 ## Potential problems
 

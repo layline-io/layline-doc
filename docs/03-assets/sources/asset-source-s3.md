@@ -19,6 +19,13 @@ Next to Amazon's S3 there are now various object storage providers which grant S
 
 This UI helps to define the specific bucket and folder source of an S3 connected endpoint. 
 
+### This Asset can be used by:
+
+| Asset type       | Link                                                                       |
+|------------------|----------------------------------------------------------------------------|
+| Input Processors | [Stream Input Processor](/docs/assets/processors-input/asset-input-stream) |
+
+
 ## Prerequisite
 
 You need:
