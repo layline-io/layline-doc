@@ -4,6 +4,8 @@ description: Connection AWS
 tags:
   - connection
   - S3
+  - SNS
+  - SQS
   - AWS
   - Amazon
 ---

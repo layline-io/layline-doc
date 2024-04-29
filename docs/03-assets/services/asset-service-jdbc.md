@@ -179,7 +179,7 @@ Service.
 ![](.asset-service-jdbc_images/3959df0c.png "Example Workflow (Service JDBC)")
 
 In the middle of the Workflow we find a JavaScript Processor by the name of “_EnrichCustomer_”. This Processor reads
-additional customer information from Aerospike using the JDBC Service.
+additional customer information from a JDBC compatible store using the JDBC Service.
 
 How is it configured?
 

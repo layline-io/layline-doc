@@ -8,6 +8,7 @@ tags:
 ---
 
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
 import CredentialType from '/docs/snippets/assets/_credential-type.md';
 import Testcase from '/docs/snippets/assets/_asset-service-test.md';
 
@@ -39,13 +40,7 @@ Click to expand and then click to follow, if any.
 
 ### Required roles
 
-![](.asset-service-http_images/2f02c614.png "Required roles (Service Http)")
-
-In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles
-configured, then you **can** restrict use of this Asset to those Nodes with matching
-roles.
-If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all
-Nodes (no restriction).
+<RequiredRoles></RequiredRoles>
 
 ### Host / Credentials
 
@@ -60,9 +55,67 @@ This is where you define the connection parameters for the Http Host that you wa
 
 #### Credentials
 
-[//]: # (##### Credential type)
+The credential type defines the authentication method/flow to be applied.
 
-<CredentialType></CredentialType>
+The Http Connection Asset supports the following credential flows:
+
+1. None
+2. User/Password
+2. OAuth (Client Credentials)
+3. OAuth (Device Flow)
+
+##### None
+
+No authentication is performed.
+
+##### User/Password
+
+![User and Password (Service Http)](./.asset-service-http_images/1714384629141.png "User and Password (Service Http)")
+
+
+* **`Credential Type`**:
+  Select `User/Passsword` from the drop-down box.
+
+* **`Username`** (_macro supported_):
+  Your username.
+
+* **`Password`** (_macro supported_):
+  Your Http password.
+
+* **`Do not substitute macro terms in password`**:
+  Check this box, if your password contains wording which could be mistaken as a macro (`${...}`) but should not be replaced by layline.io.
+
+
+##### OAuth (Client Credentials)
+
+The Client Credentials Flow involves an application exchanging its application credentials, such as client ID and client secret, for an access token.
+You can check the [Auth0 documentation](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow) for an example description.
+
+![OAuth Client Credential Flow (Connection Http)](./.asset-service-http_images/1714383772881.png "OAuth Client Credential Flow (Connection Http)")
+
+
+* **`Authority`**:
+  The authority URL as provided by the party to connect to. This is the endpoint which authorizes the connection and issues a respective token.
+
+* **`Client ID`**:
+  An ID issued by the authenticating authority.
+
+* **`Scopes`**:
+  These are the authentication scopes requested by the connection and which ust be granted by the authenticating authority.
+  This is typically defined by the issuing authority in the context of the client id.
+  I.e. if the other party has granted the access scopes which you define here, they authentication will be successful.
+  Otherwise, the authentication may fail.
+
+##### OAuth (Device Flow)
+
+With input-constrained devices that connect to the internet, rather than authenticate the user directly, the device asks the user to go to a link on their computer or smartphone and authorize the
+device.
+This avoids a poor user experience for devices that do not have an easy way to enter text.
+To do this, device apps use the Device Authorization Flow, in which they pass along their Client ID to initiate the authorization process and get a token.
+
+You can check the [Auth0 documentation](https://auth0.com/docs/get-started/authentication-and-authorization-flow/device-authorization-flow) for an example description.
+
+For settings please see [Client Credential Flow](#oauth-client-credentials).
 
 ### Functions
 
@@ -279,5 +332,9 @@ If we are only expecting one row as a result, we can test it with `httpData.data
 
 
 ---
+
+:::tip Fields marked with "**macro supported**"
+You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+:::
 
 <WipDisclaimer></WipDisclaimer>

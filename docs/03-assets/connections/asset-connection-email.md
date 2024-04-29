@@ -22,9 +22,10 @@ Defines the connection parameters for an Email endpoint.
 
 ### This Asset can be used by:
 
-| Asset type | Link                                                    |
-|------------|---------------------------------------------------------|
-| Source     | [Email Source](/docs/assets/sources/asset-source-email) |
+| Asset type | Link                                                       |
+|------------|------------------------------------------------------------|
+| Source     | [Email Source](/docs/assets/sources/asset-source-email)    |
+| Service    | [Email Service](/docs/assets/services/asset-service-email) |
 
 ## Configuration
 
@@ -38,13 +39,9 @@ Defines the connection parameters for an Email endpoint.
 
 The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it. Click to expand and then click to follow, if any.
 
-### Classifier Type
-
-![Classifier Model](./.asset-connection-email_images/1705999656625.png)
-
-
-
 ### Email Connection Type
+
+![Email Connection Type](.asset-connection-email_images/Screenshot2024-04-24Email_Connection_Type.png)
 
 The Email connection Asset supports two different types of Email connections:
 

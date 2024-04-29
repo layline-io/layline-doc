@@ -14,6 +14,8 @@ import Testcase from '/docs/snippets/assets/_asset-service-test.md';
 
 # Cassandra Service
 
+## Purpose
+
 Define a service to interface with a Cassandra or an Cassandra compatible store (e.g.AWS Keyspaces).
 
 ![](.asset-service-cassandra_images/8f7203ba.png "Asset Dependency Graph (Service Cassandra)")
@@ -200,17 +202,17 @@ Now we add a list of member fields which make up the sequence (1):
 
 To later reference the `Name` field, we can use the path `MyCorp.Customer.Name`, and so forth.
 
-### Example: Using the JDBC Service
+### Example: Using the Cassandra Service
 
 The Cassandra Service can be used from within a JavaScript Asset.
-In our example we have a simple Workflow which reads a file with customer-related data (1), then in a next step (2) reads the corresponding customer date from a JDBC source, and
+In our example we have a simple Workflow which reads a file with customer-related data (1), then in a next step (2) reads the corresponding customer date from a Cassandra source, and
 simply outputs this data to the log.
 There is no other purpose in this Workflow than to demonstrate how to use the Service.
 
 ![](.asset-service-cassandra_images/eaff8f2b.png "Example Workflow (Service Cassandra)")
 
 In the middle of the Workflow we find a JavaScript Processor by the name of “_EnrichCustomer_”.
-This Processor reads additional customer information from Aerospike using the JDBC Service.
+This Processor reads additional customer information from a Cassandra source using the Cassandra Service.
 
 How is it configured?
 
@@ -232,7 +234,7 @@ Processor** like so:
 
 Now let’s finally use the service within JavaScript:
 
-##### Reading from JDBC Source
+##### Reading from Cassandra Source
 
 ```javascript
 let cassandraData = null; // will receive a message type
@@ -291,7 +293,7 @@ try {
 }
 ```
 
-It works the same for any other JDBC compliant statement.
+It works the same for any other Cassandra compliant statement.
 
 ## Service Testing
 

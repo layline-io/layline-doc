@@ -1,6 +1,11 @@
 ---
 title: Sink S3
 description: Sink S3 Asset. Use this to define the technical parameters for a AWS S3 sink connection.
+tags:
+  - sink
+  - s3
+  - aws
+  - amazon
 ---
 
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
@@ -88,8 +93,7 @@ The status of these attempts is displayed at the bottom of the group box.
 * [S3 Source](/docs/assets/sources/asset-source-s3)
 
 ### External
-* [Cron on Wikipedia](https://en.wikipedia.org/wiki/Cron)
-* [Cron editor online from crontab guru](https://crontab.guru/)
+
 * [AWS Virtual hosting of buckets](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html)
 
 ## Potential problems
