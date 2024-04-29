@@ -102,7 +102,7 @@ How is it configured?
 To use the Teams Service in the JavaScript Processor, we first have to **assign the Service within the JavaScript
 Processor** like so:
 
-![Link Service to JavaScript Asset (Service Teams)](./.asset-service-teams_images/1714387149009.png "Link Service to JavaScript Asset (Service Teams)")
+![Link Service to JavaScript Asset (Service Teams)](./.asset-service-teams_images/1714400109677.png "Link Service to JavaScript Asset (Service Teams)")
 
 * **`Physical Service`** (1): The Teams Service which we have configured above.
 
@@ -139,7 +139,7 @@ export function onMessage() {
 function onDetail(message) {
     // populate the teamsMessage structure to hand over input parameters for "sendTeams" function
     let teamsMessage = {
-        conversation:   "SomeName",
+        conversation:   "Support Group",
         content:        "Processing for Stream " + stream.getName() + " recordNo " + message.id      
     }
     // call function "sendTeams"
