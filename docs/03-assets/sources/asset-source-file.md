@@ -109,6 +109,11 @@ An File System source requires the definition of three different directories:
 
 * **`Include sub-directories`** : Scan sub-directories to the input directory also.
 
+* **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the input directory. You can configure your required options.
+
+  ![Enable Housekeeping](./.asset-source-file_images/1714492771470.png "Enable Housekeeping")
+
+
 #### Done Directory
 
 ![Done Directory (File System Source)](./.asset-source-file_images/1714406005471.png "Done Directory (File System Source)")
@@ -125,7 +130,12 @@ An File System source requires the definition of three different directories:
 
 * **`"File already exists"-Handling`** : Define your required handling in case the file already exists in the done-directory.
 
-    ![File exists in done-directory handling](./.asset-source-file_images/1714406178163.png "File exists in done-directory handling")
+    ![File exists in done directory handling](./.asset-source-file_images/1714406178163.png "File exists in done directory handling")
+
+* **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the done directory. You can configure your required options.
+
+  ![Enable Housekeeping](./.asset-source-file_images/1714492771470.png "Enable Housekeeping")
+
 
 
 #### Error Directory
@@ -144,12 +154,18 @@ An File System source requires the definition of three different directories:
 
 * **`"File already exists"-Handling`** : Define your required handling in case the file already exists in the error-directory.
 
-  ![File exists in error-directly handling](./.asset-source-file_images/1714406990266.png "File exists in error-directly handling")
+  ![File exists in error directly handling](./.asset-source-file_images/1714406990266.png "File exists in error directly handling")
+
+* **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the error directory. You can configure your required options.
+
+  ![Enable Housekeeping](./.asset-source-file_images/1714492771470.png "Enable Housekeeping")
+
 
 ## Related Topics
 
 ### Internal
 
+* [Stream Input Processor](/docs/assets/processors-input/asset-input-stream)
 * [File System Sink](/docs/assets/sinks/asset-sink-file)
 
 ### External
