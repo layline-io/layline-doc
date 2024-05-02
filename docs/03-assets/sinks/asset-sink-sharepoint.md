@@ -72,7 +72,7 @@ Getting access to a configured SharePoint source through layline.io ensure _**Fo
 
 ### Directories
 
-Underneath the configured base location the SharePoint sink requires the definition of at least two different directories:
+Underneath the configured base location the SharePoint sink allows the definition of the following different directories:
 
 1. **Output Directory** : The directory to write output files to.
 2. **Temporary Directory** : The directory to write output files to during processing (see description below).

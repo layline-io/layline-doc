@@ -41,7 +41,7 @@ None
 
 ### Directories
 
-A File System sink requires the definition of at least two different directories:
+A File System sink allows the definition of the following two different directories:
 
 1. **Output Directory** : The directory to write output files to.
 2. **Temporary Directory** : The directory to write output files to during processing (see description below).
