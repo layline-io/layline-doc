@@ -33,7 +33,9 @@ You need:
 
 * [File System Source](/docs/assets/sources/asset-source-file)
 * [FTP Source](/docs/assets/sources/asset-source-ftp)
+* [OneDrive Source](/docs/assets/sources/asset-source-onedrive)
 * [S3 Source](/docs/assets/sources/asset-source-s3)
+* [SharePoint Source](/docs/assets/sources/asset-source-sharepoint)
 * [SMB Source](/docs/assets/sources/asset-source-smb)
 * [TCP Source](/docs/assets/sources/asset-source-tcp)
 * [WebDav Source](/docs/assets/sources/asset-source-webdav)

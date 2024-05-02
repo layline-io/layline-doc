@@ -28,9 +28,11 @@ You need:
 
 **A Stream Sink:**
 
-* [Sink Kafka](/docs/assets/sinks/asset-sink-file)
+* [Sink File System](/docs/assets/sinks/asset-sink-file)
 * [Sink FTP](/docs/assets/sinks/asset-sink-ftp)
+* [Sink OneDrive](/docs/assets/sinks/asset-sink-onedrive)
 * [Sink S3](/docs/assets/sinks/asset-sink-s3)
+* [Sink Sharepoint](/docs/assets/sinks/asset-sink-sharepoint)
 * [Sink SMB](/docs/assets/sinks/asset-sink-smb)
 * [Sink WebDav](/docs/assets/sinks/asset-sink-webdav)
 * [Sink WebSocket](/docs/assets/sinks/asset-sink-websocket)
@@ -52,7 +54,7 @@ Click to expand and then click to follow, if any.
 
 ### Format
 
-Data output by this Asset must be written in a sepecific format.
+Data output by this Asset must be written in a specific format.
 
 ![](.asset-output-stream_images/478fb5c5.png "Format (Output Stream)")
 
@@ -84,14 +86,14 @@ Check this box, if the data format does only describe a single message, which is
 Explainer:
 Any data format described and selected in [Format](#format) above, can be simply, or complex.
 A complex format, for example, could require the data to be sent to be only complete, if it contains a header record, one to many detail records, and a trailer record.
-To the contrary, a simple format could define only the structure of a songle message.
+To the contrary, a simple format could define only the structure of a single message.
 
 If we assume that we have selected a complex format like above as the output, then the system will observe and enforce, that the written output does comply with the format between starting and
 stopping a stream.
-I.e. it mus contain a header, one or many details, and a trailer record (example).
+I.e. it must contain a header, one or many details, and a trailer record (example).
 If this is not the case, then an error will be generated.
 
-If we on the other hand have a simple format which in structure only describes a single message structure, then you may want the system to write individual messages as final transactions for eveery
+If we on the other hand have a simple format which in structure only describes a single message structure, then you may want the system to write individual messages as final transactions for every
 single message.
 In this case, and only in this case, you can check this box.
 The default is `off`. If you are unsure about this, then just leave the default.
