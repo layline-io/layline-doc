@@ -47,8 +47,18 @@ Configure the parameters for your Teams Service:
 
 ![MSGraph Connection drop-down list](./.asset-service-teams_images/1714138476191.png "MSGraph Connection drop-down list")
 
-Use the drop-down list to select a [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph) that should 
+Use the drop-down list to select an [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph) that should 
 support this Teams Service. If it does not exist, you need to create it first.
+
+:::info
+Your [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph) needs to have the following configured scope:
+* Team.ReadBasic.All
+* Channel.ReadBasic.All
+* Chat.ReadBasic
+* ChatMessage.Send
+* ChannelMessage.Send
+:::
+
 
 The following two settings define the Teams target(s) which should receive messages and can be:
 - available **Channels** and / or
@@ -72,12 +82,12 @@ Referencing this default channel, please use "General" in the name, no matter wh
 
 #### Chats
 
-![Teams Chat Seeting](./.asset-service-teams_images/1714381603192.png "Teams Chat Seeting")
+![Teams Chat Setting](./.asset-service-teams_images/1714381603192.png "Teams Chat Setting")
 
 
 * **`Name`** : the logical name used within the Teams Service function parameter _**Conversation**_. Spaces in the name are allowed.
 * **`Members`** : all Chat members that should be reached through this Chats Group configuration. 
-Push the pencil button to open the dialogue for adding memebers.  
+Push the pencil button to open the dialogue for adding members.  
 
 ![Adding Teams Chat Members](./.asset-service-teams_images/1714381530282.png "Adding Teams Chat Members")
 

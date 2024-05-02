@@ -58,7 +58,7 @@ Use `Fixed rate` if you want to poll in constant and frequent intervals.
 
 ![](.asset-source-ftp_images/e1e03d17.png "Cron Tab (File System Source)")
 
-Use `Cron tab` if you want to poll at determined times. This follows the cron tab style conventioni which may be familiar to you.
+Use `Cron tab` if you want to poll at determined times. This follows the cron tab style convention which may be familiar to you.
 In all other cases you can read more about crontab and the syntax [here](https://en.wikipedia.org/wiki/Cron).
 You can simulate cron settings using [this smart website](https://crontab.guru/).
 
@@ -75,7 +75,7 @@ You should set it high enough, so that you are confident that the endpoint respo
 
 #### Ordering
 
-When listing objects from the FTP source for processing, you can define in what order they should be processed.
+When listing objects from the File System source for processing, you can define in what order they should be processed.
 Pick one of the following self-explanatory settings:
 
 * `Alphabetically, ascending`
@@ -85,7 +85,7 @@ Pick one of the following self-explanatory settings:
 
 ### Directories
 
-An File System source requires the definition of three different directories:
+A File System source requires the definition of three different directories:
 
 1. **Input Directory** : The directory to read new files from.
 2. **Done Directory** : The directory to which read files are moved after reading.
