@@ -130,7 +130,7 @@ Underneath the configured base location the SharePoint source requires the defin
 ![Input Directory (SharePoint Source)](./.asset-source-file_images/1714405912849.png "Input Directory (SharePoint Source)")
 
 * **`Input Directory`** : The directory to read files from.
-  The path of the directory must be accessible to the Reactive Engine trying to access the File System source.
+  The path of the directory must be accessible to the Reactive Engine trying to access the SharePoint source.
   You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Filter regular expression`** : Regular expression to filter which files in the directory are pulled.
@@ -153,7 +153,7 @@ Underneath the configured base location the SharePoint source requires the defin
 ![Done Directory (SharePoint Source)](./.asset-source-file_images/1714406005471.png "Done Directory (SharePoint Source)")
 
 * **`Done Directory`** : The directory to which files are moved when fully processed.
-  The path of the directory must be accessible to the Reactive Engine trying to access the File System source.
+  The path of the directory must be accessible to the Reactive Engine trying to access the SharePoint source.
   You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Done prefix`** : Prefix to add to the filename of the processed file after move to the done directory.
@@ -177,7 +177,7 @@ Underneath the configured base location the SharePoint source requires the defin
 ![Error Directory (SharePoint Source)](./.asset-source-file_images/1714406576311.png "Error Directory (SharePoint Source)")
 
 * **`Error Directory`** : The directory to which files are moved in case of a problem with the file during processing.
-  The path of the directory must be accessible to the Reactive Engine trying to access the File System source.
+  The path of the directory must be accessible to the Reactive Engine trying to access the SharePoint source.
   You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Error prefix`** : Prefix to add to the filename of the processed file after move to the error directory.

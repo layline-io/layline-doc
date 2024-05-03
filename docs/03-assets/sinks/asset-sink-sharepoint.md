@@ -33,7 +33,6 @@ You need:
 
 ![Name & Description (SharePoint Sink Asset)](./.asset-sink-sharepoint_images/1714667462326.png "Name & Description (SharePoint Sink Asset)")
 
-
 <NameAndDescription></NameAndDescription>
 
 ### Required roles
@@ -82,7 +81,7 @@ Underneath the configured base location the SharePoint sink allows the definitio
 ![Output Directory (SharePoint Sink](./.asset-sink-file_images/1714471441720.png "Output Directory (SharePoint Sink")
 
 * **`Output Directory`** : The directory to write output files to.
-  The path of the directory must be accessible to the Reactive Engine trying to access the File System Sink.
+  The path of the directory must be accessible to the Reactive Engine trying to access the SharePoint Sink.
   You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Output prefix`** : Prefix to add to the filename of the processed file when writing to the output directory.
@@ -119,7 +118,7 @@ Underneath the configured base location the SharePoint sink allows the definitio
   All temporary files should be automatically removed upon successful processing.
   Should you encounter a temporary file in a temporary directory even though there is no current processing ongoing, then this is likely a residue from a crash which needs to be further investigated.
 
-  The path of the directory must be accessible to the Reactive Engine trying to access the File System Sink.
+  The path of the directory must be accessible to the Reactive Engine trying to access the SharePoint Sink.
   You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Temporary prefix`** : Prefix to add to the filename of the temporary file when writing to the temporary directory.
