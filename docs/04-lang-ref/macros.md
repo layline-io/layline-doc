@@ -126,6 +126,27 @@ If we enter the tag name like so: `dd-demo-${build-version}-${build:timestamp}`:
 
 Then the outcome could be `dd-demo-1.2.21-20230808151420` (depending on version number and date/time of deployment to cluster).
 
+### mail:
+
+The prefix `mail` provides access to some specific information available in conjunction with Email sources:
+
+| Variable     | Description                           |
+|--------------|---------------------------------------|
+| **folder**   | folder name from which email was read |
+| **from**     | email address of sender               |
+| **subject**  | subject as read from the Email source |
+| **received** | timestamp of receipt of email         |
+
+**Example:**
+
+Configuring the Email Settings within an Email Source you can use these macros for defining the stream name:
+
+![](./.macros_images/1715012140064.png)
+
+The outcome would look something like this `subject: Test (from: test@layline.io, received: 2024-05-03T12:13:03Z)`
+
+
+
 ### Other Prefixes
 
 layline.io utilizes the functionality of the Apache Commons Library for further macro support.
