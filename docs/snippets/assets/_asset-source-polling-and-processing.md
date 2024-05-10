@@ -41,7 +41,7 @@ Configuring a value in here will check the appropriate file stability before pro
 
 #### Ordering
 
-When listing objects from the File System source for processing, you can define in what order they should be processed.
+When listing objects from the source for processing, you can define in what order they should be processed.
 Pick one of the following self-explanatory settings:
 
 * `Alphabetically, ascending`
