@@ -95,9 +95,9 @@ Pick one of the following self-explanatory settings:
 
 ### S3 Connection
 
-![](.asset-source-s3-images/3e8a642a.png "S3 Connection (S3 Source)")
+![](.asset-source-s3-images/3e8a642a.png "AWS Connection (S3 Source)")
 
-Select the previously configured [S3 Connection](/docs/assets/connections/asset-connection-aws) to use for this Source.
+Select the previously configured [AWS Connection](/docs/assets/connections/asset-connection-aws) to use for this Source.
 
 ### S3 Bucket
 

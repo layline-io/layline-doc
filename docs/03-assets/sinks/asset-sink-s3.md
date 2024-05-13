@@ -56,7 +56,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 #### S3 Connection (A)
 
-Select the [S3 Connection](/docs/assets/connections/asset-connection-aws) to use for this Asset. If it does not exist, you need to create it first.
+Select the [AWS Connection](/docs/assets/connections/asset-connection-aws) to use for this Asset. If it does not exist, you need to create it first.
 
 #### S3 Bucket (B)
 

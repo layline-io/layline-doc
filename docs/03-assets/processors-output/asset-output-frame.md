@@ -477,7 +477,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 AWS SNS (Simple Notification Service) is a fully managed messaging service provided by Amazon Web Services (AWS).
 It allows you to send messages or notifications to a large number of subscribers or endpoints through various protocols such as email, SMS, mobile push notifications, and more.
 
-If you want to output data to AWS SQS, then you need to configure the settings in this section.
+If you want to output data to AWS SNS, then you need to configure the settings in this section.
 
 ### Parallel requests
 
@@ -683,7 +683,7 @@ AWS SQS (Simple Queue Service) is a fully managed message queuing service provid
 It enables you to decouple distributed systems and components by allowing messages to be sent and received asynchronously between applications or microservices.
 It is often compared to Kafka.
 
-If you want to output data to AWS SNS, then you need to configure the settings in this section.
+If you want to output data to AWS SQS, then you need to configure the settings in this section.
 
 ### Parallel requests
 
@@ -753,13 +753,13 @@ In case the conditions are met, the message is then forwarded to SQS in the form
 
       Alternatively, simply enter the name of the topic.
 
-    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to an SNS topic name.
+    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to an SQS topic name.
       You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/8ce31e60.png "Define a calculated SQS Topic term")
 
-* **`Message Group Id`**: Enter a term (Constant) or a QuickScript (Calculated) which is passed as the "Message Group ID" to SNS.
+* **`Message Group Id`**: Enter a term (Constant) or a QuickScript (Calculated) which is passed as the "Message Group ID" to SQS.
 
   ![](.asset-output-frame_images/6646c58c.png "SQS Message Group Id (Output Frame)")
 
