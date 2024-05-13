@@ -56,7 +56,7 @@ support this OneDrive configuration. If it does not exist, you need to create it
 Your [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph) needs to have the following configured scope:
 * Sites.ReadWrite.All
 * Files.ReadWrite.All
-  :::
+:::
 
 #### Drive
 
@@ -73,7 +73,7 @@ Underneath the configured base location the OneDrive sink allows the definition 
 
 #### Output Directory
 
-![Output Directory (OneDrive Sink](./.asset-sink-file_images/1714471441720.png "Output Directory (OneDrive Sink")
+![Output Directory (OneDrive Sink](./.asset-sink-sharepoint_images/1715594792608.png "Output Directory (OneDrive Sink")
 
 * **`Output Directory`** : The directory to write output files to.
   The path of the directory must be accessible to the Reactive Engine trying to access the OneDrive Sink.
@@ -122,6 +122,20 @@ Underneath the configured base location the OneDrive sink allows the definition 
 * **`Temporary suffix`** : Suffix to add to the filename of the temporary file after move to the temporary directory.
   E.g. `_temp` will add the `_temp`-suffix to the end of the filename when written to the output directory.
 
+### Other Settings
+
+![](.asset-sink-ftp_images/a18799d6.png "Other Settings (OneDrive Sink)")
+
+There are two more settings which you can use to optimize file output:
+
+* **`Delay post processing steps`** : You can ask the system to slow (delay) post-processing steps such as move and delete.
+  Enter a number in milliseconds which should be observed before for example moving a temporary file to the output directory and then deleting it from the temporary directory.
+  This can prove to be helpful in environments where connections are a little "sensitive", and allow the system to "settle".
+  It's something we learned from working with such systems.
+
+* **`Number of retries`** : In addition defining a post-processing delay time, we can define a number of retries, should an operation fail.
+  Again, this is to allow for more robustness in operation as connections can prove to be sensitive at times and ridden with timeouts, etc.
+  An optimally connected and tuned sink should not require these settings, but this is often not the case.
 
 ---
 

@@ -109,7 +109,7 @@ An FTP sink allows the definition of three different directories:
 * **`Error suffix`** : Suffix to add to the filename of the processed file after move to the error directory.
   E.g. `_error` will add the `_error`-suffix to the end of the filename when moved to the error directory.
 
-### Post Processing
+### Other Settings
 
 ![](.asset-sink-ftp_images/a18799d6.png "Post processing (FTP Sink)")
 
