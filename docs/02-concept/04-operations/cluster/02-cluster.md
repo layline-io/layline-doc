@@ -1,7 +1,9 @@
 ---
-title: Cluster
+title: Overview
 description: Learn how to operate a Reactive Cluster from within the Configuration Center.
 ---
+
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 # Cluster
 
@@ -303,26 +305,16 @@ The "_**AI Storage**_" is a process (Controller) which manages AI models.
 
 ### User Storage
 
-To learn how to manage Users, Roles and permissions within layline.io, please check [Operations User Storage](/docs/concept/operations/operations-user-storage) for user management on the cluster, or .
+To learn how to manage Users, Roles and permissions within layline.io, please check [User Storage](/docs/concept/operations/operations-user-storage) for user management on the cluster, or .
 
-### Key Storage
+### Security Storage
 
-layline.io by its nature is destined to connect to a multitude of systems and APIs which are usually protected by security mechanisms --> the "_Secrets_". These Secrets can be very sensitive in nature. But when working with such Secrets, there are always some risks in them being exposed, especially in Software and Configuration Projects where Secrets may end up in clear text more often than not, for lack of better mechanisms. Examples:
+layline.io by its nature is destined to connect to a multitude of systems and APIs which are usually protected by security mechanisms --> the "_Secrets_". 
+These Secrets can be very sensitive in nature. But when working with such Secrets, there are always some risks in them being exposed, 
+especially in Software and Configuration Projects where Secrets may end up in clear text more often than not, for lack of better mechanisms. 
 
-- **In Scripts**: Cleartext in scripts which need to access the interfaces/subsystems.
-- **In Configurations**: Cleartext Secrets within configuration files which describe or complement a setup such as layline.io's Projects.
-- **On Servers**: Sometimes, to avoid exposure of Passwords in scripts and configurations which developers or staff are working on, Secrets are stored on Servers, but in the same cleartext fashion. The upside here may be that fewer people have access to a Server. Still Secrets are exposed when stored in clear text.
-- **VCS**: Config files checked in to a version control system end up in that vault which, again may be accessible by a broader group of people in the organization. Thus the risk of spreading Secrets in clear text just increments.
-
-The only valid answer to address these challenges is that Secrets must be truly secret as early-on as possible in the process. Public/private key-pairs support a model in which Secrets can be encrypted by anyone, but only decrypted by the private-key holder. layline.io embraces this model to take care of Secrets and ensure that the exposure of Secrets is kept to a minimum.
-
-
-
-
-Ultimately, the question is how exposure can be minimized and how layline.io addresses this.
-
-
- Potentially, these Secrets may not be exposed to everyone working on the Project, but only to a select few individuals.   So the question naturally is how to deal with these Secrets A _Secret_ shall be defined as a key-value-pair of a **_name_** and the secret **_value_**.  Not everybody working on a Project configuration shall be able to view or change secrets
+To learn how to manage secrets resp. security within layline.io, 
+please check [Security Storage](/docs/concept/operations/operations-secret-storage) for security management on the cluster.
 
 ### Stream Monitor
 
@@ -331,4 +323,4 @@ Ultimately, the question is how exposure can be minimized and how layline.io add
 
 ### Starting / stopping Workflows
 
-
+<WipDisclaimer></WipDisclaimer>

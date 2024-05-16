@@ -1,5 +1,5 @@
 ---
-title: Security Storage (Operations)
+title: Security Storage
 description: Learn how to configure cluster based secrets.
 ---
 

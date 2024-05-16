@@ -1,5 +1,5 @@
 ---
-title: Introduction (Operations)
+title: Introduction
 description: Introduction to the layline.io Configuration Server and Operations.
 ---
 
