@@ -176,7 +176,7 @@ if (message.data.SMPL_IN.RECORD_TYPE == 'D') {
             DATE         : message.data.SMPL_IN.DATE,
             DESCRIPTION  : message.data.SMPL_IN.DESCRIPTION,
             CREATE_DATE  : DateTime.now(),
-            COUNTRY_NAME : soapResponse. 
+            COUNTRY_NAME : soapResponse.data 
         }
     } else {
         message.data.SMPL_OUT = {        
