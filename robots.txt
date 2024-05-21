@@ -1,0 +1,6 @@
+# Algolia-Crawler-Verif: 27F23B8F48F0901E
+
+User-agent: *
+Allow: /
+Sitemap: https://doc.layline.io/sitemap.xml
+
