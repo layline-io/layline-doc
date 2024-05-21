@@ -1,9 +1,9 @@
 ---
-title: User Storage (Operations)
+title: User Storage
 description: Learn how to configure cluster based users and roles.
 ---
 
-# User Storage (Operations)
+# User Storage
 
 ## Concept
 
