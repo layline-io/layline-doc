@@ -6,6 +6,7 @@ tags:
 ---
 
 import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
 import CredentialType from '/docs/snippets/assets/_credential-type.md';
 import Testcase from '/docs/snippets/assets/_asset-service-test.md';
