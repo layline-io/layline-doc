@@ -123,17 +123,18 @@ class JavaScriptProcessor {
     }
 
     /**
-     * Signals readiness to receive the next message from a connected downstream Processor.
+     * layline.io is a reactive system and works according to the principle of “dynamic push / pull mode”.
+     * This means, that in a network of Processors, each Processor can signal to connected Processors that it wants to push, or pull messages, thus managing smooth message flow without the risk of clogging.
      *
-     * layline.io is a reactive system.
-     * This means, that in a network of Processors (Actors), each Processor can signal to connected Processors that it wants to push, or pull messages, thus managing smooth message flow without the risk of clogging.
+     * * **Push-mode**: the downstream processor (“Consumer”) consumes messages at the same or even a faster rate than the source processor (“Producer”) produces the messages (= Slow Producer, fast Consumer)
+     * * **Pull-mode**: the source processor produces messages faster than a downstream processor can consume them (= Fast Producer, slow Consumer)
      *
-     * The `onPullMessage` method is triggered by a downstream Processor B to a directly connected upstream Processor A, that it is ready to receive the next message.
-     * You usually do not need to use this method, since reactive message flow is managed automatically by default between Processors.
-     * But in some circumstances it makes sense to actually wait for the downstream Processor to pull instead of just emitting messages to it.
+     * Using layline.io you usually do not have to think about “push”- or “pull”-mode and how it is applied throughout the Workflow processing.
+     * It is all built-in! Making use of the [`onMessage`](#onmessage) method will ensure that your JavaScript processor is receiving available messages at an applicable signaling rate.
      *
-     * Let's say Processor B which is connected to upstream Processor A is ready for the next message to be processed.
-     * B signals this readiness to A, which A can react to by listening on the `onPullMessage` with A then emitting the next message.
+     * Only in case your JavaScript processor includes logic to become a “producer” of (additional) messages, there is a need to
+     * explicitly implement the `onPullMessage` method making sure to receive the signals for readiness to receive next messages
+     * from connected downstream Processors within your Workflow.
      *
      * **Practical example:**
      *
