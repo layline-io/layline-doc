@@ -14,15 +14,15 @@ import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
 
 ## Purpose
 
-A Service Source allows the integration of a configured [Service Assets](/docs/services) to be used as a data input source.
+A Service Source allows the integration of a configured [Service Assets](/docs/assets/services) to be used as a data input source.
 
 Classical Examples for this use case would be selecting data from a store:
 
-* [JDBC](/docs/services/asset-service-jdbc)
-* [Aerospike](/docs/services/asset-service-aerospike)
-* [Cassandra](/docs/services/asset-service-cassandra) 
+* [JDBC](/docs/assets/services/asset-service-jdbc)
+* [Aerospike](/docs/assets/services/asset-service-aerospike)
+* [Cassandra](/docs/assets/services/asset-service-cassandra) 
 
-Depending on their setup other Service Assets like [Http](/docs/assets/services/asset-service-http) or [SOAP](/docs/services/asset-service-soap) 
+Depending on their setup other Service Assets like [Http](/docs/assets/services/asset-service-http) or [SOAP](/docs/assets/services/asset-service-soap) 
 might also serve the input data aspect. 
 Basically layline.io allows any Service Asset to be used as a Service Source. Though, you need to check whether an available service reflects a reasonable input source respectively other approaches might be more applicable (e.g.: Email Service vs. Email Source).     
 

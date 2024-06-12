@@ -305,7 +305,7 @@ The "_**AI Storage**_" is a process (Controller) which manages AI models.
 
 ### User Storage
 
-To learn how to manage Users, Roles and permissions within layline.io, please check [User Storage](/docs/concept/operations/operations-user-storage) for user management on the cluster, or .
+To learn how to manage Users, Roles and permissions within layline.io, please check [User Storage](/docs/concept/operations/cluster/operations-user-storage) for user management on the cluster, or .
 
 ### Security Storage
 
@@ -314,7 +314,7 @@ These Secrets can be very sensitive in nature. But when working with such Secret
 especially in Software and Configuration Projects where Secrets may end up in clear text more often than not, for lack of better mechanisms. 
 
 To learn how to manage secrets resp. security within layline.io, 
-please check [Security Storage](/docs/concept/operations/operations-secret-storage) for security management on the cluster.
+please check [Security Storage](/docs/concept/operations/cluster/operations-secret-storage) for security management on the cluster.
 
 ### Stream Monitor
 

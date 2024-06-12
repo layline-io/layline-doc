@@ -194,7 +194,7 @@ Use this to define a "_simple_" mapping to a field (target) from other values in
 
 ![Simple mapping step (Mapping Flow Asset)](.asset-flow-mapping_images/c0a8d469.png)
 
-As the little "_qs_" icon to the right implies, and is shown in the example, you can use [Quickscript](/docs/quickscript) here.
+As the little "_qs_" icon to the right implies, and is shown in the example, you can use [Quickscript](/docs/language-reference/quickscript) here.
 
 
 ##### Conditional 

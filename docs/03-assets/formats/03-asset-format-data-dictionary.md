@@ -427,7 +427,7 @@ function onCar(detail) {
 ```
 
 :::tip Working with the Data Dictionary in Javascript
-To understand how to work with the Data Dictionary in Javascript, [check here](/docs/javascript).
+To understand how to work with the Data Dictionary in Javascript, [check here](/docs/language-reference/javascript).
 :::
 
 ---
