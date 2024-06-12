@@ -29,8 +29,8 @@ So we really have two requirements here in regard to handling confidential infor
    Be able to define different Secret Environments, for different target environments such as development, testing, and production.
 
 What's needed is very similar to how we are using variables from [Environment Assets](/docs/assets/resources/asset-resource-environment).
-There we reference Environment Variables with [macros](/docs/lang-ref/macros#lay).
-It works the same way with Secrets, only the [prefix (sec)](/docs/lang-ref/macros#sec) is different.
+There we reference Environment Variables with [macros](/docs/language-reference/macros#lay).
+It works the same way with Secrets, only the [prefix (sec)](/docs/language-reference/macros#sec) is different.
 
 ## Configuration
 
@@ -135,7 +135,7 @@ These Secrets can then be used in the configuration like so:
 
 ![](.asset-resource-secret_images/d90843ad.png "Using Secret Keys (Secret Asset)")
 
-To learn more about how to use environment variables within layline.io settings, please read [here](/docs/lang-ref/macros#sec).
+To learn more about how to use environment variables within layline.io settings, please read [here](/docs/language-reference/macros#sec).
 
 #### Changing Encryption Key
 

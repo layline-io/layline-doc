@@ -114,7 +114,7 @@ First, you define the conditions under which the individual message should match
 You can pick whether `all` conditions must be fulfilled, `at least one` of the rules must be met, or `none`.
 
 You then go on to enter the individual conditions.
-Conditions follow the [Quickscript](/docs/lang-ref/quickscript/quickscript) language.
+Conditions follow the [Quickscript](/docs/language-reference/quickscript/quickscript) language.
 So you can define pretty complex rules at this point.
 You will probably have simple rules most of the time, however.
 
@@ -132,14 +132,14 @@ In case the conditions are met, the message is then forwarded to an [EventBridge
   ![](.asset-output-frame_images/a6b1b590.png "Add EventBridge Event Bus (Output Frame)")
 
   An Event Bus reference can be selected from Event Buses which you have already defined in an [Event Bridge Sink](/docs/assets/sinks/asset-sink-eventbridge),
-  or you can define a term which returns the Event Bus name through a [Quickscript](/docs/lang-ref/quickscript/quickscript) term.
+  or you can define a term which returns the Event Bus name through a [Quickscript](/docs/language-reference/quickscript/quickscript) term.
 
     * **Constant**: Pick this option to select from Event Buses which you have defined in an [Event Bridge Sink](/docs/assets/sinks/asset-sink-eventbridge).
       Select the available Event Buses from the drop-down on the right:
 
   ![Select pre-configured Event Bus (Output Frame)](.asset-output-frame_images/bc80c560.png)
 
-    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to an Event Bus name.
+    * **Calculated**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to an Event Bus name.
       You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
@@ -276,7 +276,7 @@ First, you define the conditions under which the individual message should match
 You can pick whether `all` conditions must be fulfilled, `at least one` of the rules must be met, or `none`.
 
 You then go on to enter the individual conditions.
-Conditions follow the [Quickscript](/docs/lang-ref/quickscript/quickscript) language.
+Conditions follow the [Quickscript](/docs/language-reference/quickscript/quickscript) language.
 So you can define pretty complex rules at this point.
 You will probably have simple rules most of the time, however.
 
@@ -289,12 +289,12 @@ You will probably have simple rules most of the time, however.
 In case the conditions are met, the message is then forwarded to the topic and in the format you define.
 
 * **`Format`**: Pick a format in which you would like to output the data to Kafka.
-  You must have pre-defined the format [here](/docs/category/formats).
+  You must have pre-defined the format [here](/docs/assets/formats).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` to `B´ in a previous step (e.g. by way of
   the [Mapping Asset](/docs/assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/processors-flow/asset-flow-javascript)).
 
-* **`Topic`**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to the topic name of where you want to send the individual message.
+* **`Topic`**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to the topic name of where you want to send the individual message.
   Let's assume your default topic name is "myTopic", then you simply enter "myTopic" (include quotes) in the field.
   In our example we have entered `strExpand("${lay:derivedDataTopic}")`.
   This also is QuickScript which means that the name of the topic is in an environment variable `derivedDataTopic` which is defined in an Environment Asset, and this environment variable is expanded
@@ -361,7 +361,7 @@ If exclusive access cannot be obtained, you will receive an error.
 ![Exclusive Partition (Output Frame)](.asset-output-frame_images/81cb2984.png)
 
 * **`Format`**: Pick a format in which you would like to output the data to Kafka.
-  You must have pre-defined the format [here](/docs/category/formats).
+  You must have pre-defined the format [here](/docs/assets/formats).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` to `B´ in a previous step (e.g. by way of
   the [Mapping Asset](/docs/assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/processors-flow/asset-flow-javascript)).
@@ -413,7 +413,7 @@ First, you define the conditions under which the individual message should match
 You can pick whether `all` conditions must be fulfilled, `at least one` of the rules must be met, or `none`.
 
 You then go on to enter the individual conditions.
-Conditions follow the [Quickscript](/docs/lang-ref/quickscript/quickscript) language.
+Conditions follow the [Quickscript](/docs/language-reference/quickscript/quickscript) language.
 So you can define pretty complex rules at this point.
 You will probably have simple rules most of the time, however.
 
@@ -426,7 +426,7 @@ You will probably have simple rules most of the time, however.
 In case the conditions are met, the message is then forwarded to SNS in the format you define.
 
 * **`Format`**: Pick a format in which you would like to output the data to Kinesis.
-  You must have pre-defined the format [here](/docs/category/formats).
+  You must have pre-defined the format [here](/docs/assets/formats).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` tpo `B´ in a previous step (e.g. by way of
   the [Mapping Asset](/docs/assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/processors-flow/asset-flow-javascript)).
@@ -446,7 +446,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 
       Alternatively, simply enter the name of the stream.
 
-    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to an SNS topic name.
+    * **Calculated**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to an SNS topic name.
       You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
@@ -466,7 +466,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 
       ![](.asset-output-frame_images/780d740e.png "Enter fixed Kinesis Partition Key (Output Frame)")
 
-    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to Kinesis Partition Key.
+    * **Calculated**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to Kinesis Partition Key.
       You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
@@ -518,7 +518,7 @@ First, you define the conditions under which the individual message should match
 You can pick whether `all` conditions must be fulfilled, `at least one` of the rules must be met, or `none`.
 
 You then go on to enter the individual conditions.
-Conditions follow the [Quickscript](/docs/lang-ref/quickscript/quickscript) language.
+Conditions follow the [Quickscript](/docs/language-reference/quickscript/quickscript) language.
 So you can define pretty complex rules at this point.
 You will probably have simple rules most of the time, however.
 
@@ -531,7 +531,7 @@ You will probably have simple rules most of the time, however.
 In case the conditions are met, the message is then forwarded to SNS in the format you define.
 
 * **`Format`**: Pick a format in which you would like to output the data to SNS.
-  You must have pre-defined the format [here](/docs/category/formats).
+  You must have pre-defined the format [here](/docs/assets/formats).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` tpo `B´ in a previous step (e.g. by way of
   the [Mapping Asset](/docs/assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/processors-flow/asset-flow-javascript)).
@@ -547,7 +547,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 
       Alternatively, simply enter the name of the topic.
 
-    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to an SNS topic name.
+    * **Calculated**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to an SNS topic name.
       You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
@@ -595,7 +595,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 
     * **`Content`**: The system will generate a deduplication id based on the content (hash). SNS can detect duplicates.
 
-    * **`Calculated`**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which returns a deduplication id.
+    * **`Calculated`**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which returns a deduplication id.
       This is especially useful if the message already contains a specific field which contains a unique id which you also want to use as the deduplication id.
 
       ![](.asset-output-frame_images/01c498de.png "SNS Deduplication Id Calculated (Output Frame)")
@@ -619,7 +619,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 
     * **`Content`**: Enter a fixed phone number or email to be passed to SNS.
 
-    * **`Calculated`**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which returns phone number or email address.
+    * **`Calculated`**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which returns phone number or email address.
       This is especially useful if the message contains a specific field which contains the necessary information.
 
 * **`Subject`**: In case messages should be sent via SNS to a phone or email address, enter the respective information here.
@@ -644,7 +644,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 
     * **`Constant`**: Enter a fixed subject identifier. Otherwise, leave empty.
 
-    * **`Calculated`**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which returns a subject string.
+    * **`Calculated`**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which returns a subject string.
       This is especially useful if the message contains a specific field which contains the necessary information.
 
 * **`Attributes`**:
@@ -724,7 +724,7 @@ First, you define the conditions under which the individual message should match
 You can pick whether `all` conditions must be fulfilled, `at least one` of the rules must be met, or `none`.
 
 You then go on to enter the individual conditions.
-Conditions follow the [Quickscript](/docs/lang-ref/quickscript/quickscript) language.
+Conditions follow the [Quickscript](/docs/language-reference/quickscript/quickscript) language.
 So you can define pretty complex rules at this point.
 You will probably have simple rules most of the time, however.
 
@@ -737,7 +737,7 @@ You will probably have simple rules most of the time, however.
 In case the conditions are met, the message is then forwarded to SQS in the format you define.
 
 * **`Format`**: Pick a format in which you would like to output the data to SQS.
-  You must have pre-defined the format [here](/docs/category/formats).
+  You must have pre-defined the format [here](/docs/assets/formats).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` tpo `B´ in a previous step (e.g. by way of
   the [Mapping Asset](/docs/assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/processors-flow/asset-flow-javascript)).
@@ -753,7 +753,7 @@ In case the conditions are met, the message is then forwarded to SQS in the form
 
       Alternatively, simply enter the name of the topic.
 
-    * **Calculated**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which evaluates to an SQS topic name.
+    * **Calculated**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to an SQS topic name.
       You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
@@ -802,7 +802,7 @@ In case the conditions are met, the message is then forwarded to SQS in the form
 
     * **`Content`**: The system will generate a deduplication id based on the content (hash). SQS can detect duplicates.
 
-    * **`Calculated`**: Enter a [Quickscript](/docs/lang-ref/quickscript/quickscript) term which returns a deduplication id.
+    * **`Calculated`**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which returns a deduplication id.
       This is especially useful if the message already contains a specific field which contains a unique id which you also want to use as the deduplication id.
 
       ![](.asset-output-frame_images/57154dda.png "SQS Deduplication Id Calculated (Output Frame)")

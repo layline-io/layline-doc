@@ -80,10 +80,10 @@ Processor** like so:
 ### Access the Service from within JavaScript
 
 Before we start looking into dedicated JavaScript sample code using the Queue Service, 
-it is important to understand that layline.io processing is based on "dynamic push/pull mode". More information can be found [here](/docs/lang-ref/javascript/API/classes/JavaScriptProcessor#onpullmessage).
+it is important to understand that layline.io processing is based on "dynamic push/pull mode". More information can be found [here](/docs/language-reference/javascript/API/classes/JavaScriptProcessor#onpullmessage).
 
 Using a Queue Service in a JavaScript Processor means that this Processor becomes a "producer" of additional messages requiring the forcing of the pull-mode to be used. 
-Hence, the [`onPullMessage`](/docs/lang-ref/javascript/API/classes/JavaScriptProcessor#onpullmessage) usage becomes a must-have.      
+Hence, the [`onPullMessage`](/docs/language-reference/javascript/API/classes/JavaScriptProcessor#onpullmessage) usage becomes a must-have.      
 
 Let’s finally use the service within JavaScript:
 

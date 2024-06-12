@@ -25,7 +25,7 @@ class Processor {
      * // Output: "The username is layline.", where "layline" is the value of the USERNAME environment variable.
      * ```
      *
-     * Check out the [macro](/docs/lang-ref/macros) documentation for more information on how to address expandable strings.
+     * Check out the [macro](/docs/language-reference/macros) documentation for more information on how to address expandable strings.
      *
      * @return {string} Expanded string
      * @param toExpand

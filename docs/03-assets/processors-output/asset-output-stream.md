@@ -24,7 +24,7 @@ You need:
 
 **A defined Format**
 
-* [Formats](/docs/category/formats)
+* [Formats](/docs/assets/formats)
 
 **A Stream Sink:**
 

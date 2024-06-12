@@ -129,7 +129,7 @@ Please note that the notation follows [HOCON format](https://www.w3schools.io/fi
 :::
 
 :::note Use of macros
-As you can see from the example above, you can use [Macros](/docs/lang-ref/macros) within the Typesafe Configuration.
+As you can see from the example above, you can use [Macros](/docs/language-reference/macros) within the Typesafe Configuration.
 :::
 
 ### Data Dictionary
@@ -262,7 +262,7 @@ if (cassandraData && cassandraData.data.length > 0) {
 ```
 
 :::tip Note: Service functions return a Message
-Note how the Service function returns a [Message](/docs/lang-ref/javascript/API/classes/Message#message-2) as a result
+Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message#message-2) as a result
 type.
 
 Since SQL-queries always return arrays, you can find the results in `message.data` as an array.

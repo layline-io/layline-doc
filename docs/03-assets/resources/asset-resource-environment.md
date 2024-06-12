@@ -44,7 +44,7 @@ These environment variables can then be used in the configuration like so:
 
 ![](.asset-resource-environment_images/6f2f1446.png "Association between environment property and its use in an Asset setting (Environment Asset)")
 
-To learn more about how to use environment variables within layline.io settings, please read [here](/docs/lang-ref/macros#lay).
+To learn more about how to use environment variables within layline.io settings, please read [here](/docs/language-reference/macros#lay).
 
 ### The Role of Environment Assets
 

@@ -168,11 +168,11 @@ const config = {
         // Plugin / TypeDoc options
         ['docusaurus-plugin-typedoc',
             {
-                out: "./04-lang-ref/javascript/02-API",
+                out: "./04-language-reference/javascript/02-API",
                 entryPoints: ["./projects/layline/src/index.ts"],
                 tsconfig: './tsconfig.json',
                 // plugin: ['typedoc-plugin-frontmatter'],
-                readme: "./projects/layline/src/index.md",
+                readme: "./projects/layline/src/index.mdx",
                 sidebar: {
                     autoConfiguration: true
                 },

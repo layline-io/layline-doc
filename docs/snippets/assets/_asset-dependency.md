@@ -6,7 +6,7 @@ Use this section to add Formats which you plan to use as part of your filtering 
 Doesn't the system know which Formats I am using?
 layline.io automatically understands when you are using Formats as part of your input and output processors and automatically mounts them at runtime.
 But when you are referencing Formats which are not used as part of an input or output Processor directly, but rather referenced in
-a [Javascript Flow Processor](/docs/assets/processors-flow/asset-flow-javascript) or [Quickscript](/docs/category/quickscript), then the system may not be aware that you are using this format within
+a [Javascript Flow Processor](/docs/assets/processors-flow/asset-flow-javascript) or [Quickscript](/docs/quickscript), then the system may not be aware that you are using this format within
 any of those scripts.
 This would result in a runtime error.
 

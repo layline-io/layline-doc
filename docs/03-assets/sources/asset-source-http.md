@@ -20,9 +20,9 @@ Defines the specific source parameters for a Http connected endpoint.
 
 ### This Asset can be used by:
 
-| Asset type       | Link                                                                                          |
-|------------------|-----------------------------------------------------------------------------------------------|
-| Input Processors | [Request-Response Input Processor](/docs/assets/processors-input/asset-input-request-respone) |
+| Asset type       | Link                                                                                           |
+|------------------|------------------------------------------------------------------------------------------------|
+| Input Processors | [Request-Response Input Processor](/docs/assets/processors-input/asset-input-request-response) |
 
 ### Prerequisite
 

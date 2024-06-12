@@ -3,7 +3,7 @@ import Message from "./Message";
 /**
  * This isn't an actual class, but a placeholder for _hooks_ which are available within a Javascript Asset.
  * Hooks are automatically invoked as part of a Javascript Assets normal lifecycle.
- * Read more about JS-lifecycle in the [introduction](/docs/lang-ref/javascript/javascript_introduction).
+ * Read more about JS-lifecycle in the [introduction](/docs/language-reference/javascript/javascript_introduction).
  *
  *
  */

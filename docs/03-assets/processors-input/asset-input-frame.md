@@ -30,7 +30,7 @@ This Asset is used within a Workflow definition.
 You need:
 * [SQS Source](/docs/assets/sources/asset-source-sqs), or
 * [UDP Source](/docs/assets/sources/asset-source-udp)
-* [Format](/docs/category/formats)
+* [Format](/docs/assets/formats)
 
 ## Configuration
 

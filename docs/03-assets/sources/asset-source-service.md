@@ -14,15 +14,15 @@ import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
 
 ## Purpose
 
-A Service Source allows the integration of a configured [Service Assets](/docs/category/services) to be used as a data input source.
+A Service Source allows the integration of a configured [Service Assets](/docs/services) to be used as a data input source.
 
 Classical Examples for this use case would be selecting data from a store:
 
-* [JDBC](/docs/category/services/asset-service-jdbc)
-* [Aerospike](/docs/category/services/asset-service-aerospike)
-* [Cassandra](/docs/category/services/asset-service-cassandra) 
+* [JDBC](/docs/services/asset-service-jdbc)
+* [Aerospike](/docs/services/asset-service-aerospike)
+* [Cassandra](/docs/services/asset-service-cassandra) 
 
-Depending on their setup other Service Assets like [Http](/docs/category/services/asset-service-http) or [SOAP](/docs/category/services/asset-service-soap) 
+Depending on their setup other Service Assets like [Http](/docs/assets/services/asset-service-http) or [SOAP](/docs/services/asset-service-soap) 
 might also serve the input data aspect. 
 Basically layline.io allows any Service Asset to be used as a Service Source. Though, you need to check whether an available service reflects a reasonable input source respectively other approaches might be more applicable (e.g.: Email Service vs. Email Source).     
 
@@ -38,12 +38,12 @@ You need:
 
 **A Service Asset, of either**
 
-* [Aerospike](/docs/category/services/asset-service-aerospike)
-* [Cassandra](/docs/category/services/asset-service-cassandra)
-* [Hazelcast](/docs/category/services/asset-service-hazelcast)
-* [Http](/docs/category/services/asset-service-http)
-* [JDBC](/docs/category/services/asset-service-jdbc)
-* [SOAP](/docs/category/services/asset-service-soap)
+* [Aerospike](/docs/assets/services/asset-service-aerospike)
+* [Cassandra](/docs/assets/services/asset-service-cassandra)
+* [Hazelcast](/docs/assets/services/asset-service-hazelcast)
+* [Http](/docs/assets/services/asset-service-http)
+* [JDBC](/docs/assets/services/asset-service-jdbc)
+* [SOAP](/docs/assets/services/asset-service-soap)
 
 (other Service Assets are available while at this stage the ones linked in here are making most sense at this stage)
 
@@ -114,7 +114,7 @@ You should set it high enough, so that you are confident that the endpoint respo
 
 A unique `Object name` configuration is necessary and relates to layline.io's [Access Coordinator](/docs/concept/operations/cluster#access-coordinator) feature. 
 The [Sources Coordinator](/docs/concept/operations/cluster##sources-coordinator-tab-2) will show the here defined object name in its list of sources processed. 
-As you can see from the screenshot above, you can use [Macros](/docs/lang-ref/macros) here.
+As you can see from the screenshot above, you can use [Macros](/docs/language-reference/macros) here.
 
 #### Ordering
 
@@ -147,7 +147,7 @@ it is possible to configure a constant parameter in here. Choosing this option a
 
 ![](./.asset-source-service_images/1715180981310.png "Stream and Transaction (Service Source)")
 
-* **`Stream name`** : name to apply for the Service Source workflow processing. You need to ensure that the name is unique. As you can see from the example above, you can use [Macros](/docs/lang-ref/macros) here.
+* **`Stream name`** : name to apply for the Service Source workflow processing. You need to ensure that the name is unique. As you can see from the example above, you can use [Macros](/docs/language-reference/macros) here.
 * **`Process within a single transaction`** : not all Services configured as a Source are necessarily used in a transactional approach. Activate this checkbox in case you want to force a transactional approach.
 * **`Use a separate connection for each operation`** : not all Services configured as a Source are necessarily related to a connection. Activate this checkbox in case you want to use a dedicated connection for this Service Source processing. 
 

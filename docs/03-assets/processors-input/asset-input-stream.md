@@ -27,7 +27,7 @@ You need:
 
 **A Format**
 
-* [Format](/docs/category/formats)
+* [Format](/docs/assets/formats)
 
 **A Stream Source, of either**
 

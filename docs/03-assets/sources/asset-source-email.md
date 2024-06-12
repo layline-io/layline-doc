@@ -75,7 +75,7 @@ stream name for later identification during processing within a workflow:
 
 * **`Stream name`** : name to apply for the email workflow stream processing
 
-You need to ensure that the name is unique. As you can see from the example above, you can use [Macros](/docs/lang-ref/macros) here.
+You need to ensure that the name is unique. As you can see from the example above, you can use [Macros](/docs/language-reference/macros) here.
 In the above case we chose to include several constants like `subject: ` / `from: ` / `received: ` etc. In addition, we included
 several classical email identification elements deducted from Macros to form the email stream name. Finally, the Audit trail for
 data processed through the configured Email source will look similar to a classical email inbox folder:

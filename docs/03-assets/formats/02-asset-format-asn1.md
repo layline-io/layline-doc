@@ -126,7 +126,7 @@ In our example we will define an ASN.1-grammar based on one module:
   let message = dataDictionary.createMessage(dataDictionary.type.TAP3);
   ```
 
-  See also [createMessage](/docs/lang-ref/javascript/API/classes/DataDictionary#createmessage).
+  See also [createMessage](/docs/language-reference/javascript/API/classes/DataDictionary#createmessage).
 
 * **`ASN.1 module`**:
   At last, enter the ASN.1 grammar in the editor:
