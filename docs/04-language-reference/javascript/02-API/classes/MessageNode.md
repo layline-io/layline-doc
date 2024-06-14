@@ -16,4 +16,4 @@ Assume that we have a data dictionary structure of
      * ...
 
 Then `message.data.CSV` is a MessageNode as is `message.data.CSV.RECORD_TYPE`.
-As an example of use check [Message.findStatus](Message#findStatus).
+As an example of use check [Message.findStatus](Message#findstatus).

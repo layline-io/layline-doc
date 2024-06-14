@@ -43,8 +43,6 @@ Nodes (no restriction).
 
 ### AI Service Settings
 
-## Service Testing
-
 <Testcase></Testcase>
 
 ---

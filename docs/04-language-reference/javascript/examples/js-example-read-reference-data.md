@@ -107,7 +107,7 @@ function getCallTypeNameById(callType) {
 ```
 
 :::note: Service functions return a Message
-Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message#message-2) as a result
+Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message) as a result
 type.
 
 Since SQL-queries always return arrays, you can find the results in `message.data` as an array. If we are only expecting

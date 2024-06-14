@@ -159,8 +159,6 @@ function onDetail(message) {
 }
 ```
 
-## Service Testing
-
 <Testcase></Testcase>
 
 ---

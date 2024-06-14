@@ -289,7 +289,7 @@ if (hazelcastData && hazelcastData.data.length > 0) {
 ```
 
 :::tip Note: Service functions return a Message
-Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message#message-2) as a result
+Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message) as a result
 type.
 
 You can find the results in `message.data` as an array.
@@ -348,8 +348,6 @@ try {
 ...
 }
 ```
-
-## Service Testing
 
 <Testcase></Testcase>
 

@@ -22,10 +22,10 @@ const config = {
     // organizationName: 'facebook', // Usually your GitHub org/user name.
     // projectName: 'docusaurus', // Usually your repo name.
 
-    onBrokenLinks: 'warn',
-    onBrokenMarkdownLinks: 'warn',
-    // onBrokenLinks: 'throw',
+    // onBrokenLinks: 'warn',
     // onBrokenMarkdownLinks: 'warn',
+    onBrokenLinks: 'throw',
+    onBrokenMarkdownLinks: 'throw',
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
@@ -129,7 +129,7 @@ const config = {
             },
             tableOfContents: {
                 minHeadingLevel: 2,
-                maxHeadingLevel: 5,
+                maxHeadingLevel: 6,
             },
 
             algolia: {
@@ -159,6 +159,9 @@ const config = {
 
     markdown: {
         mermaid: true,
+        anchors: {
+            maintainCase: false,
+        }
         // theme: {light: 'neutral', dark: 'forest'},
     },
 

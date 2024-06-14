@@ -10,8 +10,6 @@ import Testcase from '/docs/snippets/assets/_asset-service-test.md';
 
 # Proxy Service
 
-## Service Testing
-
 <Testcase></Testcase>
 
 ---

@@ -142,6 +142,8 @@ A new path will be created with some default parameters.
 * **`Path Parameters`**:
 * **`Query Parameters`**:
 
+### Format Dependencies
+
 The Data Dictionary Elements you define with this Asset, may reference other Formats which you have already defined elsewhere (e.g. Generic formats, ASN.1 formats, etc.).
 In order to let the system know that you require and reference these other formats in this Data Dictionary, you have to add them here.
 

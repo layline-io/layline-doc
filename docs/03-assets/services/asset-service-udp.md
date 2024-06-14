@@ -8,8 +8,6 @@ import Testcase from '/docs/snippets/assets/_asset-service-test.md';
 
 # UDP Service
 
-## Service Testing
-
 <Testcase></Testcase>
 
 ---

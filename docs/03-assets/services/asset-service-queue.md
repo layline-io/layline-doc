@@ -170,8 +170,6 @@ export function onPullMessage() {
 }
 ```
 
-## Service Testing
-
 <Testcase></Testcase>
 
 ---

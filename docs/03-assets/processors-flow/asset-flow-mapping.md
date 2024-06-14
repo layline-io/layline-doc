@@ -111,7 +111,7 @@ Make sure, that each Mapping Scenario refers to a distinct message type.
 You may otherwise encounter inconsistent results.
 :::
 
-##### Additional conditions that must be fulfilled 
+##### Condition Options 
 
 You can define additional conditions which need to be met for the Mapping Scenario to trigger:
 

@@ -121,7 +121,8 @@ generated. The fingerprint is later used to match encrypted values to the correc
 It is possible to import a key-pair which was created externally by [ssh-keygen](https://www.ssh.com/academy/ssh/keygen) or compatible mechanisms and is in a file. Select `Import a Key`. A dialog will
 open:
 
-[Import a key-pair (Secret Management)](.secret-management_images/2021-11-18-09-20-09.png "Import a key-pair (Secret Management)")
+
+![Import a key-pair (Secret Management)](.02-secret-management_images/2021-11-18-09-20-09.png "Import a key-pair (Secret Management)")
 
 Enter a name and description for the new key-pair. Select whether your key-pair is in one file or in separate files **(1)**. The example above uses one file which contains both public and private key
 for import. You can either drag and drop the file(s) onto the respective landing-zones in the dialog **(2)**, or select them by hitting the "+"-key in the landing-zone. Click `OK` to accept.

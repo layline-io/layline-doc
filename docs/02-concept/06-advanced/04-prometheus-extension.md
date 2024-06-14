@@ -32,7 +32,7 @@ Add a _**Prometheus Extension**_ by clicking on the available _**Add new Asset**
 
 Define `Name` and `Description` for the newly created _**Prometheus Extension**_.
 
-#### <a name="mappingMetrics"></a> 2. Adding mapping of available metrics
+#### 2. Adding mapping of available metrics
 
 It is mandatory to define at least one mapping entry within the section _**Prometheus Mapping**_ to enable 
 exports of metric data. Press the +-button to add new mapping entries
@@ -92,7 +92,7 @@ You can view the exported information in your web browser, and it will look some
 
 ![layline.io Metrics screenshot](./.04-prometheus-extension_images/Screenshot19-04-2024Metrics.png "layline.io Metrics screenshot")
 
-### <a name="defaultMetrics"></a> layline.io default metrics
+### layline.io default metrics
 
 Metrics available in layline.io are named in a namespace approach using the dot notation. 
 All metric names start with the constant “Counter”. 
@@ -294,7 +294,7 @@ Issuing `getCounter()` with the same name a second time references to the same c
 Hence, counters should be created within the `onInit()` method. 
 In case you need a more flexible approach for creating named counters (for instance: incoming data influences counter naming), 
 make sure to implement an approach to check available counters (during runtime) before calling the `metrics.getCounter('Name')` method. 
-It is recommended to approach the naming of your counters similar to the principles explained in [layline.io default metrics](#defaultMetrics).
+It is recommended to approach the naming of your counters similar to the principles explained in [layline.io default metrics](#laylineio-default-metrics).
 Hence, any user specific metrics should start with “Counter.User”.
 
 Let’s assume you are processing an input file with Header, Trailer and Detail records. 
@@ -371,7 +371,7 @@ In the next step these counters need an appropriate mapping to ensure they are e
 
 #### 2. Map user specific Metrics in layline.io Prometheus Extension 
 
-Mapping user specific Counter is done in the same way as described in [Adding mapping of available metrics](#mappingMetrics).
+Mapping user specific Counter is done in the same way as described in [Adding mapping of available metrics](#2-adding-mapping-of-available-metrics).
 
 ![Add user specific Metric Mapping](./.04-prometheus-extension_images/Screenshot19-04-2024AddCustomMetricMapping.png "Add user specific Metric Mapping")
 

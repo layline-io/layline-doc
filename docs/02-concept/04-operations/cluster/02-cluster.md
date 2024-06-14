@@ -64,7 +64,8 @@ There are two tabs "_**Deployments**_" **(1)** and "**Node Assignments**" **(2)*
 
 ##### Deployments Tab
 
-The _Deployments_ Tab gives you a tree view of the Deployments **(3)** which are known to the Cluster and also persisted thereon. We have explained earlier [how the Deployments are sent to a Cluster](/docs/concept/wf-config/deployment#deployment-run).
+The _Deployments_ Tab gives you a tree view of the Deployments **(3)** which are known to the Cluster and also persisted thereon. 
+We have explained earlier [how the Deployments are sent to a Cluster](/docs/concept/wf-config/deployment#deploy-to-cluster).
 
 One of the Deployments is set to "_Default_" **(4)**, which means this would be the Deployment which the Cluster is executing if nothing else has been configured.  "_DeploymentRoot_" has a special role in that it marks an empty Deployment. If this is set to "_Default_" then the Cluster is not executing at all (no Workflows).
 

@@ -86,7 +86,7 @@ class Message {
 
     /**
      * Adds a {@link Status} to a message.
-     * The {@link Status} must have been created with [Status.create](Status#Status.create) or otherwise instantiated.
+     * The {@link Status} must have been created with [Status.create](Status#create) or otherwise instantiated.
      *
      * Example:
      * ```js

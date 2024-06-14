@@ -100,7 +100,7 @@ A new rule is added. The details of the rule are represented in the panel to the
        For example if you have a Routing Rule "_R-1_" and a Routing Rule "_R-2_" which on match output the current message to Output Port "_P-1_" and "_P-2_" respectively.
        In the case that the message matches both rules, then it will be output to both defined ports.
 
-#### Conditions that must be fulfilled
+#### Condition Options 
 
 You can choose whether you want none, at least one (OR) or all rules (AND) of the configured conditions condition to be true in order to have a positive outcome of the complete rule:
 

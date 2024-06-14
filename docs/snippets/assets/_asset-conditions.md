@@ -19,7 +19,7 @@ This rule will now evaluate to true, if
 1. The message includes a data dictionary structure `Record.Boat`, and
 2. The length of the boat is greater than 10.
 
-Depending on what you selected in the [Conditions Options](#conditions-that-must-be-fulfilled), either all or at least one of these conditions must be met.
+Depending on what you selected in the [Condition Options](#condition-options), either all or at least one of these conditions must be met.
 
 Enter as many conditions as necessary.
 

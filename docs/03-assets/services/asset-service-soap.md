@@ -193,8 +193,6 @@ if (message.data.SMPL_IN.RECORD_TYPE == 'D') {
 }
 ```
 
-## Service Testing
-
 <Testcase></Testcase>
 
 ---

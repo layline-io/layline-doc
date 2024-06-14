@@ -122,7 +122,7 @@ For settings please see [Client Credential Flow](#oauth-client-credentials).
 Like with most Services, you define **Functions** to work with the API.
 These Functions can then be invoked within the Workflow.
 
-A Function references a [Request](#Requests) and a number of possible [Responses](#Responses).
+A Function references a [Request](#requests) and a number of possible [Responses](#responses).
 Both Requests and Responses are defined further down on the UI but are necessary to be configured so that they can be referenced here.
 
 ![](.asset-service-http_images/488d261b.png) "Functions (Service Http)")
@@ -319,14 +319,12 @@ if (httpData && httpData.data.length > 0) {
 ```
 
 :::tip Note: Service functions return a Message
-Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message#message-2) as a result
+Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message) as a result
 type.
 
 You can find the results in `message.data` as an array.
 If we are only expecting one row as a result, we can test it with `httpData.data.length > 0` and access the first row with `httpData.data[0]`.
 :::
-
-## Service Testing
 
 <Testcase></Testcase>
 

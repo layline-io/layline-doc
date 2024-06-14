@@ -134,8 +134,6 @@ export function onStreamEnd() {
 }
 ```
 
-## Service Testing
-
 <Testcase></Testcase>
 
 ---

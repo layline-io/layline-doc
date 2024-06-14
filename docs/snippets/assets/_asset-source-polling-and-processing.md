@@ -51,7 +51,7 @@ Pick one of the following self-explanatory settings:
 
 #### Reprocessing mode
 
-Configuring the `Reprocessing mode` relates to layline.io's [Access Coordinator](/docs/concept/operations/cluster#access-coordinator) feature.
+Configuring the `Reprocessing mode` relates to layline.io's [Access Coordinator](/docs/concept/operations/cluster/cluster#access-coordinator) feature.
 You can pick between three modes:
 
 ![](./._asset-source-polling-and-processing_images/1714998468162.png "Reprocessing mode")

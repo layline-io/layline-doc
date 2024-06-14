@@ -27,6 +27,8 @@ Switch the view over to "_Project **(1)** --> Deployments_ **(2)**":
 
 ![](.deployment-images/2021-11-04-12-06-37.png "Deployment Tab (Workflow Deployment)")
 
+## Creating a Cluster Asset
+
 A "_**Cluster Asset**_" resembles one or more Reactive Engine endpoints which can actually receive and then activate a Deployment.
 Therefore before we can deploy, we need to define what these endpoints are.
 
@@ -55,9 +57,9 @@ At this point it is important to understand, that a Deployment is **automaticall
 Therefore, in the Cluster Asset which we define at this stage we only define the Nodes which shall be able to receive a Deployment, not necessarily all of the Nodes in a Cluster (this can also be a dynamically growing and shrinking number of Nodes based on load).
 :::
 
-## Creating a Engine Configuration Asset
+## Creating an Engine Configuration Asset
 
-A "_**Engine Configuration**_" is a collection of
+An "_**Engine Configuration**_" is a collection of
 
 - Workflows
 - Environments
@@ -137,7 +139,7 @@ Instead of deploying directly to Cluster, you may want to deploy to a File inste
 
 To deploy to a file select `Write to File` **(1)** from the "_Deploy to Cluster_" box. Enter the name of the file where to store the Deployment file **(2)**. 
 
-The Deployment will be stored in a JSON-file which can be used for [upload in a Cluster](/docs/concept/operations/cluster#deploy-from-file).
+The Deployment will be stored in a JSON-file which can be used for [upload in a Cluster](/docs/concept/operations/cluster/cluster#deploy-from-file).
 
 If your browser is set to download files to a specific folder always (e.g. to the Downloads folder on your machine, which is the default in most browsers), then you can find it there.
 Should your browser settings be such that you are asked where to store the file, then you can select the location yourself.

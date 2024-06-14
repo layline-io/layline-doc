@@ -5,15 +5,15 @@ description: Perform a complete local installation and run it.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 [//]: # (import vars from '/variables.js')
-import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
 
 ## Download
 
 Make sure you have downloaded layline.io for your respective operating system. You can check and download the latest version from our main website [here](https://layline.io/download).
 
-:::tip Linux 
+:::tip Linux
 On linux, or MacOS you can also download via curl:
 
 Depending on your CPU architecture:
@@ -41,22 +41,26 @@ Run the installer:
 <TabItem value="windows" label="Windows" default>
 
 Run:
+
 ```bash title="Windows"
 layline-windows-amd64-<currentVersion>.exe
 ````
+
 </TabItem>
 <TabItem value="macos" label="macOS" default>
 
 Run:
+
 ```bash title="macOS"
 ./layline-macos-<currentVersion>.dmg
 ```
+
 layline.io is not signed by Apple. You will therefore get a warning. Hit ok and then <kbd>Alt</kbd> + <kbd>Right-click</kbd> and select <kbd>open</kbd> from the menu. Don't worry, there is nothing "
 fishy" in the software.
 
 ![Open layline.io installer on MacOS (Quickstart)](img/b8c3098f.png "Open layline.io installer on MacOS (Quickstart)")
 
-![](img/c87c7a7d.png "Confirm macOS warning (Quickstart)") 
+![](img/c87c7a7d.png "Confirm macOS warning (Quickstart)")
 </TabItem>
 </Tabs>
 </div>
@@ -84,6 +88,7 @@ apt-get install -y libfreetype6
 ```bash title="CentOS"
 yum install freetype
 ```
+
 :::
 
 <br/>
@@ -206,11 +211,14 @@ A process which
 
 ### Starting the Config Server
 
+### Starting the Config Server
+
 <div className="tab">
 <Tabs>
   <TabItem value="windows" label="Windows" default>
 
 **Option 1: Start from Start Menu** <br/>
+
 1. Open the ``Start Menu`` and locate `Layline` <br/>
 2. Invoke ``Config Server``
 
@@ -221,8 +229,9 @@ A process which
 ![d96293eb.png](img/d96293eb.png "Configuration Server Splash Screen &#40;Quickstart&#41;")
 
 **Option 2: Start from command line**<br/>
+
 1. Open a command windows and go to the `bin` folder in the installation directory.<br/>
-`C:\Program Files\Layline.io\layline>cd bin`
+   `C:\Program Files\Layline.io\layline>cd bin`
 
 2. Start the Configuration Server from the command window:
 
@@ -246,6 +255,7 @@ C:\Program Files\Layline.io\layline\bin>config-server.exe
   <TabItem value="macos" label="macOS" default>
 
 **Option 1: Start from Finder**<br/>
+
 1. Change to the `bin` folder in the installation directory using the Finder<br/>
 2. Invoke ``Config Server``
 
@@ -264,7 +274,9 @@ C:\Program Files\Layline.io\layline\bin>config-server.exe
 15:26:12.415 INFO  ConfigServer.RestServer              - [LAY-00360] rest server is listening on address '0.0.0.0', port 5841
 15:26:12.415 INFO  ConfigServer                         - [LAY-10018] layline configuration server is up and running ...
 ```
+
 **Option 2: Start from shell**<br/>
+
 1. Open a shell and go to the `bin` folder in the installation directory.<br/>
 2. Start the Configuration Server from the shell:
 
@@ -290,7 +302,7 @@ C:\Program Files\Layline.io\layline\bin>config-server.exe
 
 1. `cd` to the `bin` folder in the installation directory.<br/>
 2. Start the Configuration Server from the shell:
-   
+
 ```text
 root@b8a9e28ce031:/usr/local/layline/bin# ./config-server
 
@@ -318,6 +330,7 @@ root@b8a9e28ce031:/usr/local/layline/bin# ./config-server
 <TabItem value="windows" label="Windows" default>
 
 **Option 1: Start from Start Menu**<br/>
+
 1. Open the ``Start Menu`` and locate `Layline`<br/>
 2. Invoke ``Reactive Engine``
 
@@ -364,6 +377,7 @@ You may get a firewall warning. Please `Allow Access` for the Reactive Engine:<b
 <TabItem value="macos" label="macOS" default>
 
 **Option 1: Start from Finder**<br/>
+
 1. Change to the `bin` folder in the installation directory using the Finder<br/>
 2. Invoke `ReactiveEngine`<br/>
 
@@ -387,6 +401,7 @@ You may get a firewall warning. Please `Allow Access` for the Reactive Engine:<b
 ````
 
 **Option 2: Start from shell**<br/>
+
 1. Open a shell and go to the `bin` folder in the installation directory.<br/>
 2. Start the Reactive Engine from the shell:<br/>
 
@@ -428,6 +443,7 @@ root@b8a9e28ce031:/usr/local/layline/bin# ./reactive-engine
 2021-10-21 10:02:46.527 INFO  Layline.RestServer                                 - [LAY-00360] rest server is listening on address '0.0.0.0', port 5842
 2021-10-21 10:02:46.542 INFO  Layline                                            - [LAY-11008] all system components are up and running
 ```
+
 </TabItem>
 </Tabs>
 </div>

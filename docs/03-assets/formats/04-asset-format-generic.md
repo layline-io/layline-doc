@@ -23,7 +23,7 @@ The _Generic Format Asset_ is here to help you configure these specific data for
 
 The _Generic Format Asset_ uses a specialized form of **grammar language** to support you in defining a structured data format you may want to ingest, output, and generally work with.
 The grammar language is based on regular expressions, i.e. defining data structures which can be identified using regular expressions.
-This includes structured text and binary formats, as well as for example JSON formats.
+This includes structured text and binary formats, as well as, for example, JSON formats.
 
 The editor enables you to:
 
@@ -31,7 +31,7 @@ The editor enables you to:
 2. **Test** the grammar with real-life data while in edit-mode.
 
 Once the grammar is defined and tested in the Configuration Center, it can be deployed to a Reactive Cluster as part of a Project.
-Remember, that a Reactive Cluster may be a single Reactive Engine running locally, e.g. on your laptop as part of the standard installation.
+Remember that a Reactive Cluster may be a single Reactive Engine running locally, e.g., on your laptop as part of the standard installation.
 When the Project is activated on the Cluster, the grammars which are part of this Project are read, verified and activated.
 The Project is then ready to ingest and output the data in the specified formats.
 
@@ -84,7 +84,7 @@ The next section now describes the grammar language, which is entered in the For
 #### Lexical Parser
 
 This grammar which you define is internally processed by a lexical parser.
-This is in turn compiles a parser which is then able to ingest and/or output the defined format.
+This in turn compiles a parser which is then able to ingest and/or output the defined format.
 
 ```mermaid
 graph LR
@@ -100,7 +100,7 @@ Each element must have an associated regular expression which definitively ident
 
 Looking at an example-grammar should help us to understand how it works.
 This example is for a simple comma-separated-format.
-Please note, that virtually any other structured data format can be defined using the grammar language.
+Please note that virtually any other structured data format can be defined using the grammar language.
 
 ```
 format {
@@ -270,11 +270,11 @@ format {
 
 ```
 
-(The structure of the grammar language looks like JSON, but please not that while it is similar, it is **NOT** in JSON format.)
+(The structure of the grammar language looks like JSON, but please note that while it is similar, it is **NOT** in JSON format.)
 
-Looking at this example, it can be noted, that a grammar defines a hierarchical structure of elements, of which each can be of different types and structures themselves.
+Looking at this example, it can be noted that a grammar defines a hierarchical structure of elements, of which each can be of different types and structures themselves.
 
-In the above the parser initially identifies three types of elements:
+In the above, the parser initially identifies three types of elements:
 
 * Header
 * Detail
@@ -307,13 +307,13 @@ It represents the bracket of every grammar.
 
 **Properties:**
 
-| Attribute        | Type   | Description                                                                                                                                | Optional | Default     |
-|------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------|:--------:|-------------|
-| name             | string | Name of the format                                                                                                                         |          |             |
-| description      | string | Description of the format                                                                                                                  |    x     |             |
-| start-element    | string | Name of the element which starts parsing. See`elements` below.                                                                             |          |             |
-| target-namespace | string | Internal name of the target namespace. Must be unique across all formats                                                                   |          |             |
-| elements         | []     | Array of the types[Choice](#choice), [ListTerminal](#listerminal), [MultiPart](#multipart), [Separated](#separated), [Sequence](#sequence) |          | Empty array |
+| Attribute        | Type   | Description                                                                                                                                 | Optional | Default     |
+|------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------|:--------:|-------------|
+| name             | string | Name of the format                                                                                                                          |          |             |
+| description      | string | Description of the format                                                                                                                   |    x     |             |
+| start-element    | string | Name of the element which starts parsing. See`elements` below.                                                                              |          |             |
+| target-namespace | string | Internal name of the target namespace. Must be unique across all formats                                                                    |          |             |
+| elements         | []     | Array of the types[Choice](#choice), [ListTerminal](#listterminal), [MultiPart](#multipart), [Separated](#separated), [Sequence](#sequence) |          | Empty array |
 
 **Example:**
 
@@ -354,18 +354,18 @@ format {
 ##### Elements
 
 `Elements` are part of the [format](#format) definition.
-The following list of elements exist:
+The following list of elements exists:
 
 **Logical Elements**
 
-* [Choice](#Choice)
-* [Sequence](#Sequence)
+* [Choice](#choice)
+* [Sequence](#sequence)
 
 **Terminal Elements**
 
-* [ListTerminal](#ListTerminal)
-* [MultiPart](#MultiPart)
-* [Separated](#Separated)
+* [ListTerminal](#listterminal)
+* [MultiPart](#multipart)
+* [Separated](#separated)
 
 ###### Choice
 
@@ -384,7 +384,7 @@ graph TD
 
 **This type of element does not parse data.**
 It serves to decide which structure should be used for forward parsing.
-Use this if there are different options of what the next strcuture could be.
+Use this if there are different options of what the next structure could be.
 
 **Used in:**
 
@@ -474,7 +474,7 @@ Like the [Choice](#choice) element, this element does not parse data, but furthe
 | references | [ElementReference](#element-reference)[] | Array of sub-elements                                                                                                 |    X     | Empty array |
 
 **Example:**
-In this example the file structure is defined as such that it
+In this example, the file structure is defined as such that it
 
 1. must start with one record of type Header (defined later),
 2. must be followed by `0..n` records of type Detail
@@ -518,7 +518,7 @@ elements = [
 
 Element which detects a list of elements where
 
-1. the list is terminated at the end of hte list
+1. the list is terminated at the end of the list
 2. the individual elements in the list are separated by a separator
 
 Use this element to work with formats which
@@ -566,7 +566,7 @@ Id,Name,Surname,Street,City                      // First line contains column h
 
 **Example:**
 This example works for the example data above.
-At first we detect and parse the Header columns, and following this then all Detail records.
+At first, we detect and parse the Header columns, and following this then all Detail records.
 
 ```
 ...
@@ -657,14 +657,14 @@ elements = [
 
 Element which detects a record where
 
-1. the end of the record can be identified by regular expression,
+1. the end of the record is identified by regular expression,
 2. the record contains a number of (sub-)elements, or parts,
-3. the sub-elements can be defined as [element-parts](#element-parts).
+3. the sub-elements can be defined as [ElementPart](#element-parts).
 
 Use this if you
 
 1. have a record with individual (sub-)elements,
-2. each sub-element could be either of type [Fixed](#fixed), [Calculated](#calculated), or [RegExpr](#regexpr).
+2. each subelement could be either of type [Fixed](#fixed), [Calculated](#calculated), or [RegExpr](#regexpr).
 
 **Used in:**
 
@@ -753,7 +753,7 @@ Use this if you
 Terminal element which is detected by a regular expression and consists of multiple parts separated by a separator and terminated by a terminator.
 These are typically records containing fields which are separated by a delimiter character (e.g. `,` or `;`).
 The complete record may be terminated by another character (e.g. `\n`  or `\r\n` as record separator).
-Because the lexical analyzer has no length information for the record, the regular expression specified as pattern has to match the full record including the record separator.
+Because the lexical analyzer has no length information for the record, the regular expression specified as a pattern has to match the full record including the record separator.
 
 **Used in:**
 
@@ -781,7 +781,7 @@ Because the lexical analyzer has no length information for the record, the regul
 | separator                     | [string](#string)                        | Separator to use when the element is output                                                                                                                                                                  |    X     | ","         |
 | terminator-regular-expression | [string](#string)                        | Regular expression used to detect the terminator of the element. E.g.`\r\n` as CRLF.                                                                                                                         |    X     | "\r?\n"     |
 | terminator                    | [string](#string)                        | Terminator to use when the element is output                                                                                                                                                                 |    X     | "\n"        |
-| parts                         | [ElementPart](#element-part)[]           | Array of element parts within the element, e.g. the fields.                                                                                                                                                  |    X     | Empty array |
+| parts                         | [ElementPart](#element-parts)[]          | Array of element parts within the element, e.g. the fields.                                                                                                                                                  |    X     | Empty array |
 | references                    | [ElementReference](#element-reference)[] | Array of sub-elements                                                                                                                                                                                        |    X     | Empty array |
 
 **Example:**
@@ -838,11 +838,11 @@ Because the lexical analyzer has no length information for the record, the regul
 
 ##### Element Parts
 
-The following list of elements exist:
+The following list of elements exists:
 
-* [Calculated](#Calculated)
-* [Fixed](#Fixed)
-* [RegExpr](#RegExpr)
+* [Calculated](#calculated)
+* [Fixed](#fixed)
+* [RegExpr](#regexpr)
 
 **Used in:**
 
@@ -870,7 +870,7 @@ A terminal element part which has a length calculated from some data in the inpu
 | type                 | "Calculated"        | Specifies the type of the element part                                                                                                                                                                                      |          |             |
 | value                | [Value](#value)     | Value of the element                                                                                                                                                                                                        |          |             |
 | input-exists-formula | [Formula](#formula) | Boolean formula that specifies if the element exists. The formula can reference another field in its calculation.<br/> Example: `bitIsSet(other_field,31)"` --> the field exists if other_field has bit set at position 31. |    X     | true        |
-| input-length-formula | [Formula](#formula) | Fiexed value or formula that provides the length of the data                                                                                                                                                                |          |             |
+| input-length-formula | [Formula](#formula) | Fixed value or formula that provides the length of the data                                                                                                                                                                 |          |             |
 | justification        | [string](#string)   | Justification of the value data (left or right)                                                                                                                                                                             |    X     | left        |
 | pad-char             | [string](#string)   | Padding character used when the value is output                                                                                                                                                                             |    X     | " " (Space) |
 | strip-chars          | [string](#string)   | String containing all characters that shall be striped when the value is input                                                                                                                                              |    X     | " " (Space) |
@@ -980,7 +980,7 @@ A terminal element part which is detected using a regular expression.
 
 ##### Message Mapping
 
-The MessageMapping specifies, how the current element is mapped into a layline.io message.
+The MessageMapping specifies how the current element is mapped into a layline.io message.
 
 **Used in:**
 
@@ -1030,8 +1030,8 @@ The MessageMapping specifies, how the current element is mapped into a layline.i
 ##### Element Reference
 
 An ElementReference is used to reference another element from a Choice, ListTerminal, Sequence, or Sequence.
-In the example below a `Sequence` is defined as a number of references to elements which are defined in another place within the grammer.
-E.g. the Sequence is a sequence of Header, Details, and a Footer element.
+In the example below a `Sequence` is defined as a number of references to elements which are defined in another place within the grammar.
+E.g., the Sequence is a sequence of Header, Details, and a Footer element.
 
 **Used in:**
 
@@ -1117,7 +1117,7 @@ elements = [
 
 ##### Value
 
-The following list of elements exist:
+The following list of elements exists:
 
 * [Binary.ByteString](#binarybytestring)
 * [Binary.HexString](#binaryhexstring)
@@ -1233,7 +1233,7 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 |------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|--------------|
 | type             | "Binary.Long"       | Specifies the type of value                                                                                                                                                                                  |          |              |
 | null-input-value | [integer](#integer) | Value that will be used when the element part is classified as null                                                                                                                                          |    X     | not set      |
-| byte-order       | [string](#string)   | Byte order of the data "BIG_ENDIAN", "BIG-ENDIAN", "BIGENDIAN", "MSBF", "LITTLE_ENDIAN", "LITTLE-ENDIAN", "LITTLEENDIAN", "LSBF"                                                                             |    X     | "BIG-ENDIAN" |
+| byte-order       | [string](#string)   | Byte order of the data "BIG_ENDIAN", "BIG-ENDIAN", "BIG-ENDIAN", "MSBF", "LITTLE_ENDIAN", "LITTLE-ENDIAN", "LITTLE-ENDIAN", "LSBF"                                                                           |    X     | "BIG-ENDIAN" |
 | quote-char       | [string](#string)   | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set      |       
 | escape-char      | [string](#string)   | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set      |       
 | escape-set       | [string](#string)   | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set      |       
@@ -1268,14 +1268,14 @@ A 64-bit whole number value in text format.
 
 **Properties:**
 
-| Attribute        | Type               | Description                                                                                                                                                                                                  | Optional | Default |
-|------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|---------|
-| type             | "Text.BigInteger"  | Specifies the type of value                                                                                                                                                                                  |          |         |
-| base             | [integer](#number) | Base of encoded text value (8, 10, 16, ...).                                                                                                                                                                 |    X     | 10      |
-| null-input-value | [integer](#number) | Value that will be used when the element part is classified as null.                                                                                                                                         |    X     | not set |
-| quote-char       | [string](#string)  | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set |       
-| escape-char      | [string](#string)  | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set |       
-| escape-set       | [string](#string)  | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set |       
+| Attribute        | Type                | Description                                                                                                                                                                                                  | Optional | Default |
+|------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|---------|
+| type             | "Text.BigInteger"   | Specifies the type of value                                                                                                                                                                                  |          |         |
+| base             | [integer](#integer) | Base of encoded text value (8, 10, 16, ...).                                                                                                                                                                 |    X     | 10      |
+| null-input-value | [integer](#integer) | Value that will be used when the element part is classified as null.                                                                                                                                         |    X     | not set |
+| quote-char       | [string](#string)   | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set |       
+| escape-char      | [string](#string)   | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set |       
+| escape-set       | [string](#string)   | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set |       
 
 **Example:**
 
@@ -1299,7 +1299,7 @@ A 64-bit whole number value in text format.
 ###### Text.Date
 
 A Date value in text format.
-For DateTime handling see [Text.DateTime](#textdatetime).
+For DateTime handling, see [Text.DateTime](#textdatetime).
 
 **Syntax Diagram:**
 
@@ -1480,14 +1480,14 @@ A 32-bit whole number value in text format.
 
 **Properties:**
 
-| Attribute        | Type               | Description                                                                                                                                                                                                  | Optional | Default |
-|------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|---------|
-| type             | "Text.Integer"     | Specifies the type of value                                                                                                                                                                                  |          |         |
-| base             | [integer](#number) | Base of encoded text value (8, 10, 16).                                                                                                                                                                      |    X     | 10      |
-| null-input-value | [integer](#number) | Value that will be used when the element part is classified as null.                                                                                                                                         |    X     | not set |
-| quote-char       | [string](#string)  | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set |       
-| escape-char      | [string](#string)  | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set |       
-| escape-set       | [string](#string)  | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set |       
+| Attribute        | Type                | Description                                                                                                                                                                                                  | Optional | Default |
+|------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|---------|
+| type             | "Text.Integer"      | Specifies the type of value                                                                                                                                                                                  |          |         |
+| base             | [integer](#integer) | Base of encoded text value (8, 10, 16).                                                                                                                                                                      |    X     | 10      |
+| null-input-value | [integer](#integer) | Value that will be used when the element part is classified as null.                                                                                                                                         |    X     | not set |
+| quote-char       | [string](#string)   | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                |    X     | not set |       
+| escape-char      | [string](#string)   | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 |    X     | not set |       
+| escape-set       | [string](#string)   | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" |    X     | not set |       
 
 **Example:**
 
@@ -1522,14 +1522,14 @@ A 64-bit long value in text format.
 
 **Properties:**
 
-| Attribute        | Type               | Description                                                                                                                                                                                                  | Optional | Default |
-|------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
-| type             | "Text.Long"        | Specifies the type of value                                                                                                                                                                                  |          |         |
-| base             | [integer](#number) | Base of encoded text value (8, 10, 16).                                                                                                                                                                      | X        | 10      |
-| null-input-value | [integer](#number) | Value that will be used when the element part is classified as null.                                                                                                                                         | X        | not set |
-| quote-char       | [string](#string)  | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                | X        | not set |       
-| escape-char      | [string](#string)  | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 | X        | not set |       
-| escape-set       | [string](#string)  | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" | X        | not set |       
+| Attribute        | Type                | Description                                                                                                                                                                                                  | Optional | Default |
+|------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
+| type             | "Text.Long"         | Specifies the type of value                                                                                                                                                                                  |          |         |
+| base             | [integer](#integer) | Base of encoded text value (8, 10, 16).                                                                                                                                                                      | X        | 10      |
+| null-input-value | [integer](#integer) | Value that will be used when the element part is classified as null.                                                                                                                                         | X        | not set |
+| quote-char       | [string](#string)   | In case the value is quoted, you can define the quote character here. E.g. if the value is quoted with '"', then set this option to "\"". The value will be stripped from quotes as a result.                | X        | not set |       
+| escape-char      | [string](#string)   | Allows you to define an additional character which should be treated as an escape character.                                                                                                                 | X        | not set |       
+| escape-set       | [string](#string)   | Defines the set of characters which should be escaped by the defined escape-char. E.g. if escape-char = "&" and escape-set = "\"!?", then an input string "\"Hallo A&!&?&\"\"" would result in "Hallo A!?\"" | X        | not set |       
 
 **Example:**
 
@@ -1590,20 +1590,20 @@ A String value.
 
 ##### Action
 
-An important feature of the lexical analyser is the support of different analyser states.
+An important feature of the lexical analyzer is the support of different analyzer states.
 These states are needed if not all lexical entities of a file can be described with one set of unique regular expressions.
-When a special record is recognized the lexical analyser can switch to another state to assign a record recognized by a regular expression to a different record type.
+When a special record is recognized, the lexical analyzer can switch to another state to assign a record recognized by a regular expression to a different record type.
 The following action can be performed when a state should change:
 
-* `popState`: The lexical analyser switches back to the last state that was pushed on the stack
-* `pushState(state name(s))`: Tells the lexical analyser to push the current analyser state(s) on the stack and switch to the specified state.
+* `popState`: The lexical analyzer switches back to the last state that was pushed on the stack
+* `pushState(state name(s))`: Tells the lexical analyzer to push the current analyzer state(s) on the stack and switch to the specified state.
   It is allowed to push multiple states within one action.
   It is possible to push multiple states.
-* `changeState(state name)`: The lexical analyser switches to the specified state when this record is recognized.
+* `changeState(state name)`: The lexical analyzer switches to the specified state when this record is recognized.
 
 **Used in:**
 
-* [ListTerminal](#listtermina)
+* [ListTerminal](#listterminal)
 * [MultiPart](#multipart)
 * [Separated](#separated)
 
@@ -1721,7 +1721,7 @@ All of this without having to go through the round-trip of deploying a whole Pro
 Next to the Format-Definition Editor is the Sample-File Viewer.
 This is where you can upload a sample file with real-life data to see whether your grammar matches your data.
 
-In the image below we have loaded a small sample file for our example grammar which we have introduced at the beginning of this description.
+In the image below, we have loaded a small sample file for our example grammar which we have introduced at the beginning of this description.
 It has a Header, two Detail records, and a Trailer record.
 
 ![](.04-asset-format-generic_images/a625269c.png "Sample File View (Format Generic)")
@@ -1735,15 +1735,16 @@ If you select the `Sample Messages` tab, you should see your data in a structure
 
 To copy a part of the structure, click the copy button next to it.
 
-:::warning There are two caveats with this approach:
+:::warning There are two limitations with this approach:
 
 1. Only works with ASCII data. Binary data viewing will be available shortly.
-2. Only works with files. In other words: If you are working with streaming data / real-time data you have to put your data structures in a file first, to test whether data matches grammar.
+2. Only works with files.
+   In other words: If you are working with streaming data / real-time data, you have to put your data structures in a file first, to test whether data matches grammar.
    :::
 
 ##### In the case of error
 
-There are a number of reasons why the grammar may not match the data. Let's take a look what they are and how to remedy them:
+There are a number of reasons why the grammar may not match the data. Let's take a look at what they are and how to remedy them:
 
 1. Grammar contains red squiggly lines under items:
 
@@ -1753,12 +1754,14 @@ This indicates a problem with the grammar. Hover over the marked item and check 
 
 2. Grammar does not match sample data
 
-In this case the grammar is probably not fully configured or there is some other problem.
-A typical problem is that the data can be partially parsed, while some of the fields are not correctly recognized.
-In this case it should be fairly easy to allocate the problem within the grammar.
+In this case, the grammar is probably not fully configured or there is some other problem.
+A typical problem is that the data can be partially parsed, while some fields are not correctly recognized.
+In this case, it should be fairly easy to allocate the problem within the grammar.
 
 :::tip I tried everything and still need help!
-Don't be frustrated in case you run into issues configuring more complex formats! Help is just around the corner. Please just [get in touch](https://layline.io/contact) with us, and we WILL help you
+Don't be frustrated in case you run into issues configuring more complex formats!
+Help is just around the corner.
+Please [get in touch](https://layline.io/contact) with us, and we WILL help you
 to set up your format!
 :::
 
