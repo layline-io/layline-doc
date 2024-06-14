@@ -81,7 +81,7 @@ _Node Assignments_ **(1)** shows which which Nodes run which Deployments. In our
 
 #### Activating / Deactivating a Deployment
 
-:::caution Important Action
+:::warning Important Action
 This action is something which is used commonly to start and stop a Deployment. Read carefully.
 :::
 
@@ -114,7 +114,7 @@ In the dialog that opens, you can assign the Deployment to one or more available
 
 ![](.02-cluster_images/2021-11-03-17-49-43.png "Activating a Deployment on selected Nodes (Operations --> Cluster)")
 
-:::caution One Deployment per Engine
+:::warning One Deployment per Engine
 One Reactive Engine can only process one Deployment. If the Engine has been previously assigned a Deployment _D1_ and is now assigned another Deployment _D2_, the Engine will discard D1 and start activating D2.
 :::
 

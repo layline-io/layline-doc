@@ -83,7 +83,7 @@ Hope this makes sense.
 
 ### Renaming Environment Variables
 
-:::caution Renaming Environment Variables
+:::warning Renaming Environment Variables
 If you decide to rename your environment variables, the references to them will not be automatically renamed.
 So, if you rename, but do not rename the references, then the link between them will be lost.
 You will also get an error when trying to deploy a Project and environment variables cannot be resolved.

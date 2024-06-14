@@ -54,7 +54,7 @@ JDBC requires a connection which is requires an address, username and password.
 
 ![](.asset-service-jdbc_images/b1913a15.png "JDBC Connection (Service JDBC)")
 
-You can use ${...} macros to expand variables defined
+You can use $\{...\} macros to expand variables defined
 in [environment variables](/docs/assets/resources/asset-resource-environment):
 
 ![](.asset-service-jdbc_images/8d1cf687.png "JDBC Connection with placeholders (Service JDBC)")

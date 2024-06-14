@@ -86,19 +86,19 @@ data processed through the configured Email source will look similar to a classi
 
 * **`Input folder`** : The directory to read emails from.
   The configured input folder must be accessible to the Reactive Engine trying to access the Email source.
-  You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Done folder`** : The directory to which emails are moved when fully processed. Leaving it empty, the emails will not be moved.
   The configured done folder must be accessible to the Reactive Engine trying to access the Email source.
-  You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Error folder`** : The directory to which emails are moved in case of a problem with the email during processing. Leaving it empty, the emails will not be moved.
   The configured error folder must be accessible to the Reactive Engine trying to access the Email source.
-  You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Ignore folder `** : The directory to which emails are moved in case they are configured to be ignored in the `Ignore emails` section (see next). Leaving it empty, the emails will not be moved.
   The configured ignore folder must be accessible to the Reactive Engine trying to access the Email source.
-  You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 A final configuration could look like this:
 

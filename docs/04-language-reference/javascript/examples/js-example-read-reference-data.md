@@ -244,7 +244,7 @@ try {
 
 ```
 
-:::caution Nullify connection after use
+:::warning Nullify connection after use
 Make sure you always do `connection = null` after use of your connection, in order to release the connection object.
 :::
 

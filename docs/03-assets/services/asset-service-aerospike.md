@@ -18,7 +18,7 @@ Define a service to interface with an Aerospike store.
 
 ![](.asset-service-aerospike_images/e553b5a5.png "Asset Dependency Graph (Service Aerospike)")
 
-:::caution Note: Only works with Aerospike Scalar data types
+:::warning Note: Only works with Aerospike Scalar data types
 Please note, that the Aerospike Service for the moment only supports Aerospike primitive data types.
 :::
 
@@ -89,7 +89,7 @@ database, for example. In that sense, data is created by the equivalent of
 “write” operations. Therefore, “create” operations can be performed by “write” operations from this Aerospike Service
 Asset.
 
-:::caution No dynamic create
+:::warning No dynamic create
 In this Aerospike Service Asset there is no support, to **dynamically** create structures (equivalent to DDL
 operations). Namespaces, Sets and Bins are statically defined in this Asset.
 :::

@@ -71,9 +71,9 @@ We are adding a new one like this:
 ![](.deployment-images/2021-11-04-12-02-24.png "Creating a Engine Configuration Asset (Workflow Deployment)")
 
 - **Tag (1)**<br/>
-  The "_**Tag**_" is how we identify the Deployment on the Cluster, once it has been deployed. A Cluster can hold many different Deployments. One of which can be active at any time. Tag names must be unique throughout a Cluster. In the example we rely on a macro (_${build:timestamp}_) to automatically append the timestamp to the tag.<br/>
+  The "_**Tag**_" is how we identify the Deployment on the Cluster, once it has been deployed. A Cluster can hold many different Deployments. One of which can be active at any time. Tag names must be unique throughout a Cluster. In the example we rely on a macro (_$\{build:timestamp\}_) to automatically append the timestamp to the tag.<br/>
 
-:::caution
+:::warning
 Trying to deploy a Deployment to a Cluster with a tag which the Cluster already knows (duplicate), will lead to an error.
 :::
 
@@ -106,7 +106,7 @@ As the Cluster runs independently, it has its own security barrier. In case you 
 
 The default login here is also "_admin/admin_", just like with the _Configuration Server_. Press "_Login_".
 
-:::caution Check that the Cluster is running and reachable
+:::warning Check that the Cluster is running and reachable
 Make sure it says "_Cluster available_" at the bottom of the login dialog. If not, then your _Cluster Configuration_ is incorrect, or the Cluster cannot be reached (Reactive Engine may not be running, Network issues, etc.).
 :::
 

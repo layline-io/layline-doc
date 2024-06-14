@@ -59,7 +59,7 @@ To add a User click the `+` next to _"Users"_ **(2)**:
 ![](.03-operations-user-storage_images/2021-11-16-16-29-50.png "Add user (Operations --> User Storage)")
 
 You need to define a user name.
-:::caution
+:::warning
 Please note that you cannot change the username later.
 :::
 
@@ -107,7 +107,7 @@ A dialog will open, allowing you to edit description and privileges.
 
 ![](.03-operations-user-storage_images/2021-11-16-16-53-42.png "Adding a role (Operations - User Storage)")
 
-:::caution
+:::warning
 Please note that you cannot change the Role name later.
 :::
 

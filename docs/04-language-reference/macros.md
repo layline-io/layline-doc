@@ -57,7 +57,7 @@ The suffix defines the value which you have defined for that property:
 
 You can then access this variable like this: `${lay:DirBase}`.
 
-:::caution Environment Resource must be deployed
+:::warning Environment Resource must be deployed
 As this variable will be replaced at runtime, it is important that you include the Environment Resource as part of your deployment to the cluster.
 Otherwise, you will encounter an error when you try to start the deployment on the Reactive Cluster, as the cluster cannot find the referenced environment variable.
 :::
@@ -73,7 +73,7 @@ The suffix defines the value which you have defined for that property:
 
 You can then access this variable like this: `${sec:Secret1}`.
 
-:::caution Secret Resource must be deployed
+:::warning Secret Resource must be deployed
 As this variable will be replaced at runtime, it is important that you include the Secret Resource as part of your deployment to the cluster.
 Otherwise, you will encounter an error when you try to start the deployment on the Reactive Cluster, as the cluster cannot find the referenced environment variable.
 
@@ -152,15 +152,15 @@ The outcome would look something like this `subject: Test (from: test@layline.io
 layline.io utilizes the functionality of the Apache Commons Library for further macro support.
 Here is a list of what you can do:
 
-| Prefix        | Variable                | Example                                    | Description                      |
-|---------------|-------------------------|--------------------------------------------|----------------------------------|
-| base64Decoder | A base64 encoded string | ${base64Decoder:SGVsbG9Xb3JsZCE=}          | Decode a base64 encoded string   |
-| base64Encoder | A string                | ${base64Encoder:HelloWorld!}               | Encode a string in base64 format |
-| const         | A string                | ${const:java.awt.event.KeyEvent.VK_ESCAPE} | Java constant                    |
-| env           | Environment variable    | ${env:USERNAME}                            | A system environment variable    |
-| localhost     | "canonical-name"        | ${localhost:canonical-name}                | The canonical name of the host   |
-| urlDecoder    | A url                   | ${urlDecoder:Hello%20World%21}             | Decoding a url to a string       |
-| urlEncoder    | A string                | ${urlEncoder:Hello World!}                 | Encoding a string to a url       |
+| Prefix        | Variable                | Example                                      | Description                      |
+|---------------|-------------------------|----------------------------------------------|----------------------------------|
+| base64Decoder | A base64 encoded string | $\{base64Decoder:SGVsbG9Xb3JsZCE=\}          | Decode a base64 encoded string   |
+| base64Encoder | A string                | $\{base64Encoder:HelloWorld!\}               | Encode a string in base64 format |
+| const         | A string                | $\{const:java.awt.event.KeyEvent.VK_ESCAPE\} | Java constant                    |
+| env           | Environment variable    | $\{env:USERNAME\}                            | A system environment variable    |
+| localhost     | "canonical-name"        | $\{localhost:canonical-name\}                | The canonical name of the host   |
+| urlDecoder    | A url                   | $\{urlDecoder:Hello%20World%21\}             | Decoding a url to a string       |
+| urlEncoder    | A string                | $\{urlEncoder:Hello World!\}                 | Encoding a string to a url       |
 
 You can check out the full list [here](https://commons.apache.org/proper/commons-text/apidocs/org/apache/commons/text/StringSubstitutor.html).
 

@@ -65,12 +65,12 @@ The following operations are supported in the given precedence:
 
 
 | Precedence | Operation            | Operator(s) |
-| :----------: | ---------------------- | ------------- |
+| :----------: | ---------------------- |-------------|
 |     1     | unary                | ~ !         |
 |     2     | multiplicative       | * / %       |
 |     3     | additive             | + -         |
-|     4     | bitwise shift        | << >>       |
-|     5     | relational           | < > <= >=   |
+|     4     | bitwise shift        | \<\< >>     |
+|     5     | relational           | \< > \<= >= |
 |     6     | equality             | == !=       |
 |     7     | bitwise AND          | &           |
 |     8     | bitwise exclusive OR | ^           |

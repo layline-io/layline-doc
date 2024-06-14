@@ -131,7 +131,7 @@ If you pick more than one, then the message will be output to all the ports sele
 You have just defined your first Rule.
 Create additional rules as you see fit for your Workflow and scenario.
 
-:::caution Order of Rules matters
+:::warning Order of Rules matters
 As you enter more rules, please recall, that rules are evaluated in the order as presented in the rules list.
 If any of the rules follows an `Evaluation Mode` of "_Stop rule evaluation when this rule matches_", and the rule does match a message, then evaluation of all other rules following that respective
 rule will not be done.

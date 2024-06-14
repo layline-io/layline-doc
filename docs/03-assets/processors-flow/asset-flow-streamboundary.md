@@ -132,7 +132,7 @@ In our example above we have defined the following
   Either enter the term yourself using [quartz notation](http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html),
   or click the button to the right of the field for assisted entry.
 
-:::caution Stream Termination Criteria apply discretely
+:::warning Stream Termination Criteria apply discretely
 Keep in mind, that each termination condition applies on its own. So in case, you have defined a stream to terminate each 1.000 messages,
 and have also defined for a stream to be terminated each 60 seconds, then both triggers will apply on their own terms. That is either after 1.0000 OR after 60 seconds.
 
@@ -232,7 +232,7 @@ As an example you could pass a field `StreamId` from the `Header` message in the
 
 In that State you could then use the value, e.g. to check whether the data you are processing in the `In Transaction` State stems from the same StreamId by comparing contained StreamId information with that from the variable.
 
-:::caution
+:::warning
 This feature is currently not supported. You can therefore define variables at this stage, but not use them.
 :::
 

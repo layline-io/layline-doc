@@ -67,7 +67,7 @@ An FTP sink allows the definition of three different directories:
 
 * **`Output Directory`** : The directory to write output files to.
   The path of the directory must be accessible to the Reactive Engine trying to access the FTP Sink.
-  You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Output prefix`** : Prefix to add to the filename of the processed file when writing to the output directory.
   E.g. `out_` will add the `out_`-prefix to the beginning of the filename when written to the output directory.
@@ -87,7 +87,7 @@ An FTP sink allows the definition of three different directories:
   Should you encounter a temporary file in a temporary directory even though there is no current processing ongoing, then this is likely a residue from a crash which needs to be further investigated.
 
   The path of the directory must be accessible to the Reactive Engine trying to access the FTP Sink.
-  You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Temporary prefix`** : Prefix to add to the filename of the temporary file when writing to the temporary directory.
   E.g. `temp_` will add the `temp_`-prefix to the beginning of the filename when written to the output directory.
@@ -101,7 +101,7 @@ An FTP sink allows the definition of three different directories:
 
 * **`Error Directory`** : The directory to which files are moved in case of a problem with the file during processing.
   The path of the directory must be accessible to the Reactive Engine trying to access the FTP source.
-  You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 * **`Error prefix`** : Prefix to add to the filename of the processed file after move to the error directory.
   E.g. `error_` will add the `error_`-prefix to the beginning of the filename when moved to the error directory.

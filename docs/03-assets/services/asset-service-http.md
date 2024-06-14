@@ -334,7 +334,7 @@ If we are only expecting one row as a result, we can test it with `httpData.data
 ---
 
 :::tip Fields marked with "**macro supported**"
-You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 :::
 
 <WipDisclaimer></WipDisclaimer>

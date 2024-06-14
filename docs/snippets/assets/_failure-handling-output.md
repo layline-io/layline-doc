@@ -21,7 +21,7 @@ Don't do anything.
 
 Rollback the complete stream. In the case of batch/file processing for example the complete file (which represents the stream) will be rolled back and put into error.
 
-:::caution
+:::warning
 A rollback signal will be issued to all participating Workflow Processors.
 Each Processor needs to ensure itself how to deal with a rollback.
 A Javascript Flow Processor, for example, which directly interacts with a database will have to react to a [rollback signal](/docs/language-reference/javascript/API/classes/JavaScriptProcessor#onrollback):

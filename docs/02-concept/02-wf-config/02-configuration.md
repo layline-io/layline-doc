@@ -25,7 +25,7 @@ You should be logged in:
 
 ![](.configuration-images/6b2700c6.png "Logging in (Workflow Configuration)")
 
-:::caution Change Admin Password
+:::warning Change Admin Password
 Make sure you change the password after installation.
 :::
 
@@ -123,7 +123,7 @@ Click on the bin icon (1) to delete an open Project
 ![](.configuration-images/02a80f77.png "Option 2: Remove from _Asset Editor_ (Workflow Configuration)")
 
 
-:::caution Please note: Projects are removed, not deleted!
+:::warning Please note: Projects are removed, not deleted!
 layline.io cannot physically **delete** the Project from disk (due to browser restrictions). To
 truly delete the Project, please use the means of the underlying operating system.  
 :::

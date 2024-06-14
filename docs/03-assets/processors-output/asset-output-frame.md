@@ -140,7 +140,7 @@ In case the conditions are met, the message is then forwarded to an [EventBridge
   ![Select pre-configured Event Bus (Output Frame)](.asset-output-frame_images/bc80c560.png)
 
     * **Calculated**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to an Event Bus name.
-      You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+      You can also use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/c24d9aea.png "Define a calculated Event Bus term")
@@ -367,7 +367,7 @@ If exclusive access cannot be obtained, you will receive an error.
   the [Mapping Asset](/docs/assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/processors-flow/asset-flow-javascript)).
 
 * **`Topic`**: Enter the name of the topic you want to exclusively obtain access to.
-  You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 ## Sink Settings for Kinesis
 
@@ -447,7 +447,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
       Alternatively, simply enter the name of the stream.
 
     * **Calculated**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to an SNS topic name.
-      You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+      You can also use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/dd7d8b93.png "Define a calculated Kinesis Stream term")
@@ -467,7 +467,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
       ![](.asset-output-frame_images/780d740e.png "Enter fixed Kinesis Partition Key (Output Frame)")
 
     * **Calculated**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to Kinesis Partition Key.
-      You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+      You can also use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/7ff5ab22.png "Define a calculated Partition Key term")
@@ -548,7 +548,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
       Alternatively, simply enter the name of the topic.
 
     * **Calculated**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to an SNS topic name.
-      You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+      You can also use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/bbe776b5.png "Define a calculated SNS Topic term")
@@ -754,7 +754,7 @@ In case the conditions are met, the message is then forwarded to SQS in the form
       Alternatively, simply enter the name of the topic.
 
     * **Calculated**: Enter a [Quickscript](/docs/language-reference/quickscript/quickscript) term which evaluates to an SQS topic name.
-      You can also use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+      You can also use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/8ce31e60.png "Define a calculated SQS Topic term")

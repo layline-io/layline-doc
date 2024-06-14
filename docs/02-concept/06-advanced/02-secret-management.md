@@ -21,7 +21,7 @@ The _Security Storage_ is the place where layline.io keeps these Security Tokens
 * **encrypt and decrypt data** via Secrets (3), and
 * **who to trust** via certificates and hosts (4, 5, 6).
 
-:::caution PLEASE NOTE:
+:::warning PLEASE NOTE:
 
 1. The Security Storage for the Configuration Server and the Reactive Cluster work the same, except that their configuration is found under different locations.
 
@@ -121,7 +121,7 @@ generated. The fingerprint is later used to match encrypted values to the correc
 It is possible to import a key-pair which was created externally by [ssh-keygen](https://www.ssh.com/academy/ssh/keygen) or compatible mechanisms and is in a file. Select `Import a Key`. A dialog will
 open:
 
-[Import a key-pair (Secret Management)](<.secret-management_images/2021-11-18-09-20-09.png "Import a key-pair (Secret Management)")
+[Import a key-pair (Secret Management)](.secret-management_images/2021-11-18-09-20-09.png "Import a key-pair (Secret Management)")
 
 Enter a name and description for the new key-pair. Select whether your key-pair is in one file or in separate files **(1)**. The example above uses one file which contains both public and private key
 for import. You can either drag and drop the file(s) onto the respective landing-zones in the dialog **(2)**, or select them by hitting the "+"-key in the landing-zone. Click `OK` to accept.
@@ -135,7 +135,7 @@ You should have a new entry in the list of keys **(1)**:
 layline.io supports to copy a key-pair. This is useful to copy a key-pair from a Configuration Server to a Reactive Engine Cluster, or vice versa. To copy click the copy button next to the key-paid.
 To past click `Paste Key`. If a key-pair is in your clipboard (kept in layline internal format), it will be pasted and inserted.
 
-:::caution Note: Key-pairs are User-specific
+:::warning Note: Key-pairs are User-specific
 Please note, that key-pairs added to the Configuration Server are specific to logged in user and not visible to other users that may be sharing the Configuration Server with.
 :::
 
@@ -331,7 +331,7 @@ To use the identity, you need to first import it to layline.io. Click `IMPORT A 
 * **`Key store password`** (1): Password of the Keystore file
 * **`Key password`** (2): Password of the key
 
-:::caution Attention: Reactive Cluster --> Identity Certificates need to be transferred manually
+:::warning Attention: Reactive Cluster --> Identity Certificates need to be transferred manually
 If you have imported an Identity Certificate onto the Configuration Server like explained above, it does not automatically transfer to a Reactive Cluster.
 If necessary for your setup, you will have to manually import the Identity Certificate to the respective Reactive Cluster also.
 :::
@@ -365,7 +365,7 @@ To import a trusted certificate click `IMPORT A CERTFICATE ...` (3). A dialog op
   as [keytool](https://docs.oracle.com/javase/7/docs/technotes/tools/windows/keytool.html).
 * **`Key store password`** (1): Password of the Keystore file
 
-:::caution Attention: Reactive Cluster --> Trusted Certificates need to be transferred manually
+:::warning Attention: Reactive Cluster --> Trusted Certificates need to be transferred manually
 If you have imported a Trusted Certificate onto the Configuration Server like explained above, it does not automatically transfer to a Reactive Cluster.
 If necessary for your setup, you will have to manually import the Trusted Certificate to the respective Reactive Cluster also.
 :::

@@ -43,13 +43,12 @@ exports of metric data. Press the +-button to add new mapping entries
 
 Define the regular expression that should match the metric you would like to use for gathering statistics, for instance
 
-- Counter.Source.*.Files
-
-> which counts the processed files grouped by <_**SourceName**_\>
+- Counter.Source.*.Files<br/>
+  which counts the processed files grouped by \<_**SourceName**_\>
 
 (2) Name
 
-> You will be able to find the respective metric matching your regular expression under the here defined name 
+You will be able to find the respective metric matching your regular expression under the here defined name 
 within the export of metric values, for instance _**io_layline_counter_source_files**_.
 
 Press the +-button appearing in the Operations column to add Labels for the respective metric. 
@@ -114,90 +113,90 @@ on the actual configuration implemented for a layline.io project.
 
 <u><b> Counter.Source.*.* </b></u>
 
-The third level in this counter reflects the <_**sourceName**_\>. Hence, for each of the following 
+The third level in this counter reflects the \<_**sourceName**_\>. Hence, for each of the following 
 elements we will see one counter per configured and processed source
 
 
-| **No.** | **Metric**                                                                                 | **Usage**                                                                                    |
-|---------|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| 1       | Counter.Source.<_**sourceName**_\>.Files                                                   | number of files processed by a source                                                        |
-| 2       | Counter.Source.<_**sourceName**_\>.FilesCommit                                             | number of files committed by a source                                                        |
-| 3       | Counter.Source.<_**sourceName**_\>.FilesRollback                                           | number of files rolled back by a source                                                      | 
-| 4       | Counter.Source.<_**sourceName**_\>.FilesCancel                                             | number of files cancelled by a source                                                        |
-| 5       | Counter.Source.<_**sourceName**_\>.Messages                                                | number of messages created by a source                                                       |            
-| 6       | Counter.Source<_**sourceName**_\>.Failures                                                 | number of failures for a source                                                              |
-| 7       | Counter.Source.<_**sourceName**_\>.Backlog                                                 | counter for the backlog of a source                                                          |
-| 8       | Counter.Source.<_**sourceName**_\>.Lag.<_**topic**_\>.<_**consumer**_\>.<_**partition**_\> | counter for the lag of a sourceName’s Kafka topic messages per consumer / topic / partition  |
+| **No.** | **Metric**                                                                                     | **Usage**                                                                                    |
+|---------|------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| 1       | Counter.Source.\<_**sourceName**_\>.Files                                                      | number of files processed by a source                                                        |
+| 2       | Counter.Source.\<_**sourceName**_\>.FilesCommit                                                | number of files committed by a source                                                        |
+| 3       | Counter.Source.\<_**sourceName**_\>.FilesRollback                                              | number of files rolled back by a source                                                      | 
+| 4       | Counter.Source.\<_**sourceName**_\>.FilesCancel                                                | number of files cancelled by a source                                                        |
+| 5       | Counter.Source.\<_**sourceName**_\>.Messages                                                   | number of messages created by a source                                                       |            
+| 6       | Counter.Source.\<_**sourceName**_\>.Failures                                                   | number of failures for a source                                                              |
+| 7       | Counter.Source.\<_**sourceName**_\>.Backlog                                                    | counter for the backlog of a source                                                          |
+| 8       | Counter.Source.\<_**sourceName**_\>.Lag.\<_**topic**_\>.\<_**consumer**_\>.\<_**partition**_\> | counter for the lag of a sourceName’s Kafka topic messages per consumer / topic / partition  |
  
 
 <u><b> Counter.Sink.*.* </b></u>
 
-The third level in this counter reflects the <_**sinkName**_\>. Hence, for each of the following elements we
+The third level in this counter reflects the \<_**sinkName**_\>. Hence, for each of the following elements we
 will see one counter per configured and processed sink 
 
 
-| **No.** | **Metric**                                   | **Usage**                             |
-|---------|----------------------------------------------|---------------------------------------|
-| 1       | Counter.Sink.<_**sinkName**_\>.Files         | number of files processed by a sink   |
-| 2       | Counter.Sink.<_**sinkName**_\>.FilesCommit   | number of files committed by a sink   |
-| 3       | Counter.Sink.<_**sinkName**_\>.FilesRollback | number of files rolled back by a sink |                                                          |
-| 4       | Counter.Sink.<_**sinkName**_\>.FilesCancel   | number of files cancelled by a sink   |
-| 5       | Counter.Sink.<_**sinkName**_\>.Messages      | number of messages created by a sink  |            
-| 6       | Counter.Sink.<_**sinkName**_\>.Failures      | number of failures for a sink         |
+| **No.** | **Metric**                                    | **Usage**                             |
+|---------|-----------------------------------------------|---------------------------------------|
+| 1       | Counter.Sink.\<_**sinkName**_\>.Files         | number of files processed by a sink   |
+| 2       | Counter.Sink.\<_**sinkName**_\>.FilesCommit   | number of files committed by a sink   |
+| 3       | Counter.Sink.\<_**sinkName**_\>.FilesRollback | number of files rolled back by a sink |                                                          |
+| 4       | Counter.Sink.\<_**sinkName**_\>.FilesCancel   | number of files cancelled by a sink   |
+| 5       | Counter.Sink.\<_**sinkName**_\>.Messages      | number of messages created by a sink  |            
+| 6       | Counter.Sink.\<_**sinkName**_\>.Failures      | number of failures for a sink         |
 
 <u><b> Counter.Service.*.* </b></u>
 
-The third level in this counter reflects the <_**serviceName**_\>. Hence, for each of the following elements 
+The third level in this counter reflects the \<_**serviceName**_\>. Hence, for each of the following elements 
 we will see one counter per configured and processed service
 
 
-| **No.** | **Metric**                                    | **Usage**                                            |
-|---------|-----------------------------------------------|------------------------------------------------------|
-| 1       | Counter.Service.<_**serviceName**_\>.Calls    | total number of function calls for a service         |
-| 2       | Counter.Service.<_**serviceName**_\>.Failures | total number of function call failures for a service |
+| **No.** | **Metric**                                     | **Usage**                                            |
+|---------|------------------------------------------------|------------------------------------------------------|
+| 1       | Counter.Service.\<_**serviceName**_\>.Calls    | total number of function calls for a service         |
+| 2       | Counter.Service.\<_**serviceName**_\>.Failures | total number of function call failures for a service |
 
-One level deeper, counters per <_**serviceName**_\> and <_**functionName**_\> are collected 
+One level deeper, counters per \<_**serviceName**_\> and \<_**functionName**_\> are collected 
 
-| **No.** | **Metric**                                                                   | **Usage**                                               |
-|---------|------------------------------------------------------------------------------|---------------------------------------------------------|
-| 3       | Counter.Service.<_**serviceName**_\>.Function.<_**functionName**_\>.Calls    | total number of calls of a specific service function    |
-| 4       | Counter.Service.<_**serviceName**_\>.Function.<_**functionName**_\>.Failures | total number of failures of a specific service function |
+| **No.** | **Metric**                                                                     | **Usage**                                               |
+|---------|--------------------------------------------------------------------------------|---------------------------------------------------------|
+| 3       | Counter.Service.\<_**serviceName**_\>.Function.\<_**functionName**_\>.Calls    | total number of calls of a specific service function    |
+| 4       | Counter.Service.\<_**serviceName**_\>.Function.\<_**functionName**_\>.Failures | total number of failures of a specific service function |
 
 <u><b> Counter.Workflow.*.* </b></u>
 
-The third level in this counter reflects the <_**workflowName**_\>. Hence, for each of the following 
+The third level in this counter reflects the \<_**workflowName**_\>. Hence, for each of the following 
 elements we will see one counter per configured and processing workflow and - where applicable - 
-<_**workflowInstanceOrdinalNo**_\> (abbreviated in the following as <_**wfInstance**_\>)
+\<_**workflowInstanceOrdinalNo**_\> (abbreviated in the following as \<_**wfInstance**_\>)
 
-| **No.** | **Metric**                                                          | **Usage**                                                |
-|---------|---------------------------------------------------------------------|----------------------------------------------------------|
-| 1       | Counter.Workflow.<_**workflowName**_\>.Instances                    | total number of active workflow instances                |
-| 2       | Counter.Workflow.<_**workflowName**_\>.Input.Messages               | number of input messages for all instances of a workflow |
-| 3       | Counter.Workflow.<_**workflowName**_\>.<_**wfInstance**_\>.Restarts | total number of active workflow instance restarts        |
+| **No.** | **Metric**                                                            | **Usage**                                                |
+|---------|-----------------------------------------------------------------------|----------------------------------------------------------|
+| 1       | Counter.Workflow.\<_**workflowName**_\>.Instances                     | total number of active workflow instances                |
+| 2       | Counter.Workflow.\<_**workflowName**_\>.Input.Messages                | number of input messages for all instances of a workflow |
+| 3       | Counter.Workflow.\<_**workflowName**_\>.\<_**wfInstance**_\>.Restarts | total number of active workflow instance restarts        |
 
-One level deeper, counters per <_**workflowName**_\>, <_**wfInstance**_\> and <_**processor**_\> are collected
+One level deeper, counters per \<_**workflowName**_\>, \<_**wfInstance**_\> and \<_**processor**_\> are collected
 
-| **No.** | **Metric**                                                                                                   | **Usage**                                                                   |
-|---------|--------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| 4       | Counter.Workflow.<_**workflowName**_\>.Output.<_**processor**_\>.Messages                                    | number of output messages for all instances of a workflow for an output     |
-| 5       | Counter.Workflow.<_**workflowName**_\>.<_**wfInstance**_\>.Output.<_**processor**_\>.Messages                | number of output messages for an output processor of a workflow instance    |
-| 6       | Counter.Workflow.<_**workflowName**_\>.<_**wfInstance**_\>.<_**processor**_\>.<_**outPortName**_\>.Messages  | number of messages for a processor's output port within a workflow instance |
+| **No.** | **Metric**                                                                                                      | **Usage**                                                                   |
+|---------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| 4       | Counter.Workflow.\<_**workflowName**_\>.Output.\<_**processor**_\>.Messages                                     | number of output messages for all instances of a workflow for an output     |
+| 5       | Counter.Workflow.\<_**workflowName**_\>.\<_**wfInstance**_\>.Output.\<_**processor**_\>.Messages                | number of output messages for an output processor of a workflow instance    |
+| 6       | Counter.Workflow.\<_**workflowName**_\>.\<_**wfInstance**_\>.\<_**processor**_\>.\<_**outPortName**_\>.Messages | number of messages for a processor's output port within a workflow instance |
 
 Specific counters for Profiling, currently mainly used for layline.io internally purposes, are available 
 for customized dashboards as well: 
 
-| **No.** | **Metric**                                                                                                                        | **Usage**                                                                                                                                                    |
-|---------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 7       | Counter.Workflow.<br/><_**workflowName**_\>.<_**wfInstance**_\>.<_**processor**_\>.Profiling.PushMessage.<_**pushMessageType**_\> | processor specific Profiling.PushMessageType counters; here available pushMessageTypes:<br/>- TotalDuration<br/>- Events<br/>- MinDuration<br/>- MaxDuration |
+| **No.** | **Metric**                                                                                                                            | **Usage**                                                                                                                                                    |
+|---------|---------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 7       | Counter.Workflow.<br/>\<_**workflowName**_\>.\<_**wfInstance**_\>.\<_**processor**_\>.Profiling.PushMessage.\<_**pushMessageType**_\> | processor specific Profiling.PushMessageType counters; here available pushMessageTypes:<br/>- TotalDuration<br/>- Events<br/>- MinDuration<br/>- MaxDuration |
 
 <u><b> Counter.Connection.*.* </b></u>
 
-The third level in this counter reflects the <_**connectionName**_\>. Hence, for the following element we will see one counter 
+The third level in this counter reflects the \<_**connectionName**_\>. Hence, for the following element we will see one counter 
 per configured connection
 
-| **No.** | **Metric**                                          | **Usage**                      |
-|---------|-----------------------------------------------------|--------------------------------|
-| 1       | Counter.Connection.<_**connectionName**_\>.Failures | number of connection failures  |
+| **No.** | **Metric**                                           | **Usage**                      |
+|---------|------------------------------------------------------|--------------------------------|
+| 1       | Counter.Connection.\<_**connectionName**_\>.Failures | number of connection failures  |
 
 ### Configuring Prometheus and Grafana using Docker
 
@@ -302,8 +301,8 @@ Let’s assume you are processing an input file with Header, Trailer and Detail 
 Header and Trailer are discarded as well as specifically flagged Detail records. 
 You would like to count DISCARDED vs. PROCESSED records per recordType through metrics.
 
-The following function creates counters named ‘Counter.User.InputRecordTypes.<_**recordType**_>.<_**state**_>’ 
-whereby <_**recordType**_> and <_**state**_> are generic since they are determined during processing based on incoming data. 
+The following function creates counters named ‘Counter.User.InputRecordTypes.\<_**recordType**_>.\<_**state**_>’ 
+whereby \<_**recordType**_> and \<_**state**_> are generic since they are determined during processing based on incoming data. 
 The COUNTER_USER_INPUT_RECORDTYPES array is used to keep track of counters already created.
 
 ```js

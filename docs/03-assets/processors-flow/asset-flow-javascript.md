@@ -103,7 +103,7 @@ method [here](/docs/language-reference/javascript/API/classes/Processor#getargum
 In case you are entering arguments (1), the editor will check for valid JSON and outline this in case it is invalid.
 You can format the JSON entries with a click on `Format JSON (2)`.
 
-:::caution Invalid JSON
+:::warning Invalid JSON
 Entering invalid JSON will cause problems when using the Arguments in the underlying script.
 :::
 

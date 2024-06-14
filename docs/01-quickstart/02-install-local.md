@@ -163,7 +163,7 @@ layline.io was successfully removed from your computer.
 Finishing uninstallation ...
 ````
 
-:::caution
+:::warning
 Project data will not be uninstalled In case you have created some Projects with layline.io, these will remain and must be deleted manually.
 :::
 
@@ -436,7 +436,7 @@ root@b8a9e28ce031:/usr/local/layline/bin# ./reactive-engine
 
 It's time to check if we can start the web-based Configuration Center.
 
-:::caution Please note
+:::warning Please note
 The **Configuration Center** is served by the **Configuration Server**. So make sure that it is up and running.
 :::
 
@@ -454,7 +454,7 @@ The default login is `admin` with password `admin`. Once logged in, you should s
 
 ### Starting issues
 
-:::caution Issues when upgrading from previous version
+:::warning Issues when upgrading from previous version
 Should you be upgrading a previously installed version, there is a chance that you may encounter starting issues with the Configuration Server and/or Reactive Engine.
 The reason being that there are still old configuration elements lingering around. The easiest way to fix the issues would be to follow these steps:
 

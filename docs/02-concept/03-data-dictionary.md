@@ -163,7 +163,7 @@ In step (7) **_Map_**, the data is mapped to the output format. Conceptually thi
 
 In the final step the **_Msg-Output_** (8) processor is configured to only eject the **_F-Out_** format, and thus only considers that branch from the data dictionary on output.
 
-:::caution Please note that the structure of the Data Dictionary remains the same throughout processing.
+:::warning Please note that the structure of the Data Dictionary remains the same throughout processing.
 The morphing of the data dictionary in the image above is only depicted for demonstration purposes.
 :::
 

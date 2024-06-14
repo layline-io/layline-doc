@@ -67,7 +67,7 @@ Use this section to add configuration parameters available for Kafka Platform su
 
 For a list of available properties please check [Confluent Producer Configurations](https://docs.confluent.io/platform/current/installation/configuration/producer-configs).
 
-:::caution Attention: Kafka properties take precedence
+:::warning Attention: Kafka properties take precedence
 Please note that properties defined here, take precedence over all other settings you may have provided in this UI.
 You can use this to add, or override Kafka properties using these settings.
 :::

@@ -62,7 +62,7 @@ Use the drop-down list to select an [AWS Connection](/docs/assets/connections/as
 
 Once you picked an SQS Connection above the system will try to test the connection and
 show available queues within the drop-down list under `SQS Queue`. Pick the topic you want to process messages from. Another approach 
-could be: you can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+could be: You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 #### Further settings
 

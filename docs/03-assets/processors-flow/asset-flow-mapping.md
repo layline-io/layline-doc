@@ -106,7 +106,7 @@ e.g.:
 
 ![Source Message selected (Mapping Flow Asset)](.asset-flow-mapping_images/24ecaa1e.png)
 
-:::caution Mapping scenarios should use distinct messsage types
+:::warning Mapping scenarios should use distinct messsage types
 Make sure, that each Mapping Scenario refers to a distinct message type.  
 You may otherwise encounter inconsistent results.
 :::

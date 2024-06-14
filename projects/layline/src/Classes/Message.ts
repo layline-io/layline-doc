@@ -135,8 +135,9 @@ class Message {
      *     ...
      * }
      * ```
-     * @param {EntityDeclaration} - Path to data dictionary structure which you want to test for existence in the message ({@link EntityDeclaration}.)
-     * @return {boolean} - True, if it exists, else false.
+     *
+     * @param {EntityDeclaration} - The Path to data dictionary structure which you want to test for existence in the message ({@link EntityDeclaration}.)
+     * @return {boolean} True, if it exists, else false.
      */
     exists(entityDeclaration: EntityDeclaration): boolean {
         return;
@@ -153,8 +154,8 @@ class Message {
      *  });",
      * ```
      *
-     * @param {Function} - Callback function used to find a specific status.
      * @return {Status[]} - Array of found States. Empty array if nothing found.
+     * @param callback
      */
     findStatus(callback: Function): Status {
         return;

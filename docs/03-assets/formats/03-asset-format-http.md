@@ -106,23 +106,23 @@ A new path will be created with some default parameters.
 
 * **`Http Path`**: The actual http url part of the path under which the http methods can be reached.
 
-  Example: Let's assume you have configured a workflow to handle incoming http requests. 
+  Example: Let's assume you have configured a workflow to handle incoming http requests.
   The workflow has a [Request-Response Input](../processors-input/asset-input-request-response) which is bound to a Source Asset which opens port 4712 under address `https://mycluster.mydomain.com`.
-  Then given this path configuration you can access it under `htttps://mycluster.mydomain.com:4712/apaleo`. 
+  Then given this path configuration you can access it under `htttps://mycluster.mydomain.com:4712/apaleo`.
 
 * **`Header Parameters`**: These are the header parameters which you would like to access in the course of handling the http-call.
   Click on `+ ADD HEADER PARAMETER` to add a header.
- 
-  * **`Name`**: Enter the name which you want to use to access the header information from the message.
-    Do not use whitespaces.
 
-  * **`Header Name`**: Enter the name of the field as it is delivered in the header.
+    * **`Name`**: Enter the name which you want to use to access the header information from the message.
+      Do not use whitespaces.
 
-  * **`Optional`**: Check if the header field is optional, else leave unchecked.
-    If it is mandatory, but not included in the call, then this will lead to a http error.
+    * **`Header Name`**: Enter the name of the field as it is delivered in the header.
 
-  * Accessing the header information from within Javascript:
-  
+    * **`Optional`**: Check if the header field is optional, else leave unchecked.
+      If it is mandatory, but not included in the call, then this will lead to a http error.
+
+    * Accessing the header information from within Javascript:
+
   ```js
   function onMessage(message) {
 
@@ -139,10 +139,8 @@ A new path will be created with some default parameters.
 
   ```
 
-* **`Path Parameters`**: 
-* **`Query Parameters`**: 
-
-
+* **`Path Parameters`**:
+* **`Query Parameters`**:
 
 The Data Dictionary Elements you define with this Asset, may reference other Formats which you have already defined elsewhere (e.g. Generic formats, ASN.1 formats, etc.).
 In order to let the system know that you require and reference these other formats in this Data Dictionary, you have to add them here.
@@ -153,7 +151,7 @@ In order to let the system know that you require and reference these other forma
 
 </div>
 
-:::caution Potential pitfall
+:::warning Potential pitfall
 If you forget or omit to define other data formats which you are referencing in the Data Dictionary format you are defining in this Asset, you may run into runtime errors during execution.
 
 This could look like this:
@@ -259,7 +257,7 @@ Again, note how member `Engine` is also of type `EngineType`.
 
 We have now finalized the setup of what we wanted to create in the Data Dictionary as described in [Example](#example).
 
-:::caution
+:::warning
 If you delete an Element which is referenced elsewhere, the system will not notify you.  
 You will get an error at runtime, however.
 :::
@@ -438,17 +436,17 @@ Next, we add the conditions for when these should be selected, based on the inco
   In our example this would mean, that if we can find a field `Type` on root level of the incoming JSON, and hte value is `Boat`, then it would be encoded as `Record.Boat`.
   The Path conforms with _JSON-Path_. Other allowed operators:
 
-  | Operator                  | Description                                                     |
-                |---------------------------|-----------------------------------------------------------------|
-  | $                         | The root element to query. This starts all path expressions.    |
-  | @                         | The current node being processed by a filter predicate.         |
-  | *                         | Wildcard. Available anywhere a name or numeric are required.    |
-  | ..                        | Deep scan. Available anywhere a name is required.               |
-  | .<name\>                  | Dot-notated child                                               |
-  | ['<name\>' (, '<name\>')] | Bracket-notated child or children                               |
-  | [<number\> (, <number\>)] | Array index or indexes                                          |
-  | [start:end]               | Array slice operator                                            |
-  | [?(<expression\>)]        | Filter expression. Expression must evaluate to a boolean value. |
+  | Operator                    | Description                                                     |
+  |-----------------------------|-----------------------------------------------------------------|
+  | $                           | The root element to query. This starts all path expressions.    |
+  | @                           | The current node being processed by a filter predicate.         |
+  | *                           | Wildcard. Available anywhere a name or numeric are required.    |
+  | ..                          | Deep scan. Available anywhere a name is required.               |
+  | .\<name\>                   | Dot-notated child                                               |
+  | ['\<name\>' (, '\<name\>')] | Bracket-notated child or children                               |
+  | [\<number\> (, \<number\>)] | Array index or indexes                                          |
+  | [start:end]                 | Array slice operator                                            |
+  | [?(\<expression\>)]         | Filter expression. Expression must evaluate to a boolean value. |
 
   Our implementation of JSON-path is based off of the Jaymark-Library which contains other useful functions for JSON-Path evaluation.
   You can find the full list [here](https://github.com/json-path/JsonPath).

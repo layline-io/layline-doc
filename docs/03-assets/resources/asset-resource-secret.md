@@ -156,7 +156,7 @@ It will then be known locally and the Secrets can be decrypted in the UI.
 
 ![](.asset-resource-secret_images/aaaf8691.png "Copy Private Key from Cluster to Local Settings")
 
-:::caution Must have sufficient rights
+:::warning Must have sufficient rights
 You must have sufficient rights to copy Private Keys. Otherwise, copy will not be possible.
 :::
 
@@ -166,7 +166,7 @@ Keys stored in local Settings, are stored on the Configuration Server, not in th
 
 ### Renaming Secrets
 
-:::caution Renaming Secrets
+:::warning Renaming Secrets
 If you decide to rename a Secret key, the references to it will not be automatically renamed.
 So, if you rename, but do not rename the references, then the link between them will be lost.
 You will also get an error when trying to deploy a Project and Secrets cannot be resolved.

@@ -107,5 +107,5 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 ---
 
 :::tip Fields marked with "**_macro supported_**"
-You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 :::

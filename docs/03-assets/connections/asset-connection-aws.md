@@ -113,7 +113,7 @@ This requires the provision of an Access Key and a Secret as described below.
 ![82f074a4.png](.asset-connection-aws_images/82f074a4.png "Access Key and Secret - manual entry (Connection AWS)")
 
 * **`Access Key`**: Enter the Access Key you want to use to access the endpoint.
-  You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 ![6db64fab.png](.asset-connection-aws_images/6db64fab.png "Access Key as placeholder")
 
@@ -126,7 +126,7 @@ This requires the provision of an Access Key and a Secret as described below.
 
 * **`Use alternative provider`**:
   Check this box, if you do not want to connect to Amazon AWS, but an alternative, compatible provider with a different URL.
-  You can use ${...} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
 
 ![3154d354.png](.asset-connection-aws_images/3154d354.png "Use alternative provider (Connection AWS)")
 

@@ -54,7 +54,7 @@ In this section, you will define all necessary parameters to connect to the Haze
     * **`Client`**: Connect to a Hazelcast cluster as a client. This is the most common use case.
     * **`Member`**: Connect to a Hazelcast cluster as a member. This is only necessary if you want to connect to a Hazelcast cluster as a member.
 
-  :::caution Currently only Client Instance supported
+  :::warning Currently only Client Instance supported
   At the moment, only the `Client` option is supported. The `Member` option will be supported in a future release.
   :::
 
