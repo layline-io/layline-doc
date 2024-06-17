@@ -20,7 +20,7 @@ Define a service to interact as client towards UDP APIs.
 
 You need a Format:
 
-* [Format](/docs/category/formats)
+* [Format](/docs/assets/formats)
 
 ## Configuration
 
