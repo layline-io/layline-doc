@@ -20,13 +20,16 @@ To enable the connection to AWS cloud services or an AWS compatible endpoint.
 
 ### This Asset can be used by:
 
-| Asset type | Link                                                |
-|------------|-----------------------------------------------------|
-| Source     | [S3 Source](/docs/assets/sources/asset-source-s3)   |
-|            | [SQS Source](/docs/assets/sources/asset-source-sqs) |
-| Sink       | [S3 Sink](/docs/assets/sinks/asset-sink-s3)         |
-|            | [SNS Sink](/docs/assets/sinks/asset-sink-sns)       |
-|            | [SQS Sink](/docs/assets/sinks/asset-sink-sqs)       |
+| Asset type | Link                                                          |
+|------------|---------------------------------------------------------------|
+| Source     | [S3 Source](/docs/assets/sources/asset-source-s3)             |
+|            | [SQS Source](/docs/assets/sources/asset-source-sqs)           |
+| Sink       | [S3 Sink](/docs/assets/sinks/asset-sink-s3)                   |
+|            | [SNS Sink](/docs/assets/sinks/asset-sink-sns)                 |
+|            | [SQS Sink](/docs/assets/sinks/asset-sink-sqs)                 |
+|            | [Kinesis Sink](/docs/assets/sinks/asset-sink-kinesis)         |
+|            | [EventBridge Sink](/docs/assets/sinks/asset-sink-eventbridge) |
+      
 
 ## Configuration
 
