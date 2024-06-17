@@ -7,6 +7,10 @@
 # Generated files
 .docusaurus
 .cache-loader
+
+# Generated typedoc files
+/04-language-reference/javascript/02-API
+
 package-lock.json
 
 # Misc
