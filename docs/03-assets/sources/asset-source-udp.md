@@ -45,6 +45,11 @@ None
 * **`Bind host`** : interface address under which your UDP Server should be reachable.
 * **`Bind port`** : the Port to communicate with your interface address.
 
+:::tip Please note:
+At this stage Source UDP can only be used to retrieve data (requests), for instance in an IoT use case scenario where usually no responses are expected. 
+Please don't hesitate to contact us at support@layline.io in case you are in need of UDP response handling!
+:::
+
 ### Stream Settings
 
 At this point you define the stream name for later identification during processing within a workflow.
@@ -52,7 +57,7 @@ UPD as connectionless protocol makes it difficult to auto-generate a proper stre
 
 ![Stream settings (UPD Source)](./.asset-source-udp_images/1717605243066.png "Stream settings (UPD Source)")
 
-* **`Stream name`** : name to apply for the UDP workflow processing.
+* **`Stream name`** : name to apply for the UDP workflow processing. You can use [Macros](/docs/language-reference/macros) here.
 
 ---
 
