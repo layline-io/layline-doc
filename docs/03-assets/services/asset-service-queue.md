@@ -3,10 +3,10 @@ title: Queue Service
 description: Queue Service Asset. Use this to create a file-based queue.
 ---
 
-import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
-import Testcase from '/docs/snippets/assets/_asset-service-test.md';
+import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import Testcase from '../../snippets/assets/_asset-service-test.md';
 
 # Queue Service
 

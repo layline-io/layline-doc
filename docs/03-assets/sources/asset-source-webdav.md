@@ -7,11 +7,11 @@ tags:
   - windows
 ---
 
-import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
-import PollingAndProcessing from '/docs/snippets/assets/_asset-source-polling-and-processing.md';
-import Directories from '/docs/snippets/assets/_asset-source-directories.md';
+import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
+import Directories from '../../snippets/assets/_asset-source-directories.md';
 
 # Source WebDAV
 

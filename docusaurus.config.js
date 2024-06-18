@@ -42,9 +42,16 @@ const config = {
             /** @type {import('@docusaurus/preset-classic').Options} */
             ({
                 docs: {
+                    include: ['**/*.md', '**/*.mdx', '!projects/**'], // Exclude version specific "projects" directory'
                     sidebarPath: require.resolve('./sidebars.js'),
                     lastVersion: 'current',
                     includeCurrentVersion: true,
+                    versions: {
+                        current: {
+                            label: '2.0.0',
+                            path: '2.0.0',
+                        }
+                    }
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
@@ -83,8 +90,8 @@ const config = {
                         dropdownActiveClassDisabled: true,
                     },
                     {
-                        type: 'docSidebar',
-                        sidebarId: 'mainSidebar',
+                        type: 'docsVersion',
+                        // sidebarId: 'mainSidebar',
                         position: 'left',
                         label: 'Documentation',
                     },
@@ -171,11 +178,27 @@ const config = {
         // Plugin / TypeDoc options
         ['docusaurus-plugin-typedoc',
             {
-                out: "./04-language-reference/javascript/02-API",
-                entryPoints: ["./projects/layline/src/index.ts"],
-                tsconfig: './tsconfig.json',
+                id: 'v1.2.28',
+                out: "./versioned_docs/version-1.2.28/04-language-reference/javascript/02-API",
+                entryPoints: ["./versioned_docs/version-1.2.28/projects/layline/src/index.ts"],
+                tsconfig: './versioned_docs/version-1.2.28/projects/tsconfig.json',
                 // plugin: ['typedoc-plugin-frontmatter'],
-                readme: "./projects/layline/src/index.mdx",
+                readme: "./versioned_docs/version-1.2.28/projects/layline/src/index.mdx",
+                sidebar: {
+                    autoConfiguration: true
+                },
+                watch: process.env.TYPEDOC_WATCH, // to instantly recompile changes to typescript files in dev mode
+                disableSources: true, // do not create url links to the source code of .ts files on github
+            }
+        ],
+        ['docusaurus-plugin-typedoc',
+            {
+                id: 'v2.0.0',
+                out: "./docs/04-language-reference/javascript/02-API",
+                entryPoints: ["./docs/projects/layline/src/index.ts"],
+                tsconfig: './docs/projects/tsconfig.json',
+                // plugin: ['typedoc-plugin-frontmatter'],
+                readme: "./docs/projects/layline/src/index.mdx",
                 sidebar: {
                     autoConfiguration: true
                 },

@@ -38,7 +38,7 @@ export default function NotFound() {
                                 <Link to="/search">Search</Link>
                                 {/*</Translate>*/}
                             </p>
-                            <p><Link to="/docs/index">Home</Link></p>
+                            <p><Link to="/index">Home</Link></p>
                         </div>
                     </div>
                 </main>

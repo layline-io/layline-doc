@@ -5,7 +5,7 @@ description: Perform a complete local installation and run it.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
+import WipDisclaimer from '../snippets/common/_wip-disclaimer.md'
 
 [//]: # (import vars from '/variables.js')
 
@@ -211,8 +211,6 @@ A process which
 
 ### Starting the Config Server
 
-### Starting the Config Server
-
 <div className="tab">
 <Tabs>
   <TabItem value="windows" label="Windows" default>
@@ -323,7 +321,7 @@ root@b8a9e28ce031:/usr/local/layline/bin# ./config-server
 </Tabs>
 </div>
 
-### Start the Reactive Engine
+### Starting the Reactive Engine
 
 <div className="tab">
 <Tabs>

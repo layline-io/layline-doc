@@ -4,7 +4,7 @@ description: Learn about how to use Javascript in your layline.io Projects.
 sidebar_position: 0
 ---
 
-import FailureHandling from '/docs/snippets/assets/_failure-handling-flow.md';
+import FailureHandling from '../../snippets/assets/_failure-handling-flow.md';
 
 ## Introduction
 

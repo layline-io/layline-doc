@@ -3,8 +3,8 @@ title: JDBC Service
 description: JDBC Service Asset. Use this to connect to a JDBC data source.
 ---
 
-import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
-import Testcase from '/docs/snippets/assets/_asset-service-test.md';
+import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import Testcase from '../../snippets/assets/_asset-service-test.md';
 
 # JDBC Service
 

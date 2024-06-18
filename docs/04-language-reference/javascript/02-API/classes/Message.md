@@ -1,10 +1,4 @@
----
-id: "Message"
-title: "Class: Message"
-sidebar_label: "Message"
-sidebar_position: 0
-custom_edit_url: null
----
+# Class: Message
 
 Events traversing layline.io Workflows are instantiated as a [Message](Message.md).
 This class exposes a number of properties and methods to extract and set data within messages.
@@ -70,13 +64,13 @@ onDetail (message) {
 
 ### data
 
-• **data**: `object`
+> **data**: `object`
 
 ## Methods
 
-### addStatus
+### addStatus()
 
-▸ **addStatus**(`severity`, `status`, `addToLog?`): `void`
+> **addStatus**(`severity`, `status`, `addToLog`?): `void`
 
 Adds a [Status](Status.md) to a message.
 The [Status](Status.md) must have been created with [Status.create](Status#create) or otherwise instantiated.
@@ -90,21 +84,28 @@ Example:
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `severity` | [`Severity`](../enums/Severity.md) | `undefined` | [Severity](../enums/Severity) value. |
-| `status` | [`Status`](Status.md) | `undefined` | The [Status](Status.md) which should be added. |
-| `addToLog?` | `boolean` | `true` | Signals whether the [Status](Status.md) shall also be added to the log, or not. Will be added by default if not specified. If `true` then the Status will be visible in the Stream Log of the Audit Trail. |
+• **severity**: [`Severity`](../enumerations/Severity.md)
+
+[Severity](../enums/Severity) value.
+
+• **status**: [`Status`](Status.md)
+
+The [Status](Status.md) which should be added.
+
+• **addToLog?**: `boolean`= `true`
+
+Signals whether the [Status](Status.md) shall also be added to the log, or not. Will be added by default if not specified.
+If `true` then the Status will be visible in the Stream Log of the Audit Trail.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### clone
+### clone()
 
-▸ **clone**(): [`Message`](Message.md)
+> **clone**(): [`Message`](Message.md)
 
 Creates a full clone of a [Message](Message.md)
 
@@ -118,11 +119,11 @@ clonedMessage = message.clone();
 
 A copy of a Message
 
-___
+***
 
-### exists
+### exists()
 
-▸ **exists**(`entityDeclaration`): `boolean`
+> **exists**(`entityDeclaration`): `boolean`
 
 Checks if a known data structure is recognized within a given [Message](Message.md).
 Data structures are spawned into existence by the definition of data formats (Format Assets).
@@ -144,9 +145,9 @@ if (message.exists(MY_RECORD_TYPE)) {
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `entityDeclaration` | [`EntityDeclaration`](EntityDeclaration.md) |
+• **entityDeclaration**: [`EntityDeclaration`](EntityDeclaration.md)
+
+Path to data dictionary structure which you want to test for existence in the message ([EntityDeclaration](EntityDeclaration.md).)
 
 #### Returns
 
@@ -154,11 +155,11 @@ if (message.exists(MY_RECORD_TYPE)) {
 
 True, if it exists, else false.
 
-___
+***
 
-### findStatus
+### findStatus()
 
-▸ **findStatus**(`callback`): [`Status`](Status.md)
+> **findStatus**(`callback`): [`Status`](Status.md)
 
 Check whether a message carries a specified status.
 ```js
@@ -172,9 +173,7 @@ const foundStatusArray = detail.findStatus(function(status) { ",
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `callback` | `Function` |
+• **callback**: `Function`
 
 #### Returns
 
@@ -182,11 +181,11 @@ const foundStatusArray = detail.findStatus(function(status) { ",
 
 - Array of found States. Empty array if nothing found.
 
-___
+***
 
-### getBigInteger
+### getBigInteger()
 
-▸ **getBigInteger**(`accessor`): `Uint8Array`
+> **getBigInteger**(`accessor`): `Uint8Array`
 
 Return a BigInteger typed value from a message field.
 Important!: Please note that this method returns a Java object "Big Integer" (a Java native data type).
@@ -207,9 +206,9 @@ x.equals(new BigInteger(123)); // -> "true"
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
@@ -217,11 +216,11 @@ x.equals(new BigInteger(123)); // -> "true"
 
 Number in Java native BigInteger type.
 
-___
+***
 
-### getBoolean
+### getBoolean()
 
-▸ **getBoolean**(`accessor`): `Boolean`
+> **getBoolean**(`accessor`, `defaultValue`?): `Boolean`
 
 Return the Boolean typed value from a message field.
 Important!: Please note that this method returns a Java object "Boolean" (a Java native data type).
@@ -233,9 +232,13 @@ const b = message.getBoolean(dataDictionary.type.Detail.CSV.A_BOOLEAN_FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **defaultValue?**: `boolean`
+
+Default value if no Boolean value could be retrieved from message.
 
 #### Returns
 
@@ -243,11 +246,11 @@ const b = message.getBoolean(dataDictionary.type.Detail.CSV.A_BOOLEAN_FIELD);
 
 Number in Java native Boolean type.
 
-___
+***
 
-### getByte
+### getByte()
 
-▸ **getByte**(`accessor`): [`Byte`](../enums/JavaType.md#byte-24)
+> **getByte**(`accessor`): [`Byte`](../enumerations/JavaType.md#byte)
 
 Return the Byte typed value from a message field.
 Important!: Please note that this method returns a Java object "Byte" (a Java native data type).
@@ -259,21 +262,21 @@ const b = message.getByte(dataDictionary.type.Detail.CSV.A_BYTE_FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
-[`Byte`](../enums/JavaType.md#byte-24)
+[`Byte`](../enumerations/JavaType.md#byte)
 
 Java native Byte type.
 
-___
+***
 
-### getByteString
+### getByteString()
 
-▸ **getByteString**(`accessor`): [`ByteString`](../enums/JavaType.md#bytestring-24)
+> **getByteString**(`accessor`): [`ByteString`](../enumerations/JavaType.md#bytestring)
 
 Return the ByteString typed value from a message field.
 Important!: Please note that this method returns a "ByteString" typed value (a Java native data type).
@@ -285,21 +288,21 @@ const b = message.getByteString(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
-[`ByteString`](../enums/JavaType.md#bytestring-24)
+[`ByteString`](../enumerations/JavaType.md#bytestring)
 
 ByteString type.
 
-___
+***
 
-### getCharacter
+### getCharacter()
 
-▸ **getCharacter**(`accessor`): [`Character`](../enums/JavaType.md#character-24)
+> **getCharacter**(`accessor`): [`Character`](../enumerations/JavaType.md#character)
 
 Return a Character typed value from a message field.
 Important!: Please note that this method returns a "char" typed value (a Java native data type).
@@ -311,21 +314,21 @@ const c = message.getCharacter(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
-[`Character`](../enums/JavaType.md#character-24)
+[`Character`](../enumerations/JavaType.md#character)
 
 Character in Java native char type.
 
-___
+***
 
-### getCrc64
+### getCrc64()
 
-▸ **getCrc64**(`message`): `string`
+> **getCrc64**(`message`): `string`
 
 Creates a CRC 64 checksum from specified node within a [Message](Message.md).
 
@@ -336,9 +339,9 @@ const crc64 = message.getCrc64(message.data.CSV);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `message` | [`MessageNode`](MessageNode.md) | [MessageNode](MessageNode.md) for which to create the CRC64 checksum. |
+• **message**: [`MessageNode`](MessageNode.md)
+
+[MessageNode](MessageNode.md) for which to create the CRC64 checksum.
 
 #### Returns
 
@@ -346,11 +349,11 @@ const crc64 = message.getCrc64(message.data.CSV);
 
 CRC 64 checksum
 
-___
+***
 
-### getDateTime
+### getDateTime()
 
-▸ **getDateTime**(`accessor`): [`OffsetDateTime`](../enums/JavaType.md#offsetdatetime-24)
+> **getDateTime**(`accessor`): [`OffsetDateTime`](../enumerations/JavaType.md#offsetdatetime)
 
 Return a OffsetDateTime typed value from a message field.
 Important!: Please note that this method returns a "[OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html)" typed value (a Java native data type).
@@ -362,21 +365,21 @@ const dt = message.getDateTime(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
-[`OffsetDateTime`](../enums/JavaType.md#offsetdatetime-24)
+[`OffsetDateTime`](../enumerations/JavaType.md#offsetdatetime)
 
 A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
 
-___
+***
 
-### getDecimal
+### getDecimal()
 
-▸ **getDecimal**(`accessor`): [`BigDecimal`](../enums/JavaType.md#bigdecimal-24)
+> **getDecimal**(`accessor`): [`BigDecimal`](../enumerations/JavaType.md#bigdecimal)
 
 Return a BigDecimal typed value from a message field.
 Important!: Please note that this method returns a "BigDecimal" typed value (a Java native data type).
@@ -388,21 +391,21 @@ const dec = message.getDecimal(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
-[`BigDecimal`](../enums/JavaType.md#bigdecimal-24)
+[`BigDecimal`](../enumerations/JavaType.md#bigdecimal)
 
 BigDecimal in Java native char type.
 
-___
+***
 
-### getDouble
+### getDouble()
 
-▸ **getDouble**(`accessor`): [`Double`](../enums/JavaType.md#double-24)
+> **getDouble**(`accessor`): [`Double`](../enumerations/JavaType.md#double)
 
 Return a Double typed value from a message field.
 Important!: Please note that this method returns a "Double" typed value (a Java native data type).
@@ -414,21 +417,21 @@ const dbl = message.getDouble(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
-[`Double`](../enums/JavaType.md#double-24)
+[`Double`](../enumerations/JavaType.md#double)
 
 Double in Java native char type.
 
-___
+***
 
-### getInt
+### getInt()
 
-▸ **getInt**(`accessor`): [`Integer`](../enums/JavaType.md#integer-24)
+> **getInt**(`accessor`): [`Integer`](../enumerations/JavaType.md#integer)
 
 Return a Int typed value from a message field.
 Important!: Please note that this method returns a "Integer" typed value (a Java native data type).
@@ -440,21 +443,21 @@ const int = message.getInt(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
-[`Integer`](../enums/JavaType.md#integer-24)
+[`Integer`](../enumerations/JavaType.md#integer)
 
 Integer in Java native char type.
 
-___
+***
 
-### getLong
+### getLong()
 
-▸ **getLong**(`accessor`): [`Long`](../enums/JavaType.md#long-24)
+> **getLong**(`accessor`): [`Long`](../enumerations/JavaType.md#long)
 
 Return a Long typed value from a message field.
 Important!: Please note that this method returns a "Long" typed value (a Java native data type).
@@ -466,21 +469,21 @@ const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
-[`Long`](../enums/JavaType.md#long-24)
+[`Long`](../enumerations/JavaType.md#long)
 
 Long in Java native char type.
 
-___
+***
 
-### getMessageDigest
+### getMessageDigest()
 
-▸ **getMessageDigest**(`algorithm?`, `toLowerCase?`, `accessorArray?`): `string`
+> **getMessageDigest**(`algorithm`?, `toLowerCase`?, `accessorArray`?): `string`
 
 Returns a calculated digest for a given message
 Example:
@@ -506,21 +509,27 @@ const md5Digest = message.getMessageDigest("MD5", true, recordAccessorForMD5);
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `algorithm?` | `string` | `undefined` | Algorithm with which to calculate the digest. Currently only supprts "MD5". |
-| `toLowerCase?` | `boolean` | `false` | Set to true if digest should be lower-case only. |
-| `accessorArray?` | [`EntityDeclaration`](EntityDeclaration.md)[] | `undefined` | Array of [EntityDeclaration](EntityDeclaration.md) on which to calculate the digest. |
+• **algorithm?**: `string`
+
+Algorithm with which to calculate the digest. Currently only supprts "MD5".
+
+• **toLowerCase?**: `boolean`= `false`
+
+Set to true if digest should be lower-case only.
+
+• **accessorArray?**: [`EntityDeclaration`](EntityDeclaration.md)[]
+
+Array of [EntityDeclaration](EntityDeclaration.md) on which to calculate the digest.
 
 #### Returns
 
 `string`
 
-___
+***
 
-### getNumStatusAttached
+### getNumStatusAttached()
 
-▸ **getNumStatusAttached**(): `void`
+> **getNumStatusAttached**(): `void`
 
 Gets the number of States [Status](Status.md) attached.
 
@@ -534,11 +543,11 @@ const result = message.getNumStatusAttached();
 
 - Number of States attached to the message.
 
-___
+***
 
-### getObject
+### getObject()
 
-▸ **getObject**(`accessor`): `Object`
+> **getObject**(`accessor`): `Object`
 
 Return a Object value a message field.
 
@@ -549,9 +558,9 @@ const o = message.getObject(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
@@ -559,11 +568,11 @@ const o = message.getObject(dataDictionary.type.Detail.CSV.FIELD);
 
 Object in Java native char type.
 
-___
+***
 
-### getStatus
+### getStatus()
 
-▸ **getStatus**(`index`): [`Status`](Status.md)
+> **getStatus**(`index`): [`Status`](Status.md)
 
 Retrieves a Status by index from the list of States attached to a message.
 A message keeps track of related States in a Status array attached to it.
@@ -577,9 +586,9 @@ const status = message.getStatus(0);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `index` | `number` | Index of Status to retrieve. |
+• **index**: `number`
+
+Index of Status to retrieve.
 
 #### Returns
 
@@ -587,11 +596,11 @@ const status = message.getStatus(0);
 
 - Status or undefined if no Status found with that index.
 
-___
+***
 
-### getString
+### getString()
 
-▸ **getString**(`accessor`): `String`
+> **getString**(`accessor`): `String`
 
 Return a String typed value from a message field.
 
@@ -602,9 +611,9 @@ const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
 
 #### Returns
 
@@ -612,11 +621,11 @@ const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
 
 The value as string.
 
-___
+***
 
-### hasStatusAttached
+### hasStatusAttached()
 
-▸ **hasStatusAttached**(`severity`): `void`
+> **hasStatusAttached**(`severity`): `void`
 
 Checks if a message has a [Status](Status.md) attached which matches a particular Severity.
 
@@ -626,9 +635,9 @@ const result = message.hasStatusAttached(Severity.ERROR);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `severity` | [`Severity`](../enums/Severity.md) | Severity to check against. |
+• **severity**: [`Severity`](../enumerations/Severity.md)
+
+Severity to check against.
 
 #### Returns
 
@@ -636,11 +645,11 @@ const result = message.hasStatusAttached(Severity.ERROR);
 
 - True, if match found, else false.
 
-___
+***
 
-### pack
+### pack()
 
-▸ **pack**(): [`PackedMessage`](PackedMessage.md)
+> **pack**(): [`PackedMessage`](PackedMessage.md)
 
 Packs the message into a memory efficient format.
 
@@ -658,11 +667,11 @@ const unpackedMsg = packedMsg.unpack();
 
 - Packed message.
 
-___
+***
 
-### setBigInteger
+### setBigInteger()
 
-▸ **setBigInteger**(`accessor`, `value`): `void`
+> **setBigInteger**(`accessor`, `value`): `void`
 
 Sets a BigInteger value in a message target field.
 
@@ -675,20 +684,23 @@ message.setBigInteger(dataDictionary.type.Detail.CSV.FIELD, bigInt)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | `Uint8Array` | A native BigInteger value or a value which can be implicitly converted to such. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: `Uint8Array`
+
+A native BigInteger value or a value which can be implicitly converted to such.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setBoolean
+### setBoolean()
 
-▸ **setBoolean**(`accessor`, `value`): `void`
+> **setBoolean**(`accessor`, `value`): `void`
 
 Sets a Boolean value in a message target field.
 
@@ -698,20 +710,23 @@ message.setBoolean(dataDictionary.type.Detail.CSV.FIELD, true)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | `Boolean` | A native Byte value or a value which can be implicitly converted to such. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: `Boolean`
+
+A native Byte value or a value which can be implicitly converted to such.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setByte
+### setByte()
 
-▸ **setByte**(`accessor`, `value`): `void`
+> **setByte**(`accessor`, `value`): `void`
 
 Sets a Byte value in a message target field.
 
@@ -728,20 +743,23 @@ message.setByte(dataDictionary.type.Detail.CSV.FIELD, 'X')
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | `string` \| `number` | A native Byte value or a value which can be implicitly converted to such. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: `string` \| `number`
+
+A native Byte value or a value which can be implicitly converted to such.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setByteString
+### setByteString()
 
-▸ **setByteString**(`accessor`, `value`): `void`
+> **setByteString**(`accessor`, `value`): `void`
 
 Sets a ByteString value in a message target field.
 
@@ -754,20 +772,23 @@ message.setByteString(dataDictionary.type.Detail.CSV.FIELD, b)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | `string` | A native ByteString value or a value which can be implicitly converted to such. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: `string`
+
+A native ByteString value or a value which can be implicitly converted to such.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setCharacter
+### setCharacter()
 
-▸ **setCharacter**(`accessor`, `value`): `void`
+> **setCharacter**(`accessor`, `value`): `void`
 
 Sets a Character value in a message target field.
 
@@ -777,20 +798,23 @@ message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, 'c')
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | [`Character`](../enums/JavaType.md#character-24) | A native Character value or a value which can be implicitly converted to such. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: [`Character`](../enumerations/JavaType.md#character)
+
+A native Character value or a value which can be implicitly converted to such.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setDateTime
+### setDateTime()
 
-▸ **setDateTime**(`accessor`, `value`): `void`
+> **setDateTime**(`accessor`, `value`): `void`
 
 Sets a OffsetDateTime value in a message target field.
 
@@ -800,20 +824,23 @@ message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, "2022-12-03T10:15:30+
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | [`OffsetDateTime`](../enums/JavaType.md#offsetdatetime-24) | A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00". |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: [`OffsetDateTime`](../enumerations/JavaType.md#offsetdatetime)
+
+A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setDecimal
+### setDecimal()
 
-▸ **setDecimal**(`accessor`, `value`): `void`
+> **setDecimal**(`accessor`, `value`): `void`
 
 Sets a Decimal value in a message target field.
 Internally represented as a Java BigDecimal.
@@ -825,20 +852,23 @@ message.setDecimal(dataDictionary.type.Detail.CSV.FIELD, 123.45)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | [`BigDecimal`](../enums/JavaType.md#bigdecimal-24) \| [`BigInteger`](../enums/JavaType.md#biginteger-24) \| [`Double`](../enums/JavaType.md#double-24) \| [`Integer`](../enums/JavaType.md#integer-24) \| [`Long`](../enums/JavaType.md#long-24) \| [`Number`](../enums/JavaType.md#number-24) \| [`String`](../enums/JavaType.md#string-24) | A value which can be represented as a Decimal. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: [`BigDecimal`](../enumerations/JavaType.md#bigdecimal) \| [`BigInteger`](../enumerations/JavaType.md#biginteger) \| [`Double`](../enumerations/JavaType.md#double) \| [`Integer`](../enumerations/JavaType.md#integer) \| [`Long`](../enumerations/JavaType.md#long) \| [`Number`](../enumerations/JavaType.md#number) \| [`String`](../enumerations/JavaType.md#string)
+
+A value which can be represented as a Decimal.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setDouble
+### setDouble()
 
-▸ **setDouble**(`accessor`, `value`): `void`
+> **setDouble**(`accessor`, `value`): `void`
 
 Sets a Double value in a message target field.
 Internally represented as a Java Double.
@@ -850,20 +880,23 @@ message.setDouble(dataDictionary.type.Detail.CSV.FIELD, 123.45)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | `Number` \| [`BigDecimal`](../enums/JavaType.md#bigdecimal-24) \| [`BigInteger`](../enums/JavaType.md#biginteger-24) \| [`Double`](../enums/JavaType.md#double-24) \| [`Integer`](../enums/JavaType.md#integer-24) \| [`Long`](../enums/JavaType.md#long-24) \| [`String`](../enums/JavaType.md#string-24) | A value which can be represented as a Double. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: `Number` \| [`BigDecimal`](../enumerations/JavaType.md#bigdecimal) \| [`BigInteger`](../enumerations/JavaType.md#biginteger) \| [`Double`](../enumerations/JavaType.md#double) \| [`Integer`](../enumerations/JavaType.md#integer) \| [`Long`](../enumerations/JavaType.md#long) \| [`String`](../enumerations/JavaType.md#string)
+
+A value which can be represented as a Double.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setInt
+### setInt()
 
-▸ **setInt**(`accessor`, `value`): `void`
+> **setInt**(`accessor`, `value`): `void`
 
 Sets a Int value in a message target field.
 Internally represented as a Java Int.
@@ -875,20 +908,23 @@ message.setInt(dataDictionary.type.Detail.CSV.FIELD, 123)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | `Number` \| `Uint8Array` \| [`BigDecimal`](../enums/JavaType.md#bigdecimal-24) \| [`Double`](../enums/JavaType.md#double-24) \| [`Integer`](../enums/JavaType.md#integer-24) \| [`Long`](../enums/JavaType.md#long-24) \| [`String`](../enums/JavaType.md#string-24) | A value which can be represented as a Int. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: `Number` \| `Uint8Array` \| [`BigDecimal`](../enumerations/JavaType.md#bigdecimal) \| [`Double`](../enumerations/JavaType.md#double) \| [`Integer`](../enumerations/JavaType.md#integer) \| [`Long`](../enumerations/JavaType.md#long) \| [`String`](../enumerations/JavaType.md#string)
+
+A value which can be represented as a Int.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setLong
+### setLong()
 
-▸ **setLong**(`accessor`, `value`): `void`
+> **setLong**(`accessor`, `value`): `void`
 
 Sets a Long value in a message target field.
 Internally represented as a Java Long.
@@ -900,20 +936,23 @@ message.setLong(dataDictionary.type.Detail.CSV.FIELD, 12345)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | [`BigDecimal`](../enums/JavaType.md#bigdecimal-24) \| [`BigInteger`](../enums/JavaType.md#biginteger-24) \| [`Double`](../enums/JavaType.md#double-24) \| [`Integer`](../enums/JavaType.md#integer-24) \| [`Long`](../enums/JavaType.md#long-24) \| [`Number`](../enums/JavaType.md#number-24) \| [`String`](../enums/JavaType.md#string-24) | A value which can be represented as a Long. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: [`BigDecimal`](../enumerations/JavaType.md#bigdecimal) \| [`BigInteger`](../enumerations/JavaType.md#biginteger) \| [`Double`](../enumerations/JavaType.md#double) \| [`Integer`](../enumerations/JavaType.md#integer) \| [`Long`](../enumerations/JavaType.md#long) \| [`Number`](../enumerations/JavaType.md#number) \| [`String`](../enumerations/JavaType.md#string)
+
+A value which can be represented as a Long.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setObject
+### setObject()
 
-▸ **setObject**(`accessor`, `value`): `void`
+> **setObject**(`accessor`, `value`): `void`
 
 Sets a Object value in a message target field.
 
@@ -924,20 +963,23 @@ message.setObject(dataDictionary.type.Detail.CSV.FIELD, obj)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | `Object` | A value which can be represented as a Object. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: `Object`
+
+A value which can be represented as a Object.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### setString
+### setString()
 
-▸ **setString**(`accessor`, `value`): `void`
+> **setString**(`accessor`, `value`): `void`
 
 Sets a Object value in a message target field.
 
@@ -949,20 +991,23 @@ message.data.CSV.FIELD = "XYZ"
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `accessor` | [`EntityDeclaration`](EntityDeclaration.md) | [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value. |
-| `value` | `Object` | A value which can be represented as a String. |
+• **accessor**: [`EntityDeclaration`](EntityDeclaration.md)
+
+[EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+
+• **value**: `Object`
+
+A value which can be represented as a String.
 
 #### Returns
 
 `void`
 
-___
+***
 
-### toString
+### toString()
 
-▸ **toString**(): `void`
+> **toString**(): `void`
 
 Returns the message in a string representation.
 

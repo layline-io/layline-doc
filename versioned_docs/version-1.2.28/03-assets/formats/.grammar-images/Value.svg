@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="451" height="477">
+   <defs>
+      <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #262626; stroke-width: 1;}
+    .bold-line            {stroke: #0A0A0A; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #0F0F0F; shape-rendering: crispEdges}
+    .filled               {fill: #262626; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #0A0A0A;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #0D0D0D;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #0F0F0F;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #262626; stroke: #262626;}
+    rect.terminal         {fill: #FFFFFF; stroke: #262626; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFFFFF; stroke: #262626; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFFFFF; stroke: #262626; stroke-width: 1;}
+  </style>
+   </defs>
+   <polygon points="9 17 1 13 1 21"/>
+   <polygon points="17 17 9 13 9 21"/>
+   <rect x="31" y="3" width="56" height="32" rx="10"/>
+   <rect x="29"
+         y="1"
+         width="56"
+         height="32"
+         class="terminal"
+         rx="10"/>
+   <text class="terminal" x="39" y="21">value</text>
+   <rect x="107" y="3" width="30" height="32" rx="10"/>
+   <rect x="105"
+         y="1"
+         width="30"
+         height="32"
+         class="terminal"
+         rx="10"/>
+   <text class="terminal" x="115" y="21">=</text>
+   <rect x="157" y="3" width="28" height="32" rx="10"/>
+   <rect x="155"
+         y="1"
+         width="28"
+         height="32"
+         class="terminal"
+         rx="10"/>
+   <text class="terminal" x="165" y="21">{</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Binary.ByteString"
+      xlink:title="Binary.ByteString">
+      <rect x="225" y="3" width="130" height="32"/>
+      <rect x="223" y="1" width="130" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="21">Binary.ByteString</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Binary.HexString"
+      xlink:title="Binary.HexString">
+      <rect x="225" y="47" width="126" height="32"/>
+      <rect x="223" y="45" width="126" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="65">Binary.HexString</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Binary.Long"
+      xlink:title="Binary.Long">
+      <rect x="225" y="91" width="94" height="32"/>
+      <rect x="223" y="89" width="94" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="109">Binary.Long</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Text.BigInteger"
+      xlink:title="Text.BigInteger">
+      <rect x="225" y="135" width="118" height="32"/>
+      <rect x="223" y="133" width="118" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="153">Text.BigInteger</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Text.Date"
+      xlink:title="Text.Date">
+      <rect x="225" y="179" width="82" height="32"/>
+      <rect x="223" y="177" width="82" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="197">Text.Date</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Text.DateTime"
+      xlink:title="Text.DateTime">
+      <rect x="225" y="223" width="112" height="32"/>
+      <rect x="223" y="221" width="112" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="241">Text.DateTime</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Text.Decimal"
+      xlink:title="Text.Decimal">
+      <rect x="225" y="267" width="100" height="32"/>
+      <rect x="223" y="265" width="100" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="285">Text.Decimal</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Text.Double"
+      xlink:title="Text.Double">
+      <rect x="225" y="311" width="96" height="32"/>
+      <rect x="223" y="309" width="96" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="329">Text.Double</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Text.Integer"
+      xlink:title="Text.Integer">
+      <rect x="225" y="355" width="98" height="32"/>
+      <rect x="223" y="353" width="98" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="373">Text.Integer</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Text.Long"
+      xlink:title="Text.Long">
+      <rect x="225" y="399" width="82" height="32"/>
+      <rect x="223" y="397" width="82" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="417">Text.Long</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#Text.String"
+      xlink:title="Text.String">
+      <rect x="225" y="443" width="88" height="32"/>
+      <rect x="223" y="441" width="88" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="233" y="461">Text.String</text>
+   </a>
+   <rect x="395" y="3" width="28" height="32" rx="10"/>
+   <rect x="393"
+         y="1"
+         width="28"
+         height="32"
+         class="terminal"
+         rx="10"/>
+   <text class="terminal" x="403" y="21">}</text>
+   <path class="line"
+         d="m17 17 h2 m0 0 h10 m56 0 h10 m0 0 h10 m30 0 h10 m0 0 h10 m28 0 h10 m20 0 h10 m130 0 h10 m-170 0 h20 m150 0 h20 m-190 0 q10 0 10 10 m170 0 q0 -10 10 -10 m-180 10 v24 m170 0 v-24 m-170 24 q0 10 10 10 m150 0 q10 0 10 -10 m-160 10 h10 m126 0 h10 m0 0 h4 m-160 -10 v20 m170 0 v-20 m-170 20 v24 m170 0 v-24 m-170 24 q0 10 10 10 m150 0 q10 0 10 -10 m-160 10 h10 m94 0 h10 m0 0 h36 m-160 -10 v20 m170 0 v-20 m-170 20 v24 m170 0 v-24 m-170 24 q0 10 10 10 m150 0 q10 0 10 -10 m-160 10 h10 m118 0 h10 m0 0 h12 m-160 -10 v20 m170 0 v-20 m-170 20 v24 m170 0 v-24 m-170 24 q0 10 10 10 m150 0 q10 0 10 -10 m-160 10 h10 m82 0 h10 m0 0 h48 m-160 -10 v20 m170 0 v-20 m-170 20 v24 m170 0 v-24 m-170 24 q0 10 10 10 m150 0 q10 0 10 -10 m-160 10 h10 m112 0 h10 m0 0 h18 m-160 -10 v20 m170 0 v-20 m-170 20 v24 m170 0 v-24 m-170 24 q0 10 10 10 m150 0 q10 0 10 -10 m-160 10 h10 m100 0 h10 m0 0 h30 m-160 -10 v20 m170 0 v-20 m-170 20 v24 m170 0 v-24 m-170 24 q0 10 10 10 m150 0 q10 0 10 -10 m-160 10 h10 m96 0 h10 m0 0 h34 m-160 -10 v20 m170 0 v-20 m-170 20 v24 m170 0 v-24 m-170 24 q0 10 10 10 m150 0 q10 0 10 -10 m-160 10 h10 m98 0 h10 m0 0 h32 m-160 -10 v20 m170 0 v-20 m-170 20 v24 m170 0 v-24 m-170 24 q0 10 10 10 m150 0 q10 0 10 -10 m-160 10 h10 m82 0 h10 m0 0 h48 m-160 -10 v20 m170 0 v-20 m-170 20 v24 m170 0 v-24 m-170 24 q0 10 10 10 m150 0 q10 0 10 -10 m-160 10 h10 m88 0 h10 m0 0 h42 m20 -440 h10 m28 0 h10 m3 0 h-3"/>
+   <polygon points="441 17 449 13 449 21"/>
+   <polygon points="441 17 433 13 433 21"/>
+</svg>

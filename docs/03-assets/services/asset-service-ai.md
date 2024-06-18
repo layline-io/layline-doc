@@ -3,8 +3,8 @@ title: AI Service
 description: AI Service Asset. Use this to define a service to interface with an AI model.
 ---
 
-import WipDisclaimer from '/docs/snippets/common/_wip-disclaimer.md';
-import Testcase from '/docs/snippets/assets/_asset-service-test.md';
+import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import Testcase from '../../snippets/assets/_asset-service-test.md';
 
 :::tip
 If you are not familiar with the concept of AI in layline.io, please read [Using Artificial Intelligence in Workflows](/docs/concept/advanced/artificial-intelligence) first and then return here.
