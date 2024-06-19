@@ -10,7 +10,7 @@ tags:
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling-flow.md';
+import FailureHandling from '/docs/snippets/assets/_failure-handling-flow.mdx';
 import InputPorts from '/docs/snippets/assets/_input-ports-single.md';
 import OutputPorts from '/docs/snippets/assets/_output-ports-single.md';
 

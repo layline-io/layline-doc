@@ -12,7 +12,6 @@ tags:
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import CredentialType from '../../snippets/assets/_credential-type.md';
 
-
 # Connection MS Graph
 
 ## Purpose
@@ -21,13 +20,13 @@ Defines the connection parameters for various Microsoft application endpoints, f
 
 ### This Asset can be used by:
 
-| Asset type | Link                                                              |
-|------------|-------------------------------------------------------------------|
-| Source     | [OneDrive Source](/../sources/asset-source-onedrive)     |
-|            | [SharePoint Source](/../sources/asset-source-sharepoint) |
-| Sink       | [OneDrive Sink](/../sinks/asset-sink-onedrive)           |
-|            | [SharePoint Sink](/../sinks/asset-sink-sharepoint)       |
-| Service    | [Teams Service](/../services/asset-service-teams)        |
+| Asset type | Link                                                    |
+|------------|---------------------------------------------------------|
+| Source     | [OneDrive Source](../sources/asset-source-onedrive)     |
+|            | [SharePoint Source](../sources/asset-source-sharepoint) |
+| Sink       | [OneDrive Sink](../sinks/asset-sink-onedrive)           |
+|            | [SharePoint Sink](../sinks/asset-sink-sharepoint)       |
+| Service    | [Teams Service](../services/asset-service-teams)        |
 
 ## Configuration
 
@@ -96,7 +95,5 @@ To do this, device apps use the Device Authorization Flow, in which they pass al
 You can check the [Auth0 documentation](https://auth0.com/docs/get-started/authentication-and-authorization-flow/device-authorization-flow) for an example description.
 
 For settings please see [Microsoft Client Credential Flow](#microsoft-oauth-client-credentials) above.
-
-
 
 <WipDisclaimer></WipDisclaimer>

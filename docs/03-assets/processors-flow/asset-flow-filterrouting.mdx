@@ -9,8 +9,8 @@ tags:
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import AssetDependency from '../../snippets/assets/_asset-dependency.md';
-import AssetConditions from '../../snippets/assets/_asset-conditions.md';
-import FailureHandling from '../../snippets/assets/_failure-handling-flow.md';
+import AssetConditions from '../../snippets/assets/_asset-conditions.mdx';
+import FailureHandling from '../../snippets/assets/_failure-handling-flow.mdx';
 import InputPorts from '../../snippets/assets/_input-ports.md';
 import OutputPorts from '../../snippets/assets/_output-ports.md';
 
@@ -74,7 +74,7 @@ A new rule is added. The details of the rule are represented in the panel to the
 
 #### Rule Name & Type
 
-* **`Rule type`**:  
+* **`Rule type`**:
   There are two different types of rules:
     1. **`Routing Rule`**: Routing rules let you forward messages to a specific Output Port based on a match to the rule.
 
@@ -87,12 +87,12 @@ A new rule is added. The details of the rule are represented in the panel to the
   ![Evaluation mode (FR Flow Asset)](.asset-flow-filterrouting_images/a38faebb.png)
 
   Pick either of the two options:
-    1. **`Stop rule evaluation when this rule matches`**:   
+    1. **`Stop rule evaluation when this rule matches`**:
        When this rule matches the message, all **following rules** in the list will be disregarded.
        For example if this rule is a Routing Rule "_R_", and a **subsequent rule** is a Filter Rule "_F_" which would filter the current message and discard it, then that rule "_F_" would not be
        evaluated if this rule "_R_" matches first.
 
-    2. **`Continue rule evaluation when this rule matches`**:  
+    2. **`Continue rule evaluation when this rule matches`**:
        When this rule matches, subsequent rules will continue to evaluate.
        In effect, ALL rules will be evaluated on the order of the list.
        Execution of the rule list only ends either when there are no other rules to evaluate or until a rule with the option from above (_Stop rule evaluation when this rule matches_), that does
@@ -100,7 +100,7 @@ A new rule is added. The details of the rule are represented in the panel to the
        For example if you have a Routing Rule "_R-1_" and a Routing Rule "_R-2_" which on match output the current message to Output Port "_P-1_" and "_P-2_" respectively.
        In the case that the message matches both rules, then it will be output to both defined ports.
 
-#### Condition Options 
+#### Condition Options
 
 You can choose whether you want none, at least one (OR) or all rules (AND) of the configured conditions condition to be true in order to have a positive outcome of the complete rule:
 

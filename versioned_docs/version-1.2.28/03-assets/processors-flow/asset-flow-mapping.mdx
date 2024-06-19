@@ -7,18 +7,18 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
-import AssetConditions from '/docs/snippets/assets/_asset-conditions.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling-flow.md';
-import InputPorts from '/docs/snippets/assets/_input-ports.md';
-import OutputPorts from '/docs/snippets/assets/_output-ports.md';
+import AssetDependency from '/Users/andrew/Documents/Work/layline/Dev/layline-doc/docs/snippets/assets/_asset-dependency.md';
+import AssetConditions from '/Users/andrew/Documents/Work/layline/Dev/layline-doc/docs/snippets/assets/_asset-conditions.mdx';
+import FailureHandling from '/Users/andrew/Documents/Work/layline/Dev/layline-doc/docs/snippets/assets/_failure-handling-flow.mdx';
+import InputPorts from '/Users/andrew/Documents/Work/layline/Dev/layline-doc/docs/snippets/assets/_input-ports.md';
+import OutputPorts from '/Users/andrew/Documents/Work/layline/Dev/layline-doc/docs/snippets/assets/_output-ports.md';
 
 # Mapping Flow Processor
 
 ## Purpose
 
 A common task during message stream handling is to map data from one format to another, based on their content.
-The obvious case would be a Workflow which sole purpose is format conversion, however, there are many use cases for this Asset in almost any Workflow.  
+The obvious case would be a Workflow which sole purpose is format conversion, however, there are many use cases for this Asset in almost any Workflow.
 The Mapping Processor helps to accomplish this task based on simple mapping rules which you can edit using the UI.
 
 ## Prerequisites
@@ -53,7 +53,7 @@ and then click to follow, if any.
 
 ### Mapping Scenarios
 
-A Mapping Scenario describes how one `source` data structure from the data dictionary should be mapped to a `target` data structure. 
+A Mapping Scenario describes how one `source` data structure from the data dictionary should be mapped to a `target` data structure.
 
 **Example:**
 Let's assume we are processing messages of three different types:
@@ -88,15 +88,15 @@ Each Mapping Scenario must have a unique name and can have a description:
 
 #### Source message and conditions
 
-In this section you will define 
+In this section you will define
 1. **Which message type**, and
-2. **What other conditions** 
+2. **What other conditions**
 
-must be met to trigger the Mapping Scenario. 
+must be met to trigger the Mapping Scenario.
 
 ##### Source message that triggers the scenario
 
-A specific Mapping Scenario is triggered by the discovery of a specific message type within the flow of messages in a Workflow. 
+A specific Mapping Scenario is triggered by the discovery of a specific message type within the flow of messages in a Workflow.
 The type is defined through Format definitions (e.g. Generic Format, Data Dictionary Format, etc.).
 Select the message type upon which this Mapping Scenario should be triggered:
 
@@ -107,11 +107,11 @@ e.g.:
 ![Source Message selected (Mapping Flow Asset)](.asset-flow-mapping_images/24ecaa1e.png)
 
 :::warning Mapping scenarios should use distinct messsage types
-Make sure, that each Mapping Scenario refers to a distinct message type.  
+Make sure, that each Mapping Scenario refers to a distinct message type.
 You may otherwise encounter inconsistent results.
 :::
 
-##### Condition Options 
+##### Condition Options
 
 You can define additional conditions which need to be met for the Mapping Scenario to trigger:
 
@@ -137,8 +137,8 @@ Instead, we may want to forward and/or update the original message with the mapp
 
 * **`Forward original message`**: The original messages is forwarded (output) from the Mapping Flow Processor.
 
-* **`Update original message`**: The original messages is not only forwarded, but it's contents also updated with the mapped values. 
-  Use this, if you want to keep the original message and have it enriched with the mapped values. 
+* **`Update original message`**: The original messages is not only forwarded, but it's contents also updated with the mapped values.
+  Use this, if you want to keep the original message and have it enriched with the mapped values.
 
 :::info
 Please note, that a mapped message will be output to all output ports which you have defined.
@@ -164,7 +164,7 @@ There are four different types of mappings available:
 
 The default is "_Simple mapping step_".
 
-You can add as many steps as you require. 
+You can add as many steps as you require.
 Note, that the steps are executed in order. So if two mapping steps alter the same data, the last mapping step will prevail.
 
 Each mapping step provides a number of operators which we explain here:
@@ -181,14 +181,14 @@ When we define a mapping in the mapping steps (explained below), then we use the
 
 ```bash title="Example mapping for name field from source to target message."
 target.F_OUT.FULL_NAME := source.F_IN.FIRST_NAME + " " + source.F_IN.LAST_NAME
-# -> first and last name are combined and map to one field in the target message 
+# -> first and last name are combined and map to one field in the target message
 ```
 
 In the example above fields "FIRST_NAME" and "LAST_NAME" from the incoming message (source), are mapped to field "FULL_NAME" in the target message.
 If you selected "_Forward original message_" and "_Update original message_" above, the mapping will happen within the same message.
 If you did not select these options, then the fields will mapped to the target message, and the target message will be forwarded, i.e. the source fields will not be present be in the target message.
 
-##### Simple 
+##### Simple
 
 Use this to define a "_simple_" mapping to a field (target) from other values in the message:
 
@@ -197,7 +197,7 @@ Use this to define a "_simple_" mapping to a field (target) from other values in
 As the little "_qs_" icon to the right implies, and is shown in the example, you can use [Quickscript](../../language-reference/quickscript) here.
 
 
-##### Conditional 
+##### Conditional
 
 Use this if you only want to perform mapping under certain conditions:
 
@@ -205,7 +205,7 @@ Use this if you only want to perform mapping under certain conditions:
 
 ##### Loop
 
-Use this to loop through a value either from the source or target message or an array (which you enter here).  
+Use this to loop through a value either from the source or target message or an array (which you enter here).
 
 ![Loop mapping step (Mqpping Flow Asset)](.asset-flow-mapping_images/da966e34.png)
 

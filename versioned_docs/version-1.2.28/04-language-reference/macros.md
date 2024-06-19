@@ -48,7 +48,7 @@ It will all make sense when we explain the different types of variables which ar
 
 ### lay:
 
-The Prefix `lay` references an environment property which you have defined in a [Environment Resource Asset](/../../resources/asset-resource-environment).
+The Prefix `lay` references an environment property which you have defined in a [Environment Resource Asset](../assets/resources/asset-resource-environment).
 The suffix defines the value which you have defined for that property:
 
 **Example:**
@@ -64,7 +64,7 @@ Otherwise, you will encounter an error when you try to start the deployment on t
 
 ### sec:
 
-The Prefix `sec` references a secret property which you have defined in a [Environment Secret Asset](/../../resources/asset-resource-secret).
+The Prefix `sec` references a secret property which you have defined in a [Environment Secret Asset](../assets/resources/asset-resource-secret).
 The suffix defines the value which you have defined for that property:
 
 **Example:**

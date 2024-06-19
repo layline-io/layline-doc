@@ -19,8 +19,8 @@ Defines the specific sink parameters for a OneDrive connected endpoint.
 
 ### This Asset can be used by:
 
-| Asset type        | Link                                                                          |
-|-------------------|-------------------------------------------------------------------------------|
+| Asset type        | Link                                                                |
+|-------------------|---------------------------------------------------------------------|
 | Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
 
 You need:
@@ -54,9 +54,10 @@ support this OneDrive configuration. If it does not exist, you need to create it
 
 :::info
 Your [MS Graph Connection](../connections/asset-connection-msgraph) needs to have the following configured scope:
+
 * Sites.ReadWrite.All
 * Files.ReadWrite.All
-:::
+  :::
 
 #### Drive
 
@@ -94,13 +95,13 @@ Underneath the configured base location the OneDrive sink allows the definition 
   ![Additional Archive directory configuration](./.asset-sink-file_images/1714482497282.png "Additional Archive directory configuration")
 
 * **`Create sub directories`** : Activating this check-box interprets the configured [Output Directory](#output-directory) as the root directory and
-  creates - if applicable - sub directories for writing the files underneath it. The sub directories are either determined by the related Input Source configured with the `Include sub sirectories` option or
+  creates - if applicable - sub directories for writing the files underneath it. The sub directories are either determined by the related Input Source configured with the `Include sub sirectories`
+  option or
   through a Javascript logic that would create sub directories.
 
 * **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the output-directory. You can configure your required options.
 
   ![Enable Housekeeping](./.asset-sink-file_images/1714485058904.png "Enable Housekeeping")
-
 
 #### Temporary Directory
 

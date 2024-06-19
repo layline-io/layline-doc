@@ -42,7 +42,7 @@ const config = {
             /** @type {import('@docusaurus/preset-classic').Options} */
             ({
                 docs: {
-                    include: ['**/*.md', '**/*.mdx', '!projects/**'], // Exclude version specific "projects" directory'
+                    include: ['**/*.md', '**/*.mdx', '!projects/**', '!src/**'], // Exclude version specific "projects" directory'
                     sidebarPath: require.resolve('./sidebars.js'),
                     lastVersion: 'current',
                     includeCurrentVersion: true,
@@ -81,6 +81,7 @@ const config = {
                 logo: {
                     alt: 'layline.io',
                     src: 'img/logo/layline_logo.svg',
+                    href: 'https://layline.io',
                 },
                 items: [
                     {

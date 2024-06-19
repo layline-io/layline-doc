@@ -17,21 +17,21 @@ As with all documentation, this also is work-in-progress. In case you don't find
 
 ## General Documentation
 
-[Take me there](./index)
+[Take me there](index)
 
 ---
 
 ## Quick Start
 Showcase on how to get up and running quickly, including a sample workflow.
 
-[Take me there](./quickstart)
+[Take me there](./abc/quickstart)
 
 ---
 
 ## What is layline.io?
 Explainer about what layline.io is and the motivation behind it.
 
-[Take me there](./concept/introduction)
+[Take me there](./introduction)
 
 ---
 
