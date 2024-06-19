@@ -115,10 +115,10 @@ Next fill out the details:
 
 ### Typesafe Configuration
 
-Access to Cassandra and Keyspaces data sources relies on the [Datastax-Driver](https://docs.datastax.com/en/developer/java-driver/).
+Access to Cassandra and Keyspaces data sources relies on the [Datastax-Driver](https://docs.datastax.com/en/developer/java-driver/index.html).
 This driver allows for a wide number of configuration options.
 You can configure these options here.
-As to which configuration options are available, please refer to the [Datastax-Driver documentation](https://docs.datastax.com/en/developer/java-driver/4.17/manual/core/configuration/reference/).
+As to which configuration options are available, please refer to the [Datastax-Driver documentation](https://docs.datastax.com/en/developer/java-driver/4.17/manual/core/configuration/reference/index.html).
 
 Example:
 
