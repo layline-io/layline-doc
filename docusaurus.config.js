@@ -42,6 +42,8 @@ const config = {
             /** @type {import('@docusaurus/preset-classic').Options} */
             ({
                 docs: {
+                    breadcrumbs: true,
+                    routeBasePath: '/',
                     include: ['**/*.md', '**/*.mdx', '!projects/**', '!src/**'], // Exclude version specific "projects" directory'
                     sidebarPath: require.resolve('./sidebars.js'),
                     lastVersion: 'current',
