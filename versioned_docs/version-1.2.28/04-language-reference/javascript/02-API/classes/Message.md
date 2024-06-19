@@ -3,7 +3,7 @@
 Events traversing layline.io Workflows are instantiated as a [Message](Message.md).
 This class exposes a number of properties and methods to extract and set data within messages.
 
-To understand the anatomy of a message please read the respective [chapter in the documentation](/docs/concept/data-dictionary).
+To understand the anatomy of a message please read the respective [chapter in the documentation](../../../../concept/data-dictionary).
 
 ## Example Message Structure
 Assume we have the following data dictionary structure
@@ -86,7 +86,7 @@ Example:
 
 • **severity**: [`Severity`](../enumerations/Severity.md)
 
-[Severity](../enums/Severity) value.
+[Severity](../enumerations/Severity) value.
 
 • **status**: [`Status`](Status.md)
 
@@ -130,7 +130,7 @@ Data structures are spawned into existence by the definition of data formats (Fo
 You can test a particular [Message](Message.md) on whether a specific structure is present within
 a message by using this method.
 
-This is typically used to check whether a meessage is of a certain type, or not.
+This is typically used to check whether a message is of a certain type, or not.
 
 Example:
 ```js
@@ -511,7 +511,7 @@ const md5Digest = message.getMessageDigest("MD5", true, recordAccessorForMD5);
 
 • **algorithm?**: `string`
 
-Algorithm with which to calculate the digest. Currently only supprts "MD5".
+Algorithm with which to calculate the digest. Currently only supports "MD5".
 
 • **toLowerCase?**: `boolean`= `false`
 

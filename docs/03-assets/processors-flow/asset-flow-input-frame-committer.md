@@ -9,10 +9,10 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling-flow.md';
-import InputPorts from '/docs/snippets/assets/_input-ports-single.md';
-import OutputPorts from '/docs/snippets/assets/_output-ports-single.md';
+import AssetDependency from '../../snippets/assets/_asset-dependency.md';
+import FailureHandling from '../../snippets/assets/_failure-handling-flow.md';
+import InputPorts from '../../snippets/assets/_input-ports-single.md';
+import OutputPorts from '../../snippets/assets/_output-ports-single.md';
 
 # Input Frame Committer
 

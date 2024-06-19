@@ -10,7 +10,6 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 
-
 # Sink File System
 
 ## Purpose
@@ -19,9 +18,9 @@ Defines the outbound connection parameters for a File System sink.
 
 ### This Asset can be used by:
 
-| Asset type        | Link                                                                          |
-|-------------------|-------------------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](/docs/assets/processors-output/asset-output-stream) |
+| Asset type        | Link                                                                |
+|-------------------|---------------------------------------------------------------------|
+| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
 
 ### Prerequisite
 
@@ -52,7 +51,7 @@ A File System sink allows the definition of the following two different director
 
 * **`Output Directory`** : The directory to write output files to.
   The path of the directory must be accessible to the Reactive Engine trying to access the File System Sink.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Output prefix`** : Prefix to add to the filename of the processed file when writing to the output directory.
   E.g. `out_` will add the `out_`-prefix to the beginning of the filename when written to the output directory.
@@ -60,7 +59,8 @@ A File System sink allows the definition of the following two different director
 * **`Output suffix`** : Suffix to add to the filename of the processed file after move to the output directory.
   E.g. `_out` will add the `_out`-suffix to the end of the filename when written to the output directory.
 
-* **`Posix attributes`** : Used in Unix environments and allows `chmod` attribute configurations to be applied to the written output file. Either use a numeric pattern like `775` or the 9-digit code `rw-rw-r--`.   
+* **`Posix attributes`** : Used in Unix environments and allows `chmod` attribute configurations to be applied to the written output file. Either use a numeric pattern like `775` or the 9-digit
+  code `rw-rw-r--`.
 
 * **`"File already exists"-Handling`** : Define your required handling in case the file already exists in the output-directory.
 
@@ -70,17 +70,14 @@ A File System sink allows the definition of the following two different director
 
   ![Additional Archive directory configuration](./.asset-sink-file_images/1714482497282.png "Additional Archive directory configuration")
 
-* **`Create sub directories`** : Activating this check-box interprets the configured [Output Directory](#output-directory) as the root directory and 
-creates - if applicable - sub directories for writing the files underneath it. The sub directories are either determined by the related Input Source configured with the `Include sub sirectories` option or 
-through a Javascript logic that would create sub directories.
+* **`Create sub directories`** : Activating this check-box interprets the configured [Output Directory](#output-directory) as the root directory and
+  creates - if applicable - sub directories for writing the files underneath it. The sub directories are either determined by the related Input Source configured with the `Include sub sirectories`
+  option or
+  through a Javascript logic that would create sub directories.
 
 * **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the output-directory. You can configure your required options.
 
   ![Enable Housekeeping](./.asset-sink-file_images/1714485058904.png "Enable Housekeeping")
-
-
-
-
 
 #### Temporary Directory
 
@@ -94,7 +91,7 @@ through a Javascript logic that would create sub directories.
   Should you encounter a temporary file in a temporary directory even though there is no current processing ongoing, then this is likely a residue from a crash which needs to be further investigated.
 
   The path of the directory must be accessible to the Reactive Engine trying to access the File System Sink.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Temporary prefix`** : Prefix to add to the filename of the temporary file when writing to the temporary directory.
   E.g. `temp_` will add the `temp_`-prefix to the beginning of the filename when written to the output directory.
@@ -106,8 +103,9 @@ through a Javascript logic that would create sub directories.
 
 ### Internal
 
-* [Stream Output Processor](/docs/assets/processors-output/asset-output-stream)
-* [File System Source](/docs/assets/sources/asset-source-file)
+* [Stream Output Processor](../processors-output/asset-output-stream)
+* [File System Source](../sources/asset-source-file)
+
 ---
 
 <WipDisclaimer></WipDisclaimer>

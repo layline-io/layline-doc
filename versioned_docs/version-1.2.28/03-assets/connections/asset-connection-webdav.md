@@ -16,8 +16,8 @@ Defines the connection parameters for a WebDav endpoint.
 
 | Asset type | Link                                                      |
 |------------|-----------------------------------------------------------|
-| Source     | [WebDav Source](/docs/assets/sources/asset-source-webdav) |
-| Sink       | [WebDav Sink](/docs/assets/sinks/asset-sink-webdav)       |
+| Source     | [WebDav Source](../sources/asset-source-webdav) |
+| Sink       | [WebDav Sink](../sinks/asset-sink-webdav)       |
 
 ## Configuration
 
@@ -63,9 +63,9 @@ You should be able to obtain the necessary parameters from your webdav provider 
   Your username.
 
 * **`Secret`**:
-  Select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](/docs/assets/resources/asset-resource-secret) to be able to assign it here.
+  Select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](../resources/asset-resource-secret) to be able to assign it here.
 
-  Please [follow this link to "Advanced Concepts"](/docs/concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
+  Please [follow this link to "Advanced Concepts"](../../concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
 
 #### Connection Test Result:
 
@@ -86,7 +86,7 @@ You can still connect to this endpoint, but must download its respective certifi
 
 For testing import it to the trust store of the Configuration Server.
 For production, please do the same, but in the security storage of the Reactive Cluster.
-Read here [how to do this](/docs/concept/advanced/secret-management#importing-a-trusted-certificate-3).
+Read here [how to do this](../../concept/advanced/secret-management#importing-a-trusted-certificate-3).
 :::
 
 :::warning Must have valid test environment
@@ -107,5 +107,5 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 ---
 
 :::tip Fields marked with "**_macro supported_**"
-You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 :::

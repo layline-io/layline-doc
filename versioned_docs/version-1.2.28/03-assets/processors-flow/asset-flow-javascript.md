@@ -32,7 +32,7 @@ You need:
 
 * A Source Script which should be executed within this asset.
 * Knowledge on how to work with Javascript in layline.io. Please check
-  the [Javascript Language Reference](/docs/language-reference/javascript/javascript_introduction) to learn about this.
+  the [Javascript Language Reference](../../language-reference/javascript/javascript_introduction) to learn about this.
 
 ## Configuration
 
@@ -72,13 +72,13 @@ The root script to be executed within this Asset is then selected here:
 
 :::tip Javascript Language Reference
 To understand how a Source must be structured to work in a Javascript Asset, please consult
-the [Javascript Language Reference](/docs/language-reference/javascript/javascript_introduction).
+the [Javascript Language Reference](../../language-reference/javascript/javascript_introduction).
 :::
 
 ### Service Mappings
 
 Javascripts may make use of Services which you may have
-configured [here](/docs/assets/services/asset-service-introduction#purpose-of-services). These methods could be database
+configured [here](../../assets/services/asset-service-introduction#purpose-of-services). These methods could be database
 operations, HTTP-request and whatever else Services do provide.
 
 Let's say your Javascript invokes an HTTP-Service which provides a method to retrieve the current Bitcoin price via a
@@ -96,7 +96,7 @@ REST-Api. Let's also assume that the name of the Service to be linked is `BTCSer
 You can pass arguments to the assigned script. This may be useful when reusing the same script in various different
 Javascript Assets and Workflows, but the script should behave slightly different in each of those instances.
 Passing arguments from a Javascript Asset to can provide this functionality. Please check the `getArguments()`
-method [here](/docs/language-reference/javascript/API/classes/Processor#getarguments), on how to retrieve arguments in the script.
+method [here](../../language-reference/javascript/API/classes/Processor#getarguments), on how to retrieve arguments in the script.
 
 ![](.asset-flow-javascript_images/140789d3.png "Arguments (Javascript)")
 
@@ -109,7 +109,7 @@ Entering invalid JSON will cause problems when using the Arguments in the underl
 
 ### Failure Handling
 
-Please see section [Forced Errors](/docs/language-reference/javascript/javascript_introduction#forced-errors) to understand how to use these settings.
+Please see section [Forced Errors](../../language-reference/javascript/javascript_introduction#forced-errors) to understand how to use these settings.
 
 ![](.asset-flow-javascript_images/9f6e7657.png "Failure Handling (Javascript)")
 

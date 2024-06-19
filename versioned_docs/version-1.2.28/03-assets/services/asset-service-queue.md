@@ -4,9 +4,9 @@ description: Queue Service Asset. Use this to create a file-based queue.
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
-import Testcase from '/docs/snippets/assets/_asset-service-test.md';
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import Testcase from '../../snippets/assets/_asset-service-test.md';
 
 # Queue Service
 
@@ -80,10 +80,10 @@ Processor** like so:
 ### Access the Service from within JavaScript
 
 Before we start looking into dedicated JavaScript sample code using the Queue Service, 
-it is important to understand that layline.io processing is based on "dynamic push/pull mode". More information can be found [here](/docs/language-reference/javascript/API/classes/JavaScriptProcessor#onpullmessage).
+it is important to understand that layline.io processing is based on "dynamic push/pull mode". More information can be found [here](../../language-reference/javascript/API/classes/JavaScriptProcessor#onpullmessage).
 
 Using a Queue Service in a JavaScript Processor means that this Processor becomes a "producer" of additional messages requiring the forcing of the pull-mode to be used. 
-Hence, the [`onPullMessage`](/docs/language-reference/javascript/API/classes/JavaScriptProcessor#onpullmessage) usage becomes a must-have.      
+Hence, the [`onPullMessage`](../../language-reference/javascript/API/classes/JavaScriptProcessor#onpullmessage) usage becomes a must-have.      
 
 Let’s finally use the service within JavaScript:
 

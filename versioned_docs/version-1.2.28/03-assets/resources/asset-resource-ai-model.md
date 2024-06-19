@@ -21,19 +21,19 @@ It allows you to define the following major parameters:
 * The Training Data
 * The Model Parameters
 
-Once you have defined the AI-Model Asset, you can use it in a [AI Training Asset](/docs/assets/processors-flow/asset-flow-ai-trainer) to train the model and in
-a [AI Classifier Asset](/docs/assets/processors-flow/asset-flow-ai-classifier) to use the model to infer data.
+Once you have defined the AI-Model Asset, you can use it in a [AI Training Asset](../processors-flow/asset-flow-ai-trainer) to train the model and in
+a [AI Classifier Asset](../processors-flow/asset-flow-ai-classifier) to use the model to infer data.
 
 :::tip
-If you are not familiar with the concept of AI in layline.io, please read [Using Artificial Intelligence in Workflows](/docs/concept/advanced/artificial-intelligence) first and then return here.
+If you are not familiar with the concept of AI in layline.io, please read [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) first and then return here.
 :::
 
 ### This Asset can be used by:
 
 | Asset type     | Link                                                                   |
 |----------------|------------------------------------------------------------------------|
-| Flow Processor | [AI Trainer](/docs/assets/processors-flow/asset-flow-ai-trainer)       |
-| Flow Processor | [AI Classifier](/docs/assets/processors-flow/asset-flow-ai-classifier) |
+| Flow Processor | [AI Trainer](../processors-flow/asset-flow-ai-trainer)       |
+| Flow Processor | [AI Classifier](../processors-flow/asset-flow-ai-classifier) |
 
 ### Name & Description
 

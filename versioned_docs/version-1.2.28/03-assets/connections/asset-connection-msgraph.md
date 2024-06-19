@@ -10,7 +10,7 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import CredentialType from '/docs/snippets/assets/_credential-type.md';
+import CredentialType from '../../snippets/assets/_credential-type.md';
 
 
 # Connection MS Graph
@@ -23,11 +23,11 @@ Defines the connection parameters for various Microsoft application endpoints, f
 
 | Asset type | Link                                                              |
 |------------|-------------------------------------------------------------------|
-| Source     | [OneDrive Source](/docs/assets/sources/asset-source-onedrive)     |
-|            | [SharePoint Source](/docs/assets/sources/asset-source-sharepoint) |
-| Sink       | [OneDrive Sink](/docs/assets/sinks/asset-sink-onedrive)           |
-|            | [SharePoint Sink](/docs/assets/sinks/asset-sink-sharepoint)       |
-| Service    | [Teams Service](/docs/assets/services/asset-service-teams)        |
+| Source     | [OneDrive Source](../sources/asset-source-onedrive)     |
+|            | [SharePoint Source](../sources/asset-source-sharepoint) |
+| Sink       | [OneDrive Sink](../sinks/asset-sink-onedrive)           |
+|            | [SharePoint Sink](../sinks/asset-sink-sharepoint)       |
+| Service    | [Teams Service](../services/asset-service-teams)        |
 
 ## Configuration
 

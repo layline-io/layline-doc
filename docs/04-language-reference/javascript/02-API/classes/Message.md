@@ -3,7 +3,7 @@
 Events traversing layline.io Workflows are instantiated as a [Message](Message.md).
 This class exposes a number of properties and methods to extract and set data within messages.
 
-To understand the anatomy of a message please read the respective [chapter in the documentation](/docs/concept/data-dictionary).
+To understand the anatomy of a message please read the respective [chapter in the documentation](../../../../concept/data-dictionary).
 
 ## Example Message Structure
 Assume we have the following data dictionary structure
@@ -86,7 +86,7 @@ Example:
 
 • **severity**: [`Severity`](../enumerations/Severity.md)
 
-[Severity](../enums/Severity) value.
+[Severity](../enumerations/Severity) value.
 
 • **status**: [`Status`](Status.md)
 

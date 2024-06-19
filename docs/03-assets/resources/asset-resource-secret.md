@@ -28,9 +28,9 @@ So we really have two requirements here in regard to handling confidential infor
 
    Be able to define different Secret Environments, for different target environments such as development, testing, and production.
 
-What's needed is very similar to how we are using variables from [Environment Assets](/docs/assets/resources/asset-resource-environment).
-There we reference Environment Variables with [macros](/docs/language-reference/macros#lay).
-It works the same way with Secrets, only the [prefix (sec)](/docs/language-reference/macros#sec) is different.
+What's needed is very similar to how we are using variables from [Environment Assets](../resources/asset-resource-environment).
+There we reference Environment Variables with [macros](../../language-reference/macros#lay).
+It works the same way with Secrets, only the [prefix (sec)](../../language-reference/macros#sec) is different.
 
 ## Configuration
 
@@ -49,14 +49,14 @@ It works the same way with Secrets, only the [prefix (sec)](/docs/language-refer
 layline.io features a public/private-key encryption mechanism which ensures that secrets can only be decrypted by the system which holds the private key.
 
 In this system, the Configuration Server as well as each Reactive Engine Cluster can have zero or more public/private-key-pairs configured.
-For detailed information about this, please read through the [Security Storage](/docs/concept/advanced/secret-management#concept-in-laylineio) documentation first, and then return here.
+For detailed information about this, please read through the [Security Storage](../../concept/advanced/secret-management#concept-in-laylineio) documentation first, and then return here.
 
 In order to create Secrets, you will first have to select with which public key you want to encrypt the secrets.
 
 ![](.asset-resource-secret_images/22e3f00f.png "Selecting Encryption Key (Secret Asset)")
 
 A dialog will open, showing you the Configuration Server Keys as well as the known Reactive Clusters.
-You will only see those Reactive Clusters, which have either been defined in [global cluster settings](/docs/concept/settings/settings-cluster), or within the currently opened Project
+You will only see those Reactive Clusters, which have either been defined in [global cluster settings](../../concept/settings/settings-cluster), or within the currently opened Project
 
 ![](.asset-resource-secret_images/4a598def.png "Encryption Key Dialog (Secret Asset)")
 
@@ -135,7 +135,7 @@ These Secrets can then be used in the configuration like so:
 
 ![](.asset-resource-secret_images/d90843ad.png "Using Secret Keys (Secret Asset)")
 
-To learn more about how to use environment variables within layline.io settings, please read [here](/docs/language-reference/macros#sec).
+To learn more about how to use environment variables within layline.io settings, please read [here](../../language-reference/macros#sec).
 
 #### Changing Encryption Key
 

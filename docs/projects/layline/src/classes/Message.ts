@@ -1,15 +1,15 @@
 import Status from "./Status";
-import Severity from "../Enums/Severity";
-import JavaType from "../Enums/JavaType";
 import EntityDeclaration from "./EntityDeclaration";
 import MessageNode from "./MessageNode";
 import PackedMessage from "./PackedMessage";
+import Severity from "../enumerations/Severity";
+import JavaType from "../enumerations/JavaType";
 
 /**
  * Events traversing layline.io Workflows are instantiated as a {@link Message}.
  * This class exposes a number of properties and methods to extract and set data within messages.
  *
- * To understand the anatomy of a message please read the respective [chapter in the documentation](/docs/concept/data-dictionary).
+ * To understand the anatomy of a message please read the respective [chapter in the documentation](../../../../concept/data-dictionary).
  *
  *
  * ## Example Message Structure
@@ -94,9 +94,9 @@ class Message {
      *  }
      * ```
      *
-     * @param {Severity} severity [Severity](../enums/Severity) value.
-     * @param {Status} status The {@link Status} which should be added.
-     * @param {boolean} [addToLog=true] Signals whether the {@link Status} shall also be added to the log, or not. Will be added by default if not specified.
+     * @param {Severity} severity - [Severity](../enumerations/Severity) value.
+     * @param {Status} status - The {@link Status} which should be added.
+     * @param {boolean} [addToLog=true] - Signals whether the {@link Status} shall also be added to the log, or not. Will be added by default if not specified.
      * If `true` then the Status will be visible in the Stream Log of the Audit Trail.
      *
      */

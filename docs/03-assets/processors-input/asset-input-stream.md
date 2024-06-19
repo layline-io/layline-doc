@@ -7,8 +7,8 @@ tags:
   - compression
 ---
 
-import OutputPorts from '/docs/snippets/assets/_output-ports.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling-input.md';
+import OutputPorts from '../../snippets/assets/_output-ports.md';
+import FailureHandling from '../../snippets/assets/_failure-handling-input.md';
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 # Input Stream
@@ -27,18 +27,18 @@ You need:
 
 **A Format**
 
-* [Format](/docs/assets/formats)
+* [Format](../formats)
 
 **A Stream Source, of either**
 
-* [File System Source](/docs/assets/sources/asset-source-file)
-* [FTP Source](/docs/assets/sources/asset-source-ftp)
-* [OneDrive Source](/docs/assets/sources/asset-source-onedrive)
-* [S3 Source](/docs/assets/sources/asset-source-s3)
-* [SharePoint Source](/docs/assets/sources/asset-source-sharepoint)
-* [SMB Source](/docs/assets/sources/asset-source-smb)
-* [TCP Source](/docs/assets/sources/asset-source-tcp)
-* [WebDav Source](/docs/assets/sources/asset-source-webdav)
+* [File System Source](../sources/asset-source-file)
+* [FTP Source](../sources/asset-source-ftp)
+* [OneDrive Source](../sources/asset-source-onedrive)
+* [S3 Source](../sources/asset-source-s3)
+* [SharePoint Source](../sources/asset-source-sharepoint)
+* [SMB Source](../sources/asset-source-smb)
+* [TCP Source](../sources/asset-source-tcp)
+* [WebDav Source](../sources/asset-source-webdav)
 
 ### Name & Description
 

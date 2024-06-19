@@ -8,8 +8,8 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 
 # Sink OneDrive
 
@@ -21,11 +21,11 @@ Defines the specific sink parameters for a OneDrive connected endpoint.
 
 | Asset type        | Link                                                                          |
 |-------------------|-------------------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](/docs/assets/processors-output/asset-output-stream) |
+| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
 
 You need:
 
-* [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph)
+* [MS Graph Connection](../connections/asset-connection-msgraph)
 
 ## Configuration
 
@@ -49,11 +49,11 @@ Configure the parameters for your OneDrive endpoint:
 
 ![MSGraph Connection drop-down list](./.asset-sink-sharepoint_images/1714668065803.png "MSGraph Connection drop-down list")
 
-Use the drop-down list to select an [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph) that should
+Use the drop-down list to select an [MS Graph Connection](../connections/asset-connection-msgraph) that should
 support this OneDrive configuration. If it does not exist, you need to create it first.
 
 :::info
-Your [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph) needs to have the following configured scope:
+Your [MS Graph Connection](../connections/asset-connection-msgraph) needs to have the following configured scope:
 * Sites.ReadWrite.All
 * Files.ReadWrite.All
 :::
@@ -77,7 +77,7 @@ Underneath the configured base location the OneDrive sink allows the definition 
 
 * **`Output Directory`** : The directory to write output files to.
   The path of the directory must be accessible to the Reactive Engine trying to access the OneDrive Sink.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Output prefix`** : Prefix to add to the filename of the processed file when writing to the output directory.
   E.g. `out_` will add the `out_`-prefix to the beginning of the filename when written to the output directory.
@@ -114,7 +114,7 @@ Underneath the configured base location the OneDrive sink allows the definition 
   Should you encounter a temporary file in a temporary directory even though there is no current processing ongoing, then this is likely a residue from a crash which needs to be further investigated.
 
   The path of the directory must be accessible to the Reactive Engine trying to access the OneDrive Sink.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Temporary prefix`** : Prefix to add to the filename of the temporary file when writing to the temporary directory.
   E.g. `temp_` will add the `temp_`-prefix to the beginning of the filename when written to the output directory.

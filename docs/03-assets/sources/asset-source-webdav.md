@@ -23,13 +23,13 @@ Defines the specific source parameters for a WebDAV connected endpoint.
 
 | Asset type       | Link                                                                       |
 |------------------|----------------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](/docs/assets/processors-input/asset-input-stream) |
+| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
 
 ### Prerequisite
 
 You need:
 
-* [WebDAV Connection](/docs/assets/connections/asset-connection-webdav)
+* [WebDAV Connection](../connections/asset-connection-webdav)
 
 ## Configuration
 
@@ -52,7 +52,7 @@ You need:
 ![Connection (WebDAV Source)](./.asset-source-webdav_images/1715691789968.png "Connection (WebDAV Source)")
 
 
-Select the previously configured [WebDAV Connection](/docs/assets/connections/asset-connection-webdav) to use for this Source.
+Select the previously configured [WebDAV Connection](../connections/asset-connection-webdav) to use for this Source.
 If it does not exist, you need to create it first.
 
 ### Directories

@@ -1,6 +1,6 @@
 import Status from "./Status";
-import Severity from "../Enums/Severity";
-import JavaType from "../Enums/JavaType";
+import Severity from "../enumerations/Severity";
+import JavaType from "../enumerations/JavaType";
 import EntityDeclaration from "./EntityDeclaration";
 import MessageNode from "./MessageNode";
 import PackedMessage from "./PackedMessage";
@@ -9,7 +9,7 @@ import PackedMessage from "./PackedMessage";
  * Events traversing layline.io Workflows are instantiated as a {@link Message}.
  * This class exposes a number of properties and methods to extract and set data within messages.
  *
- * To understand the anatomy of a message please read the respective [chapter in the documentation](/docs/concept/data-dictionary).
+ * To understand the anatomy of a message please read the respective [chapter in the documentation](../../../../concept/data-dictionary).
  *
  *
  * ## Example Message Structure
@@ -94,7 +94,7 @@ class Message {
      *  }
      * ```
      *
-     * @param {Severity} severity [Severity](../enums/Severity) value.
+     * @param {Severity} severity - [Severity](../enumerations/Severity) value.
      * @param {Status} status The {@link Status} which should be added.
      * @param {boolean} [addToLog=true] Signals whether the {@link Status} shall also be added to the log, or not. Will be added by default if not specified.
      * If `true` then the Status will be visible in the Stream Log of the Audit Trail.
@@ -122,7 +122,7 @@ class Message {
      * You can test a particular {@link Message} on whether a specific structure is present within
      * a message by using this method.
      *
-     * This is typically used to check whether a meessage is of a certain type, or not.
+     * This is typically used to check whether a message is of a certain type, or not.
      *
      * Example:
      * ```js
@@ -199,7 +199,7 @@ class Message {
      * const md5Digest = message.getMessageDigest("MD5", true, recordAccessorForMD5);
      * ```
      *
-     * @param {"MD5"} [algorithm] - Algorithm with which to calculate the digest. Currently only supprts "MD5".
+     * @param {"MD5"} [algorithm] - Algorithm with which to calculate the digest. Currently only supports "MD5".
      * @param {boolean} [toLowerCase=false] - Set to true if digest should be lower-case only.
      * @param {EntityDeclaration[]} [accessorArray] - Array of {@link EntityDeclaration} on which to calculate the digest.
      */

@@ -22,7 +22,7 @@ Some example of variables:
 - layline.io message content
 - etc.
 
-As a quick example, let's assume that you are configuring a [Amazon SQS Source](/docs/assets/sources/asset-source-sqs).
+As a quick example, let's assume that you are configuring a [Amazon SQS Source](../assets/sources/asset-source-sqs).
 Within that configuration you must define a stream name to represent the stream which is being processed when reading from SQS.
 To provide a uniwue name, you could define the name like so:
 
@@ -48,7 +48,7 @@ It will all make sense when we explain the different types of variables which ar
 
 ### lay:
 
-The Prefix `lay` references an environment property which you have defined in a [Environment Resource Asset](/docs/assets/resources/asset-resource-environment).
+The Prefix `lay` references an environment property which you have defined in a [Environment Resource Asset](../assets/resources/asset-resource-environment).
 The suffix defines the value which you have defined for that property:
 
 **Example:**
@@ -64,7 +64,7 @@ Otherwise, you will encounter an error when you try to start the deployment on t
 
 ### sec:
 
-The Prefix `sec` references a secret property which you have defined in a [Environment Secret Asset](/docs/assets/resources/asset-resource-secret).
+The Prefix `sec` references a secret property which you have defined in a [Environment Secret Asset](../assets/resources/asset-resource-secret).
 The suffix defines the value which you have defined for that property:
 
 **Example:**
@@ -100,7 +100,7 @@ If the Id is `4711`, then the complete expanded stream name would turn out to be
 Note how we are using the Data Dictionary Accessor Path `Vehicle.Boat.Id` to access the field content.
 
 :::tip
-If you are not familiar with the message format and data dictionary then please take a look at the [Data Dictionary concept](/docs/concept/data-dictionary).
+If you are not familiar with the message format and data dictionary then please take a look at the [Data Dictionary concept](../concept/data-dictionary).
 :::
 
 ### build:

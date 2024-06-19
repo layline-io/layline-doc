@@ -6,8 +6,8 @@ tags:
 - kafka
 ---
 
-import OutputPorts from '/docs/snippets/assets/_output-ports.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling-input.md';
+import OutputPorts from '../../snippets/assets/_output-ports.md';
+import FailureHandling from '../../snippets/assets/_failure-handling-input.md';
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 # Input Kafka
@@ -25,13 +25,13 @@ This Asset is used within a Workflow definition.
 You need:
 **A defined Format**
 
-* [Format Generic](/docs/assets/formats/asset-format-generic)
-* [Format Data Dictionary](/docs/assets/formats/asset-format-data-dictionary)
-* [Format ASN.1](/docs/assets/formats/asset-format-asn1)
+* [Format Generic](../formats/asset-format-generic)
+* [Format Data Dictionary](../formats/asset-format-data-dictionary)
+* [Format ASN.1](../formats/asset-format-asn1)
 
 **A Kafka Sink:**
 
-* [Source Kafka](/docs/assets/sources/asset-source-kafka)
+* [Source Kafka](../sources/asset-source-kafka)
 
 ## Configuration
 
@@ -75,7 +75,7 @@ If you have defined such a format, then you can select it from the list of avail
 
 ### Kafka Source
 
-You need to assign a [Kafka Source](/docs/assets/sources/asset-source-kafka). The Source defines which topics can be read from.
+You need to assign a [Kafka Source](../sources/asset-source-kafka). The Source defines which topics can be read from.
 The Source must have been previously defined.
 
 ![](.asset-input-kafka_images/cd27054a.png "Format (Input Kafka)")
@@ -127,7 +127,7 @@ You can read more about this in the [Kafka Documentation here](https://kafka.apa
 
 Define one or more topics that this input processor should read from.
 If you have defined a consumer group then the topics which you define here will be accessed with the same consumer group.
-You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 ![](.asset-input-kafka_images/c65fca67.png "Topics (Input Kafka)")
 
@@ -162,7 +162,7 @@ The SavePoint commit mode has no equivalent in Kafka. This actually represents "
 There are mechanisms within layline.io which allow to trigger a so called "upstream savepoint" based on certain conditions.
 If such a savepoint is triggered, this is then propagated back up. In this case the then current offset will be committed back to Kafka.
 
-An example can be found in the [Stream Boundary Controller Asset](/docs/assets/processors-flow/asset-flow-streamboundary) where a savepoint can be triggered upon configurable conditions.
+An example can be found in the [Stream Boundary Controller Asset](../processors-flow/asset-flow-streamboundary) where a savepoint can be triggered upon configurable conditions.
 So if you have a Stream Boundary Controller in you Workflow, then a savepoint can be triggered from within that Processor.
 
 **Example:** Stream Boundary Controller SavePoint trigger
@@ -197,7 +197,7 @@ The Message Mode commits the read offset back to Kafka based on time and number 
 
 ### Internal
 
-* [Stream Boundary Controller Asset](/docs/assets/processors-flow/asset-flow-streamboundary)
+* [Stream Boundary Controller Asset](../processors-flow/asset-flow-streamboundary)
 
 ### External
 

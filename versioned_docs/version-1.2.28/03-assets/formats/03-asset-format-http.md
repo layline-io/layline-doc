@@ -34,8 +34,8 @@ Please check the [Request-Response Input](../processors-input/asset-input-reques
 
 | Asset type       | Link                                                                           |
 |------------------|--------------------------------------------------------------------------------|
-| Input Processors | [Request-Response](/docs/assets/processors-input/asset-input-request-response) |
-| Source           | [Http Source](/docs/assets/sources/asset-source-http)                          |
+| Input Processors | [Request-Response](../processors-input/asset-input-request-response) |
+| Source           | [Http Source](../sources/asset-source-http)                          |
 
 ## Configuration
 
@@ -495,7 +495,7 @@ function onCar(detail) {
 ```
 
 :::tip Working with the Data Dictionary in Javascript
-To understand how to work with the Data Dictionary in Javascript, [check here](/docs/language-reference/javascript).
+To understand how to work with the Data Dictionary in Javascript, [check here](../../language-reference/javascript).
 :::
 
 ---

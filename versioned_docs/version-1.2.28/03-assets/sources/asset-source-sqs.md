@@ -9,8 +9,8 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 
 # Source SQS
 
@@ -28,13 +28,13 @@ This UI helps to define the specific bucket and folder source of an SQS connecte
 
 | Asset type       | Link                                                                     |
 |------------------|--------------------------------------------------------------------------|
-| Input Processors | [Frame Input Processor](/docs/assets/processors-input/asset-input-frame) |
+| Input Processors | [Frame Input Processor](../processors-input/asset-input-frame) |
 
 ### Prerequisite
 
 You need:
 
-* [AWS Connection](/docs/assets/connections/asset-connection-aws)
+* [AWS Connection](../connections/asset-connection-aws)
 
 ## Configuration
 
@@ -56,13 +56,13 @@ Configure the parameters for your SQS endpoint:
 
 #### SQS Connection
 
-Use the drop-down list to select an [AWS Connection](/docs/assets/connections/asset-connection-aws) that should support this Asset. If it does not exist, you need to create it first.
+Use the drop-down list to select an [AWS Connection](../connections/asset-connection-aws) that should support this Asset. If it does not exist, you need to create it first.
 
 #### SQS Queue
 
 Once you picked an SQS Connection above the system will try to test the connection and
 show available queues within the drop-down list under `SQS Queue`. Pick the topic you want to process messages from. Another approach 
-could be: You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+could be: You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 #### Further settings
 
@@ -75,7 +75,7 @@ Amazon SQS sends an empty response only if the here configured polling wait time
 * **`Visibility timeout [sec]`**: The visibility timeout begins when Amazon SQS returns a message. During this time, the consumer has to process and delete the message. 
 You can define this timeout period in here. After the visibility timeout period the message becomes visible to other consumers again if it is not deleted. 
 If a message must be received only once, your consumer should delete it within the duration of the visibility timeout. ( see also [SQS Visibility Timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)).
-Within lalyine.io you need to ensure this behavior by adding the [Input Frame Committer](/docs/assets/processors-flow/asset-flow-input-frame-committer) processor into your workflow since this is the instance that would finally delete the message from the queue.
+Within lalyine.io you need to ensure this behavior by adding the [Input Frame Committer](../processors-flow/asset-flow-input-frame-committer) processor into your workflow since this is the instance that would finally delete the message from the queue.
 Please note: DELETE is only executed when message has reached the Input Frame Committer!
 
 

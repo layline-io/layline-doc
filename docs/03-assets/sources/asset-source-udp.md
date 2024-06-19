@@ -20,7 +20,7 @@ Defines the specific source parameters for a UDP connected endpoint.
 
 | Asset type       | Link                                                                     |
 |------------------|--------------------------------------------------------------------------|
-| Input Processors | [Frame Input Processor](/docs/assets/processors-input/asset-input-frame) |
+| Input Processors | [Frame Input Processor](../processors-input/asset-input-frame) |
 
 ### Prerequisite
 
@@ -57,7 +57,7 @@ UPD as connectionless protocol makes it difficult to auto-generate a proper stre
 
 ![Stream settings (UPD Source)](./.asset-source-udp_images/1717605243066.png "Stream settings (UPD Source)")
 
-* **`Stream name`** : name to apply for the UDP workflow processing. You can use [Macros](/docs/language-reference/macros) here.
+* **`Stream name`** : name to apply for the UDP workflow processing. You can use [Macros](../../language-reference/macros) here.
 
 ---
 

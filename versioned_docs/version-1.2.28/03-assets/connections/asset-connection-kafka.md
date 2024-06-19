@@ -18,8 +18,8 @@ Defines the connection parameters for a Kafka endpoint.
 
 | Asset type | Link                                                    |
 |------------|---------------------------------------------------------|
-| Source     | [Kafka Source](/docs/assets/sources/asset-source-kafka) |
-| Sink       | [Kafka Sink](/docs/assets/sinks/asset-sink-kafka)       |
+| Source     | [Kafka Source](../sources/asset-source-kafka) |
+| Sink       | [Kafka Sink](../sinks/asset-sink-kafka)       |
 
 ## Configuration
 
@@ -62,7 +62,7 @@ If SSL is enabled, and you have either a truststore and optionally a keystore, t
   This entry is equivalent to the `ssl.truststore.location` property.
   Example: `/var/private/ssl/kafka.server.truststore.jks`
 
-* **`Use identitity certificate`**: Select the secret necessary to decrypt the truststore. If this list is empty, then you first need to create it [here](/docs/assets/resources/asset-resource-secret).
+* **`Use identitity certificate`**: Select the secret necessary to decrypt the truststore. If this list is empty, then you first need to create it [here](../resources/asset-resource-secret).
   This entry is equivalent to the `ssl.truststore.password` property.
   Example: `1234`
 
@@ -70,11 +70,11 @@ If SSL is enabled, and you have either a truststore and optionally a keystore, t
   This entry is equivalent to the `ssl.keystore.location` property.
   Example: `/var/private/ssl/kafka.server.keystore.jks`
 
-* **`Keystore password secret`**: Select the secret necessary to decrypt the keystore. If this list is empty, then you first need to create it [here](/docs/assets/resources/asset-resource-secret).
+* **`Keystore password secret`**: Select the secret necessary to decrypt the keystore. If this list is empty, then you first need to create it [here](../resources/asset-resource-secret).
   This entry is equivalent to the `ssl.keystore.password` property.
   Example: `test1234`
 
-* **`Key password secret`**:  Password secret for decryption of Key in Keystore. If this list is empty, then you first need to create it [here](/docs/assets/resources/asset-resource-secret).
+* **`Key password secret`**:  Password secret for decryption of Key in Keystore. If this list is empty, then you first need to create it [here](../resources/asset-resource-secret).
   This entry is equivalent to the `ssl.key.password` property.
   Example: `test1234`
 
@@ -115,10 +115,10 @@ For _SASL / PLAIN_ and _SCRAM_ based authentication you need to consider the fol
   this box to keep the raw string value.
 
 * **`User/Secret`**:
-  Enter a `Username` and select a `Secret` from the drop-down list. It the list is empty, then you need to first [create a secret](/docs/assets/resources/asset-resource-secret) to be able to assign it
+  Enter a `Username` and select a `Secret` from the drop-down list. It the list is empty, then you need to first [create a secret](../resources/asset-resource-secret) to be able to assign it
   here.
 
-  Please [follow this link to "Advanced Concepts"](/docs/concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
+  Please [follow this link to "Advanced Concepts"](../../concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
 
 #### Connection Test Result:
 
@@ -146,11 +146,11 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 
 ### Internal
 
-* [Kafka Source](/docs/assets/sources/asset-source-kafka)
-* [Kafka Sink](/docs/assets/sinks/asset-sink-kafka)
-* [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
-* [Frame Output Processor](/docs/assets/processors-output/asset-output-frame)
-* [Create and manage secrets](/docs/assets/resources/asset-resource-secret)
+* [Kafka Source](../sources/asset-source-kafka)
+* [Kafka Sink](../sinks/asset-sink-kafka)
+* [Kafka Input Processor](../processors-input/asset-input-kafka)
+* [Frame Output Processor](../processors-output/asset-output-frame)
+* [Create and manage secrets](../resources/asset-resource-secret)
 
 ### External
 

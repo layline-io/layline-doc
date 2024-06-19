@@ -9,9 +9,9 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
-import Testcase from '/docs/snippets/assets/_asset-service-test.md';
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import Testcase from '../../snippets/assets/_asset-service-test.md';
 
 # Teams Service
 
@@ -23,7 +23,7 @@ Define a service to interface with Teams.
 
 ## Prerequisites
 
-For this to work, you need a configured [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph).
+For this to work, you need a configured [MS Graph Connection](../connections/asset-connection-msgraph).
 
 ## Configuration
 
@@ -47,11 +47,11 @@ Configure the parameters for your Teams Service:
 
 ![MSGraph Connection drop-down list](./.asset-service-teams_images/1714138476191.png "MSGraph Connection drop-down list")
 
-Use the drop-down list to select an [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph) that should 
+Use the drop-down list to select an [MS Graph Connection](../connections/asset-connection-msgraph) that should 
 support this Teams Service. If it does not exist, you need to create it first.
 
 :::info
-Your [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph) needs to have the following configured scope:
+Your [MS Graph Connection](../connections/asset-connection-msgraph) needs to have the following configured scope:
 * Team.ReadBasic.All
 * Channel.ReadBasic.All
 * Chat.ReadBasic

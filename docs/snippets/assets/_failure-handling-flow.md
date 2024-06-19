@@ -27,7 +27,7 @@ Rollback the complete stream. In the case of batch/file processing for example t
 :::warning
 A rollback signal will be issued to all participating Workflow Processors.
 Each Processor needs to ensure itself how to deal with a rollback.
-A Javascript Flow Processor, for example, which directly interacts with a database will have to react to a [rollback signal](/docs/language-reference/javascript/API/classes/JavaScriptProcessor#onrollback):
+A Javascript Flow Processor, for example, which directly interacts with a database will have to react to a [rollback signal](../../language-reference/javascript/API/classes/JavaScriptProcessor#onrollback):
 
 ```js title="Rollback example in Javascript"
    function onRollback() {
@@ -88,12 +88,12 @@ Sources are for example files, databases, or message queues.
 
 The settings for `Retry Event/Message` and `Retry Stream` only work for specific Source Types which a Workflow uses.
 These are:
-- [Email](/docs/assets/sources/asset-source-email)
-- [File](/docs/assets/sources/asset-source-file)
-- [FTP](/docs/assets/sources/asset-source-ftp)
-- [S3](/docs/assets/sources/asset-source-s3)
-- [SMB](/docs/assets/sources/asset-source-smb)
-- [WebDav](/docs/assets/sources/asset-source-webdav)
+- [Email](../sources/asset-source-email)
+- [File](../sources/asset-source-file)
+- [FTP](../sources/asset-source-ftp)
+- [S3](../sources/asset-source-s3)
+- [SMB](../sources/asset-source-smb)
+- [WebDav](../sources/asset-source-webdav)
 
 
 :::

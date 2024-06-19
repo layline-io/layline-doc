@@ -21,14 +21,15 @@ This UI helps to define the outbound connection parameters for an AWS S3 sink.
 
 ### This Asset can be used by:
 
-| Asset type        | Link                                                                          |
-|-------------------|-------------------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](/docs/assets/processors-output/asset-output-stream) |
+| Asset type        | Link                                                                |
+|-------------------|---------------------------------------------------------------------|
+| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
 
 ### Prerequisite
 
 You need:
-* [AWS Connection](/docs/assets/connections/asset-connection-aws)
+
+* [AWS Connection](../connections/asset-connection-aws)
 
 ## Configuration
 
@@ -56,7 +57,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 #### S3 Connection (A)
 
-Select the [AWS Connection](/docs/assets/connections/asset-connection-aws) to use for this Asset. If it does not exist, you need to create it first.
+Select the [AWS Connection](../connections/asset-connection-aws) to use for this Asset. If it does not exist, you need to create it first.
 
 #### S3 Bucket (B)
 
@@ -66,12 +67,11 @@ Select the [AWS Connection](/docs/assets/connections/asset-connection-aws) to us
 * **`Prefix (1)`**: If you pick a valid bucket (B), then available prefixes (folders) will be available for selection here.
   You can check how many prefixes could be found for a given bucket at (7)
 
-* **`Object Prefix / Object Suffix (2)`**: You can narrow down your bucket selection further by putting object prefix / suffix filters. 
+* **`Object Prefix / Object Suffix (2)`**: You can narrow down your bucket selection further by putting object prefix / suffix filters.
 
 * **`"Object already exists"-Handling (3)`**: Define your required handling in case the object "in process" already exists.
 
 ![](.asset-sink-s3_images/Screenshot2024-04-23S3-Sink-ObjectExistsHandling.png "S3 Settings - Object Exists Handling (S3 Sink Asset)")
-
 
 * **`Use path style bucket access (4)`**: The S3 API allows accessing objects via legacy "_path style_" or "_virtual hosted style_".
   Check this box if you want to access objects via legacy path style access. You can read more about this [here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html)
@@ -82,15 +82,12 @@ Select the [AWS Connection](/docs/assets/connections/asset-connection-aws) to us
 While you are entering and changing S3 bucket parameters, layline.io frequently tries to connect to the endpoint and retrieve bucket and prefix information.
 The status of these attempts is displayed at the bottom of the group box.
 
-
-
-
 ## Related Topics
 
 ### Internal
 
-* [S3 Connection](/docs/assets/connections/asset-connection-aws)
-* [S3 Source](/docs/assets/sources/asset-source-s3)
+* [S3 Connection](../connections/asset-connection-aws)
+* [S3 Source](../sources/asset-source-s3)
 
 ### External
 

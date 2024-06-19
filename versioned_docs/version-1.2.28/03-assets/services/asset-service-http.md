@@ -8,9 +8,9 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
-import CredentialType from '/docs/snippets/assets/_credential-type.md';
-import Testcase from '/docs/snippets/assets/_asset-service-test.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import CredentialType from '../../snippets/assets/_credential-type.md';
+import Testcase from '../../snippets/assets/_asset-service-test.md';
 
 
 # HTTP Service
@@ -319,7 +319,7 @@ if (httpData && httpData.data.length > 0) {
 ```
 
 :::tip Note: Service functions return a Message
-Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message) as a result
+Note how the Service function returns a [Message](../../language-reference/javascript/API/classes/Message) as a result
 type.
 
 You can find the results in `message.data` as an array.
@@ -332,7 +332,7 @@ If we are only expecting one row as a result, we can test it with `httpData.data
 ---
 
 :::tip Fields marked with "**macro supported**"
-You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 :::
 
 <WipDisclaimer></WipDisclaimer>

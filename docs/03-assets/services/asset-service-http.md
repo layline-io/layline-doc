@@ -319,7 +319,7 @@ if (httpData && httpData.data.length > 0) {
 ```
 
 :::tip Note: Service functions return a Message
-Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message) as a result
+Note how the Service function returns a [Message](../../language-reference/javascript/API/classes/Message) as a result
 type.
 
 You can find the results in `message.data` as an array.
@@ -332,7 +332,7 @@ If we are only expecting one row as a result, we can test it with `httpData.data
 ---
 
 :::tip Fields marked with "**macro supported**"
-You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 :::
 
 <WipDisclaimer></WipDisclaimer>

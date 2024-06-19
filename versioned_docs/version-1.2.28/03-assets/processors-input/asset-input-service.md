@@ -6,8 +6,8 @@ tags:
   - service
 ---
 
-import OutputPorts from '/docs/snippets/assets/_output-ports.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling-input.md';
+import OutputPorts from '../../snippets/assets/_output-ports.md';
+import FailureHandling from '../../snippets/assets/_failure-handling-input.md';
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 # Input Service
@@ -25,7 +25,7 @@ This Asset is used within a Workflow definition.
 You need:
 **A Service Source**
 
-* [Service Source](/docs/assets/sources/asset-source-service)
+* [Service Source](../sources/asset-source-service)
 
 ## Configuration
 
@@ -61,7 +61,7 @@ A Workflow shutdown at most goes through three phases:
 
 ### Source
 
-You need to assign a [Service Source](/docs/assets/sources/asset-source-service).
+You need to assign a [Service Source](../sources/asset-source-service).
 The Service Source obtains and delivers the actual messages to this Input Asset.
 
 ![](.asset-input-service_images/22765d2c.png "Timer Source (Input Message)")
@@ -74,7 +74,7 @@ The Service Source obtains and delivers the actual messages to this Input Asset.
 
 ### Internal
 
-* [Timer Source](/docs/assets/sources/asset-source-timer)
+* [Timer Source](../sources/asset-source-timer)
 
 ---
 

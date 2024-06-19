@@ -17,13 +17,13 @@ import Directories from '../../snippets/assets/_asset-source-directories.md';
 
 ## Purpose
 
-Defines the specific source parameters for a File System connected endpoint. 
+Defines the specific source parameters for a File System connected endpoint.
 
 ### This Asset can be used by:
 
-| Asset type       | Link                                                                       |
-|------------------|----------------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](/docs/assets/processors-input/asset-input-stream) |
+| Asset type       | Link                                                             |
+|------------------|------------------------------------------------------------------|
+| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
 
 ### Prerequisite
 
@@ -49,13 +49,12 @@ None
 
 <Directories></Directories>
 
-
 ## Related Topics
 
 ### Internal
 
-* [Stream Input Processor](/docs/assets/processors-input/asset-input-stream)
-* [File System Sink](/docs/assets/sinks/asset-sink-file)
+* [Stream Input Processor](../processors-input/asset-input-stream)
+* [File System Sink](../sinks/asset-sink-file)
 
 ### External
 

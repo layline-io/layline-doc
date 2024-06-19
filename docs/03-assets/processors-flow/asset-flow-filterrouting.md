@@ -8,11 +8,11 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import AssetDependency from '/docs/snippets/assets/_asset-dependency.md';
-import AssetConditions from '/docs/snippets/assets/_asset-conditions.md';
-import FailureHandling from '/docs/snippets/assets/_failure-handling-flow.md';
-import InputPorts from '/docs/snippets/assets/_input-ports.md';
-import OutputPorts from '/docs/snippets/assets/_output-ports.md';
+import AssetDependency from '../../snippets/assets/_asset-dependency.md';
+import AssetConditions from '../../snippets/assets/_asset-conditions.md';
+import FailureHandling from '../../snippets/assets/_failure-handling-flow.md';
+import InputPorts from '../../snippets/assets/_input-ports.md';
+import OutputPorts from '../../snippets/assets/_output-ports.md';
 
 # Filter & Routing Flow Processor
 
@@ -148,7 +148,7 @@ In this section you can define how the system should behave in case of such prob
 ## My filter and routing requirements cannot be met.
 
 If this Filter & Routing Asset is not sufficient because your requirements are based on more complex rules and potentially require additional information to determine what to filter and where to
-route, you can always use the [Javascript Flow Processor Asset](/docs/assets/processors-flow/asset-flow-javascript) to freely handle message filtering, routing, and whatever else you plan to do with
+route, you can always use the [Javascript Flow Processor Asset](../processors-flow/asset-flow-javascript) to freely handle message filtering, routing, and whatever else you plan to do with
 the message.
 
 

@@ -20,8 +20,8 @@ Defines the connection parameters for an FTP/SFTP endpoint.
 
 | Asset type | Link                                                |
 |------------|-----------------------------------------------------|
-| Source     | [FTP Source](/docs/assets/sources/asset-source-ftp) |
-| Sink       | [FTP Sink](/docs/assets/sinks/asset-sink-ftp)       |
+| Source     | [FTP Source](../sources/asset-source-ftp) |
+| Sink       | [FTP Sink](../sinks/asset-sink-ftp)       |
 
 ## Configuration
 
@@ -67,7 +67,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 * **`Accept only known hosts`** : Activate this, if you want to enable server validation.
   Ensuring the SSH server is validated is an important issue in SFTP.
   By activating this option, only those hosts which have been previously registered in Secret Management will be allowed.
-  You can define them [here](/docs/concept/advanced/secret-management#known-hosts-1).
+  You can define them [here](../../concept/advanced/secret-management#known-hosts-1).
 
 #### Authentication
 
@@ -84,11 +84,11 @@ For FTP/SFTP, layline.io supports a number of different authentication methods:
   If - for example - your password is `pass_${env:MYVAR}_word` and you do not want the term `${env:MYVAR}` to be interpreted as a macro and then replaced with the MYVAR environment variable, then tick
   this box to keep the raw string value.
 
-* **`User/Secret`** : Enter a `Username` and select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](/docs/assets/resources/asset-resource-secret) to
+* **`User/Secret`** : Enter a `Username` and select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](../resources/asset-resource-secret) to
   be
   able to assign it here.
 
-  Please [follow this link to "Advanced Concepts"](/docs/concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
+  Please [follow this link to "Advanced Concepts"](../../concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
 
 * **`Private Key`** : Authentication by public/private key. Enter a `Username` and enter the `Fingerprint` of this private key. You can either enter the value manually, or pick from a list of known
   fingerprints If the list is empty, then you need to first [create a private/public key pair] (/advanced/secret-management#concept) to be able to assign it here.
@@ -119,11 +119,11 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 
 ### Internal
 
-* [FTP Source](/docs/assets/sources/asset-source-ftp)
-* [FTP Sink](/docs/assets/sinks/asset-sink-ftp)
-* [Stream Input Processor](/docs/assets/processors-input/asset-input-stream)
-* [Stream Output Processor](/docs/assets/processors-output/asset-output-stream)
-* [Create and manage secrets](/docs/assets/resources/asset-resource-secret)
+* [FTP Source](../sources/asset-source-ftp)
+* [FTP Sink](../sinks/asset-sink-ftp)
+* [Stream Input Processor](../processors-input/asset-input-stream)
+* [Stream Output Processor](../processors-output/asset-output-stream)
+* [Create and manage secrets](../resources/asset-resource-secret)
 
 ---
 <WipDisclaimer></WipDisclaimer>

@@ -5,7 +5,7 @@ In this section you can define how the system should behave in case of such prob
 
 Four types of failures are observable:
 
-| # | Failure observables / Reaction                                                                                   | Ignore | Retry Event/Message | Retry Stream | Rollback Stream | 
+| # | Failure observables / Reaction                                                                                   | Ignore | Retry Event/Message | Retry Stream | Rollback Stream |
 |:--|------------------------------------------------------------------------------------------------------------------|:------:|:-------------------:|:------------:|:---------------:|
 | 1 | **`Stream start failure handling`**<br/>A problem occurred in this Asset when starting a new stream.             |   ✔    |          ✔          |      ✔       |        ✔        |
 | 2 | **`Stream end failure handling`**<br/>A problem occurred in this Asset when ending a stream.                     |   ✔    |          ✔          |      ✔       |        ✔        |
@@ -27,7 +27,7 @@ Rollback the complete stream. In the case of batch/file processing for example t
 :::warning
 A rollback signal will be issued to all participating Workflow Processors.
 Each Processor needs to ensure itself how to deal with a rollback.
-A Javascript Flow Processor, for example, which directly interacts with a database will have to react to a [rollback signal](/docs/language-reference/javascript/API/classes/JavaScriptProcessor#onrollback):
+A Javascript Flow Processor, for example, which directly interacts with a database will have to react to a [rollback signal](../../language-reference/javascript/API/classes/JavaScriptProcessor#onrollback):
 
 ```js title="Rollback example in Javascript"
    function onRollback() {
@@ -58,7 +58,7 @@ This option allows you to define how often and in what intervals the retries sho
 * **`Min. Backoff [ms]`**: Wait at least x milliseconds between each retry. For example "_12000_" (12 seconds).
 * **`Max. Backoff [ms]`**: Wait at max x milliseconds between each retry. For example "_150000_" (150 seconds).
 
-Based on these parameters, the system will try to balance the defined number of retries within the time boundaries of min. backoff and max. backoff.  
+Based on these parameters, the system will try to balance the defined number of retries within the time boundaries of min. backoff and max. backoff.
 Taken the example numbers from above, the five retries would happen in this timespan:
 
 ![Failure Retry Stream Handling](._failure-handling-flow_images/dd9ce7d7.png)
@@ -88,12 +88,12 @@ Sources are for example files, databases, or message queues.
 
 The settings for `Retry Event/Message` and `Retry Stream` only work for specific Source Types which a Workflow uses.
 These are:
-- [Email](/docs/assets/sources/asset-source-email)
-- [File](/docs/assets/sources/asset-source-file)
-- [FTP](/docs/assets/sources/asset-source-ftp)
-- [S3](/docs/assets/sources/asset-source-s3)
-- [SMB](/docs/assets/sources/asset-source-smb)
-- [WebDav](/docs/assets/sources/asset-source-webdav)
+- [Email](../sources/asset-source-email)
+- [File](../sources/asset-source-file)
+- [FTP](../sources/asset-source-ftp)
+- [S3](../sources/asset-source-s3)
+- [SMB](../sources/asset-source-smb)
+- [WebDav](../sources/asset-source-webdav)
 
 
 :::

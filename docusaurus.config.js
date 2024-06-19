@@ -49,7 +49,7 @@ const config = {
                     versions: {
                         current: {
                             label: '2.0.0',
-                            path: '2.0.0',
+                            // path: '2.0.0', // Do not add a path for the current version, it is the default. --> Helps with SEO.
                         }
                     }
                     // Please change this to your repo.
@@ -102,12 +102,12 @@ const config = {
                 links: [
                     {
                         title: 'Docs',
-                        items: [
-                            {
-                                label: 'Documentation',
-                                to: '/docs/index',
-                            },
-                        ],
+                        // items: [
+                        //     {
+                        //         label: 'Documentation',
+                        //         to: '../index',
+                        //     },
+                        // ],
                     },
                     {
                         title: 'layline.io',

@@ -3,7 +3,7 @@ Click `ADD CONDITION` to add your first condition.
 
 ![Conditions Add](._asset-conditions_images/6db418ff.png)
 
-You can then start entering conditions in [Quickscript](/docs/language-reference/quickscript) language:
+You can then start entering conditions in [Quickscript](../../language-reference/quickscript) language:
 
 ![Condition Quickscript](._asset-conditions_images/779187ab.png)
 

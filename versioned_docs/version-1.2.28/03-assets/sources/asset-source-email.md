@@ -11,9 +11,9 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
-import PollingAndProcessing from '/docs/snippets/assets/_asset-source-polling-and-processing.md';
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
 
 # Source Email
 
@@ -25,13 +25,13 @@ Defines the specific source parameters for an Email connected endpoint.
 
 | Asset type       | Link                                                                      |
 |------------------|---------------------------------------------------------------------------|
-| Input Processors | [Stream Input Message](/docs/assets/processors-input/asset-input-message) |
+| Input Processors | [Stream Input Message](../processors-input/asset-input-message) |
 
 ### Prerequisite
 
 You need:
 
-* [Email Connection](/docs/assets/connections/asset-connection-email)
+* [Email Connection](../connections/asset-connection-email)
 
 ## Configuration
 
@@ -60,11 +60,11 @@ Configure the parameters for your Email endpoint:
 
 ![Email Connection drop-down list](./.asset-source-email_images/1714733850284.png "Email Connection drop-down list")
 
-Use the drop-down list to select an [Email Connection](/docs/assets/connections/asset-connection-email) that should
+Use the drop-down list to select an [Email Connection](../connections/asset-connection-email) that should
 support this Email configuration. If it does not exist, you need to create it first.
 
 :::info
-Your [Email Connection](/docs/assets/connections/asset-connection-email) needs to have the following configured scope:
+Your [Email Connection](../connections/asset-connection-email) needs to have the following configured scope:
 * mail.readwrite
 :::
 
@@ -75,7 +75,7 @@ stream name for later identification during processing within a workflow:
 
 * **`Stream name`** : name to apply for the email workflow stream processing
 
-You need to ensure that the name is unique. As you can see from the example above, you can use [Macros](/docs/language-reference/macros) here.
+You need to ensure that the name is unique. As you can see from the example above, you can use [Macros](../../language-reference/macros) here.
 In the above case we chose to include several constants like `subject: ` / `from: ` / `received: ` etc. In addition, we included
 several classical email identification elements deducted from Macros to form the email stream name. Finally, the Audit trail for
 data processed through the configured Email source will look similar to a classical email inbox folder:
@@ -86,19 +86,19 @@ data processed through the configured Email source will look similar to a classi
 
 * **`Input folder`** : The directory to read emails from.
   The configured input folder must be accessible to the Reactive Engine trying to access the Email source.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Done folder`** : The directory to which emails are moved when fully processed. Leaving it empty, the emails will not be moved.
   The configured done folder must be accessible to the Reactive Engine trying to access the Email source.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Error folder`** : The directory to which emails are moved in case of a problem with the email during processing. Leaving it empty, the emails will not be moved.
   The configured error folder must be accessible to the Reactive Engine trying to access the Email source.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Ignore folder `** : The directory to which emails are moved in case they are configured to be ignored in the `Ignore emails` section (see next). Leaving it empty, the emails will not be moved.
   The configured ignore folder must be accessible to the Reactive Engine trying to access the Email source.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 A final configuration could look like this:
 

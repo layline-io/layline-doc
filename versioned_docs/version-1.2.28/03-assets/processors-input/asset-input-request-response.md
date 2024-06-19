@@ -8,9 +8,9 @@ tags:
   - http
 ---
 
-import FailureHandling from '/docs/snippets/assets/_failure-handling-input.md';
+import FailureHandling from '../../snippets/assets/_failure-handling-input.md';
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import OutputPorts from '/docs/snippets/assets/_output-ports-single.md';
+import OutputPorts from '../../snippets/assets/_output-ports-single.md';
 
 # Input Request-Response
 
@@ -27,8 +27,8 @@ This Asset is used within a Workflow definition.
 
 You need:
 
-* [Http-Format](/docs/assets/formats/asset-format-http)
-* [Http-Source](/docs/assets/sources/asset-source-http)
+* [Http-Format](../formats/asset-format-http)
+* [Http-Source](../sources/asset-source-http)
 
 ## Configuration
 
@@ -49,15 +49,15 @@ and then click to follow, if any.
 
 ### Format
 
-Assign a [Http-Format](/docs/assets/formats/asset-format-http) which you have previously defined.
-This Input-Asset will process the requests and responses which are defined in that assigned [Http-Format](/docs/assets/formats/asset-format-http).
+Assign a [Http-Format](../formats/asset-format-http) which you have previously defined.
+This Input-Asset will process the requests and responses which are defined in that assigned [Http-Format](../formats/asset-format-http).
 The format will be applied on the incoming data so that it can be accessed via the data dictionary.
 
 ![Format Assignment (Input Request-Response)](.asset-input-request-response_images/4a80984c.png)
 
 ### Source
 
-Assign a [Http-Source](/docs/assets/sources/asset-source-http).
+Assign a [Http-Source](../sources/asset-source-http).
 The Source defines the physical addresses and ports on how this Input Asset can be reached.
 
 ![Source Assignment (Input Request-Response)](.asset-input-request-response_images/11611cf6.png)

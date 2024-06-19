@@ -8,10 +8,10 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
-import PollingAndProcessing from '/docs/snippets/assets/_asset-source-polling-and-processing.md';
-import Directories from '/docs/snippets/assets/_asset-source-directories.md';
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
+import Directories from '../../snippets/assets/_asset-source-directories.md';
 
 # Source File System
 
@@ -23,7 +23,7 @@ Defines the specific source parameters for a File System connected endpoint.
 
 | Asset type       | Link                                                                       |
 |------------------|----------------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](/docs/assets/processors-input/asset-input-stream) |
+| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
 
 ### Prerequisite
 
@@ -54,8 +54,8 @@ None
 
 ### Internal
 
-* [Stream Input Processor](/docs/assets/processors-input/asset-input-stream)
-* [File System Sink](/docs/assets/sinks/asset-sink-file)
+* [Stream Input Processor](../processors-input/asset-input-stream)
+* [File System Sink](../sinks/asset-sink-file)
 
 ### External
 

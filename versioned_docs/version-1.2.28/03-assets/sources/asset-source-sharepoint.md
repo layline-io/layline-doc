@@ -8,10 +8,10 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
-import PollingAndProcessing from '/docs/snippets/assets/_asset-source-polling-and-processing.md';
-import Directories from '/docs/snippets/assets/_asset-source-directories.md';
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
+import Directories from '../../snippets/assets/_asset-source-directories.md';
 
 
 # Source SharePoint
@@ -24,13 +24,13 @@ Defines the specific source parameters for a SharePoint connected endpoint.
 
 | Asset type       | Link                                                                       |
 |------------------|----------------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](/docs/assets/processors-input/asset-input-stream) |
+| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
 
 ### Prerequisite
 
 You need:
 
-* [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph)
+* [MS Graph Connection](../connections/asset-connection-msgraph)
 
 ## Configuration
 
@@ -58,11 +58,11 @@ Configure the parameters for your SharePoint endpoint:
 
 ![MSGraph Connection drop-down list](./.asset-source-sharepoint_images/1714663912005.png "MSGraph Connection drop-down list")
 
-Use the drop-down list to select an [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph) that should
+Use the drop-down list to select an [MS Graph Connection](../connections/asset-connection-msgraph) that should
 support this SharePoint configuration. If it does not exist, you need to create it first.
 
 :::info
-Your [MS Graph Connection](/docs/assets/connections/asset-connection-msgraph) needs to have the following configured scope:
+Your [MS Graph Connection](../connections/asset-connection-msgraph) needs to have the following configured scope:
 * Sites.ReadWrite.All
 * Files.ReadWrite.All
 :::

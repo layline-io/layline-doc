@@ -9,10 +9,12 @@
 .cache-loader
 
 # Generated typedoc files
-# /04-language-reference/javascript/02-API/**
 /04-language-reference/javascript/02-API/**
 /docs/04-language-reference/javascript/02-API/_category_.yml
 /docs/04-language-reference/javascript/02-API/index.md
+/versioned_docs/version-1.2.28/04-language-reference/javascript/02-API/**
+/versioned_docs/version-1.2.28/04-language-reference/javascript/02-API/_category_.yml
+/versioned_docs/version-1.2.28/04-language-reference/javascript/02-API/index.md
 
 package-lock.json
 

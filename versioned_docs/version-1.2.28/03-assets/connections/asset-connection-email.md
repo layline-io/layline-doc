@@ -11,7 +11,7 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import CredentialType from '/docs/snippets/assets/_credential-type.md';
+import CredentialType from '../../snippets/assets/_credential-type.md';
 
 
 # Connection Email
@@ -24,8 +24,8 @@ Defines the connection parameters for an Email endpoint.
 
 | Asset type | Link                                                       |
 |------------|------------------------------------------------------------|
-| Source     | [Email Source](/docs/assets/sources/asset-source-email)    |
-| Service    | [Email Service](/docs/assets/services/asset-service-email) |
+| Source     | [Email Source](../sources/asset-source-email)    |
+| Service    | [Email Service](../services/asset-service-email) |
 
 ## Configuration
 
@@ -173,7 +173,7 @@ For settings please see [Microsoft Client Credential Flow](#microsoft-oauth-clie
 ---
 
 :::tip Fields marked with "**_macro supported_**"
-You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 :::
 
 ---

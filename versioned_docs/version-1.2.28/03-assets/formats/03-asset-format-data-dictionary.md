@@ -21,12 +21,12 @@ to define data formats of any kind.
 :::tip First: Read about the Data Dictionary concept
 If you are not familiar with the concept of the Data Dictionary in layline.io, please read about it first and then return here.
 
--> [Data Dictionary Concept](/docs/concept/data-dictionary)
+-> [Data Dictionary Concept](../../concept/data-dictionary)
 :::
 
 ## What is the purpose of the Data Dictionary Asset?
 
-As explained in the [Data Dictionary Concept](/docs/concept/data-dictionary), layline.io creates a global internal Data Dictionary based on all the data formats defined by you.
+As explained in the [Data Dictionary Concept](../../concept/data-dictionary), layline.io creates a global internal Data Dictionary based on all the data formats defined by you.
 There might be cases, however, where this is not enough, and where you want to store additional information alongside a message which traverses the system.
 
 Some examples:
@@ -52,11 +52,11 @@ Some examples:
 
 | Asset type      | Link                                                                      |
 |-----------------|---------------------------------------------------------------------------|
-| Formats         | [Generic Format](/docs/assets/formats/asset-format-generic)               |
-| Flow Processors | [Filter & Routing](/docs/assets/processors-flow/asset-flow-filterrouting) |
-|                 | [Javascript](/docs/assets/processors-flow/asset-flow-javascript)          |
-|                 | [Mapping](/docs/assets/processors-flow/asset-flow-mapping)                |
-|                 | [Stream Boundary](/docs/assets/processors-flow/asset-flow-streamboundary) |
+| Formats         | [Generic Format](../formats/asset-format-generic)               |
+| Flow Processors | [Filter & Routing](../processors-flow/asset-flow-filterrouting) |
+|                 | [Javascript](../processors-flow/asset-flow-javascript)          |
+|                 | [Mapping](../processors-flow/asset-flow-mapping)                |
+|                 | [Stream Boundary](../processors-flow/asset-flow-streamboundary) |
 
 ## Configuration
 
@@ -427,7 +427,7 @@ function onCar(detail) {
 ```
 
 :::tip Working with the Data Dictionary in Javascript
-To understand how to work with the Data Dictionary in Javascript, [check here](/docs/language-reference/javascript).
+To understand how to work with the Data Dictionary in Javascript, [check here](../../language-reference/javascript).
 :::
 
 ---

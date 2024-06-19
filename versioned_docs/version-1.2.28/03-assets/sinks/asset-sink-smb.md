@@ -8,8 +8,8 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 
 # Sink SMB
 
@@ -21,11 +21,11 @@ Defines the specific sink parameters for a SMB connected endpoint.
 
 | Asset type        | Link                                                                          |
 |-------------------|-------------------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](/docs/assets/processors-output/asset-output-stream) |
+| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
 
 You need:
 
-* [SMB Connection](/docs/assets/connections/asset-connection-smb)
+* [SMB Connection](../connections/asset-connection-smb)
 
 ## Configuration
 
@@ -47,13 +47,13 @@ Configure the parameters for your SMB endpoint:
 
 #### Connection
 
-Use the drop-down list to select an [SMB Connection](/docs/assets/connections/asset-connection-smb) that should
+Use the drop-down list to select an [SMB Connection](../connections/asset-connection-smb) that should
 support this SMB configuration. If it does not exist, you need to create it first.
 
 #### Share
 
 * **`Share`** : Configure your basic location information for your SMB endpoint.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 ### Directories
 
@@ -68,7 +68,7 @@ Underneath the configured basic location the SMB sink allows the definition of t
 
 * **`Output Directory`** : The directory to write output files to.
   The path of the directory must be accessible to the Reactive Engine trying to access the SharePoint Sink.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Output prefix`** : Prefix to add to the filename of the processed file when writing to the output directory.
   E.g. `out_` will add the `out_`-prefix to the beginning of the filename when written to the output directory.
@@ -105,7 +105,7 @@ Underneath the configured basic location the SMB sink allows the definition of t
   Should you encounter a temporary file in a temporary directory even though there is no current processing ongoing, then this is likely a residue from a crash which needs to be further investigated.
 
   The path of the directory must be accessible to the Reactive Engine trying to access the SharePoint Sink.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Temporary prefix`** : Prefix to add to the filename of the temporary file when writing to the temporary directory.
   E.g. `temp_` will add the `temp_`-prefix to the beginning of the filename when written to the output directory.

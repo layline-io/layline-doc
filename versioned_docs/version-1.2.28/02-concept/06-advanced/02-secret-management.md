@@ -148,7 +148,7 @@ currently responsible for the Key Storage. Under "_Keys_" **(5)** you will find 
 ![Creation of Key-Pairs on the Reactive Engine Cluster (Secret Management)](.02-secret-management_images/2021-11-12-11-48-09.png "Creation of Key-Pairs on the Reactive Engine Cluster (Secret Management)")
 
 The management of the key-pairs is exactly the same as with the key-pairs in the Configuration Server, except that it all happens on a Cluster. To learn how to create or import a key please refer
-to [here](/docs/concept/advanced/secret-management#creation-of-key-pairs-on-the-configuration-server).
+to [here](../advanced/secret-management#creation-of-key-pairs-on-the-configuration-server).
 
 #### Creation of Secrets
 
@@ -318,7 +318,7 @@ Depending on the communication counterpart, the counterpart may require you to p
 #### Importing an Identity Certificate (3)
 
 You have to import an Identity Certificate if you are using it anywhere in your Project.
-For example in a [Kafka Connection Asset](/docs/assets/connections/asset-connection-kafka).
+For example in a [Kafka Connection Asset](../../assets/connections/asset-connection-kafka).
 
 To use the identity, you need to first import it to layline.io. Click `IMPORT A CERTFICATE ...`. A dialog opens:
 
@@ -354,7 +354,7 @@ It can also be stored in the Configuration Server **to test** the connection at 
 #### Importing a Trusted Certificate (3)
 
 You have to import a Trusted Certificate if you are require it when connecting to another party.
-For example if you enable SSL in a [Kafka Connection Asset](/docs/assets/connections/asset-connection-kafka) and select "_Use truststore_".
+For example if you enable SSL in a [Kafka Connection Asset](../../assets/connections/asset-connection-kafka) and select "_Use truststore_".
 
 To import a trusted certificate click `IMPORT A CERTFICATE ...` (3). A dialog opens:
 

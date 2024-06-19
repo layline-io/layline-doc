@@ -22,7 +22,7 @@ What will be relevant is that something should happen, and the timer source make
 
 ## Used by
 
-* [Input Message](/docs/assets/processors-input/asset-input-message)
+* [Input Message](../processors-input/asset-input-message)
 
 ## Configuration
 
@@ -86,7 +86,7 @@ Select to create a timer triggered batch stream, if you want to
 
     1. **`Immediately`** : The batch is closed right after being opened. No payload is being sent.
        A `onStreamStart` event is sent through the system that can be reacted upon. You can - for example - have a `onStreamStart` even in a Javascript Processor to react to this.
-       Note that since no payload will be sent in this mode, there is no point to have a `onMessage` reaction in any of your scripts. You also do not require to set a [Timer](/docs/assets/sources/asset-source-timer#timers). It will never fire  because the stream will immediately terminate.
+       Note that since no payload will be sent in this mode, there is no point to have a `onMessage` reaction in any of your scripts. You also do not require to set a [Timer](../sources/asset-source-timer#timers). It will never fire  because the stream will immediately terminate.
 
        ![](.asset-source-timer_images/aa230924.png "Batch closing mode Immediately (Timer Source)")
 
@@ -189,7 +189,7 @@ The `FireTime` is the time when the timer was actually fired. This only applies 
 ## Related Topics
 
 ### Internal
-* [Input Message](/docs/assets/processors-input/asset-input-message)
+* [Input Message](../processors-input/asset-input-message)
 
 ### External
 * [Cron](https://en.wikipedia.org/wiki/Cron)

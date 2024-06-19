@@ -20,7 +20,7 @@ Define a service to interact as client towards UDP APIs.
 
 You need a Format:
 
-* [Format](/docs/assets/formats)
+* [Format](../formats)
 
 ## Configuration
 
@@ -45,7 +45,7 @@ Configure the connection parameters towards the UDP Service Server:
 * **`Timeout [ms]`**: Connection timeout in milliseconds. This is the time the client will wait for a connection to the UDP Service Server to be established.
 * **`Parallelism`**: number of requests to be handled at the same time.
 
-In here you can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+In here you can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 ### Default Formats
 

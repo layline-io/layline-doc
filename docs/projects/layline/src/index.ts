@@ -1,22 +1,22 @@
 
 // Classes
-import Connection from "./Classes/Connection";
-import DataDictionary from "./Classes/DataDictionary";
-import EntityDeclaration from "./Classes/EntityDeclaration";
-import JavaScriptProcessor from "./Classes/JavaScriptProcessor";
-import Message from "./Classes/Message";
-import MessageNode from "./Classes/MessageNode";
-import OutputPort from "./Classes/OutputPort";
-import PackedMessage from "./Classes/PackedMessage";
-import Processor from "./Classes/Processor";
-import {Service} from "./Classes/Service";
-import Status from "./Classes/Status";
-import Stream from "./Classes/Stream";
-import VendorInfo from "./Classes/VendorInfo";
+import Connection from "./classes/Connection";
+import DataDictionary from "./classes/DataDictionary";
+import EntityDeclaration from "./classes/EntityDeclaration";
+import JavaScriptProcessor from "./classes/JavaScriptProcessor";
+import Message from "./classes/Message";
+import MessageNode from "./classes/MessageNode";
+import OutputPort from "./classes/OutputPort";
+import PackedMessage from "./classes/PackedMessage";
+import Processor from "./classes/Processor";
+import {Service} from "./classes/Service";
+import Status from "./classes/Status";
+import Stream from "./classes/Stream";
+import VendorInfo from "./classes/VendorInfo";
 
 // Enums
-import JavaType from "./Enums/JavaType";
-import Severity from "./Enums/Severity";
+import JavaType from "./enumerations/JavaType";
+import Severity from "./enumerations/Severity";
 
 export {
     Connection,

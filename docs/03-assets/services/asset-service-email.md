@@ -7,9 +7,9 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import NameAndDescription from '/docs/snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '/docs/snippets/assets/_asset-required-roles.md';
-import Testcase from '/docs/snippets/assets/_asset-service-test.md';
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import Testcase from '../../snippets/assets/_asset-service-test.md';
 
 # Email Service
 
@@ -21,7 +21,7 @@ Define a service to interface with Email.
 
 ## Prerequisites
 
-For this to work, you need a configured [Email Connection](/docs/assets/connections/asset-connection-email).
+For this to work, you need a configured [Email Connection](../connections/asset-connection-email).
 
 ## Configuration
 
@@ -45,7 +45,7 @@ Configure the parameters for your Email Service:
 
 ![Email Connection drop-down list](./.asset-service-email_images/1714391942849.png "Email Connection drop-down list")
 
-Use the drop-down list to select a [Email Connection](/docs/assets/connections/asset-connection-email) that should
+Use the drop-down list to select a [Email Connection](../connections/asset-connection-email) that should
 support this Email Service. If it does not exist, you need to create it first.
 
 #### More Settings

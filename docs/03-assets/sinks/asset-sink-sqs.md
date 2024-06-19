@@ -21,15 +21,15 @@ This UI helps to define the outbound connection parameters for an AWS SQS sink.
 
 ### This Asset can be used by:
 
-| Asset type        | Link                                                                        |
-|-------------------|-----------------------------------------------------------------------------|
-| Output Processors | [Frame Output Processor](/docs/assets/processors-output/asset-output-frame) |
+| Asset type        | Link                                                              |
+|-------------------|-------------------------------------------------------------------|
+| Output Processors | [Frame Output Processor](../processors-output/asset-output-frame) |
 
 ### Prerequisite
 
 You need:
-* [AWS Connection](/docs/assets/connections/asset-connection-aws)
 
+* [AWS Connection](../connections/asset-connection-aws)
 
 ## Configuration
 
@@ -47,17 +47,17 @@ You need:
 
 ![AWS Connection (SQS Sink)](./.asset-sink-sqs_images/1715604361224.png "AWS Connection (SQS Sink)")
 
-Select the [AWS Connection](/docs/assets/connections/asset-connection-aws) to use with this Asset.
+Select the [AWS Connection](../connections/asset-connection-aws) to use with this Asset.
 If it does not exist, you need to create it first.
 
 ### Queues
 
 ![](./.asset-sink-sqs_images/1715608949285.png "Queue definitions / mapping (SQS Sink)")
 
-Once you picked a SQS Connection above the system will try to test the connection and 
+Once you picked a SQS Connection above the system will try to test the connection and
 show available queues within the drop-down list under `URL`.
 You can define a `Name` for each URL in here to reference those when guiding resp. routing messages towards SQS sink queues within the
-_**Frame Output Processor**_ configurations. More details can be found [here](/docs/assets/processors-output/asset-output-frame#sink-settings-for-sqs).
+_**Frame Output Processor**_ configurations. More details can be found [here](../processors-output/asset-output-frame#sink-settings-for-sqs).
 
 ---
 

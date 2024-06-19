@@ -3,9 +3,9 @@ title: Output Stream
 description: Output Stream Asset. Use this asset to output data to a stream, e.g. a file.
 ---
 
-import InputPorts from '/docs/snippets/assets/_input-ports-single.md';
+import InputPorts from '../../snippets/assets/_input-ports-single.md';
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import FailureHandling from '/docs/snippets/assets/_failure-handling-output.md';
+import FailureHandling from '../../snippets/assets/_failure-handling-output.md';
 
 # Output Stream
 
@@ -24,18 +24,18 @@ You need:
 
 **A defined Format**
 
-* [Formats](/docs/assets/formats)
+* [Formats](../formats)
 
 **A Stream Sink:**
 
-* [Sink File System](/docs/assets/sinks/asset-sink-file)
-* [Sink FTP](/docs/assets/sinks/asset-sink-ftp)
-* [Sink OneDrive](/docs/assets/sinks/asset-sink-onedrive)
-* [Sink S3](/docs/assets/sinks/asset-sink-s3)
-* [Sink Sharepoint](/docs/assets/sinks/asset-sink-sharepoint)
-* [Sink SMB](/docs/assets/sinks/asset-sink-smb)
-* [Sink WebDav](/docs/assets/sinks/asset-sink-webdav)
-* [Sink WebSocket](/docs/assets/sinks/asset-sink-websocket)
+* [Sink File System](../sinks/asset-sink-file)
+* [Sink FTP](../sinks/asset-sink-ftp)
+* [Sink OneDrive](../sinks/asset-sink-onedrive)
+* [Sink S3](../sinks/asset-sink-s3)
+* [Sink Sharepoint](../sinks/asset-sink-sharepoint)
+* [Sink SMB](../sinks/asset-sink-smb)
+* [Sink WebDav](../sinks/asset-sink-webdav)
+* [Sink WebSocket](../sinks/asset-sink-websocket)
 
 ### Name & Description
 

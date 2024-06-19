@@ -50,11 +50,11 @@ We will explain all of this in this document.
 
 | Asset type        | Link                                                                |
 |-------------------|---------------------------------------------------------------------|
-| Input Processors  | [Stream Input](/docs/assets/processors-input/asset-input-stream)    |
-|                   | [Frame Input](/docs/assets/processors-input/asset-input-frame)      |
-|                   | [Kafka Input](/docs/assets/processors-input/asset-input-kafka)      |
-| Output Processors | [Stream Output](/docs/assets/processors-output/asset-output-stream) |
-|                   | [Frame Output](/docs/assets/processors-output/asset-output-frame)   |
+| Input Processors  | [Stream Input](../processors-input/asset-input-stream)    |
+|                   | [Frame Input](../processors-input/asset-input-frame)      |
+|                   | [Kafka Input](../processors-input/asset-input-kafka)      |
+| Output Processors | [Stream Output](../processors-output/asset-output-stream) |
+|                   | [Frame Output](../processors-output/asset-output-frame)   |
 
 ## Configuration
 
@@ -1618,7 +1618,7 @@ The following action can be performed when a state should change:
 ##### Formula
 
 The `Formula` is based on layline.io's internal `QuickScript` language.
-Please check the [QuickScript Language Reference](/docs/language-reference/quickscript/quickscript) for more info.
+Please check the [QuickScript Language Reference](../../language-reference/quickscript/quickscript) for more info.
 
 **Used in:**
 
@@ -1771,14 +1771,14 @@ to set up your format!
 
 **Input Processors**
 
-* [Stream Input](/docs/assets/processors-input/asset-input-stream)
-* [Frame Input](/docs/assets/processors-input/asset-input-frame)
-* [Kafka Input](/docs/assets/processors-input/asset-input-kafka)
+* [Stream Input](../processors-input/asset-input-stream)
+* [Frame Input](../processors-input/asset-input-frame)
+* [Kafka Input](../processors-input/asset-input-kafka)
 
 **Output Processors**
 
-* [Stream Output](/docs/assets/processors-output/asset-output-stream)
-* [Frame Output Processor](/docs/assets/processors-output/asset-output-frame)
+* [Stream Output](../processors-output/asset-output-stream)
+* [Frame Output Processor](../processors-output/asset-output-frame)
 
 ### External
 

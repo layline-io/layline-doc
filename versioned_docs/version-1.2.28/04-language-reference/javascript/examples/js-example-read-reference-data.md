@@ -10,13 +10,13 @@ import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 ## Introduction
 
 A typical thing you would want to do in your script is to access external data sources for read and write.
-Access to such data sources/sinks is typically provided via [Services](/docs/assets/services/asset-service-introduction)
+Access to such data sources/sinks is typically provided via [Services](../../../assets/services/asset-service-introduction)
 which can be accessed from within your script.
 We will show you an example on how this works in principle, which can then be used with any type of service.
 
 ## Defining a Service
 
-layline.io provides the feature of [Service Assets](/docs/assets/services/asset-service-introduction) in order to
+layline.io provides the feature of [Service Assets](../../../assets/services/asset-service-introduction) in order to
 transparently access external data sources/sinks. Please refer to that part of the documentation on how Services in
 layline.io work and how to set them up.
 
@@ -29,7 +29,7 @@ Example outline:
 * Using the Service within
 
 To learn how to create a JDBC Service please refer
-to [Service JDBC](/docs/assets/services/asset-service-jdbc#link-enrichcustomer-processor-to-jdbc-service).
+to [Service JDBC](../../../assets/services/asset-service-jdbc#link-enrichcustomer-processor-to-jdbc-service).
 
 ### Service Configuration
 
@@ -107,7 +107,7 @@ function getCallTypeNameById(callType) {
 ```
 
 :::note: Service functions return a Message
-Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message) as a result
+Note how the Service function returns a [Message](../API/classes/Message) as a result
 type.
 
 Since SQL-queries always return arrays, you can find the results in `message.data` as an array. If we are only expecting
@@ -253,8 +253,8 @@ Make sure you always do `connection = null` after use of your connection, in ord
 
 These examples should explain how to use Services in principle. Small differences may apply based on the type of Service
 you are using.
-There is for example a difference between [Service Aerospike](/docs/assets/services/asset-service-aerospike)
-and [Service JDBC](/docs/assets/services/asset-service-jdbc#link-enrichcustomer-processor-to-jdbc-service).
+There is for example a difference between [Service Aerospike](../../../assets/services/asset-service-aerospike)
+and [Service JDBC](../../../assets/services/asset-service-jdbc#link-enrichcustomer-processor-to-jdbc-service).
 For details on how to use the individual service please refer to the respective Service documentation.
 
 ---

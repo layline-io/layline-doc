@@ -14,7 +14,7 @@ By using Folders TBD.
 
 * **`Input Directory`** : The directory to read files from.
   The path of the directory must be accessible to the Reactive Engine trying to access this Source.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Filter regular expression`** : Regular expression to filter which files in the directory are pulled.
 
@@ -37,7 +37,7 @@ By using Folders TBD.
 
 * **`Done Directory`** : The directory to which files are moved when fully processed.
   The path of the directory must be accessible to the Reactive Engine trying to access this Source.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Done prefix`** : Prefix to add to the filename of the processed file after move to the done directory.
   E.g. `done_` will add the `done_`-prefix to the beginning of the filename when moved to the done directory.
@@ -61,7 +61,7 @@ By using Folders TBD.
 
 * **`Error Directory`** : The directory to which files are moved in case of a problem with the file during processing.
   The path of the directory must be accessible to the Reactive Engine trying to access this Source.
-  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Error prefix`** : Prefix to add to the filename of the processed file after move to the error directory.
   E.g. `error_` will add the `error_`-prefix to the beginning of the filename when moved to the error directory.

@@ -13,7 +13,7 @@ Only one Cluster can be managed at a time. Which cluster you work with, is deter
 ![](.01-introduction-images/2021-11-04-12-10-13.png "Cluster architecture (Operations --> ")
 
 
-The setup of Clusters available for selection can only be done in an open Project under [Project --> Deployments](/docs/concept/wf-config/deployment#creating-a-cluster-asset). It is possible to either define 
+The setup of Clusters available for selection can only be done in an open Project under [Project --> Deployments](../wf-config/deployment#creating-a-cluster-asset). It is possible to either define 
 
 1. Project dependent Clusters **(1)**: Clusters which are part of a Project and only available when the Project is opened.
 2. Global Clusters **(2)**: These Clusters are also available for selection when no Project is opened.

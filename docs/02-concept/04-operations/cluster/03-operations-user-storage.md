@@ -23,7 +23,7 @@ The concept of Users and Roles should be familiar to most:
 - Privileges are different between Configuration Server and Reactive Engine Cluster
 
 The following chapters describe the setup of users, roles, and privileges for a **Reactive Engine Cluster**.
-If you want to set up users, roles, and privileges for a Configuration Server, you can check how to do so [here](/docs/concept/settings/settings-user-storage)
+If you want to set up users, roles, and privileges for a Configuration Server, you can check how to do so [here](../../settings/settings-user-storage)
 
 ## Users and Roles on the Configuration Server
 

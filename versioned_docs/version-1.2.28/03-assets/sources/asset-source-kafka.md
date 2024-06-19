@@ -19,13 +19,13 @@ Defines the inbound connection parameters for a Kafka Source.
 
 | Asset type       | Link                                                                     |
 |------------------|--------------------------------------------------------------------------|
-| Input Processors | [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka) |
+| Input Processors | [Kafka Input Processor](../processors-input/asset-input-kafka) |
 
 ### Prerequisite
 
 You need:
 
-* [Kafka Connection](/docs/assets/connections/asset-connection-kafka)
+* [Kafka Connection](../connections/asset-connection-kafka)
 
 ## Configuration
 
@@ -51,7 +51,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ![](.asset-source-kafka-images/a44e1dd8.png "Kafka Connection (Kafka Source Asset)")
 
-Select the [Kafka Connection](/docs/assets/connections/asset-connection-kafka) to use with this Asset.
+Select the [Kafka Connection](../connections/asset-connection-kafka) to use with this Asset.
 If it does not exist, you need to create it first.
 
 #### Additional Kafka Properties
@@ -79,10 +79,10 @@ Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** and **`Group Id`*
 
 ### Internal
 
-* [Kafka Input Processor](/docs/assets/processors-input/asset-input-kafka)
-* [Frame Output Processor](/docs/assets/processors-output/asset-output-frame)
-* [Kafka Sink](/docs/assets/sinks/asset-sink-kafka)
-* [Kafka Connection](/docs/assets/connections/asset-connection-kafka)
+* [Kafka Input Processor](../processors-input/asset-input-kafka)
+* [Frame Output Processor](../processors-output/asset-output-frame)
+* [Kafka Sink](../sinks/asset-sink-kafka)
+* [Kafka Connection](../connections/asset-connection-kafka)
 
 ### External
 

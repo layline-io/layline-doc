@@ -7,9 +7,9 @@ tags:
   - UDP
 ---
 
-import FailureHandling from '/docs/snippets/assets/_failure-handling-input.md';
+import FailureHandling from '../../snippets/assets/_failure-handling-input.md';
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import OutputPorts from '/docs/snippets/assets/_output-ports-single.md';
+import OutputPorts from '../../snippets/assets/_output-ports-single.md';
 
 # Input Frame
 
@@ -28,9 +28,9 @@ This Asset is used within a Workflow definition.
 ### Prerequisite
 
 You need:
-* [SQS Source](/docs/assets/sources/asset-source-sqs), or
-* [UDP Source](/docs/assets/sources/asset-source-udp)
-* [Format](/docs/assets/formats)
+* [SQS Source](../sources/asset-source-sqs), or
+* [UDP Source](../sources/asset-source-udp)
+* [Format](../formats)
 
 ## Configuration
 

@@ -138,7 +138,7 @@ Instead of deploying directly to Cluster, you may want to deploy to a File inste
 
 To deploy to a file select `Write to File` **(1)** from the "_Deploy to Cluster_" box. Enter the name of the file where to store the Deployment file **(2)**. 
 
-The Deployment will be stored in a JSON-file which can be used for [upload in a Cluster](/docs/concept/operations/cluster/cluster#deploy-from-file).
+The Deployment will be stored in a JSON-file which can be used for [upload in a Cluster](../operations/cluster/cluster#deploy-from-file).
 
 If your browser is set to download files to a specific folder always (e.g. to the Downloads folder on your machine, which is the default in most browsers), then you can find it there.
 Should your browser settings be such that you are asked where to store the file, then you can select the location yourself.

@@ -96,7 +96,7 @@ In our example, we are using a simple CSV data format which is used for both tra
 
 #### 2. Create the AI Model Resource
 
-The [AI Model Resource](/docs/assets/resources/asset-resource-ai-model) is used to define the technical details of the AI model.
+The [AI Model Resource](../../assets/resources/asset-resource-ai-model) is used to define the technical details of the AI model.
 You should create this resource before you start creating the Workflow.
 
 ![AI Model Resource](./.03-artificial-intelligence_images/1707319453946.png "AI Model Resource")
@@ -112,12 +112,12 @@ An example of the attributes could be:
 ![AI model Attributes](./.03-artificial-intelligence_images/1707380780508.png)
 
 In this example you can see the defined classification attribute (our example named 'Class'(1)), as well as all the attributes which are used to train the model (2).
-In subsequent steps, this Resource is then used by the [AI Training Asset](/docs/assets/processors-flow/asset-flow-ai-trainer) to train the model and then
-the [AI Classifier Asset](/docs/assets/processors-flow/asset-flow-ai-classifier) to use the model to infer the results.
+In subsequent steps, this Resource is then used by the [AI Training Asset](../../assets/processors-flow/asset-flow-ai-trainer) to train the model and then
+the [AI Classifier Asset](../../assets/processors-flow/asset-flow-ai-classifier) to use the model to infer the results.
 
 #### 3. Create an AI Trainer Asset
 
-Next, you create an [AI Training Asset](/docs/assets/processors-flow/asset-flow-ai-trainer) (1).
+Next, you create an [AI Training Asset](../../assets/processors-flow/asset-flow-ai-trainer) (1).
 This Asset is then used within a Workflow to train the AI model based on the training data and the AI Model Resource.
 
 ![AI Trainer Asset](./.03-artificial-intelligence_images/1707393993476.png "AI Trainer Asset")
@@ -130,7 +130,7 @@ All attributes defined in the AI Model Resource are mapped to the actual data fo
 
 #### 4. Create an AI Classification Asset
 
-Next to the AI Trainer Asset, you create an [AI Classification Asset](/docs/assets/processors-flow/asset-flow-ai-classifier) (1).
+Next to the AI Trainer Asset, you create an [AI Classification Asset](../../assets/processors-flow/asset-flow-ai-classifier) (1).
 This Asset is then used within a Workflow to infer the results based on the input and the AI model.
 The setup is very similar to that of the AI Trainer Asset.
 
@@ -154,7 +154,7 @@ Now that we have the AI Model Resource and the AI Training Asset, we can create 
 
 ![Training Workflow](./.03-artificial-intelligence_images/1705930468563.png "Training Workflow")
 
-At the center of the Workflow is an [AI Training Processor](/docs/assets/processors-flow/asset-flow-ai-trainer) which uses the previously configured AI Training Asset to train the AI model based on
+At the center of the Workflow is an [AI Training Processor](../../assets/processors-flow/asset-flow-ai-trainer) which uses the previously configured AI Training Asset to train the AI model based on
 the training data.
 
 When data passes through it, the AI Training Asset will train the AI model based on the training data and the AI Model Resource.
@@ -162,8 +162,8 @@ It therefore is the link between the AI Model Resource Asset and the training da
 
 The result is a trained AI model that can be used in a production Workflow in which data needs to be inferred from the input and the model.
 
-At the center of the Workflow is an [AI Training Processor](/docs/assets/processors-flow/asset-flow-ai-trainer) which is used to train the AI model.
-Based on the incoming training data, the AI Training Asset will train the AI model and store it in the [AI Model Storage](/docs/concept/operations/cluster/cluster#ai-storage).
+At the center of the Workflow is an [AI Training Processor](../../assets/processors-flow/asset-flow-ai-trainer) which is used to train the AI model.
+Based on the incoming training data, the AI Training Asset will train the AI model and store it in the [AI Model Storage](../operations/cluster/cluster#ai-storage).
 
 ![AI Storage](./.03-artificial-intelligence_images/1707397322308.png "AI Storage")
 
@@ -171,7 +171,7 @@ Each time the Workflow is executed, the AI Training Asset will train the AI mode
 This is useful if you want to retrain your AI model based on new training data but retain previous training versions.
 A new version of the model will be stored in the AI Model Storage each time you train it.
 
-Alternatively, you can also use the [AI Model Storage](/docs/concept/operations/cluster/cluster#ai-storage) to import and store a model that was trained outside layline.io.
+Alternatively, you can also use the [AI Model Storage](../operations/cluster/cluster#ai-storage) to import and store a model that was trained outside layline.io.
 Once imported, you can use that model to infer data in a production Workflow.
 
 #### 6. Create a Production Workflow
@@ -180,9 +180,9 @@ To use the trained model, you create a production Workflow in which you want to 
 
 ![](./.03-artificial-intelligence_images/1705935241883.png "AI Production Workflow")
 
-At the center of the Workflow is an [AI Classifier Processor](/docs/assets/processors-flow/asset-flow-ai-classifier) which we previously created to infer data based on the input and the referenced AI
+At the center of the Workflow is an [AI Classifier Processor](../../assets/processors-flow/asset-flow-ai-classifier) which we previously created to infer data based on the input and the referenced AI
 model.
-The AI Classifier Processor will load the AI model from the [AI Model Storage](/docs/concept/operations/cluster/cluster#ai-storage) and use it to come up with the data based on the input parameters.
+The AI Classifier Processor will load the AI model from the [AI Model Storage](../operations/cluster/cluster#ai-storage) and use it to come up with the data based on the input parameters.
 
 The output which is generated by this Workflow will hold the classified data.
 
@@ -201,8 +201,8 @@ The inferred data can then be used to do something else, either within the Workf
 #### One more thing: AI Service
 
 In addition to this,
-you can also define an [AI Service](/docs/assets/services/asset-service-ai)
-which you can use to access the AI Model Store within a [Javascript Asset](/docs/assets/processors-flow/asset-flow-javascript).
+you can also define an [AI Service](../../assets/services/asset-service-ai)
+which you can use to access the AI Model Store within a [Javascript Asset](../../assets/processors-flow/asset-flow-javascript).
 
 ![](./.03-artificial-intelligence_images/1705936929043.png)
 
@@ -210,11 +210,11 @@ The Service provides a number of functions which allow you to train the model an
 
 ## Further resources
 
-* [AI Model Resource](/docs/assets/resources/asset-resource-ai-model)
-* [AI Training Asset](/docs/assets/processors-flow/asset-flow-ai-trainer)
-* [AI Classifier Asset](/docs/assets/processors-flow/asset-flow-ai-classifier)
-* [AI Service](/docs/assets/services/asset-service-ai)
-* [AI Model Storage](/docs/concept/operations/cluster/cluster#ai-storage)
+* [AI Model Resource](../../assets/resources/asset-resource-ai-model)
+* [AI Training Asset](../../assets/processors-flow/asset-flow-ai-trainer)
+* [AI Classifier Asset](../../assets/processors-flow/asset-flow-ai-classifier)
+* [AI Service](../../assets/services/asset-service-ai)
+* [AI Model Storage](../operations/cluster/cluster#ai-storage)
 
 ---
 

@@ -5,7 +5,7 @@ tags:
   - devnull
 ---
 
-import InputPorts from '/docs/snippets/assets/_input-ports.md';
+import InputPorts from '../../snippets/assets/_input-ports.md';
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 # Output Stream

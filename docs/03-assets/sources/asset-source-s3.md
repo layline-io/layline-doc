@@ -23,13 +23,13 @@ This UI helps to define the specific bucket and folder source of an S3 connected
 
 | Asset type       | Link                                                                       |
 |------------------|----------------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](/docs/assets/processors-input/asset-input-stream) |
+| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
 
 
 ## Prerequisite
 
 You need:
-* [AWS Connection](/docs/assets/connections/asset-connection-aws)
+* [AWS Connection](../connections/asset-connection-aws)
 
 ## Configuration
 
@@ -97,7 +97,7 @@ Pick one of the following self-explanatory settings:
 
 ![](.asset-source-s3-images/3e8a642a.png "AWS Connection (S3 Source)")
 
-Select the previously configured [AWS Connection](/docs/assets/connections/asset-connection-aws) to use for this Source.
+Select the previously configured [AWS Connection](../connections/asset-connection-aws) to use for this Source.
 
 ### S3 Bucket
 
@@ -130,8 +130,8 @@ This usually helps to resolve the issue.
 ## Related Topics
 
 ### Internal
-* [S3 Connection](/docs/assets/connections/asset-connection-aws)
-* [S3 Sink](/docs/assets/sinks/asset-sink-s3)
+* [S3 Connection](../connections/asset-connection-aws)
+* [S3 Sink](../sinks/asset-sink-s3)
 
 ### External
 * [Cron on Wikipedia](https://en.wikipedia.org/wiki/Cron)

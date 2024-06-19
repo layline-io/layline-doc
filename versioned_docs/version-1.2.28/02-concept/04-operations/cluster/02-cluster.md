@@ -65,7 +65,7 @@ There are two tabs "_**Deployments**_" **(1)** and "**Node Assignments**" **(2)*
 ##### Deployments Tab
 
 The _Deployments_ Tab gives you a tree view of the Deployments **(3)** which are known to the Cluster and also persisted thereon. 
-We have explained earlier [how the Deployments are sent to a Cluster](/docs/concept/wf-config/deployment#deploy-to-cluster).
+We have explained earlier [how the Deployments are sent to a Cluster](../../wf-config/deployment#deploy-to-cluster).
 
 One of the Deployments is set to "_Default_" **(4)**, which means this would be the Deployment which the Cluster is executing if nothing else has been configured.  "_DeploymentRoot_" has a special role in that it marks an empty Deployment. If this is set to "_Default_" then the Cluster is not executing at all (no Workflows).
 
@@ -127,7 +127,7 @@ You can only delete Deployments which are not active. It is also not possible to
 
 #### Deploy from File
 
-As explained [here](/docs/concept/wf-config/deployment#deploy-to-file) a Deployment can be written to a file. To install this Deployment on the Cluster you can select `Upload Deployments` **(1)**:
+As explained [here](../../wf-config/deployment#deploy-to-file) a Deployment can be written to a file. To install this Deployment on the Cluster you can select `Upload Deployments` **(1)**:
 
 ![](.02-cluster_images/2021-11-04-15-59-59.png "Deploy from File (Operations --> Cluster)")
 
@@ -306,7 +306,7 @@ The "_**AI Storage**_" is a process (Controller) which manages AI models.
 
 ### User Storage
 
-To learn how to manage Users, Roles and permissions within layline.io, please check [User Storage](/docs/concept/operations/cluster/operations-user-storage) for user management on the cluster, or .
+To learn how to manage Users, Roles and permissions within layline.io, please check [User Storage](operations-user-storage) for user management on the cluster, or .
 
 ### Security Storage
 
@@ -315,7 +315,7 @@ These Secrets can be very sensitive in nature. But when working with such Secret
 especially in Software and Configuration Projects where Secrets may end up in clear text more often than not, for lack of better mechanisms. 
 
 To learn how to manage secrets resp. security within layline.io, 
-please check [Security Storage](/docs/concept/operations/cluster/operations-secret-storage) for security management on the cluster.
+please check [Security Storage](operations-secret-storage) for security management on the cluster.
 
 ### Stream Monitor
 

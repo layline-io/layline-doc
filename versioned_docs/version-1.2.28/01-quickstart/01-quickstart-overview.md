@@ -41,16 +41,16 @@ Internet Explorer is not supported.
 
 We provide two quick options on how you can quickly get started with layline.io:
 
-| # | Option                                                       | Advantage                                                                                    | Disadvantage                                                          |
-|---|--------------------------------------------------------------|----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| 1 | [Full local installation](/docs/quickstart/install-local)    | * Complete setup<br />* Persistent state<br />* Run multiple different versions side-by-side | * No pre-installed sample Projects (but you can import them yourself) |
-| 2 | [Ready-to-run Docker image](/docs/quickstart/install-docker) | * No need to run an installer<br />* Pre-installed sample Projects<br />* Non-intrusive      | * Requires Docker<br />* Does not persist state or data on shutdown   |
+| # | Option                                                     | Advantage                                                                                    | Disadvantage                                                          |
+|---|------------------------------------------------------------|----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| 1 | [Full local installation](install-local)    | * Complete setup<br />* Persistent state<br />* Run multiple different versions side-by-side | * No pre-installed sample Projects (but you can import them yourself) |
+| 2 | [Ready-to-run Docker image](install-docker) | * No need to run an installer<br />* Pre-installed sample Projects<br />* Non-intrusive      | * Requires Docker<br />* Does not persist state or data on shutdown   |
 
 Pick either of the two links in the table. If you do not have [Docker](https://docs.docker.com/get-docker/) installed, or don't know what it is, then you should pick *Full local installation*.
 
 ### Running layline.io
 
-When doing a *Full local installation*, the documentation describes how to then [start and run](/docs/quickstart/install-local#starting-everything) layline.io.
+When doing a *Full local installation*, the documentation describes how to then [start and run](install-local#starting-everything) layline.io.
 
 When running the Docker image, then all parts of layline.io are automatically started for you and you don't have to do anything to start it.
 

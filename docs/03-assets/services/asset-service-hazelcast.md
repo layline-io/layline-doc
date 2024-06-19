@@ -130,9 +130,9 @@ When defining a Collection, layline.io automatically creates four different func
 
 | **Function** | **Signature**                                                                                                    | Returns                                                                             | **Description**                  | **Example**                                                                                                  |
 |--------------|------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|----------------------------------|--------------------------------------------------------------------------------------------------------------|
-| Read         | `services.<Logical Service Name>.Read<Collection>(key)`                                                          | [Message](/docs/language-reference/javascript/API/classes/Message) or null if nothing found   | Read data from the Collection.   | `services.MyHazelcastService.ReadCustomer(customer_id)`                                                      |
+| Read         | `services.<Logical Service Name>.Read<Collection>(key)`                                                          | [Message](../../language-reference/javascript/API/classes/Message) or null if nothing found   | Read data from the Collection.   | `services.MyHazelcastService.ReadCustomer(customer_id)`                                                      |
 | Write        | `services.<Logical Service Name>.Write<Collection>({Key: key, Value: {property1:value, property2: value, ...}})` | null                                                                                | Write data to the Collection.    | `services.MyHazelcastService.WriteCustomer({Key: customer_id, Value: {Name: 'John', Address: 'MyAddress'}})` |
-| Delete       | `services.<Logical Service Name>.Delete<Collection>(key)`                                                        | [Message](/docs/language-reference/javascript/API/classes/Message) or null if nothing deleted | Delete data from the Collection. | `services.MyHazelcastService.DeleteCustomer(customer_id)`                                                    |
+| Delete       | `services.<Logical Service Name>.Delete<Collection>(key)`                                                        | [Message](../../language-reference/javascript/API/classes/Message) or null if nothing deleted | Delete data from the Collection. | `services.MyHazelcastService.DeleteCustomer(customer_id)`                                                    |
 | Size         | `services.<Logical Service Name>.Size<Collection>(key)`                                                          | Number                                                                              | Get the size of the Collection.  | `services.MyHazelcastService.SizeCustomer()`                                                                 |
 
 As you can tell, a Collection name is simply prepended by `Read`, `Write`, and `Size` for the respective functionality.
@@ -289,7 +289,7 @@ if (hazelcastData && hazelcastData.data.length > 0) {
 ```
 
 :::tip Note: Service functions return a Message
-Note how the Service function returns a [Message](/docs/language-reference/javascript/API/classes/Message) as a result
+Note how the Service function returns a [Message](../../language-reference/javascript/API/classes/Message) as a result
 type.
 
 You can find the results in `message.data` as an array.

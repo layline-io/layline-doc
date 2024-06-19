@@ -2,8 +2,8 @@
 
 layline.io's primitive data types are based on Java's primitve data types. This is important to understand when working with data within layline.io
 This is for example both relevant when
-* defining data formats (e.g. [Generic Formats](/docs/assets/formats/asset-format-generic))
-* working with Javascript in the contet of the [Javascript Flow Processor](/docs/assets/processors-flow/asset-flow-javascript)
+* defining data formats (e.g. [Generic Formats]../../../../assets/formats/asset-format-generic))
+* working with Javascript in the contet of the [Javascript Flow Processor](../../../../assets/processors-flow/asset-flow-javascript)
 
 This enumeration definition is simply to provide a map from layline.io's data types to the respective Java primitive data types.
 

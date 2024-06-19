@@ -22,13 +22,13 @@ Defines the specific bucket and folder source of a FTP connected endpoint.
 
 | Asset type       | Link                                                                       |
 |------------------|----------------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](/docs/assets/processors-input/asset-input-stream) |
+| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
 
 ### Prerequisite
 
 You need:
 
-* [FTP Connection](/docs/assets/connections/asset-connection-ftp)
+* [FTP Connection](../connections/asset-connection-ftp)
 
 ## Configuration
 
@@ -58,7 +58,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ![](.asset-source-ftp_images/df31d8ca.png "FTP Connection (FTP Source)")
 
-Select the previously configured [FTP Connection](/docs/assets/connections/asset-connection-ftp) to use for this Source.
+Select the previously configured [FTP Connection](../connections/asset-connection-ftp) to use for this Source.
 
 ### Directories
 
@@ -68,8 +68,8 @@ Select the previously configured [FTP Connection](/docs/assets/connections/asset
 
 ### Internal
 
-* [FTP Connection](/docs/assets/connections/asset-connection-ftp)
-* [FTP Sink](/docs/assets/sinks/asset-sink-ftp)
+* [FTP Connection](../connections/asset-connection-ftp)
+* [FTP Sink](../sinks/asset-sink-ftp)
 
 ### External
 
