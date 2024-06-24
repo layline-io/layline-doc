@@ -4,8 +4,8 @@ import useCurrentVersion from '../hooks/useCurrentVersion';
 
 const VersionedLink = ({ to, children }) => {
     const currentVersion = useCurrentVersion();
-    console.log('currentVersion:', currentVersion);
-    console.log('path:', currentVersion.activeVersion.path);
+    // console.log('currentVersion:', currentVersion);
+    // console.log('path:', currentVersion.activeVersion.path);
 
 
     let targetPath = to;
