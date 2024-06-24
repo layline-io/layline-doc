@@ -40,7 +40,7 @@ None
 
 ### Binding
 
-![Binding settings (UDP Source)](./.asset-source-udp_images/1717601447614.png "Binding settings (UDP Source)")
+![Binding settings (UDP Source)](./.asset-source-udp_images/1719241084571.png "Binding settings (UDP Source)")
 
 * **`Bind host`** : interface address under which your UDP Server should be reachable.
 * **`Bind port`** : the Port to communicate with your interface address.
