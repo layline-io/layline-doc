@@ -142,7 +142,9 @@ const config = {
                 appId: '6XU9IX6WDZ',
 
                 // Public API key: it is safe to commit it
-                apiKey: 'e386b391287602844466168503c03beb',
+                // apiKey: 'e386b391287602844466168503c03beb',
+                // apiKey: '508db3c82c63490b0b70d9b7031ddca5',
+                apiKey: '2836105fd83c5775e75624ca0b740160',
 
                 indexName: 'layline',
 
