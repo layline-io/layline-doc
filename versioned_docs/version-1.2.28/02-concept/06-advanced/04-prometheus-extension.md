@@ -86,7 +86,7 @@ Choosing this option allows to decide per Engine Configuration whether metrics e
 More Details on Workflow Deployment can be found [here](../wf-config/deployment).
 
 The next reactive cluster activation of the deployment will generate metrics that can be accessed resp. 
-exported through the url: ` http://localhost:5842>/engine/prometheus` 
+exported through the url: `http://localhost:5842/engine/prometheus` 
 (pls. exchange *localhost* and *port* information according to individual setup). 
 You can view the exported information in your web browser, and it will look something like this:
 

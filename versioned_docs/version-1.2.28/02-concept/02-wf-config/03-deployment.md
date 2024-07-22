@@ -40,7 +40,7 @@ We create a Cluster in the Project:
 
 ![](.deployment-images/2021-11-01-09-48-58.png "Create a Cluster (Workflow Deployment)")
 
-Our Cluster consists of one Node ("_http://localhost:5842_") which is the one Reactive Engine running on our local machine.
+Our Cluster consists of one Node (`http://localhost:5842`) which is the one Reactive Engine running on our local machine.
 
 **When do we define many Nodes here?**
 We define many Nodes when
