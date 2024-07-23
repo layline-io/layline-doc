@@ -32,18 +32,16 @@ On this page we will explain how to use Javascript with the Javascript Asset.
 
 ## Scope of Javascript language
 
-layline.io embeds the popular Nashorn engine in order to facilitate Javascript scripting.
+layline.io embeds GraalVM using the Context API in order to facilitate Javascript scripting.
 
-The Nashorn engine is an implementation of
-the [ECMAScript Edition 5.1 Language Specification](https://262.ecma-international.org/5.1/).
-It also implements many new features introduced in ECMAScript 6 including template strings; let, const, and block scope;
-iterators and for..of loops; Map, Set, WeakMap, and WeakSet data types; symbols; and binary and octal literals.
+The GraalVM engine is an implementation of the ECMAScript Language Specification.
+For further details and background visit this [page](https://github.com/oracle/graaljs/blob/master/docs/user/JavaScriptCompatibility.md).
 
-The Nashorn engine is included in the Java SE Development Kit (JDK).
-If you want to get familiar with this Javascript engine outside of layline.io, you can use
-the [jjs](https://docs.oracle.com/javase/10/tools/jjs.htm#JSWOR-GUID-0F3625BB-9E0E-46C3-8FF1-CEFDD91EDF85)
-or [jrunscript](https://docs.oracle.com/javase/10/tools/jrunscript.htm#JSWOR750) tool to start getting familiar with
-Javascript.
+_Limitations_: Using the Context API there might be limitations in using Javascript which can be found [here](https://www.graalvm.org/latest/reference-manual/js/Modules/).
+
+
+If you want to get familiar with Javascript outside of layline.io, there are websites for Javascript tutorials available, like for instance
+[W3Schools.com](https://www.w3schools.com/js/default.asp), to start getting familiar with Javascript.
 
 ## How it works - Lifecycle Hooks
 
@@ -54,7 +52,7 @@ Since layline.io is a reactive system, a Javascript Asset receiving a message au
 message with the underlying script you provided.
 One of the key methods here is [onMessage](./API/classes/JavaScriptProcessor#onmessage):
 
-![](.01-javascript_introduction_images/0af63f8c.png)
+![](./.01-javascript_introduction_images/1721660465706.png)
 
 Just like `onMessage` is a _hook_, the Javascript Asset provides a number of additional hooks which are automatically
 invoked as part of a Javascript Asset's lifecycle.
@@ -103,12 +101,12 @@ let connection = null;
 
 **2. onInit()**
 
-layline.io then automatically invokes the `onInit()` method.
+layline.io then automatically invokes the [onInit()](./API/classes/JavaScriptProcessor#oninit) method.
 This is a more contained area to perform initializations:
 
 ```js
 // Example
-function onInit() {
+export function onInit() {
     connection = services.MyDBService.openConnection();
     // etc ...
 }
@@ -117,7 +115,17 @@ function onInit() {
 **3. onStreamStart()**
 
 When a Workflow starts processing a Stream, a Workflow-wide Stream-start event is issued.
-You can hook on to this event using the [onInit()](./API/classes/JavaScriptProcessor#oninit) Method.
+You can hook on to this event using the [onStreamStart()](./API/classes/JavaScriptProcessor#onstreamstart) Method.
+
+```js
+let filename;
+
+export function onStreamStart() {
+    filename = stream.getName();
+    // etc ...
+}
+```
+
 
 **4. onMessage()**
 
@@ -129,7 +137,7 @@ It is therefore central to message processing:
 // Get the output port
 const OUTPUT_PORT = processor.getOutputPort('MyOutput');
 
-function onMessage(message) {
+export function onMessage() {
     if (message.type.Header) {
         // do nothing
     } else if (message.type.Trailer) {
@@ -150,11 +158,11 @@ function handleDetail(detail) {
 **5. onStreamEnd()**
 
 Finally, when a Stream comes to an end,
-the ([onStreamEnd()](./API/classes/JavaScriptProcessor#onstreamend)) hooks is automatically called.
+the [onStreamEnd()](./API/classes/JavaScriptProcessor#onstreamend) hook is automatically called.
 Write your code here for finalizing actions regarding the processing of a stream:
 
 ```js
-function onStreamEnd() {
+export function onStreamEnd() {
     // Report in case some customer data could not be found during stream processing
     if (numCustomerDataNotFound > 0) {
         stream.logInfo(numCustomerDataNotFound + ' customers could not be found in the database.')
@@ -166,51 +174,54 @@ function onStreamEnd() {
 
 ### Introduction
 
-Sometimes, you need the same functionality across multiple Scripts.
-In versions prior to v1.0 of layline.io all functionality required in a script had to be in that one script.
-So if you required the same functionality across multiple different scripts, you had to replicate it in each script.
-Starting with v1.0 a script can now load external scripts. This way you can write a function once, store it in its own
-file and reuse it in many other scripts.
+Sometimes, you need the same functionality across multiple Scripts. This can be achieved by creating generic scripts containing 
+general functions that can be (re)used in many other scripts.
 
 ### Creating a reusable script
 
-![69ffe351.png](.01-javascript_introduction_images/69ffe351.png "Reusing Javascript (Javascript Introduction)")
+![](./.01-javascript_introduction_images/1721665632702.png "Reusing Javascript (Javascript Introduction)")
 
 Here we have created a file `util.js` (1) which contains one function which we want to reuse on other scripts (2).
-You can write your script as you like. All you need to know is that:
+You can write your script as you like. All you need to know is that it needs to be valid Javascript.
 
-1. it needs to be valid Javascript, and
-2. if the script gets loaded by another script, it will get loaded fully. You cannot select parts of the script as you
-   would be able to using javascript modules (not supported).
-   So whatever you write in a script which is then loaded into another script, ends up in that other script fully.
+### Import functions from one script into another
 
-### Loading a script in another
-
-This is how you can load it in another script:
+There are different approaches on how to import reusable functions from generic scripts into other scripts: 
 
 ```js
-load('src/main/javascript/util.js'); // absolute path always starts at "src"
-// or
-load('../util.js'); // Relative path to this script
-// or
-load('util.js'); // in case the script to be loaded is in the same directory as this script
+// import one dedicated function from "utils.js"
+import {getUtcTimeOffset} from '../utils.js';
+
+// or: import multiple entities from external script
+import {getUtcTimeOffset, myFunction2, myFunction3} from '../utils.js';
+
+// or: import function with new name
+import {getUtcTimeOffset as getUtc} from '../utils.js';
+
+// or: import all available functions via alias name to reference them by alias
+import * as utils from '../utils.js';
+
+import {getUtcTimeOffset} from './utils.js'; // in case the script to be loaded is in the same directory as this script
+
+import {getUtcTimeOffset} from '/src/main/javascript/utils.js'; // absolute path configuration
 
 // ...
 
 const offset = getUtcTimeOffset(dateA, dateB);
-```
 
-:::tip Location of the load-command matters
-The location of the `load` command matters in some way. You have to imagine that the load-command will be replaced with
-the content of the script wherever you placed you load-command. So the outcome of this has to be valid Javascript, if that makes sense.
-:::
+const secondOffset = getUtc(dateA, dateB);
 
-### Invalid load path
+const thirdOffset = utils.getUtcTimeOffset(dateA, dateB);
+``` 
 
-layline.io will check for the existence of loaded scripts upon deployment.
+
+### Invalid import script path
+
+layline.io will check for the existence of referenced scripts upon deployment.
 If the script cannot be found, layline.io will show an error, and you have to correct the problem.
 
-![0c6ce2e5.png](.01-javascript_introduction_images/0c6ce2e5.png "Deployment error due to wrong script reference (Javascript Introduction)")
+![](./.01-javascript_introduction_images/1721737268216.png "Deployment error due to wrong script reference (Javascript Introduction)")
+
 
 ## Error handling
 
@@ -266,11 +277,3 @@ You may wonder how big a Javscript should get, or how small.
 Quick answer: It's really up to you.
 It makes sense to split scripts into logical chunks and then potentially chain a number of scripts together in a
 Workflow.
-
-## Outlook
-
-layline.io is constantly being improved.
-Some of the features we will be providing in the near term:
-
-* Support for an **additional** fully typed language like Groovy.
-* Reusability: Support for script modules so that you can reuse regularly used logic across scripts (import);
