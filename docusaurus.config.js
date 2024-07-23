@@ -53,7 +53,10 @@ const config = {
                             label: '2.0.0',
                             // path: '2.0.0', // Do not add a path for the current version, it is the default. --> Helps with SEO.
                         }
-                    }
+                    },
+                    exclude: [
+                        '**/language-reference/javascript/API/**/globals.md' // exclude the auto-generated globals.md file from the API section
+                    ],
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
@@ -189,6 +192,11 @@ const config = {
                 },
                 watch: process.env.TYPEDOC_WATCH, // to instantly recompile changes to typescript files in dev mode
                 disableSources: true, // do not create url links to the source code of .ts files on github
+                // typedocOptions: {
+                //     exclude: ['**/globals.md'],
+                //     excludeNotDocumented: true,
+                //     // other TypeDoc options
+                // },
             }
         ],
         ['docusaurus-plugin-typedoc',
@@ -204,6 +212,11 @@ const config = {
                 },
                 watch: process.env.TYPEDOC_WATCH, // to instantly recompile changes to typescript files in dev mode
                 disableSources: true, // do not create url links to the source code of .ts files on github
+                // typedocOptions: {
+                //     exclude: ['**/globals.md'],
+                //     excludeNotDocumented: true,
+                //     // other TypeDoc options
+                // },
             }
         ],
         ['@docusaurus/plugin-ideal-image',
