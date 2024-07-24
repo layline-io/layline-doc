@@ -52,10 +52,17 @@ const config = {
                         current: {
                             label: '2.0.0',
                             // path: '2.0.0', // Do not add a path for the current version, it is the default. --> Helps with SEO.
+                        },
+                        '1.2.28': {
+                            label: '1.2.x',
+                            noIndex: true, // Do not index the 1.2.x in search engines
+                            banner: 'none', // Do not show a banner for the 1.2.x version
                         }
                     },
                     exclude: [
-                        '**/language-reference/javascript/API/**/globals.md' // exclude the auto-generated globals.md file from the API section
+                        '**/04-language-reference/javascript/02-API/globals.md', // exclude the auto-generated globals.md file from the API section
+                        // '**/**language-reference/**/globals.md', // exclude the auto-generated globals.md file from the API section
+                        '**/snippets/**', // exclude the snippets directory from all versions
                     ],
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
