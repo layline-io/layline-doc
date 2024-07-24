@@ -32,7 +32,7 @@ import JavaType from "../enumerations/JavaType";
  *
  * ```js
  * ...
- * onMessage(message) {
+ * export function onMessage() {
  *     if (message.type.Header) {
  *         onHeader (message);
  *     } else if (message.type.Detail) {
@@ -53,7 +53,7 @@ import JavaType from "../enumerations/JavaType";
  * ```js
  * ...
  * // Handle a detail record type
- * onDetail (message) {
+ * function onDetail (message) {
  *     const m = message.data.IOT.MEASUREMENT;
  *
  *     const VENDOR = Status.getVendorByName('MyVendorLongName');

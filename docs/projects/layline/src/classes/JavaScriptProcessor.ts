@@ -19,7 +19,7 @@ class JavaScriptProcessor {
      *
      * Example:
      * ```js
-     * function onCommit() {
+     * export function onCommit() {
      *     if (connection) {
      *         connection.commitTransaction();
      *         connection.closeConnection();
@@ -37,7 +37,7 @@ class JavaScriptProcessor {
      * Note, that this method is only invoked one upon startup of the Project.
      *
      * ```js
-     * function onInit() {
+     * export function onInit() {
      *     OUTPUT_PORT = processor.getOutputPort('Output');
      * }
      * ```
@@ -56,7 +56,7 @@ class JavaScriptProcessor {
      * // Get the output port
      * const OUTPUT_PORT = processor.getOutputPort('MyOutput');
      *
-     * function onMessage(message) {
+     * export function onMessage() {
      *    if (message.type.Header) {
      *        // do nothing
      *    } else if (message.type.Trailer) {
@@ -75,9 +75,8 @@ class JavaScriptProcessor {
      *
      * ```
      *
-     * @param {Message} message - The message which currently needs to be handled by the script
      */
-    onMessage(message: Message): void {
+    onMessage(): void {
     }
 
 
@@ -87,7 +86,7 @@ class JavaScriptProcessor {
      *
      * Example:
      * ```js
-     * function onPrepareCommit() {
+     * export function onPrepareCommit() {
      *     // Invoke custom function to write errors which we gathered during stream processing
      *     WriteAllRejectErrors();
      * }
@@ -106,7 +105,7 @@ class JavaScriptProcessor {
      *
      * Example:
      * ```js
-     * function onPrepareRetry() {
+     * export function onPrepareRetry() {
      *     if (connection) {
      *         try {
      *             connection.rollbackTransaction();
@@ -154,7 +153,7 @@ class JavaScriptProcessor {
      * Example:
      * ```js
      * // Invoked each a downstream Processor is ready for the next message.
-     * function onPullMessage() {
+     * export function onPullMessage() {
      *     let message = null;
      *     let emitted = false;
      *     if (streamComplete) { // Stream was fully received
@@ -187,7 +186,7 @@ class JavaScriptProcessor {
      *
      * Example:
      * ```js
-     * function onRollback() {
+     * export function onRollback() {
      *   if (connection) {
      *       try {
      *           connection.rollbackTransaction();
@@ -209,7 +208,7 @@ class JavaScriptProcessor {
      *
      * Example:
      * ```js
-     * function onStreamEnd() {
+     * export function onStreamEnd() {
      *      // Report in case some customer data could not be found during stream processing
      *      if (numCustomerDataNotFound > 0) {
      *          stream.logInfo(numCustomerDataNotFound + ' customers could not be found in the database.')
@@ -227,7 +226,7 @@ class JavaScriptProcessor {
      *
      * Example:
      * ```js
-     * function onStreamStart() {
+     * export function onStreamStart() {
      *     streamId = stream.getId();
      *     fileName = stream.getName();
      * }

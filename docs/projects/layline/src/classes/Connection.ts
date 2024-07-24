@@ -17,11 +17,11 @@ import Message from "./Message";
  * let connection = null;
  *
  * // Initial setup
- * function onInit() {
+ * export function onInit() {
  *     OUTPUT_PORT = processor.getOutputPort('MyOutput');
  * }
  *
- * function onStreamStart() {
+ * export function onStreamStart() {
  *     if (!connection) {
  *        // Open a connection to the DB service. Note the use of "services" below:
  *         connection = services.MyDBService.openConnection();
@@ -99,7 +99,7 @@ class Connection {
      * Example:
      * ```js
      * // Record insert
-     * function onMessage(message) {
+     * export function onMessage() {
      *     // Insert record to the DB using function "MyInsert"
      *     // Please note that we pass a JSON object here, which will be automatically
      *     // converted to a {@link Message} to match the expected parameter
@@ -129,7 +129,7 @@ class Connection {
      *
      * Example:
      * ```js
-     * function onMessage(message) {
+     * export function onMessage() {
      *     let resultMessage = null;
      *     let firstName = null;
      *     let lastName = null;

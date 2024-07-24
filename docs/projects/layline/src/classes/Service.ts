@@ -37,11 +37,11 @@
  * let connection = null;
  *
  * // Initial setup
- * function onInit() {
+ * export function onInit() {
  *     OUTPUT_PORT = processor.getOutputPort('MyOutput');
  * }
  *
- * function onStreamStart() {
+ * export function onStreamStart() {
  *     // Open a connection to the DB service
  *     if (!connection) {
  *         connection = services.MyDBService.openConnection();
