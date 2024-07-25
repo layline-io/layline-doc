@@ -10,7 +10,7 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
-import Directories from '../../snippets/assets/_asset-source-directories.md';
+import Folders from '../../snippets/assets/_asset-source-folders.md';
 
 # Source FTP
 
@@ -60,9 +60,9 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 Select the previously configured [FTP Connection](../connections/asset-connection-ftp) to use for this Source.
 
-### Directories
+### Folders
 
-<Directories></Directories>
+<Folders></Folders>
 
 ## Related Topics
 

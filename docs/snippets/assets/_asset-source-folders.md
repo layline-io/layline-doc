@@ -1,16 +1,27 @@
 [//]: # (Precede this section with the header "### Folders")
 
-This source requires the definition of `Folders`. A Folder basically consists of the definition of three different directories:
+This source requires the definition of `Folders`.
+
+![](./._asset-source-folders_images/1721909431883.png "Folders for a Source")
+
+Use `+ ADD A FOLDER` for entering the configuration details.
+
+![](./._asset-source-folders_images/1721916646195.png "Folder Configuration Details")
+
+* **`Folder setup name`** : Name of the Folder. Spaces are not allowed in the name.
+* **`Folder setup description`** : Enter a description.
+
+One Folder basically consists of the definition of three different directories:
 
 1. **Input Directory** : The directory to read new files from.
 2. **Done Directory** : The directory to which read files are moved after reading.
 3. **Error Directory** : Files which caused problems during processing are moved to the Error Directory for further analysis.
 
-By using Folders TBD.
+In case the Source is supposed to collect data from more than one Folder structure, it is possible to add multiple Folder configurations.  
 
 #### Input Directory
 
-![Input Directory](./._asset-source-directories_images/1714405912849.png "Input Directory")
+![Input Directory](./._asset-source-folders_images/1721919296317.png "Input Directory")
 
 * **`Input Directory`** : The directory to read files from.
   The path of the directory must be accessible to the Reactive Engine trying to access this Source.
