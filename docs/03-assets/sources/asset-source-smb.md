@@ -11,7 +11,7 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
-import Directories from '../../snippets/assets/_asset-source-directories.md';
+import Folders from '../../snippets/assets/_asset-source-folders.md';
 
 # Source SMB
 
@@ -63,9 +63,9 @@ support this SMB configuration. If it does not exist, you need to create it firs
 * **`Share`** : Configure your basic location information for your SMB endpoint. 
 You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
-### Directories
+### Folders
 
-<Directories></Directories>
+<Folders></Folders>
 
 ---
 

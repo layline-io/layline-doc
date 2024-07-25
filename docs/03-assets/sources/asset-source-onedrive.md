@@ -11,7 +11,7 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
-import Directories from '../../snippets/assets/_asset-source-directories.md';
+import Folders from '../../snippets/assets/_asset-source-folders.md';
 
 # Source OneDrive
 
@@ -73,9 +73,9 @@ The following settings define the basic location information to read OneDrive da
 
 * **`Drive name or ID`** : ID or name of the OneDrive drive you want to connect to.
 
-### Directories
+### Folders
 
-<Directories></Directories>
+<Folders></Folders>
 
 ---
 

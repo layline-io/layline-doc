@@ -11,7 +11,7 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
-import Directories from '../../snippets/assets/_asset-source-directories.md';
+import Folders from '../../snippets/assets/_asset-source-folders.md';
 
 
 # Source SharePoint
@@ -79,9 +79,9 @@ The following settings define the basic location information to read SharePoint 
 Getting access to a configured SharePoint source through layline.io ensure _**Following**_ the configured site!
 :::
 
-### Directories
+### Folders
 
-<Directories></Directories>
+<Folders></Folders>
 
 ---
 

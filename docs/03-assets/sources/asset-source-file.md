@@ -11,7 +11,8 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
-import Directories from '../../snippets/assets/_asset-source-directories.md';
+import Folders from '../../snippets/assets/_asset-source-folders.md';
+import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md';
 
 # Source File System
 
@@ -41,13 +42,17 @@ None
 
 <RequiredRoles></RequiredRoles>
 
+[### Throttling & Failure Handling]: #
+
+[<ThrottlingAndFailure></ThrottlingAndFailure>]: #
+
 ### Polling & Processing
 
 <PollingAndProcessing></PollingAndProcessing>
 
-### Directories
+### Folders
 
-<Directories></Directories>
+<Folders></Folders>
 
 ## Related Topics
 
