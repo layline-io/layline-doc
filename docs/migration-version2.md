@@ -1,6 +1,6 @@
 ---
-title: Migrating to version 2.0.x
-description: Guiding to migrate from version 1.x.x towards version 2.0.x
+title: Migrating from v1.x to v2.0
+description: Guiding to migrate from version 1.x towards version 2.0
 ---
 
 import Tabs from '@theme/Tabs';
@@ -52,6 +52,9 @@ Please perform the following steps to adapt your configuration:
 layline {
 }
 
+## BEFORE:  akka
+## AFTER:   pekko
+
 pekko {
   
   persistence {
@@ -64,6 +67,9 @@ pekko {
   }
 
 }
+
+## BEFORE:  akka-persistence-jdbc
+## AFTER:   pekko-persistence-jdbc
 
 pekko-persistence-jdbc {
 
@@ -86,6 +92,9 @@ Please perform the following steps to adapt your *default* configuration:
 layline {
 }
 
+## BEFORE:  akka
+## AFTER:   pekko
+
 pekko {
   
   persistence {
@@ -99,6 +108,9 @@ pekko {
 
 }
 
+## BEFORE:  akka-persistence-jdbc
+## AFTER:   pekko-persistence-jdbc
+
 pekko-persistence-jdbc {
 
 [...]
@@ -111,6 +123,9 @@ Example:
 ```bash
 pekko {
   loglevel = ERROR
+
+## BEFORE:  "io.layline.common.akka.LoggingEventListener"
+## AFTER:   "io.layline.common.pekko.LoggingEventListener"
 
   loggers = [
     "io.layline.common.pekko.LoggingEventListener"
