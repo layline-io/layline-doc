@@ -11,7 +11,7 @@ import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 
 ## Purpose
 
-Defines the outbound connection parameters for an AWS SNS sink.
+Defines the outbound connection parameters for an AWS SNS (Simple Notification Service) sink.
 
 ### This Asset can be used by:
 
