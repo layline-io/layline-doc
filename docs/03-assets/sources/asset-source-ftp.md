@@ -11,6 +11,7 @@ import NameAndDescription from '../../snippets/assets/_asset-name-and-descriptio
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
 import Folders from '../../snippets/assets/_asset-source-folders.md';
+import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md';
 
 # Source FTP
 
@@ -49,6 +50,10 @@ The **`Asset Usage`** box shows how many times this Asset is used and which part
 In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching
 roles.
 If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all Nodes (no restriction).
+
+### Throttling & Failure Handling
+
+<ThrottlingAndFailure></ThrottlingAndFailure>
 
 ### Polling & Processing
 

@@ -9,6 +9,8 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
+import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md';
 
 # Source S3
 
@@ -50,48 +52,13 @@ The **`Asset Usage`** box shows how many times this Asset is used and which part
 In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching roles.
 If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all Nodes (no restriction).
 
+### Throttling & Failure Handling
+
+<ThrottlingAndFailure></ThrottlingAndFailure>
+
 ### Polling & Processing
 
-![](.asset-source-s3-images/0421a475.png "Polling & Processing (S3 Source)")
-
-S3 is not a stream, but an object based storage source which does not signal the existence of new objects to observers. 
-We therefore need to define how often we want to look-up (poll) the source for new objects to process.
-
-You can choose between `Fixed rate polling` and `Cron tab style` polling:
-
-#### Fixed rate
-
-Use `Fixed rate` if you want to poll in constant and frequent intervals.
-
-* **`Polling interval [sec]`**: Enter the interval in seconds in which the configured source should be queried for new objects.
-
-#### Cron tab
-
-![](.asset-source-s3-images/e1e03d17.png "Cron Tab (S3 Source)")
-
-Use `Cron tab` if you want to poll at determined times. This follows the cron tab style conventioni which may be familiar to you.
-In all other cases you can read more about crontab and the syntax [here](https://en.wikipedia.org/wiki/Cron). 
-You can simulate cron settings using [this smart website](https://crontab.guru/).
-
-Examples:
-* **[0/2 2 3 4 5](https://crontab.guru/#0/2_2_3_4_5)**: "_At every 2nd minute from 0 through 59 past hour 2 on day-of-month 3 and on Friday in April._"
-* **[0 22 * * 1-5](https://crontab.guru/#0_22_*_*_1-5)**: "_At 22:00 on every day-of-week from Monday through Friday._"
-
-#### Polling timeout
-
-The `Polling timeout [sec]` defines the time in seconds to wait until a polling request fails.
-Depending on the endpoint and its responsiveness you may want to change this number to something higher or lower.
-You should set it high enough, so that you are confident that the endpoint responds under normal operation. 
-
-#### Ordering
-
-When listing objects from the S3 store for processing, you can define in what order they should be processed.
-Pick one of the following self-explanatory settings:
-
-* `Alphabetically, ascending`
-* `Alphabetically, descending`
-* `Last modified, ascending`
-* `Last modified, descending`
+<PollingAndProcessing></PollingAndProcessing>
 
 ### S3 Connection
 

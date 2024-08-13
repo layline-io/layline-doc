@@ -42,9 +42,9 @@ None
 
 <RequiredRoles></RequiredRoles>
 
-[### Throttling & Failure Handling]: #
+### Throttling & Failure Handling 
 
-[<ThrottlingAndFailure></ThrottlingAndFailure>]: #
+<ThrottlingAndFailure></ThrottlingAndFailure>
 
 ### Polling & Processing
 

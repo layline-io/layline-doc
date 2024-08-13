@@ -14,6 +14,7 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
+import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md';
 
 # Source Email
 
@@ -44,6 +45,10 @@ You need:
 ### Required roles
 
 <RequiredRoles></RequiredRoles>
+
+### Throttling & Failure Handling
+
+<ThrottlingAndFailure></ThrottlingAndFailure>
 
 ### Polling & Processing
 

@@ -12,6 +12,7 @@ import NameAndDescription from '../../snippets/assets/_asset-name-and-descriptio
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
 import Folders from '../../snippets/assets/_asset-source-folders.md';
+import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md';
 
 
 # Source SharePoint
@@ -43,6 +44,10 @@ You need:
 ### Required roles
 
 <RequiredRoles></RequiredRoles>
+
+### Throttling & Failure Handling
+
+<ThrottlingAndFailure></ThrottlingAndFailure>
 
 ### Polling & Processing
 
