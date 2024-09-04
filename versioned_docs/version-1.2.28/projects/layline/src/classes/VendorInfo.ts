@@ -1,6 +1,6 @@
 /**
  * Instance of Vendor information.
- * Vendors are defined within the configuration of an Environment Status Asset.
+ * Vendors are defined within the configuration of a "**Resource Status Definition Asset**".
  * Status codes are then defined per Vendor within that Asset.
  *
  * To retrieve vendor information use the [getVendor()](./Status#getvendor) method

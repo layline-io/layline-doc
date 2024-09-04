@@ -2,7 +2,7 @@
  * Instantiated Processor.
  * Every Javascript Processor has access to its Processor instance via `processor`.
  *
- * Example:
+ * @example
  * ```js
  * // Set stream output name:
  * let OUTPUT_PORT = processor.getOutputPort('Output');
@@ -13,11 +13,45 @@ import OutputPort from "./OutputPort";
 class Processor {
 
     /** @hidden **/
-    constructor() {
-    }
+    constructor() {}
+
+    /**
+     * Returns arguments which you have configured via the UI as part of a Javascript Asset.
+     * The list of provided arguments are in JSON-Format.
+     * You enter them using the Javascript Asset editor and then retrieve them using this method.
+     *
+     * @example
+     * ```js
+     * // Get the Processor's configured arguments:
+     * const args = processor.arguments;
+     *
+     * // Now access the individual arguments like this:
+     * let myProp = args.myProp;
+     * ```
+     *
+     * @return {object} Configured arguments as a Javascript object
+     */
+    arguments: object;
+
+    /**
+     * Get the name of the current Processor.
+     * Same as {@link getName}
+     *
+     * @example
+     * ```js
+     * // Get the Processor's name:
+     * const name = processor.name; // Returns the name of the Processor, e.g. 'My-Processor'.
+     * ```
+     *
+     * @return {string} Processor name
+     */
+    name: string;
+
     /**
      * Expands all macros contained in a string.
      * For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](../../../../assets/resources/asset-resource-environment) you can do so like this:
+     *
+     * @example
      * ```js
      * // Get the username which is defined in one of your environment resources:
      * let username = processor.expandString('The username is ${lay:USERNAME}.');
@@ -39,7 +73,7 @@ class Processor {
      * The list of provided arguments are in JSON-Format. You enter them using the Javascript Asset editor
      * and then retrieve them using this method.
      *
-     * Example:
+     * @example
      * ```js
      * // Get the Processor's configured arguments:
      * const args = processor.getArguments();
@@ -57,8 +91,9 @@ class Processor {
 
     /**
      * Get the name of the current Processor.
+     * Same as {@link name}
      *
-     * Example:
+     * @example
      * ```js
      * // Get the Processor's name:
      * processor.getName();
@@ -73,10 +108,10 @@ class Processor {
     /**
      * Get the {@link OutputPort} information for a given output port.
      *
-     * Example:
+     * @example
      * ```js
      * // Set stream output name:
-     * let OUTPUT_PORT = processor.getOutputPort('Output');
+     * let OUTPUT_PORT = processor.getOutputPort('Output'); // Returns the OutputPort instance for the output port named 'Output'.
      * ```
      *
      * @param portName
@@ -91,7 +126,7 @@ class Processor {
      * Logs a message with {@link Severity}.ERROR to the processor log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * processor.logError('Ran into the following problem: ' + problem);
      * ```
@@ -106,7 +141,7 @@ class Processor {
      * Logs a message with {@link Severity}.FATAL to the processor log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * processor.logFatal('Ran into the following problem: ' + problem);
      * ```
@@ -121,7 +156,7 @@ class Processor {
      * Logs a message with {@link Severity}.INFO to the processor log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * processor.logInfo('Here is some interesting information: ' + info);
      * ```
@@ -136,7 +171,7 @@ class Processor {
      * Logs a message with {@link Severity}.WARNING to the processor log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * processor.logWarning('Here is a warning: ' + warning);
      * ```

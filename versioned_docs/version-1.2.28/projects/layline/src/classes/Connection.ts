@@ -96,10 +96,10 @@ class Connection {
      * * A message which you created using [datadictionary.createMessage](./DataDictionary#createmessage)
      * * A JSON object in the expected format (see example below). This will then be implicitly converted to a message format.
      *
-     * Example:
+     * @example
      * ```js
      * // Record insert
-     * function onMessage(message) {
+     * export function onMessage() {
      *     // Insert record to the DB using function "MyInsert"
      *     // Please note that we pass a JSON object here, which will be automatically
      *     // converted to a {@link Message} to match the expected parameter
@@ -127,9 +127,9 @@ class Connection {
      * It receives two arguments `ZipCode` and `LastName` and returns an array which includes the former two parameters as well as `FirstName`.
      * For the purpose of demonstration we simply output the result to the stream log. Normally you would use the data for your further processing requirements.
      *
-     * Example:
+     * @example
      * ```js
-     * function onMessage(message) {
+     * export function onMessage() {
      *     let resultMessage = null;
      *     let firstName = null;
      *     let lastName = null;

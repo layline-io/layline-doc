@@ -9,7 +9,7 @@ import MessageNode from "./classes/MessageNode";
 import OutputPort from "./classes/OutputPort";
 import PackedMessage from "./classes/PackedMessage";
 import Processor from "./classes/Processor";
-import {Service} from "./classes/Service";
+import Service from "./classes/Service";
 import Status from "./classes/Status";
 import Stream from "./classes/Stream";
 import VendorInfo from "./classes/VendorInfo";

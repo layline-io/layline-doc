@@ -2,7 +2,7 @@
  * Instantiated Processor.
  * Every Javascript Processor has access to its Processor instance via `processor`.
  *
- * Example:
+ * @example
  * ```js
  * // Set stream output name:
  * let OUTPUT_PORT = processor.getOutputPort('Output');
@@ -39,7 +39,7 @@ class Processor {
      * The list of provided arguments are in JSON-Format. You enter them using the Javascript Asset editor
      * and then retrieve them using this method.
      *
-     * Example:
+     * @example
      * ```js
      * // Get the Processor's configured arguments:
      * const args = processor.getArguments();
@@ -58,7 +58,7 @@ class Processor {
     /**
      * Get the name of the current Processor.
      *
-     * Example:
+     * @example
      * ```js
      * // Get the Processor's name:
      * processor.getName();
@@ -73,7 +73,7 @@ class Processor {
     /**
      * Get the {@link OutputPort} information for a given output port.
      *
-     * Example:
+     * @example
      * ```js
      * // Set stream output name:
      * let OUTPUT_PORT = processor.getOutputPort('Output');
@@ -91,7 +91,7 @@ class Processor {
      * Logs a message with {@link Severity}.ERROR to the processor log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * processor.logError('Ran into the following problem: ' + problem);
      * ```
@@ -106,7 +106,7 @@ class Processor {
      * Logs a message with {@link Severity}.FATAL to the processor log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * processor.logFatal('Ran into the following problem: ' + problem);
      * ```
@@ -121,7 +121,7 @@ class Processor {
      * Logs a message with {@link Severity}.INFO to the processor log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * processor.logInfo('Here is some interesting information: ' + info);
      * ```
@@ -136,7 +136,7 @@ class Processor {
      * Logs a message with {@link Severity}.WARNING to the processor log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * processor.logWarning('Here is a warning: ' + warning);
      * ```

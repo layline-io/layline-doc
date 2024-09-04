@@ -17,7 +17,7 @@ class JavaScriptProcessor {
      * Invoked when a Stream is committed.
      * Use this to perform potential final tasks when a stream ends.
      *
-     * Example:
+     * @example
      * ```js
      * function onCommit() {
      *     if (connection) {
@@ -50,13 +50,12 @@ class JavaScriptProcessor {
      * layline.io is a reactive messaging system, meaning a script within a Javascript Asset is triggered by the delivery of a message to this Javascript Asset.
      * You can consider the `onMessage` method as a starting point for processing within Javascript Asset.
      *
-     * Example:
+     * @example
      * ```js
-     *
      * // Get the output port
      * const OUTPUT_PORT = processor.getOutputPort('MyOutput');
      *
-     * function onMessage(message) {
+     * export function onMessage() {
      *    if (message.type.Header) {
      *        // do nothing
      *    } else if (message.type.Trailer) {
@@ -74,10 +73,8 @@ class JavaScriptProcessor {
      * }
      *
      * ```
-     *
-     * @param {Message} message - The message which currently needs to be handled by the script
      */
-    onMessage(message: Message): void {
+    onMessage(): void {
     }
 
 
@@ -85,7 +82,7 @@ class JavaScriptProcessor {
      * Invoked before a Stream is finally committed.
      * Use this method to do any preparatory work before a Stream is finally committed.
      *
-     * Example:
+     * @example
      * ```js
      * function onPrepareCommit() {
      *     // Invoke custom function to write errors which we gathered during stream processing
@@ -104,7 +101,7 @@ class JavaScriptProcessor {
     /**
      * Invoked when a "prepare-retry" signal is emitted by layline.io.
      *
-     * Example:
+     * @example
      * ```js
      * function onPrepareRetry() {
      *     if (connection) {
@@ -151,7 +148,7 @@ class JavaScriptProcessor {
      *
      * This is what `onPullMessage` allows you to implement.
      *
-     * Example:
+     * @example
      * ```js
      * // Invoked each a downstream Processor is ready for the next message.
      * function onPullMessage() {
@@ -185,7 +182,7 @@ class JavaScriptProcessor {
      * Invoked when a rollback signal is issued by the system.
      * Perform and "undo" and cleanup tasks here.
      *
-     * Example:
+     * @example
      * ```js
      * function onRollback() {
      *   if (connection) {
@@ -207,7 +204,7 @@ class JavaScriptProcessor {
      * Invoked when current stream ends.
      * Use this to run potential clean up tasks.
      *
-     * Example:
+     * @example
      * ```js
      * function onStreamEnd() {
      *      // Report in case some customer data could not be found during stream processing
@@ -225,7 +222,7 @@ class JavaScriptProcessor {
      * Invoked when current stream is starting.
      * Use this to run potential stream startup initialization tasks on every new Stream.
      *
-     * Example:
+     * @example
      * ```js
      * function onStreamStart() {
      *     streamId = stream.getId();

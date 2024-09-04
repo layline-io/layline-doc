@@ -21,9 +21,7 @@ class stream {
      * If you need to emit a message to another output port, you need to clone the original message,
      * first, and then emit the clone to that other output port.
      *
-     * @since 1.0.0
-     *
-     * Example:
+     * @example
      * ```js
      * OUTPUT_PORT = processor.getOutputPort('Output');
      * stream.emit(message, OUTPUT_PORT);
@@ -43,7 +41,7 @@ class stream {
      *
      * @return {string} Unique Stream ID
      *
-     * Example:
+     * @example
      * ```js
      * const STREAM_ID = stream.getId();
      * ```
@@ -150,7 +148,7 @@ class stream {
      * | **RemoteAddress** | System.String | |
      * | **RemotePort** | System.Integer | |
      *
-     * Example:
+     * @example
      * ```js
      * // Get the metadata for the stream (a Kafka stream in our example):
      * const msgMetadata = stream.getMetadata();
@@ -179,7 +177,7 @@ class stream {
      *
      * Use this method to retrieve this unique ID.
      *
-     * Example:
+     * @example
      * ```js
      * const STREAM_NAME = stream.getName();
      * ```
@@ -194,7 +192,7 @@ class stream {
      * Logs a message with {@link Severity}.ERROR to the stream log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * stream.logError('Ran into the following problem: ' + problem);
      * ```
@@ -209,7 +207,7 @@ class stream {
      * Logs a message with {@link Severity}.FATAL to the stream log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * stream.logFatal('Ran into the following problem: ' + problem);
      * ```
@@ -224,7 +222,7 @@ class stream {
      * Logs a message with {@link Severity}.INFO to the stream log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * stream.logInfo('Here is some interesting information: ' + info);
      * ```
@@ -239,7 +237,7 @@ class stream {
      * Logs a message with {@link Severity}.WARNING to the stream log.
      * You can view this both via the Audit Trail in the UI and output in the process terminal output.
      *
-     * Example:
+     * @example
      * ```js
      * stream.logWarning('Here is a warning: ' + warning);
      * ```
@@ -253,7 +251,7 @@ class stream {
     /**
      * In case you encounter an error in a stream and have caught it, then you can request for the stream to be retried after a defined number of milliseconds.
      *
-     * Example:
+     * @example
      * ```js
      * // Request retry after 30 seconds
      * stream.requestRetry(Status.create(VENDOR, 'DB_NOT_AVAILABLE'), 30000);
@@ -271,7 +269,7 @@ class stream {
      *
      * To roll back a stream, you may issue a {@link requestRollback} to signal to layline.io that you want this stream rolled back and provide a {@link Status} which describes the reason for the rollback.
      *
-     * Example:
+     * @example
      * ```js
      * // Request a rollback and add a status which (example) adds a Status of your type 'SEQ_NUMBER_UNKNOWN' and adds the file name
      * ...

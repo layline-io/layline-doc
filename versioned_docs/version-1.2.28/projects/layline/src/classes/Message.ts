@@ -32,7 +32,7 @@ import PackedMessage from "./PackedMessage";
  *
  * ```js
  * ...
- * onMessage(message) {
+ * export function onMessage() {
  *     if (message.type.Header) {
  *         onHeader (message);
  *     } else if (message.type.Detail) {
@@ -65,8 +65,6 @@ import PackedMessage from "./PackedMessage";
  * ...
  *
  * ```
- * ## Definition
- *
  *
  * @property {Object} data
  * @property {Object} type
@@ -87,7 +85,7 @@ class Message {
      * Adds a {@link Status} to a message.
      * The {@link Status} must have been created with [Status.create](Status#create) or otherwise instantiated.
      *
-     * Example:
+     * @example
      * ```js
      *  if (error) {
      *      message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_VALUE', valueString));
@@ -124,7 +122,7 @@ class Message {
      *
      * This is typically used to check whether a message is of a certain type, or not.
      *
-     * Example:
+     * @example
      * ```js
      * // Get the access path to a structure within the compiled data dictionary
      * const MY_RECORD_TYPE = dataDictionary.type.MyFormat.Detail;
@@ -164,7 +162,7 @@ class Message {
     /**
      * Creates a CRC 64 checksum from specified node within a {@link Message}.
      *
-     * Example:
+     * @example
      * ```js
      * const crc64 = message.getCrc64(message.data.CSV);
      * ```
@@ -178,7 +176,7 @@ class Message {
 
     /**
      * Returns a calculated digest for a given message
-     * Example:
+     * @example
      * ```js
      *
      * // Option: 1. Return digest considering complete message content.
@@ -212,7 +210,7 @@ class Message {
      * A message keeps track of related States in a Status array attached to it.
      * This list may be empty or filled with one more States.
      *
-     * Example:
+     * @example
      * ```js
      * // Retrieve the first Status from the list of States attached to the message.
      * const status = message.getStatus(0);
@@ -232,7 +230,7 @@ class Message {
      * Because of this you cannot reliably use simple Javascript number operators without risking implicit conversion errors.
      *
      *
-     * Example:
+     * @example
      * ```js
      * const n = message.getBigInteger(dataDictionary.type.Detail.CSV.A_REALLY_BIG_NUMBER_FIELD);
      *
@@ -257,7 +255,7 @@ class Message {
      * Return the Boolean typed value from a message field.
      * Important!: Please note that this method returns a Java object "Boolean" (a Java native data type).
      *
-     * Example:
+     * @example
      * ```js
      * const b = message.getBoolean(dataDictionary.type.Detail.CSV.A_BOOLEAN_FIELD);
      * ```
@@ -275,7 +273,7 @@ class Message {
      * Return the Byte typed value from a message field.
      * Important!: Please note that this method returns a Java object "Byte" (a Java native data type).
      *
-     * Example:
+     * @example
      * ```js
      * const b = message.getByte(dataDictionary.type.Detail.CSV.A_BYTE_FIELD);
      * ```
@@ -292,7 +290,7 @@ class Message {
      * Return the ByteString typed value from a message field.
      * Important!: Please note that this method returns a "ByteString" typed value (a Java native data type).
      *
-     * Example:
+     * @example
      * ```js
      * const b = message.getByteString(dataDictionary.type.Detail.CSV.FIELD);
      * ```
@@ -309,7 +307,7 @@ class Message {
      * Return a Character typed value from a message field.
      * Important!: Please note that this method returns a "char" typed value (a Java native data type).
      *
-     * Example:
+     * @example
      * ```js
      * const c = message.getCharacter(dataDictionary.type.Detail.CSV.FIELD);
      * ```
@@ -326,7 +324,7 @@ class Message {
      * Return a OffsetDateTime typed value from a message field.
      * Important!: Please note that this method returns a "[OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html)" typed value (a Java native data type).
      *
-     * Example:
+     * @example
      * ```js
      * const dt = message.getDateTime(dataDictionary.type.Detail.CSV.FIELD);
      * ```
@@ -343,7 +341,7 @@ class Message {
      * Return a BigDecimal typed value from a message field.
      * Important!: Please note that this method returns a "BigDecimal" typed value (a Java native data type).
      *
-     * Example:
+     * @example
      * ```js
      * const dec = message.getDecimal(dataDictionary.type.Detail.CSV.FIELD);
      * ```
@@ -360,7 +358,7 @@ class Message {
      * Return a Double typed value from a message field.
      * Important!: Please note that this method returns a "Double" typed value (a Java native data type).
      *
-     * Example:
+     * @example
      * ```js
      * const dbl = message.getDouble(dataDictionary.type.Detail.CSV.FIELD);
      * ```
@@ -376,7 +374,7 @@ class Message {
      * Return a Int typed value from a message field.
      * Important!: Please note that this method returns a "Integer" typed value (a Java native data type).
      *
-     * Example:
+     * @example
      * ```js
      * const int = message.getInt(dataDictionary.type.Detail.CSV.FIELD);
      * ```
@@ -392,7 +390,7 @@ class Message {
      * Return a Long typed value from a message field.
      * Important!: Please note that this method returns a "Long" typed value (a Java native data type).
      *
-     * Example:
+     * @example
      * ```js
      * const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
      * ```
@@ -407,7 +405,7 @@ class Message {
     /**
      * Return a Object value a message field.
      *
-     * Example:
+     * @example
      * ```js
      * const o = message.getObject(dataDictionary.type.Detail.CSV.FIELD);
      * ```
@@ -423,7 +421,7 @@ class Message {
     /**
      * Return a String typed value from a message field.
      *
-     * Example:
+     * @example
      * ```js
      * const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
      * ```
@@ -676,7 +674,7 @@ class Message {
     /**
      * Returns the message in a string representation.
      *
-     * Example:
+     * @example
      * ```js
      * stream.logInfo("Current message: " + message.toString());
      * ```

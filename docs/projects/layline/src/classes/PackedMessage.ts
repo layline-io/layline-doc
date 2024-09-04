@@ -1,4 +1,5 @@
 import Message from "./Message";
+import DataDictionary from "@site/layline/src/classes/DataDictionary";
 
 /**
  * A packed message represents an ordinary {@link Message}, but in a compressed format.
@@ -13,17 +14,33 @@ class PackedMessage {
     }
 
     /**
+     * The type of the packed message.
+     * This is a reference to the data dictionary that was used to pack the message.
+     * @type {DataDictionary}
+     * @return {Message} Unpacked {@link Message}
+     *
+     * @example
+     * // Pack message
+     * const packedMsg = message.pack();
+     * const type = packedMsg.type; // Returns the data dictionary used to pack the message
+     *
+     * // Unpack message
+     * const unpackedMsg = packedMsg.unpack();
+     */
+    type: DataDictionary;
+
+    /**
      * Unpacks a previously packed message.
      *
-     * ```js
+     * @return {Message} Unpacked {@link Message}
+     *
+     * @example
      * // Pack message
      * const packedMsg = message.pack();
      *
      * // Unpack message
      * const unpackedMsg = packedMsg.unpack();
-     * ```
      *
-     * @return {Message} Unpacked {@link Message}
      */
     unpack(): Message {
         return;

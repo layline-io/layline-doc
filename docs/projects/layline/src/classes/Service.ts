@@ -55,10 +55,13 @@
  *
  * **Check the respective Service Asset documentation on how to use the Service within a Javascript Asset.**
  *
+ * @abstract
+ * @class
  */
-export abstract class Service {
+class Service {
     /** @hidden **/
     constructor() {
     }
-
 }
+
+export default Service;
