@@ -103,6 +103,7 @@ class Stream {
      * | **Path** | System.String | Directory path from which the file was read |
      * | **Size** | System.Long | File size in bytes |
      * | **LastModified** | System.DateTime | Last modified date and time |
+     * | **FolderSetup** | System.String | Name of the directory path related folder configuration |
      *
      * **FTP Stream:**
      *
@@ -111,6 +112,7 @@ class Stream {
      * | **Path** | System.String | Directory path from which the file was read |
      * | **Size** | System.Long | File size in bytes |
      * | **LastModified** | System.DateTime | Last modified date and time |
+     * | **FolderSetup** | System.String | Name of the directory path related folder configuration |
      *
      * **HTTP Stream:**
      *
@@ -148,6 +150,24 @@ class Stream {
      * | Property | Type | Description |
      * | --- | --- | --- |
      * | **QueueUrl** | System.String | |
+     *
+     * **OneDrive Stream:**
+     *
+     * | Property | Type | Description |
+     * | --- | --- | --- |
+     * | **Path** | System.String | OneDrive path from which the file was read |
+     * | **Size** | System.Long | File size in bytes |
+     * | **LastModified** | System.DateTime | Last modified date and time |
+     * | **FolderSetup** | System.String | Name of the path related folder configuration |
+     *
+     * **SharePoint Stream:**
+     *
+     * | Property | Type | Description |
+     * | --- | --- | --- |
+     * | **Path** | System.String | SharePoint path from which the file was read |
+     * | **Size** | System.Long | File size in bytes |
+     * | **LastModified** | System.DateTime | Last modified date and time |
+     * | **FolderSetup** | System.String | Name of the path related folder configuration |
      *
      * **Serial Source Stream:**
      *
