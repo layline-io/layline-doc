@@ -52,7 +52,7 @@ Since layline.io is a reactive system, a Javascript Asset receiving a message au
 message with the underlying script you provided.
 One of the key methods here is [onMessage](./API/classes/JavaScriptProcessor#onmessage):
 
-![](./.01-javascript_introduction_images/1721660465706.png)
+![](./.01-javascript_introduction_images/1725885237129.png "Lifecycle Hooks (Javascript Introduction)")
 
 Just like `onMessage` is a _hook_, the Javascript Asset provides a number of additional hooks which are automatically
 invoked as part of a Javascript Asset's lifecycle.
