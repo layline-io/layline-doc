@@ -46,7 +46,7 @@ You can use none, one or as many of these Assets within your Project and within 
 
 Since layline.io is a reactive system, a Python Asset receiving a message automatically starts processing this
 message with the underlying script you provided.
-One of the key methods here is `[onMessage](./API/classes/PythonProcessor#onmessage)`:
+One of the key methods here is [onMessage](./API/classes/PythonProcessor#onmessage):
 
 ![](./.01-python_introduction_images/1725885495836.png "Lifecycle Hooks (Python Introduction)")
 
