@@ -25,11 +25,11 @@ Then in a Python processor we can do this:
 
 ```python
 def on_message():
-    if message.type.Header:
+    if message.typeName ==  'Header':
         on_header(message)
-    elif message.type.Detail:
+    elif message.typeName == 'Detail':
         on_detail(message)
-    elif message.type.Trailer:
+    elif message.typeName == 'Trailer':
         on_detail(message)
 
     # send the message on through OUTPUT_PORT of Processor
@@ -106,9 +106,61 @@ cloned_message = message.clone()
 
 Message - A copy of a Message
 
+### commit()
+
+> **commit**() -> Message
+
+Commits the message, typically used with message queues or streaming platforms.
+
+This method is used to acknowledge the successful processing of a message.
+The exact behavior depends on the underlying system:
+
+- For an SQS queue, it deletes the message from the queue.
+- For a Kafka topic, it commits the offset of the consumer.
+
+Calling this method indicates that the message has been successfully processed
+and should not be redelivered.
+
+#### Returns
+
+Message - Returns the message instance for method chaining.
+
+#### Example
+
+```python
+def on_message():
+    try:
+        # Process the message
+        result = process_message(message)
+        
+        if result['success']:
+            # If processing was successful, commit the message
+            message.commit()
+            print("Message processed and committed successfully")
+        else:
+            print("Message processing failed, not committing")
+    except Exception as error:
+        print(f"Error processing message: {error}")
+        # In case of an error, you might choose not to commit
+        # so that the message can be reprocessed
+
+def process_message(msg):
+    # Implement your message processing logic here
+    # Return a dictionary indicating success or failure
+    return {'success': True}
+```
+
+In this example, we demonstrate a common pattern for message processing:
+
+1. We attempt to process the message.
+2. If processing is successful, we commit the message to acknowledge its completion.
+3. If processing fails or an error occurs, we don't commit the message, allowing it to be reprocessed.
+
+This approach helps ensure message reliability and prevents data loss in distributed systems.
+
 ### exists()
 
-> **exists**(entity_declaration: EntityDeclaration) -> bool
+> **exists**(entity_declaration: DataDictionaryEntity) -> bool
 
 Checks if a known data structure is recognized within a given [Message](Message.md).
 Data structures are spawned into existence by the definition of data formats (Format Assets).
@@ -119,9 +171,9 @@ This is typically used to check whether a message is of a certain type, or not.
 
 #### Parameters
 
-- **entity_declaration**: EntityDeclaration
+- **entity_declaration**: DataDictionaryEntity
 
-  Path to data dictionary structure which you want to test for existence in the message ([EntityDeclaration](EntityDeclaration.md).)
+  Path to data dictionary structure which you want to test for existence in the message ([DataDictionaryEntity](DataDictionaryEntity.md).)
 
 #### Returns
 
@@ -140,36 +192,88 @@ if message.exists(MY_RECORD_TYPE):
 
 ### findStatus()
 
-> **findStatus**(callback: Callable) -> List[Status]
+> **findStatus**(value: Vendor | Severity | (status: Status) => boolean) -> List[Status]
 
-Check whether a message carries a specified status.
+Finds and returns a list of status entries attached to the message based on the provided filter.
 
-```python
-VENDOR = Status.getVendorByName('MyVendorLongName')
-
-found_status_array = detail.findStatus(lambda status: status.vendorId == VENDOR.id and status.code == 9)
-```
+This method allows you to search for status entries using three different approaches:
+1. By Vendor: Find all statuses from a specific vendor.
+2. By Severity: Find all statuses of a specific severity level.
+3. By Custom Function: Use a custom filter function to find statuses based on any criteria.
 
 #### Parameters
 
-- **callback**: Callable
+- **value**: Union[Vendor, Severity, Callable[[Status], bool]]
+  - If a [`Vendor`](Vendor.md) is provided, it returns all statuses from that vendor.
+  - If a [`Severity`](../enumerations/Severity.md) is provided, it returns all statuses of that severity level.
+  - If a function is provided, it should take a `Status` as input and return a boolean. The method will return all statuses for which this function returns `True`.
 
 #### Returns
 
-List[Status] - List of found States. Empty list if nothing found.
+List[Status] - A list of Status objects that match the provided filter. Returns an empty list if no matching statuses are found.
+
+#### Examples
+
+1. Finding statuses by Vendor:
+
+```python
+# Assume we have a vendor defined
+VENDOR = Status.getVendorByName('MyVendorName')
+
+# Find all statuses from this vendor
+vendor_statuses = message.findStatus(VENDOR)
+for status in vendor_statuses:
+    print(f"Found status: {status.code} - {status.message}")
+```
+
+2. Finding statuses by Severity:
+
+```python
+# Find all ERROR statuses
+error_statuses = message.findStatus(Severity.ERROR)
+if error_statuses:
+    print(f"Message has {len(error_statuses)} error statuses")
+```
+
+3. Finding statuses using a custom filter function:
+
+```python
+# Find all statuses with a specific code
+def has_specific_code(status):
+    return status.code == "SPECIFIC_CODE"
+
+specific_statuses = message.findStatus(has_specific_code)
+for status in specific_statuses:
+    print(f"Found status with specific code: {status.message}")
+```
+
+4. Using a lambda function for filtering:
+
+```python
+# Find all WARNING or ERROR statuses
+high_priority_statuses = message.findStatus(lambda s: s.severity in [Severity.WARNING, Severity.ERROR])
+for status in high_priority_statuses:
+    print(f"High priority status: {s.severity} - {s.message}")
+```
+
+#### Notes
+
+- The method returns an empty list if no statuses match the provided filter.
+- When using a custom filter function, you have full flexibility to implement complex filtering logic based on any properties of the Status object.
+- This method is particularly useful for error handling, logging, and conditional processing based on the statuses attached to a message.
 
 ### getBigInteger()
 
-> **getBigInteger**(accessor: EntityDeclaration) -> int
+> **getBigInteger**(entity: DataDictionaryEntity) -> int
 
 Return a BigInteger typed value from a message field.
 Important!: Please note that this method returns a Python `int` object, which can handle arbitrarily large integers.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
@@ -188,41 +292,50 @@ x == 123  # -> True
 
 ### getBoolean()
 
-> **getBoolean**(accessor: EntityDeclaration, default_value: bool = None) -> bool
+> **getBoolean**(entity: DataDictionaryEntity, default_value: bool) -> bool
 
-Return the Boolean typed value from a message field.
+Retrieves a Boolean value from a specific field in the message's data dictionary.
+
+This method accesses a boolean value from the message using the provided data dictionary entity.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
-
-- **default_value**: bool, optional
-
-  Default value if no Boolean value could be retrieved from message.
+  The data dictionary entity that specifies the path to the boolean value in the message.
 
 #### Returns
 
-bool - Python boolean value.
+bool - The boolean value from the specified field in the message.
 
-#### Example
+#### Examples
+
+Basic usage:
 
 ```python
-b = message.getBoolean(dataDictionary.type.Detail.CSV.A_BOOLEAN_FIELD)
+# Assuming we have a data dictionary entity for an "is_active" field
+is_active_entity = dataDictionary.type.MyFormat.Detail.IS_ACTIVE
+
+# Get the boolean value, defaulting to False if not found
+is_active = message.getBoolean(is_active_entity)
+
+if is_active:
+    print("The item is active")
+else:
+    print("The item is not active")
 ```
 
 ### getByte()
 
-> **getByte**(accessor: EntityDeclaration) -> int
+> **getByte**(entity: DataDictionaryEntity) -> int
 
 Return the Byte typed value from a message field.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
@@ -236,15 +349,15 @@ b = message.getByte(dataDictionary.type.Detail.CSV.A_BYTE_FIELD)
 
 ### getByteString()
 
-> **getByteString**(accessor: EntityDeclaration) -> bytes
+> **getByteString**(entity: DataDictionaryEntity) -> bytes
 
 Return the ByteString typed value from a message field.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
@@ -258,15 +371,15 @@ b = message.getByteString(dataDictionary.type.Detail.CSV.FIELD)
 
 ### getCharacter()
 
-> **getCharacter**(accessor: EntityDeclaration) -> str
+> **getCharacter**(entity: DataDictionaryEntity) -> str
 
 Return a Character typed value from a message field.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
@@ -300,21 +413,43 @@ str - CRC 64 checksum
 crc64 = message.getCrc64(message.data.CSV)
 ```
 
-### getDateTime()
+### getDate()
 
-> **getDateTime**(accessor: EntityDeclaration) -> datetime.datetime
+> **getDate**(entity: DataDictionaryEntity) -> [LocalDate](LocalDate.md)
 
-Return a datetime typed value from a message field.
+Return a [LocalDate](LocalDate.md) typed value from a message field.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
-datetime.datetime - A date-time with an offset from UTC/Greenwich.
+[LocalDate](LocalDate.md) - A date-time with an offset from UTC/Greenwich.
+
+#### Example
+
+```python
+dt = message.getDateTime(dataDictionary.type.Detail.CSV.A_DATE_FIELD)
+```
+
+### getDateTime()
+
+> **getDateTime**(entity: DataDictionaryEntity) -> [DateTime](DateTime.md)
+
+Return a [DateTime](DateTime.md) typed value from a message field.
+
+#### Parameters
+
+- **entity**: DataDictionaryEntity
+
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
+
+#### Returns
+
+[DateTime](DateTime.md) - A date-time with an offset from UTC/Greenwich.
 
 #### Example
 
@@ -324,15 +459,15 @@ dt = message.getDateTime(dataDictionary.type.Detail.CSV.FIELD)
 
 ### getDecimal()
 
-> **getDecimal**(accessor: EntityDeclaration) -> Decimal
+> **getDecimal**(entity: DataDictionaryEntity) -> Decimal
 
 Return a Decimal typed value from a message field.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
@@ -346,15 +481,15 @@ dec = message.getDecimal(dataDictionary.type.Detail.CSV.FIELD)
 
 ### getDouble()
 
-> **getDouble**(accessor: EntityDeclaration) -> float
+> **getDouble**(entity: DataDictionaryEntity) -> float
 
 Return a Double typed value from a message field.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
@@ -368,15 +503,15 @@ dbl = message.getDouble(dataDictionary.type.Detail.CSV.FIELD)
 
 ### getInt()
 
-> **getInt**(accessor: EntityDeclaration) -> int
+> **getInt**(entity: DataDictionaryEntity) -> int
 
 Return an Int typed value from a message field.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
@@ -390,15 +525,15 @@ integer = message.getInt(dataDictionary.type.Detail.CSV.FIELD)
 
 ### getLong()
 
-> **getLong**(accessor: EntityDeclaration) -> int
+> **getLong**(entity: DataDictionaryEntity) -> int
 
 Return a Long typed value from a message field.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
@@ -412,7 +547,7 @@ l = message.getLong(dataDictionary.type.Detail.CSV.FIELD)
 
 ### getMessageDigest()
 
-> **getMessageDigest**(algorithm: str = "MD5", to_lower_case: bool = False, accessor_array: List[EntityDeclaration] = None) -> str
+> **getMessageDigest**(algorithm: str = "MD5", to_lower_case: bool = False, accessor_array: List[DataDictionaryEntity] = None) -> str
 
 Returns a calculated digest for a given message
 
@@ -426,9 +561,9 @@ Returns a calculated digest for a given message
 
   Set to true if digest should be lower-case only.
 
-- **accessor_array**: List[EntityDeclaration], optional
+- **accessor_array**: List[DataDictionaryEntity], optional
 
-  List of [EntityDeclaration](EntityDeclaration.md) on which to calculate the digest.
+  List of [DataDictionaryEntity](DataDictionaryEntity.md) on which to calculate the digest.
 
 #### Returns
 
@@ -471,15 +606,15 @@ int - Number of States attached to the message.
 
 ### getObject()
 
-> **getObject**(accessor: EntityDeclaration) -> Any
+> **getObject**(entity: DataDictionaryEntity) -> Any
 
 Return an Object value from a message field.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
@@ -518,15 +653,15 @@ status = message.getStatus(0)
 
 ### getString()
 
-> **getString**(accessor: EntityDeclaration) -> str
+> **getString**(entity: DataDictionaryEntity) -> str
 
 Return a String typed value from a message field.
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 #### Returns
 
@@ -578,7 +713,7 @@ PackedMessage - Packed message.
 
 ### setBigInteger()
 
-> **setBigInteger**(accessor: EntityDeclaration, value: int) -> None
+> **setBigInteger**(entity: DataDictionaryEntity, value: int) -> None
 
 Sets a BigInteger value in a message target field.
 
@@ -590,9 +725,9 @@ message.setBigInteger(dataDictionary.type.Detail.CSV.FIELD, big_int)
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 - **value**: int
 
@@ -604,7 +739,7 @@ None
 
 ### setBoolean()
 
-> **setBoolean**(accessor: EntityDeclaration, value: bool) -> None
+> **setBoolean**(entity: DataDictionaryEntity, value: bool) -> None
 
 Sets a Boolean value in a message target field.
 
@@ -614,9 +749,9 @@ message.setBoolean(dataDictionary.type.Detail.CSV.FIELD, True)
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 - **value**: bool
 
@@ -628,7 +763,7 @@ None
 
 ### setByte()
 
-> **setByte**(accessor: EntityDeclaration, value: Union[int, str]) -> None
+> **setByte**(entity: DataDictionaryEntity, value: Union[int, str]) -> None
 
 Sets a Byte value in a message target field.
 
@@ -640,9 +775,9 @@ message.setByte(dataDictionary.type.Detail.CSV.FIELD, 'X')
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 - **value**: Union[int, str]
 
@@ -654,7 +789,7 @@ None
 
 ### setByteString()
 
-> **setByteString**(accessor: EntityDeclaration, value: bytes) -> None
+> **setByteString**(entity: DataDictionaryEntity, value: bytes) -> None
 
 Sets a ByteString value in a message target field.
 
@@ -666,9 +801,9 @@ message.setByteString(dataDictionary.type.Detail.CSV.FIELD, b)
 
 #### Parameters
 
-- **accessor**: EntityDeclaration
+- **entity**: DataDictionaryEntity
 
-  [EntityDeclaration](EntityDeclaration.md) describing the access path to the field value.
+  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
 
 - **value**: bytes
 
@@ -680,7 +815,7 @@ None
 
 ### setCharacter()
 
-> **setCharacter**(accessor: EntityDeclaration, value: str) -> None
+> **setCharacter**(entity: DataDictionaryEntity, value: str) -> None
 
 Sets a Character value in a message target field.
 

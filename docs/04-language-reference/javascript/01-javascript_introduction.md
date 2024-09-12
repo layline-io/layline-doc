@@ -138,11 +138,11 @@ It is therefore central to message processing:
 const OUTPUT_PORT = processor.getOutputPort('MyOutput');
 
 export function onMessage() {
-    if (message.type.Header) {
+    if (message.typeName === 'Header') {
         // do nothing
-    } else if (message.type.Trailer) {
+    } else if (message.typeName === 'Trailer') {
         // do something with the trailer
-    } else if (message.type.Detail) {
+    } else if (message.typeName === 'Detail') {
         // invoke a self-defined function which handles the message.
         handleDetail(message);
     }

@@ -49,13 +49,13 @@ You can consider the `onMessage` method as a starting point for processing withi
 OUTPUT_PORT = processor.get_output_port('MyOutput')
 
 def onMessage():
-    if message.type.Header:
+    if message.typeName == 'Header':
         # do nothing
         pass
-    elif message.type.Trailer:
+    elif message.typeName == 'Trailer':
         # do something with the trailer
         pass
-    elif message.type.Detail:
+    elif message.typeName == 'Detail':
         # invoke a self-defined function which handles the message.
         handle_detail(message)
 

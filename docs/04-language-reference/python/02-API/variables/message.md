@@ -22,13 +22,13 @@ if measurement < 0:
     message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_MEASUREMENT', measurement))
 
 # Checking message type
-if message.type.Header:
+if message.typeName == 'Header':
     # Process header
     pass
-elif message.type.Detail:
+elif message.typeName == 'Detail':
     # Process detail
     pass
-elif message.type.Trailer:
+elif message.typeName == 'Trailer':
     # Process trailer
     pass
 

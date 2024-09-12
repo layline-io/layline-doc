@@ -8,11 +8,9 @@ import DataDictionary from "./classes/DataDictionary";
 import DataDictionaryEntity from "@site/layline/src/javascript/classes/DataDictionaryEntity";
 import DateTime from "@site/layline/src/javascript/classes/DateTime";
 import Duration from "@site/layline/src/javascript/classes/Duration";
-import EntityDeclaration from "./classes/EntityDeclaration";
 import JavaScriptProcessor from "./classes/JavaScriptProcessor";
 import LocalDate from "@site/layline/src/javascript/classes/LocalDate";
 import Message from "./classes/Message";
-import MessageNode from "./classes/MessageNode";
 import Metrics from "./classes/Metrics";
 import OutputPort from "./classes/OutputPort";
 import PackedMessage from "./classes/PackedMessage";
@@ -34,11 +32,13 @@ import JavaType from "./enumerations/JavaType";
 import Severity from "./enumerations/Severity";
 
 // Variables
+import dataDictionary from "./variables/dataDictionary";
+import message from "./variables/message";
+import metrics from  "./variables/metrics";
 import processor from "./variables/processor";
 import statusRegistry from "./variables/statusRegistry";
 import stream from "./variables/stream";
-import message from "./variables/message";
-import metrics from  "./variables/metrics";
+import workflow from "./variables/workflow";
 
 // Interfaces
 import Temporal from "./interfaces/Temporal";
@@ -50,15 +50,14 @@ export {
     Counter,
     DateTime,
     Duration,
+    dataDictionary,
     DataDictionary,
     DataDictionaryEntity,
-    EntityDeclaration,
     JavaScriptProcessor,
     JavaType,
     LocalDate,
     message,
     Message,
-    MessageNode,
     metrics,
     Metrics,
     OutputPort,
@@ -78,6 +77,7 @@ export {
     Time,
     TimeZone,
     Vendor,
+    workflow,
     Workflow,
     ZoneOffset
 }

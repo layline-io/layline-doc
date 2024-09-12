@@ -205,13 +205,13 @@ Explore the `Message Creation` box:
   ```js title="MyAsn1Processor.js""
   function onMessage(message) {
       
-    if (message.type.Detail) {
+    if (message.typeName === 'Detail') {
       const msisdn = message.data.asn1.mobileTerminatedCall.basicCallInformation.chargeableSubscriber.simChargeableSubscriber.msisdn;
       // Now do something with the msisdn ....
-    } else if (message.type.Header) {
+    } else if (message.typeName === 'Header') {
       const currency = message.data.asn1.localCurrency;
       // Now do something with the currency ....      
-    } else if (message.type.Trailer) {
+    } else if (message.typeName === 'Trailer') {
       const charge = message.data.asn1.totalCharge;
       // Now do something with the charge ....      
     }

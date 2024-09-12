@@ -1,9 +1,11 @@
 import Status from "./Status";
-import EntityDeclaration from "./EntityDeclaration";
-import MessageNode from "./MessageNode";
 import PackedMessage from "./PackedMessage";
 import Severity from "../enumerations/Severity";
 import JavaType from "../enumerations/JavaType";
+import LocalDate from "@site/layline/src/javascript/classes/LocalDate";
+import DateTime from "@site/layline/src/javascript/classes/DateTime";
+import DataDictionaryEntity from "@site/layline/src/javascript/classes/DataDictionaryEntity";
+import Vendor from "@site/layline/src/javascript/classes/Vendor";
 
 /**
  * Events traversing layline.io Workflows are instantiated as a {@link Message}.
@@ -33,11 +35,11 @@ import JavaType from "../enumerations/JavaType";
  * ```js
  * ...
  * export function onMessage() {
- *     if (message.type.Header) {
+ *     if (message.typeName === 'Header') {
  *         onHeader (message);
- *     } else if (message.type.Detail) {
+ *     } else if (message.typeName === 'Detail') {
  *         onDetail(message);
- *     } else if (message.type.Trailer) {
+ *     } else if (message.typeName === 'Trailer') {
  *         onDetail(message);
  *     }
  *
@@ -71,14 +73,51 @@ import JavaType from "../enumerations/JavaType";
  *
  */
 class Message {
-    /**
-     *
-     */
-    data: object;
 
     /** @hidden **/
     constructor() {
     }
+
+    /**
+     * The data of the message.
+     * It is a nested object structure that reflects the structure of the data dictionary.
+     *
+     * @type {Object}
+     * @example
+     * ```js
+     * // Accessing the data of a message
+     * const data = message.data;
+     * ```
+     *
+     */
+    data: object;
+
+    /**
+     * The unique identifier of the message.
+     * This is a UUID string that is generated for each message.
+     * It is used to uniquely identify a message within the system.
+     *
+     * @type {string}
+     * @example
+     * ```js
+     * // Accessing the id of a message
+     * const id = message.id;
+     * ```
+     *
+     */
+    id: string;
+
+    /**
+     * Gets the number of States {@link Status} attached.
+     * Same as {@link getNumStatusAttached}.
+     *
+     * ```js
+     * const result = message.numStatusAttached;
+     * ```
+     *
+     * @return {number} - Number of States attached to the message.
+     */
+    numStatusAttached: number;
 
 
     /**
@@ -114,13 +153,59 @@ class Message {
         return;
     }
 
+
+    /**
+     * Commits the message, typically used with message queues or streaming platforms.
+     *
+     * This method is used to acknowledge the successful processing of a message.
+     * The exact behavior depends on the underlying system:
+     *
+     * - For an SQS queue, it deletes the message from the queue.
+     * - For a Kafka topic, it commits the offset of the consumer.
+     *
+     * Calling this method indicates that the message has been successfully processed
+     * and should not be redelivered.
+     *
+     * @returns {Message} Returns the message instance for method chaining.
+     *
+     * @example
+     * ```javascript
+     * export function onMessage() {
+     *   try {
+     *     // Process the message
+     *     const result = processMessage(message);
+     *
+     *     if (result.success) {
+     *       // If processing was successful, commit the message
+     *       message.commit();
+     *       print("Message processed and committed successfully");
+     *     } else {
+     *       print("Message processing failed, not committing");
+     *     }
+     *   } catch (error) {
+     *     print("Error processing message:", error);
+     *     // In case of an error, you might choose not to commit
+     *     // so that the message can be reprocessed
+     *   }
+     * }
+     *
+     * function processMessage(msg) {
+     *   // Implement your message processing logic here
+     *   // Return an object indicating success or failure
+     * }
+     * ```
+     */
+    commit(): Message {
+        return this;
+    }
+
     /**
      * Checks if a known data structure is recognized within a given {@link Message}.
      * Data structures are spawned into existence by the definition of data formats (Format Assets).
      * You can test a particular {@link Message} on whether a specific structure is present within
      * a message by using this method.
      *
-     * This is typically used to check whether a meessage is of a certain type, or not.
+     * This is typically used to check whether a message is of a certain type, or not.
      *
      * @example
      * ```js
@@ -133,31 +218,148 @@ class Message {
      * }
      * ```
      *
-     * @param {EntityDeclaration} entityDeclaration - Path to data dictionary structure which you want to test for existence in the message ({@link EntityDeclaration}.)
+     * @param {DataDictionaryEntity} type - Path to data dictionary structure which you want to test for existence in the message ({@link DataDictionaryEntity}.)
      * @return {boolean} True, if it exists, else false.
      */
-    exists(entityDeclaration: EntityDeclaration): boolean {
+    exists(type: DataDictionaryEntity): boolean {
         return;
     }
 
     /**
-     * Check whether a message carries a specified status.
-     * ```js
-     * const VENDOR = Status.getVendorByName('MyVendorLongName');
+     * Finds and returns an array of status entries attached to the message based on the provided filter.
      *
-     * const foundStatusArray = detail.findStatus(function(status) { ",
-     *      // Code 9 means 'DISCARD'",
-     *      return status.vendorId === VENDOR.id && status.code === 9; ",
-     *  });",
+     * This method allows you to search for status entries using three different approaches:
+     * 1. By Vendor: Find all statuses from a specific vendor.
+     * 2. By Severity: Find all statuses of a specific severity level.
+     * 3. By Custom Function: Use a custom filter function to find statuses based on any criteria.
+     *
+     * @param {(Vendor | Severity | function(Status): boolean)} value - The filter to apply:
+     *   - If a {@link Vendor} is provided, it returns all statuses from that vendor.
+     *   - If a {@link Severity} is provided, it returns all statuses of that severity level.
+     *   - If a function is provided, it should take a {@link Status} as input and return a boolean.
+     *     The method will return all statuses for which this function returns `true`.
+     *
+     * @returns {Status[]} An array of Status objects that match the provided filter.
+     *                     Returns an empty array if no matching statuses are found.
+     *
+     * @example
+     * // Finding statuses by Vendor
+     * const VENDOR = Status.getVendorByName('MyVendorName');
+     * const vendorStatuses = message.findStatus(VENDOR);
+     * vendorStatuses.forEach(status => {
+     *     print(`Found status: ${status.code} - ${status.message}`);
+     * });
+     *
+     * @example
+     * // Finding statuses by Severity
+     * const errorStatuses = message.findStatus(Severity.ERROR);
+     * if (errorStatuses.length > 0) {
+     *     print(`Message has ${errorStatuses.length} error statuses`);
+     * }
+     *
+     * @example
+     * // Finding statuses using a custom filter function
+     * function hasSpecificCode(status) {
+     *     return status.code === "SPECIFIC_CODE";
+     * }
+     * const specificStatuses = message.findStatus(hasSpecificCode);
+     * specificStatuses.forEach(status => {
+     *     print(`Found status with specific code: ${status.message}`);
+     * });
+     *
+     * @example
+     * // Using an arrow function for filtering
+     * const highPriorityStatuses = message.findStatus(s => [Severity.WARNING, Severity.ERROR].includes(s.severity));
+     * highPriorityStatuses.forEach(status => {
+     *     print(`High priority status: ${status.severity} - ${status.message}`);
+     * });
+     */
+    findStatus(value: Vendor | Severity | ((status: Status) => boolean)): Status[] { return }
+
+
+    /**
+     * Return a BigInteger typed value from a message field.
+     * Important!: Please note that this method returns a Java object "Big Integer" (a Java native data type).
+     * Because of this you cannot reliably use simple Javascript number operators without risking implicit conversion errors.
+     *
+     *
+     * @example
+     * ```js
+     * const n = message.getBigInteger(dataDictionary.type.Detail.CSV.A_REALLY_BIG_NUMBER_FIELD);
+     *
+     * // Compare BigInteger to another BigInteger
+     * const BigInteger = Java.type("java.math.BigInteger");
+     * x = new BigInteger(123); // x now a java type BigInteger
+     *
+     * x == 123; // -> "true", via implicit conversion --> be careful here, because x will be implicitly be converted to JS number and may lose precision
+     * x.equals(123); // -> "false", because comparing different data types (BigInteger / Number)
+     * x.equals(new BigInteger(123)); // -> "true"
      * ```
      *
-     * @return {Status[]} - Array of found States. Empty array if nothing found.
-     * @param callback
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
+     * @return {BigInteger} Number in Java native BigInteger type.
      */
-    findStatus(callback: Function): Status {
-        return;
+    getBigInteger(entity: DataDictionaryEntity): BigInteger {
+        return
     }
 
+
+    /**
+     * Retrieves a Boolean value from a specific field in the message's data dictionary.
+     *
+     * This method accesses a boolean value from the message using the provided data dictionary entity.
+     *
+     * @param {DataDictionaryEntity} entity - The data dictionary entity that specifies the path to the boolean value in the message.
+     *
+     * @returns {boolean} The boolean value from the specified field in the message.
+     *
+     * @example
+     * // Assuming we have a data dictionary entity for an "isActive" field
+     * const isActiveEntity = dataDictionary.type.MyFormat.Detail.IS_ACTIVE;
+     *
+     * // Get the boolean value, defaulting to false if not found
+     * const isActive = message.getBoolean(isActiveEntity);
+     *
+     * if (isActive) {
+     *     print("The item is active");
+     * } else {
+     *     print("The item is not active");
+     * }
+     *
+     */
+    getBoolean(entity: DataDictionaryEntity): boolean { return }
+
+    /**
+     * Return the Byte typed value from a message field.
+     * Important!: Please note that this method returns a Java object "Byte" (a Java native data type).
+     *
+     * @example
+     * ```js
+     * const b = message.getByte(dataDictionary.type.Detail.CSV.A_BYTE_FIELD);
+     * ```
+     *
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
+     * @return {JavaType.Byte} Java native Byte type.
+     */
+    getByte(entity: DataDictionaryEntity): JavaType.Byte {
+        return
+    }
+
+    /**
+     * Return the ByteString typed value from a message field.
+     * Important!: Please note that this method returns a "ByteString" typed value (a Java native data type).
+     *
+     * @example
+     * ```js
+     * const b = message.getByteString(dataDictionary.type.Detail.CSV.FIELD);
+     * ```
+     *
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
+     * @return {JavaType.ByteString} ByteString type.
+     */
+    getByteString(entity: DataDictionaryEntity): JavaType.ByteString {
+        return
+    }
 
     /**
      * Creates a CRC 64 checksum from specified node within a {@link Message}.
@@ -167,10 +369,10 @@ class Message {
      * const crc64 = message.getCrc64(message.data.CSV);
      * ```
      *
-     * @param {MessageNode} message - {@link MessageNode} for which to create the CRC64 checksum.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} for which to create the CRC64 checksum.
      * @return {string} CRC 64 checksum
      */
-    getCrc64(message: MessageNode): string {
+    getCrc64(entity: DataDictionaryEntity): string {
         return;
     }
 
@@ -199,9 +401,9 @@ class Message {
      *
      * @param {"MD5"} [algorithm] - Algorithm with which to calculate the digest. Currently only supprts "MD5".
      * @param {boolean} [toLowerCase=false] - Set to true if digest should be lower-case only.
-     * @param {EntityDeclaration[]} [accessorArray] - Array of {@link EntityDeclaration} on which to calculate the digest.
+     * @param {DataDictionaryEntity[]} [accessorArray] - Array of {@link DataDictionaryEntity} on which to calculate the digest.
      */
-    getMessageDigest(algorithm: string, toLowerCase: boolean = false, [accessorArray]: EntityDeclaration[]): string {
+    getMessageDigest(algorithm: string, toLowerCase: boolean = false, [accessorArray]: DataDictionaryEntity[]): string {
         return;
     }
 
@@ -224,84 +426,6 @@ class Message {
         return;
     }
 
-    /**
-     * Return a BigInteger typed value from a message field.
-     * Important!: Please note that this method returns a Java object "Big Integer" (a Java native data type).
-     * Because of this you cannot reliably use simple Javascript number operators without risking implicit conversion errors.
-     *
-     *
-     * @example
-     * ```js
-     * const n = message.getBigInteger(dataDictionary.type.Detail.CSV.A_REALLY_BIG_NUMBER_FIELD);
-     *
-     * // Compare BigInteger to another BigInteger
-     * const BigInteger = Java.type("java.math.BigInteger");
-     * x = new BigInteger(123); // x now a java type BigInteger
-     *
-     * x == 123; // -> "true", via implicit conversion --> be careful here, because x will be implicitly be converted to JS number and may lose precision
-     * x.equals(123); // -> "false", because comparing different data types (BigInteger / Number)
-     * x.equals(new BigInteger(123)); // -> "true"
-     * ```
-     *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
-     * @return {BigInteger} Number in Java native BigInteger type.
-     */
-    getBigInteger(accessor: EntityDeclaration): BigInteger {
-        return
-    }
-
-
-    /**
-     * Return the Boolean typed value from a message field.
-     * Important!: Please note that this method returns a Java object "Boolean" (a Java native data type).
-     *
-     * @example
-     * ```js
-     * const b = message.getBoolean(dataDictionary.type.Detail.CSV.A_BOOLEAN_FIELD);
-     * ```
-     *
-     * @param {EntityDeclaration} accessor {@link EntityDeclaration} describing the access path to the field value.
-     * @param {Boolean} [defaultValue] Default value if no Boolean value could be retrieved from message.
-     * @return {Boolean} Number in Java native Boolean type.
-     */
-    getBoolean(accessor: EntityDeclaration, defaultValue: boolean): Boolean {
-        return
-    }
-
-
-    /**
-     * Return the Byte typed value from a message field.
-     * Important!: Please note that this method returns a Java object "Byte" (a Java native data type).
-     *
-     * @example
-     * ```js
-     * const b = message.getByte(dataDictionary.type.Detail.CSV.A_BYTE_FIELD);
-     * ```
-     *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
-     * @return {JavaType.Byte} Java native Byte type.
-     */
-    getByte(accessor: EntityDeclaration): JavaType.Byte {
-        return
-    }
-
-
-    /**
-     * Return the ByteString typed value from a message field.
-     * Important!: Please note that this method returns a "ByteString" typed value (a Java native data type).
-     *
-     * @example
-     * ```js
-     * const b = message.getByteString(dataDictionary.type.Detail.CSV.FIELD);
-     * ```
-     *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
-     * @return {JavaType.ByteString} ByteString type.
-     */
-    getByteString(accessor: EntityDeclaration): JavaType.ByteString {
-        return
-    }
-
 
     /**
      * Return a Character typed value from a message field.
@@ -312,27 +436,44 @@ class Message {
      * const c = message.getCharacter(dataDictionary.type.Detail.CSV.FIELD);
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @return {JavaType.Character} Character in Java native char type.
      */
-    getCharacter(accessor: EntityDeclaration): JavaType.Character {
+    getCharacter(entity: DataDictionaryEntity): JavaType.Character {
+        return
+    }
+
+    /**
+     * Return a LocalDate typed value from a message field.
+     * Important!: Please note that this method returns a "[LocalDate](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html)" typed value (a Java native data type).
+     * LocalDate is a date without a time-zone in the ISO-8601 calendar system, such as "2022-12-03".
+     * This method is useful when you need to extract a date from a message field.
+     * If you need to extract a date-time with an offset from UTC/Greenwich, use the {@link getDateTime} method instead.
+     * @example
+     * ```js
+     * const dt = message.getDate(dataDictionary.type.Detail.CSV.A_DATE_FIELD);
+     * ```
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
+     * @return {LocalDate} A date without a time-zone in the ISO-8601 calendar system, such as "2022-12-03".
+     *
+     */
+    getDate(entity: DataDictionaryEntity): LocalDate {
         return
     }
 
 
     /**
-     * Return a OffsetDateTime typed value from a message field.
-     * Important!: Please note that this method returns a "[OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html)" typed value (a Java native data type).
+     * Return a [DateTime](DateTime.md) typed value from a message field.
      *
      * @example
      * ```js
      * const dt = message.getDateTime(dataDictionary.type.Detail.CSV.FIELD);
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
-     * @return {JavaType.OffsetDateTime} A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
+     * @return {DateTime} A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
      */
-    getDateTime(accessor: EntityDeclaration): JavaType.OffsetDateTime {
+    getDateTime(entity: DataDictionaryEntity): DateTime {
         return
     }
 
@@ -346,10 +487,10 @@ class Message {
      * const dec = message.getDecimal(dataDictionary.type.Detail.CSV.FIELD);
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @return {JavaType.BigDecimal} BigDecimal in Java native char type.
      */
-    getDecimal(accessor: EntityDeclaration):JavaType.BigDecimal {
+    getDecimal(entity: DataDictionaryEntity):JavaType.BigDecimal {
         return
     }
 
@@ -363,10 +504,10 @@ class Message {
      * const dbl = message.getDouble(dataDictionary.type.Detail.CSV.FIELD);
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @return {JavaType.Double} Double in Java native char type.
      */
-    getDouble(accessor: EntityDeclaration): JavaType.Double {
+    getDouble(entity: DataDictionaryEntity): JavaType.Double {
         return
     }
 
@@ -379,10 +520,10 @@ class Message {
      * const int = message.getInt(dataDictionary.type.Detail.CSV.FIELD);
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @return {JavaType.Integer} Integer in Java native char type.
      */
-    getInt(accessor: EntityDeclaration): JavaType.Integer {
+    getInt(entity: DataDictionaryEntity): JavaType.Integer {
         return
     }
 
@@ -395,10 +536,10 @@ class Message {
      * const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @return {JavaType.Long} Long in Java native char type.
      */
-    getLong(accessor: EntityDeclaration): JavaType.Long {
+    getLong(entity: DataDictionaryEntity): JavaType.Long {
         return
     }
 
@@ -410,10 +551,10 @@ class Message {
      * const o = message.getObject(dataDictionary.type.Detail.CSV.FIELD);
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @return {Object} Object in Java native char type.
      */
-    getObject(accessor: EntityDeclaration): Object {
+    getObject(entity: DataDictionaryEntity): Object {
         return;
     }
 
@@ -426,10 +567,10 @@ class Message {
      * const l = message.getLong(dataDictionary.type.Detail.CSV.FIELD);
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @return {string} The value as string.
      */
-    getString(accessor: EntityDeclaration): String {
+    getString(entity: DataDictionaryEntity): String {
         return;
     }
 
@@ -450,6 +591,7 @@ class Message {
 
     /**
      * Gets the number of States {@link Status} attached.
+     * Same as {@link numStatusAttached}.
      *
      * ```js
      * const result = message.getNumStatusAttached();
@@ -459,6 +601,25 @@ class Message {
      */
     getNumStatusAttached() {
         return;
+    }
+
+    /**
+     * Checks if a message is of a certain type.
+     * This is typically used to check whether a message is of a certain type, or not.
+     * @example
+     * ```js
+     * // Check if message is of a certain type
+     * if (message.is(dataDictionary.type.Detail.CSV)) {
+     *    ...
+     *    // Do something
+     *    ...
+     *    }
+     *    ```
+     *
+     * @param type
+     */
+    is(type: DataDictionaryEntity): boolean {
+        return
     }
 
 
@@ -489,10 +650,10 @@ class Message {
      * message.setBigInteger(dataDictionary.type.Detail.CSV.FIELD, bigInt)
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {BigInteger} value - A native BigInteger value or a value which can be implicitly converted to such.
      * */
-    setBigInteger(accessor: EntityDeclaration, value: BigInteger): void {
+    setBigInteger(entity: DataDictionaryEntity, value: BigInteger): void {
     }
 
 
@@ -503,10 +664,10 @@ class Message {
      * message.setBoolean(dataDictionary.type.Detail.CSV.FIELD, true)
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {Byte} value - A native Byte value or a value which can be implicitly converted to such.
      * */
-    setBoolean(accessor: EntityDeclaration, value: Boolean): void {
+    setBoolean(entity: DataDictionaryEntity, value: Boolean): void {
     }
 
 
@@ -524,10 +685,10 @@ class Message {
      * message.setByte(dataDictionary.type.Detail.CSV.FIELD, 'X')
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {number|string} value - A native Byte value or a value which can be implicitly converted to such.
      * */
-    setByte(accessor: EntityDeclaration, value: number | string): void {
+    setByte(entity: DataDictionaryEntity, value: number | string): void {
     }
 
 
@@ -541,10 +702,10 @@ class Message {
      * message.setByteString(dataDictionary.type.Detail.CSV.FIELD, b)
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {ByteString} value - A native ByteString value or a value which can be implicitly converted to such.
      * */
-    setByteString(accessor: EntityDeclaration, value: string): void {
+    setByteString(entity: DataDictionaryEntity, value: string): void {
     }
 
 
@@ -555,24 +716,24 @@ class Message {
      * message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, 'c')
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {JavaType.Character} value - A native Character value or a value which can be implicitly converted to such.
      * */
-    setCharacter(accessor: EntityDeclaration, value: JavaType.Character): void {
+    setCharacter(entity: DataDictionaryEntity, value: JavaType.Character): void {
     }
 
 
     /**
-     * Sets a OffsetDateTime value in a message target field.
+     * Sets a DateTime value in a message target field.
      *
      * ```js
      * message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, "2022-12-03T10:15:30+01:00")
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
-     * @param {JavaType.OffsetDateTime} value - A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
+     * @param {DateTime} value - A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as "2022-12-03T10:15:30+01:00".
      * */
-    setDateTime(accessor: EntityDeclaration, value: JavaType.OffsetDateTime): void {
+    setDateTime(entity: DataDictionaryEntity, value: DateTime): void {
     }
 
 
@@ -585,10 +746,10 @@ class Message {
      * message.setDecimal(dataDictionary.type.Detail.CSV.FIELD, 123.45)
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number} value - A value which can be represented as a Decimal.
      * */
-    setDecimal(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number): void {
+    setDecimal(entity: DataDictionaryEntity, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number): void {
     }
 
 
@@ -601,10 +762,10 @@ class Message {
      * message.setDouble(dataDictionary.type.Detail.CSV.FIELD, 123.45)
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number} value - A value which can be represented as a Double.
      * */
-    setDouble(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | Number): void {
+    setDouble(entity: DataDictionaryEntity, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | Number): void {
     }
 
 
@@ -617,10 +778,10 @@ class Message {
      * message.setInt(dataDictionary.type.Detail.CSV.FIELD, 123)
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {JavaType.String | JavaType.Integer | JavaType.Long | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number} value - A value which can be represented as a Int.
      * */
-    setInt(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | BigInteger | Number): void {
+    setInt(entity: DataDictionaryEntity, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | BigInteger | Number): void {
     }
 
 
@@ -633,10 +794,10 @@ class Message {
      * message.setLong(dataDictionary.type.Detail.CSV.FIELD, 12345)
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number} value - A value which can be represented as a Long.
      * */
-    setLong(accessor: EntityDeclaration, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number): void {
+    setLong(entity: DataDictionaryEntity, value: JavaType.String | JavaType.Integer | JavaType.Long | JavaType.Double | JavaType.BigDecimal | JavaType.BigInteger | JavaType.Number): void {
     }
 
 
@@ -648,10 +809,10 @@ class Message {
      * message.setObject(dataDictionary.type.Detail.CSV.FIELD, obj)
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {Object} value - A value which can be represented as a Object.
      * */
-    setObject(accessor: EntityDeclaration, value: Object): void {
+    setObject(entity: DataDictionaryEntity, value: Object): void {
     }
 
 
@@ -664,10 +825,21 @@ class Message {
      * message.data.CSV.FIELD = "XYZ"
      * ```
      *
-     * @param {EntityDeclaration} accessor - {@link EntityDeclaration} describing the access path to the field value.
+     * @param {DataDictionaryEntity} entity - {@link DataDictionaryEntity} describing the access path to the field value.
      * @param {String} value - A value which can be represented as a String.
      * */
-    setString(accessor: EntityDeclaration, value: Object): void {
+    setString(entity: DataDictionaryEntity, value: Object): void {
+    }
+
+    /**
+     * Returns the message in a JSON representation.
+     * @example
+     * ```js
+     * const json = message.toJson();
+     * ```
+     */
+    toJson(): string {
+        return;
     }
 
 
