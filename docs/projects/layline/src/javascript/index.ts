@@ -41,6 +41,7 @@ import stream from "./variables/stream";
 import workflow from "./variables/workflow";
 
 // Interfaces
+import DataDictionaryTypes from "./interfaces/DataDictionaryTypes";
 import Temporal from "./interfaces/Temporal";
 
 export {
@@ -53,6 +54,7 @@ export {
     dataDictionary,
     DataDictionary,
     DataDictionaryEntity,
+    DataDictionaryTypes,
     JavaScriptProcessor,
     JavaType,
     LocalDate,

@@ -1,5 +1,6 @@
 import DataDictionaryEntity from "./DataDictionaryEntity";
 import Message from "./Message";
+import DataDictionaryTypes from "../interfaces/DataDictionaryTypes";
 
 /**
  * The DataDictionary class provides access to the data dictionary structures defined in your layline.io Project.
@@ -23,13 +24,13 @@ class DataDictionary {
      * The type of the data dictionary.
      * Provides access to all data dictionary types defined in your Project.
      *
-     * @type {string} Defined data dictionary types
+     * @type {DataDictionaryTypes} Defined data dictionary types
      *
      * @example
      * // Accessing a specific type in the data dictionary
      * const myRecordType = dataDictionary.type.MyFormat.Detail;
      */
-    type: string
+    type: DataDictionaryTypes;
 
     /**
      * Creates a message from a data dictionary access path.

@@ -15,7 +15,7 @@ Remember to refer to your Project's specific data dictionary structure when usin
 
 ### type
 
-> **type**: str
+> **type**: [DataDictionaryTypes](DataDictionaryTypes.md)
 
 The type of the data dictionary.
 Provides access to all data dictionary types defined in your Project.
