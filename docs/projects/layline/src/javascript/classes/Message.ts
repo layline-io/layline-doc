@@ -95,7 +95,7 @@ class Message {
     /**
      * The unique identifier of the message.
      * This is a consecutive number starting with "1" for the first message.
-     * It is used to uniquely identify a message within the system.
+     * It is used to uniquely identify a message within a stream.
      * Cloning a message will generate a new id, whereas the original message will keep its id and the cloned message will have the original message number appended by a "." and a new consecutive number.
      * For example, "1.1", "1.2", "1.3", ... for each clone of the original message.
      *
