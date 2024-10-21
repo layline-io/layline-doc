@@ -25,7 +25,7 @@ and potentially anything you can imagine when handling data.
 
 Using the Javascript Asset is not mandatory of course.
 Many challenges you may be facing can be accomplished using the out-of-the-box Assets whcih layline.io provides without
-resorting to Javascript./language-reference/javascript/API/classes/JavaScriptProcessor#onmessage
+resorting to Javascript.
 But in many instances, an intermittent scripting processor inserted into a Workflow can go a long way in enabling you to
 execute logic which would be otherwise hard to implement using pure UI elements.
 

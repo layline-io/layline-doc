@@ -23,8 +23,8 @@ Popular examples are:
 and potentially anything you can imagine when handling data.
 
 Using the Javascript Asset is not mandatory of course.
-Many challenges you may be facing can be accomplished using the out-of-the-box Assets whcih layline.io provides without
-resorting to Javascript./language-reference/javascript/API/classes/JavaScriptProcessor#onmessage
+Many challenges you may be facing can be accomplished using the out-of-the-box Assets which layline.io provides without
+resorting to Javascript.
 But in many instances, an intermittent scripting processor inserted into a Workflow can go a long way in enabling you to
 execute logic which would be otherwise hard to implement using pure UI elements.
 
@@ -52,7 +52,7 @@ Since layline.io is a reactive system, a Javascript Asset receiving a message au
 message with the underlying script you provided.
 One of the key methods here is [onMessage](./API/classes/JavaScriptProcessor#onmessage):
 
-![](./.01-javascript_introduction_images/1721660465706.png)
+![](./.01-javascript_introduction_images/1725885237129.png "Lifecycle Hooks (Javascript Introduction)")
 
 Just like `onMessage` is a _hook_, the Javascript Asset provides a number of additional hooks which are automatically
 invoked as part of a Javascript Asset's lifecycle.
@@ -138,11 +138,11 @@ It is therefore central to message processing:
 const OUTPUT_PORT = processor.getOutputPort('MyOutput');
 
 export function onMessage() {
-    if (message.type.Header) {
+    if (message.typeName === 'Header') {
         // do nothing
-    } else if (message.type.Trailer) {
+    } else if (message.typeName === 'Trailer') {
         // do something with the trailer
-    } else if (message.type.Detail) {
+    } else if (message.typeName === 'Detail') {
         // invoke a self-defined function which handles the message.
         handleDetail(message);
     }

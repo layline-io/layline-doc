@@ -404,9 +404,9 @@ This could then access the data like with any other applied format like so:
 
 ```js title="Accessing parse data of Format MyNewDataDictionary"
 function onMessage(message) {
-    if (message.type.Record.Boat) {
+    if (message.is(dataDictionary.type.Record.Boat)) {
         onBoat(message);
-    } else if (message.type.Record.Car) {
+    } else if (message.is(dataDictionary.type.Record.Car)) {
         onCar(message);
     } else {
         throw "Unknown Record Type";

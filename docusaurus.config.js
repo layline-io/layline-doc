@@ -210,10 +210,10 @@ const config = {
             {
                 id: 'v2.0.0',
                 out: "./docs/04-language-reference/javascript/02-API",
-                entryPoints: ["./docs/projects/layline/src/index.ts"],
+                entryPoints: ["./docs/projects/layline/src/javascript/index.ts"],
                 tsconfig: './docs/projects/tsconfig.json',
                 // plugin: ['typedoc-plugin-frontmatter'],
-                readme: "./docs/projects/layline/src/index.mdx",
+                readme: "./docs/projects/layline/src/javascript/index.mdx",
                 sidebar: {
                     autoConfiguration: true
                 },
