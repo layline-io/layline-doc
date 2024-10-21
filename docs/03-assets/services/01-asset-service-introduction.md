@@ -11,9 +11,11 @@ Probably the easiest way to describe the concept of a service within layline.io,
 Very similar to the notion of web services. 
 Such a function call can read or write data, or for example call an actual web service, and more.
 
-Services provide access to specific types of interfaces. 
+Services provide connection and access to specific types of interfaces. 
 There is for example a Service specialized on conversing with JDBC compatible databases.
 Another type of Service is specialized on Aerospike NoSQL storage, and yet another one for dealing with HTTP/S calls, etc.
+
+Apart from Email Service and Teams Service the connection to the appropriate backend is configured in the Service Asset itself and not through a dedicated Connection Asset.
 
 ## How to put Services to work
 
