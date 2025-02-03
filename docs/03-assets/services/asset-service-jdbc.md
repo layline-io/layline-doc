@@ -14,6 +14,14 @@ Define a service to interface with a JDBC data source.
 
 ![](.asset-service-jdbc_images/6ca59550.png "Asset Dependency Graph (Service JDBC)")
 
+This service is specialized for interacting with JDBC (Java Database Connectivity) compatible databases. It allows you to configure functions that can execute SQL queries and statements against a connected database. Classical RDBMS (Relational Database Management Systems) that are JDBC compatible are:
+1.	Oracle Database: Widely used in enterprise environments, Oracle’s JDBC drivers support various versions of the database.
+2.	MySQL: An open-source RDBMS that’s very popular for web applications. It has a well-supported JDBC driver.
+3.	PostgreSQL: Another open-source RDBMS known for its advanced features and standards compliance. It also has robust JDBC support.
+4.	Microsoft SQL Server: A widely used RDBMS in enterprise environments, with comprehensive JDBC driver support.
+
+These databases are commonly used and have strong JDBC support, making them suitable for various applications. While they are only examples. Other RDBMS or backends supporting JDBC functions could be connected through this JDBC Service Asset as well.
+
 ## Prerequisites
 
 None
