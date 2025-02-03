@@ -1,0 +1,28 @@
+
+> layline-doc@0.0.0 start
+> TYPEDOC_WATCH=true docusaurus start
+
+
+    ------------------------------------------------------------------------------------------------------------------------------------------------ 
+                                                                                                                                                     
+                                                             Update available 3.4.0 → 3.7.0                                                          
+                                                                                                                                                     
+                                   To upgrade Docusaurus packages with the latest version, run the following command:                                
+        `npm i @docusaurus/core@latest @docusaurus/plugin-ideal-image@latest @docusaurus/preset-classic@latest @docusaurus/theme-mermaid@latest      
+                             @docusaurus/module-type-aliases@latest @docusaurus/tsconfig@latest @docusaurus/types@latest`                            
+                                                                                                                                                     
+    ------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+[INFO] Starting the development server...
+[96m[info][0m Loaded plugin typedoc-plugin-markdown
+c[96m[info][0m Starting compilation in watch mode...
+[96m[info][0m Found 0 errors. Watching for file changes.
+[96m[info][0m Documentation generated at ./versioned_docs/version-1.2.28/04-language-reference/javascript/02-API
+[96m[info][0m Loaded plugin typedoc-plugin-markdown
+c[96m[info][0m Starting compilation in watch mode...
+[96m[info][0m Found 0 errors. Watching for file changes.
+[96m[info][0m Documentation generated at ./docs/04-language-reference/javascript/02-API
+[SUCCESS] Docusaurus website is running at: http://localhost:3000/
+ℹ Compiling Client
+✔ Client: Compiled successfully in 3.65s
+client (webpack 5.92.0) compiled successfully
