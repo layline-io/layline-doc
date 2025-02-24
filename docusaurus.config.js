@@ -43,7 +43,7 @@ const config = {
             ({
                 docs: {
                     breadcrumbs: true,
-                    routeBasePath: '/',
+                    routeBasePath: '/docs',
                     include: ['**/*.md', '**/*.mdx', '!projects/**', '!src/**'], // Exclude version specific "projects" directory'
                     sidebarPath: require.resolve('./sidebars.js'),
                     lastVersion: 'current',

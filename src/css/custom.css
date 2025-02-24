@@ -9,66 +9,231 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* You can override the default Infima variables here. */
+/* Define CSS Variables for Light Mode (default) */
 :root {
-  --ifm-color-primary: #ff6838;
-  --ifm-color-primary-dark: #e64e1f;
-  --ifm-color-primary-darker: #cc461b;
-  --ifm-color-primary-darkest: #b33d18;
-  --ifm-color-primary-light: #ff6838;
-  --ifm-color-primary-lighter: #ff794e;
-  --ifm-color-primary-lightest: #ff8964;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --background-color: #ffffff;         /* White background for light mode */
+  --text-color: #0f172a;              /* Dark navy text for light mode */
+  --subtext-color: #475569;           /* Slate gray for secondary text */
+  --card-background: #f1f5f9;         /* Light gray for cards */
+  --primary-accent: #f97316;          /* Orange for buttons and highlights */
+  --secondary-accent: #2563eb;        /* Darker blue for secondary */
+  --hover-shadow: rgba(0, 0, 0, 0.1); /* Light shadow */
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #ff6838;
-  --ifm-color-primary-dark: #e64e1f;
-  --ifm-color-primary-darker: #cc461b;
-  --ifm-color-primary-darkest: #b33d18;
-  --ifm-color-primary-light: #ff6838;
-  --ifm-color-primary-lighter: #ff794e;
-  --ifm-color-primary-lightest: #ff8964;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* Override Variables for Dark Mode */
+[data-theme="dark"] {
+  --background-color: #0f172a;         /* Navy blue background */
+  --text-color: #ffffff;              /* White text */
+  --subtext-color: #d1d5db;           /* Light gray for secondary text */
+  --card-background: #1e293b;         /* Darker navy for cards */
+  --primary-accent: #f97316;          /* Orange stays consistent */
+  --secondary-accent: #60a5fa;        /* Lighter blue for dark mode */
+  --hover-shadow: rgba(0, 0, 0, 0.2); /* Darker shadow */
 }
 
-[data-theme='light'] .tab {
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  padding: 10px;
-}
-[data-theme='dark'] .tab {
-  background-color: #0a0a0a;
-  border-radius: 5px;
-  padding: 10px;
+/* Apply Variables to Base Styles */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-[data-theme='light'] .frame {
-  border-radius: 5px;
-  box-shadow: 0 0 0.5em lightgray;
-  width: fit-content;
-  height: fit-content;
+/* Hero Section */
+.hero-section {
+  background: var(--background-color);
+  padding: 5rem 2rem;
+  text-align: center;
 }
 
-[data-theme='dark'] .frame {
-  border-radius: 5px;
-  background-color: white;
-  width: fit-content;
-  height: fit-content;
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.imgWhiteBackground {
-  background-color: rgba(255,255,255, 0.5);
-  padding: 15px;
-  border-radius: 5px;
+.hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
 }
 
-[data-theme='light'] code {
-  background-color: #f0f0f0;
+.hero-content p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: var(--subtext-color);
 }
 
-[data-theme='dark'] code {
-  background-color: #3a3a3a;
+.hero-buttons .button--primary {
+  background-color: var(--primary-accent);
+  border-color: var(--primary-accent);
+  color: #ffffff; /* White text on orange button, readable in both modes */
+  padding: 0.75rem 1.5rem;
+}
+
+.hero-buttons .button--primary:hover {
+  background-color: #fb923c; /* Lighter orange on hover */
+  border-color: #fb923c;
+}
+
+.hero-buttons .button--secondary {
+  background-color: transparent;
+  border-color: var(--secondary-accent);
+  color: var(--secondary-accent);
+  padding: 0.75rem 1.5rem;
+}
+
+.hero-buttons .button--secondary:hover {
+  background-color: rgba(37, 99, 235, 0.1); /* Subtle blue fill on hover in light mode */
+  color: var(--secondary-accent);
+}
+
+[data-theme="dark"] .hero-buttons .button--secondary:hover {
+  background-color: rgba(96, 165, 250, 0.1); /* Adjusted for dark mode blue */
+}
+
+.hero-buttons .button {
+  margin: 0 0.75rem;
+}
+
+/* Value Proposition */
+.value-prop {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.value-prop h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-color);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  padding: 2rem;
+  background: var(--card-background);
+  border-radius: 8px;
+}
+
+.feature-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+  color: var(--primary-accent);
+}
+
+.feature-card p {
+  font-size: 1.1rem;
+  color: var(--subtext-color);
+}
+
+/* Quick Navigation */
+.quick-nav {
+  padding: 5rem 2rem;
+  background: var(--background-color);
+  text-align: center;
+}
+
+.quick-nav h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-color);
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-tile {
+  padding: 2rem;
+  background: var(--card-background);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px var(--hover-shadow);
+}
+
+.nav-tile h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  /* color: var(--secondary-accent); */
+  color: var(--primary-accent);
+}
+
+.nav-tile p {
+  font-size: 1rem;
+  color: var(--subtext-color);
+}
+
+/* Testimonial */
+.testimonial {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.testimonial h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-color);
+}
+
+.testimonial blockquote {
+  font-size: 1.3rem;
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+  padding: 1.5rem;
+  background: var(--card-background);
+  border-left: 6px solid var(--primary-accent);
+  color: var(--subtext-color);
+}
+
+.testimonial footer {
+  font-style: italic;
+  color: var(--subtext-color);
+}
+
+.testimonial .button--outline {
+  border-color: var(--primary-accent);
+  color: var(--primary-accent);
+  padding: 0.75rem 1.5rem;
+}
+
+.testimonial .button--outline:hover {
+  background-color: rgba(249, 115, 22, 0.1); /* Subtle orange fill on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+
+  .hero-buttons .button {
+    display: block;
+    margin: 0.75rem auto;
+  }
+
+  .value-prop h2,
+  .quick-nav h2,
+  .testimonial h2 {
+    font-size: 1.8rem;
+  }
 }
