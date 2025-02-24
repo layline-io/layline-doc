@@ -52,6 +52,51 @@ class Stream {
     name: string;
 
     /**
+     * Returns the original name of a stream including the configured prefix and suffix.
+     * 
+     * Same as {@link getOriginalName}.
+     * 
+     * @example
+     * ```js
+     * const ORIGINAL_STREAM_NAME = stream.originalName;
+     * ```
+     * 
+     * @type {string}
+     * @readonly
+     */
+    originalName: string;
+
+    /**
+     * Get the detected prefix of a stream.
+     * 
+     * Same as {@link getPrefix}.
+     * 
+     * @example
+     * ```js
+     * const PREFIX = stream.prefix;
+     * ```
+     * 
+     * @type {string}
+     * @readonly
+     */
+    prefix: string;
+    
+    /**
+     * Get the detected suffix of a stream.
+     *
+     * Same as {@link getSuffix}.
+     *
+     * @example
+     * ```js
+     * const SUFFIX = stream.suffix;
+     * ```
+     *
+     * @type {string}
+     * @readonly
+     */
+    suffix: string;
+
+    /**
      * Emit a message to the specified output port.
      * Once emitted, the context of the message is lost.
      * If you need to emit a message to another output port, you need to clone the original message first, and then emit the clone to that other output port.
@@ -223,7 +268,8 @@ class Stream {
     /**
      * Returns the name of a stream.
      *
-     * For file-based processing, the stream name is the name of the file being processed.
+     * For file-based processing, the stream name is the name of the file being processed excluding the configured
+     * prefix and suffix.
      * For other sources, you usually explicitly set the stream name in the respective Source Asset.
      *
      * For example if your data stems from a Service Source Asset, then the stream name is defined in the configuration of that Asset like so:
@@ -240,6 +286,53 @@ class Stream {
      * @return {string} Stream name, e.g. `my_file_name.csv`
      */
     getName(): string {
+        return;
+    }
+
+    /**
+     * Returns the original name of a stream including the configured prefix and suffix.
+     * 
+     * Same as {@link Stream.originalName}.
+     * 
+     * @example
+     * ```js
+     * const ORIGINAL_STREAM_NAME = stream.getOriginalName();
+     * ```
+     * @return {string} Stream name, e.g. `my_file_name.csv`     
+     */
+    getOriginalName(): string {
+        return;
+    }
+
+    /**
+     * Get the detected prefix of a stream.
+     * 
+     * Same as {@link Stream.prefix}.
+     * 
+     * @example
+     * ```js
+     * const PREFIX = stream.getPrefix();
+     * ```
+     * 
+     * @return {string} Prefix of the stream
+     */
+    getPrefix(): string {
+        return;
+    }
+
+    /**
+     * Get the detected suffix of a stream.
+     *
+     * Same as {@link Stream.suffix}.
+     *
+     * @example
+     * ```js
+     * const SUFFIX = stream.getSuffix();
+     * ```
+     *
+     * @return {string} Prefix of the stream
+     */
+    getSuffix(): string {
         return;
     }
 
