@@ -23,6 +23,7 @@ import Stream from "./classes/Stream";
 import StringUtils from "@site/layline/src/javascript/classes/StringUtils";
 import Time from "@site/layline/src/javascript/classes/Time";
 import TimeZone from "@site/layline/src/javascript/classes/TimeZone";
+import TimerService from "@site/layline/src/javascript/classes/TimerService";
 import Vendor from "./classes/Vendor";
 import Workflow from "@site/layline/src/javascript/classes/Workflow";
 import ZoneOffset from "@site/layline/src/javascript/classes/ZoneOffset";
@@ -77,6 +78,7 @@ export {
     StringUtils,
     Temporal,
     Time,
+    TimerService,
     TimeZone,
     Vendor,
     workflow,

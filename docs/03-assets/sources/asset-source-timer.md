@@ -1,10 +1,11 @@
 ---
-title: Source Timer
+title: Timer
 description: Source Timer Asset. Use this to define the technical parameters for a AWS S3 source connection.
 tags:
 
 - source
 - timer
+- timer service
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'

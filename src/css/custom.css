@@ -237,3 +237,15 @@ body {
     font-size: 1.8rem;
   }
 }
+
+/* Image captions */
+img + em { 
+  font-size: 0.8em;
+  text-align: right;
+}
+
+/* Image captions with line break before the caption */
+img + em::before { 
+  content: "\A";
+  white-space: pre;
+}
