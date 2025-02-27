@@ -145,7 +145,7 @@ const config = {
             },
             tableOfContents: {
                 minHeadingLevel: 2,
-                maxHeadingLevel: 6,
+                maxHeadingLevel: 5,
             },
 
             algolia: {
@@ -220,7 +220,7 @@ const config = {
                 },
                 watch: process.env.TYPEDOC_WATCH, // to instantly recompile changes to typescript files in dev mode
                 disableSources: true, // do not create url links to the source code of .ts files on github
-                plugin: ['./src/customCode/typedoc-custom-plugin.js'], // custom plugin to remove the "Class:" prefix from markdown headers in TypeDoc-generated documentation
+                plugin: [require.resolve('./src/customCode/typedoc-custom-plugin.js')], // custom plugin to remove the "Class:" prefix from markdown headers in TypeDoc-generated documentation
                 // typedocOptions: {
                 //     exclude: ['**/globals.md'],
                 //     excludeNotDocumented: true,
