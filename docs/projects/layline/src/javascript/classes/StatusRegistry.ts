@@ -1,4 +1,4 @@
-import { Vendor } from "@site/layline/src/javascript/classes/Vendor";
+import Vendor from "@site/layline/src/javascript/classes/Vendor";
 
 
 /**

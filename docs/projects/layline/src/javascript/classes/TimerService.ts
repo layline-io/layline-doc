@@ -5,7 +5,6 @@ import DateTime from "../classes/DateTime";
  * The [TimerService Asset](/docs/03-assets/services/asset-service-timer.md) facilitates a way to schedule and execute tasks at specified intervals and with given payloads.
  * It is configured via the Configuration Center. To create and manage scheduled tasks, it provides a nunber of functions which are described in this class.
  *
- *
  * The way layline.io exposes this class is by providing an object `services` within a Javascript Asset.
  * This is then used to access linked Services and their configured functions.
  *
@@ -41,7 +40,7 @@ import DateTime from "../classes/DateTime";
  *
  * **Check the respective Service Asset documentation on how to use the Service within a Javascript Asset.**
  *
- * @class
+ * @abstract
  */
 export default class TimerService {
   /** @hidden **/
