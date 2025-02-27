@@ -8,38 +8,50 @@ import DateTime from "../classes/DateTime";
  * The way layline.io exposes this class is by providing an object `services` within a Javascript Asset.
  * This is then used to access linked Services and their configured functions.
  *
- * **Let's look at this using an example:**
- *
- * Let's assume we have configured a Javascript Asset which is linked to A JDBC Service Asset by the name of `MyDBService`.
- * The Service `MyDBService` has one Function `MyInsert` which you have defined when you set up the JDBC Service Asset using the UI.
- *
- * You can access all Services which you may have linked to a Javascript Asset by using the `services` keyword like so:
- *
- * **Opening a connection:**
+ * **Let's look at this using an example on how to schedule a timer:**
+ * 
  * ```js
- *
- * let OUTPUT_PORT = null;
- * let connection = null;
- *
- * // Initial setup
- * export function onInit() {
- *     OUTPUT_PORT = processor.getOutputPort('MyOutput');
- * }
- *
- * export function onStreamStart() {
- *     // Open a connection to the DB service
- *     if (!connection) {
- *         connection = services.MyDBService.openConnection();
+ * services.TimerService.ScheduleFixedRate({
+ *   Group: 'MyGroup',
+ *   Period: 60000,
+ *   Name: 'MyTimer',
+ *   Payload: '{"message": "Hello, world!"}'
+ * });
+ * ```
+ * This will schedule a timer to run every minute and execute the payload `{"message": "Hello, world!"}`.
+ * 
+ * In order to receive the payload of the timer, you need to define a Workflow with a Frame Input Processor, which in turn is linked to a Timer Source, which in turn is linked to the Timer Service.
+ * 
+ * In there you would receive the timer as a message which you can then process as you need to.
+ * Here is an example of how the timer message can be processed within a Workflow that receives the timer message:
+ * 
+ * ```javascript
+ * // We are defining a function "checkPayload" that will take payload parameters 
+ * // as input parameters
+ * export function onMessage() {
+ *     if (message.data) {
+ *         stream.logInfo("Payload received: " + message.data.Payload);
+ *         // This is an example is received as a meesage from the Timer Service
+ *         // message.data = {
+ *             "Group":"TimerGroup",
+ *             "Name":"TEST-05",
+ *             "NumberOfTry":1,
+ *             "FireTime":"2025-02-26T15:00:27.006+01:00",
+ *             "ScheduledFireTime":"2025-02-26T15:00:27+01:00",
+ *             "Payload":"MyPayload"
+ *         // }
+ *         //
+ *         // Do something with the payload
+ *         // ...
+ *         // Emitting the message to the "Committer" Processor will commit the message.
+ *         // Otherwise the message will be rescheduled again for the configured period of time (depends on the type of schedule).
+ *         stream.emit(message, OUTPUT_PORT); // -> Send message to "Committer" Processor
  *     }
- *     connection.beginTransaction();
  * }
  * ```
- *
- * Depending on the type of service you are addressing you have different options which you have to understand and know.
- * A JDBC Service for example exposes a {@link Connection} whereas a HTTP Service does not.
- *
- * **Check the respective Service Asset documentation on how to use the Service within a Javascript Asset.**
- *
+ * 
+ * The script above reveals the structure of the message that is received from the Timer Service.
+ * 
  * @abstract
  */
 export default class TimerService {

@@ -241,4 +241,6 @@ const config = {
 
 };
 
+console.log(require.resolve('./src/customCode/typedoc-custom-plugin.js'));
+
 module.exports = config;
