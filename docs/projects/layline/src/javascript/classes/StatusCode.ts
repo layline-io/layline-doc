@@ -22,7 +22,7 @@ import Vendor from './Vendor';
  *
  */
 
-class StatusCode {
+export class StatusCode {
 
     /** @hidden **/
     constructor() {

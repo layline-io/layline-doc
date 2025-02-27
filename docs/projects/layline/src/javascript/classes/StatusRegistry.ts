@@ -1,4 +1,5 @@
-import {statusRegistry, Vendor} from "@site/layline/src/javascript";
+import { Vendor } from "@site/layline/src/javascript/classes/Vendor";
+
 
 /**
  * ## What
@@ -11,7 +12,7 @@ import {statusRegistry, Vendor} from "@site/layline/src/javascript";
  *
  */
 
-class StatusRegistry {
+export class StatusRegistry {
 
     /** @hidden **/
     constructor() {}

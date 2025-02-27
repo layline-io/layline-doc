@@ -15,9 +15,12 @@ h1, h2, h3, h4, h5, h6 {
   --text-color: #0f172a;              /* Dark navy text for light mode */
   --subtext-color: #475569;           /* Slate gray for secondary text */
   --card-background: #f1f5f9;         /* Light gray for cards */
-  --primary-accent: #f97316;          /* Orange for buttons and highlights */
+  --primary-accent: #ff5722;          /* Orange for buttons and highlights */
   --secondary-accent: #2563eb;        /* Darker blue for secondary */
   --hover-shadow: rgba(0, 0, 0, 0.1); /* Light shadow */
+  --ifm-menu-color-active: var(--primary-accent);
+  --ifm-link-color: var(--primary-accent);
+  --ifm-breadcrumb-color-active: var(--primary-accent);
 }
 
 /* Override Variables for Dark Mode */
@@ -26,9 +29,12 @@ h1, h2, h3, h4, h5, h6 {
   --text-color: #ffffff;              /* White text */
   --subtext-color: #d1d5db;           /* Light gray for secondary text */
   --card-background: #1e293b;         /* Darker navy for cards */
-  --primary-accent: #f97316;          /* Orange stays consistent */
+  --primary-accent: #ff5722;          /* Orange stays consistent */
   --secondary-accent: #60a5fa;        /* Lighter blue for dark mode */
   --hover-shadow: rgba(0, 0, 0, 0.2); /* Darker shadow */
+  --ifm-menu-color-active: var(--primary-accent);
+  --ifm-link-color: var(--primary-accent);
+  --ifm-breadcrumb-color-active: var(--primary-accent);
 }
 
 /* Apply Variables to Base Styles */
@@ -248,4 +254,76 @@ img + em {
 img + em::before { 
   content: "\A";
   white-space: pre;
+}
+
+/* Make the sidebar font smaller */
+.menu__link {
+  font-size: 0.9rem;
+}
+
+/* Make nested items even smaller */
+.menu__list .menu__list .menu__link {
+  font-size: 0.85rem;
+}
+
+/* Adjust padding to maintain good spacing */
+/* .menu__list-item {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+} */
+
+/* Optional: reduce the indentation of nested items */
+.menu__list .menu__list {
+  padding-left: 0.75rem;
+}
+
+/* Make markdown headers smaller */
+.markdown h1 {
+  font-size: 2rem; /* Default is usually around 2.5rem */
+}
+
+.markdown h2 {
+  font-size: 1.5rem; /* Default is usually around 2rem */
+}
+
+.markdown h3 {
+  font-size: 1.25rem; /* Default is usually around 1.5rem */
+}
+
+.markdown h4 {
+  font-size: 1rem; /* Default is usually around 1.25rem */
+}
+
+.markdown h5 {
+  font-size: 0.875rem; /* Default is usually around 1rem */
+}
+
+.markdown h6 {
+  font-size: 0.85rem; /* Default is usually around 0.875rem */
+}
+
+/* Make sidebar collapsible arrows smaller in all states */
+.menu__link--sublist-caret:after,
+.menu__caret:before,
+.menu__link--sublist:after {
+  transform: scale(0.8); /* Make all arrows 80% of original size */
+}
+
+/* Adjust position for all arrow types */
+.menu__link--sublist-caret:after,
+.menu__caret:before,
+.menu__link--sublist:after {
+  position: relative;
+  top: -1px; /* Fine-tune vertical alignment */
+}
+
+/* Ensure the transform is applied when menu is collapsed too */
+.menu__list-item--collapsed .menu__link--sublist:after,
+.menu__list-item--collapsed .menu__link--sublist-caret:after,
+.menu__list-item--collapsed .menu__caret:before {
+  transform: rotate(90deg) scale(0.8);
+}
+
+.table-of-contents__link--active {
+  color: var(--primary-accent);
 }

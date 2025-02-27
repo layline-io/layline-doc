@@ -31,7 +31,7 @@ The Timer Service allows you to schedule the message's payload (or any other pay
 
 Let's explain this with an example:
 
-![Example Timer Service Workflow Setup](.asset-service-timer_images/image_2025-02-25-12-05-08.png "Example Timer Service Workflow Setup")
+![Example Timer Service Workflow Setup](.asset-service-timer_images/image_2025-02-27-12-24-08.png "Example Timer Service Workflow Setup")
 *Figure: Example Timer Service Workflow Setup*
 
 - `Step 1`: We have a "Workflow A" which is processing a message. For some reason the message cannot or should not be processed at the time of processing and we need to hold on to the message's payload for a period of time before we can process it again.
@@ -132,7 +132,7 @@ Workflow A contains this JavasScript Processor (could be Python, too).
 
 In our case we want to schedule the message's payload for a period of 60 seconds.
 
-To do this, and because we have linked `MyTimerService` to the Javascript Processor, we can use the Timer Service's methods to schedule the message's payload within the `MyTimerGroup` Timer Group. This scheduling happens in the Timer Service's internal storage and is independent of the message's payload. The Reactive Cluster takes care of the storage and retrieval of the payloads.
+To do this, and because we have linked `MyTimerService` to the Javascript Processor, we can use the [Timer Service's methods](/docs/04-language-reference/javascript/02-API/classes/TimerService.md) to schedule the message's payload within the `MyTimerGroup` Timer Group. This scheduling happens in the Timer Service's internal storage and is independent of the message's payload. The Reactive Cluster takes care of the storage and retrieval of the payloads.
 
 ```javascript
 // We are defining a function "sendTeams" that will take teamsMessage parameters 

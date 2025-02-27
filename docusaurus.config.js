@@ -63,6 +63,7 @@ const config = {
                         '**/04-language-reference/javascript/02-API/globals.md', // exclude the auto-generated globals.md file from the API section
                         // '**/**language-reference/**/globals.md', // exclude the auto-generated globals.md file from the API section
                         '**/snippets/**', // exclude the snippets directory from all versions
+                        '**/globals.md'
                     ],
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
@@ -219,6 +220,7 @@ const config = {
                 },
                 watch: process.env.TYPEDOC_WATCH, // to instantly recompile changes to typescript files in dev mode
                 disableSources: true, // do not create url links to the source code of .ts files on github
+                plugin: ['./src/customCode/typedoc-custom-plugin.js'], // custom plugin to remove the "Class:" prefix from markdown headers in TypeDoc-generated documentation
                 // typedocOptions: {
                 //     exclude: ['**/globals.md'],
                 //     excludeNotDocumented: true,

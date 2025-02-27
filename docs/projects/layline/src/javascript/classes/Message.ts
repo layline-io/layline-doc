@@ -465,7 +465,7 @@ class Message {
 
 
     /**
-     * Return a [DateTime](DateTime.md) typed value from a message field.
+     * Return a DateTime typed value from a message field.
      *
      * @example
      * ```js

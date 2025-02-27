@@ -1,4 +1,4 @@
-import {StatusCode} from "@site/layline/src/javascript";
+import {StatusCode} from "@site/layline/src/javascript/classes/StatusCode";
 
 /**
  * ## What
@@ -16,7 +16,7 @@ import {StatusCode} from "@site/layline/src/javascript";
  *
  */
 
-class Vendor {
+export default class Vendor {
 
     /** @hidden **/
     constructor() {
@@ -72,5 +72,3 @@ class Vendor {
     statusCodes: StatusCode[];
 
 }
-
-export default Vendor;

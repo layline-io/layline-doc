@@ -22,8 +22,8 @@ import StatusRegistry from "./classes/StatusRegistry";
 import Stream from "./classes/Stream";
 import StringUtils from "@site/layline/src/javascript/classes/StringUtils";
 import Time from "@site/layline/src/javascript/classes/Time";
+import TimerService from "./classes/TimerService";
 import TimeZone from "@site/layline/src/javascript/classes/TimeZone";
-import TimerService from "@site/layline/src/javascript/classes/TimerService";
 import Vendor from "./classes/Vendor";
 import Workflow from "@site/layline/src/javascript/classes/Workflow";
 import ZoneOffset from "@site/layline/src/javascript/classes/ZoneOffset";
@@ -44,6 +44,11 @@ import workflow from "./variables/workflow";
 // Interfaces
 import DataDictionaryTypes from "./interfaces/DataDictionaryTypes";
 import Temporal from "./interfaces/Temporal";
+import TimerOnce from "./interfaces/TimerOnce";
+import TimerFixedRate from "./interfaces/TimerFixedRate";
+import TimerCron from "./interfaces/TimerCron";
+import TimerChoice from "./interfaces/TimerChoice";
+import TimerResponse from "./interfaces/TimerResponse";
 
 export {
     Arith64,
@@ -78,6 +83,11 @@ export {
     StringUtils,
     Temporal,
     Time,
+    TimerChoice,
+    TimerCron,
+    TimerFixedRate,
+    TimerOnce,
+    TimerResponse,
     TimerService,
     TimeZone,
     Vendor,
