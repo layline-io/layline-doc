@@ -130,7 +130,7 @@ We also have a Javascript Processor which is processing messages. We will use th
 
 Workflow A contains this JavasScript Processor (could be Python, too).
 
-In our case we want to schedule the message's payload for a period of 60 seconds.
+In our case we want to schedule the message's payload to be re-presented back to the Javascript Processor in 3600 seconds (1 hour).
 
 To do this, and because we have linked `MyTimerService` to the Javascript Processor, we can use the [Timer Service's methods](/docs/04-language-reference/javascript/02-API/classes/TimerService.md) to schedule the message's payload within the `MyTimerGroup` Timer Group. This scheduling happens in the Timer Service's internal storage and is independent of the message's payload. The Reactive Cluster takes care of the storage and retrieval of the payloads.
 
@@ -140,11 +140,10 @@ To do this, and because we have linked `MyTimerService` to the Javascript Proces
 export function onMessage() {
     if (message.data.MY_SOURCE.MY_RECORD_TYPE == 'HIGH_PRIORITY') {
         // Schedule the message's payload for 60 seconds within the `MyTimerGroup` Timer Group
-        services.TimerService.ScheduleFixedRate({
+        services.TimerService.ScheduleOnce({
             Group: 'MyTimerGroup',
-            Period: 60,
+            When: new Date(Date.now() + 3600000),
             Name: message.data.MY_SOURCE.MY_RECORD_UUID,
-            StartAt: new Date(Date.now() + 60000),
             Payload: message.data
         });
     }
@@ -155,9 +154,24 @@ export function onMessage() {
 Please note that the `Name` parameter must be unique within the Timer Group. You cannot schedule multiple messages with the same name within the same Timer Group.
 :::
 
+
+The Timer Service provides you with a number of methods to schedule and manage timers:
+
+| Method | Description |
+| --- | --- |
+| `ScheduleOnce` | Schedule a message's payload to be re-presented back to the subscribed workflow once at a specific time. |
+| `ScheduleFixedRate` | Schedule a message's payload to be re-presented back to the subscribed workflow periodically at a fixed rate. |
+| `ScheduleCron` | Schedule a message's payload to be re-presented back to the subscribed workflow at a specific cron expression. |
+| `CancelTimer` | Cancel a timer. |
+| `GetTimer` | Get a timer. |
+| `GetTimers` | Get all timers. |
+
+For a full description of the methods please refer to the [TimerService API](/docs/04-language-reference/javascript/02-API/classes/TimerService.md) documentation.
+
+
 #### Consuming an entry from a Timer Group (Workflow B)
 
-Now that we have scheduled a message's payload for a period of 60 seconds, we can consume it in a different workflow when it is due.
+Now that we have scheduled a message's payload to be re-presented back to the Javascript Processor in 3600 seconds (1 hour), we can consume it in a different workflow when it is due.
 
 For this purpose we will create a new Workflow (B).
 ![Example Workflow to consume messages using the Timer Service](.asset-service-timer_images/image_2025-02-25-16-46-23.png "Example Workflow to consume messages using the Timer Service")
