@@ -139,10 +139,10 @@ To do this, and because we have linked `MyTimerService` to the Javascript Proces
 // as input parameters
 export function onMessage() {
     if (message.data.MY_SOURCE.MY_RECORD_TYPE == 'HIGH_PRIORITY') {
-        // Schedule the message's payload for 60 seconds within the `MyTimerGroup` Timer Group
+        // Schedule the message's payload in 60 seconds within the `MyTimerGroup` Timer Group
         services.TimerService.ScheduleOnce({
             Group: 'MyTimerGroup',
-            When: new Date(Date.now() + 3600000),
+            When: DateTime.now().plusSeconds(60),
             Name: message.data.MY_SOURCE.MY_RECORD_UUID,
             Payload: message.data
         });
