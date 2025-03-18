@@ -1,5 +1,5 @@
 ---
-title: Timer
+title: Source Timer
 description: Source Timer Asset. Use this to define the technical parameters for a AWS S3 source connection.
 tags:
 
@@ -9,6 +9,9 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md';
 
 # Source Timer
 
@@ -29,94 +32,35 @@ What will be relevant is that something should happen, and the timer source make
 
 ### Name & Description
 
-![](.asset-source-timer_images/20d6a78a.png "Name & Description (Timer Source)")
+![Name & Description (Timer Source)](./.asset-source-timer_images/20d6a78a.png "Name & Description (Timer Source)")
 
-**`Name`** : Name of the Asset. Spaces are not allowed in the name.
-
-**`Description`** : Enter a description.
-
-The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it. Click to expand and then click to follow, if any.
+<NameAndDescription></NameAndDescription>
 
 ### Required roles
 
-![](.asset-source-timer_images/c2e6ec39.png "Required Roles (Timer Source)")
+<RequiredRoles></RequiredRoles>
 
-In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching
-roles.
-If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all Nodes (no restriction).
+### Throttling & Failure Handling
 
-### Stream Creation & Settings
+<ThrottlingAndFailure></ThrottlingAndFailure>
 
-In this section you define whether you want to create timed batches, or timed events.
 
-![](.asset-source-timer_images/57591d64.png "Stream Type (Timer Source)")
+### Operation Mode
 
-Batches are the synthetic equivalent of reading individual files.
-Events, on the other hand have no batch beginning or end, but
+A Timer Source can operate in two different modes:
 
-#### Batch Stream
+![Operation Mode (Timer Source)](.asset-source-timer_images/image_2025-03-18-09-28-06.png "Operation Mode (Timer Source)")
 
-Select to create a timer triggered batch stream, if you want to
 
-1. Create a synthetic batch which opens, and potentially closes after a pre-defined amount of time.
-   This allows you to define a time-span of an open batch. Something which is not possible with an event stream.
-2. Create a trigger only, disregarding any potential payload within the batch.
-   In essence, you only get a `onStreamStart` event which you can react to.
+**1. Stand alone source:** The Timer Source will operate independently of the timer service. It will use its own internal timer to trigger messages. Relevant timers are defined in the `Timers` section within this Asset.
 
-![](.asset-source-timer_images/17279353.png "Batch Stream (Timer Source)")
+**2. Using timer service:** The Timer Source will not use its own internal timer but will rely on the timer service to trigger messages. The timer service will be used to trigger messages at specified intervals.
 
-* **`Stream type`** : Select `Batch Stream` here.
+#### Stand alone source
 
-* **`Stream name`** : Provide an individual name for the batch.
-  This will show up in the batch payload which can be processed downstream in a Workflow.
+In this mode, the Timer Source will use its own internal timer to trigger messages. Relevant timers are defined in the `Timers` section within this Asset.
 
-* **`Batch creation timer type`** : Select between `At fixed rate` or `Cron tab`.
-
-    * **`At fixed rate`** : Create a new batch every x seconds.
-        * **`Batch creation interval [sec]`** : Number of seconds to wait in between creating a new batch
-
-          ![](.asset-source-timer_images/6d7d9675.png "Batch creation timer type At fixed rate (Timer Source)")
-
-    * **`Cron tab`** : Define granular timer controls via cron settings.
-        * **`Batch creation cron tab expression`** : Define the cron expression for when to fire the time.
-          Click the button to the right for UI-driven help.
-
-          ![](.asset-source-timer_images/2eeeea15.png "Batch creation timer type Cron tab (Timer Source)")
-
-* **`Batch closing mode`** : `Batch Stream` mode allows you to define when to close the batch. There are three modes available:
-
-    1. **`Immediately`** : The batch is closed right after being opened. No payload is being sent.
-       A `onStreamStart` event is sent through the system that can be reacted upon. You can - for example - have a `onStreamStart` even in a Javascript Processor to react to this.
-       Note that since no payload will be sent in this mode, there is no point to have a `onMessage` reaction in any of your scripts. You also do not require to set a [Timer](../sources/asset-source-timer#timers). It will never fire  because the stream will immediately terminate.
-
-       ![](.asset-source-timer_images/aa230924.png "Batch closing mode Immediately (Timer Source)")
-
-    2. **`When all timers have fired`** : You can define individual timers below. This setting will then ensure that all of these timers are being observed.
-       The batch will be closed when all timers were executed.
-
-       ![](.asset-source-timer_images/2470de80.png "Batch closing mode When all timers have fired (Timer Source)")
-
-    3. **`After a fixed delay`** : Close the batch after a fixed amount of time. Timers as defined below will still fire until the delay has expired.
-
-       ![](.asset-source-timer_images/31a1e6ec.png "Batch closing mode After a fixed delay (Timer Source)")
-       
-        * **`Fixed delay [ms]`** : Time in milliseconds to wait until the batch is closed.
-          If you have defined timers below, then those timers which fire before this delay, will fire, others will be ignored.
-
-#### Event Stream
-
-An event stream implies that messages will not be in opening and closing batches.
-Instead, messages will be issued based on the defined timers below.
-
-If you have a Workflow with a Javascript Processor, you can react to those messages by way of `onMessage(message)`.
-The payload is defined in the timers below. A downstream script can then identify by the timer name which timer was fired and also retrieve the payload, if any.
-
-![](.asset-source-timer_images/b575ff27.png "Event Stream (Timer Source)")
-
-* **`Stream name`** : Provide an individual name for the event stream.
-  This will show up in the batch payload which can be processed downstream in a Workflow.
-
-### Timers
+##### Timers
 
 Timers define two things:
 
@@ -175,22 +119,102 @@ A new timer with default values is automatically created. Let's go through the p
 
   ![](.asset-source-timer_images/ee92ec47.png "Payload with environment vars (Timer Payload)")
 
-## Message structure
+#### Using timer service
+
+In this mode, the Timer Source will not use its own internal timer but will rely on the timer service to trigger messages. The timer service will be used to trigger messages at specified intervals.
+
+So instead of defining timers within the Timer Source, you will define them in the [Timer Service](../services/asset-service-timer).
+
+![Using timer service (Timer Source)](.asset-source-timer_images/image_2025-03-18-16-53-44.png "Using timer service (Timer Source)")
+
+#### Stream Settings
+
+In this section you define whether you want to create timed batches, or timed events.
+
+![Stream Type (Timer Source)](.asset-source-timer_images/image_2025-03-18-16-34-43.png "Stream Type (Timer Source)")
+
+- **Batches** are the synthetic equivalent of reading individual files.
+- **Events** have no batch beginning or end, but are issued based on the defined timers.
+
+##### Batch Stream
+
+Select to create a timer triggered batch stream, if you want to
+
+1. Create a synthetic batch which opens, and potentially closes after a pre-defined amount of time.
+   This allows you to define a time-span of an open batch. Something which is not possible with an event stream.
+2. Create a trigger only, disregarding any potential payload within the batch.
+   In essence, you only get a `onStreamStart` event which you can react to.
+
+![Batch Stream (Timer Source)](.asset-source-timer_images/image_2025-03-18-16-37-51.png "Batch Stream (Timer Source)")
+
+* **`Stream type`** : Select `Batch Stream` here.
+
+* **`Stream name`** : Provide an individual name for the batch.
+  This will show up in the batch payload which can be processed downstream in a Workflow.
+
+* **`Batch creation timer type`** : Select between `At fixed rate` or `Cron tab`.
+
+    * **`At fixed rate`** : Create a new batch every x seconds.
+        * **`Batch creation interval [sec]`** : Number of seconds to wait in between creating a new batch
+
+          ![](.asset-source-timer_images/6d7d9675.png "Batch creation timer type At fixed rate (Timer Source)")
+
+    * **`Cron tab`** : Define granular timer controls via cron settings.
+        * **`Batch creation cron tab expression`** : Define the cron expression for when to fire the time.
+          Click the button to the right for UI-driven help.
+
+          ![](.asset-source-timer_images/2eeeea15.png "Batch creation timer type Cron tab (Timer Source)")
+
+* **`Batch closing mode`** : `Batch Stream` mode allows you to define when to close the batch. There are three modes available:
+
+    1. **`Immediately`** : The batch is closed right after being opened. No payload is being sent.
+       A `onStreamStart` event is sent through the system that can be reacted upon. You can - for example - have a `onStreamStart` even in a Javascript Processor to react to this.
+       Note that since no payload will be sent in this mode, there is no point to have a `onMessage` reaction in any of your scripts. You also do not require to set a [Timer](../sources/asset-source-timer#timers). It will never fire  because the stream will immediately terminate.
+
+       ![](.asset-source-timer_images/aa230924.png "Batch closing mode Immediately (Timer Source)")
+
+    2. **`When all timers have fired`** : You can define individual timers below. This setting will then ensure that all of these timers are being observed.
+       The batch will be closed when all timers were executed.
+
+       ![](.asset-source-timer_images/2470de80.png "Batch closing mode When all timers have fired (Timer Source)")
+
+    3. **`After a fixed delay`** : Close the batch after a fixed amount of time. Timers as defined below will still fire until the delay has expired.
+
+       ![](.asset-source-timer_images/31a1e6ec.png "Batch closing mode After a fixed delay (Timer Source)")
+       
+        * **`Fixed delay [ms]`** : Time in milliseconds to wait until the batch is closed.
+          If you have defined timers below, then those timers which fire before this delay, will fire, others will be ignored.
+
+##### Event Stream
+
+An event stream implies that messages will not be in opening and closing batches.
+Instead, messages will be issued based on the defined timers below.
+
+If you have a Workflow with a Javascript Processor, you can react to those messages by way of `onMessage(message)`.
+The payload is defined in the timers below. A downstream script can then identify by the timer name which timer was fired and also retrieve the payload, if any.
+
+![Event Stream (Timer Source)](.asset-source-timer_images/image_2025-03-18-16-39-40.png "Event Stream (Timer Source)")
+
+* **`Stream name`** : Provide an individual name for the event stream.
+  This will show up in the batch payload which can be processed downstream in a Workflow.
+
+##### Message Structure
 
 When a message is issued within a Batch or Event Stream and sent downstream in the Workflow, you can expect the following message structure: 
 
-![](.asset-source-timer_images/f8af67da.png "Message structure (Timer Source)")
+![Message structure (Timer Source)](.asset-source-timer_images/f8af67da.png "Message structure (Timer Source)")
 
-The `Group` is the name of the Timer Source.
-The `Name` is the name of the individual timer which triggered the message.
-The `ScheduledFireTime` is the time when the timer was supposed to be fired. This only applies to cron-based timers.
-The `FireTime` is the time when the timer was actually fired. This only applies to cron-based timers.
-`Payload` is the payload which you have defined in the with an individual timer.
+- **`Group`** is the name of the Timer Source.
+- **`Name`** is the name of the individual timer which triggered the message.
+- **`ScheduledFireTime`** is the time when the timer was supposed to be fired. This only applies to cron-based timers.
+- **`FireTime`** is the time when the timer was actually fired. This only applies to cron-based timers.
+- **`Payload`** is the payload which you have defined in the with an individual timer.
 
 ## Related Topics
 
 ### Internal
 * [Input Message](../processors-input/asset-input-message)
+* [Timer Service](../services/asset-service-timer)
 
 ### External
 * [Cron](https://en.wikipedia.org/wiki/Cron)

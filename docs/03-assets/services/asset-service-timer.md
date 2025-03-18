@@ -4,7 +4,7 @@ description: Timer Service Asset. Use this to trigger a Workflow in a regular in
 tags:
   - service
   - timer source
-
+  - timer service
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
