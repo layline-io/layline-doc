@@ -239,6 +239,46 @@ class DateTime {
     }
 
     /**
+     * Returns the current DateTime in the specified time zone.
+     *
+     * @param {TimeZone} [zone] - The time zone to use. If not provided, the system default time zone is used.
+     * @returns {DateTime} The current DateTime in the specified time zone.
+     * @example
+     * const now = DateTime.now(TimeZone.of('America/New_York')); // Current date and time in New York
+     */
+    static now(zone?: TimeZone): DateTime { return; }
+
+    /**
+     * Creates a DateTime instance with the specified date and time components.
+     *
+     * @param {number} year - The year to set.
+     * @param {number} [month] - The month to set (1 = January, 12 = December).
+     * @param {number} [day] - The day of the month to set.
+     * @param {number} [hour] - The hour of the day to set (0-23).
+     * @param {number} [minute] - The minute of the hour to set (0-59).
+     * @param {number} [second] - The second of the minute to set (0-59).
+     * @param {number} [nano] - The nanosecond of the second to set (0-999999999).
+     * @param {ZoneOffset} [zone] - The time zone to associate with. If not provided, the system default time zone is used.
+     * @returns {DateTime} A new DateTime instance with the specified components.
+     * @example
+     * const dateTime = DateTime.of(2024, 12, 25, 14, 30, 0, 0); // Christmas Day 2024 at 2:30 PM
+     * const dateTime = DateTime.of(2024, 12, 25, 14, 30, 0, 0, ZoneOffset(5, 30)); // Christmas Day 2024 at 2:30 PM +05:30
+     */
+    static of(year: number, month?: number, day?: number, hour?: number, minute?: number, second?: number, nano?: number, zone?: ZoneOffset): DateTime { return; }
+
+    /**
+     * Parses a string to create a DateTime instance based on the specified format.
+     *
+     * @param {string} value - The string representation of the date-time.
+     * @param {string} [format] - The format to use for parsing. If not provided, a default format is used.
+     * See {@link https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html|DateTimeFormatter | Java Documentation} for more information.
+     * @returns {DateTime} A new DateTime instance parsed from the string.
+     * @example
+     * const dateTime = DateTime.parse('2024-12-25 14:30:00', 'uuuu-MM-dd HH:mm:ss'); // Christmas Day 2024 at 2:30 PM
+     */
+    static parse(value: string, format?: string): DateTime { return; }
+
+    /**
      * Returns a new DateTime with the specified number of years added.
      *
      * @param {number} years - The number of years to add.
@@ -415,45 +455,6 @@ class DateTime {
      */
     withNano(nano: number): DateTime { return; }
 
-    /**
-     * Returns the current DateTime in the specified time zone.
-     *
-     * @param {TimeZone} [zone] - The time zone to use. If not provided, the system default time zone is used.
-     * @returns {DateTime} The current DateTime in the specified time zone.
-     * @example
-     * const now = DateTime.now(TimeZone.of('America/New_York')); // Current date and time in New York
-     */
-    static now(zone?: TimeZone): DateTime { return; }
-
-    /**
-     * Creates a DateTime instance with the specified date and time components.
-     *
-     * @param {number} year - The year to set.
-     * @param {number} [month] - The month to set (1 = January, 12 = December).
-     * @param {number} [day] - The day of the month to set.
-     * @param {number} [hour] - The hour of the day to set (0-23).
-     * @param {number} [minute] - The minute of the hour to set (0-59).
-     * @param {number} [second] - The second of the minute to set (0-59).
-     * @param {number} [nano] - The nanosecond of the second to set (0-999999999).
-     * @param {ZoneOffset} [zone] - The time zone to associate with. If not provided, the system default time zone is used.
-     * @returns {DateTime} A new DateTime instance with the specified components.
-     * @example
-     * const dateTime = DateTime.of(2024, 12, 25, 14, 30, 0, 0); // Christmas Day 2024 at 2:30 PM
-     * const dateTime = DateTime.of(2024, 12, 25, 14, 30, 0, 0, ZoneOffset(5, 30)); // Christmas Day 2024 at 2:30 PM +05:30
-     */
-    static of(year: number, month?: number, day?: number, hour?: number, minute?: number, second?: number, nano?: number, zone?: ZoneOffset): DateTime { return; }
-
-    /**
-     * Parses a string to create a DateTime instance based on the specified format.
-     *
-     * @param {string} value - The string representation of the date-time.
-     * @param {string} [format] - The format to use for parsing. If not provided, a default format is used.
-     * See {@link https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html|DateTimeFormatter | Java Documentation} for more information.
-     * @returns {DateTime} A new DateTime instance parsed from the string.
-     * @example
-     * const dateTime = DateTime.parse('2024-12-25 14:30:00', 'uuuu-MM-dd HH:mm:ss'); // Christmas Day 2024 at 2:30 PM
-     */
-    static parse(value: string, format?: string): DateTime { return; }
 }
 
 export default DateTime;

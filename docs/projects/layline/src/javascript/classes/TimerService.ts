@@ -96,7 +96,7 @@ export default class TimerService {
    * @param {string} params.Group - The timer group of the timer to cancel.
    * @param {string} params.Name - The name of the timer to cancel.
    *
-   * @returns {TimerResponse} A TimerResponse object containing the result of the timer cancellation.
+   * @returns {TimerResponse} A TimerResponse object containing the result of the timer cancellation, null if the timer was not found.
    */
   CancelTimer(params: {
     Group: string;
@@ -124,7 +124,7 @@ export default class TimerService {
    * @param {string} params.Group - The timer group of the timer to retrieve.
    * @param {string} params.Name - The name of the timer to retrieve.
    *
-   * @returns {TimerResponse} A TimerResponse object containing the result of the timer retrieval.
+   * @returns {TimerResponse} A TimerResponse object containing the result of the timer retrieval, null if the timer was not found.
    */
   GetTimer(params: {
     Group: string;
@@ -163,7 +163,7 @@ export default class TimerService {
    * The payload type is set when creating the timer using one of the `ScheduleOnce`, `ScheduleFixedRate`, or `ScheduleCron` methods and derived off of the payload type. 
    * It could by any type available within the layline.io platform.
    *
-   * @returns {TimerResponse[]} An array of TimerResponse objects containing the result of the timer retrieval.
+   * @returns {TimerResponse[]} An array of TimerResponse objects containing the result of the timer retrieval. Empty array if no timers were found.
    */
   GetTimers(params: {
     Group: string;
@@ -200,7 +200,8 @@ export default class TimerService {
    * @param {any} params.Payload - The payload of the cron job. The type is automatically derived from the payload type.
    * @param {DateTime} [params.StartAt] - The start time of the cron job.
    *
-   * @returns {void | Error} A void response or an Error object.
+   * @returns {void} A void response or an Error object.
+   * @throws {Error} In case the cron job could not be scheduled.
    */
   ScheduleCron(params: {
     Group: string;
@@ -208,7 +209,7 @@ export default class TimerService {
     Name: string;
     Payload: string;
     StartAt?: DateTime;
-  }): void | Error {
+  }): void {
     return;
   }
 
@@ -237,7 +238,8 @@ export default class TimerService {
    * @param {any} params.Payload - The payload of the timer. The type is automatically derived from the payload type.
    * @param {DateTime} [params.StartAt] - The start time of the timer.
    *
-   * @returns {void | Error} A void response or an Error object.
+   * @returns {void} A void response or an Error object.
+   * @throws {Error} In case the timer could not be scheduled.
    */
   ScheduleFixedRate(params: {
     Group: string;
@@ -245,7 +247,7 @@ export default class TimerService {
     Name: string;
     Payload: string;
     StartAt?: DateTime;
-  }): void | Error {
+  }): void {
     return;
   }
 
@@ -273,7 +275,8 @@ export default class TimerService {
    * @param {string} params.Name - The name of the timer to schedule.
    * @param {any} params.Payload - The payload of the timer. The type is automatically derived from the payload type.
    *
-   * @returns {void | Error} A void response or an Error object.
+   * @returns {void} A void response or an Error object.
+   * @throws {Error} In case the timer could not be scheduled.
    */
 
   ScheduleOnce(params: {
@@ -281,7 +284,7 @@ export default class TimerService {
     When: DateTime;
     Name: string;
     Payload: string;
-  }): void | Error {
+  }): void {
     return;
   }
 }

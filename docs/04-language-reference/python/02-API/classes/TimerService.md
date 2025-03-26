@@ -9,7 +9,7 @@ This is then used to access linked Services and their configured functions.
 **Let's look at this using an example on how to schedule a timer:**
 
 ```python
-services.TimerService.schedule_fixed_rate({
+services.TimerService.ScheduleFixedRate({
     'Group': 'MyGroup',
     'Period': 60000,
     'Name': 'MyTimer',
@@ -22,7 +22,7 @@ This will schedule a timer to run every minute and execute the payload `{"messag
 
 You can always reference an existing timer by the combination of `Group` and `Name`. This is important to know when you want to cancel or retrieve a timer, for example.
 
-**Important note on how the timer behaves for repeating timers like `schedule_fixed_rate` and `schedule_cron`**
+**Important note on how the timer behaves for repeating timers like `ScheduleFixedRate` and `ScheduleCron`**
 
 If you schedule a timer with a period of 60000, it becomes due every minute. This does not guarantee that it will be executed **exactly** every minute.
 Existing timers are checked for being due in the interval specified by the Timer Group which you have configured. 
@@ -71,13 +71,13 @@ The script above reveals the structure of the message that is received from the 
 
 ## Methods
 
-### cancel_timer()
+### CancelTimer()
 
-> **cancel_timer**(`params`): [`TimerResponse`](../interfaces/TimerResponse.md)
+> **CancelTimer**(`params`): [`TimerResponse`](../interfaces/TimerResponse.md)
 
 Cancels a timer based on the provided group and name.
 
-This method allows you to cancel a timer that has been previously created using the `schedule_once`, `schedule_fixed_rate`, or `schedule_cron` methods.
+This method allows you to cancel a timer that has been previously created using the `ScheduleOnce`, `ScheduleFixedRate`, or `ScheduleCron` methods.
 The timer is identified by its group and name.
 
 #### Parameters
@@ -98,13 +98,13 @@ The name of the timer to cancel.
 
 [`TimerResponse`](../interfaces/TimerResponse.md)
 
-A TimerResponse object containing the result of the timer cancellation.
+A TimerResponse object containing the result of the timer cancellation, null if the timer was not found.
 
 #### Example
 
 ```python
 # Cancel a timer
-response = services.TimerService.cancel_timer({
+response = services.TimerService.CancelTimer({
     'Group': 'MyGroup',
     'Name': 'MyTimer'
 })
@@ -112,13 +112,13 @@ response = services.TimerService.cancel_timer({
 
 ***
 
-### get_timer()
+### GetTimer()
 
-> **get_timer**(`params`): [`TimerResponse`](../interfaces/TimerResponse.md)
+> **GetTimer**(`params`): [`TimerResponse`](../interfaces/TimerResponse.md)
 
 Retrieves a timer based on the provided group and name.
 
-This method allows you to retrieve a timer that has been previously created using the `schedule_once`, `schedule_fixed_rate`, or `schedule_cron` methods.
+This method allows you to retrieve a timer that has been previously created using the `ScheduleOnce`, `ScheduleFixedRate`, or `ScheduleCron` methods.
 The timer is identified by its group and name.
 
 #### Parameters
@@ -139,13 +139,13 @@ The name of the timer to retrieve.
 
 [`TimerResponse`](../interfaces/TimerResponse.md)
 
-A TimerResponse object containing the result of the timer retrieval.
+A TimerResponse object containing the result of the timer retrieval, None if the timer was not found.
 
 #### Example
 
 ```python
 # Retrieve a timer
-response = services.TimerService.get_timer({
+response = services.TimerService.GetTimer({
     'Group': 'MyGroup',
     'Name': 'MyTimer'
 })
@@ -153,9 +153,9 @@ response = services.TimerService.get_timer({
 
 ***
 
-### get_timers()
+### GetTimers()
 
-> **get_timers**(`params`): [`TimerResponse`](../interfaces/TimerResponse.md)[]
+> **GetTimers**(`params`): [`TimerResponse`](../interfaces/TimerResponse.md)[]
 
 Retrieves all timers in a range and with applied filters.
 
@@ -183,7 +183,7 @@ The filter works as a "contains" filter and is case-sensitive.
 • **params['PayloadTypeFilter']?**: `str`
 
 Optional payload type filter to apply to the timer retrieval. 
-The payload type is set when creating the timer using one of the `schedule_once`, `schedule_fixed_rate`, or `schedule_cron` methods and derived off of the payload type. 
+The payload type is set when creating the timer using one of the `ScheduleOnce`, `ScheduleFixedRate`, or `ScheduleCron` methods and derived off of the payload type. 
 It could be any type available within the layline.io platform.
 
 • **params['ToIdx']**: `int`
@@ -199,13 +199,13 @@ The filter works as a "contains" filter and is case-sensitive. Possible timer va
 
 [`TimerResponse`](../interfaces/TimerResponse.md)[]
 
-An array of TimerResponse objects containing the result of the timer retrieval.
+An array of TimerResponse objects containing the result of the timer retrieval. Empty array if no timers were found.
 
 #### Example
 
 ```python
 # Retrieve all timers which match the filter criteria
-response = services.TimerService.get_timers({
+response = services.TimerService.GetTimers({
     'Group': 'MyGroup',
     'FromIdx': 0,
     'ToIdx': 10,
@@ -217,12 +217,12 @@ response = services.TimerService.get_timers({
 
 ***
 
-### schedule_cron()
+### ScheduleCron()
 
-> **schedule_cron**(`params`): `None` \| `Exception`
+> **ScheduleCron**(`params`): `None` \| `Exception`
 
 Creates a timer that runs at a specific time based on a cron expression.
-The cron job is identified by its group and name, which are specified in the `schedule_cron` call.
+The cron job is identified by its group and name, which are specified in the `ScheduleCron` call.
 
 #### Parameters
 
@@ -261,7 +261,7 @@ A None response or an Exception object.
 
 ```python
 # Schedule a cron job
-response = services.TimerService.schedule_cron({
+response = services.TimerService.ScheduleCron({
     'Group': 'MyGroup',
     'Expression': '0 0 * * *',
     'Name': 'MyCronJob',
@@ -272,14 +272,14 @@ response = services.TimerService.schedule_cron({
 
 ***
 
-### schedule_fixed_rate()
+### ScheduleFixedRate()
 
-> **schedule_fixed_rate**(`params`): `None` \| `Exception`
+> **ScheduleFixedRate**(`params`): `None` \| `Exception`
 
 Schedules a timer to run repeatedly at a specific interval.
 
 This method allows you to schedule a timer to run repeatedly at a specific interval.
-The timer is identified by its group and name, which are specified in the `schedule_fixed_rate` call.
+The timer is identified by its group and name, which are specified in the `ScheduleFixedRate` call.
 
 #### Parameters
 
@@ -309,15 +309,18 @@ The start time of the timer.
 
 #### Returns
 
-`None` \| `Exception`
+`None`
 
-A None response or an Exception object.
+#### Throws
+
+`Error`
+In case the cron job could not be scheduled.
 
 #### Example
 
 ```python
 # Schedule a timer
-response = services.TimerService.schedule_fixed_rate({
+response = services.TimerService.ScheduleFixedRate({
     'Group': 'MyGroup',
     'Period': 60000,
     'Name': 'MyTimer',
@@ -328,14 +331,14 @@ response = services.TimerService.schedule_fixed_rate({
 
 ***
 
-### schedule_once()
+### ScheduleOnce()
 
-> **schedule_once**(`params`): `None` \| `Exception`
+> **ScheduleOnce**(`params`): `None` \| `Exception`
 
 Schedules a timer to run once at a specific time.
 
 This method allows you to schedule a timer to run once at a specific time.
-The timer is identified by its group and name, which are specified in the `schedule_once` call.
+The timer is identified by its group and name, which are specified in the `ScheduleOnce` call.
 
 #### Parameters
 
@@ -361,15 +364,21 @@ The time to schedule the timer.
 
 #### Returns
 
-`None` \| `Exception`
+`None`
 
 A None response or an Exception object.
+
+#### Throws
+
+`Error`
+
+In case the cron job could not be scheduled.
 
 #### Example
 
 ```python
 # Schedule a timer
-response = services.TimerService.schedule_once({
+response = services.TimerService.ScheduleOnce({
     'Group': 'MyGroup',
     'When': datetime.datetime(2024, 1, 1, 0, 0, 0),
     'Name': 'MyTimer',

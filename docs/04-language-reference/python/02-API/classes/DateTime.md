@@ -362,6 +362,58 @@ DateTime - A new DateTime instance with the years subtracted.
 new_date_time = DateTime.minusYears(5)  # Five years before
 ```
 
+
+### now()
+
+> @staticmethod
+> **now**(zone: TimeZone = None) -> DateTime
+
+Returns the current DateTime in the specified time zone.
+
+#### Parameters
+
+- **zone**: TimeZone, optional - The time zone to use. If not provided, the system default time zone is used.
+
+#### Returns
+
+DateTime - The current DateTime in the specified time zone.
+
+#### Example
+
+```python
+now = DateTime.now(TimeZone.of('America/New_York'))  # Current date and time in New York
+```
+
+### of()
+
+> @staticmethod
+> **of**(year: int, month: int = None, day: int = None, hour: int = None, minute: int = None, second: int = None, nano: int = None, zone: ZoneOffset = None) -> DateTime
+
+Creates a DateTime instance with the specified date and time components.
+
+#### Parameters
+
+- **year**: int - The year to set.
+- **month**: int, optional - The month to set (1 = January, 12 = December).
+- **day**: int, optional - The day of the month to set.
+- **hour**: int, optional - The hour of the day to set (0-23).
+- **minute**: int, optional - The minute of the hour to set (0-59).
+- **second**: int, optional - The second of the minute to set (0-59).
+- **nano**: int, optional - The nanosecond of the second to set (0-999999999).
+- **zone**: [ZoneOffset](ZoneOffset.md), optional - The time zone to associate with. If not provided, the system default time zone is used.
+
+#### Returns
+
+DateTime - A new DateTime instance with the specified components.
+
+#### Example
+
+```python
+date_time = DateTime.of(2024, 12, 25, 14, 30, 0, 0)  # Christmas Day 2024 at 2:30 PM
+date_time = DateTime.of(2024, 12, 25, 14, 30, 0, 0, ZoneOffset(5, 30))  # Christmas Day 2024 at 2:30
+```
+
+
 ### plusDays()
 
 > **plusDays**(days: int) -> DateTime
@@ -694,52 +746,3 @@ DateTime - A new DateTime instance with the specified year.
 ```python
 new_date_time = DateTime.withYear(2025)
 ```
-
-### now()
-
-> @staticmethod
-> **now**(zone: TimeZone = None) -> DateTime
-
-Returns the current DateTime in the specified time zone.
-
-#### Parameters
-
-- **zone**: TimeZone, optional - The time zone to use. If not provided, the system default time zone is used.
-
-#### Returns
-
-DateTime - The current DateTime in the specified time zone.
-
-#### Example
-
-```python
-now = DateTime.now(TimeZone.of('America/New_York'))  # Current date and time in New York
-```
-
-### of()
-
-> @staticmethod
-> **of**(year: int, month: int = None, day: int = None, hour: int = None, minute: int = None, second: int = None, nano: int = None, zone: ZoneOffset = None) -> DateTime
-
-Creates a DateTime instance with the specified date and time components.
-
-#### Parameters
-
-- **year**: int - The year to set.
-- **month**: int, optional - The month to set (1 = January, 12 = December).
-- **day**: int, optional - The day of the month to set.
-- **hour**: int, optional - The hour of the day to set (0-23).
-- **minute**: int, optional - The minute of the hour to set (0-59).
-- **second**: int, optional - The second of the minute to set (0-59).
-- **nano**: int, optional - The nanosecond of the second to set (0-999999999).
-- **zone**: [ZoneOffset](ZoneOffset.md), optional - The time zone to associate with. If not provided, the system default time zone is used.
-
-#### Returns
-
-DateTime - A new DateTime instance with the specified components.
-
-#### Example
-
-```python
-date_time = DateTime.of(2024, 12, 25, 14, 30, 0, 0)  # Christmas Day 2024 at 2:30 PM
-date_time = DateTime.of(2024, 12, 25, 14, 30, 0, 0, ZoneOffset(5, 30))  # Christmas Day 2024 at 2:30
