@@ -4,8 +4,6 @@ Represents a point in time, encapsulating date and time information.
 This class cannot be instantiated directly but provides various methods
 for manipulating and interacting with date-time values.
 
-## Abstract
-
 ## Properties
 
 ### date

@@ -10,7 +10,6 @@ import ZoneOffset from "@site/layline/src/javascript/classes/ZoneOffset";
  * This class cannot be instantiated directly but provides various methods
  * for manipulating and interacting with date-time values.
  *
- * @abstract
  * @class
  */
 class DateTime {

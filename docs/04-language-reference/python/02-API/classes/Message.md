@@ -55,7 +55,82 @@ def on_detail(message):
 
 ### data
 
-> **data**: object
+> **data**: `object`
+
+The data of the message.
+It is a nested object structure that reflects the structure of the data dictionary of this message.
+
+#### Example
+
+```python
+# Create Detail
+detailMessage = dataDictionary.createMessage(dataDictionary.type.Detail);
+detailMessage.data.PRODUCT = {
+    "RECORD_TYPE"       : "D",
+    "ID"                : message.data.Id,
+    "CODE"              : message.data.Code,
+    "NAME"              : message.data.Name,
+    "CATEGORY"          : message.data.Category,
+    "PRICE"             : message.data.Price,
+    "STOCK_QUANTITY"    : message.data.StockQuantity,
+    "COLOR"             : message.data.Color,
+    "LAUNCH_DATE"       : message.data.LaunchDate,
+}
+# stream.logInfo(f"detailMessage: {detailMessage.toJson()})")
+stream.emit(detailMessage, OUTPUT_PORT);
+```
+
+***
+
+### id
+
+> **id**: `string`
+
+The unique identifier of the message.
+This is a consecutive number starting with "1" for the first message.
+It is used to uniquely identify a message within a stream.
+Cloning a message will generate a new id, whereas the original message will keep its id and the cloned message will have the original message number appended by a "." and a new consecutive number.
+For example, "1.1", "1.2", "1.3", ... for each clone of the original message.
+
+#### Example
+
+```python
+# Accessing the id of a message
+id = message.id;
+```
+
+***
+
+### numStatusAttached
+
+> **numStatusAttached**: `number`
+
+Gets the number of States [Status](../../../python/02-API/classes/Status.md) attached.
+Same as getNumStatusAttached.
+
+```python
+result = message.numStatusAttached;
+```
+
+***
+
+### typeName
+
+> **typeName**: `string`
+
+The type name of the message.
+This is the name of the data dictionary type that the message represents.
+
+#### Example
+
+```python
+typeName = message.typeName;
+# e.g, If in your data dictionary you have a type called "MyType", then this will return "MyType"
+if typeName == 'MyType':
+    # do something
+```
+
+
 
 ## Methods
 
@@ -590,16 +665,6 @@ record_accessor_for_md5 = [
 md5_digest = message.getMessageDigest("MD5", True, record_accessor_for_md5)
 ```
 
-### getNumStatusAttached()
-
-> **getNumStatusAttached**() -> int
-
-Gets the number of States [Status](Status.md) attached.
-
-```python
-result = message.getNumStatusAttached()
-```
-
 #### Returns
 
 int - Number of States attached to the message.
@@ -685,9 +750,9 @@ result = message.hasStatusAttached(Severity.ERROR)
 
 #### Parameters
 
-- **severity**: Severity
+- **severity**: [`Severity`](../enumerations/Severity.md)
 
-  Severity to check against.
+  Optional severity to check against.
 
 #### Returns
 

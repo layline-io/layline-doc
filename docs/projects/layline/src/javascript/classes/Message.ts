@@ -67,10 +67,6 @@ import Vendor from "@site/layline/src/javascript/classes/Vendor";
  * ...
  *
  * ```
- *
- * @property {Object} data
- * @property {Object} type
- *
  */
 class Message {
 
@@ -80,17 +76,28 @@ class Message {
 
     /**
      * The data of the message.
-     * It is a nested object structure that reflects the structure of the data dictionary.
+     * It is a nested object structure that reflects the structure of the data dictionary of this message.
      *
-     * @type {Object}
      * @example
      * ```js
-     * // Accessing the data of a message
-     * const data = message.data;
+     * // Create Detail
+     * const detailMessage = dataDictionary.createMessage(dataDictionary.type.Detail);
+     * detailMessage.data.PRODUCT = {
+     *     RECORD_TYPE       : "D",
+     *     ID                : message.data.Id,
+     *     CODE              : message.data.Code,
+     *     NAME              : message.data.Name,
+     *     CATEGORY          : message.data.Category,
+     *     PRICE             : message.data.Price,
+     *     STOCK_QUANTITY    : message.data.StockQuantity,
+     *     COLOR             : message.data.Color,
+     *     LAUNCH_DATE       : message.data.LaunchDate,
+     * }
+     * // stream.logInfo(f"detailMessage: {detailMessage.toJson()})")
+     * stream.emit(detailMessage, OUTPUT_PORT);
      * ```
-     *
      */
-    data: object;
+    data: Object;
 
     /**
      * The unique identifier of the message.
@@ -120,6 +127,23 @@ class Message {
      * @return {number} - Number of States attached to the message.
      */
     numStatusAttached: number;
+
+    /**
+     * The type name of the message.
+     * This is the name of the data dictionary type that the message represents.
+     * 
+     * @example
+     * ```js
+     * const typeName = message.typeName;
+     * // e.g, If in your data dictionary you have a type called "MyType", then this will return "MyType"
+     * if (message.typeName === 'MyType') {
+     *     // do something
+     * }
+     * ```
+     *
+     * @type {string}
+     */
+    typeName: string;
 
 
     /**
@@ -583,25 +607,10 @@ class Message {
      * const result = message.hasStatusAttached(Severity.ERROR);
      * ```
      *
-     * @param {Severity} severity - Severity to check against.
+     * @param {Severity} [severity] - Optional severity to check against.
      * @return {boolean} - True, if match found, else false.
      */
-    hasStatusAttached(severity: Severity) {
-        return;
-    }
-
-
-    /**
-     * Gets the number of States {@link Status} attached.
-     * Same as {@link numStatusAttached}.
-     *
-     * ```js
-     * const result = message.getNumStatusAttached();
-     * ```
-     *
-     * @return {number} - Number of States attached to the message.
-     */
-    getNumStatusAttached() {
+    hasStatusAttached(severity?: Severity) {
         return;
     }
 
@@ -862,3 +871,7 @@ class Message {
 
 
 export default Message;
+
+
+
+
