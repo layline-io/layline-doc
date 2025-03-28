@@ -6,7 +6,7 @@ Read more about Python-lifecycle in the [introduction](../../python_introduction
 
 ## Methods
 
-### onCommit()
+### on_commit()
 
 Invoked when a Stream is committed.
 Use this to perform potential final tasks when a stream ends.
@@ -14,7 +14,7 @@ Use this to perform potential final tasks when a stream ends.
 #### Example
 
 ```python
-def onCommit():
+def on_commit():
     if connection:
         connection.commit_transaction()
         connection.close_connection()
@@ -22,21 +22,21 @@ def onCommit():
         connection = None
 ```
 
-### onInit()
+### on_init()
 
-`onInit` is invoked upon instantiation of the Python Asset.
+`on_init` is invoked upon instantiation of the Python Asset.
 Use this method to perform any initialization actions, e.g. acquiring a database connection, initializing data structures which are used within the script, etc.
 Note that this method is only invoked once upon startup of the Project.
 
 #### Example
 
 ```python
-def onInit():
+def on_init():
     global OUTPUT_PORT
     OUTPUT_PORT = processor.get_output_port('Output')
 ```
 
-### onMessage()
+### on_message()
 
 This is one of the most important methods which you will use every time within a Python Asset.
 layline.io is a reactive messaging system, meaning a script within a Python Asset is triggered by the delivery of a message to this Python Asset.
@@ -48,13 +48,11 @@ You can consider the `onMessage` method as a starting point for processing withi
 # Get the output port
 OUTPUT_PORT = processor.get_output_port('MyOutput')
 
-def onMessage():
-    if message.typeName == 'Header':
+def on_message():
+    if message.type_name == 'Header':
         # do nothing
-        pass
     elif message.typeName == 'Trailer':
         # do something with the trailer
-        pass
     elif message.typeName == 'Detail':
         # invoke a self-defined function which handles the message.
         handle_detail(message)
@@ -63,10 +61,9 @@ def onMessage():
 
 def handle_detail(detail):
     # do something with the message
-    pass
 ```
 
-### onPrepareCommit()
+### on_prepare_commit()
 
 Invoked before a Stream is finally committed.
 Use this method to do any preparatory work before a Stream is finally committed.
@@ -74,23 +71,22 @@ Use this method to do any preparatory work before a Stream is finally committed.
 #### Example
 
 ```python
-def onPrepareCommit():
+def on_prepare_commit():
     # Invoke custom function to write errors which we gathered during stream processing
     write_all_reject_errors()
 
 def write_all_reject_errors():
     # ...
-    pass
 ```
 
-### onPrepareRetry()
+### on_prepare_retry()
 
 Invoked when a "prepare-retry" signal is emitted by layline.io.
 
 #### Example
 
 ```python
-def onPrepareRetry():
+def on_prepare_retry():
     global connection
     if connection:
         try:
@@ -102,7 +98,7 @@ def onPrepareRetry():
             connection = None
 ```
 
-### onPullMessage()
+### on_pull_message()
 
 layline.io is a reactive system and works according to the principle of "dynamic push / pull mode".
 This means that in a network of Processors, each Processor can signal to connected Processors that it wants to push, or pull messages, thus managing smooth message flow without the risk of clogging.
@@ -155,7 +151,7 @@ In case you have two or more downstream Processors connected to the current Pyth
 This should be of no concern. You can simply send the next message out to the correct Processor.
 The system will behave in a balanced manner following standard reactive rules.
 
-### onRollback()
+### on_rollback()
 
 Invoked when a rollback signal is issued by the system.
 Perform any "undo" and cleanup tasks here.
@@ -163,7 +159,7 @@ Perform any "undo" and cleanup tasks here.
 #### Example
 
 ```python
-def onRollback():
+def on_rollback():
     global connection
     if connection:
         try:
@@ -175,7 +171,7 @@ def onRollback():
             connection = None
 ```
 
-### onStreamEnd()
+### on_stream_end()
 
 Invoked when current stream ends.
 Use this to run potential clean up tasks.
@@ -183,13 +179,13 @@ Use this to run potential clean up tasks.
 #### Example
 
 ```python
-def onStreamEnd():
+def on_stream_end():
     # Report in case some customer data could not be found during stream processing
     if num_customer_data_not_found > 0:
         stream.log_info(f'{num_customer_data_not_found} customers could not be found in the database.')
 ```
 
-### onStreamStart()
+### on_stream_start()
 
 Invoked when current stream is starting.
 Use this to run potential stream startup initialization tasks on every new Stream.
@@ -197,7 +193,7 @@ Use this to run potential stream startup initialization tasks on every new Strea
 #### Example
 
 ```python
-def onStreamStart():
+def on_stream_start():
     global stream_id, file_name
     stream_id = stream.get_id()
     file_name = stream.get_name()

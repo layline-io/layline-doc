@@ -72,12 +72,20 @@ sequenceDiagram
     loop Per Stream
     JS->>JS: 3. onStreamStart()
     loop Per Event
-        Send->>+JS: send event
-        JS->>+JS: 4. onMessage()
-        JS->>+Receive: emit event
+        Send->>JS: send message
+            JS->>JS: 4a. onPullMessage()
+            JS->>+JS: 4b. onMessage()
+        JS->>+Receive: emit message
     end
     JS->>JS: 5. onStreamEnd()
     end
+    alt SUCCESS
+        JS->>JS: 6a. onPrepareCommit()
+        JS->>JS: 6b. onCommit()
+    else FAILURE
+        JS->>JS: 7. onRollback()
+    end
+    JS->>JS: 8. onPrepareRetry()
 ```
 
 **Let's explain:**
@@ -126,8 +134,32 @@ export function onStreamStart() {
 }
 ```
 
+**4a. onPullMessage()**
 
-**4. onMessage()**
+In line with the reactive architecture of layline.io, if the framework is ready and needs to pull the next message from a source, it will invoke the `onPullMessage()` hook. At this point in time there is no message available for processing in the JavaScript Processor **yet**. It is merely a signal that the framework is ready to process the next message.
+
+At this stage you can for example do preparations for the next message.
+
+```js
+export function onPullMessage() {
+    // prepare for the next message
+    if (!headerWasGenerated) {
+        const headerMessage = dataDictionary.createMessage(dataDictionary.type.Header);
+        headerMessage.data.PRODUCT = {
+            RECORD_TYPE: "H",
+            FILENAME: stream.getName()
+        };
+        // stream.logInfo(`headerMessage.data: ${JSON.stringify(headerMessage)}`);
+        stream.emit(headerMessage, OUTPUT_PORT);
+        headerWasGenerated = true;
+    }
+    // ...
+}
+```
+
+In most of your processing logic you will not need to use the `onPullMessage()` hook, but rather use the `onMessage()` method.
+
+**4b. onMessage()**
 
 Every time Javascript Processor is fed with an event by an upstream Processor,
 the [onMessage()](./API/classes/JavaScriptProcessor#onmessage) hook is invoked.
@@ -167,6 +199,64 @@ export function onStreamEnd() {
     if (numCustomerDataNotFound > 0) {
         stream.logInfo(numCustomerDataNotFound + ' customers could not be found in the database.')
     }
+}
+```
+
+**6a. onPrepareCommit()**
+
+layline.io is transactional by default. This means that a Workflow will only commit if all the Assets in the Workflow have successfully completed.
+The `onPrepareCommit()` hook is the first hook that is called when a stream is about to being committed.
+This allows you to make final checks and preparations for the final commit, including sending out messages to the output port.
+
+```js
+export function onPrepareCommit() {
+    // make final checks and preparations
+    // ...
+}
+```
+
+**6b. onCommit()**
+
+The `onCommit()` hook is called when a stream is successfully committed.
+This allows you to make final actions after the commit has been successful, including sending out messages to the output port.
+
+```js
+export function onCommit() {
+    if (connection) {
+        connection.commitTransaction();
+        connection.closeConnection();
+        connection = null;
+    }
+}
+```
+
+**7. onRollback()**
+
+The `onRollback()` hook is called when a stream is requested to be rolled back.
+This allows you to make final actions to perform a rollback, including potentially sending out messages to the output port.
+
+```js
+export function onRollback() {
+    if (connection) {
+        connection.rollbackTransaction();
+        connection.closeConnection();
+        connection = null;
+    }
+}
+```
+
+**8. onPrepareRetry()**
+
+This hook is invoked when a stream is requested to be retried. 
+This can happen in two ways:
+1. An Asset has been configured to retry a stream on failure. An example would be a Input Asset which has a respective Failure Handling configured.
+2. Within a Javascript or Python Processor a `stream.requestRetry()` method has been called.
+
+In this case the `onPrepareRetry()` hook is invoked to allow you to make final checks and preparations for the retry.
+
+```js
+export function onPrepareRetry() {
+    // make final checks and preparations
 }
 ```
 
