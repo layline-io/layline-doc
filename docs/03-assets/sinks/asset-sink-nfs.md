@@ -1,9 +1,10 @@
 ---
-title: Sink FTP
-description: Sink FTP Asset. Use this to define the technical parameters for an FTP sink.
+title: Sink NFS
+description: Sink NFS Asset. Use this to define the technical parameters for an NFS sink.
 tags:
   - sink
-  - ftp
+  - nfs
+  - network file system
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
@@ -11,11 +12,11 @@ import NameAndDescription from '../../snippets/assets/_asset-name-and-descriptio
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import Directories from '../../snippets/assets/_asset-sink-directories.md';
 
-# Sink FTP
+# Sink NFS
 
 ## Purpose
 
-Defines the outbound connection parameters for an FTP sink.
+Defines the outbound connection parameters for an NFS sink.
 
 ### This Asset can be used by:
 
@@ -27,11 +28,13 @@ Defines the outbound connection parameters for an FTP sink.
 
 You need:
 
-* [FTP Connection](../connections/asset-connection-ftp)
+* [NFS Connection](../connections/asset-connection-nfs)
 
 ## Configuration
 
 ### Name & Description
+
+![Name & Description (NFS Sink)](.asset-sink-nfs_images/image_2025-04-03-17-49-02.png "Name & Description (NFS Sink)")
 
 <NameAndDescription></NameAndDescription>
 
@@ -39,11 +42,11 @@ You need:
 
 <RequiredRoles></RequiredRoles>
 
-### FTP Connection
+### NFS Connection
 
-![](.asset-sink-ftp_images/067b010e.png "FTP Connection (FTP Sink Asset)")
+![NFS Connection (NFS Sink)](.asset-sink-nfs_images/image_2025-04-03-17-49-47.png "NFS Connection (NFS Sink)")
 
-Select the [FTP Connection](../connections/asset-connection-ftp) to use with this Asset.
+Select the [NFS Connection](../connections/asset-connection-nfs) that you want to use with this Asset.
 If it does not exist, you need to create it first.
 
 ### Directories
@@ -55,18 +58,17 @@ If it does not exist, you need to create it first.
 ### Internal
 
 * [Stream Output Processor](../processors-output/asset-output-stream)
-* [FTP Source](../sources/asset-source-ftp)
-* [FTP Connection](../connections/asset-connection-ftp)
+* [NFS Source](../sources/asset-source-nfs)
+* [NFS Connection](../connections/asset-connection-nfs)
 
 ## Potential problems
 
-Common issues with FTP sinks include:
-- FTP connection issues
-- File permissions
-- File locking
-- File size limits
-- Network connectivity
-
+Common issues with NFS sinks include:
+- NFS permission and ownership conflicts
+- Network latency affecting file operations
+- File locking issues during write operations
+- Mount point availability
+- Space limitations on NFS server
 
 ---
 

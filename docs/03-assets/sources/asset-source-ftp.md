@@ -83,6 +83,13 @@ Select the previously configured [FTP Connection](../connections/asset-connectio
 
 ## Potential problems
 
+Common issues with FTP sources include:
+- FTP connection issues
+- File permissions
+- File locking
+- File size limits
+- Network connectivity
+
 ---
 
 <WipDisclaimer></WipDisclaimer>

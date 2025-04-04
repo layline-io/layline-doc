@@ -26,8 +26,13 @@ This source requires the definition of three different directories:
 
 * **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the input directory. You can configure your required options.
 
-  ![Enable Housekeeping](./._asset-source-directories_images/1714492771470.png "Enable Housekeeping")
+  ![Enable Housekeeping](./._asset-source-directories_images/image_2025-04-04-10-30-25.png "Enable Housekeeping")
 
+  * **`Delete after`** : The age in units of days, hours or minutes to check for and delete old files.
+
+  * **`Units`** : The units of days, hours or minutes to check for and delete old files.
+
+  * **`Execute housekeeping at`** : A cron expression to define when the housekeeping should be executed. Click on the calendar icon to open the cron expression editor.
 
 #### Done Directory
 
@@ -49,7 +54,13 @@ This source requires the definition of three different directories:
 
 * **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the done directory. You can configure your required options.
 
-  ![Enable Housekeeping](./._asset-source-directories_images/1714492771470.png "Enable Housekeeping")
+  ![Enable Housekeeping](./._asset-source-directories_images/image_2025-04-04-10-30-25.png "Enable Housekeeping")
+
+  * **`Delete after`** : The age in units of days, hours or minutes to check for and delete old files.
+
+  * **`Units`** : The units of days, hours or minutes to check for and delete old files.
+
+  * **`Execute housekeeping at`** : A cron expression to define when the housekeeping should be executed. Click on the calendar icon to open the cron expression editor.
 
 
 
@@ -73,4 +84,10 @@ This source requires the definition of three different directories:
 
 * **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the error directory. You can configure your required options.
 
-  ![Enable Housekeeping](./._asset-source-directories_images/1714492771470.png "Enable Housekeeping")
+  ![Enable Housekeeping](./._asset-source-directories_images/image_2025-04-04-10-30-25.png "Enable Housekeeping")
+
+  * **`Delete after`** : The age in units of days, hours or minutes to check for and delete old files.
+
+  * **`Units`** : The units of days, hours or minutes to check for and delete old files.
+
+  * **`Execute housekeeping at`** : A cron expression to define when the housekeeping should be executed. Click on the calendar icon to open the cron expression editor.

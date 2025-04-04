@@ -7,6 +7,9 @@ tags:
   - windows
 ---
 
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+
 # Connection SMB
 
 ## Purpose
@@ -26,15 +29,11 @@ Defines the connection parameters for a SMB endpoint.
 
 ![Name & Description (Connection SMB)](.asset-connection-smb_images/0243a9e1.png)
 
-**`Name`** : Name of the Asset. Spaces are not allowed in the name.
-
-**`Description`** : Enter a description.
-
-The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it. Click to expand and then click to follow, if any.
+<NameAndDescription></NameAndDescription>
 
 ### Required roles
 
-![Required Roles (Connection SMB)](./.asset-connection-smb_images/c2e6ec39.png)
+<RequiredRoles></RequiredRoles>
 
 ### SMB Settings
 

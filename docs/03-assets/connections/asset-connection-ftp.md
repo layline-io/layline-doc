@@ -9,6 +9,8 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 
 # Connection FTP
 
@@ -29,19 +31,11 @@ Defines the connection parameters for an FTP/SFTP endpoint.
 
 ![1294e3a1.png](.asset-connection-ftp_images/1294e3a1.png "Name & Description (Connection FTP)")
 
-**`Name`** : Name of the Asset. Spaces are not allowed in the name.
-
-**`Description`** : Enter a description.
-
-The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it. Click to expand and then click to follow, if any.
+<NameAndDescription></NameAndDescription> 
 
 ### Required roles
 
-![c2e6ec39.png](.asset-connection-ftp_images/c2e6ec39.png "Required Roles (Connection FTP)")
-
-In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching
-roles.
-If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all Nodes (no restriction).
+<RequiredRoles></RequiredRoles>
 
 ### FTP Settings
 
