@@ -12,7 +12,7 @@ This sink allows the definition of three different directories, all relative to 
 
 * **`Output Directory`** : The directory to write output files to.
   The path must be relative to the connection mount point and accessible to the Reactive Engine.
-  You can use $\{...\} macros to expand variables defined in [environment variables](../../03-assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Output prefix`** : Prefix to add to the filename of the processed file when writing to the output directory.
   E.g. `out_` will add the `out_`-prefix to the beginning of the filename when written to the output directory.
@@ -59,7 +59,7 @@ This sink allows the definition of three different directories, all relative to 
   Should you encounter a temporary file in a temporary directory even though there is no current processing ongoing, then this is likely a residue from a crash which needs to be further investigated.
 
   The path must be relative to the connection mount point and accessible to the Reactive Engine.
-  You can use $\{...\} macros to expand variables defined in [environment variables](../../03-assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`Temporary prefix`** : Prefix to add to the filename of the temporary file when writing to the temporary directory.
   E.g. `temp_` will add the `temp_`-prefix to the beginning of the filename when written to the output directory.
@@ -75,7 +75,7 @@ This configuration is only relevant if the **`Move the existing output file to t
 
 * **`Archive Directory`** : The directory to which files are moved in case of a problem during processing.
   The path must be relative to the connection mount point and accessible to the Reactive Engine.
-  You can use $\{...\} macros to expand variables defined in [environment variables](../../03-assets/resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
 
 * **`When archive file already exists`** : Define what should happen if the archive file already exists.
 
