@@ -101,19 +101,6 @@ id = message.id;
 
 ***
 
-### numStatusAttached
-
-> **numStatusAttached**: `number`
-
-Gets the number of States [Status](../../../python/02-API/classes/Status.md) attached.
-Same as getNumStatusAttached.
-
-```python
-result = message.numStatusAttached;
-```
-
-***
-
 ### typeName
 
 > **typeName**: `string`
@@ -775,6 +762,25 @@ unpacked_msg = packed_msg.unpack()
 #### Returns
 
 PackedMessage - Packed message.
+
+
+### numStatusAttached
+
+> **numStatusAttached**() -> `number`
+
+Gets the number of States [Status](../../../python/02-API/classes/Status.md) attached.
+
+```python
+result = message.numStatusAttached();
+```
+
+#### Returns
+
+int - Number of States attached to the message.
+
+***
+
+
 
 ### setBigInteger()
 

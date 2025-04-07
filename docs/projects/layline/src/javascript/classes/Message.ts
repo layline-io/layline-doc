@@ -117,18 +117,6 @@ class Message {
     id: string;
 
     /**
-     * Gets the number of States {@link Status} attached.
-     * Same as {@link getNumStatusAttached}.
-     *
-     * ```js
-     * const result = message.numStatusAttached;
-     * ```
-     *
-     * @return {number} - Number of States attached to the message.
-     */
-    numStatusAttached: number;
-
-    /**
      * The type name of the message.
      * This is the name of the data dictionary type that the message represents.
      * 
@@ -650,6 +638,21 @@ class Message {
     pack() : PackedMessage {
         return;
     }
+
+    /**
+     * Gets the number of States {@link Status} attached.
+     *
+     * ```js
+     * const result = message.numStatusAttached();
+     * ```
+     *
+     * @return {number} - Number of States attached to the message.
+     */
+    numStatusAttached() : number {
+        return;
+    }
+
+
 
     /**
      * Sets a BigInteger value in a message target field.
