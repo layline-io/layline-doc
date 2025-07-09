@@ -137,10 +137,10 @@ class Duration {
      * @param {number} nano - The number of nanoseconds.
      * @returns {Duration} A Duration representing the specified number of nanoseconds.
      * @example
-     * const duration = Duration.ofNano(1000000);
+     * const duration = Duration.ofNanos(1000000);
      * print(duration.nanos); // 1000000
      */
-    static ofNano(nano: number): Duration {return };
+    static ofNanos(nano: number): Duration {return };
 
     /**
      * Returns the absolute value of this duration.

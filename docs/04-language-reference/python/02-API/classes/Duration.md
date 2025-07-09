@@ -56,7 +56,7 @@ The number of nanoseconds in the duration.
 #### Example
 
 ```python
-duration = Duration.ofNano(1000)
+duration = Duration.ofNanos(1000)
 print(duration.nanos)  # Output: 1000
 ```
 
@@ -280,7 +280,7 @@ Duration - A new Duration with the nanoseconds subtracted.
 #### Example
 
 ```python
-duration = Duration.ofNano(1000000000)
+duration = Duration.ofNanos(1000000000)
 new_duration = duration.minusNanos(500000000)
 print(new_duration.nanos)  # Output: 500000000
 ```
@@ -455,7 +455,7 @@ Duration - A new Duration with the nanoseconds added.
 #### Example
 
 ```python
-duration = Duration.ofNano(500000000)
+duration = Duration.ofNanos(500000000)
 new_duration = duration.plusNanos(250000000)
 print(new_duration.nanos)  # Output: 750000000
 ```
@@ -616,7 +616,7 @@ Duration - A Duration representing the specified number of nanoseconds.
 #### Example
 
 ```python
-duration = Duration.ofNano(1000000)
+duration = Duration.ofNanos(1000000)
 print(duration.nanos)  # Output: 1000000
 ```
 

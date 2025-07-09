@@ -66,6 +66,20 @@ class Stream {
      */
     originalName: string;
 
+
+    /**
+     * Returns the path of a stream.
+     * 
+     * @example
+     * ```js
+     * const STREAM_PATH = stream.path;
+     * ``` 
+     * 
+     * @type {string}
+     * @readonly
+     */
+    path: string;
+
     /**
      * Get the detected prefix of a stream.
      * 
@@ -247,6 +261,15 @@ class Stream {
      * | **RemoteAddress** | System.String | |
      * | **RemotePort** | System.Integer | |
      *
+     * **WebSocket Source Stream:**
+     *
+     * | Property | Type | Description |
+     * | --- | --- | --- |
+     * | **LocalAddress** | System.String | |
+     * | **LocalPort** | System.Integer | |
+     * | **RemoteAddress** | System.String | |
+     * | **RemotePort** | System.Integer | |
+     *
      * @example
      * ```js
      * // Get the metadata for the stream (a Kafka stream in our example):
@@ -301,6 +324,21 @@ class Stream {
      * @return {string} Stream name, e.g. `my_file_name.csv`     
      */
     getOriginalName(): string {
+        return;
+    }
+
+
+    /**
+     * Returns the path of a stream.
+     * 
+     * @example
+     * ```js
+     * const STREAM_PATH = stream.getPath();
+     * ```
+     * 
+     * @return {string} Stream path
+     */
+    getPath(): string {
         return;
     }
 

@@ -43,6 +43,47 @@ Same as [getName](#getname).
 STREAM_NAME = stream.name
 ```
 
+### path
+
+> `readonly` **path**: str
+
+Returns the path of a stream.
+
+#### Example
+
+```python
+STREAM_PATH = stream.path
+```
+
+### prefix
+
+> `readonly` **prefix**: str
+
+Get the detected prefix of a stream.
+
+
+Same as [getPrefix](#getprefix).
+
+#### Example
+
+```python
+PREFIX = stream.prefix
+```
+
+### suffix
+
+> `readonly` **suffix**: str
+
+Get the detected suffix of a stream.
+
+Same as [getSuffix](#getsuffix).
+
+#### Example
+
+```python
+SUFFIX = stream.suffix
+```
+
 ## Methods
 
 ### emit()
@@ -101,7 +142,121 @@ Message - Returns a message which contains the stream-type specific data.
 
 **Stream-type specific message return content:**
 
-[The content remains the same as in the original documentation]
+**File Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **Path** | System.String | Directory path from which the file was read |
+| **Size** | System.Long | File size in bytes |
+| **LastModified** | System.DateTime | Last modified date and time |
+| **FolderSetup** | System.String | Name of the directory path related folder configuration |
+
+**FTP Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **Path** | System.String | Directory path from which the file was read |
+| **Size** | System.Long | File size in bytes |
+| **LastModified** | System.DateTime | Last modified date and time |
+| **FolderSetup** | System.String | Name of the directory path related folder configuration |
+
+**HTTP Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **BindAddress** | System.String | IP-Address |
+| **BindPort** | System.Integer | IP-Port number |
+
+**Kafka (Exclusive Partition Stream):**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **GroupId** | System.String | Consumer group ID |
+| **Topics** | System.String[] | Array of topics |
+
+**Kafka (Standard Stream):**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **GroupId** | System.String | Consumer group ID |
+| **Topic** | System.String | Topic name of the exclusive partition |
+| **Partition** | System.Integer | Partition number |
+
+**AWS S3 Service Source Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **Path** | System.String | S3 path |
+| **Size** | System.Long | S3 object size |
+| **StorageClass** | System.String | S3 storage class |
+| **LastModified** | System.DateTime | Last modified date and time |
+
+**AWS SQS Source Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **QueueUrl** | System.String | |
+
+**OneDrive Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **Path** | System.String | OneDrive path from which the file was read |
+| **Size** | System.Long | File size in bytes |
+| **LastModified** | System.DateTime | Last modified date and time |
+| **FolderSetup** | System.String | Name of the path related folder configuration |
+
+**SharePoint Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **Path** | System.String | SharePoint path from which the file was read |
+| **Size** | System.Long | File size in bytes |
+| **LastModified** | System.DateTime | Last modified date and time |
+| **FolderSetup** | System.String | Name of the path related folder configuration |
+
+**Serial Source Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **Port** | System.String | Port name |
+| **BaudRate** | System.Integer | Baud rate |
+| **DataBits** | System.Integer |  |
+| **StopBits** | System.String |  |
+| **Parity** | System.String |  |
+| **FlowControl** | System.String |  |
+
+**Secondary Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **ParentStreamName** | System.String | Name of the originating stream (parent) |
+| **ParentStreamId** | System.String | Id of the originating stream (parent) |
+
+**Service Source Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **Service** | System.String | Service name |
+
+**TCP Source Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **LocalAddress** | System.String | |
+| **LocalPort** | System.Integer | |
+| **RemoteAddress** | System.String | |
+| **RemotePort** | System.Integer | |
+
+**WebSocket Source Stream:**
+
+| Property | Type | Description |
+| --- | --- | --- |
+| **LocalAddress** | System.String | |
+| **LocalPort** | System.Integer | |
+| **RemoteAddress** | System.String | |
+| **RemotePort** | System.Integer | |
+
 
 #### Example
 
@@ -122,7 +277,14 @@ msg_metadata = stream.getMetadata()
 
 Returns the name of a stream.
 
-[The description remains the same as in the original documentation]
+For file-based processing, the stream name is the name of the file being processed excluding the configured prefix and suffix.
+For other sources, you usually explicitly set the stream name in the respective Source Asset.
+
+For example if your data stems from a Service Source Asset, then the stream name is defined in the configuration of that Asset like so:
+`${msg:IoT.StreamName}-${date:yyyy-MM-dd-HH-mm-ss}` which will result in `DeviceX-2022-10-10-21-45-33`.
+If your data source is a file, then this would be the file name, e.g. `my_file_name.csv`.
+
+Same as [name](#name).
 
 #### Returns
 
@@ -133,6 +295,80 @@ str - Stream name, e.g. `my_file_name.csv`
 ```python
 STREAM_NAME = stream.getName()
 ```
+
+### getOriginalName()
+
+> **getOriginalName**() -> str
+
+Returns the original name of a stream including the configured prefix and suffix.
+
+Same as [originalName](#originalName).
+
+#### Returns
+
+str - Stream name, e.g. `my_file_name.csv`
+
+#### Example
+
+```python
+ORIGINAL_STREAM_NAME = stream.getOriginalName()
+```
+
+
+### getPath()
+
+> **getPath**() -> str
+
+Returns the path of a stream.
+
+Same as [path](#path).
+
+#### Returns
+
+str - Stream path
+
+#### Example
+
+```python
+STREAM_PATH = stream.getPath()
+```
+
+### getPrefix()
+
+> **getPrefix**() -> str
+
+Get the detected prefix of a stream.
+
+Same as [prefix](#prefix).
+
+#### Returns
+
+str - Stream prefix
+
+#### Example
+
+```python
+PREFIX = stream.getPrefix()
+```
+
+### getSuffix()
+
+> **getSuffix**() -> str
+
+Get the detected suffix of a stream.
+
+Same as [suffix](#suffix).
+
+#### Returns
+
+str - Stream suffix
+
+#### Example
+
+```python
+SUFFIX = stream.getSuffix()
+```
+
 
 ### logError()
 

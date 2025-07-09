@@ -411,6 +411,29 @@ date_time = DateTime.of(2024, 12, 25, 14, 30, 0, 0)  # Christmas Day 2024 at 2:3
 date_time = DateTime.of(2024, 12, 25, 14, 30, 0, 0, ZoneOffset(5, 30))  # Christmas Day 2024 at 2:30
 ```
 
+### parse()
+
+> @staticmethod
+> **parse**(value: str, format: str = None) -> DateTime
+
+Parses a string to create a DateTime instance based on the specified format.
+
+#### Parameters
+
+- **value**: str - The string representation of the date-time.
+- **format**: str, optional - The format to use for parsing. If not provided, a default format is used.
+  See [Java Documentation for DateTimeFormatter](https://docs.oracle.com/en%2Fjava%2Fjavase%2F22%2Fdocs%2Fapi%2F%2F/java.base/java/time/format/DateTimeFormatter.html) for more information on supported date and time patterns.
+
+#### Returns
+
+DateTime - A new DateTime instance parsed from the string.
+
+
+#### Example
+
+```python
+date_time = DateTime.parse('2024-12-25 14:30:00', 'uuuu-MM-dd HH:mm:ss')  # Christmas Day 2024 at 2:30 PM
+```
 
 ### plusDays()
 
