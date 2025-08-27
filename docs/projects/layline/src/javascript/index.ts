@@ -8,6 +8,7 @@ import DataDictionary from "./classes/DataDictionary";
 import DataDictionaryEntity from "@site/layline/src/javascript/classes/DataDictionaryEntity";
 import DateTime from "@site/layline/src/javascript/classes/DateTime";
 import Duration from "@site/layline/src/javascript/classes/Duration";
+import Email from "./classes/Email";
 import JavaScriptProcessor from "./classes/JavaScriptProcessor";
 import LocalDate from "@site/layline/src/javascript/classes/LocalDate";
 import Message from "./classes/Message";
@@ -43,6 +44,7 @@ import workflow from "./variables/workflow";
 
 // Interfaces
 import DataDictionaryTypes from "./interfaces/DataDictionaryTypes";
+import EmailMessage from "./interfaces/EmailMessage";
 import Temporal from "./interfaces/Temporal";
 import TimerOnce from "./interfaces/TimerOnce";
 import TimerFixedRate from "./interfaces/TimerFixedRate";
@@ -57,6 +59,8 @@ export {
     Counter,
     DateTime,
     Duration,
+    Email,
+    EmailMessage,
     dataDictionary,
     DataDictionary,
     DataDictionaryEntity,

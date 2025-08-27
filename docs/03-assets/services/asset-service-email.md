@@ -94,22 +94,39 @@ Processor** like so:
 
 Now let’s finally use the service within JavaScript:
 
-##### Preparing Message to be Send via Email
+##### Preparing Message to be Sent via Email
 
 ```javascript
 const OUTPUT_PORT = processor.getOutputPort('Output-1');
 
 // We are defining a function "sendEmail" that will take emailMessage parameters 
 // as input parameters
-function sendEmail(emailMessage) {
+function sendEmail() {
+    // Example #1:
     services.EmailService.Send({
         From: {
-            Address: emailMessage.from
+            Address: "user@email.com",
+            PersonalName: "John Doe"
         },
-        ToList:     emailMessage.to,
-        Subject:    emailMessage.subject,
-        Text:       emailMessage.body
-    });  
+        To: [{
+            Address: "recipient@email.com",
+            PersonalName: "Recipient"
+        }],
+        Cc: [{
+            Address: "cc@email.com",
+            PersonalName: "CC"
+        }],
+        Subject:    "Processing for Stream " + stream.getName(),
+        Body:       "The subject mentioned file has been processed"    });  
+
+    // Example #2:
+    services.EmailService.Send({
+        From: "user@email.com",
+        ToList: "recipient_1@email.com;recipient_2@email.com",
+        CcList: "cc_1@email.com;cc_2@email.com",
+        Subject: "Processing for Stream " + stream.getName(),
+        Body: "The subject mentioned file has been processed"
+    });
 }
 
 /**
@@ -122,17 +139,12 @@ export function onMessage() {
 // the onStreamEnd function will send an email about the  
 // processing of a file including its name
 export function onStreamEnd() {
-    // populate the emailMessage structure to hand over input parameters for "sendEmail" function
-    let emailMessage = {
-        from:       "user@email.com",
-        to:         "recipient@email.com",
-        subject:    "Processing for Stream " + stream.getName(),
-        body:       "The subject mentioned file has been processed"
-    }
     // call function "sendEmail"
     sendEmail(email);
 }
 ```
+
+Check out the [Email Service class (Javascript)](/docs/04-language-reference/javascript/02-API/classes/Email.md) or the [Email Message class (Python)](/docs/04-language-reference/python/02-API/classes/Email.md) for more details.
 
 <Testcase></Testcase>
 

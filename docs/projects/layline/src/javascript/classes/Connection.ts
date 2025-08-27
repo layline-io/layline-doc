@@ -47,6 +47,8 @@ class Connection {
      *      connection.beginTransaction();
      *  }
      * ```
+     * 
+     * See also {@link closeConnection}
      *
      * @return {void} Nothing
      */
@@ -63,6 +65,8 @@ class Connection {
      * }
      * ```
      *
+     * See also {@link openConnection}
+     *
      * @return {void} Nothing
      */
     closeConnection() : void {
@@ -77,7 +81,9 @@ class Connection {
      *     connection.commitTransaction();
      * }
      * ```
-     *
+     * 
+     * See also {@link beginTransaction}
+     * 
      * @return {void} Nothing
      */
     commitTransaction() : void {
@@ -168,6 +174,37 @@ class Connection {
     FUNCTION_NAME(message: Message) : Message {
         return;
     }
+
+    /**
+     * Opens a connection to the Service.
+     *
+     *  Example: Assume we have a JDBC Service `MyDBService`, we can then open a connection using the Service's `openConnection()`method:
+     * ```js
+     *
+     * let OUTPUT_PORT = null;
+     * let connection = null;
+     *
+     * // Initial setup
+     * export function onInit() {
+     *     OUTPUT_PORT = processor.getOutputPort('MyOutput');
+     * }
+     *
+     * export function onStreamStart() {
+     *     if (!connection) {
+     *        // Open a connection to the DB service. Note the use of "services" below:
+     *         connection = services.MyDBService.openConnection();
+     *     }
+     *     connection.beginTransaction();
+     * }
+     * ```
+     * 
+     * See also {@link closeConnection}
+     *
+     * @return {void} Nothing
+     */
+    openConnection() : void {
+    }
+
 
     /**
      * Rolls a transaction back, in case the Service connection supports transactions.

@@ -7,6 +7,7 @@
  * * Hazelcast Service
  * * HTTP Service
  * * Aerospike Service
+ * * Email Service
  * * more
  *
  * When configuring a Javascript Asset, you may also define one or more Services for use within that Javascript Asset.

@@ -6,7 +6,7 @@ Represents a timer element that is executed according to a cron expression.
 
 ### Expression
 
-> **Expression**: `string`
+> **Expression**: `str`
 
 The cron expression of the timer.
 

@@ -6,7 +6,7 @@ Represents a timer response.
 
 ### Group
 
-> **Group**: `string`
+> **Group**: `str`
 
 The group name of the timer.
 
@@ -14,7 +14,7 @@ The group name of the timer.
 
 ### Name
 
-> **Name**: `string`
+> **Name**: `str`
 
 Name of the timer that will be used to identify the timer in the group.
 The name must be unique within the group.

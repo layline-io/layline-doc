@@ -127,6 +127,8 @@ if connection:
     connection.beginTransaction()
 ```
 
+See also [commitTransaction](#committransaction)
+
 #### Returns
 
 None
@@ -142,6 +144,8 @@ if connection:
     connection.closeConnection()
 ```
 
+See also [openConnection](#openconnection)
+
 #### Returns
 
 None
@@ -156,6 +160,28 @@ Commits a transaction, in case the underlying Service supports transactions (e.g
 if connection:
     connection.commitTransaction()
 ```
+
+See also [beginTransaction](#begintransaction)
+
+#### Returns
+
+None
+
+### openConnection()
+
+> **openConnection**() -> None
+
+Opens a connection to the Service.
+
+
+```python
+if not connection:
+    connection = services.MyDBService.openConnection()
+    connection.beginTransaction()
+    # ...
+```
+
+See also [closeConnection](#closeconnection)
 
 #### Returns
 
