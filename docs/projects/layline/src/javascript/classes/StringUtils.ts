@@ -10,6 +10,35 @@ class StringUtils {
     constructor() { }
 
     /**
+     * Decodes a Base64 encoded string into an array of bytes.
+     * 
+     * @static
+     * @param {string} value - The Base64 encoded string to decode.
+     * @returns {Uint8Array} The decoded array of bytes.
+     * @example
+     * // Decode Base64 string to bytes
+     * const base64String = "SGVsbG8=";
+     * const byteArray = StringUtils.base64Decode(base64String);
+     * console.log(byteArray); // Output: Uint8Array([72, 101, 108, 108, 111])
+     */
+    static base64Decode(value: string): Uint8Array[] { return };
+
+    /**
+     * Encodes an array of bytes into a Base64 string.
+     *
+     * @static
+     * @param {Uint8Array[]} bytes - The array of bytes to encode.
+     * @returns {string} The Base64 encoded string.
+     *
+     * @example
+     * // Encode bytes to Base64 string
+     * const byteArray = new Uint8Array([72, 101, 108, 108, 111]);
+     * const base64String = StringUtils.base64Encode(byteArray);
+     * console.log(base64String); // Output: "SGVsbG8="
+     */
+    static base64Encode(bytes: Uint8Array[]): string { return };
+
+    /**
      * Checks if a string is null, undefined, or contains only whitespace characters.
      *
      * @static

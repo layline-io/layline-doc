@@ -7,6 +7,58 @@ This class cannot be instantiated and all methods are static.
 
 ## Methods
 
+### base64Decode()
+
+> @staticmethod
+> **base64Decode**(value: str) -> List[int]
+
+Decodes a Base64 encoded string into an array of bytes.
+
+#### Parameters
+
+- **value**: str
+
+  The Base64 encoded string to decode.
+
+#### Returns
+
+List[int] - The decoded array of bytes.
+
+#### Example
+
+```python
+# Decode Base64 string to bytes
+base64_string = "SGVsbG8="
+byte_array = StringUtils.base64Decode(base64_string)
+print(byte_array)  # Output: [72, 101, 108, 108, 111]
+```
+
+### base64Encode()
+
+> @staticmethod
+> **base64Encode**(bytes: List[int]) -> str
+
+Encodes an array of bytes into a Base64 string.
+
+#### Parameters
+
+- **bytes**: List[int]
+
+  The array of bytes to encode.
+
+#### Returns
+
+str - The Base64 encoded string.
+
+#### Example
+
+```python
+# Encode bytes to Base64 string
+byte_array = [72, 101, 108, 108, 111]
+base64_string = StringUtils.base64Encode(byte_array)
+print(base64_string)  # Output: "SGVsbG8="
+```
+
 ### fromBytes()
 
 > @staticmethod

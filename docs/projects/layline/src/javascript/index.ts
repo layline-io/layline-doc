@@ -1,4 +1,5 @@
 
+
 // Classes
 import Arith64 from "./classes/Arith64"
 import CompressionUtils from './classes/CompressionUtils';
@@ -33,14 +34,14 @@ import ZoneOffset from "@site/layline/src/javascript/classes/ZoneOffset";
 import JavaType from "./enumerations/JavaType";
 import Severity from "./enumerations/Severity";
 
-// Variables
-import dataDictionary from "./variables/dataDictionary";
-import message from "./variables/message";
-import metrics from  "./variables/metrics";
-import processor from "./variables/processor";
-import statusRegistry from "./variables/statusRegistry";
-import stream from "./variables/stream";
-import workflow from "./variables/workflow";
+// Globals
+import dataDictionary from "./globals/dataDictionary";
+import message from "./globals/message";
+import metrics from  "./globals/metrics";
+import processor from "./globals/processor";
+import statusRegistry from "./globals/statusRegistry";
+import stream from "./globals/stream";
+import workflow from "./globals/workflow";
 
 // Interfaces
 import DataDictionaryTypes from "./interfaces/DataDictionaryTypes";

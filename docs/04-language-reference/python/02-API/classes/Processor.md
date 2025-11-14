@@ -125,14 +125,14 @@ OUTPUT_PORT = processor.getOutputPort('Output')  # Returns the OutputPort instan
 
 ### logError()
 
-> **logError**(msg: str) -> None
+> **logError**(param: str | Status) -> None
 
 Logs a message with [Severity](../enumerations/Severity.md).ERROR to the processor log.
 You can view this both via the Audit Trail in the UI and output in the process terminal output.
 
 #### Parameters
 
-- **msg**: str - Information you want to log.
+- **param**: str | Status - Information you want to log. Can be either a string message or a Status object.
 
 #### Returns
 
@@ -141,19 +141,24 @@ None
 #### Example
 
 ```python
+# Log a simple string message
 processor.logError(f'Ran into the following problem: {problem}')
+
+# Log a Status object
+status = Status.create(VENDOR, 'ERROR_CODE', 'param1', 'param2')
+processor.logError(status)
 ```
 
 ### logFatal()
 
-> **logFatal**(msg: str) -> None
+> **logFatal**(param: str | Status) -> None
 
 Logs a message with [Severity](../enumerations/Severity.md).FATAL to the processor log.
 You can view this both via the Audit Trail in the UI and output in the process terminal output.
 
 #### Parameters
 
-- **msg**: str - Information you want to log.
+- **param**: str | Status - Information you want to log. Can be either a string message or a Status object.
 
 #### Returns
 
@@ -162,19 +167,24 @@ None
 #### Example
 
 ```python
+# Log a simple string message
 processor.logFatal(f'Ran into the following problem: {problem}')
+
+# Log a Status object
+status = Status.create(VENDOR, 'FATAL_ERROR', 'param1', 'param2')
+processor.logFatal(status)
 ```
 
 ### logInfo()
 
-> **logInfo**(msg: str) -> None
+> **logInfo**(param: str | Status) -> None
 
 Logs a message with [Severity](../enumerations/Severity.md).INFO to the processor log.
 You can view this both via the Audit Trail in the UI and output in the process terminal output.
 
 #### Parameters
 
-- **msg**: str - Information you want to log.
+- **param**: str | Status - Information you want to log. Can be either a string message or a Status object.
 
 #### Returns
 
@@ -183,19 +193,24 @@ None
 #### Example
 
 ```python
+# Log a simple string message
 processor.logInfo(f'Here is some interesting information: {info}')
+
+# Log a Status object
+status = Status.create(VENDOR, 'INFO_CODE', 'param1', 'param2')
+processor.logInfo(status)
 ```
 
 ### logWarning()
 
-> **logWarning**(msg: str) -> None
+> **logWarning**(param: str | Status) -> None
 
 Logs a message with [Severity](../enumerations/Severity.md).WARNING to the processor log.
 You can view this both via the Audit Trail in the UI and output in the process terminal output.
 
 #### Parameters
 
-- **msg**: str - Information you want to log.
+- **param**: str | Status - Information you want to log. Can be either a string message or a Status object.
 
 #### Returns
 
@@ -204,5 +219,10 @@ None
 #### Example
 
 ```python
+# Log a simple string message
 processor.logWarning(f'Here is a warning: {warning}')
+
+# Log a Status object
+status = Status.create(VENDOR, 'WARNING_CODE', 'param1', 'param2')
+processor.logWarning(status)
 ```

@@ -9,6 +9,7 @@
  * ```
  */
 import OutputPort from "./OutputPort";
+import Status from "./Status";
 
 class Processor {
 
@@ -128,12 +129,17 @@ class Processor {
      *
      * @example
      * ```js
+     * // Log a simple string message
      * processor.logError('Ran into the following problem: ' + problem);
+     * 
+     * // Log a Status object
+     * const status = Status.create(VENDOR, 'ERROR_CODE', 'param1', 'param2');
+     * processor.logError(status);
      * ```
      *
-     * @param msg - Information you want to log.
+     * @param param - Information you want to log. Can be either a string message or a Status object.
      */
-    logError(msg: string): void {
+    logError(param: string | Status): void {
     }
 
 
@@ -143,12 +149,17 @@ class Processor {
      *
      * @example
      * ```js
+     * // Log a simple string message
      * processor.logFatal('Ran into the following problem: ' + problem);
+     * 
+     * // Log a Status object
+     * const status = Status.create(VENDOR, 'FATAL_ERROR', 'param1', 'param2');
+     * processor.logFatal(status);
      * ```
      *
-     * @param msg - Information you want to log.
+     * @param param - Information you want to log. Can be either a string message or a Status object.
      */
-    logFatal(msg: string): void {
+    logFatal(param: string | Status): void {
     }
 
 
@@ -158,12 +169,17 @@ class Processor {
      *
      * @example
      * ```js
+     * // Log a simple string message
      * processor.logInfo('Here is some interesting information: ' + info);
+     * 
+     * // Log a Status object
+     * const status = Status.create(VENDOR, 'INFO_CODE', 'param1', 'param2');
+     * processor.logInfo(status);
      * ```
      *
-     * @param msg - Information you want to log.
+     * @param param - Information you want to log. Can be either a string message or a Status object.
      */
-    logInfo(msg: string): void {
+    logInfo(param: string | Status): void {
     }
 
 
@@ -173,12 +189,17 @@ class Processor {
      *
      * @example
      * ```js
+     * // Log a simple string message
      * processor.logWarning('Here is a warning: ' + warning);
+     * 
+     * // Log a Status object
+     * const status = Status.create(VENDOR, 'WARNING_CODE', 'param1', 'param2');
+     * processor.logWarning(status);
      * ```
      *
-     * @param msg - Information you want to log.
+     * @param param - Information you want to log. Can be either a string message or a Status object.
      */
-    logWarning(msg: string): void {
+    logWarning(param: string | Status): void {
     }
 
 }

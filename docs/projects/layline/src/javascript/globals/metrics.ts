@@ -8,6 +8,21 @@ import Metrics from "@site/layline/src/javascript/classes/Metrics";
  *
  * ## How to use
  * Please check the {@link Metrics} documentation for more information.
+ * 
+ * @example
+ * ```js
+ * // Retrieve a counter named 'Counter.Workflow.*.Instances'
+ * const signalCount = metrics.getCounter('Counter.Signals.*.MyCounter');
+ * 
+ * // Increment the counter by 1
+ * signalCount.increment();
+ * 
+ * // Decrement the counter by 1
+ * signalCount.decrement();
+ * ```
+ * 
+ * @global
+ * @constant
  */
 const metrics: Metrics = new Metrics();
 
