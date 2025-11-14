@@ -1,4 +1,4 @@
-# Class: MessageNode
+# MessageNode
 
 Individual node of a [Message](Message.md)
 

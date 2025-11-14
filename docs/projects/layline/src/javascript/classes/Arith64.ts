@@ -37,7 +37,6 @@
  * const result = Arith64.add(a, b); // result is 9007199254740991 -> correct
  * ```
  *
- * @abstract
  * @class
  */
 class Arith64 {

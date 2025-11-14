@@ -1,4 +1,4 @@
-# Class: Workflow
+# Workflow
 
 ## What
 A workflow is a collection of processors and connections that are used to process messages.

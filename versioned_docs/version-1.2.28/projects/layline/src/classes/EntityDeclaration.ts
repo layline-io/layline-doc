@@ -1,7 +1,7 @@
 /**
  * EntityDeclaration is the base class for all entities declared in the DataDictionary
  *
- * @abstract
+ * @class
  */
 class EntityDeclaration {
 

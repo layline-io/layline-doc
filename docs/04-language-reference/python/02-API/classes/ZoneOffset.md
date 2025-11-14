@@ -1,4 +1,4 @@
-# Class: ZoneOffset
+# ZoneOffset
 
 Represents a time zone offset from UTC.
 A `ZoneOffset` defines the difference in hours and minutes from UTC for a particular time zone.

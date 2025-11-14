@@ -1,4 +1,4 @@
-# Class: TimeZone
+# TimeZone
 
 The abstract TimeZone class is a class that represents time zones, and is helpful when doing calendar arithmetics across time zones.
 It is used in conjunction with the [DateTime](DateTime.md), [Time](Time.md), and [LocalDate](LocalDate.md) classes.

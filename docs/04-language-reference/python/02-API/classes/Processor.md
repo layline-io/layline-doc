@@ -1,4 +1,4 @@
-# Class: Processor
+# Processor
 
 ## Properties
 

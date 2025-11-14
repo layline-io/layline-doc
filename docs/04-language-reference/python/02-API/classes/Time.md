@@ -1,4 +1,4 @@
-# Class: Time
+# Time
 
 Represents a time without a date or time zone.
 This is an abstract class and cannot be instantiated directly.

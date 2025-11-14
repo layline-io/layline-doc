@@ -6,7 +6,6 @@ import Duration from "@site/layline/src/javascript/classes/Duration";
  * This is an abstract class and cannot be instantiated directly.
  * Use the static methods to create Time instances.
  *
- * @abstract
  * @class
  */
 class Time {

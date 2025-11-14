@@ -1,4 +1,4 @@
-# Class: OutputPort
+# OutputPort
 
 Instance of an output port of a Processor.
 This class represents the output port through which data is sent from a processor to another processor's input port.

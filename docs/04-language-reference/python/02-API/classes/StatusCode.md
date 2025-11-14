@@ -1,4 +1,4 @@
-# Class: StatusCode
+# StatusCode
 
 ## What
 StatusCodes are defined by creating a **Status Asset** within your Project.

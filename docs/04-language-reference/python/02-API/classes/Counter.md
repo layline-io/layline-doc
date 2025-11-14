@@ -1,4 +1,4 @@
-# Class: Counter
+# Counter
 
 Represents a counter that can be incremented or decremented.
 This class cannot be instantiated directly, but is obtained through the metrics.getCounter method.

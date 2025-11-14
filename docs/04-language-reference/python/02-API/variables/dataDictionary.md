@@ -1,4 +1,4 @@
-# Variable: dataDictionary
+# dataDictionary
 
 > **dataDictionary**: DataDictionary
 

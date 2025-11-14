@@ -1,4 +1,4 @@
-# Class: Stream
+# Stream
 
 The Stream class is the underlying class of the `stream` object.
 The `stream` instance represents the stream being processed at the time and is automatically available for access in any script-based Processor, e.g. the Python Processor.

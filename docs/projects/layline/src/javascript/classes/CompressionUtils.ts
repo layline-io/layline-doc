@@ -1,7 +1,6 @@
 /**
  * This abstract class provides utility functions for compression and decompression of data.
  *
- * @abstract
  * @class
  *
  */

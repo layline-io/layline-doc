@@ -2,7 +2,6 @@
  * The abstract TimeZone class is a class that represents time zones, and is helpful when doing calendar arithmetics across time zones.
  * It is used in conjunction with the {@link DateTime}, {@link Time}, and {@link LocalDate} classes.
  *
- * @abstract
  * @class
  */
 class TimeZone {

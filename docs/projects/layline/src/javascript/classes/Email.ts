@@ -8,7 +8,6 @@ import EmailMessage from "../interfaces/EmailMessage";
  * Please refer to the documentation of the respective Service Asset to understand how to use it within Javascript.
  *
  *
- * @abstract
  * @class
  */
 class Email {

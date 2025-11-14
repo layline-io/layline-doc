@@ -1,4 +1,4 @@
-# Class: DateTime
+# DateTime
 
 Represents a point in time, encapsulating date and time information.
 This class cannot be instantiated directly but provides various methods

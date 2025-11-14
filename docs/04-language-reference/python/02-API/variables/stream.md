@@ -1,4 +1,4 @@
-# Variable: stream
+#  stream
 
 > **stream**: Stream
 

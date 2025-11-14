@@ -5,7 +5,6 @@ import Duration from "@site/layline/src/javascript/classes/Duration";
  * Represents a date without a time-zone in the ISO-8601 calendar system.
  * This is an abstract class and cannot be instantiated directly.
  *
- * @abstract
  * @class
  */
 class LocalDate {

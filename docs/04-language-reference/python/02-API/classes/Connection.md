@@ -1,4 +1,4 @@
-# Class: Connection
+# Connection
 
 Abstract class which defines a Service Connection.
 This connection must have been acquired via using the `services` keyword within a Python Asset script.

@@ -1,4 +1,4 @@
-# Class: DataDictionaryEntity
+# DataDictionaryEntity
 
 Represents an individual node in a [Message](Message.md)'s data structure.
 

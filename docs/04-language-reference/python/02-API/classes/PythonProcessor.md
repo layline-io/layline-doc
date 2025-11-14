@@ -1,4 +1,4 @@
-# Class: PythonProcessor
+# PythonProcessor
 
 This isn't an actual class, but a placeholder for _hooks_ which are available within a Python Asset.
 Hooks are automatically invoked as part of a Python Asset's normal lifecycle.

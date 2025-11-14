@@ -1,4 +1,4 @@
-# Class: Vendor
+# Vendor
 
 ## What
 The Vendor class represents information and methods which are specific to a Vendor.

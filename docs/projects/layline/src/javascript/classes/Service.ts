@@ -56,7 +56,6 @@
  *
  * **Check the respective Service Asset documentation on how to use the Service within a Javascript Asset.**
  *
- * @abstract
  * @class
  */
 class Service {

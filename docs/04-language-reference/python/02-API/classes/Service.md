@@ -1,4 +1,4 @@
-# Class: Service
+# Service
 
 Service is an abstract class which is only instantiated by layline.io itself and not for your direct use.
 It is directly related to the Services which you can define within layline.io. Examples are

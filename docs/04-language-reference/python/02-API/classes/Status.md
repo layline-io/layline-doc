@@ -1,4 +1,4 @@
-# Class: Status
+# Status
 
 ## What
 The abstract Status class provides methods to create a new Status object based on an existing *Status Code*.

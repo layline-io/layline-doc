@@ -1,4 +1,4 @@
-# Variable: processor
+#  processor
 
 > **processor**: Processor
 

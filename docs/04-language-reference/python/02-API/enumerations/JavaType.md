@@ -1,4 +1,4 @@
-# Enumeration: JavaType
+# JavaType
 
 layline.io's primitive data types are based on Java's primitive data types. This is important to understand when working with data within layline.io.
 This is relevant, for example, when:

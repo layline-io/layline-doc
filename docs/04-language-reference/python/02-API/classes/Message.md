@@ -1,4 +1,4 @@
-# Class: Message
+# Message
 
 Events traversing layline.io Workflows are instantiated as a [Message](Message.md).
 This class exposes a number of properties and methods to extract and set data within messages.

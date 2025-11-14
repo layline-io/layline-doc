@@ -1,4 +1,4 @@
-# Enumeration: Severity
+# Severity
 
 Enumeration for use of Severity levels in [Message](../classes/Message)
 

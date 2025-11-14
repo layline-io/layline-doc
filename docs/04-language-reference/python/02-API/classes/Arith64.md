@@ -1,4 +1,4 @@
-# Class: Arith64
+# Arith64
 
 Abstract class enables you to perform proper 64-bit arithmetic operations.
 This class is especially useful when you need to perform arithmetic operations on large numbers in Python.

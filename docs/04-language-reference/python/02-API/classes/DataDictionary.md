@@ -1,4 +1,4 @@
-# Class: DataDictionary
+# DataDictionary
 
 The DataDictionary class provides access to the data dictionary structures defined in your layline.io Project.
 It allows you to create messages based on these structures and access type definitions.

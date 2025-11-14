@@ -4,7 +4,6 @@ import Temporal from "@site/layline/src/javascript/interfaces/Temporal";
  * Represents a duration of time, which can be positive or negative.
  * This is an abstract class and cannot be instantiated directly.
  * Use static methods to create Duration instances.
- * @abstract
  * @class
  */
 class Duration {

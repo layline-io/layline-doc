@@ -1,4 +1,4 @@
-# Class: Metrics
+# Metrics
 
 Abstract class representing a metrics system.
 Provides methods to interact with various types of metrics like counters.

@@ -1,4 +1,4 @@
-# Class: TimerService
+# TimerService
 
 The [TimerService Asset](/docs/03-assets/services/asset-service-timer.md) facilitates a way to schedule and execute tasks at specified intervals and with given payloads.
 It is configured via the Configuration Center. To create and manage scheduled tasks, it provides a number of functions which are described in this class.

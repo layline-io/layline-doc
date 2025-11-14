@@ -1,4 +1,4 @@
-# Class: CompressionUtils
+# CompressionUtils
 
 This abstract class provides utility functions for compression and decompression of data.
 

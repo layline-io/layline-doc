@@ -71,7 +71,6 @@ import DateTime from "../classes/DateTime";
  * 
  * The script above reveals the structure of the message that is received from the Timer Service.
  * 
- * @abstract
  */
 export default class TimerService {
   /** @hidden **/

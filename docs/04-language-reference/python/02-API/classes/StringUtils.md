@@ -1,4 +1,4 @@
-# Class: StringUtils
+# StringUtils
 
 Utility class for string operations.
 This class cannot be instantiated and all methods are static.

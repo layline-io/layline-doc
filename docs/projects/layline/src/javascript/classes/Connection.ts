@@ -30,7 +30,6 @@ import Message from "./Message";
  * }
  * ```
  *
- * @abstract
  * @class
  */
 class Connection {

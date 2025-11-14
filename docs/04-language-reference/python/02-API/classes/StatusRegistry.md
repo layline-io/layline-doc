@@ -1,4 +1,4 @@
-# Class: StatusRegistry
+# StatusRegistry
 
 ## What
 The StatusRegistry class provides methods to access all defined Vendors and Languages for the current Project.

@@ -1,4 +1,4 @@
-# Variable: statusRegistry
+#  statusRegistry
 
 > **statusRegistry**: StatusRegistry
 

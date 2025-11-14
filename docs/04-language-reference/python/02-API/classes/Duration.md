@@ -1,4 +1,4 @@
-# Class: Duration
+# Duration
 
 Represents a duration of time, which can be positive or negative.
 This is an abstract class and cannot be instantiated directly.
