@@ -3,7 +3,7 @@ title: Formats
 description: Observe and inspect cluster based processing Formats from within the Configuration Center.
 ---
 
-import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
+import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 
 # Formats Operations

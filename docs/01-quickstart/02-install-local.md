@@ -25,7 +25,7 @@ or
 `curl -O https://download.layline.io/releases/layline-linux-arm-<currentVersion>.sh`
 :::
 
-You can check recent changes in our [Release Notes](../release).
+You can check recent changes in our [Release Notes](../08-release-notes/release.mdx).
 
 ## Installation
 

@@ -3,7 +3,7 @@ title: Connections
 description: Observe and inspect cluster based processing Connections from within the Configuration Center.
 ---
 
-import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
+import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 
 # Connections Operations

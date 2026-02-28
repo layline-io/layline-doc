@@ -3,7 +3,7 @@ title: Resources
 description: Observe and inspect cluster based processing Resources from within the Configuration Center.
 ---
 
-import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
+import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 
 # Resources Operations
