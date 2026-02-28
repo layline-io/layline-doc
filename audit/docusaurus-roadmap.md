@@ -100,12 +100,12 @@ The application has 3 major components:
 
 **Target:** Final cleanup and version management
 
-| Item | Description | Status |
-|------|-------------|--------|
-| 3.1 Remove Version 1.2.28 | Remove archived version | ✅ Complete |
-| 3.2 Version Rename to 2.x | Rename version to "2.x" | ✅ Complete |
-| 3.3 Update to Docusaurus 2.5.2 | Upgrade Docusaurus | 🔴 Not Started |
-| 3.4 Final Content Review | Final link/content check | 🔴 Not Started |
+| Item | Description | Status | PR |
+|------|-------------|--------|----|
+| 3.1 Remove Version 1.2.28 | Remove archived version | ✅ Merged (PR #31) | https://github.com/layline-io/layline-doc/pull/31 |
+| 3.2 Version Rename to 2.x | Rename version to "2.x" | ✅ Merged (PR #31) | https://github.com/layline-io/layline-doc/pull/31 |
+| 3.3 Update to Docusaurus 2.5.2 | Upgrade Docusaurus | 🔴 Not Started | — |
+| 3.4 Final Content Review | Final link/content check | 🔴 Not Started | — |
 
 ---
 
@@ -115,5 +115,5 @@ The application has 3 major components:
 |-------|-------|-----------|----------------|----------------|
 | 3.1 Restructure | 4 | 2 | 0 | 1 |
 | 3.2 Content Gaps | 6 | 0 | 0 | 6 |
-| 3.3 Cleanup | 4 | 0 | 0 | 4 |
-| **Total** | **14** | **2** | **0** | **12** |
+| 3.3 Cleanup | 4 | 2 | 0 | 2 |
+| **Total** | **14** | **4** | **0** | **10** |
