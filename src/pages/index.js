@@ -13,10 +13,10 @@ export default function Home() {
             Build scalable workflows in minutes — no heavy coding required.
           </p>
           <div className="hero-buttons">
-            <Link className="button button--primary button--lg" to="/docs/01-quickstart/quickstart-overview">
+            <Link className="button button--primary button--lg" to="/docs/quickstart/quickstart-overview">
               Quickstart
             </Link>
-            <Link className="button button--secondary button--lg" to="/docs/02-concept/concept">
+            <Link className="button button--secondary button--lg" to="/docs/concept">
               Concepts
             </Link>
           </div>
@@ -32,7 +32,7 @@ export default function Home() {
           </div>
           <div className="feature-card">
             <h3>Low-Code</h3>
-            <p>Build workflows via UI or JavaScript/Python — no heavy coding required.</p>
+            <p>Build workflows via UI and JavaScript/Python — no heavy coding required.</p>
           </div>
           <div className="feature-card">
             <h3>Connected</h3>
@@ -44,19 +44,19 @@ export default function Home() {
       <section className="quick-nav">
         <h2>Choose Your Path</h2>
         <div className="nav-grid">
-          <Link to="/docs/01-quickstart/quickstart-overview" className="nav-tile">
+          <Link to="/docs/quickstart/quickstart-overview" className="nav-tile">
             <h3>🚀 New to layline.io?</h3>
             <p>Start here: Install and run your first pipeline in minutes.</p>
           </Link>
-          <Link to="/docs/01-quickstart/02-install-local" className="nav-tile">
+          <Link to="/docs/quickstart/install-local" className="nav-tile">
             <h3>💻 Local Installation</h3>
             <p>Install layline.io on your local machine.</p>
           </Link>
-          <Link to="/docs/01-quickstart/03-install-docker" className="nav-tile">
+          <Link to="/docs/quickstart/install-docker" className="nav-tile">
             <h3>🐳 Docker Deployment</h3>
             <p>Run layline.io using Docker.</p>
           </Link>
-          <Link to="/docs/02-concept/concept" className="nav-tile">
+          <Link to="/docs/concept" className="nav-tile">
             <h3>📚 Core Concepts</h3>
             <p>Learn about workflows, clusters, and assets.</p>
           </Link>
