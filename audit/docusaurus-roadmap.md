@@ -104,8 +104,8 @@ The application has 3 major components:
 |------|-------------|--------|----|
 | 3.1 Remove Version 1.2.28 | Remove archived version | ✅ Merged (PR #31) | https://github.com/layline-io/layline-doc/pull/31 |
 | 3.2 Version Rename to 2.x | Rename version to "2.x" | ✅ Merged (PR #31) | https://github.com/layline-io/layline-doc/pull/31 |
-| 3.3 Update to Docusaurus 2.5.2 | Upgrade Docusaurus | 🔴 Not Started | — |
-| 3.4 Final Content Review | Final link/content check | 🔴 Not Started | — |
+| 3.3 Update to Docusaurus 2.5.2 | Upgrade Docusaurus | ✅ Complete — already on v3.9.2 (latest) | — |
+| 3.4 Final Content Review | Final link/content check | ⏸ Blocked — on hold until other phases are complete | — |
 
 ---
 
