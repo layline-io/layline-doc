@@ -1,58 +1,56 @@
 ---
-title: What is layline.io?
+title: layline.io at a Glance
 sidebar_position: 1
 ---
 
-# What is layline.io?
+# layline.io at a Glance
 
-**layline.io is a high-performance data integration and event processing platform** that lets teams build, deploy, and operate real-time and batch data workflows — without writing low-level streaming infrastructure code.
+**layline.io is an opinionated event data processor.** It wraps the power of reactive stream management in a framework that makes setup, deployment, and monitoring of large-scale event data processing easy and straightforward — without requiring custom code for infrastructure.
 
-## The problem it solves
+> This page gives you the 60-second picture. For the full story, see [What is layline.io?](/docs/concept/introduction) in the Concepts section.
 
-Building reliable, scalable data pipelines is hard. Teams routinely spend months developing and maintaining custom code to move, transform, and react to data across systems. When requirements change or volume spikes, that code becomes a liability.
+---
 
-layline.io removes that burden. Instead of writing infrastructure, you design workflows visually, connect your systems using built-in assets, and apply business logic using JavaScript or Python. layline.io handles the rest: execution, parallelism, fault tolerance, and monitoring.
+## What problem does it solve?
 
-> **The trigger moment:** *"I need to stop spending months building and maintaining complex event and data pipelines so I can reliably move, transform, and react to data in real time."*
+Building reliable, scalable data pipelines is hard. Teams spend months creating and maintaining custom infrastructure code to move, transform, and react to data. When requirements change or volume spikes, that code becomes a liability.
+
+layline.io changes this: instead of writing infrastructure, you design workflows visually, connect your systems using built-in assets, and apply business logic using JavaScript or Python. layline.io handles execution, parallelism, fault tolerance, and monitoring.
+
+---
 
 ## What you can build
 
-layline.io is not limited to ETL or ELT. It covers the full spectrum of data and event-driven processing:
-
-- **Real-time event workflows** — react to events from Kafka, message queues, or file streams as they arrive
-- **Batch data pipelines** — process large volumes of structured or semi-structured data from files, databases, or object storage
+- **Real-time event processing** — react to events from Kafka, message queues, or file streams as they arrive
+- **Batch data pipelines** — process large volumes of structured or semi-structured data
 - **Data transformation** — normalize, enrich, map, and filter data using built-in processors or custom scripts
-- **Multi-output routing** — split and route data to multiple destinations based on content or business rules
-- **System integration** — connect databases, file systems, Kafka, S3, SFTP/FTP, and more using pre-built connectors
+- **Multi-output routing** — split and route data to multiple destinations based on content or rules
+- **System integration** — connect databases, file systems, Kafka, SFTP/FTP, and more using pre-built connectors
 
-## Who uses it
-
-| Role | What they use layline.io for |
-|------|-----------------------------|
-| **Data Engineers** | Pipeline logic, transformations, source and sink connectivity |
-| **Platform / DevOps Engineers** | Cluster deployment, scaling, monitoring |
-| **Integration / Analytics Engineers** | Connecting systems, enriching and routing data |
-| **Backend / Automation Developers** | Custom scripting logic within workflows |
+---
 
 ## How it works
 
-layline.io has three main components that work together:
+layline.io has three main components:
 
-1. **Configuration Server** — the control plane. Hosts the web-based Configuration Center, stores projects, and manages configuration.
-2. **Configuration Center** — a browser-based UI where you design workflows, configure assets, deploy projects, and monitor running clusters.
-3. **Reactive Engine** — the execution engine. Runs your workflows with high throughput and low latency. Scales horizontally across a cluster.
+1. **Configuration Server** — the control plane. Hosts the Configuration Center, manages project storage, and provides configuration support services.
+2. **Configuration Center** — the browser-based UI where you design workflows, configure assets, deploy projects, and monitor running clusters.
+3. **Reactive Engine** — the execution engine. Runs your workflows with high throughput and low latency. Scales horizontally across a cluster of nodes.
 
 ```mermaid
-graph LR
-    A[Configuration Center] --> B[Configuration Server]
-    B --> C[Reactive Engine]
-    C --> D[(Your Systems)]
+graph TD
+    A[Configuration Center] --- B[Configuration Server]
+    A --- C[Reactive Engine / Cluster]
+    B --- C
 ```
 
-Projects you design in the Configuration Center are deployed to one or more Reactive Engines. The engines execute your workflows, process data, and report status back to the Configuration Center for monitoring.
+Projects you design in the Configuration Center are stored by the Configuration Server, then deployed to one or more Reactive Engines. The engines execute your workflows, process data, and report status back to the Configuration Center for monitoring.
 
-## Ready to get started?
+---
 
+## Ready to go deeper?
+
+- **[Core Concepts in 5 Minutes](core-concepts)** — understand Projects, Assets, Workflows, and Deployment
 - **[Install locally](install-local)** — full installation on your machine (Windows, macOS, Linux)
-- **[Run via Docker](install-docker)** — get up and running in minutes with a pre-configured image
-- **[Core Concepts in 5 Minutes](core-concepts)** — understand the key building blocks before you dive in
+- **[Run via Docker](install-docker)** — get up and running quickly with a pre-configured image
+- **[What is layline.io? (full)](/docs/concept/introduction)** — motivation, design philosophy, and feature overview

@@ -5,86 +5,124 @@ sidebar_position: 2
 
 # Core Concepts in 5 Minutes
 
-This page gives you the mental model you need before building your first workflow. Five concepts cover 90% of what layline.io does.
+This page gives you the mental model you need before building your first workflow. Six concepts cover 90% of what layline.io does.
 
 ---
 
 ## 1. Projects
 
-A **Project** is the top-level container for everything you build in layline.io. It holds your workflows, assets, data format definitions, and connection settings.
+A **Project** is the top-level container for everything you build in layline.io. It is comprised of all configured Workflow Assets, Workflows, Deployment Assets, and any other project-specific configurations.
 
-You create and manage Projects in the **Configuration Center**. When you're ready to run, you deploy a Project to a **Reactive Engine**.
-
-Think of a Project as an application: you design it once, deploy it to one or more engines, and it runs continuously (or on schedule).
+You create and manage Projects in the **Configuration Center**. When you're ready to run, you deploy a Project (or a selection of its Workflows) to a **Reactive Cluster**.
 
 ---
 
-## 2. Workflows
+## 2. Assets
 
-A **Workflow** is a directed graph of connected processors. Data flows through the graph from one or more **sources** (inputs) through **processing steps** to one or more **sinks** (outputs).
+**Assets** are the reusable building blocks of layline.io. An Asset captures a specific piece of configuration — a connection, a data format, a processing step — independently of any particular Workflow.
+
+Key things to know about Assets:
+
+- **Assets can be defined independently of Workflows.** Workflows then "use" those Assets.
+- **One Asset can be used in multiple Workflows.** For example, if two Workflows need the same output destination, they can share a single configured Output Processor Asset.
+- **Assets support inheritance.** You can derive a **child Asset** from a **parent Asset**. Both must share the same Asset Class and Type. Children inherit all parent settings, and individual parameters can be overridden at the child level. This makes it easy to build portfolios of reusable, slightly varied Asset configurations.
+
+### Asset Classes and Types
+
+Assets are organized into **Asset Classes**. Each class represents a category of functionality. Within each class, there are one or more **Asset Types** that represent specific implementations.
+
+The following Asset Classes exist:
+
+| Asset Class | Role |
+|-------------|------|
+| **Workflows** | Workflows are themselves an Asset Class |
+| **Formats** | Define data structure (see Data Formats below) |
+| **Connections** | Connectivity to external systems |
+| **Services** | Shared service definitions |
+| **Sources** | Read data in |
+| **Sinks** | Write data out |
+| **Input Processors** | Process data at workflow entry |
+| **Output Processors** | Process data at workflow exit |
+| **Flow Processors** | Transform, route, enrich, filter in between |
+| **Resources** | Resource Asset definitions |
+| **Extensions** | Custom extensions |
+
+Each class provides one or more specific Asset Types. For example, the **Format** class includes these Asset Types:
+
+- ASN.1
+- Data Dictionary
+- Generic
+- HTTP
+- XML
+
+Other Asset Classes have their own specific Asset Types.
+
+---
+
+## 3. Workflows
+
+A **Workflow** is the core unit of execution in layline.io. It defines how data flows from one or more inputs through a series of processing steps to one or more outputs.
+
+Workflow Assets are all Assets used directly or indirectly within a Workflow. A Workflow is comprised of **Input Processors**, **Flow Processors**, and **Output Processors** — each of which is an instance of an Input, Flow, or Output Asset.
 
 ```
-[Input Source] → [Parse] → [Transform] → [Route] → [Output A]
+[Input Processor] → [Flow Processor] → [Flow Processor] → [Output Processor]
                                               ↓
-                                          [Output B]
+                                      [Output Processor B]
 ```
 
-Workflows are the core unit of execution. A Project can contain multiple workflows, and workflows can be run independently or in dependency chains.
+A Project can contain multiple Workflows.
+
+> ⚠️ **Note:** Workflows cannot currently be run in dependency chains.
 
 ---
 
-## 3. Assets
+## 4. Data Formats
 
-**Assets** are the building blocks you connect inside a workflow. Each asset has a specific role:
+layline.io needs to understand your data structure to process it. You define data structure using **Format Assets**.
 
-| Asset type | What it does |
-|------------|-------------|
-| **Service** | Shared resources (connections, credentials, secrets) used by other assets |
-| **Source** | Reads data in — from files, Kafka topics, databases, HTTP endpoints, etc. |
-| **Processor** | Transforms, filters, enriches, maps, or routes data |
-| **Sink** | Writes data out — to files, Kafka, databases, object storage, etc. |
+Unlike other platforms that require you to map external data to an internal format and back again, layline.io works differently: it builds a **combined data dictionary** from all configured Format Assets, reflecting the superset of all formats in your Project. Data flows through the system using this unified dictionary — no intermediate mapping step required.
 
-Assets are configured once and can be reused across multiple workflows within the same project.
+> **Terminology note:** Format Assets are called "Formats" in layline.io. They are not called "Layouts" or "Schemas".
+
+Common supported format types include ASN.1, Data Dictionary, Generic, HTTP, and XML.
 
 ---
 
-## 4. Data Formats & Layouts
+## 5. Deployment
 
-layline.io needs to understand your data to process it. You define the structure of your data using **Format** assets (also called Layouts or Schemas).
+Designing a Workflow in the Configuration Center does not run it. You must **deploy** it to a **Reactive Cluster**.
 
-A Format describes the shape of a record: its fields, types, delimiters, and hierarchy. Once defined, the Reactive Engine can parse incoming data into structured messages and serialize them back to any output format.
+Key concepts:
 
-Common supported formats include CSV, fixed-width, JSON, XML, ASN.1, and binary.
-
----
-
-## 5. Deployment & the Reactive Engine
-
-Designing a workflow in the Configuration Center does not run it. You must **deploy** it to a **Reactive Engine**.
-
-The Reactive Engine is the runtime process that executes your workflows. It can run:
-
-- As a single node on a laptop or server (for development and small workloads)
-- As a multi-node **Cluster** (for production, high availability, and horizontal scale)
-
-Once deployed, the engine processes data continuously (stream mode) or runs through a dataset and stops (batch mode), depending on how your sources and sinks are configured.
+- A **Deployment** represents the information about what Workflows, Environments, Resource Assets, and Secret Assets shall be deployed to a Reactive Cluster.
+- A **Reactive Cluster** is a combination of one or more Reactive Engines.
+- When a cluster contains only one Reactive Engine, it is often referred to simply as "one Reactive Engine" — but technically it is still a Reactive Cluster, just with one node and no failover.
+- "Deploying to a Reactive Cluster" means sending a Deployment Configuration to the cluster — technically to one Reactive Engine, which then automatically propagates it to every cluster member.
 
 ---
 
 ## Putting it together
 
-Here is how the pieces fit:
+Here's how all the pieces connect:
+
+You start by creating a **Project** in the Configuration Center. Within the Project, you define **Assets** — your connections, data formats, sources, sinks, and processors. Because Assets are independent of Workflows, you can define and reuse them freely across multiple Workflows in the same Project, or use Asset inheritance to create variants without duplication.
+
+Once your Assets are in place, you assemble one or more **Workflows** by connecting Input, Flow, and Output Processor instances. Each Processor is an instance of a configured Asset. The Workflow defines the data path: how data enters, how it is transformed and routed, and where it goes.
+
+When the Project is ready, you create a **Deployment** — a configuration that specifies which Workflows, Environments, Resource Assets, and Secret Assets to send to a Reactive Cluster. Deploying sends this configuration to one Reactive Engine, which propagates it to all cluster members. The cluster then executes your Workflows continuously.
 
 ```
 Project
- ├── Formats (define data schemas)
- ├── Services (connections, credentials)
+ ├── Assets
+ │    ├── Formats (combined data dictionary)
+ │    ├── Connections
+ │    ├── Sources, Sinks
+ │    └── Input / Flow / Output Processors
  └── Workflows
-      ├── Source assets (read data in)
-      ├── Processor assets (transform / route)
-      └── Sink assets (write data out)
-          ↓ deployed to ↓
-      Reactive Engine (executes it all)
+      └── (instances of Assets, connected into a processing graph)
+          ↓ deployed via ↓
+      Deployment → Reactive Cluster (one or more Reactive Engines)
 ```
 
 ---
