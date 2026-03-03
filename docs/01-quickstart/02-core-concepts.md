@@ -65,10 +65,12 @@ A **Workflow** is the core unit of execution in layline.io. It defines how data 
 
 Workflow Assets are all Assets used directly or indirectly within a Workflow. A Workflow is comprised of **Input Processors**, **Flow Processors**, and **Output Processors** — each of which is an instance of an Input, Flow, or Output Asset.
 
-```
-[Input Processor] → [Flow Processor] → [Flow Processor] → [Output Processor]
-                                              ↓
-                                      [Output Processor B]
+```mermaid
+flowchart LR
+    A[Input Processor] --> B[Flow Processor]
+    B --> C[Flow Processor]
+    C --> D[Output Processor A]
+    C --> E[Output Processor B]
 ```
 
 A Project can contain multiple Workflows.
@@ -112,17 +114,18 @@ Once your Assets are in place, you assemble one or more **Workflows** by connect
 
 When the Project is ready, you create a **Deployment** — a configuration that specifies which Workflows, Environments, Resource Assets, and Secret Assets to send to a Reactive Cluster. Deploying sends this configuration to one Reactive Engine, which propagates it to all cluster members. The cluster then executes your Workflows continuously.
 
-```
-Project
- ├── Assets
- │    ├── Formats (combined data dictionary)
- │    ├── Connections
- │    ├── Sources, Sinks
- │    └── Input / Flow / Output Processors
- └── Workflows
-      └── (instances of Assets, connected into a processing graph)
-          ↓ deployed via ↓
-      Deployment → Reactive Cluster (one or more Reactive Engines)
+```mermaid
+graph TD
+    P[Project]
+    P --> A[Assets]
+    P --> W[Workflows]
+    A --> F[Formats<br/>combined data dictionary]
+    A --> C[Connections]
+    A --> SS[Sources & Sinks]
+    A --> PR[Input / Flow / Output Processors]
+    W --> WD[Workflow instances<br/>connected into a processing graph]
+    WD -->|deployed via| D[Deployment]
+    D --> RC[Reactive Cluster<br/>one or more Reactive Engines]
 ```
 
 ---
