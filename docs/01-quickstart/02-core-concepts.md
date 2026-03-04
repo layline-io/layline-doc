@@ -26,6 +26,7 @@ Key things to know about Assets:
 - **Assets can be defined independently of Workflows.** Workflows then "use" those Assets.
 - **One Asset can be used in multiple Workflows.** For example, if two Workflows need the same output destination, they can share a single configured Output Processor Asset.
 - **Assets support inheritance.** You can derive a **child Asset** from a **parent Asset**. Both must share the same Asset Class and Type. Children inherit all parent settings, and individual parameters can be overridden at the child level. This makes it easy to build portfolios of reusable, slightly varied Asset configurations.
+- **Assets can depend on other Assets.** Many Asset types require other Assets to function. For example, an Input Processor Asset typically requires both a **Format Asset** (to understand the data structure) and a **Source Asset** (to know where to read from) — without those, it cannot operate. Understanding these dependencies is key to building correct configurations.
 
 ### Asset Classes and Types
 
@@ -61,9 +62,11 @@ Other Asset Classes have their own specific Asset Types.
 
 ## 3. Workflows
 
-A **Workflow** is the core unit of execution in layline.io. It defines how data flows from one or more inputs through a series of processing steps to one or more outputs.
+A **Workflow** is the core unit of execution in layline.io. It defines how data flows from a single input through a series of processing steps to one or more outputs.
 
-Workflow Assets are all Assets used directly or indirectly within a Workflow. A Workflow is comprised of **Input Processors**, **Flow Processors**, and **Output Processors** — each of which is an instance of an Input, Flow, or Output Asset.
+Workflow Assets are all Assets used directly or indirectly within a Workflow. A Workflow is comprised of **one Input Processor**, any number of **Flow Processors**, and one or more **Output Processors** — each of which is an instance of a configured Asset.
+
+> **Important:** Each Workflow has exactly **one Input Processor**. It is the driving force of the Workflow — it reads from its source and pushes data into the processing graph. The Input Processor may read from additional sources (e.g. databases or REST interfaces) during processing, but there is only one driver per Workflow.
 
 ```mermaid
 flowchart LR
@@ -97,7 +100,7 @@ Designing a Workflow in the Configuration Center does not run it. You must **dep
 
 Key concepts:
 
-- A **Deployment** represents the information about what Workflows, Environments, Resource Assets, and Secret Assets shall be deployed to a Reactive Cluster.
+- A **Deployment** defines what **Workflows, Environment Assets, and Secret Assets** shall be deployed to a Reactive Cluster.
 - A **Reactive Cluster** is a combination of one or more Reactive Engines.
 - When a cluster contains only one Reactive Engine, it is often referred to simply as "one Reactive Engine" — but technically it is still a Reactive Cluster, just with one node and no failover.
 - "Deploying to a Reactive Cluster" means sending a Deployment Configuration to the cluster — technically to one Reactive Engine, which then automatically propagates it to every cluster member.
@@ -108,24 +111,22 @@ Key concepts:
 
 Here's how all the pieces connect:
 
-You start by creating a **Project** in the Configuration Center. Within the Project, you define **Assets** — your connections, data formats, sources, sinks, and processors. Because Assets are independent of Workflows, you can define and reuse them freely across multiple Workflows in the same Project, or use Asset inheritance to create variants without duplication.
+You start by creating a **Project** in the Configuration Center. Within the Project, you define **Assets** across all Asset Classes — formats, connections, sources, sinks, processors, services, resources, and more. Every Asset Class plays a role; none are optional in the general sense. Because Assets are independent of Workflows, you can define and reuse them freely across multiple Workflows in the same Project, or use Asset inheritance to create variants without duplication.
 
-Once your Assets are in place, you assemble one or more **Workflows** by connecting Input, Flow, and Output Processor instances. Each Processor is an instance of a configured Asset. The Workflow defines the data path: how data enters, how it is transformed and routed, and where it goes.
+Assets are not isolated — they depend on each other. An Input Processor, for instance, requires both a Format Asset and a Source Asset to function. Building a working configuration means wiring up these dependencies correctly.
 
-When the Project is ready, you create a **Deployment** — a configuration that specifies which Workflows, Environments, Resource Assets, and Secret Assets to send to a Reactive Cluster. Deploying sends this configuration to one Reactive Engine, which propagates it to all cluster members. The cluster then executes your Workflows continuously.
+Once your Assets are in place, you assemble one or more **Workflows** by connecting a single Input Processor, any number of Flow Processors, and one or more Output Processor instances. The Workflow defines the data path: how data enters, how it is transformed and routed, and where it goes.
+
+When the Project is ready, you create a **Deployment** — a configuration that specifies which Workflows, Environment Assets, and Secret Assets to send to a Reactive Cluster. Deploying sends this configuration to one Reactive Engine, which propagates it to all cluster members. The cluster then executes your Workflows continuously.
 
 ```mermaid
 graph TD
     P[Project]
-    P --> A[Assets]
+    P -->|contains all Asset Classes| A[Assets<br/>Formats · Connections · Services<br/>Sources · Sinks · Input Processors<br/>Flow Processors · Output Processors<br/>Resources · Extensions · ...]
     P --> W[Workflows]
-    A --> F[Formats<br/>combined data dictionary]
-    A --> C[Connections]
-    A --> SS[Sources & Sinks]
-    A --> PR[Input / Flow / Output Processors]
-    W --> WD[Workflow instances<br/>connected into a processing graph]
-    WD -->|deployed via| D[Deployment]
-    D --> RC[Reactive Cluster<br/>one or more Reactive Engines]
+    A -->|used by| W
+    W -->|one or more, plus<br/>Environment &amp; Secret Assets| D[Deployment]
+    D -->|deployed to| RC[Reactive Cluster<br/>one or more Reactive Engines]
 ```
 
 ---
