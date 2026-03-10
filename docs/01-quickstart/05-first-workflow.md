@@ -46,8 +46,6 @@ flowchart LR
 5. Enter the path to the directory you created (e.g., `~/layline-projects/simple-filter` or the absolute path).
 6. Click **Create**.
 
-![Project view in Configuration Center](../images/project-view.png)
-
 You are now inside an empty project.
 
 ---
@@ -311,8 +309,6 @@ format {
    - **Move processed files to:** `/tmp/layline/done`
 4. Save the asset.
 
-![Workflow canvas in Configuration Center](../images/workflow-canvas.png)
-
 ---
 
 ## Step 5: Add a Mapping Processor
@@ -425,8 +421,6 @@ If you want each output file to end with a trailer row (`TRL,<count>,<sum>`), ad
 2. Select your local Reactive Engine (should be listed automatically at `localhost:5842`).
 3. Click **Deploy**. The Configuration Center will package and push the project.
 4. Navigate to **Operations → Cluster** and confirm the engine status shows **Up**.
-
-![Cluster operations view](../images/operations-cluster.png)
 
 ---
 
