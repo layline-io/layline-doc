@@ -3,29 +3,28 @@ title: Your First Workflow
 sidebar_position: 5
 ---
 
-# Your First Workflow (End-to-End Tutorial)
+# Your First Workflow
 
-This tutorial walks you through building a complete data integration workflow in layline.io from scratch. By the end, you will have a working pipeline that reads a CSV file, parses and transforms the records, routes them to two outputs (Kafka and a database), and runs on a local Reactive Engine.
+This tutorial walks you through building a simple data processing workflow in layline.io. By the end, you will have a working pipeline that reads from a file, filters records by type, and writes them to two different output files.
 
-**Time to complete:** approximately 30–45 minutes  
+**Time to complete:** approximately 15–20 minutes  
 **Prerequisites:** layline.io installed and running ([local install](install-local) or [Docker](install-docker))
 
 ---
 
 ## What we're building
 
-**Scenario:** A system produces customer transaction records as CSV files. We need to:
+**Scenario:** A system produces transaction records as CSV files. We need to:
 
-1. **Read** the CSV file from a local directory
-2. **Parse** each row into a structured record using a defined layout
-3. **Transform** the data — normalize field values and enrich records with a JDBC lookup
-4. **Route** records: valid transactions go to Kafka for downstream analytics; all records are written to a PostgreSQL database
-5. **Deploy** the workflow to the local Reactive Engine and monitor it
+1. **Read** the input CSV file
+2. **Map/Filter** records based on their type
+3. **Route** records to different output files based on type
+4. **Write** the results to two separate files
 
 ```
-[File Input] → [CSV Parser] → [JavaScript Transform] → [Router]
-                                                            ├── [Kafka Output]  (valid transactions)
-                                                            └── [JDBC Output]   (all records)
+[File Input] → [Mapping Processor] → [Router]
+                                            ├── [File Output A]  (type=A records)
+                                            └── [File Output B]  (type=B records)
 ```
 
 ---
@@ -34,123 +33,210 @@ This tutorial walks you through building a complete data integration workflow in
 
 1. Open the **Configuration Center** at `http://localhost:5841` and log in with `admin` / `admin`.
 2. In the left navigation, click **Project → New**.
-3. Name the project `customer-transactions` and click **Create**.
+3. Name the project `simple-filter` and click **Create**.
 
 You are now inside an empty project.
 
 ---
 
-## Step 2: Define the data format
+## Step 2: Define the input format
 
-Before connecting anything, tell layline.io what your CSV records look like.
+First, tell layline.io what your input data looks like.
 
 1. In the left panel, navigate to **Formats**.
-2. Click **Add Format** and choose **Generic Format (CSV)**.
-3. Name it `CustomerTransactionCSV`.
-4. Add the following fields:
+2. Click **Add Format** and choose **Generic Format**.
+3. Name it `TransactionFormat`.
+4. Enter the following grammar in the format editor:
 
-| Field name | Type | Notes |
-|------------|------|-------|
-| `transaction_id` | String | Unique ID |
-| `customer_id` | String | |
-| `amount` | Decimal | |
-| `currency` | String | ISO 4217 code |
-| `timestamp` | DateTime | ISO 8601 |
-| `status` | String | e.g. `PENDING`, `COMPLETE`, `FAILED` |
+```javascript
+format {
+ name = "Transaction Format"
+ description = "Simple CSV transaction format"
+ start-element = "File"
+ target-namespace = "Transaction"
 
-5. Set the delimiter to `,` (comma) and enable **First row is header**.
-6. Save the format.
+ elements = [
+ {
+ name = "File"
+ type = "Sequence"
+ references = [
+ {
+ name = "Header"
+ referenced-element = "Header"
+ },
+ {
+ name = "Transactions"
+ max-occurs = "unlimited"
+ referenced-element = "Transaction"
+ }
+ ]
+ },
+ {
+ name = "Header"
+ type = "Separated"
+ regular-expression = "HEADER"
+ separator-regular-expression = ","
+ separator = ","
+ terminator-regular-expression = "\\r?\\n"
+ terminator = "\\n"
+
+ mapping = {
+ message = "Header"
+ element = "Transaction"
+ }
+
+ parts = [
+ {
+ name = "RECORD_TYPE"
+ type = "RegExpr"
+ regular-expression = "[^,\\n]*"
+ value.type = "Text.String"
+ },
+ {
+ name = "VERSION"
+ type = "RegExpr"
+ regular-expression = "[^,\\n]*"
+ value.type = "Text.String"
+ }
+ ]
+ },
+ {
+ name = "Transaction"
+ type = "Separated"
+ regular-expression = "TXN"
+ separator-regular-expression = ","
+ separator = ","
+ terminator-regular-expression = "\\r?\\n"
+ terminator = "\\n"
+
+ mapping = {
+ message = "Transaction"
+ element = "Transaction"
+ }
+
+ parts = [
+ {
+ name = "RECORD_TYPE"
+ type = "RegExpr"
+ regular-expression = "[^,\\n]*"
+ value.type = "Text.String"
+ },
+ {
+ name = "ID"
+ type = "RegExpr"
+ regular-expression = "[^,\\n]*"
+ value.type = "Text.String"
+ },
+ {
+ name = "TYPE"
+ type = "RegExpr"
+ regular-expression = "[^,\\n]*"
+ value.type = "Text.String"
+ },
+ {
+ name = "AMOUNT"
+ type = "RegExpr"
+ regular-expression = "[^,\\n]*"
+ value = {
+ type = "Text.Decimal"
+ }
+ },
+ {
+ name = "DESCRIPTION"
+ type = "RegExpr"
+ regular-expression = "[^,\\n]*"
+ value.type = "Text.String"
+ }
+ ]
+ }
+ ]
+}
+```
+
+5. Save the format.
 
 ---
 
-## Step 3: Configure a File Input source
+## Step 3: Define the output format
 
-1. In the left panel, navigate to **Workflows** and click **New Workflow**. Name it `process-transactions`.
+We need the same format for output files.
+
+1. In the **Formats** panel, click **Add Format** again.
+2. Choose **Generic Format**.
+3. Name it `TransactionOutputFormat`.
+4. Copy the same grammar from Step 2 (the input format definition).
+5. Save the format.
+
+---
+
+## Step 4: Configure a File Input
+
+1. In the left panel, navigate to **Workflows** and click **New Workflow**. Name it `filter-transactions`.
 2. From the asset palette, drag a **File Input** asset onto the canvas.
-3. Double-click it to configure:
+3. Double-click to configure:
    - **Directory:** `/tmp/layline/in` (create this directory on your machine)
-   - **File pattern:** `*.csv`
-   - **Format:** select `CustomerTransactionCSV` (created in Step 2)
+   - **File pattern:** `transactions.csv`
+   - **Format:** select `TransactionFormat` (created in Step 2)
    - **Move processed files to:** `/tmp/layline/done`
 4. Save the asset.
 
 ---
 
-## Step 4: Add a JavaScript Transform processor
+## Step 5: Add a Mapping Processor
 
-1. From the asset palette, drag a **JavaScript Processor** onto the canvas.
+1. From the asset palette, drag a **Mapping Processor** onto the canvas.
 2. Connect the output of the File Input to the input of this processor.
-3. Double-click the processor and add the following script:
-
-```javascript
-// Normalize currency to uppercase and flag high-value transactions
-function onMessage(message) {
-    const record = message.data;
-
-    // Normalize currency code
-    record.currency = record.currency.toUpperCase();
-
-    // Add a derived field
-    record.is_high_value = parseFloat(record.amount) > 10000;
-
-    // Reject records with unknown status
-    if (!['PENDING', 'COMPLETE', 'FAILED'].includes(record.status)) {
-        message.reject('Unknown status: ' + record.status);
-        return;
-    }
-
-    message.emit(OUTPUT_PORT_1);
-}
-```
-
-4. Name the processor `NormalizeTransactions` and save it.
+3. Double-click to configure:
+   - **Name:** `FilterByType`
+   - Add a mapping rule:
+     - **Source:** `TYPE`
+     - **Target:** `TYPE`
+     - **Filter Expression:** `true` (pass all records through)
+4. Save the processor.
 
 ---
 
-## Step 5: Add a Router
+## Step 6: Add a Router
 
-1. Drag a **Router** asset onto the canvas and connect it to the output of `NormalizeTransactions`.
+1. Drag a **Router** asset onto the canvas and connect it to the output of `FilterByType`.
 2. Configure two routes:
-   - **Route A** — condition: `record.status === 'COMPLETE'` → output port A
-   - **Route B** — condition: `true` (catch-all) → output port B
+   - **Route A:**
+     - **Name:** `TypeA`
+     - **Condition:** `record.TYPE === 'A'`
+     - **Output Port:** A
+   - **Route B:**
+     - **Name:** `TypeB`
+     - **Condition:** `record.TYPE === 'B'`
+     - **Output Port:** B
 3. Save the router.
 
 ---
 
-## Step 6: Configure Kafka output
+## Step 7: Configure File Output A
 
-1. First, create a **Kafka Service** under **Services → Add Service → Kafka**:
-   - **Bootstrap servers:** `localhost:9092`
-   - Name it `LocalKafka`
-2. Drag a **Kafka Sink** onto the canvas and connect it to Route A output.
-3. Configure:
-   - **Service:** `LocalKafka`
-   - **Topic:** `transactions.complete`
-   - **Message format:** JSON
-4. Save the sink.
+1. Drag a **File Output** asset onto the canvas and connect it to Route A output.
+2. Configure:
+   - **Directory:** `/tmp/layline/out/type-a`
+   - **Filename:** `transactions-a.csv`
+   - **Format:** select `TransactionOutputFormat`
+   - **Append:** ✓ (append to file)
+3. Save the asset.
 
 ---
 
-## Step 7: Configure JDBC (database) output
+## Step 8: Configure File Output B
 
-1. Create a **JDBC Service** under **Services → Add Service → JDBC**:
-   - **Driver:** PostgreSQL
-   - **URL:** `jdbc:postgresql://localhost:5432/transactions`
-   - **User / Password:** your database credentials
-   - Name it `TransactionsDB`
-2. Drag a **JDBC Sink** onto the canvas and connect it to Route B output.
-3. Configure the INSERT statement:
-
-```sql
-INSERT INTO transactions (transaction_id, customer_id, amount, currency, timestamp, status, is_high_value)
-VALUES (:transaction_id, :customer_id, :amount, :currency, :timestamp, :status, :is_high_value)
-```
-
-4. Save the sink.
+1. Drag another **File Output** asset onto the canvas and connect it to Route B output.
+2. Configure:
+   - **Directory:** `/tmp/layline/out/type-b`
+   - **Filename:** `transactions-b.csv`
+   - **Format:** select `TransactionOutputFormat`
+   - **Append:** ✓ (append to file)
+3. Save the asset.
 
 ---
 
-## Step 8: Deploy to the Reactive Engine
+## Step 9: Deploy to the Reactive Engine
 
 1. In the top menu, click **Deploy → Deploy to Engine**.
 2. Select your local Reactive Engine (should be listed automatically at `localhost:5842`).
@@ -159,22 +245,32 @@ VALUES (:transaction_id, :customer_id, :amount, :currency, :timestamp, :status, 
 
 ---
 
-## Step 9: Run the workflow and monitor it
+## Step 10: Run the workflow
 
-1. Drop a sample CSV file into `/tmp/layline/in/`:
+1. Create the necessary directories:
+   ```bash
+   mkdir -p /tmp/layline/in /tmp/layline/out/type-a /tmp/layline/out/type-b /tmp/layline/done
+   ```
 
-```csv
-transaction_id,customer_id,amount,currency,timestamp,status
-TXN-001,CUST-42,250.00,usd,2025-03-01T10:00:00Z,COMPLETE
-TXN-002,CUST-17,15500.00,EUR,2025-03-01T10:01:00Z,COMPLETE
-TXN-003,CUST-99,75.00,gbp,2025-03-01T10:02:00Z,PENDING
-```
+2. Create a sample input file at `/tmp/layline/in/transactions.csv`:
 
-2. In the **Operations** section, click on your workflow to see live throughput.
-3. Confirm:
-   - The CSV file was moved to `/tmp/layline/done/` after processing
-   - Records with `status = COMPLETE` appear in the Kafka topic `transactions.complete`
-   - All records appear in the PostgreSQL `transactions` table
+   ```csv
+   HEADER,1.0
+   TXN,TXN001,A,100.50,Payment for item 1
+   TXN,TXN002,B,250.00,Payment for item 2
+   TXN,TXN003,A,75.25,Payment for item 3
+   TXN,TXN004,B,500.00,Payment for item 4
+   TXN,TXN005,A,125.00,Payment for item 5
+   ```
+
+3. Drop the file into `/tmp/layline/in/`.
+
+4. In the **Operations** section, click on your workflow to see live throughput.
+
+5. Check the output files:
+   - `/tmp/layline/out/type-a/transactions-a.csv` should contain type A records
+   - `/tmp/layline/out/type-b/transactions-b.csv` should contain type B records
+   - The input file should be moved to `/tmp/layline/done/`
 
 ---
 
@@ -182,8 +278,8 @@ TXN-003,CUST-99,75.00,gbp,2025-03-01T10:02:00Z,PENDING
 
 In this tutorial you:
 
-- Created a layline.io project with a defined data format
-- Built a workflow with a file source, JavaScript transform, router, Kafka sink, and JDBC sink
+- Created a layline.io project with input and output formats
+- Built a workflow with File Input, Mapping Processor, Router, and File Outputs
 - Deployed the workflow to a local Reactive Engine
 - Ran it end-to-end and monitored the results
 
@@ -193,5 +289,6 @@ In this tutorial you:
 
 - **[Concepts in depth](/docs/concept)** — understand the architecture and data model in detail
 - **[Asset Reference](/docs/assets)** — explore all available source, processor, and sink types
-- **[JavaScript API](/docs/language-reference/javascript)** — learn the full scripting API for custom logic
+- **[Mapping Processor](/docs/assets/processors-flow/asset-processor-mapping)** — learn about data transformation
+- **[Router](/docs/assets/processors-flow/asset-processor-router)** — learn about routing logic
 - **[Operations Guide](/docs/operations)** — manage clusters, monitor deployments, handle errors
