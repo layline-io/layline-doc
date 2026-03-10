@@ -78,7 +78,6 @@ flowchart LR
 
 A Project can contain multiple Workflows.
 
-> ⚠️ **Note:** Workflows cannot currently be run in dependency chains.
 
 ---
 
@@ -88,7 +87,6 @@ layline.io needs to understand your data structure to process it. You define dat
 
 Unlike other platforms that require you to map external data to an internal format and back again, layline.io works differently: it builds a **combined data dictionary** from all configured Format Assets, reflecting the superset of all formats in your Project. Data flows through the system using this unified dictionary — no intermediate mapping step required.
 
-> **Terminology note:** Format Assets are called "Formats" in layline.io. They are not called "Layouts" or "Schemas".
 
 Common supported format types include ASN.1, Data Dictionary, Generic, HTTP, and XML.
 
@@ -126,7 +124,7 @@ graph TD
     P --> W[Workflows]
     A -->|used by| W
     W -->|one or more, plus<br/>Environment &amp; Secret Assets| D[Deployment]
-    D -->|deployed to| RC[Reactive Cluster<br/>one or more Reactive Engines]
+    D -->|deployed to| RC[Reactive Cluster.<br/>One or more Reactive Engines]
 ```
 
 ---
