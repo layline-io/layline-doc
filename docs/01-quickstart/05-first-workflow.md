@@ -36,9 +36,17 @@ flowchart LR
 
 ## Step 1: Create a new Project
 
-1. Open the **Configuration Center** at `http://localhost:5841` and log in with `admin` / `admin`.
-2. In the left navigation, click **Project → New**.
-3. Name the project `simple-filter` and click **Create**.
+1. First, create a directory for your project on your local machine:
+   ```bash
+   mkdir -p ~/layline-projects/simple-filter
+   ```
+2. Open the **Configuration Center** at `http://localhost:5841` and log in with `admin` / `admin`.
+3. In the left navigation, click **Project → New**.
+4. Name the project `simple-filter`.
+5. Enter the path to the directory you created (e.g., `~/layline-projects/simple-filter` or the absolute path).
+6. Click **Create**.
+
+![Project view in Configuration Center](../images/project-view.png)
 
 You are now inside an empty project.
 
@@ -51,7 +59,7 @@ First, tell layline.io what your input data looks like.
 1. In the left panel, navigate to **Formats**.
 2. Click **Add Format** and choose **Generic Format**.
 3. Name it `TransactionFormat`.
-4. Enter the following grammar in the format editor:
+4. Enter the following grammar in the format editor. This grammar defines the structure of our CSV transaction files - you can copy-paste it as-is:
 
 ```javascript
 format {
@@ -303,6 +311,8 @@ format {
    - **Move processed files to:** `/tmp/layline/done`
 4. Save the asset.
 
+![Workflow canvas in Configuration Center](../images/workflow-canvas.png)
+
 ---
 
 ## Step 5: Add a Mapping Processor
@@ -415,6 +425,8 @@ If you want each output file to end with a trailer row (`TRL,<count>,<sum>`), ad
 2. Select your local Reactive Engine (should be listed automatically at `localhost:5842`).
 3. Click **Deploy**. The Configuration Center will package and push the project.
 4. Navigate to **Operations → Cluster** and confirm the engine status shows **Up**.
+
+![Cluster operations view](../images/operations-cluster.png)
 
 ---
 
