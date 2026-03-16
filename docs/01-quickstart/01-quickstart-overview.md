@@ -5,52 +5,45 @@ description: Short overview of installation and run options for layline.io.
 
 ## Getting started with layline.io
 
-Greetings Earthling and a big THANK YOU for your interest in our brainchild: layline.io!
+Welcome to layline.io. This section helps you get up and running on a single-instance standalone installation — either on your laptop or a standalone server. Distributed cluster setups and container orchestration (e.g. Kubernetes) are covered separately.
 
-You probably came to this part of the documentation because you are interested in layline.io. If you still need to know more, you should take a look
-at [What is layline.io?](../concept/introduction) and then return here if you like what you read.
+If you are new to layline.io, start with [What is layline.io?](what-is-layline-io) to understand what the platform does and who it is for.
 
-In this part of the documentation we will help you to get started with layline.io on a single-instance standalone installation. That is either on your laptop or another standalone machine. This
-section will not talk about how to install layline.io in an container orchestration environment such as Kubernetes or in a distributed Cluster (just to name some examples).
-
-### General Prequisites
+### General Prerequisites
 
 #### Hardware Requirements
 
-| Type     | Requirement                                         |
-|----------|-----------------------------------------------------|
-| Platform | Windows: x86 / MacOS: x86 or Mx / Linux: AMD or ARM |
-| RAM      | 2GB                                                 |
-| Disk     | 350MB                                               |
+| Type     | Requirement                                          |
+|----------|------------------------------------------------------|
+| Platform | Windows: x86 / macOS: x86 or Apple Silicon / Linux: AMD or ARM |
+| RAM      | 2 GB minimum                                         |
+| Disk     | 350 MB                                               |
 
-#### Software requirements
+#### Browser Requirements
 
-| Type    | Requirement      |
-|---------|------------------|
-| Chrome  | last 10 versions |
-| Firefox | last 10 versions |
-| Edge    | last 4 versions  |
-| Safari  | last 7 versions  |
-| Opera   | last 5  versions |
+| Browser | Supported versions |
+|---------|-------------------|
+| Chrome  | Last 10 versions  |
+| Firefox | Last 10 versions  |
+| Edge    | Last 4 versions   |
+| Safari  | Last 7 versions   |
+| Opera   | Last 5 versions   |
 
-Mobile browsers are not tested, but will likely work. In general, the web-UI is not designed for or tested for mobile platforms.
+Mobile browsers are not officially tested. Internet Explorer is not supported.
 
-Internet Explorer is not supported.
+### Installation options
 
-### Installation
+We provide two ways to get started quickly:
 
-We provide two quick options on how you can quickly get started with layline.io:
+| # | Option                                      | Advantages                                                                                    | Limitations                                                          |
+|---|---------------------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| 1 | [Full local installation](install-local)    | Complete setup · Persistent state · Run multiple versions side-by-side | No pre-installed sample projects (can be imported manually) |
+| 2 | [Docker image](install-docker) | No installer required · Pre-installed sample projects · Non-intrusive | Requires Docker · State is not persisted on shutdown |
 
-| # | Option                                      | Advantage                                                                                    | Disadvantage                                                          |
-|---|---------------------------------------------|----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| 1 | [Full local installation](install-local)    | * Complete setup<br />* Persistent state<br />* Run multiple different versions side-by-side | * No pre-installed sample Projects (but you can import them yourself) |
-| 2 | [Ready-to-run Docker image](install-docker) | * No need to run an installer<br />* Pre-installed sample Projects<br />* Non-intrusive      | * Requires Docker<br />* Does not persist state or data on shutdown   |
-
-Pick either of the two links in the table. If you do not have [Docker](https://docs.docker.com/get-docker/) installed, or don't know what it is, then you should pick *Full local installation*.
+If you do not have [Docker](https://docs.docker.com/get-docker/) installed, choose **Full local installation**.
 
 ### Running layline.io
 
-When doing a *Full local installation*, the documentation describes how to then [start and run](install-local#starting-everything) layline.io.
+After a local installation, follow the [start-up instructions](install-local#starting-everything) to launch the Configuration Server and Reactive Engine.
 
-When running the Docker image, then all parts of layline.io are automatically started for you and you don't have to do anything to start it.
-
+When using the Docker image, both components start automatically — no additional steps required.

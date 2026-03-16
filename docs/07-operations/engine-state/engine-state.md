@@ -1,5 +1,6 @@
 ---
 title: Engine State
+slug: /operations/engine-state/engine-state
 description: Learn how to control and observe Reactive Clusters resp. their Workflow(s) processing from within the Configuration Center.
 ---
 
