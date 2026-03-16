@@ -57,9 +57,9 @@ The application has 3 major components:
 | Field | Details |
 |-------|---------|
 | **Description** | Restructure sidebar to match app UI: Project → Operations → Shelf → Settings |
-| **Status** | 🟡 In Progress |
-| **Percentage Complete** | 0% |
-| **PR Link** | TBD |
+| **Status** | ✅ Merged (PR #30) |
+| **Percentage Complete** | 100% |
+| **PR Link** | https://github.com/layline-io/layline-doc/pull/30 |
 | **Content Reorganization** | ✅ Complete - Moved docs from 02-concept/03-assets to new folders |
 | **Internal Links Fixed** | ✅ Complete - Updated 2 broken links in language reference |
 
@@ -69,7 +69,7 @@ The application has 3 major components:
 |-------|---------|
 | **Description** | Create new top-level section for installation docs |
 | **Status** | 🔴 Not Started |
-| **Percentage Complete** | 0% |
+| **Percentage Complete** | 100% |
 
 ### 1.4 Add Operations Section
 
@@ -77,7 +77,7 @@ The application has 3 major components:
 |-------|---------|
 | **Description** | Create new top-level section for operations docs |
 | **Status** | 🔴 Not Started |
-| **Percentage Complete** | 0% |
+| **Percentage Complete** | 100% |
 
 ---
 
@@ -100,12 +100,12 @@ The application has 3 major components:
 
 **Target:** Final cleanup and version management
 
-| Item | Description | Status |
-|------|-------------|--------|
-| 3.1 Remove Version 1.2.28 | Remove archived version | 🔴 Not Started |
-| 3.2 Version Rename to 2.x | Rename version to "2.x" | 🔴 Not Started |
-| 3.3 Update to Docusaurus 2.5.2 | Upgrade Docusaurus | 🔴 Not Started |
-| 3.4 Final Content Review | Final link/content check | 🔴 Not Started |
+| Item | Description | Status | PR |
+|------|-------------|--------|----|
+| 3.1 Remove Version 1.2.28 | Remove archived version | ✅ Merged (PR #31) | https://github.com/layline-io/layline-doc/pull/31 |
+| 3.2 Version Rename to 2.x | Rename version to "2.x" | ✅ Merged (PR #31) | https://github.com/layline-io/layline-doc/pull/31 |
+| 3.3 Update to Docusaurus 2.5.2 | Upgrade Docusaurus | ✅ Complete — already on v3.9.2 (latest) | — |
+| 3.4 Final Content Review | Final link/content check | ⏸ Blocked — on hold until other phases are complete | — |
 
 ---
 
@@ -113,7 +113,7 @@ The application has 3 major components:
 
 | Phase | Items | ✅ Merged | 🟡 In Progress | 🔴 Not Started |
 |-------|-------|-----------|----------------|----------------|
-| 3.1 Restructure | 4 | 1 | 1 | 2 |
+| 3.1 Restructure | 4 | 2 | 0 | 1 |
 | 3.2 Content Gaps | 6 | 0 | 0 | 6 |
-| 3.3 Cleanup | 4 | 0 | 0 | 4 |
-| **Total** | **14** | **1** | **1** | **12** |
+| 3.3 Cleanup | 4 | 2 | 0 | 2 |
+| **Total** | **14** | **4** | **0** | **10** |

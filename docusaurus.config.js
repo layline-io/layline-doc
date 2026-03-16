@@ -49,13 +49,8 @@ const config = {
                     includeCurrentVersion: true,
                     versions: {
                         current: {
-                            label: '2.0.0',
+                            label: '2.x',
                             // path: '2.0.0', // Do not add a path for the current version, it is the default. --> Helps with SEO.
-                        },
-                        '1.2.28': {
-                            label: '1.2.x',
-                            noIndex: true, // Do not index the 1.2.x in search engines
-                            banner: 'none', // Do not show a banner for the 1.2.x version
                         }
                     },
                     exclude: [
@@ -189,29 +184,10 @@ const config = {
 
     plugins: [
         // Plugin / TypeDoc options
+        
         ['docusaurus-plugin-typedoc',
             {
-                id: 'v1.2.28',
-                out: "./versioned_docs/version-1.2.28/04-language-reference/javascript/02-API",
-                entryPoints: ["./versioned_docs/version-1.2.28/projects/layline/src/index.ts"],
-                tsconfig: './versioned_docs/version-1.2.28/projects/tsconfig.json',
-                // plugin: ['typedoc-plugin-frontmatter'],
-                readme: "./versioned_docs/version-1.2.28/projects/layline/src/index.mdx",
-                sidebar: {
-                    autoConfiguration: true
-                },
-                watch: process.env.TYPEDOC_WATCH, // to instantly recompile changes to typescript files in dev mode
-                disableSources: true, // do not create url links to the source code of .ts files on github
-                // typedocOptions: {
-                //     exclude: ['**/globals.md'],
-                //     excludeNotDocumented: true,
-                //     // other TypeDoc options
-                // },
-            }
-        ],
-        ['docusaurus-plugin-typedoc',
-            {
-                id: 'v2.0.0',
+                id: 'v2.x',
                 out: "./docs/04-language-reference/javascript/02-API",
                 entryPoints: ["./docs/projects/layline/src/javascript/index.ts"],
                 tsconfig: './docs/projects/tsconfig.json',

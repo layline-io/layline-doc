@@ -120,7 +120,7 @@ Next, pick and run the installer for your target processor architecture:
 Accept the defaults or change according to your environment (example for AMD).
 
 ```bash
-root@b8a9e28ce031:/layline# ./layline-linux-amd64-1.0.2.sh
+root@b8a9e28ce031:/layline# ./layline-linux-amd64-2.5.4.sh
 Unpacking JRE ...
 Starting Installer ...
 This will install layline.io on your computer.
@@ -163,7 +163,7 @@ root@b8a9e28ce031:/usr/local/layline# ./uninstall
 Are you sure you want to completely remove layline.io and all of its components?
 Yes [y, Enter], No [n]
 
-Uninstalling layline.io 1.0.2 ...
+Uninstalling layline.io 2.5.4 ...
 layline.io was successfully removed from your computer.
 Finishing uninstallation ...
 ````
@@ -237,7 +237,7 @@ A process which
 C:\Program Files\Layline.io\layline\bin>config-server.exe
 
 09:35:21.916 INFO  ConfigServer                         - [LAY-00050] ###################################################################
-09:35:21.916 INFO  ConfigServer                         - [LAY-00050] #        Layline Config Server 1.0.2 (2022-...)                   #
+09:35:21.916 INFO  ConfigServer                         - [LAY-00050] #        Layline Config Server 2.5.4 (2022-...)                   #
 09:35:21.916 INFO  ConfigServer                         - [LAY-00050] #                                                                 #
 09:35:21.916 INFO  ConfigServer                         - [LAY-00050] #  Copyright (C) 2018-2021  layline.io GmbH <https://layline.io>  #
 09:35:21.916 INFO  ConfigServer                         - [LAY-00050] ###################################################################
@@ -261,7 +261,7 @@ C:\Program Files\Layline.io\layline\bin>config-server.exe
 | => /Applications/layline.io/bin/ConfigServer ; exit;
 
 15:26:08.061 INFO  ConfigServer                         - [LAY-00050] ###################################################################
-15:26:08.064 INFO  ConfigServer                         - [LAY-00050] #    Layline Config Server 0.8.0-SNAPSHOT (2021-10-04 10:38:09)   #
+15:26:08.064 INFO  ConfigServer                         - [LAY-00050] #    Layline Config Server 2.5.4   #
 15:26:08.064 INFO  ConfigServer                         - [LAY-00050] #                                                                 #
 15:26:08.065 INFO  ConfigServer                         - [LAY-00050] #  Copyright (C) 2018-2021  layline.io GmbH <https://layline.io>  #
 15:26:08.065 INFO  ConfigServer                         - [LAY-00050] ###################################################################
@@ -283,7 +283,7 @@ C:\Program Files\Layline.io\layline\bin>config-server.exe
 | => ./config-server
 
 15:40:13.274 INFO  ConfigServer                         - [LAY-00050] ###################################################################
-15:40:13.280 INFO  ConfigServer                         - [LAY-00050] #    Layline Config Server 0.8.0-SNAPSHOT (2021-10-04 10:38:09)   #
+15:40:13.280 INFO  ConfigServer                         - [LAY-00050] #    Layline Config Server 2.5.4   #
 15:40:13.280 INFO  ConfigServer                         - [LAY-00050] #                                                                 #
 15:40:13.280 INFO  ConfigServer                         - [LAY-00050] #  Copyright (C) 2018-2021  layline.io GmbH https://layline.io    #
 15:40:13.280 INFO  ConfigServer                         - [LAY-00050] ###################################################################
@@ -305,7 +305,7 @@ C:\Program Files\Layline.io\layline\bin>config-server.exe
 root@b8a9e28ce031:/usr/local/layline/bin# ./config-server
 
 21-10-20 09:53:42.208 INFO  ConfigServer                         - [LAY-00050] ###################################################################
-21-10-20 09:53:42.212 INFO  ConfigServer                         - [LAY-00050] #        Layline Config Server 1.0.2 (2022-...)                   #
+21-10-20 09:53:42.212 INFO  ConfigServer                         - [LAY-00050] #        Layline Config Server 2.5.4 (2022-...)                   #
 21-10-20 09:53:42.212 INFO  ConfigServer                         - [LAY-00050] #                                                                 #
 21-10-20 09:53:42.213 INFO  ConfigServer                         - [LAY-00050] #  Copyright (C) 2018-2021  layline.io GmbH https://layline.io    #
 21-10-20 09:53:42.214 INFO  ConfigServer                         - [LAY-00050] ###################################################################
@@ -349,7 +349,7 @@ root@b8a9e28ce031:/usr/local/layline/bin# ./config-server
 ```text
 C:\Program Files\layline.io\layline\bin>reactive-engine.exe
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] ###################################################################
-2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #       Layline Reactive Engine 1.0.2 (2022-...)                  #
+2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #       Layline Reactive Engine 2.5.4 (2022-...)                  #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #                                                                 #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #  Copyright (C) 2018-2021  layline.io GmbH <https://layline.io>  #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] ###################################################################
@@ -386,7 +386,7 @@ You may get a firewall warning. Please `Allow Access` for the Reactive Engine:<b
 | => /Applications/layline.io/bin/ReactiveEngine ; exit;
 
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] ###################################################################
-2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #       Layline Reactive Engine 1.0.2 (2022-...)                  #
+2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #       Layline Reactive Engine 2.5.4 (2022-...)                  #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #                                                                 #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #  Copyright (C) 2018-2021  layline.io GmbH <https://layline.io>  #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] ###################################################################
@@ -408,7 +408,7 @@ You may get a firewall warning. Please `Allow Access` for the Reactive Engine:<b
 | => ./reactive-engine
 
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] ###################################################################
-2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #       Layline Reactive Engine 1.0.2 (2022-...)                  #
+2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #       Layline Reactive Engine 2.5.4 (2022-...)                  #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #                                                                 #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #  Copyright (C) 2018-2021  layline.io GmbH <https://layline.io>  #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] ###################################################################
@@ -430,7 +430,7 @@ You may get a firewall warning. Please `Allow Access` for the Reactive Engine:<b
 root@b8a9e28ce031:/usr/local/layline/bin# ./reactive-engine
 
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] ###################################################################
-2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #       Layline Reactive Engine 1.0.2 (2022-...)                  #
+2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #       Layline Reactive Engine 2.5.4 (2022-...)                  #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #                                                                 #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] #  Copyright (C) 2018-2021  layline.io GmbH <https://layline.io>  #
 2021-10-21 10:02:38.964 INFO  Layline                                            - [LAY-00050] ###################################################################

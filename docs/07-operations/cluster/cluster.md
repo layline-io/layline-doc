@@ -1,5 +1,6 @@
 ---
 title: Cluster
+slug: /operations/cluster/cluster
 description: Learn how to operate a Reactive Cluster from within the Configuration Center.
 ---
 
