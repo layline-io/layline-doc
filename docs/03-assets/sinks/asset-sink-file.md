@@ -28,7 +28,7 @@ None — this sink writes directly to the local file system and does not require
 
 ### Name & Description
 
-![Name & Description (File System Sink)](./.asset-sink-file_images/sink-file-overview.png "Name & Description (File System Sink)")
+![Name & Description (File System Sink)](./.asset-sink-file_images/sink-file-name-description.png "Name & Description (File System Sink)")
 
 * **Sink Name** — A descriptive name for this sink asset.
 * **Sink description** — Optional description of what this sink is used for.
