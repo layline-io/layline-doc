@@ -46,6 +46,8 @@ No other assets are required to configure this sink. All connection parameters a
 | Message mode | ✓ | Dropdown | Mixed | How messages are encoded on the wire: **Mixed** (text and binary frames), **Binary**, or **Text**. |
 | Conversion character set | | Dropdown | UTF-8 | Character encoding used for text messages. Only applies when Message mode is `Mixed` or `Text`. Disabled (grayed out) when set to `Binary`. |
 
+![WebSocket Settings](./.asset-sink-websocket_images/websocket-settings.png)
+
 ### Performance Settings
 
 | Field | Required | Type | Default | Description |
@@ -53,6 +55,8 @@ No other assets are required to configure this sink. All connection parameters a
 | Merge buffer size [messages] | | Integer | 1 | Number of messages to buffer before sending. Increase to improve throughput; decrease for lower latency. |
 | Broadcast buffer size [messages] | | Integer | 1 | Number of messages to buffer for broadcast to connected clients. |
 | Number of data units to group into one WebSocket message | | Integer | 1 | How many data units are aggregated into a single outgoing WebSocket frame. |
+
+![Performance Settings](./.asset-sink-websocket_images/performance-settings.png)
 
 ## Related Topics
 
