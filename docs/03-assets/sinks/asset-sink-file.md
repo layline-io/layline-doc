@@ -45,7 +45,7 @@ The Directories section defines where files are written and how they are handled
 
 #### Output Directory
 
-![Output Directory](./.asset-sink-file_images/sink-file-overview.png "Output Directory")
+![Output Directory](./.asset-sink-file_images/sink-file-output-directory.png "Output Directory")
 
 * **Output Directory** — The directory to write output files to. The path can be:
   * **Absolute** — e.g., `/tmp/layline/output` or `C:\layline\output`
@@ -74,6 +74,7 @@ The Directories section defines where files are written and how they are handled
   * **Delete after** — The age threshold for files to delete (number + units).
   * **Units** — The time unit (days, hours, or minutes).
   * **Execute housekeeping at** — A cron expression defining when housekeeping runs. Click the calendar icon to open the cron expression editor.
+![Housekeeping and Temporary Directory](./.asset-sink-file_images/sink-file-housekeeping-tempdir.png "Housekeeping and Temporary Directory")
 
 #### Temporary Directory
 
@@ -99,6 +100,7 @@ This section appears only when **"Move the existing output file to the archive d
   * **Rename existing archive and add a numerical version counter as suffix** — Add a number suffix.
   * **Rename existing archive and add the current timestamp as suffix** — Add a timestamp suffix.
 
+![Other Settings](./.asset-sink-file_images/sink-file-other-settings.png "Other Settings")
 ### Other Settings
 
 * **Delay post processing steps (move, delete) [ms]** — Delay in milliseconds before post-processing steps (moving temp file to output, deleting from temp). Useful for "sensitive" file systems that need time to settle.
