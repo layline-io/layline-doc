@@ -28,7 +28,7 @@ None — this sink writes directly to the local file system and does not require
 
 ### Name & Description
 
-![Name & Description (File System Sink)](./.asset-sink-file_images/sink-file-name-description.png "Name & Description (File System Sink)")
+![Name & Description (File System Sink)](./.asset-sink-file_images/sink-file-name-description-FINAL.png "Name & Description (File System Sink)")
 
 * **Sink Name** — A descriptive name for this sink asset.
 * **Sink description** — Optional description of what this sink is used for.
@@ -39,13 +39,17 @@ You can expand **Asset usage** to see which other assets, workflows, or deployme
 
 Optionally specify which roles are required to use this sink. Click **Add required role** to add role requirements.
 
+![Required Roles](./.asset-sink-file_images/sink-file-required-roles-FINAL.png "Required Roles")
+
+![Directories](./.asset-sink-file_images/sink-file-directories-FINAL.png "Directories")
+
 ### Directories
 
 The Directories section defines where files are written and how they are handled during processing.
 
 #### Output Directory
 
-![Output Directory](./.asset-sink-file_images/sink-file-output-directory.png "Output Directory")
+![Output Directory](./.asset-sink-file_images/sink-file-output-directory-FINAL.png "Output Directory")
 
 * **Output Directory** — The directory to write output files to. The path can be:
   * **Absolute** — e.g., `/tmp/layline/output` or `C:\layline\output`
@@ -74,7 +78,7 @@ The Directories section defines where files are written and how they are handled
   * **Delete after** — The age threshold for files to delete (number + units).
   * **Units** — The time unit (days, hours, or minutes).
   * **Execute housekeeping at** — A cron expression defining when housekeeping runs. Click the calendar icon to open the cron expression editor.
-![Housekeeping and Temporary Directory](./.asset-sink-file_images/sink-file-housekeeping-tempdir.png "Housekeeping and Temporary Directory")
+![Housekeeping and Temporary Directory](./.asset-sink-file_images/sink-file-housekeeping-FINAL.png "Housekeeping and Temporary Directory")
 
 #### Temporary Directory
 
@@ -100,7 +104,7 @@ This section appears only when **"Move the existing output file to the archive d
   * **Rename existing archive and add a numerical version counter as suffix** — Add a number suffix.
   * **Rename existing archive and add the current timestamp as suffix** — Add a timestamp suffix.
 
-![Other Settings](./.asset-sink-file_images/sink-file-other-settings.png "Other Settings")
+![Other Settings](./.asset-sink-file_images/sink-file-other-settings-FINAL.png "Other Settings")
 ### Other Settings
 
 * **Delay post processing steps (move, delete) [ms]** — Delay in milliseconds before post-processing steps (moving temp file to output, deleting from temp). Useful for "sensitive" file systems that need time to settle.
