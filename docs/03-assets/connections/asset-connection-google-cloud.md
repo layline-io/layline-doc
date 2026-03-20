@@ -27,11 +27,11 @@ Provides OAuth-based authentication for Google Cloud services. This connection i
 
 ![Name & Description (Connection Google Cloud)](.asset-connection-google-cloud_images/asset-connection-google-cloud-name-description.png "Name & Description (Connection Google Cloud)")
 
-**`Name`** — Unique name for this asset within the project. Spaces are not allowed.
+**Name** — Unique name for this asset within the project. Spaces are not allowed.
 
-**`Description`** — Optional description of what this connection is used for.
+**Description** — Optional description of what this connection is used for.
 
-The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it.
+The **Asset Usage** box shows how many times this Asset is used and which parts are referencing it.
 
 ### Required Roles
 
