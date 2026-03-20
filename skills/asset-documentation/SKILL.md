@@ -35,15 +35,20 @@ user actually sees in the app.]
 
 ### [Tab or Section Name]
 
+**Field Name** — Description of the field. Default: value.
+
+**Boolean Field** — When enabled, layline.io does X.
+
+For fields with a fixed set of options, use a table:
+
 | Option | Behavior |
 |--------|----------|
 | Option A | What happens when Option A is selected. |
 | Option B | What happens when Option B is selected. |
 
-**Toggle Field** — When enabled, layline.io does X. Default: disabled.
+Single-field sections can be written as prose paragraphs if no field-by-field breakdown is needed.
 
-[Below the fields, add a short paragraph if any field needs more explanation than
-fits in the description. Don't over-explain simple fields.]
+**Inheritable fields** use inline italics: **Field Name *(inheritable)* — description**.
 
 ### [Next Tab or Section]
 
