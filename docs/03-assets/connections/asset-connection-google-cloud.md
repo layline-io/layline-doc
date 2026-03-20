@@ -51,22 +51,16 @@ If no OAuth Client resource exists in the project, you must create one first. Th
 
 ![Google Cloud Settings (Connection Google Cloud)](.asset-connection-google-cloud_images/asset-connection-google-cloud-settings.png "Google Cloud Settings (Connection Google Cloud)")
 
-#### Credential Type
+**Credential Type** — The OAuth 2.0 authentication flow to use.
 
-Select the OAuth 2.0 authentication flow to use:
+| Option | Behavior |
+|--------|----------|
+| OAuth Client Credentials | Service-account style authentication. Exchange a client ID and secret for an access token. Suitable for server-to-server communication. |
+| OAuth Device Code | User-identity authentication via the device code flow. The user approves access on a separate device. Suitable for CLI tools and scenarios where a browser is available. |
 
-| Credential Type | Description |
-|-----------------|-------------|
-| **OAuth Client Credentials** | Service-account style authentication. Exchange a client ID and secret for an access token. Suitable for server-to-server communication. |
-| **OAuth Device Code** | User-identity authentication via the device code flow. The user approves access on a separate device. Suitable for CLI tools and scenarios where a browser is available. |
+**Authority *(inheritable)* — The OAuth 2.0 authority URL. This is the endpoint that issues access tokens. Defaults to `https://accounts.google.com`. In most cases, this default does not need to be changed.
 
-#### Authority *(inheritable)*
-
-The OAuth 2.0 authority URL. This is the endpoint that issues access tokens. Defaults to `https://accounts.google.com`. In most cases, this default does not need to be changed.
-
-#### Client ID *(inheritable)*
-
-The OAuth client ID issued by Google. Defaults to layline.io's shared client ID:
+**Client ID *(inheritable)* — The OAuth client ID issued by Google. Defaults to layline.io's shared client ID:
 
 ```
 407603625325-45ik7ma1elfme3qidga7jstkbfnfmhdu.apps.googleusercontent.com
@@ -78,9 +72,7 @@ To use your own OAuth client (recommended for production), replace this with you
 ${GOOGLE_CLIENT_ID}
 ```
 
-#### Scopes *(inheritable)*
-
-Add the OAuth scopes required for your use case. Each scope is entered as a chip — type the scope value and press **Enter** to add it.
+**Scopes *(inheritable)* — Add the OAuth scopes required for your use case. Each scope is entered as a chip — type the scope value and press **Enter** to add it.
 
 Default scopes:
 
