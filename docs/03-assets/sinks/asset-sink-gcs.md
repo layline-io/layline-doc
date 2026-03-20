@@ -30,8 +30,8 @@ Writes messages to a Google Cloud Storage (GCS) bucket as objects. Each incoming
 
 | Field | Required | Type | Default | Description |
 |-------|----------|------|---------|-------------|
-| Name  | ✓        | String | —      | Unique name for this asset within the project. Spaces are not allowed. |
-| Description | — | String | —      | Optional description of what this sink is used for. |
+| Name | ✓ | String | — | Unique name for this asset within the project. Spaces are not allowed. |
+| Description | | String | — | Optional description of what this sink is used for. |
 
 The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it.
 
@@ -39,9 +39,7 @@ The **`Asset Usage`** box shows how many times this Asset is used and which part
 
 ![Required Roles (Sink GCS)](.asset-sink-gcs_images/asset-sink-gcs-required-roles.png "Required Roles (Sink GCS)")
 
-| Field | Required | Type | Default | Description |
-|-------|----------|------|---------|-------------|
-| Required Roles | — | String | — | Restricts use of this Asset to Reactive Engine Nodes with matching Role names. Leave empty to match all Nodes. |
+In case you are deploying to a Cluster with Reactive Engine Nodes that have specific Roles configured, you can restrict use of this Asset to Nodes with matching roles. Leave empty to match all Nodes.
 
 ### Google Cloud Storage Settings
 
@@ -49,15 +47,24 @@ The **`Asset Usage`** box shows how many times this Asset is used and which part
 
 | Field | Required | Type | Default | Description |
 |-------|----------|------|---------|-------------|
-| Connection | ✓ | Reference | — | The [**Google Cloud Connection**](../connections/asset-connection-google-cloud) to use. Must be selected first — all other fields are unavailable until a connection is chosen. |
-| Project ID *(inheritable)* | — | String | — | The Google Cloud project ID that owns the target bucket. |
-| Bucket Name *(inheritable)* | — | String | — | The name of the GCS bucket to write to. Enter as plain text. Bucket existence is not validated at configuration time — it is checked at workflow runtime. |
-| Folder Prefix *(inheritable)* | — | String | — | A path prefix within the bucket under which objects will be written (e.g., `logs/` or `data/output/`). GCS has a flat namespace — see [GCS-Specific Notes](#gcs-specific-notes) for details. |
-| Object Prefix *(inheritable)* | — | String | — | An additional prefix prepended to the object name. Use this to distinguish between multiple streams going to the same bucket/prefix combination. |
-| Object Suffix *(inheritable)* | — | String | — | A suffix appended to the object name. Useful for setting file extensions such as `.json` or `.xml`. |
-| Content Type *(inheritable)* | — | String | `application/octet-stream` | The MIME type to set on written objects. Example: `application/json`. |
-| When Object Already Exists | — | Enum | `Transaction rollback` | What happens when an object with the same key already exists in the bucket. Options: `Transaction rollback` — fail and roll back the transaction; `Replace the existing object` — overwrite it; `Create a new object using a numerical version counter as suffix` — writes `<key>.1`, `<key>.2`, etc.; `Create a new object using the current timestamp as suffix` — appends a timestamp to the key. |
-| Create Sub Folders *(inheritable)* | — | Boolean | `false` | When `true`, layline.io creates intermediate key prefixes in the bucket as needed for the configured folder prefix path. When `false` (default), objects are written directly to the specified prefix. Disable this if the bucket structure is managed externally. |
+| Connection | ✓ | Selection | — | The linked Google Cloud Connection asset used for OAuth 2.0 authentication. The remaining fields cannot be configured until a connection is selected. |
+| Project ID *(inheritable)* | | String | — | The Google Cloud project ID that owns the target bucket. |
+| Bucket Name *(inheritable)* | | String | — | The name of the GCS bucket to write to. Not validated at configuration time — checked at workflow runtime. |
+| Folder Prefix *(inheritable)* | | String | — | A path prefix within the bucket under which objects will be written (e.g., `logs/` or `data/output/`). GCS has a flat namespace — these are key prefixes, not real folders. See [GCS-Specific Notes](#gcs-specific-notes). |
+| Object Prefix *(inheritable)* | | String | — | An additional prefix prepended to the object name. Useful to distinguish between multiple streams going to the same bucket/prefix combination. |
+| Object Suffix *(inheritable)* | | String | — | A suffix appended to the object name. Useful for setting file extensions such as `.json` or `.xml`. |
+| Content Type *(inheritable)* | | String | `application/octet-stream` | The MIME type to set on written objects (e.g., `application/json`). |
+| When Object Already Exists | | Selection | `Transaction rollback` | What to do when an object with the same key already exists in the bucket. See options below. |
+| Create Sub Folders *(inheritable)* | | Boolean | `false` | When `true`, layline.io creates intermediate key prefixes as needed. When `false` (default), objects are written directly to the specified prefix. Disable if bucket structure is managed externally. |
+
+#### When Object Already Exists — Options
+
+| Option | Behavior |
+|--------|----------|
+| **Transaction rollback** | Fail the transaction and roll back. |
+| **Replace the existing object** | Overwrite the existing object with the new content. |
+| **Create a new object using a numerical version counter as suffix** | Write a new object named `<key>.1`, `<key>.2`, etc. |
+| **Create a new object using the current timestamp as suffix** | Write a new object with a timestamp suffix appended to the name. |
 
 The connection status indicator at the bottom of the panel shows whether the selected Google Cloud Connection is active. A green indicator means the connection is working and the bucket list was retrieved. A red indicator means the connection failed.
 
