@@ -36,6 +36,8 @@ Provides a Virtual File System (VFS) connection that abstracts over multiple sto
 
 ### Required Roles
 
+![Required Roles (Virtual File System Connection)](./.Virtual_File_System_Connection_images/vfs-connection-required-roles.png "Required Roles (Virtual File System Connection)")
+
 In case you are deploying to a Cluster with Reactive Engine Nodes that have specific Roles configured, you can restrict use of this Asset to Nodes with matching roles. Leave empty to match all Nodes.
 
 ### Mount Points
@@ -57,6 +59,8 @@ Use the toolbar to reorder, copy, or paste mount point entries.
 
 #### Name & Paths (Detail Panel)
 
+![Mount Point Detail — Name & Paths](./.Virtual_File_System_Connection_images/vfs-connection-mount-point-detail.png "Mount Point Detail — Name & Paths")
+
 When a mount point is selected in the tree, the detail panel shows:
 
 **Mount point name** — The display name for this mount point entry.
@@ -64,6 +68,40 @@ When a mount point is selected in the tree, the detail panel shows:
 **Mount point path** — The logical VFS path prefix that child assets will reference. Must start with `/`.
 
 **Target path** — The actual filesystem path on the backend (local path, SMB share, NFS mount, etc.).
+
+### Manage underlying File System
+
+The **Manage underlying File System** section defines how the cluster accesses the file system for this mount point. Choose one of two modes:
+
+#### File System On Cluster Host
+
+![Manage underlying File System — Cluster Host](./.Virtual_File_System_Connection_images/vfs-connection-manage-filesystem-on-host.png "Manage underlying File System — Cluster Host")
+
+Select this mode when the file system is accessible directly on the cluster host. The cluster will access the file system using the local operating system.
+
+#### File System Via Connection
+
+![Manage underlying File System — Via Connection](./.Virtual_File_System_Connection_images/vfs-connection-manage-filesystem-via-connection.png "Manage underlying File System — Via Connection")
+
+Select this mode when the file system is accessed via a connection asset (e.g., SMB, NFS, or cloud storage). Choose the connection from the dropdown.
+
+##### OneDrive Settings
+
+![OneDrive Settings](./.Virtual_File_System_Connection_images/vfs-connection-onedrive-settings.png "OneDrive Settings")
+
+When **MS Graph Connection Settings** is configured and **OneDrive** is selected, specify the target OneDrive drive path.
+
+**OneDrive Drive** — The path within the user's OneDrive to mount (e.g., `/special/documents`).
+
+##### SharePoint Settings
+
+![SharePoint Settings](./.Virtual_File_System_Connection_images/vfs-connection-sharepoint-settings.png "SharePoint Settings")
+
+When **SharePoint** is selected, configure the following:
+
+**SharePoint Site** — The SharePoint site URL (e.g., `contoso.sharepoint.com`).
+
+**SharePoint Library** — The target document library within the site (e.g., `Documents`).
 
 ### Test Settings
 
