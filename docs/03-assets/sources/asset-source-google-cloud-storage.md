@@ -10,6 +10,8 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
 import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md';
 
@@ -38,17 +40,11 @@ You need:
 
 ![Name & Description (Google Cloud Storage Source)](./.Google_Cloud_Storage_Source_images/gcs-source-name-description.png "Name & Description (Google Cloud Storage Source)")
 
-**Name** — Unique name for this asset within the project. Spaces are not allowed.
-
-**Description** — Optional description of what this source is used for.
-
-**Asset Usage** — Shows how many times this asset is referenced by other assets, workflows, or deployments. Expand to see the full list.
+<NameAndDescription></NameAndDescription>
 
 ### Required Roles
 
-![Required Roles (Google Cloud Storage Source)](./.Google_Cloud_Storage_Source_images/gcs-source-required-roles.png "Required Roles (Google Cloud Storage Source)")
-
-In case you are deploying to a Cluster with Reactive Engine Nodes that have specific Roles configured, you can restrict use of this Asset to Nodes with matching roles. Leave empty to match all Nodes.
+<RequiredRoles></RequiredRoles>
 
 ### Throttling & Failure Handling
 

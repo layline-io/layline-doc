@@ -9,6 +9,10 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
+import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import Directories from '../../snippets/assets/_asset-sink-directories.md';
+import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md';
 
 # Sink Virtual File System
 
@@ -34,80 +38,29 @@ You need:
 
 ![Name & Description (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-name-description.png "Name & Description (Virtual File System Sink)")
 
-**Name** — Unique name for this asset within the project. Spaces are not allowed.
-
-**Description** — Optional description of what this sink is used for.
-
-**Asset Usage** — Shows how many times this asset is referenced by other assets, workflows, or deployments. Expand to see the full list.
+<NameAndDescription></NameAndDescription>
 
 ### Required Roles
 
-![Required Roles (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-required-roles.png "Required Roles (Virtual File System Sink)")
-
-In case you are deploying to a Cluster with Reactive Engine Nodes that have specific Roles configured, you can restrict use of this Asset to Nodes with matching roles. Leave empty to match all Nodes.
+<RequiredRoles></RequiredRoles>
 
 ### Throttling & Failure Handling
 
 ![Throttling & Failure Handling (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-throttling.png "Throttling & Failure Handling (Virtual File System Sink)")
 
-#### Throttling
-
-The following parameters allow controlling the maximum number of new stream creations per given time period.
-
-**Max. new streams** — Maximum number of streams this sink is supposed to open or process within a given time period.
-
-**Per** — Time interval unit for the provided `Max. new streams` number.
-
-#### Backoff Failure Handling
-
-These parameters define the backoff timing intervals in case of failures. Based on these parameters, the system will step by step throttle down the processing cycle based on the time boundaries of min. failure backoff and max. failure backoff.
-
-**Min. failure backoff** — The minimum backoff time before the next sink item processing (in case of failure scenario).
-
-**Max. failure backoff** — The maximum backoff time before the next sink item processing (in case of failure scenario).
-
-Based on these values the next processing will be delayed: starting with the min. failure backoff time interval the waiting time will be increased step by step up to the max. failure backoff.
-
-**Reset after number of successful streams** — The backoff failure throttling reset trigger based on a count of successful streams.
-
-**Reset after time without failure streams** — Time-based reset for backoff failure throttling. Whatever comes first will reset the failure scenario throttling after the system is back to successful stream processing.
+<ThrottlingAndFailure></ThrottlingAndFailure>
 
 ### Virtual File System Settings
 
-![Virtual File System Settings (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-vfs-settings.png "Virtual File System Settings (Virtual File System Sink)")
-
 **Connection** — Select the [Virtual File System Connection](../connections/asset-connection-virtual-fs) to use for writing files. If no connection exists, create one first.
 
-### Directories
+### Output Directory
 
-The **Directories** tabbed section defines where files are written during processing and where they end up after completion.
+The **Output Directory** is where the final processed files are written. This tab defines the output path, filename conventions, and handling for conflicts when a file with the same name already exists.
 
-#### Output Directory
+### Temporary Directory
 
-![Output Directory (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-output-dir.png "Output Directory (Virtual File System Sink)")
-
-The **Output Directory** is where the final processed files are written.
-
-**Output Directory** — Path relative to the connection mount point where output files are written. Example: `${lay:callcenterDataDir}`
-
-**Output Prefix** — Prefix added to the output filename. Optional.
-
-**Output Suffix** — Suffix added to the output filename. Example: `.csv`
-
-**When output file already exists** — Define handling when a file with the same name already exists in the output directory:
-
-- Transaction rollback
-- Overwrite
-- Append
-- Move the existing output file to the archive directory
-
-**Create sub directories** — When enabled, creates sub-directories as needed within the output path.
-
-**Enable housekeeping** — When enabled, applies housekeeping rules to output files.
-
-#### Temporary Directory
-
-![Temporary Directory (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-temp-dir.png "Temporary Directory (Virtual File System Sink)")
+![Temporary Directory (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-temp-directory.png "Temporary Directory (Virtual File System Sink)")
 
 The **Temporary Directory** is where files are written during processing. Once processing completes successfully, the file is moved to the Output Directory.
 
@@ -125,7 +78,7 @@ The **Temporary Directory** is where files are written during processing. Once p
 
 **Number of retries for post processing steps** — Number of retry attempts for post-processing operations (move, delete) if the first attempt fails. Default: `3`.
 
-#### Archive Directory
+### Archive Directory
 
 The **Archive Directory** is used when the **"Move the existing output file to the archive directory"** conflict-handling option is selected in the Output Directory configuration. Files that would otherwise conflict are moved here instead of causing a failure.
 
