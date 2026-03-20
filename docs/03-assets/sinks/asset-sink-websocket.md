@@ -38,23 +38,19 @@ No other assets are required to configure this sink. All connection parameters a
 
 ### WebSocket Settings
 
-| Field | Required | Type | Default | Description |
-|:------|:--------:|:----:|:-------:|-------------|
-| Bind host | | String | | Local network interface or IP address to bind when connecting to the remote WebSocket server. Leave empty to bind to all interfaces. |
-| Bind port | | Integer | | Local port to use when establishing the outbound connection. |
-| Path | | String | | Path on the remote WebSocket server (e.g. `/ws`, `/stream`). |
-| Message mode | ✓ | Dropdown | Mixed | How messages are encoded on the wire: **Mixed** (text and binary frames), **Binary**, or **Text**. |
-| Conversion character set | | Dropdown | UTF-8 | Character encoding used for text messages. Only applies when Message mode is `Mixed` or `Text`. Disabled (grayed out) when set to `Binary`. |
+- **Bind host**: Local network interface or IP address to bind when connecting to the remote WebSocket server. Leave empty to bind to all interfaces.
+- **Bind port**: Local port to use when establishing the outbound connection.
+- **Path**: Path on the remote WebSocket server (e.g. `/ws`, `/stream`).
+- **Message mode**: How messages are encoded on the wire: **Mixed** (text and binary frames), **Binary**, or **Text**.
+- **Conversion character set**: Character encoding used for text messages. Only applies when Message mode is `Mixed` or `Text`. Disabled (grayed out) when set to `Binary`.
 
 ![WebSocket Settings](./.asset-sink-websocket_images/websocket-settings.png)
 
 ### Performance Settings
 
-| Field | Required | Type | Default | Description |
-|:------|:--------:|:----:|:-------:|-------------|
-| Merge buffer size [messages] | | Integer | 1 | Number of messages to buffer before sending. Increase to improve throughput; decrease for lower latency. |
-| Broadcast buffer size [messages] | | Integer | 1 | Number of messages to buffer for broadcast to connected clients. |
-| Number of data units to group into one WebSocket message | | Integer | 1 | How many data units are aggregated into a single outgoing WebSocket frame. |
+- **Merge buffer size [messages]**: Number of messages to buffer before sending. Increase to improve throughput; decrease for lower latency.
+- **Broadcast buffer size [messages]**: Number of messages to buffer for broadcast to connected clients.
+- **Number of data units to group into one WebSocket message**: How many data units are aggregated into a single outgoing WebSocket frame.
 
 ![Performance Settings](./.asset-sink-websocket_images/performance-settings.png)
 
