@@ -14,78 +14,53 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 ## Purpose
 
-Provides OAuth-based authentication for Google Cloud services. This connection is used by Google Cloud Storage (GCS) Sink and GCS Source to authenticate against Google Cloud Storage using the OAuth 2.0 protocol.
-
-## Prerequisites
-
-- A Google Cloud project with the Google Cloud Storage API enabled.
-- An **OAuth Client** resource asset configured in layline.io (or use the default layline.io shared client). See [Resources](#resources) below.
+Provides OAuth-based authentication for Google Cloud services. This connection is used by GCS Sink and GCS Source to authenticate against Google Cloud Storage.
 
 ## Configuration
 
 ### Name & Description
 
-![Name & Description (Connection Google Cloud)](.asset-connection-google-cloud_images/asset-connection-google-cloud-name-description.png "Name & Description (Connection Google Cloud)")
+**`Name`** — Unique name for this asset within the project.
 
-**Name** — Unique name for this asset within the project. Spaces are not allowed.
+**`Description`** — Optional description of what this connection is used for.
 
-**Description** — Optional description of what this connection is used for.
-
-The **Asset Usage** box shows how many times this Asset is used and which parts are referencing it.
+The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it.
 
 ### Required Roles
 
-![Required Roles (Connection Google Cloud)](.asset-connection-google-cloud_images/asset-connection-google-cloud-required-roles.png "Required Roles (Connection Google Cloud)")
-
 In case you are deploying to a Cluster with Reactive Engine Nodes that have specific Roles configured, you can restrict use of this Asset to Nodes with matching roles. Leave empty to match all Nodes.
-
-### Resources
-
-![Resources (Connection Google Cloud)](.asset-connection-google-cloud_images/asset-connection-google-cloud-resources.png "Resources (Connection Google Cloud)")
-
-Link an **OAuth Client** resource to this connection. Only assets of type `oAuthClient` are available in the dropdown.
-
-If no OAuth Client resource exists in the project, you must create one first. The OAuth Client resource defines the client credentials (client ID, scopes) that layline.io will use when requesting an access token from Google's OAuth server.
 
 ### Google Cloud Settings
 
-![Google Cloud Settings (Connection Google Cloud)](.asset-connection-google-cloud_images/asset-connection-google-cloud-settings.png "Google Cloud Settings (Connection Google Cloud)")
+#### Credential Type
 
-**Credential Type** — The OAuth 2.0 authentication flow to use.
+Select the OAuth flow to use:
 
-| Option | Behavior |
-|--------|----------|
-| OAuth Client Credentials | Service-account style authentication. Exchange a client ID and secret for an access token. Suitable for server-to-server communication. |
-| OAuth Device Code | User-identity authentication via the device code flow. The user approves access on a separate device. Suitable for CLI tools and scenarios where a browser is available. |
+| Option | Description |
+|--------|-------------|
+| **OAuth Client Credentials** | Service-account style authentication using a client ID and secret. |
+| **OAuth Device Code** | User-identity authentication via device code flow. |
 
-**Authority** — The OAuth 2.0 authority URL. This is the endpoint that issues access tokens. Defaults to `https://accounts.google.com`. In most cases, this default does not need to be changed.
+#### Authority
 
-**Client ID** — The OAuth client ID issued by Google. Defaults to layline.io's shared client ID:
+The OAuth authority URL. Defaults to `https://accounts.google.com`. In most cases, this does not need to be changed.
 
-```
-407603625325-45ik7ma1elfme3qidga7jstkbfnfmhdu.apps.googleusercontent.com
-```
+#### Client ID
 
-To use your own OAuth client (recommended for production), replace this with your client's client ID. You can also use a placeholder referencing an [Environment Resource](../resources/asset-resource-environment):
+The Google OAuth client ID. Defaults to layline.io's shared client ID. You can replace this with your own OAuth client ID if needed.
 
-```
-${GOOGLE_CLIENT_ID}
-```
+#### Scopes
 
-**Scopes** — Add the OAuth scopes required for your use case. Each scope is entered as a chip — type the scope value and press Enter** to add it.
+Add the OAuth scopes required for your use case. Each scope is entered as a chip — type the scope value and press **Enter** to add it.
 
 Default scopes:
 
-- `offline_access` — allows refreshing access tokens without re-prompting the user
-- `user.read` — grants read access to user profile information
-
-Add any additional scopes required by your Google Cloud project (for example, `https://www.googleapis.com/auth/devstorage.read_write` for GCS read/write access).
+- `offline_access`
+- `user.read`
 
 ## Behavior
 
-The connection configuration is validated when you save the asset. The actual reachability of Google Cloud services is confirmed at workflow runtime when the Reactive Engine attempts to use this connection.
-
-All Google Cloud Settings fields can be overridden in child assets or inherited from a parent asset in a hierarchy.
+The connection is validated at configuration time. The actual reachability of Google Cloud services is also confirmed at workflow runtime when the Reactive Engine attempts to use this connection.
 
 ## See Also
 
