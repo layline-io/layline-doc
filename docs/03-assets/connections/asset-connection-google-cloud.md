@@ -58,9 +58,9 @@ If no OAuth Client resource exists in the project, you must create one first. Th
 | OAuth Client Credentials | Service-account style authentication. Exchange a client ID and secret for an access token. Suitable for server-to-server communication. |
 | OAuth Device Code | User-identity authentication via the device code flow. The user approves access on a separate device. Suitable for CLI tools and scenarios where a browser is available. |
 
-**Authority *(inheritable)* — The OAuth 2.0 authority URL. This is the endpoint that issues access tokens. Defaults to `https://accounts.google.com`. In most cases, this default does not need to be changed.
+**Authority** — The OAuth 2.0 authority URL. This is the endpoint that issues access tokens. Defaults to `https://accounts.google.com`. In most cases, this default does not need to be changed.
 
-**Client ID *(inheritable)* — The OAuth client ID issued by Google. Defaults to layline.io's shared client ID:
+**Client ID** — The OAuth client ID issued by Google. Defaults to layline.io's shared client ID:
 
 ```
 407603625325-45ik7ma1elfme3qidga7jstkbfnfmhdu.apps.googleusercontent.com
@@ -72,7 +72,7 @@ To use your own OAuth client (recommended for production), replace this with you
 ${GOOGLE_CLIENT_ID}
 ```
 
-**Scopes *(inheritable)* — Add the OAuth scopes required for your use case. Each scope is entered as a chip — type the scope value and press **Enter** to add it.
+**Scopes** — Add the OAuth scopes required for your use case. Each scope is entered as a chip — type the scope value and press Enter** to add it.
 
 Default scopes:
 
@@ -85,7 +85,7 @@ Add any additional scopes required by your Google Cloud project (for example, `h
 
 The connection configuration is validated when you save the asset. The actual reachability of Google Cloud services is confirmed at workflow runtime when the Reactive Engine attempts to use this connection.
 
-All Google Cloud Settings fields marked *(inheritable)* can be overridden in child assets or inherited from a parent asset in a hierarchy.
+All Google Cloud Settings fields can be overridden in child assets or inherited from a parent asset in a hierarchy.
 
 ## See Also
 

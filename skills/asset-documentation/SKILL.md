@@ -48,7 +48,7 @@ For fields with a fixed set of options, use a table:
 
 Single-field sections can be written as prose paragraphs if no field-by-field breakdown is needed.
 
-**Inheritable fields** use inline italics: **Field Name *(inheritable)* — description**.
+Do NOT use *(inheritable)* markers. Almost all fields are inheritable — it adds noise without information.
 
 ### [Next Tab or Section]
 
@@ -175,7 +175,6 @@ After Andrew answers your questions, write the full reference doc using the temp
 
 4. Single-field sections can be prose paragraphs.
 
-5. *(inheritable)* annotations go inline in the bold field name: `**Project ID *(inheritable)* — ...**`
 
 Share the draft **inline in the chat** — don't just write it to a file and say "done." Andrew needs to see it to give feedback.
 
