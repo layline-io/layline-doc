@@ -44,11 +44,11 @@ In case you are deploying to a Cluster with Reactive Engine Nodes that have spec
 
 ![Google Cloud Storage Settings (Sink GCS)](.asset-sink-gcs_images/asset-sink-gcs-settings.png "Google Cloud Storage Settings (Sink GCS)")
 
-**Connection** — The linked Google Cloud Connection asset used for OAuth 2.0 authentication. All other fields below are unavailable until a connection is selected.
+**Connection** — The linked Google Cloud Connection asset used for OAuth 2.0 authentication. Required. The remaining fields cannot be configured until a connection is selected.
 
 **Project ID** — The Google Cloud project ID that owns the target bucket.
 
-**Bucket Name** — The name of the GCS bucket to write to. Not validated at configuration time — checked at workflow runtime.
+**Bucket Name** — The name of the GCS bucket to write to.
 
 **Folder Prefix** — A path prefix within the bucket under which objects will be written (e.g., `logs/` or `data/output/`). GCS has a flat namespace — these are key prefixes, not real folders. See [GCS-Specific Notes](#gcs-specific-notes).
 
@@ -58,18 +58,16 @@ In case you are deploying to a Cluster with Reactive Engine Nodes that have spec
 
 **Content Type** — The MIME type to set on written objects. Defaults to `application/octet-stream` if not specified (e.g., `application/json`).
 
-**When Object Already Exists** — What to do when an object with the same key already exists in the bucket:
+**When Object Already Exists** — What to do when an object with the same key already exists in the bucket.
 
 | Option | Behavior |
 |--------|----------|
 | Transaction rollback | Fail the transaction and roll back. |
 | Replace the existing object | Overwrite the existing object with new content. |
-| Create a new object using a numerical version counter as suffix | Write a new object named `<key>.1`, `<key>.2`, etc. |
-| Create a new object using the current timestamp as suffix | Write a new object with a timestamp suffix appended to the name. |
+| Create a new object using a numerical version counter as suffix | Write `<key>.1`, `<key>.2`, etc. |
+| Create a new object using the current timestamp as suffix | Write `<key>.<epoch-timestamp>`. |
 
-**Create Sub Folders** — When enabled, layline.io creates intermediate key prefixes in the bucket as needed to match the configured folder prefix path. When disabled (default), objects are written directly to the specified prefix without ensuring parent prefixes exist. Disable this if the bucket structure is managed externally.
-
-The connection status indicator at the bottom of the panel shows whether the selected Google Cloud Connection is active. A green indicator means the connection is working and the bucket list was retrieved. A red indicator means the connection failed.
+**Create Sub Folders** — When enabled, layline.io creates intermediate `/`-delimited key prefixes as needed. Default: disabled.
 
 ## GCS-Specific Notes
 
