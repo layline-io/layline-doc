@@ -9,6 +9,8 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import PollingAndProcessing from '../../snippets/assets/_asset-source-polling-and-processing.md';
+import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md';
 
 # Source Virtual File System
 
@@ -48,65 +50,10 @@ In case you are deploying to a Cluster with Reactive Engine Nodes that have spec
 
 ### Throttling & Failure Handling
 
-![Throttling & Failure Handling (Virtual File System Source)](./.Virtual_File_System_Source_images/vfs-source-throttling.png "Throttling & Failure Handling (Virtual File System Source)")
-
-#### Throttling
-
-The following parameters allow controlling the maximum number of new stream creations per given time period.
-
-**Max. new streams** — Maximum number of streams this source is supposed to open or process within a given time period.
-
-**Per** — Time interval unit for the provided `Max. new streams` number.
-
-:::info
-Configuration values for this parameter depend on the use case scenario.
-Assuming your data arrives in low frequency cycles these values are negligible.
-In scenarios with many objects arriving in short time frames it is recommended to have a closer look on adapting the default values.
-:::
-
-#### Backoff Failure Handling
-
-These parameters define the backoff timing intervals in case of failures. Based on these parameters, the system will step by step throttle down the processing cycle based on the time boundaries of min. failure backoff and max. failure backoff. It thereby allows slowing down the processing during failure scenarios.
-
-**Min. failure backoff** — The minimum backoff time before the next source item processing (in case of failure scenario).
-
-**Max. failure backoff** — The maximum backoff time before the next source item processing (in case of failure scenario).
-
-Based on these values the next processing will be delayed: starting with the min. failure backoff time interval the waiting time will be increased step by step up to the max. failure backoff.
-
-**Reset after number of successful streams** — The backoff failure throttling reset trigger based on a count of successful streams.
-
-**Reset after time without failure streams** — Time-based reset for backoff failure throttling. Whatever comes first will reset the failure scenario throttling after the system is back to successful stream processing.
-
+<ThrottlingAndFailure></ThrottlingAndFailure>
 ### Polling & Processing
 
-![Polling & Processing (Virtual File System Source)](./.Virtual_File_System_Source_images/vfs-source-polling.png "Polling & Processing (Virtual File System Source)")
-
-This source does not reflect a stream, but an object-based storage source which does not signal the existence of new objects to observers. We therefore need to define how often we want to look up (poll) the source for new objects to process.
-
-**Polling trigger** — Choose between `Fixed rate` polling and `Cron tab style` polling.
-
-**Polling interval [sec]** — Enter the interval in seconds in which the configured source should be queried for new objects (for Fixed rate mode).
-
-**Polling timeout [sec]** — Defines the time in seconds to wait until a polling request fails. Set it high enough so that the endpoint responds under normal operation.
-
-**Stable time [sec]** — Defines the number of seconds that file statistics must stay unchanged before the file is considered stable for processing.
-
-**Ordering** — When listing objects from the source for processing, define the order:
-
-- Alphabetically, ascending
-- Alphabetically, descending
-- Last modified, ascending
-- Last modified, descending
-
-**Reprocessing mode** — Relates to layline.io's Access Coordinator feature:
-
-- **Manual access coordinator reset**: Any source element processed and stored in layline.io's history needs manual reset within the Sources Coordinator before reprocessing of a re-ingested source is performed (default mode).
-- **Automatic access coordinator reset**: This mode allows the automatic reprocessing of already processed and re-ingested sources as soon as the respective input source has been moved into the configured done or error directory.
-- **When input changed**: This mode behaves as described in `Manual access coordinator reset` while it performs an additional check whether the source has potentially changed (i.e., the name of the source is identical but the content differs).
-
-**Wait for processing clearance** — When activated, new input sources are left unprocessed in the input directory until either a manual clearance is given through Operations or a JavaScript method `AccessCoordinator.giveClearance(source, stream, timeout?)` is executed.
-
+<PollingAndProcessing></PollingAndProcessing>
 ### Virtual File System Settings
 
 ![Virtual File System Settings (Virtual File System Source)](./.Virtual_File_System_Source_images/vfs-source-vfs-settings.png "Virtual File System Settings (Virtual File System Source)")
