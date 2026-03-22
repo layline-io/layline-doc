@@ -26,7 +26,7 @@ Provides a Virtual File System (VFS) connection that abstracts over multiple sto
 
 ### Name & Description
 
-![Name & Description (Virtual File System Connection)](./.Virtual_File_System_Connection_images/vfs-connection-name-description.png "Name & Description (Virtual File System Connection)")
+![Name & Description (Virtual File System Connection)](./.asset-connection-virtual-fs_images/vfs-connection-name-description.png "Name & Description (Virtual File System Connection)")
 
 **Name** — Unique name for this asset within the project. Spaces are not allowed.
 
@@ -36,13 +36,13 @@ Provides a Virtual File System (VFS) connection that abstracts over multiple sto
 
 ### Required Roles
 
-![Required Roles (Virtual File System Connection)](./.Virtual_File_System_Connection_images/vfs-connection-required-roles.png "Required Roles (Virtual File System Connection)")
+![Required Roles (Virtual File System Connection)](./.asset-connection-virtual-fs_images/vfs-connection-required-roles.png "Required Roles (Virtual File System Connection)")
 
 In case you are deploying to a Cluster with Reactive Engine Nodes that have specific Roles configured, you can restrict use of this Asset to Nodes with matching roles. Leave empty to match all Nodes.
 
 ### Mount Points
 
-![Mount Points (Virtual File System Connection)](./.Virtual_File_System_Connection_images/vfs-connection-mount-points.png "Mount Points (Virtual File System Connection)")
+![Mount Points (Virtual File System Connection)](./.asset-connection-virtual-fs_images/vfs-connection-mount-points.png "Mount Points (Virtual File System Connection)")
 
 The **Mount Points** section defines the accessible filesystem namespaces. Each mount point maps a logical VFS path prefix to a concrete backend.
 
@@ -59,7 +59,7 @@ Use the toolbar to reorder, copy, or paste mount point entries.
 
 #### Name & Paths (Detail Panel)
 
-![Mount Point Detail — Name & Paths](./.Virtual_File_System_Connection_images/vfs-connection-mount-point-detail.png "Mount Point Detail — Name & Paths")
+![Mount Point Detail — Name & Paths](./.asset-connection-virtual-fs_images/vfs-connection-mount-point-detail.png "Mount Point Detail — Name & Paths")
 
 When a mount point is selected in the tree, the detail panel shows:
 
@@ -75,19 +75,19 @@ The **Manage underlying File System** section defines how the cluster accesses t
 
 #### File System On Cluster Host
 
-![Manage underlying File System — Cluster Host](./.Virtual_File_System_Connection_images/vfs-connection-manage-filesystem-on-host.png "Manage underlying File System — Cluster Host")
+![Manage underlying File System — Cluster Host](./.asset-connection-virtual-fs_images/vfs-connection-manage-filesystem-on-host.png "Manage underlying File System — Cluster Host")
 
 Select this mode when the file system is accessible directly on the cluster host. The cluster will access the file system using the local operating system.
 
 #### File System Via Connection
 
-![Manage underlying File System — Via Connection](./.Virtual_File_System_Connection_images/vfs-connection-manage-filesystem-via-connection.png "Manage underlying File System — Via Connection")
+![Manage underlying File System — Via Connection](./.asset-connection-virtual-fs_images/vfs-connection-manage-filesystem-via-connection.png "Manage underlying File System — Via Connection")
 
 Select this mode when the file system is accessed via a connection asset (e.g., SMB, NFS, or cloud storage). Choose the connection from the dropdown.
 
 ##### OneDrive Settings
 
-![OneDrive Settings](./.Virtual_File_System_Connection_images/vfs-connection-onedrive-settings.png "OneDrive Settings")
+![OneDrive Settings](./.asset-connection-virtual-fs_images/vfs-connection-onedrive-settings.png "OneDrive Settings")
 
 When **MS Graph Connection Settings** is configured and **OneDrive** is selected, specify the target OneDrive drive path.
 
@@ -95,7 +95,7 @@ When **MS Graph Connection Settings** is configured and **OneDrive** is selected
 
 ##### SharePoint Settings
 
-![SharePoint Settings](./.Virtual_File_System_Connection_images/vfs-connection-sharepoint-settings.png "SharePoint Settings")
+![SharePoint Settings](./.asset-connection-virtual-fs_images/vfs-connection-sharepoint-settings.png "SharePoint Settings")
 
 When **SharePoint** is selected, configure the following:
 
@@ -105,7 +105,7 @@ When **SharePoint** is selected, configure the following:
 
 ### Test Settings
 
-![Test Settings (Virtual File System Connection)](./.Virtual_File_System_Connection_images/vfs-connection-test-settings.png "Test Settings (Virtual File System Connection)")
+![Test Settings (Virtual File System Connection)](./.asset-connection-virtual-fs_images/vfs-connection-test-settings.png "Test Settings (Virtual File System Connection)")
 
 **Local filesystem path** — A local filesystem path used for testing connectivity during configuration. This path is not used at runtime — it is only a probe target for the configuration-time connection test.
 
