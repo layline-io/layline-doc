@@ -9,6 +9,7 @@ tags:
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md';
 
 # Source Service
 
@@ -75,6 +76,10 @@ Activating the drop-down list will show all available Service Assets configured 
 Choose the Service Asset you want to use and press `OK`.
 
 ![](./.asset-source-service_images/1715174649354.png "Assigned Service")
+
+### Throttling & Failure Handling
+
+<ThrottlingAndFailure></ThrottlingAndFailure>
 
 ### Polling & Processing
 
