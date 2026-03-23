@@ -47,48 +47,20 @@ Nodes (no restriction).
 
 * **`Snapshot interval [number of events]`** : Number of events after which a snapshot of the KVS state is written to disk. Default: `50000`. Snapshots enable the KVS to recover state after a restart.
 
+![KVS Service Settings](./.asset-service-kvs_images/01-kvs-settings.png)
+
 ### Service Functions
 
 The KVS service provides the following built-in functions:
 
-| Function | Description | Parameter Type | Result Type |
-|----------|-------------|----------------|-------------|
-| `Write` | Write a value to the key-value store | `io.layline.service.kvs.Write` | `io.layline.service.kvs.Response` |
-| `Read` | Read a value from the key-value store | `io.layline.service.kvs.Read` | `io.layline.service.kvs.Response` |
-| `Delete` | Delete a value from the key-value store | `io.layline.service.kvs.Delete` | `io.layline.service.kvs.Response` |
-| `DeleteSet` | Delete an entire set from the store | `io.layline.service.kvs.DeleteSet` | — |
+| Function | Description | Parameters |
+|----------|-------------|------------|
+| `Write` | Write a value to the key-value store | `Set` — The name of the key-value set (analogous to a table)<br>`Key` — The key identifier<br>`Value` — The value to store<br>`Generation` — Optional generation counter for optimistic locking |
+| `Read` | Read a value from the key-value store | `Set` — The name of the key-value set<br>`Key` — The key identifier |
+| `Delete` | Delete a value from the key-value store | `Set` — The name of the key-value set<br>`Key` — The key identifier<br>`Generation` — Optional generation counter for conditional deletion |
+| `DeleteSet` | Delete an entire set from the store | `Set` — The name of the key-value set to delete entirely |
 
-#### Write Parameters (`io.layline.service.kvs.Write`)
-
-| Field | Description |
-|-------|-------------|
-| `Set` | The name of the key-value set (analogous to a table) |
-| `Key` | The key identifier |
-| `Value` | The value to store |
-| `Generation` | Optional generation counter for optimistic locking |
-
-#### Read Parameters (`io.layline.service.kvs.Read`)
-
-| Field | Description |
-|-------|-------------|
-| `Set` | The name of the key-value set |
-| `Key` | The key identifier |
-
-#### Delete Parameters (`io.layline.service.kvs.Delete`)
-
-| Field | Description |
-|-------|-------------|
-| `Set` | The name of the key-value set |
-| `Key` | The key identifier |
-| `Generation` | Optional generation counter for conditional deletion |
-
-#### DeleteSet Parameters (`io.layline.service.kvs.DeleteSet`)
-
-| Field | Description |
-|-------|-------------|
-| `Set` | The name of the key-value set to delete entirely |
-
-#### Response (`io.layline.service.kvs.Response`)
+**Response** — All functions (except `DeleteSet`) return a response object with the following fields:
 
 | Field | Description |
 |-------|-------------|
