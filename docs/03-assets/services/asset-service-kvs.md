@@ -55,9 +55,9 @@ The KVS service provides the following built-in functions:
 
 | Function | Description | Parameters |
 |----------|-------------|------------|
-| `Write` | Write a value to the key-value store | `Set` — The name of the key-value set (analogous to a table)<br>`Key` — The key identifier<br>`Value` — The value to store<br>`Generation` — Optional generation counter for optimistic locking |
-| `Read` | Read a value from the key-value store | `Set` — The name of the key-value set<br>`Key` — The key identifier |
-| `Delete` | Delete a value from the key-value store | `Set` — The name of the key-value set<br>`Key` — The key identifier<br>`Generation` — Optional generation counter for conditional deletion |
+| `Write` | Write a value to the key-value store | `Set` — The name of the key-value set (analogous to a table)<br />`Key` — The key identifier<br />`Value` — The value to store<br />`Generation` — Optional generation counter for optimistic locking |
+| `Read` | Read a value from the key-value store | `Set` — The name of the key-value set<br />`Key` — The key identifier |
+| `Delete` | Delete a value from the key-value store | `Set` — The name of the key-value set<br />`Key` — The key identifier<br />`Generation` — Optional generation counter for conditional deletion |
 | `DeleteSet` | Delete an entire set from the store | `Set` — The name of the key-value set to delete entirely |
 
 **Response** — All functions (except `DeleteSet`) return a response object with the following fields:
