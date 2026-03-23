@@ -165,19 +165,28 @@ and how it maps to the layline.io message.
 | Value | Uses a static value type (string, binary) |
 | TTL | Maps to a DynamoDB TTL (time-to-live) attribute |
 
+#### Available Options per Mapping Type
+
+The following options are available depending on which `Mapping type` is selected:
+
+| Option | Data Dictionary | Value | TTL |
+|--------|----------------|-------|-----|
+| `AWS attribute type` | Yes | Yes | No |
+| `Data dictionary type` | Yes | No | No |
+| `Serialization type` | Yes (`Json`) | No | No |
+| `Attribute is optional` | Yes (value attrs only) | Yes (value attrs only) | No |
+| `Use AWS null attribute` | Yes (value attrs only) | No | No |
+| `Default TTL` | No | No | Yes |
+
 #### Value Mapping
 
 Used when `Mapping type` is set to `Value`.
 
 * **`AWS attribute type`** : The DynamoDB attribute type. Options: `Binary`, `String`.
 
-* **`Data dictionary type`** : The layline.io data dictionary type (e.g., `System.String`).
-
 For **value attributes only** (not key attributes):
 
-* **`Attribute is optional`** : Marks the attribute as optional in the DynamoDB item.
-
-* **`Use AWS null attribute`** : When the attribute is `null`, stores it as a DynamoDB null attribute instead of omitting it.
+* **`Attribute is optional`** : Marks the attribute as optional in the DynamoDB item. Options: `True` or `False`.
 
 #### Data Dictionary Mapping
 
@@ -191,9 +200,9 @@ Used when `Mapping type` is set to `Data Dictionary`.
 
 For **value attributes only**:
 
-* **`Attribute is optional`** : Marks the attribute as optional.
+* **`Attribute is optional`** : Marks the attribute as optional. Options: `True` or `False`.
 
-* **`Use AWS null attribute`** : When the attribute is `null`, stores it as a DynamoDB null attribute.
+* **`Use AWS null attribute`** : When the attribute is `null`, stores it as a DynamoDB null attribute instead of omitting it.
 
 #### TTL Mapping
 
