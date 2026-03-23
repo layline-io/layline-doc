@@ -58,7 +58,7 @@ Nodes (no restriction).
 
 ### Functions
 
-Functions give granular control over DynamoDB operations. Unlike Collections, you define each function type explicitly.
+Functions give granular control over DynamoDB operations. Unlike Collections, you define each function type explicitly. See [Auto-Generated Function Names](#auto-generated-function-names) for how these functions are named and invoked.
 
 #### Add a Function
 
@@ -86,11 +86,11 @@ Click **Add Function** to create a new Function.
 
 ##### Key Attributes
 
-Key attributes define the primary key of the DynamoDB table, just as in Collections.
+Key attributes define the primary key of the DynamoDB table, just as in Collections. See [Attribute Mapping](#attribute-mapping) for details on how to configure the mapping.
 
 ##### Value Attributes
 
-Value attributes are available for **Read** and **Write** function types only.
+Value attributes are available for **Read** and **Write** function types only. See [Attribute Mapping](#attribute-mapping) for details on how to configure the mapping.
 
 #### Delete / Copy / Paste / Reset to parent
 
@@ -104,7 +104,7 @@ Value attributes are available for **Read** and **Write** function types only.
 ### Collections
 
 Collections provide a convenient way to define DynamoDB table access. A Collection defines a table schema and
-automatically generates **Read**, **Write**, and **Delete** functions for that table.
+automatically generates **Read**, **Write**, and **Delete** functions for that table. See [Auto-Generated Function Names](#auto-generated-function-names) for how these functions are named and invoked.
 
 Use Collections when you want a general-purpose way to access a table. Use [Functions](#functions) when you need
 granular control over individual operations.
@@ -139,7 +139,7 @@ For each key attribute, configure the [Mapping](#attribute-mapping) as described
 
 Value attributes define the non-key attributes of the DynamoDB item. These are optional depending on your access pattern.
 
-Each value attribute has the same fields as key attributes, plus additional mapping options.
+Each value attribute has the same fields as key attributes, plus additional mapping options. See [Attribute Mapping](#attribute-mapping) for details on how to configure the mapping.
 
 #### Delete / Copy / Paste / Reset to parent
 
@@ -167,48 +167,18 @@ and how it maps to the layline.io message.
 
 #### Available Options per Mapping Type
 
-The following options are available depending on which `Mapping type` is selected:
+The following table shows which options are available for each `Mapping type`, and describes what each option does. All mapping types also include the base Attribute fields (`AWS attribute name`, `Property name in parameter/result message`) which are described above.
 
-| Option | Data Dictionary | Value | TTL |
-|--------|----------------|-------|-----|
-| `AWS attribute type` | Yes | Yes | No |
-| `Data dictionary type` | Yes | No | No |
-| `Serialization type` | Yes (`Json`) | No | No |
-| `Attribute is optional` | Yes (value attrs only) | Yes (value attrs only) | No |
-| `Use AWS null attribute` | Yes (value attrs only) | No | No |
-| `Default TTL` | No | No | Yes |
+| Option | Data Dictionary | Value | TTL | Description |
+|--------|----------------|-------|-----|-------------|
+| `AWS attribute type` | Yes | Yes | — | The DynamoDB attribute type. Options: `Binary`, `String`. |
+| `Data dictionary type` | Yes | Yes | — | Select a layline.io data dictionary type instead of (or in addition to) an AWS attribute type. |
+| `Serialization type` | Yes | — | — | How complex types are serialized. Currently only `Json` is supported. |
+| `Attribute is optional` | Yes | Yes | — | Checkbox (value attributes only). Marks the attribute as optional in the DynamoDB item. |
+| `Use AWS null attribute` | Yes | Yes | — | Checkbox (value attributes only). When enabled alongside `Attribute is optional`, stores `null` values as a DynamoDB null type instead of omitting the attribute. |
+| `Default TTL` | — | — | Yes | Default time-to-live value in seconds. The DynamoDB item will be automatically deleted by AWS after this many seconds from the TTL attribute value. |
 
-#### Value Mapping
-
-Used when `Mapping type` is set to `Value`.
-
-* **`AWS attribute type`** : The DynamoDB attribute type. Options: `Binary`, `String`.
-
-For **value attributes only** (not key attributes):
-
-* **`Attribute is optional`** : Marks the attribute as optional in the DynamoDB item. Options: `True` or `False`.
-
-#### Data Dictionary Mapping
-
-Used when `Mapping type` is set to `Data Dictionary`.
-
-* **`AWS attribute type`** : The DynamoDB attribute type. Options: `Binary`, `Binary Set`, `Boolean`, `List`, `Map`, `Number`, `Number Set`, `String`, `String Set`.
-
-* **`Data dictionary type`** : The layline.io data dictionary type to map to/from.
-
-* **`Serialization type`** : How complex types are serialized. Currently: `Json`.
-
-For **value attributes only**:
-
-* **`Attribute is optional`** : Marks the attribute as optional. Options: `True` or `False`.
-
-* **`Use AWS null attribute`** : When the attribute is `null`, stores it as a DynamoDB null attribute instead of omitting it.
-
-#### TTL Mapping
-
-Used when `Mapping type` is set to `TTL`.
-
-* **`Default TTL`** : Default time-to-live value in seconds. The DynamoDB item will be automatically deleted by AWS after this many seconds from the TTL attribute value.
+Note: `Use AWS null attribute` for Value mapping is only available when `Attribute is optional` is checked.
 
 ![DynamoDB Attribute Mapping](./.asset-service-dynamo-db_images/04-attribute-mapping.png)
 
