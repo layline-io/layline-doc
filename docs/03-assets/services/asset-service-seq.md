@@ -43,7 +43,7 @@ Nodes (no restriction).
 
 * **`Snapshot interval [number of events]`** : Number of events after which a snapshot of all sequence values is written to disk. Default: `5000`. Snapshots enable the service to recover counter state after a restart.
 
-![Sequence Number Service Settings](./.asset-service-seq_images/01-seq-settings.png)
+<!-- Image removed temporarily because file is missing: ./.asset-service-seq_images/01-seq-settings.png -->
 
 ### Service Functions
 
@@ -53,7 +53,7 @@ The Sequence Number service provides the following built-in functions:
 |----------|-------------|------------|
 | `GetNextValue` | Atomically get and increment the next sequence value | `Name` — The sequence name (e.g., `"orders"` or `"tickets"`) |
 | `GetLastValue` | Get the current value of a sequence without incrementing | `Name` — The sequence name |
-| `SetNextValue` | Set the next value for a sequence | `Name` — The sequence name<br>`Value` — The value to set as the next sequence value |
+| `SetNextValue` | Set the next value for a sequence | `Name` — The sequence name<br />`Value` — The value to set as the next sequence value |
 
 **Results:**
 
