@@ -15,12 +15,12 @@ import Testcase from '../../snippets/assets/_asset-service-test.md';
 
 ## Purpose
 
-Define an in-process key-value store (KVS) service. The KVS service provides a lightweight, persistent key-value store that runs locally within the layline.io cluster. It is useful for caching, session state, or any scenario where fast local storage is needed.
+Define a key-value store (KVS) service. The KVS service provides a lightweight, persistent key-value store shared across the layline.io Reactive Engine cluster. It is useful for caching, session state, or any scenario where fast local storage is needed.
 
-Unlike distributed databases (such as Aerospike or Cassandra), the KVS service stores data locally on each Reactive Engine node. Data is automatically persisted to disk via snapshots and can be passivated (evicted from memory) after a configurable interval.
+Data is automatically persisted to disk via snapshots and can be passivated (evicted from memory) after a configurable interval.
 
 :::info
-The KVS service is a local, in-process store — not a distributed database. Each Reactive Engine node maintains its own copy of the data. For distributed key-value storage, consider the [Aerospike Service](./asset-service-aerospike.md).
+The KVS service stores data in-memory by default and persists it across the entire Reactive Engine cluster. Data is shared per dataset across all cluster nodes — regardless of which engine node stored it.
 :::
 
 ## Configuration
