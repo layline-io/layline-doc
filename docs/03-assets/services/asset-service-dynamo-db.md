@@ -54,6 +54,8 @@ Nodes (no restriction).
   If left empty, the namespace defaults to `Service{Name}Types` (e.g., a service named `CustomerData` would default to `ServiceCustomerDataTypes`).
   This field supports inheritance from a parent Service definition.
 
+![DynamoDB Service Settings](./.asset-service-dynamo-db_images/01-settings.png)
+
 ### Functions
 
 Functions give granular control over DynamoDB operations. Unlike Collections, you define each function type explicitly.
@@ -96,6 +98,8 @@ Value attributes are available for **Read** and **Write** function types only.
 * **Copy** : Copies the Function to the clipboard.
 * **Paste** : Pastes a Function from the clipboard (if one has been copied).
 * **Reset to parent** : Resets the Function to the inherited value from a parent Service (if any).
+
+![DynamoDB Functions Card](./.asset-service-dynamo-db_images/02-functions-card.png)
 
 ### Collections
 
@@ -143,6 +147,8 @@ Each value attribute has the same fields as key attributes, plus additional mapp
 * **Copy** : Copies the Collection to the clipboard.
 * **Paste** : Pastes a Collection from the clipboard (if one has been copied).
 * **Reset to parent** : Resets the Collection to the inherited value from a parent Service (if any).
+
+![DynamoDB Collections Card](./.asset-service-dynamo-db_images/03-collection-card.png)
 
 ### Attribute Mapping
 
@@ -195,6 +201,8 @@ Used when `Mapping type` is set to `TTL`.
 
 * **`Default TTL`** : Default time-to-live value in seconds. The DynamoDB item will be automatically deleted by AWS after this many seconds from the TTL attribute value.
 
+![DynamoDB Attribute Mapping](./.asset-service-dynamo-db_images/04-attribute-mapping.png)
+
 ### Data Dictionary
 
 The Data Dictionary editor allows you to define custom data types used by the Service's Functions and Collections.
@@ -214,6 +222,8 @@ via the attribute mapping configuration.
 The Data Dictionary section is available directly within the DynamoDB Service editor, allowing you to create and manage
 types in context while configuring your table mappings.
 :::
+
+![DynamoDB Data Dictionary](./.asset-service-dynamo-db_images/05-data-dictionary.png)
 
 ### Auto-Generated Function Names
 
@@ -249,43 +259,6 @@ and a Read function named `ReadCustomerData`:
 | Parameter type | `ServiceCustomerDataTypes.ReadReadCustomerData.Parameter` |
 | Result type | `ServiceCustomerDataTypes.ReadReadCustomerData.Result` |
 
-In a JavaScript processor, you would call the service like this:
-
-```javascript
-/**
- * Read the MSISDN data from DynamoDB
- * @param msisdn MSISDN to read
- * @return MSISDN data if found
- */
-function readMsisdnData(msisdn) {
-  let msisdnData = dataDictionary.createMessage(
-    dataDictionary.type.Mobilcom.CustomerData.MsisdnData
-  );
-
-  let dynamoDBData = services.CustomerDataDynamoDBService.ReadCustomerData({
-    MSISDN: msisdn,
-  });
-
-  if (
-    dynamoDBData &&
-    dynamoDBData.data &&
-    dynamoDBData.data.Data
-  ) {
-    msisdnData.data = dynamoDBData.data.Data;
-  } else {
-    msisdnData.data.MSISDN = msisdn;
-  }
-
-  return msisdnData;
-}
-```
-
-In this example:
-- `services.CustomerDataDynamoDBService` references the DynamoDB Service asset
-- `ReadCustomerData` is the auto-generated Read function name
-- The parameter object `{ MSISDN: msisdn }` matches the key attribute defined in the Collection or Function
-- Response data is accessed via `dynamoDBData.data` and mapped to the local data dictionary type
-
 ### Using a DynamoDB Service from a JavaScript Processor
 
 To use a DynamoDB Service in a JavaScript processor:
@@ -305,6 +278,36 @@ To use a DynamoDB Service in a JavaScript processor:
 4. **Handle the response** using the auto-generated result types in the Data Dictionary.
 
 For more information, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md).
+
+#### JavaScript Example: Write
+
+```javascript
+/**
+ * Write the customer data to Dynamo DB
+ * @param msisdn MSISDN to write
+ * @param msisdnData Data of the MSISDN
+ */
+function writeMsisdnData(msisdn, msisdnData) {
+    services.CustomerDataDynamoDBService.WriteCustomerData({
+        MSISDN: msisdn,
+        LastModified: DateTime.now().toString(),
+        Data: msisdnData.data
+    });
+
+    if (!messageMsisdnDataValid(msisdnData)) {
+        reportDataFailure(
+            'Resulting MsisdnData is invalid (no Brand)',
+            msisdnData
+        );
+    }
+}
+```
+
+In this example:
+- `services.CustomerDataDynamoDBService` references the DynamoDB Service asset
+- `WriteCustomerData` is the auto-generated Write function name for a Collection or Function
+- The parameter object includes the key attribute (`MSISDN`) and value attributes (`LastModified`, `Data`)
+- The response is handled via validation against the local data dictionary type
 
 <Testcase></Testcase>
 
