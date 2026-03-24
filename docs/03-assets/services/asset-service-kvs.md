@@ -10,6 +10,8 @@ tags:
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # KVS Service
 
@@ -67,9 +69,13 @@ The KVS service provides the following built-in functions:
 | `Value` | The stored value (returned by Read and Write) |
 | `Generation` | The generation counter of the stored entry |
 
-### Using the KVS Service from a JavaScript Processor
+### Using the KVS Service from a Script Processor
 
-Example: Reading a value from the KVS store:
+Example: Reading and writing values:
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 /**
@@ -89,11 +95,7 @@ function readCustomerData(customerId) {
 
     return null;
 }
-```
 
-Example: Writing a value to the KVS store:
-
-```javascript
 /**
  * Write customer data to the KVS store
  * @param customerId Customer ID (the KVS key)
@@ -108,7 +110,44 @@ function writeCustomerData(customerId, customerData) {
 }
 ```
 
-For more information, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md).
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+import json
+
+def read_customer_data(customer_id):
+    """Read customer data from the KVS store.
+    @param customer_id: Customer ID (the KVS key)
+    @return: Customer data if found
+    """
+    result = services.MyKvsService.Read({
+        'Set': 'CustomerData',
+        'Key': customer_id,
+    })
+
+    if result and result.data:
+        return result.data.Value
+
+    return None
+
+
+def write_customer_data(customer_id, customer_data):
+    """Write customer data to the KVS store.
+    @param customer_id: Customer ID (the KVS key)
+    @param customer_data: Customer data to store
+    """
+    services.MyKvsService.Write({
+        'Set': 'CustomerData',
+        'Key': customer_id,
+        'Value': customer_data,
+    })
+```
+
+  </TabItem>
+</Tabs>
+
+For more information, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md) or [Python Processor](../processors-flow/asset-flow-python).
 
 <Testcase></Testcase>
 

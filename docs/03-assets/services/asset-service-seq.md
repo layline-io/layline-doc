@@ -10,6 +10,8 @@ tags:
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Sequence Number Service
 
@@ -63,9 +65,11 @@ The Sequence Number service provides the following built-in functions:
 | `GetLastValue` | `System.Long` | The current sequence value |
 | `SetNextValue` | — | No result (void) |
 
-### Using the Sequence Number Service from a JavaScript Processor
+### Using the Sequence Number Service from a Script Processor
 
-Example: Getting the next order number:
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 /**
@@ -79,11 +83,7 @@ function getNextOrderNumber() {
 
     return nextValue;
 }
-```
 
-Example: Setting the next ticket number after a bulk import:
-
-```javascript
 /**
  * Reset the ticket sequence to a specific value
  * @param nextTicketNumber The value to set as the next ticket number
@@ -96,7 +96,35 @@ function resetTicketSequence(nextTicketNumber) {
 }
 ```
 
-For more information, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md).
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def get_next_order_number():
+    """Get the next order number.
+    @return: The next order number
+    """
+    next_value = services.SequenceService.GetNextValue({
+        'Name': 'orders'
+    })
+
+    return next_value
+
+
+def reset_ticket_sequence(next_ticket_number):
+    """Reset the ticket sequence to a specific value.
+    @param next_ticket_number: The value to set as the next ticket number
+    """
+    services.SequenceService.SetNextValue({
+        'Name': 'tickets',
+        'Value': next_ticket_number
+    })
+```
+
+  </TabItem>
+</Tabs>
+
+For more information, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md) or [Python Processor](../processors-flow/asset-flow-python).
 
 <Testcase></Testcase>
 
