@@ -9,6 +9,8 @@ tags:
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Aerospike Service
 
@@ -465,11 +467,10 @@ Processor** like so:
 
 * **`Logical Service Name`** (2): The name by which we want to use the Service within JavaScript. This could be the
   exact same name as the Service or a name which you can choose. Must not include
-  whitespaces.
+#### Access the Service from within a Script Processor
 
-#### Access the Service from within JavaScript
+Now let's finally use the service within a script processor:
 
-Now let’s finally use the service within JavaScript:
 
 ##### Reading from Aerospike
 
@@ -477,25 +478,53 @@ Signature: `services.<Logical Service Name>.<Read<Collection> or Functionname>({
 
 Example: `services.CustomerData.ReadCustomerData({Key: msisdn})`
 
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
 ```javascript
 let aerospikeData = null;
 try {
     // Service defined as synchronous. Therefore no promise:
     // Servcie access defined as synchronous. Therefore no promise syntax here
-    areospikeData = services.CustomerData.ReadCustomerData(
+    aerospikeData = services.CustomerData.ReadCustomerData(
         {Key: msisdn}
     );
     // services: fixed internal term to access linked services
     // CustomerData: The logical name of the service which we have given to it
     // ReadCustomerData: Collection function to read the customer data with the given Key
 } catch (error) {
-...
+    // handle error
 }
 
 // Output the MSISDN data
 processor.logInfo('MSISDN: ' + aerospikeData.data.Bin.MSISDN);
 processor.logInfo('History: ' + aerospikeData.data.Bin.History.PaymentType);
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+aerospike_data = None
+try:
+    # Service defined as synchronous. Therefore no promise:
+    aerospike_data = services.CustomerData.ReadCustomerData({
+        'Key': msisdn
+    })
+    # services: fixed internal term to access linked services
+    # CustomerData: The logical name of the service which we have given to it
+    # ReadCustomerData: Collection function to read the customer data with the given Key
+except error:
+    # handle error
+    pass
+
+# Output the MSISDN data
+processor.log_info('MSISDN: ' + aerospike_data.data.Bin.MSISDN)
+processor.log_info('History: ' + aerospike_data.data.Bin.History.PaymentType)
+```
+
+  </TabItem>
+</Tabs>
 
 ##### Insert/Update to Aerospike
 
@@ -510,12 +539,11 @@ Properties:
 * **`WritePolicy`**: This is where you can define some Aerospike specific write policies.
     * **`Generation [number]`**: This is the generation of the record. If the record has been updated since the last read, then the write will fail. If not defined, then write will always succeed.
     * **`Expiration [number]`**: This is the time in seconds after which the record will be deleted from Aerospike. If not defined, then the record will not expire.
-    * **`GenerationPolicy`**: This defines the generation policy. If not defined, then the generation policy is `NONE`. If set to `EXPECT_GEN_EQUAL`, then the write will only succeed if the generation
-      of the record is equal to the generation defined in the `Generation` property. If set to `EXPECT_GEN_GT`, then write will only succeed if the generation of the record is greater than the
-      generation defined in the `Generation` property.
-    * **`RecordExistsAction`**: This defines what to do if the record already exists. If not defined, then the record will not be written. If set to `UPDATE`, then the record will be updated. If set
-      to `UPDATE_ONLY`, then the record will only be updated if it already exists. If set to `REPLACE`, then the record will be replaced. If set to `REPLACE_ONLY`, then the record will only be
-      replaced if it already exists. If set to `CREATE_ONLY`, then the record will only be created if it does not exist.
+    * **`GenerationPolicy`**: This defines the generation policy. If not defined, then the generation policy is `NONE`. If set to `EXPECT_GEN_EQUAL`, then the write will only succeed if the generation of the record is equal to the generation defined in the `Generation` property. If set to `EXPECT_GEN_GT`, then write will only succeed if the generation of the record is greater than the generation defined in the `Generation` property.
+    * **`RecordExistsAction`**: This defines what to do if the record already exists. If not defined, then the record will not be written. If set to `UPDATE`, then the record will be updated. If set to `UPDATE_ONLY`, then the record will only be updated if it already exists. If set to `REPLACE`, then the record will be replaced. If set to `REPLACE_ONLY`, then the record will only be replaced if it already exists. If set to `CREATE_ONLY`, then the record will only be created if it does not exist.
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 try {
@@ -532,9 +560,32 @@ try {
         }
     )
 } catch (error) {
-...
+    // handle error
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+try:
+    services.CustomerData.WriteCustomerData({
+        'Key': msisdn,
+        'Bin': {
+            'MSISDN': msisdn,
+            'History': msisdnData.history
+        },
+        'WritePolicy': {
+            'Expiration': 3600
+        }
+    })
+except error:
+    # handle error
+    pass
+```
+
+  </TabItem>
+</Tabs>
 
 ##### Deleting from Aerospike
 
@@ -542,15 +593,34 @@ Signature: `services.<Logical Service Name>.<Delete<Collection> or Functionname>
 
 Example: `services.CustomerData.DeleteCustomerData({Key: msisdn})`
 
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
 ```javascript
 try {
     services.CustomerData.DeleteCustomerData(
         {Key: msisdn}
     )
 } catch (error) {
-...
+    // handle error
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+try:
+    services.CustomerData.DeleteCustomerData({
+        'Key': msisdn
+    })
+except error:
+    # handle error
+    pass
+```
+
+  </TabItem>
+</Tabs>
 
 <Testcase></Testcase>
 
