@@ -6,8 +6,6 @@ tags:
   - proxy
 ---
 
-import Testcase from '../../snippets/assets/_asset-service-test.md';
-
 # Proxy Service
 
 ## Purpose
@@ -26,19 +24,17 @@ The Proxy Service does **not** define its own functions. When you invoke `servic
 
 ## How It Works
 
-```
-Local Cluster A                           Remote Cluster C
-┌────────────────────────────────┐         ┌────────────────────────────────┐
-│  JavaScript Processor          │         │  Target Service                 │
-│                                │         │  e.g. "MyDBService"             │
-│  services.MyProxy.GetCustomer()│────────▶│  function GetCustomer(...)      │
-│       │                        │  Proxy  │                                │
-│       └────────────────────┐   │  Service│                                │
-│                            │   │         │                                │
-│  Proxy Service Asset        │   │         │                                │
-│  Remote service: MyDBService│───┘         │                                │
-│  URL: https://cluster-c:9443 │             │                                │
-└────────────────────────────────┘         └────────────────────────────────┘
+```mermaid
+sequenceDiagram
+    participant JS as Javascript Processor<br/>(Cluster A)
+    participant PS as Proxy Service<br/>(Cluster A)
+    participant Remote as Target Service<br/>MyDBService (Cluster B)
+
+    JS->>PS: services.MyProxy.GetCustomer({...})
+    PS->>PS: Looks up remote URL and credentials
+    PS->>Remote: Forwards GetCustomer({...}) to Cluster B
+    Remote-->>PS: Returns result
+    PS-->>JS: Returns result transparently
 ```
 
 When you map a Proxy Service in a Javascript Asset and invoke `services.MyProxy.GetCustomer(...)`, the call is forwarded to the remote cluster at the URL configured in the Proxy Service. The function name and parameters are passed through unchanged. There is **no difference in the JavaScript call syntax** between invoking a local service and a proxied one.
@@ -46,7 +42,6 @@ When you map a Proxy Service in a Javascript Asset and invoke `services.MyProxy.
 To proxy multiple different services, create a separate Proxy Service Asset for each one.
 
 ## Configuration
-
 
 ![Proxy Service Settings](./.asset-service-proxy_images/01-proxy-settings.png "Proxy Service Settings")
 
@@ -66,21 +61,17 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ### Proxy Settings
 
-* **`Remote service`** : The exact name of the target service on the remote cluster. The Proxy Service will forward calls to this service name on the target cluster. This name must **exactly match** the service name on the remote cluster — including case. If you need to proxy multiple distinct services, create a separate Proxy Service Asset for each one. Leave empty to use the value inherited from a parent project.
+* **`Remote service`** : The exact name of the target service on the remote cluster. The Proxy Service will forward calls to this service name on the target cluster. This name must **exactly match** the service name on the remote cluster — including case. If you need to proxy multiple distinct services, create a separate Proxy Service Asset for each one.
 
-* **`User`** : Username to authenticate against the remote cluster. Leave empty to use the value inherited from a parent project.
+* **`User`** : Username to authenticate against the remote cluster.
 
-* **`Password`** : Password to authenticate against the remote cluster. This field does **not** accept a plain-text password. It is a dropdown that lists all secrets defined in your project's [Secret](../resources/asset-resource-secret) assets. Select the named secret you want to use (e.g. `proxy-password`). The secret value is resolved at runtime — it is never stored in clear text in the project configuration. Leave empty to use the value inherited from a parent project.
+* **`Password`** : Password to authenticate against the remote cluster. This field does **not** accept a plain-text password. It is a dropdown that lists all secrets defined in your project's [Secret](../resources/asset-resource-secret) assets. Select the named secret you want to use (e.g. `proxy-password`). The secret value is resolved at runtime — it is never stored in clear text in the project configuration.
 
   To create or manage secrets, see the [Secret Asset](../resources/asset-resource-secret) documentation.
 
 * **`Remote urls`** : List of remote URLs to proxy to. Each URL is entered on a separate line. When multiple URLs are provided, requests are routed to one of them (behaviour depends on the target service configuration).
 
-  To add a URL, click **Add URL** and enter the URL in the text field. To remove a URL, click the remove button next to it. URLs can also be reset to parent values if inherited from a parent project.
-
-### Inheritance
-
-All fields in the Proxy Settings tab support inheritance from a parent project. If this service is part of a Project that extends another Project, fields left empty here will adopt the values from the parent. This allows you to define a base Proxy Service in a parent project (with a remote service name, user, and URL pointing to a dev cluster) and override just the URL and credentials in a child project for production — without changing any JavaScript.
+  To add a URL, click **Add URL** and enter the URL in the text field. To remove a URL, click the remove button next to it.
 
 ## Example — Cross-Cluster Service Invocation
 
@@ -88,9 +79,9 @@ All fields in the Proxy Settings tab support inheritance from a parent project. 
 
 Imagine you have:
 - **Cluster A** (your local cluster) where your Javascript Processor runs
-- **Cluster C** where a service `MyDBService` is deployed with a function `GetCustomer`
+- **Cluster B** where a service `MyDBService` is deployed with a function `GetCustomer`
 
-On Cluster C, the `MyDBService` has this function:
+On Cluster B, the `MyDBService` has this function:
 
 | Function | Parameters |
 |----------|------------|
@@ -98,22 +89,22 @@ On Cluster C, the `MyDBService` has this function:
 
 ### Step 1 — Create a Secret for Authentication
 
-Create a [Secret Asset](../resources/asset-resource-secret) in your project (e.g. `ClusterC_Credentials`). Add a key-value pair:
+Create a [Secret Asset](../resources/asset-resource-secret) in your project (e.g. `ClusterB_Credentials`). Add a key-value pair:
 
 | Key | Value |
 |-----|-------|
 | `proxy-password` | `S3cr3tP@ssw0rd!` |
 
-Make sure the Secret is encrypted with the appropriate key for Cluster C.
+Make sure the Secret is encrypted with the appropriate key for Cluster B.
 
 ### Step 2 — Create the Proxy Service
 
 Create a new **Proxy Service** Asset named `MyProxy`. Configure:
 
-* **Remote service**: `MyDBService` — must match the service name on Cluster C exactly
-* **User**: `cluster-c-user`
+* **Remote service**: `MyDBService` — must match the service name on Cluster B exactly
+* **User**: `cluster-b-user`
 * **Password**: Select `proxy-password` from the Secret dropdown
-* **Remote urls**: `https://cluster-c.example.com:9443`
+* **Remote urls**: `https://cluster-b.example.com:9443`
 
 ### Step 3 — Map the Proxy Service in a Javascript Asset
 
@@ -142,25 +133,8 @@ export function onMessage(m) {
 
 **Note:** The call syntax is identical to calling a local service. The Proxy Service handles the cross-cluster tunnelling transparently.
 
-### Step 5 — Switch Environments Without Changing JavaScript
-
-To point the same Javascript Processor at a different cluster (e.g. a staging environment), create a new Proxy Service in your staging project — or use inheritance to override just the URL and credentials — without touching the JavaScript at all.
-
-```
-Dev Project:
-  MyProxy → Remote service: MyDBService, URL: https://dev-cluster:9443
-
-Staging Project (inherits MyProxy, overrides URL):
-  MyProxy → Remote service: MyDBService, URL: https://staging-cluster:9443
-```
-
-## Service Testing
-
-<Testcase></Testcase>
-
 ## See Also
 
 - [Secret Asset](../resources/asset-resource-secret) — managing encrypted credentials
-- [Project Inheritance](../../concept/03-project) — overriding proxy settings via child projects
 - [Service Asset Introduction](./asset-service-introduction) — how services work in general
 - [Javascript Processor](../processors-flow/asset-flow-javascript) — calling services from JavaScript
