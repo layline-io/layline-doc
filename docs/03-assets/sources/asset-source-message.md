@@ -82,11 +82,12 @@ Nodes (no restriction).
 
 <ThrottlingAndFailure></ThrottlingAndFailure>
 
-![Stream Settings and Topics (Message Source)](./.asset-source-message_images/message-source-streams-topics.png "Stream Settings and Topics")
 
 ### Stream Settings
 
 * **`Stream name`** : The name of the internal stream used to publish messages from this source. All topics in this source belong to this stream.
+
+![Stream Settings and Topics (Message Source)](./.asset-source-message_images/message-source-streams-topics.png "Stream Settings and Topics")
 
 ### Topics
 

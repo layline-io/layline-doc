@@ -83,9 +83,9 @@ Under **Sources**, add references to the [Message Sources](../sources/asset-sour
 
 Click **Add source** to add a new Message Source reference.
 
-![Functions (Message Service)](./.asset-service-message_images/message-service-functions.png "Message Service — Function Configuration")
-
 ### Functions
+
+![Functions (Message Service)](./.asset-service-message_images/message-service-functions.png "Message Service — Function Configuration")
 
 Functions define the publish operations available to this service. Each function maps to a topic in the referenced Message Source(s).
 
