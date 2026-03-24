@@ -1,6 +1,6 @@
 ---
-title: VirtualFs Service
-description: VirtualFs Service Asset. Use this to perform file operations against a Virtual File System from within a JavaScript or Python Processor.
+title: Virtual File System Service
+description: Virtual File System Service Asset. Use this to perform file operations against a Virtual File System from within a JavaScript or Python Processor.
 tags:
   - service
   - virtual file system
@@ -9,14 +9,14 @@ tags:
 
 import Testcase from '../../snippets/assets/_asset-service-test.md';
 
-# VirtualFs Service
+# Virtual File System Service
 
 ## Purpose
 
-The VirtualFs Service provides file operations — read, write, copy, move, delete — against the Virtual File System from within a Javascript or Python Processor. It allows you to manage files programmatically in your script code, independent of any VFS Source or Sink.
+The Virtual File System Service provides file operations — read, write, copy, move, delete — against the Virtual File System from within a Javascript or Python Processor. It allows you to manage files programmatically in your script code, independent of any VFS Source or Sink.
 
 :::info
-The VirtualFs Service is a pure script-facing service. It has no input/output ports and cannot be used as a standalone processing step in a Workflow. It must be invoked from a [Javascript Processor](../processors-flow/asset-flow-javascript) or a [Python Processor](../processors-flow/asset-flow-python).
+The Virtual File System Service is a pure script-facing service. It has no input/output ports and cannot be used as a standalone processing step in a Workflow. It must be invoked from a [Javascript Processor](../processors-flow/asset-flow-javascript) or a [Python Processor](../processors-flow/asset-flow-python).
 :::
 
 ## Configuration
@@ -41,7 +41,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ## Service Functions
 
-The VirtualFs Service provides the following built-in functions:
+The Virtual File System Service provides the following built-in functions:
 
 | Function | Description |
 |----------|-------------|
@@ -52,21 +52,21 @@ The VirtualFs Service provides the following built-in functions:
 | `ReadFile` | Read a file from the virtual file system and return its content |
 | `WriteFile` | Write a file into the virtual file system |
 
-## Example — Using VirtualFs from a Script
+## Example — Using Virtual File System from a Script
 
 ### Step 1 — Create a Virtual File System Connection
 
-Before using the VirtualFs Service, configure a [Virtual File System Connection](../connections/asset-connection-virtual-fs) with the mount points you need to access. This connection defines which filesystem backends (local paths, SMB shares, OneDrive, SharePoint) are available.
+Before using the Virtual File System Service, configure a [Virtual File System Connection](../connections/asset-connection-virtual-fs) with the mount points you need to access. This connection defines which filesystem backends (local paths, SMB shares, OneDrive, SharePoint) are available.
 
-### Step 2 — Create the VirtualFs Service
+### Step 2 — Create the Virtual File System Service
 
-Create a new **VirtualFs Service** Asset. In **Virtual FS Service Settings**, select your Virtual File System Connection.
+Create a new **Virtual File System Service** Asset. In **Virtual FS Service Settings**, select your Virtual File System Connection.
 
 ### Step 3 — Map the Service in a Script Processor
 
 In your [Javascript Processor](../processors-flow/asset-flow-javascript) or [Python Processor](../processors-flow/asset-flow-python), add a **Service Mapping**:
 
-* **Service**: Select your VirtualFs Service
+* **Service**: Select your Virtual File System Service
 * **Logical Service Name**: `MyVfsService` (or any name you will use in your script)
 
 ### Step 4 — Use in Your Script
