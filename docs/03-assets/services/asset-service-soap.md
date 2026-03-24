@@ -10,6 +10,8 @@ import NameAndDescription from '../../snippets/assets/_asset-name-and-descriptio
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import CredentialType from '../../snippets/assets/_credential-type.md';
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # SOAP Service
 
@@ -144,15 +146,11 @@ Processor** like so:
 * **`Logical Service Name`**: The name by which we want to use the Service within JavaScript. This could be the
   exact same name as the Service or a name which you can choose. Must not include whitespaces.
 
-### Access the Service from within JavaScript
-
-Now let’s finally use the service within JavaScript:
-
-#### Reading from SOAP endpoint
+### Access the Service from within a Script Processor
 
 
-
-Example: `services.SOAPService.CountryName(countryCode)`
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 let soapResponse = null;  // will receive the SOAP data
@@ -193,9 +191,50 @@ if (message.data.SMPL_IN.RECORD_TYPE == 'D') {
 }
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+soap_response = None  # will receive the SOAP data
+country_code = None
+
+if message.data.SMPL_IN.RECORD_TYPE == 'D':
+    country_code = message.data.SMPL_IN.COUNTRY_ISO
+    try:
+        # Invoke service function.
+        soap_response = services.SOAPService.CountryName(country_code)
+    except error:
+        # handle error
+        pass
+
+    # map response return value towards output
+
+    if soap_response and soap_response.data.length > 0:
+        message.data.SMPL_OUT = {        
+            'RECORD_TYPE': message.data.SMPL_IN.RECORD_TYPE,
+            'FILE_NAME': filename,
+            'DATE': message.data.SMPL_IN.DATE,
+            'DESCRIPTION': message.data.SMPL_IN.DESCRIPTION,
+            'CREATE_DATE': DateTime.now(),
+            'COUNTRY_NAME': soap_response.data 
+        }
+    else:
+        message.data.SMPL_OUT = {        
+            'RECORD_TYPE': message.data.SMPL_IN.RECORD_TYPE,
+            'FILE_NAME': filename,
+            'DATE': message.data.SMPL_IN.DATE,
+            'DESCRIPTION': message.data.SMPL_IN.DESCRIPTION,
+            'CREATE_DATE': DateTime.now(),
+            'COUNTRY_NAME': 'UNKNOWN'
+        }
+    stream.emit(message, OUTPUT_PORT)
+```
+
+  </TabItem>
+</Tabs>
+
 <Testcase></Testcase>
 
 ---
 
 <WipDisclaimer></WipDisclaimer>
-
