@@ -11,6 +11,8 @@ tags:
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Cassandra Service
 
@@ -230,24 +232,28 @@ Processor** like so:
   This could be the exact same name as the Service or a name which you can choose.
   Must not include whitespaces.
 
-#### Access the Service from within JavaScript
+#### Access the Service from within a Script Processor
 
-Now let’s finally use the service within JavaScript:
+Now let's use the service within a script processor:
+
 
 ##### Reading from Cassandra Source
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 let cassandraData = null; // will receive a message type
 let customer_id = 1234;
 try {
     // Invoke service function.
-    // Servcie access defined as synchronous. Therefore no promise syntax here
+    // Service access defined as synchronous. Therefore no promise syntax here
     cassandraData = services.MyCassandraService.SelectCustomerById(
         {Id: customer_id}
     );
     // services: fixed internal term to access linked services
-    // CustomerData: The logical name of the service which we have given to it
-    // MyFunction: Collection function to read the customer data with the given customer_id
+    // MyCassandraService: The logical name of the service which we have given to it
+    // SelectCustomerById: Collection function to read the customer data with the given customer_id
 } catch (error) {
     // handle error
 }
@@ -260,6 +266,36 @@ if (cassandraData && cassandraData.data.length > 0) {
     processor.logInfo('No customer data found for customer ID ' + customer_id);
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+cassandra_data = None  # will receive a message type
+customer_id = 1234
+try:
+    # Invoke service function.
+    # Service access defined as synchronous. Therefore no promise syntax here
+    cassandra_data = services.MyCassandraService.SelectCustomerById({
+        'Id': customer_id
+    })
+    # services: fixed internal term to access linked services
+    # MyCassandraService: The logical name of the service which we have given to it
+    # SelectCustomerById: Collection function to read the customer data with the given customer_id
+except error:
+    # handle error
+    pass
+
+# Output the customer data to the processor log
+if cassandra_data and cassandra_data.data.length > 0:
+    processor.log_info('Name: ' + cassandra_data.data[0].Name)
+    processor.log_info('Address: ' + cassandra_data.data[0].Address)
+else:
+    processor.log_info('No customer data found for customer ID ' + str(customer_id))
+```
+
+  </TabItem>
+</Tabs>
 
 :::tip Note: Service functions return a Message
 Note how the Service function returns a [Message](../../language-reference/javascript/API/classes/Message) as a result
@@ -277,7 +313,11 @@ Let's assume we also had defined a function `WriteCustomerData` which inserts a 
 insert into customer
 values id = :Id, name = :Name, address = :Address;
 ```
+
 We could then invoke this function and pass values to it like so:
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 try {
@@ -293,7 +333,23 @@ try {
 }
 ```
 
-It works the same for any other Cassandra compliant statement.
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+try:
+    services.MyCassandraService.WriteCustomerData({
+        'Id': 1235,
+        'Name': 'John Doe',
+        'Address': 'Main Street',
+    })
+except error:
+    # handle error
+    pass
+```
+
+  </TabItem>
+</Tabs>
 
 <Testcase></Testcase>
 
