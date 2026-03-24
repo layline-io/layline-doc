@@ -5,6 +5,8 @@ description: JDBC Service Asset. Use this to connect to a JDBC data source.
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # JDBC Service
 
@@ -201,20 +203,26 @@ Processor** like so:
 * **`Physical Service`** (1): The JDBC Service which we have configured above.
 
 * **`Logical Service Name`** (2): The name by which we want to use the Service within JavaScript. This could be the
-  exact same name as the Service or a name which you can choose. Must not include whitespaces.
+#### Access the Service from within a Script Processor
 
-#### Access the Service from within JavaScript
+Now let's use the service within a script processor:
+
+
+##### Reading from JDBC Source
 
 Now let’s finally use the service within JavaScript:
 
 ##### Reading from JDBC Source
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 let jdbcData = null; // will receive a message type
 let customer_id = 1234;
 try {
     // Invoke service function.
-    // Servcie access defined as synchronous. Therefore no promise syntax here
+    // Service access defined as synchronous. Therefore no promise syntax here
     jdbcData = services.CustomerData.MyFunction(
         {Id: customer_id}
     );
@@ -233,6 +241,36 @@ if (jdbcData && jdbcData.data.length > 0) {
     processor.logInfo('No customer data found for customer ID ' + customer_id);
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+jdbc_data = None  # will receive a message type
+customer_id = 1234
+try:
+    # Invoke service function.
+    # Service access defined as synchronous. Therefore no promise syntax here
+    jdbc_data = services.CustomerData.MyFunction({
+        'Id': customer_id
+    })
+    # services: fixed internal term to access linked services
+    # CustomerData: The logical name of the service which we have given to it
+    # MyFunction: Collection function to read the customer data with the given customer_id
+except error:
+    # handle error
+    pass
+
+# Output the customer data to the processor log
+if jdbc_data and jdbc_data.data.length > 0:
+    processor.log_info('Name: ' + jdbc_data.data[0].Name)
+    processor.log_info('Address: ' + jdbc_data.data[0].Address)
+else:
+    processor.log_info('No customer data found for customer ID ' + str(customer_id))
+```
+
+  </TabItem>
+</Tabs>
 
 :::tip Note: Service functions return a Message
 Note how the Service function returns a [Message](../../language-reference/javascript/API/classes/Message) as a result
@@ -253,6 +291,28 @@ values id = :Id, name = :Name, address = :Address;
 
 We could then invoke this function and pass values to it like so:
 
+:::tip Note: Service functions return a Message
+Note how the Service function returns a [Message](../../language-reference/javascript/API/classes/Message) as a result
+type.
+
+Since SQL-queries always return arrays, you can find the results in `message.data` as an array. If we are only expecting
+one row as a result we can test it with `jdbcData.data.length > 0` and access the first row with `jdbcData.data[0]`.
+:::
+
+##### Insert/Update to JDBC
+
+Let's assume we also had defined a function `WriteCustomerData` which inserts a new customer:
+
+```sql
+insert into customer
+values id = :Id, name = :Name, address = :Address;
+```
+
+We could then invoke this function and pass values to it like so:
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
 ```javascript
 try {
     services.CustomerData.WriteCustomerData(
@@ -266,6 +326,24 @@ try {
     // handle error
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+try:
+    services.CustomerData.WriteCustomerData({
+        'Id': 1235,
+        'Name': 'John Doe',
+        'Address': 'Main Street',
+    })
+except error:
+    # handle error
+    pass
+```
+
+  </TabItem>
+</Tabs>
 
 It works the same for any other JDBC compliant statement.
 
