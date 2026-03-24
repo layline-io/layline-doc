@@ -1,6 +1,6 @@
 ---
 title: Proxy Service
-description: Proxy Service Asset. Use this to proxy requests to another service with optional authentication.
+description: Proxy Service Asset. Use this to proxy service function calls to another cluster, enabling cross-cluster service invocation without changing JavaScript code.
 tags:
   - service
   - proxy
@@ -12,23 +12,47 @@ import Testcase from '../../snippets/assets/_asset-service-test.md';
 
 ## Purpose
 
-Define a Proxy Service. The Proxy Service acts as a relay or gateway to another service (the "Remote service") — adding authentication credentials and routing requests to one or more remote URLs.
+The Proxy Service acts as a **forwarding proxy for service function calls** to another Reactive Engine cluster. It allows a Javascript Processor deployed on cluster A to call service functions that are running on a completely different cluster B — without changing a single line of JavaScript code.
 
-It is useful when:
+This is useful when:
 
-- A downstream service requires fixed credentials that should not be exposed in individual processors
-- Requests need to be routed to one of several remote URLs (load balancing or failover)
-- Authentication tokens or passwords need to be centrally managed and inherited by child projects
+- A service you need to call is deployed on a different cluster (e.g. a shared central cluster, or a cluster in a different data centre)
+- You want to switch which cluster handles a service call by changing only the Proxy Service configuration — not the JavaScript
+- You need to access a service function from multiple environments (dev, staging, prod) where the URL and credentials differ, but the JavaScript stays identical
 
 :::info
-The Proxy Service does **not** provide built-in functions. It is a configuration wrapper that enriches requests to the referenced Remote service with the configured credentials and URL list.
+The Proxy Service does **not** define its own functions. When you invoke `services.MyProxy.FunctionName(...)` in a Javascript Processor, the Proxy Service intercepts the call and tunnels it to the configured remote cluster. The available functions are discovered dynamically from that remote cluster via the cluster's discovery mechanism. You must know the function names and their signatures — these are the same functions defined by the target service on the remote cluster.
 :::
+
+## How It Works
+
+```
+Local Cluster A                           Remote Cluster C
+┌────────────────────────────────┐         ┌────────────────────────────────┐
+│  JavaScript Processor          │         │  Target Service                 │
+│                                │         │  e.g. "MyDBService"             │
+│  services.MyProxy.GetCustomer()│────────▶│  function GetCustomer(...)      │
+│       │                        │  Proxy  │                                │
+│       └────────────────────┐   │  Service│                                │
+│                            │   │         │                                │
+│  Proxy Service Asset        │   │         │                                │
+│  Remote service: MyDBService│───┘         │                                │
+│  URL: https://cluster-c:9443 │             │                                │
+└────────────────────────────────┘         └────────────────────────────────┘
+```
+
+When you map a Proxy Service in a Javascript Asset and invoke `services.MyProxy.GetCustomer(...)`, the call is forwarded to the remote cluster at the URL configured in the Proxy Service. The function name and parameters are passed through unchanged. There is **no difference in the JavaScript call syntax** between invoking a local service and a proxied one.
+
+To proxy multiple different services, create a separate Proxy Service Asset for each one.
 
 ## Configuration
 
+
+![Proxy Service Settings](./.asset-service-proxy_images/01-proxy-settings.png "Proxy Service Settings")
+
 ### Name & Description
 
-* **`Service Name`** : Name of the Asset. Spaces are not allowed in the name.
+* **`Service Name`** : Name of the Asset. This is the name you will use in JavaScript to reference this proxy (e.g. `services.MyProxy`). Spaces are not allowed in the name.
 
 * **`Service Description`** : Enter a description.
 
@@ -37,18 +61,16 @@ Click to expand and then click to follow, if any.
 
 ### Required Roles
 
-In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles
-configured, then you **can** restrict use of this Asset to those Nodes with matching roles.
-If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all
-Nodes (no restriction).
+In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching roles.
+If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all Nodes (no restriction).
 
 ### Proxy Settings
 
-* **`Remote service`** : The name of the service to proxy to. This is the target service that will receive the proxied requests. Leave empty to use the value inherited from a parent project.
+* **`Remote service`** : The exact name of the target service on the remote cluster. The Proxy Service will forward calls to this service name on the target cluster. This name must **exactly match** the service name on the remote cluster — including case. If you need to proxy multiple distinct services, create a separate Proxy Service Asset for each one. Leave empty to use the value inherited from a parent project.
 
-* **`User`** : Username to include in proxied requests. Leave empty to use the value inherited from a parent project.
+* **`User`** : Username to authenticate against the remote cluster. Leave empty to use the value inherited from a parent project.
 
-* **`Password`** : Password to include in proxied requests. This field does **not** accept a plain-text password. Instead, it is a dropdown that lists all secrets defined in your project's [Secret](../resources/asset-resource-secret) assets. Select the named secret you want to use. The secret value is resolved at runtime — it is never stored in clear text in the project configuration. Leave empty to use the value inherited from a parent project.
+* **`Password`** : Password to authenticate against the remote cluster. This field does **not** accept a plain-text password. It is a dropdown that lists all secrets defined in your project's [Secret](../resources/asset-resource-secret) assets. Select the named secret you want to use (e.g. `proxy-password`). The secret value is resolved at runtime — it is never stored in clear text in the project configuration. Leave empty to use the value inherited from a parent project.
 
   To create or manage secrets, see the [Secret Asset](../resources/asset-resource-secret) documentation.
 
@@ -58,42 +80,79 @@ Nodes (no restriction).
 
 ### Inheritance
 
-All fields in the Proxy Settings tab support inheritance from a parent project. If this service is part of a Project that extends another Project, fields left empty here will adopt the values from the parent. This allows you to define base proxy configurations in a parent project and override specific values (such as credentials or URLs) in child projects.
+All fields in the Proxy Settings tab support inheritance from a parent project. If this service is part of a Project that extends another Project, fields left empty here will adopt the values from the parent. This allows you to define a base Proxy Service in a parent project (with a remote service name, user, and URL pointing to a dev cluster) and override just the URL and credentials in a child project for production — without changing any JavaScript.
 
-## Example — Real-Life Scenario
+## Example — Cross-Cluster Service Invocation
 
-### Background
+### Setup
 
-Imagine you have a layline.io project that monitors industrial equipment at multiple customer sites. Each site has its own instance of a REST-based monitoring API, all hosted at different URLs, and each API requires HTTP Basic Auth.
+Imagine you have:
+- **Cluster A** (your local cluster) where your Javascript Processor runs
+- **Cluster C** where a service `MyDBService` is deployed with a function `GetCustomer`
 
-Rather than configuring credentials in every processor that calls the API, you centralise the connection details in a Proxy Service. Processors simply reference the Proxy Service and inherit the correct URL and credentials automatically.
+On Cluster C, the `MyDBService` has this function:
 
-### Step 1 — Create a Secret Asset
+| Function | Parameters |
+|----------|------------|
+| `GetCustomer` | `{ customerId: string }` |
 
-Before configuring the Proxy Service, create a [Secret Asset](../resources/asset-resource-secret) (e.g., named `SiteA Credentials`). Add a key-value pair such as:
+### Step 1 — Create a Secret for Authentication
+
+Create a [Secret Asset](../resources/asset-resource-secret) in your project (e.g. `ClusterC_Credentials`). Add a key-value pair:
 
 | Key | Value |
 |-----|-------|
-| `api-password` | `S3cr3tP@ssw0rd!` |
+| `proxy-password` | `S3cr3tP@ssw0rd!` |
 
-Make sure the Secret is encrypted with the appropriate key for the target cluster.
+Make sure the Secret is encrypted with the appropriate key for Cluster C.
 
 ### Step 2 — Create the Proxy Service
 
-Create a new **Proxy Service** Asset. Fill in:
+Create a new **Proxy Service** Asset named `MyProxy`. Configure:
 
-* **Remote service**: `SiteA Monitoring API`
-* **User**: `monitoring-user`
-* **Password**: Open the dropdown — you will see `api-password` listed among your project's secrets. Select it.
-* **Remote urls**: Add the base URL of the SiteA API, e.g. `https://sitea.example.com/api/v2`
+* **Remote service**: `MyDBService` — must match the service name on Cluster C exactly
+* **User**: `cluster-c-user`
+* **Password**: Select `proxy-password` from the Secret dropdown
+* **Remote urls**: `https://cluster-c.example.com:9443`
 
-### Step 3 — Reference from a Processor
+### Step 3 — Map the Proxy Service in a Javascript Asset
 
-In a JavaScript Processor or any processor that needs to call the external API, reference the Proxy Service instead of hard-coding credentials. The Proxy Service injects the correct URL and authentication headers into every outgoing request at runtime.
+In your Javascript Processor asset, add a **Service Mapping**:
 
-### Result
+* **Service**: Select `MyProxy`
+* **Logical Service Name**: `MyProxy` (or any name you will use in your script)
 
-When the project deploys to the SiteA cluster, the Reactive Engine resolves the `api-password` secret from the Secret Asset and includes it in requests to `https://sitea.example.com/api/v2`. If you later need to deploy the same project to SiteB (with different credentials), you create a separate Proxy Service in the SiteB project — or override individual fields via inheritance — without touching the processor logic.
+### Step 4 — Invoke from JavaScript
+
+In your script, invoke the proxied function exactly as you would a local one:
+
+```javascript
+export function onMessage(m) {
+    const result = services.MyProxy.GetCustomer({
+        customerId: m.data.customerId
+    });
+
+    if (result && result.data && result.data.length > 0) {
+        const customer = result.data[0];
+        processor.logInfo('Customer: ' + customer.name);
+        // Continue processing...
+    }
+}
+```
+
+**Note:** The call syntax is identical to calling a local service. The Proxy Service handles the cross-cluster tunnelling transparently.
+
+### Step 5 — Switch Environments Without Changing JavaScript
+
+To point the same Javascript Processor at a different cluster (e.g. a staging environment), create a new Proxy Service in your staging project — or use inheritance to override just the URL and credentials — without touching the JavaScript at all.
+
+```
+Dev Project:
+  MyProxy → Remote service: MyDBService, URL: https://dev-cluster:9443
+
+Staging Project (inherits MyProxy, overrides URL):
+  MyProxy → Remote service: MyDBService, URL: https://staging-cluster:9443
+```
 
 ## Service Testing
 
@@ -103,3 +162,5 @@ When the project deploys to the SiteA cluster, the Reactive Engine resolves the 
 
 - [Secret Asset](../resources/asset-resource-secret) — managing encrypted credentials
 - [Project Inheritance](../../concept/03-project) — overriding proxy settings via child projects
+- [Service Asset Introduction](./asset-service-introduction) — how services work in general
+- [Javascript Processor](../processors-flow/asset-flow-javascript) — calling services from JavaScript
