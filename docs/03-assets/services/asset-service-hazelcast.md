@@ -9,6 +9,8 @@ tags:
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Hazelcast Service
 
@@ -259,15 +261,19 @@ Processor** like so:
 * **`Logical Service Name`**: The name by which we want to use the Service within JavaScript. This could be the
   exact same name as the Service or a name which you can choose. Must not include whitespaces.
 
-### Access the Service from within JavaScript
+### Access the Service from within a Script Processor
 
-Now let’s finally use the service within JavaScript:
+Now let's use the service within a script processor:
+
 
 #### Reading from Hazelcast Source
 
 Signature: `services.<Logical Service Name>.<Collection>Read(key)`
 
 Example: `services.MyHazelcastService.ReadCustomer(customer_id)`
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 let hazelcastData = null; // will receive a message type
@@ -288,6 +294,30 @@ if (hazelcastData && hazelcastData.data.length > 0) {
 }
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+hazelcast_data = None  # will receive a message type
+customer_id = 1234
+try:
+    # Invoke service function.
+    hazelcast_data = services.MyHazelcastService.ReadCustomer(customer_id)
+except error:
+    # handle error
+    pass
+
+# Output the customer data to the processor log
+if hazelcast_data and hazelcast_data.data.length > 0:
+    processor.log_info('Name: ' + hazelcast_data.data[0].Name)
+    processor.log_info('Address: ' + hazelcast_data.data[0].Address)
+else:
+    processor.log_info('No customer data found for customer ID ' + str(customer_id))
+```
+
+  </TabItem>
+</Tabs>
+
 :::tip Note: Service functions return a Message
 Note how the Service function returns a [Message](../../language-reference/javascript/API/classes/Message) as a result
 type.
@@ -302,6 +332,9 @@ Signature: `services.<Logical Service Name>.<Collection>Write({Key: key, Value: 
 
 Example: `services.MyHazelcastService.WriteCustomer({Key: customer_id, Value: {Name: name, Address: address}})`
 
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
 ```javascript
 let customer_id = 1234;
 try {
@@ -315,9 +348,30 @@ try {
         }
     )
 } catch (error) {
-...
+    // handle error
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+customer_id = 1234
+try:
+    services.MyHazelcastService.WriteCustomer({
+        'Key': customer_id,
+        'Value': {
+            'Name': name,
+            'Address': address
+        }
+    })
+except error:
+    # handle error
+    pass
+```
+
+  </TabItem>
+</Tabs>
 
 #### Delete from Hazelcast
 
@@ -325,14 +379,32 @@ Signature: `services.<Logical Service Name>.<Collection>Delete(key)`
 
 Example: `services.MyHazelcastService.DeleteCustomer(customer_id)`
 
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
 ```javascript
 let customer_id = 1234;
 try {
     services.MyHazelcastService.DeleteCustomer(customer_id);
 } catch (error) {
-...
+    // handle error
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+customer_id = 1234
+try:
+    services.MyHazelcastService.DeleteCustomer(customer_id)
+except error:
+    # handle error
+    pass
+```
+
+  </TabItem>
+</Tabs>
 
 #### Get Collection Size
 
@@ -340,14 +412,32 @@ Signature: `services.<Logical Service Name>.<Collection>Size(key)`
 
 Example: `services.MyHazelcastService.SizeCustomer(customer_id)`
 
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
 ```javascript
 let size = 0;
 try {
     size = services.MyHazelcastService.SizeCustomer();
 } catch (error) {
-...
+    // handle error
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+size = 0
+try:
+    size = services.MyHazelcastService.SizeCustomer()
+except error:
+    # handle error
+    pass
+```
+
+  </TabItem>
+</Tabs>
 
 <Testcase></Testcase>
 
