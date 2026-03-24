@@ -8,6 +8,7 @@ tags:
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import ThrottlingAndFailure from '../../snippets/assets/_asset-source-throttling-and-failure.md'
 
 # Source Message
 
@@ -21,9 +22,18 @@ The Message Source is the **consumer side** of layline.io's internal messaging s
 
 Together, they form a publish/subscribe system:
 
-```
-[JavaScript/Python Processor] --> [Message Service] --> [Message Source] --> [Input Processor] --> [Workflow]
-                                   (publisher)          (topic broker)      (consumer)
+```mermaid
+flowchart LR
+    P["JavaScript / Python Processor"]
+    MS["Message Service"]
+    MSub["Message Source<br/>(topic broker)"]
+    IP["Input Processor"]
+    WF["Workflow"]
+
+    P -->|"publishes"| MS
+    MS -->|"routes to topic"| MSub
+    MSub -->|"consumes"| IP
+    IP -->|"processes"| WF
 ```
 
 Messages published via a Message Service are routed to the configured topic. Any Input Processor (such as [Stream Input](../processors-input/asset-input-stream) or [Frame Input](../processors-input/asset-input-frame)) that references this Message Source can subscribe to and consume those messages.
@@ -70,23 +80,9 @@ Nodes (no restriction).
 
 ### Throttling & Failure Handling
 
-Controls how the source manages message flow and how it responds to downstream failures.
+<ThrottlingAndFailure></ThrottlingAndFailure>
 
-#### Throttling
-
-* **`Max. new streams`** : Maximum number of new stream connections allowed per time unit. Default: `5` per `Minute`.
-
-#### Backoff Failure Handling
-
-When a downstream failure occurs, the source backs off before retrying:
-
-* **`Min. failure backoff`** : Initial minimum backoff time after a failure. Default: `15` `Seconds`.
-
-* **`Max. failure backoff`** : Maximum backoff time cap. Default: `60` `Seconds`.
-
-* **`Reset after number of successful streams`** : Number of successful streams required before the failure backoff counter is reset. Default: `5`.
-
-* **`Reset after time without failure streams`** : Time duration with no failures before the backoff counter is reset. Default: `60` `Seconds`.
+![Stream Settings and Topics (Message Source)](./.asset-source-message_images/message-source-streams-topics.png "Stream Settings and Topics")
 
 ### Stream Settings
 

@@ -26,9 +26,18 @@ The Message Service is the **producer side** of layline.io's internal publish/su
 
 The Message Service is the counterpart to the [Message Source](../sources/asset-source-message.md) (consumer). Together they form a publish/subscribe system:
 
-```
-[JavaScript/Python Processor] --> [Message Service] --> [Message Source] --> [Input Processor] --> [Workflow]
-                                   (publisher)          (topic broker)      (consumer)
+```mermaid
+flowchart LR
+    P["JavaScript / Python Processor"]
+    MS["Message Service<br/>(publisher)"]
+    MSub["Message Source<br/>(topic broker)"]
+    IP["Input Processor"]
+    WF["Workflow"]
+
+    P -->|"publishes"| MS
+    MS -->|"routes to topic"| MSub
+    MSub -->|"consumes"| IP
+    IP -->|"processes"| WF
 ```
 
 A single Message Service can reference multiple Message Sources. For each Message Source, you define **functions** that publish to specific topics.
@@ -73,6 +82,8 @@ Under **Sources**, add references to the [Message Sources](../sources/asset-sour
 | **Source** | Select a Message Source asset from the project |
 
 Click **Add source** to add a new Message Source reference.
+
+![Functions (Message Service)](./.asset-service-message_images/message-service-functions.png "Message Service — Function Configuration")
 
 ### Functions
 
