@@ -11,6 +11,8 @@ tags:
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Message Service
 
@@ -140,9 +142,13 @@ The namespace for these types is determined by the **Data Dictionary Namespace**
 Use the Data Dictionary to define the structure of your message payloads. For example, define an `OrderConfirmation` type with fields like `orderId`, `customerId`, and `timestamp`, then assign it as the `Request type` of a `PublishOrderConfirmation` function.
 :::
 
-## Using the Message Service from a JavaScript Processor
+## Using the Message Service from a Script Processor
 
 ### Publishing a Message
+
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 /**
@@ -158,9 +164,30 @@ function publishOrderConfirmation(orderData) {
 }
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def publish_order_confirmation(order_data):
+    """Publish an order confirmation message.
+    @param order_data: Order confirmation data
+    """
+    services.OrderMessageService.PublishOrderConfirmation({
+        'Topic': 'order-confirmations',
+        'PartitionKey': order_data.order_id,
+        'Request': order_data
+    })
+```
+
+  </TabItem>
+</Tabs>
+
 ### Publishing with Automatic Source Selection
 
 If the service references only one Message Source, the `Source` parameter can be omitted:
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 /**
@@ -175,9 +202,29 @@ function publishNotification(eventData) {
 }
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def publish_notification(event_data):
+    """Publish a notification event.
+    @param event_data: The event to publish
+    """
+    services.NotificationService.SendNotification({
+        'Topic': 'notifications',
+        'Request': event_data
+    })
+```
+
+  </TabItem>
+</Tabs>
+
 ### Publishing with Explicit Source
 
 If the service references multiple Message Sources, specify which one to use:
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 /**
@@ -194,6 +241,25 @@ function publishToSpecificSource(data) {
 }
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def publish_to_specific_source(data):
+    """Publish to a specific Message Source.
+    @param data: The data to publish
+    """
+    services.MultiSourceService.PublishData({
+        'Source': 'CustomerDataSource',
+        'Topic': 'customer-updates',
+        'PartitionKey': data.customer_id,
+        'Request': data
+    })
+```
+
+  </TabItem>
+</Tabs>
+
 ### Full Example: Order Processing Pipeline
 
 A complete example showing how Message Source and Message Service work together:
@@ -201,7 +267,10 @@ A complete example showing how Message Source and Message Service work together:
 1. **Define a Message Source** named `OrderSource` with a topic `order-confirmations`
 2. **Define a Message Service** named `OrderMessageService` that references `OrderSource`
 3. **Create a function** `PublishOrderConfirmation` with a `Request type` of `OrderConfirmation`
-4. **In a JavaScript processor**, call the service to publish when an order is confirmed:
+4. **In a script processor**, call the service to publish when an order is confirmed:
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 /**
@@ -224,6 +293,32 @@ function onOrderConfirmed(orderId, orderDetails) {
     });
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def on_order_confirmed(order_id, order_details):
+    """Called when an order has been confirmed.
+    @param order_id: The ID of the confirmed order
+    @param order_details: The order details
+    """
+    confirmation_data = data_dictionary.create_message(
+        data_dictionary.type.OrderConfirmation
+    )
+    confirmation_data.data.order_id = order_id
+    confirmation_data.data.customer_id = order_details.customer_id
+    confirmation_data.data.timestamp = str(datetime.now())
+
+    services.OrderMessageService.PublishOrderConfirmation({
+        'Topic': 'order-confirmations',
+        'PartitionKey': order_id,
+        'Request': confirmation_data
+    })
+```
+
+  </TabItem>
+</Tabs>
 
 A downstream Workflow that references `OrderSource` will receive this message via its Input Processor and can process the confirmation further.
 
