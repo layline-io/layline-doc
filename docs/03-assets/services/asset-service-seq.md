@@ -53,7 +53,7 @@ The Sequence Number service provides the following built-in functions:
 |----------|-------------|------------|
 | `GetNextValue` | Atomically get and increment the next sequence value | `Name` — The sequence name (e.g., `"orders"` or `"tickets"`) |
 | `GetLastValue` | Get the current value of a sequence without incrementing | `Name` — The sequence name |
-| `SetNextValue` | Set the next value for a sequence | `Name` — The sequence name<br>`Value` — The value to set as the next sequence value |
+| `SetNextValue` | Set the next value for a sequence | `Name` — The sequence name<br />`Value` — The value to set as the next sequence value |
 
 **Results:**
 
