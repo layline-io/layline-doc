@@ -1,6 +1,6 @@
 ---
 title: VirtualFs Service
-description: VirtualFs Service Asset. Use this to perform file operations against a Virtual File System from within a JavaScript Processor.
+description: VirtualFs Service Asset. Use this to perform file operations against a Virtual File System from within a JavaScript or Python Processor.
 tags:
   - service
   - virtual file system
@@ -13,17 +13,17 @@ import Testcase from '../../snippets/assets/_asset-service-test.md';
 
 ## Purpose
 
-The VirtualFs Service provides file operations — read, write, copy, move, delete — against the Virtual File System from within a Javascript Processor. It allows you to manage files programmatically in your JavaScript code, independent of any VFS Source or Sink.
+The VirtualFs Service provides file operations — read, write, copy, move, delete — against the Virtual File System from within a Javascript or Python Processor. It allows you to manage files programmatically in your script code, independent of any VFS Source or Sink.
 
 :::info
-The VirtualFs Service is a pure JavaScript-facing service. It has no input/output ports and cannot be used as a standalone processing step in a Workflow. It must be invoked from a [Javascript Processor](../processors-flow/asset-flow-javascript).
+The VirtualFs Service is a pure script-facing service. It has no input/output ports and cannot be used as a standalone processing step in a Workflow. It must be invoked from a [Javascript Processor](../processors-flow/asset-flow-javascript) or a [Python Processor](../processors-flow/asset-flow-python).
 :::
 
 ## Configuration
 
 ### Name & Description
 
-* **`Virtual FS Service name`** : Name of the Asset. This is the name you will use in JavaScript to reference this service (e.g. `services.MyVfsService`). Spaces are not allowed in the name.
+* **`Virtual FS Service name`** : Name of the Asset. This is the name you will use in your script to reference this service (e.g. `services.MyVfsService`). Spaces are not allowed in the name.
 
 * **`Virtual FS Service description`** : Enter a description.
 
@@ -52,7 +52,7 @@ The VirtualFs Service provides the following built-in functions:
 | `ReadFile` | Read a file from the virtual file system and return its content |
 | `WriteFile` | Write a file into the virtual file system |
 
-## Example — Using VirtualFs from JavaScript
+## Example — Using VirtualFs from a Script
 
 ### Step 1 — Create a Virtual File System Connection
 
@@ -62,71 +62,162 @@ Before using the VirtualFs Service, configure a [Virtual File System Connection]
 
 Create a new **VirtualFs Service** Asset. In **Virtual FS Service Settings**, select your Virtual File System Connection.
 
-### Step 3 — Map the Service in a Javascript Processor
+### Step 3 — Map the Service in a Script Processor
 
-In your [Javascript Processor](../processors-flow/asset-flow-javascript), add a **Service Mapping**:
+In your [Javascript Processor](../processors-flow/asset-flow-javascript) or [Python Processor](../processors-flow/asset-flow-python), add a **Service Mapping**:
 
 * **Service**: Select your VirtualFs Service
 * **Logical Service Name**: `MyVfsService` (or any name you will use in your script)
 
-### Step 4 — Use in JavaScript
+### Step 4 — Use in Your Script
 
-You can now call any of the service functions from your script:
+You can now call any of the service functions from your script. The functions are invoked identically to any other service.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 **Copy a file:**
 ```javascript
-services.MyVfsService.CopyFile({
-    sourcePath: '/data/inbox/report.pdf',
-    targetPath: '/data/archive/report.pdf'
-});
+export function onMessage(m) {
+    services.MyVfsService.CopyFile({
+        sourcePath: '/data/inbox/report.pdf',
+        targetPath: '/data/archive/report.pdf'
+    });
+}
 ```
 
 **Check if a file exists:**
 ```javascript
-const exists = services.MyVfsService.FileExists({
-    path: '/data/inbox/report.pdf'
-});
+export function onMessage(m) {
+    const exists = services.MyVfsService.FileExists({
+        path: '/data/inbox/report.pdf'
+    });
 
-if (!exists.data) {
-    processor.logWarning('File not found, skipping');
-    return;
+    if (!exists.data) {
+        processor.logWarning('File not found, skipping');
+        return;
+    }
+
+    // Continue processing...
 }
 ```
 
 **Read and process a file:**
 ```javascript
-const fileContent = services.MyVfsService.ReadFile({
-    path: '/data/inbox/data.json'
-});
+export function onMessage(m) {
+    const fileContent = services.MyVfsService.ReadFile({
+        path: '/data/inbox/data.json'
+    });
 
-if (fileContent && fileContent.data) {
-    const records = JSON.parse(fileContent.data.content);
-    processor.logInfo('Loaded ' + records.length + ' records');
+    if (fileContent && fileContent.data) {
+        const records = JSON.parse(fileContent.data.content);
+        processor.logInfo('Loaded ' + records.length + ' records');
+    }
 }
 ```
 
 **Write a file:**
 ```javascript
-services.MyVfsService.WriteFile({
-    path: '/data/outbox/result.json',
-    content: JSON.stringify(resultData)
-});
+export function onMessage(m) {
+    services.MyVfsService.WriteFile({
+        path: '/data/outbox/result.json',
+        content: JSON.stringify(resultData)
+    });
+}
 ```
 
 **Move a file:**
 ```javascript
-services.MyVfsService.MoveFile({
-    sourcePath: '/data/inbox/report.pdf',
-    targetPath: '/data/archive/report.pdf'
-});
+export function onMessage(m) {
+    services.MyVfsService.MoveFile({
+        sourcePath: '/data/inbox/report.pdf',
+        targetPath: '/data/archive/report.pdf'
+    });
+}
 ```
 
 **Delete a file:**
 ```javascript
-services.MyVfsService.DeleteFile({
-    path: '/data/inbox/report.pdf'
-});
+export function onMessage(m) {
+    services.MyVfsService.DeleteFile({
+        path: '/data/inbox/report.pdf'
+    });
+}
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+**Copy a file:**
+```python
+def on_message():
+    services.MyVfsService.CopyFile({
+        'sourcePath': '/data/inbox/report.pdf',
+        'targetPath': '/data/archive/report.pdf'
+    })
+```
+
+**Check if a file exists:**
+```python
+def on_message():
+    exists = services.MyVfsService.FileExists({
+        'path': '/data/inbox/report.pdf'
+    })
+
+    if not exists.data:
+        processor.log_warning('File not found, skipping')
+        return
+
+    # Continue processing...
+```
+
+**Read and process a file:**
+```python
+def on_message():
+    file_content = services.MyVfsService.ReadFile({
+        'path': '/data/inbox/data.json'
+    })
+
+    if file_content and file_content.data:
+        records = json.loads(file_content.data.content)
+        processor.log_info('Loaded ' + str(len(records)) + ' records')
+```
+
+**Write a file:**
+```python
+def on_message():
+    services.MyVfsService.WriteFile({
+        'path': '/data/outbox/result.json',
+        'content': json.dumps(result_data)
+    })
+```
+
+**Move a file:**
+```python
+def on_message():
+    services.MyVfsService.MoveFile({
+        'sourcePath': '/data/inbox/report.pdf',
+        'targetPath': '/data/archive/report.pdf'
+    })
+```
+
+**Delete a file:**
+```python
+def on_message():
+    services.MyVfsService.DeleteFile({
+        'path': '/data/inbox/report.pdf'
+    })
+```
+
+  </TabItem>
+</Tabs>
+
+:::note
+The parameter names (`sourcePath`, `targetPath`, `path`, `content`) match the service function definitions in the source. Confirm these with the UI or Service Testing tab if they differ in your version.
+:::
 
 ## Service Testing
 
@@ -136,3 +227,4 @@ services.MyVfsService.DeleteFile({
 
 - [Virtual File System Connection](../connections/asset-connection-virtual-fs) — configuring mount points and storage backends
 - [JavaScript Processor](../processors-flow/asset-flow-javascript) — calling services from JavaScript
+- [Python Processor](../processors-flow/asset-flow-python) — calling services from Python
