@@ -17,7 +17,7 @@ Define a Message Source. A Message Source defines one or more topics that can be
 
 ### Architecture
 
-The Message Source is the **consumer side** of layline.io's internal messaging system. The corresponding **producer side** is the [Message Service](./asset-service-message.md), which is used to publish messages to topics defined in a Message Source.
+The Message Source is the **consumer side** of layline.io's internal messaging system. The corresponding **producer side** is the [Message Service](../services/asset-service-message.md), which is used to publish messages to topics defined in a Message Source.
 
 Together, they form a publish/subscribe system:
 
@@ -48,7 +48,7 @@ A Message Source is useful in scenarios such as:
 
 | Asset | Description |
 |-------|-------------|
-| [Message Service](./asset-service-message.md) | Publishes messages to topics defined in this Message Source |
+| [Message Service](../services/asset-service-message.md) | Publishes messages to topics defined in this Message Source |
 
 ## Configuration
 
@@ -115,7 +115,7 @@ The number of partitions determines how many parallel instances of a processor c
 
 ### Example: Publishing to a Topic
 
-To publish messages to a topic, use a [Message Service](./asset-service-message.md) from a JavaScript or Python processor. The Message Service references this Message Source and exposes functions that publish to its topics.
+To publish messages to a topic, use a [Message Service](../services/asset-service-message.md) from a JavaScript or Python processor. The Message Service references this Message Source and exposes functions that publish to its topics.
 
 Example (JavaScript):
 
@@ -133,7 +133,7 @@ function publishOrderConfirmation(orderData) {
 }
 ```
 
-For a complete example, see [Message Service](./asset-service-message.md).
+For a complete example, see [Message Service](../services/asset-service-message.md).
 
 For information on using JavaScript Processors, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md).
 
