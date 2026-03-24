@@ -7,6 +7,8 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # UDP Service
 
@@ -98,51 +100,43 @@ Processor** like so:
 * **`Logical Service Name`**: The name by which we want to use the Service within JavaScript. This could be the
   exact same name as the Service or a name which you can choose. Must not include whitespaces.
 
-### Access the Service from within JavaScript
+### Access the Service from within a Script Processor
 
-Now let’s finally use the service within JavaScript:
+Now let's use the service within a script processor:
 
-#### Communicate with UDP
 
-Example: `services.TestUdpService.TestFunction({'Command': 'get','Subject': 'data','Key': key,})`
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
-/**
- * System function
- * Handle incoming messages
- */
-export function onMessage() {
-    let response = null;
-    let key;
-
-    if (message.data.SMPL_IN.RECORD_TYPE == 'D') {
-        key = message.data.SMPL_IN.COUNTRY_ISO;
-        try {
-            response = services.TestUdpService.TestFunction({
-                'Command': 'get',
-                'Subject': 'data',
-                'Key': key,
-            })
-        } catch (error) {
-            stream.logInfo('Error in UDP request processing - name [' + error.name + '] and message [' + error.message + ']');
-            throw error;
-        }
-        let lines = response.data.ReturnValue.split('\n');
-        lines.forEach(function(line) {
-            let record = splitLine(line);
-
-            if (record && record.returnCode.startsWith('200')) {
-                stream.logInfo('Successful UDP respons;  value: [' + record.value + '] - retrieved from key: [' + key + ']');
-            }
-            else {
-            stream.logInfo('No proper response value from UDP request'); 
-            }
-        })
-    }
-
-    stream.emit(message, OUTPUT_PORT);  // flows to DevNull for sample purposes
-}
+// UDP Write
+// Write data to a UDP socket
+// Service name (Physical Name) is "MyUdpService" in this example
+// Send data to 192.168.1.100:5000
+services.MyUdpService.Write({
+    Address: "192.168.1.100",
+    Port: 5000,
+    Data: "Hello, UDP!"
+});
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+# UDP Write
+# Write data to a UDP socket
+# Service name (Physical Name) is "MyUdpService" in this example
+# Send data to 192.168.1.100:5000
+services.MyUdpService.Write({
+    'Address': '192.168.1.100',
+    'Port': 5000,
+    'Data': 'Hello, UDP!'
+})
+```
+
+  </TabItem>
+</Tabs>
 
 <Testcase></Testcase>
 
