@@ -7,6 +7,8 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Queue Service
 
@@ -77,17 +79,13 @@ Processor** like so:
 * **`Logical Service Name`**: The name by which we want to use the Service within JavaScript. This could be the
   exact same name as the Service or a name which you can choose. Must not include whitespaces.
 
-### Access the Service from within JavaScript
+### Access the Service from within a Script Processor
 
-Before we start looking into dedicated JavaScript sample code using the Queue Service, 
-it is important to understand that layline.io processing is based on "dynamic push/pull mode". More information can be found [here](../../language-reference/javascript/API/classes/JavaScriptProcessor#onpullmessage).
-
-Using a Queue Service in a JavaScript Processor means that this Processor becomes a "producer" of additional messages requiring the forcing of the pull-mode to be used. 
-Hence, the [`onPullMessage`](../../language-reference/javascript/API/classes/JavaScriptProcessor#onpullmessage) usage becomes a must-have.      
-
-Let’s finally use the service within JavaScript:
 
 #### Writing to and Reading from Queue endpoint
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 const OUTPUT_PORT = processor.getOutputPort('Output-1');
@@ -170,9 +168,80 @@ export function onPullMessage() {
 }
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+OUTPUT_PORT = processor.getOutputPort('Output-1')
+queue = None
+trailer_received = False
+total_records_in_file = 0
+
+def on_stream_start():
+    global queue, trailer_received, total_records_in_file
+    # Invoke Service
+    # using a Queue-Service for writing data into it requires to "open it" via the method openConnection
+    queue = services.QueueService.openConnection()
+    trailer_received = False
+    total_records_in_file = 0
+
+def on_stream_end():
+    global queue
+    if queue:
+        # any used Queue-Service should be closed after usage 
+        queue.closeConnection()
+        queue = None
+
+def on_message():
+    global trailer_received, total_records_in_file
+    if message.data.SMPL_IN.RECORD_TYPE == 'H':
+        # write message to Queue-Service
+        queue.WriteMessage(message)
+    elif message.data.SMPL_IN.RECORD_TYPE == 'D':
+        on_detail(message)
+    elif message.data.SMPL_IN.RECORD_TYPE == 'T':
+        on_trailer(message)
+
+def on_detail(detail):
+    global total_records_in_file
+    total_records_in_file += 1
+    # write message to Queue-Service
+    queue.WriteMessage(detail)
+
+def on_trailer(trailer):
+    global trailer_received
+    trailer_received = True
+    # write message to Queue-Service
+    queue.WriteMessage(trailer)
+
+def on_pull_message():
+    global queue, trailer_received
+    if trailer_received and queue:
+        msg = None
+        while True:
+            # read message from Queue-Service
+            msg = queue.ReadMessage()
+            if msg:
+                if msg.data.SMPL_IN.RECORD_TYPE == 'H':
+                    on_process_and_emit_header(msg)
+                elif msg.data.SMPL_IN.RECORD_TYPE == 'D':
+                    on_process_and_emit_detail(msg)
+                elif msg.data.SMPL_IN.RECORD_TYPE == 'T':
+                    on_process_and_emit_trailer(msg)
+            else:
+                break
+
+        if msg is None:
+            # any used Queue-Service should be closed after usage 
+            queue.closeConnection()
+            queue = None
+```
+
+  </TabItem>
+</Tabs>
+
 <Testcase></Testcase>
 
 ---
 
 <WipDisclaimer></WipDisclaimer>
-
