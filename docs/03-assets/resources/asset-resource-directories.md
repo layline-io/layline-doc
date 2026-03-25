@@ -11,9 +11,9 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 The **Directories** Resource lets you define a set of named directory paths and symbolic links that are provisioned automatically when the Reactive Engine starts.
 
-When the engine starts up, before any Workflow begins processing, it calls `setupForSystem()` on this Resource. For each entry, it:
+When the engine starts up, before any Workflow begins processing, this Resource is called. For each entry, it:
 
-1. **Creates the directory** if it does not already exist (`Files.createDirectories()`)
+1. **Creates the directory** if it does not already exist
 2. **Applies the specified POSIX permissions** if a permission string is provided and the filesystem supports it
 3. **Creates any symbolic links** that do not already exist
 
@@ -21,7 +21,7 @@ This means the Resource acts as a **filesystem bootstrap** — it ensures a know
 
 Use this Resource to:
 
-- Ensure required directories (`/data/input`, `/mnt/nfs/archive`, etc.) exist on the engine host at startup
+- Ensure required directories exist on the engine host at startup
 - Apply consistent POSIX permissions across environments without manual setup
 - Create symbolic links that point to shared or network-mounted paths
 
@@ -76,6 +76,12 @@ The following defines a layout for a file processing workflow:
 | `/data/shared` | `/mnt/nfs/shared` |
 
 When the Reactive Engine starts, it creates `input/`, `archive/`, and `error/` directories under `/data/` if they do not exist, applies the specified permissions, and creates the `/data/shared` symlink pointing to `/mnt/nfs/shared`.
+
+<div className="frame">
+
+![Directories Resource editor](.asset-resource-directories_images/directories-editor.png)
+
+</div>
 
 ## See Also
 
