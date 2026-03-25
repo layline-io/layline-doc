@@ -174,7 +174,7 @@ const params = status.parameters; // ['42', 'orders']
 
 ```python
 # Look up the ACM vendor by short name
-ACM = Status.get_vendor_by_short_name('ACM')
+ACM = Status.getVendorByShortName('ACM')
 
 # Create a Status with the SEQ_DUPLICATE code and two parameters
 status = Status.create(ACM, 'SEQ_DUPLICATE', '42', 'orders')
