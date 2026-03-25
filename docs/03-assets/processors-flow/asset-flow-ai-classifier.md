@@ -11,7 +11,7 @@ import OutputPorts from '../../snippets/assets/_output-ports-single.md';
 
 ## Purpose
 
-The **AI Classifier** Processor (type: `aiClassifier`) classifies messages within a Workflow using a trained AI model. It takes one or more input values from the current message, passes them to a supervised machine learning model, and writes the predicted classification result directly into a message attribute.
+The **AI Classifier** Processor classifies messages within a Workflow using a trained AI model. It takes one or more input values from the current message, passes them to a supervised machine learning model, and writes the predicted classification result directly into a message attribute.
 
 Classification is useful for tasks such as:
 
@@ -29,7 +29,7 @@ Use this Processor to:
 - Enrich messages with inferred attributes derived from their content
 
 :::tip Prerequisite
-This processor requires a **trained AI model file** (`.joblib` format) and an **[AI Model Resource](../../assets/resources/asset-resource-ai-model)** that defines the model's technical details. Both must exist in the Project before you can configure this processor. If you need to train a model first, use the [AI Trainer](./asset-flow-ai-trainer) Processor.
+This processor requires a **trained AI model file** (`.joblib` format) and an **AI Model Resource** that defines the model's technical details. Both must exist in the Project before you can configure this processor. If you need to train a model first, use the [AI Trainer](./asset-flow-ai-trainer) Processor.
 :::
 
 ## Configuration
@@ -80,7 +80,8 @@ Define when this rule should be applied. The condition is evaluated against the 
 
 Click **+ ADD CONDITION** to add a new condition row. Each row has:
 
-- A QuickScript expression field — click the **qS** button to edit the expression
+- A QuickScript expression field — click the field or use the **qS** indicator to confirm QuickScript mode is active
+- **qS** — indicator that the field accepts QuickScript expressions
 - A delete button (trash icon) to remove the condition
 
 <div className="frame">
@@ -235,7 +236,6 @@ The JavaScript Processor first extracts and validates the raw fields. The AI Cla
 
 - [AI Trainer](./asset-flow-ai-trainer) — for training and exporting new AI models before using them with this Processor
 - [AI Service](../../assets/services/asset-service-ai) — for defining the interface to an AI model
-- [AI Model Resource](../../assets/resources/asset-resource-ai-model) — for the technical model definition used by both Trainer and Classifier
 - [QuickScript Language Reference](../../language-reference/quickscript) — for the expression language used in rule conditions
 - [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
 
