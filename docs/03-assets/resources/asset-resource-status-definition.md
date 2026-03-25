@@ -4,7 +4,7 @@ description: StatusDefinition Resource. Define vendors, status codes, and multil
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import Tabs from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # StatusDefinition
