@@ -31,21 +31,6 @@ For full details of supported element types (Namespace, Sequence, Choice, Enumer
 
 This section contains the Data Dictionary tree editor — the same component used by the [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md). It allows you to declare, organize, and maintain a hierarchy of custom type definitions.
 
-#### Tree Toolbar
-
-The toolbar above the tree provides the following controls:
-
-| Control | Icon | Description |
-|---------|------|-------------|
-| Filter | — | Text input to filter the tree by name |
-| Expand all | expand | Expands all collapsed nodes |
-| Collapse all | collapse | Collapses all expanded nodes |
-| Sort ascending | A↓ | Sorts nodes alphabetically A→Z |
-| Sort descending | Z↓ | Sorts nodes alphabetically Z→A |
-| Copy | copy | Copies the selected entity to the clipboard |
-| Paste | paste | Pastes a copied entity into the tree |
-
-#### Tree Navigation
 
 Each node in the tree represents a declared type. Click a node to select it and view/edit its details in the right panel.
 
