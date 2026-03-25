@@ -9,13 +9,14 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 ## Purpose
 
-The **Data Dictionary** is the global type system that layline.io maintains internally — a superset of all format definitions in a Project. The **Data Dictionary Updates** Resource lets you further extend this global dictionary with custom type definitions beyond what individual Format Assets provide.
+The **Data Dictionary** is the global type system that layline.io maintains internally — a superset of all format definitions in a Project.
 
-Use this Resource when you need to:
+You can extend this global dictionary in two ways:
 
-- Declare additional data structures that don't belong to any single input/output format
-- Share common types across multiple Workflows and Formats
-- Define types assembled at runtime from data processed through the system
+1. **Data Dictionary Format** — a full Format Asset with encoding/decoding support for reading and writing data in a specific format
+2. **Data Dictionary Updates Resource** — a lightweight alternative for types that are used only internally or as a matter of convenience
+
+The Resource exists for situations where you need a small data structure — for example a shared enum, a simple sequence used for internal bookkeeping, or a reusable type across Workflows — but where defining a complete Format Asset with input/output handling would be excessive.
 
 For full details of supported element types (Namespace, Sequence, Choice, Enumeration, Array, Map), see the [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md) documentation.
 
@@ -47,9 +48,7 @@ Deleted types can be reset to their parent definition using the reset button tha
 
 #### Entity Detail Panel
 
-When a node is selected, the right panel shows its fields. The available fields depend on the selected type:
-
-**Common fields (all types):**
+When a node is selected, the right panel shows its fields:
 
 **`Name`**: The type's name. Must be unique within the same parent.
 
@@ -57,18 +56,7 @@ When a node is selected, the right panel shows its fields. The available fields 
 
 **`Description`**: Free-text description of the type.
 
-**Sequence / Choice-specific:**
-
-- **Is an extendable sequence** — when checked, additional members may be added to this sequence at runtime beyond what is statically defined
-- **Members table** — columns: Name, Type (system type or another declared type), Optional (checkbox), Description. Each row has a delete button. Use **+ Declare Member** to add new rows.
-
-**Enumeration-specific:**
-
-- **Members table** — columns: Name, Value (integer), Description. Each row has a delete button. Use **+ Declare Element** to add new rows.
-
-**Array / Map-specific:**
-
-- **Contained type** — a single type selector for all items contained in the array or map
+Additional fields appear depending on the selected type (e.g., members table for Sequence/Choice, element list for Enumeration, contained type for Array/Map). See the [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md) documentation for full details on all type-specific configuration options.
 
 #### Root Types
 
@@ -76,7 +64,7 @@ Click **+ DECLARE ROOT TYPE** at the bottom of the tree to add a new top-level t
 
 ## Example
 
-The following example defines a `Customer` namespace with shared types that can be referenced by any Format or Workflow in the Project:
+The following defines a `Customer` namespace with shared types used across multiple Workflows:
 
 ```
 Customer (Namespace)
@@ -96,7 +84,7 @@ Customer (Namespace)
     └── Enterprise  (3)
 ```
 
-Once defined, any asset in the Project can reference `Customer.Profile.CustomerId`, `Customer.Tier.Standard`, or `Customer.Address.Country` when mapping or transforming data.
+Once defined, any Asset in the Project can reference `Customer.Profile.CustomerId`, `Customer.Tier.Standard`, or `Customer.Address.Country` when mapping or transforming data.
 
 <div className="frame">
 
@@ -114,7 +102,7 @@ Once defined, any asset in the Project can reference `Customer.Profile.CustomerI
 ## See Also
 
 - [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md) — full reference for all element types, encoding configuration, and examples
-- [Data Dictionary Concept](../../02-concept/03-data-dictionary) — architectural overview of how layline.io maintains and uses the global Data Dictionary
+- [Data Dictionary Concept](../../concept/data-dictionary) — architectural overview of how layline.io maintains and uses the global Data Dictionary
 
 ---
 
