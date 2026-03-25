@@ -4,6 +4,8 @@ description: StatusDefinition Resource. Define vendors, status codes, and multil
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import Tabs from '@theme/TabItem';
+import TabItem from '@theme/TabItem';
 
 # StatusDefinition
 
@@ -128,11 +130,27 @@ Status codes defined in a StatusDefinition Resource can be used in JavaScript an
 Message texts may contain positional placeholders: `%1`, `%2`, `%3`, etc. When you create a Status with `Status.create()`, pass the values as arguments — they replace the placeholders in order.
 
 Supported formats:
-- `%1`, `%2`, etc. — positional parameter (1-indexed)
-- `%{1}`, `%{2}`, etc. — same as above, with braces
-- `%%` — escaped percent sign (renders as a literal `%`)
 
-### JavaScript
+| Format | Description |
+|--------|-------------|
+| `%1`, `%2`, etc. | Positional parameter (1-indexed) |
+| `%{1}`, `%{2}`, etc. | Same as above, with braces |
+| `%%` | Escaped percent sign (renders as a literal `%`) |
+
+### Vendor Lookup Methods
+
+Both languages provide three ways to get a Vendor instance:
+
+| Method | Description |
+|--------|-------------|
+| `Status.getVendorByShortName(name)` | Look up by Vendor Short Name (e.g., `'ACM'`) |
+| `Status.getVendorByLongName(name)` | Look up by Vendor Long Name (e.g., `'Acme EDI Server'`) |
+| `Status.getVendorById(id)` | Look up by numeric Vendor ID (e.g., `10`) |
+
+### Creating a Status
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 // Look up the ACM vendor by short name
@@ -151,7 +169,8 @@ const vendorId = status.vendorId; // 10
 const params = status.parameters; // ['42', 'orders']
 ```
 
-### Python
+  </TabItem>
+  <TabItem value="python" label="Python">
 
 ```python
 # Look up the ACM vendor by short name
@@ -165,20 +184,13 @@ msg = status.message
 # Result: "duplicate sequence number 42 in sequence group orders"
 
 # Access individual parts
-code = status.code        # 'SEQ_DUPLICATE'
+code = status.code          # 'SEQ_DUPLICATE'
 vendor_id = status.vendor_id  # 10
-params = status.parameters # ['42', 'orders']
+params = status.parameters   # ['42', 'orders']
 ```
 
-### Vendor Lookup Methods
-
-Both languages provide three ways to get a Vendor instance:
-
-| Method | Description |
-|--------|-------------|
-| `Status.getVendorByShortName(name)` | Look up by Vendor Short Name (e.g., `'ACM'`) |
-| `Status.getVendorByLongName(name)` | Look up by Vendor Long Name (e.g., `'Acme EDI Server'`) |
-| `Status.getVendorById(id)` | Look up by numeric Vendor ID (e.g., `10`) |
+  </TabItem>
+</Tabs>
 
 ## See Also
 
