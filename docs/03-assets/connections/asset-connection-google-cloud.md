@@ -90,7 +90,7 @@ All Google Cloud Settings fields can be overridden in child assets or inherited 
 ## See Also
 
 - [**GCS Sink**](../sinks/asset-sink-gcs) — Write objects to Google Cloud Storage
-- [**GCS Source**](../sources/asset-source-gcs) — Read objects from Google Cloud Storage
+- [**GCS Source**](../sources/asset-source-google-cloud-storage) — Read objects from Google Cloud Storage
 
 ---
 <WipDisclaimer></WipDisclaimer>
