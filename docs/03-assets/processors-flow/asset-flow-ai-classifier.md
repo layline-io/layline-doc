@@ -4,7 +4,6 @@ description: AI Classifier Processor. Classify messages using trained AI models 
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
-import FailureHandling from '../../snippets/assets/_failure-handling-flow.mdx';
 import InputPorts from '../../snippets/assets/_input-ports-single.md';
 import OutputPorts from '../../snippets/assets/_output-ports-single.md';
 
@@ -59,15 +58,9 @@ The rules editor shows:
 - **↑ / ↓ buttons** to reorder rules (order matters — see [Rule Evaluation Order](#rule-evaluation-order) below)
 - An **Add a new rule** option at the top of the dropdown
 
-<div className="frame">
-
-![AI Classifier editor showing ClassifyUsageType with a single rule](.asset-flow-ai-classifier_images/editor.png)
-
-</div>
-
 #### Rule: General
 
-**`Rule name`** — a human-readable name for this rule (e.g., `Classify by usage type`).
+**`Rule name`** — a human-readable name for this rule (e.g., `Vodafone Voice`).
 
 **`Rule description`** — optional free-text description of what this rule does.
 
@@ -75,12 +68,41 @@ The rules editor shows:
 
 Define when this rule should be applied. The condition is evaluated against the current message. If true, the rule fires and remaining rules are skipped.
 
-Click **Add condition** to add condition rows. Each condition has:
+**Logical operator** — how multiple conditions are combined:
 
-- **Condition** — a conditional expression (e.g., `USAGE_CASE_ID == null` or `amount > 1000`)
-- **Logical operator** — `AND` or `OR` (between conditions)
+| Option | Meaning |
+|--------|---------|
+| **None** | No conditions — the rule always fires (no condition rows are shown) |
+| **At least one** | OR logic — the rule fires if at least one condition is true |
+| **All** | AND logic — the rule fires only if all conditions are true |
 
-If all conditions evaluate to true for the current message, the rule fires. If no conditions are defined, the rule always fires.
+**Conditions** — each condition is a [QuickScript expression](#quickscript-conditions).
+
+Click **+ ADD CONDITION** to add a new condition row. Each row has:
+
+- A QuickScript expression field — click the **qS** button to edit the expression
+- A delete button (trash icon) to remove the condition
+
+<div className="frame">
+
+![Rule: General settings and QuickScript conditions](.asset-flow-ai-classifier_images/rules.png)
+
+</div>
+
+#### QuickScript Conditions
+
+Conditions are written as **QuickScript** expressions — a lightweight expression language used throughout layline.io to reference message fields and write conditional logic. QuickScript allows you to read attributes from the message structure (e.g., `Detail.D2_05.CALL_TYPE_IND`) and compare them using standard operators.
+
+For the full QuickScript language reference, see [QuickScript Language Reference](../../language-reference/quickscript).
+
+Example QuickScript conditions:
+
+```
+Detail.D2_05.CALL_TYPE_IND == "X"
+Detail.D2_05.RATE_SCENARIO_CD != "Y"
+amount > 1000
+recordType == "PREMIUM"
+```
 
 #### Rule: AI model
 
@@ -98,9 +120,15 @@ Each row maps a Data Dictionary **attribute** to a **message accessor**:
 |--------|-------------|
 | **Name** | The attribute name from the AI Model Resource's input schema (read-only) |
 | **Type** | The attribute's data type from the Data Dictionary (read-only) |
-| **Message accessor** | A message accessor expression that reads the value from the current message (e.g., `message.USAGE_BYTE_12`) |
+| **Message accessor** | A message accessor expression that reads the value from the current message (e.g., `Detail.D2_05.CALL_TYPE_IND`) |
 
 The values read from the message via these accessors are assembled into a feature vector and passed to the trained model for prediction.
+
+<div className="frame">
+
+![Input attribute mappings and Classification attribute mappings](.asset-flow-ai-classifier_images/mappings.png)
+
+</div>
 
 #### Rule: Classification attribute mappings
 
@@ -110,13 +138,9 @@ Defines where the classifier should write its prediction results back into the m
 |--------|-------------|
 | **Name** | The output attribute name from the AI Model Resource (read-only) |
 | **Type** | The attribute's data type from the Data Dictionary (read-only) |
-| **Message accessor** | A message accessor expression that specifies where to write the result (e.g., `message.USAGE_CASE_ID`) |
+| **Message accessor** | A message accessor expression that specifies where to write the result (e.g., `Detail.MD.USAGE_CASE_ID`) |
 
 The model returns a predicted class label. This value is written directly to the specified message attribute via the accessor. No return value handling is needed in your Workflow.
-
-### Failure Handling
-
-<FailureHandling></FailureHandling>
 
 ## Behavior
 
@@ -124,15 +148,15 @@ The model returns a predicted class label. This value is written directly to the
 
 Rules are evaluated **strictly in the order they appear in the rules list**. The first rule whose conditions match the current message is applied, and all subsequent rules are skipped for that message.
 
-This means **rule order matters**. Place your most specific or highest-priority rules at the top. A catch-all rule with no conditions (which always matches) should always be placed last.
+This means **rule order matters**. Place your most specific or highest-priority rules at the top. A catch-all rule with **None** conditions (which always matches) should always be placed last.
 
 ### How Classification Works (Step by Step)
 
 When a message arrives:
 
 1. The processor iterates through the rules list in order
-2. For each rule, it evaluates the conditions against the message
-3. If all conditions match (or the rule has no conditions), the processor:
+2. For each rule, it evaluates the QuickScript conditions against the message using the selected logical operator (None / At least one / All)
+3. If the conditions match (or the rule has **None** conditions), the processor:
    a. Reads values from the message using the **input attribute mappings**
    b. Assembles them into a feature vector
    c. Passes the vector to the trained AI model (loaded from the `.joblib` file)
@@ -155,12 +179,12 @@ All settings support inheritance — a child Asset can override individual rules
 
 ## Example
 
-A Workflow reads raw usage records from a source. Before further processing, each record needs to be classified by its **usage type** (e.g., `STANDARD`, `PREMIUM`, `ENTERPRISE`) based on byte-count attributes.
+A Workflow reads raw usage records from a telecom source. Before further processing, each record needs to be classified by its **usage type** based on multiple record attributes.
 
 **Workflow chain:**
 
 ```
-SAMPLE2 (Source) → ClassifyRecord (JavaScript Processor) → ClassifyUsageType (AI Classifier)
+Source → ClassifyRecord (JavaScript Processor) → ClassifyUsageType (AI Classifier)
 ```
 
 The JavaScript Processor first extracts and validates the raw fields. The AI Classifier then applies the trained model to write the classification result.
@@ -173,33 +197,38 @@ The JavaScript Processor first extracts and validates the raw fields. The AI Cla
 
 **AI Classifier configuration (`ClassifyUsageType`):**
 
-**Rule: `Always`** — fires on every message (no conditions):
+**Rule: `Vodafone Voice`** — fires only on Vodafone Voice records:
 
 | Field | Value |
 |-------|-------|
-| AI model | `USAGE_CLASSIFIER` |
+| Logical operator | `At least one` |
+| Condition 1 | `Detail.D2_05.CALL_TYPE_IND == "X"` |
+| Condition 2 | `Detail.D2_05.RATE_SCENARIO_CD != "Y"` |
+| AI model | `UsageClassifier` |
 | Path to load trained model from | `/models/usage-classifier-v2.joblib` |
 
-**Input attribute mappings:**
+**Input attribute mappings (16 features):**
 
-| Attribute | Type | Message accessor |
-|-----------|------|-----------------|
-| `USAGE_BYTE_12` | Long | `message.USAGE_BYTE_12` |
-| `USAGE_BYTE_60` | Long | `message.USAGE_BYTE_60` |
+| Attribute | Message accessor |
+|-----------|----------------|
+| `call_type_ind` | `Detail.D2_05.CALL_TYPE_IND` |
+| `call_destination_ind` | `Detail.D2_05.CALL_DESTINATION_IND` |
+| `rate_scenario_cd` | `Detail.D2_05.RATE_SCENARIO_CD` |
+| ... (12 more attributes) | `Detail.D2_05.*` |
 
 **Classification attribute mappings:**
 
-| Attribute | Type | Message accessor |
-|-----------|------|-----------------|
-| `USAGE_CASE_ID` | String | `message.USAGE_CASE_ID` |
+| Attribute | Message accessor |
+|-----------|----------------|
+| `usage_case_id` | `Detail.MD.USAGE_CASE_ID` |
 
 **What happens at runtime:**
 
-1. A message arrives with `USAGE_BYTE_12 = 4521` and `USAGE_BYTE_60 = 18420`
-2. The `Always` rule fires (no conditions to check)
-3. The processor reads `USAGE_BYTE_12` and `USAGE_BYTE_60` from the message
-4. The trained Weka model predicts the class label, e.g., `PREMIUM`
-5. The processor writes `PREMIUM` to `message.USAGE_CASE_ID`
+1. A message arrives with `Detail.D2_05.CALL_TYPE_IND = "X"` and `Detail.D2_05.RATE_SCENARIO_CD = "Z"`
+2. The `Vodafone Voice` rule fires (at least one condition matches)
+3. The processor reads all 16 input attributes from the message
+4. The trained Weka model predicts the class label, e.g., `VOICE_STANDARD`
+5. The processor writes `VOICE_STANDARD` to `Detail.MD.USAGE_CASE_ID`
 6. The message continues downstream with the classified `USAGE_CASE_ID`
 
 ## See Also
@@ -207,6 +236,7 @@ The JavaScript Processor first extracts and validates the raw fields. The AI Cla
 - [AI Trainer](./asset-flow-ai-trainer) — for training and exporting new AI models before using them with this Processor
 - [AI Service](../../assets/services/asset-service-ai) — for defining the interface to an AI model
 - [AI Model Resource](../../assets/resources/asset-resource-ai-model) — for the technical model definition used by both Trainer and Classifier
+- [QuickScript Language Reference](../../language-reference/quickscript) — for the expression language used in rule conditions
 - [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
 
 ---
