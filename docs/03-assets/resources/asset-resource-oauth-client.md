@@ -47,7 +47,6 @@ The Secrets table stores one or more client secrets associated with this OAuth c
 
 **`Secret`** — the secret value. Enter the raw secret string or reference a value stored in [Secret Storage](../resources/asset-resource-secret).
 
-Click **Add a secret** to add a new row.
 
 ## Behavior
 
@@ -56,6 +55,30 @@ Click **Add a secret** to add a new row.
 - The Resource validates that `Authority`, `Client ID`, and `Token Endpoint` are non-blank at configuration export time; missing values produce build errors
 - At engine startup, credentials are registered with Security Storage — connections and targets reference this Resource by name to retrieve them
 - Multiple secrets can coexist; the connection or target selects the appropriate one based on its configuration
+
+
+
+## Example
+
+The following configures an OAuthClient for a Microsoft Entra ID application:
+
+**OAuth Client:**
+
+| Field | Value |
+|-------|-------|
+| Authority | `https://login.microsoftonline.com/3d45e6a8-1b2c-4f9e-9x10-d8e7f6c5b4a3/v2.0` |
+| Client ID | `3c4e5f6a-1b2d-4f8e-9a10-d8e7f6c5b4a3` |
+| Token Endpoint | `https://login.microsoftonline.com/3d45e6a8-1b2c-4f9e-9x10-d8e7f6c5b4a3/oauth2/v2.0/token` |
+| Device Authorization Endpoint | _(empty — not used)_ |
+
+**Secrets:**
+
+| Description | Valid until | Secret |
+|-------------|-------------|--------|
+| Production | _(empty)_ | `{{secrets.myazureapp-prod-key}}` |
+| Development | _(empty)_ | `{{secrets.myazureapp-dev-key}}` |
+
+The secret values reference keys stored in [Secret Storage](../resources/asset-resource-secret), keeping credentials out of the Project configuration file. The Production secret has no expiry; the Development secret can be rotated independently.
 
 ## See Also
 
