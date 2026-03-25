@@ -128,6 +128,12 @@ A Workflow reads messages from an **Amazon SQS queue**, processes each message w
 SQS Source → JavaScript Processor → Input Frame Committer
 ```
 
+<div className="frame">
+
+![Workflow showing SQS trigger → JavaScript Processor → Input Frame Committer](.asset-flow-input-frame-committer_images/workflow.png)
+
+</div>
+
 **Configuration:**
 
 | Setting | Value |
