@@ -11,6 +11,8 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import CredentialType from '../../snippets/assets/_credential-type.md';
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 
 # HTTP Service
@@ -290,14 +292,17 @@ Processor** like so:
 * **`Logical Service Name`**: The name by which we want to use the Service within JavaScript. This could be the
   exact same name as the Service or a name which you can choose. Must not include whitespaces.
 
-### Access the Service from within JavaScript
+### Access the Service from within a Script Processor
 
-Now let’s finally use the service within JavaScript:
+Now let's use the service within a script processor:
+
 
 #### Reading from ReST endpoint
 
-
 Example: `services.MyHttpService.GetCustomerById({id: customer_id})`
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 let httpData = null; // will receive a message type
@@ -318,21 +323,32 @@ if (httpData && httpData.data.length > 0) {
 }
 ```
 
-:::tip Note: Service functions return a Message
-Note how the Service function returns a [Message](../../language-reference/javascript/API/classes/Message) as a result
-type.
+  </TabItem>
+  <TabItem value="python" label="Python">
 
-You can find the results in `message.data` as an array.
-If we are only expecting one row as a result, we can test it with `httpData.data.length > 0` and access the first row with `httpData.data[0]`.
-:::
+```python
+http_data = None  # will receive a message type
+customer_id = 1234
+try:
+    # Invoke service function.
+    http_data = services.MyHttpService.GetCustomerById({'id': customer_id})
+except error:
+    # handle error
+    pass
+
+# Output the customer data to the processor log
+if http_data and http_data.data.length > 0:
+    processor.log_info('Name: ' + http_data.data[0].Name)
+    processor.log_info('Address: ' + http_data.data[0].Address)
+else:
+    processor.log_info('No customer data found for customer ID ' + str(customer_id))
+```
+
+  </TabItem>
+</Tabs>
 
 <Testcase></Testcase>
 
-
 ---
-
-:::tip Fields marked with "**macro supported**"
-You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
-:::
 
 <WipDisclaimer></WipDisclaimer>

@@ -11,6 +11,8 @@ tags:
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # DynamoDB Service
 
@@ -238,27 +240,58 @@ and a Read function named `ReadCustomerData`:
 | Parameter type | `ServiceCustomerDataTypes.ReadReadCustomerData.Parameter` |
 | Result type | `ServiceCustomerDataTypes.ReadReadCustomerData.Result` |
 
-### Using a DynamoDB Service from a JavaScript Processor
+### Using a DynamoDB Service from a Script Processor
 
-To use a DynamoDB Service in a JavaScript processor:
+To use a DynamoDB Service in a JavaScript or Python processor:
 
 1. **Add the DynamoDB Service asset** to your project and configure Collections or Functions with the desired table operations.
 
-2. **Reference the Service** from your JavaScript processor by importing or accessing it via the `services` global:
-   ```javascript
-   const dynamoDBService = services.<ServiceName>;
-   ```
+2. **Reference the Service** from your processor by accessing it via the `services` global:
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
+```javascript
+const dynamoDBService = services.<ServiceName>;
+```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+dynamo_db_service = services.<ServiceName>
+```
+
+  </TabItem>
+</Tabs>
 
 3. **Call service functions** using the auto-generated function names:
-   ```javascript
-   let result = dynamoDBService.<Operation><FunctionName>({ /* parameters */ });
-   ```
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
+```javascript
+let result = dynamoDBService.<Operation><FunctionName>({ /* parameters */ });
+```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+result = dynamo_db_service.<Operation><FunctionName>({ /* parameters */ })
+```
+
+  </TabItem>
+</Tabs>
 
 4. **Handle the response** using the auto-generated result types in the Data Dictionary.
 
-For more information, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md).
+For more information, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md) or [Python Processor](../processors-flow/asset-flow-python).
 
-#### JavaScript Example: Write
+#### Example: Write
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 /**
@@ -281,6 +314,33 @@ function writeMsisdnData(msisdn, msisdnData) {
     }
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+from datetime import datetime
+
+def write_msisdn_data(msisdn, msisdn_data):
+    """Write the customer data to Dynamo DB.
+    @param msisdn: MSISDN to write
+    @param msisdn_data: Data of the MSISDN
+    """
+    services.CustomerDataDynamoDBService.WriteCustomerData({
+        'MSISDN': msisdn,
+        'LastModified': str(datetime.now()),
+        'Data': msisdn_data.data
+    })
+
+    if not message_msisdn_data_valid(msisdn_data):
+        report_data_failure(
+            'Resulting MsisdnData is invalid (no Brand)',
+            msisdn_data
+        )
+```
+
+  </TabItem>
+</Tabs>
 
 In this example:
 - `services.CustomerDataDynamoDBService` references the DynamoDB Service asset

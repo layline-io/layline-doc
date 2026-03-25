@@ -10,6 +10,8 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Email Service
 
@@ -90,65 +92,40 @@ Processor** like so:
 * **`Logical Service Name`** (2): The name by which we want to use the Service within JavaScript. This could be the
   exact same name as the Service or a name which you can choose. Must not include whitespaces.
 
-#### Access the Service from within JavaScript
+#### Access the Service from within a Script Processor
 
-Now let’s finally use the service within JavaScript:
 
-##### Preparing Message to be Sent via Email
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
-const OUTPUT_PORT = processor.getOutputPort('Output-1');
-
-// We are defining a function "sendEmail" that will take emailMessage parameters 
-// as input parameters
-function sendEmail() {
-    // Example #1:
-    services.EmailService.Send({
-        From: {
-            Address: "user@email.com",
-            PersonalName: "John Doe"
-        },
-        To: [{
-            Address: "recipient@email.com",
-            PersonalName: "Recipient"
-        }],
-        Cc: [{
-            Address: "cc@email.com",
-            PersonalName: "CC"
-        }],
-        Subject:    "Processing for Stream " + stream.getName(),
-        Body:       "The subject mentioned file has been processed"    });  
-
-    // Example #2:
-    services.EmailService.Send({
-        From: "user@email.com",
-        ToList: "recipient_1@email.com;recipient_2@email.com",
-        CcList: "cc_1@email.com;cc_2@email.com",
-        Subject: "Processing for Stream " + stream.getName(),
-        Body: "The subject mentioned file has been processed"
-    });
-}
-
-/**
- * Handle a message
- */
-export function onMessage() {
-    stream.emit(message, OUTPUT_PORT);
-}
-
-// the onStreamEnd function will send an email about the  
-// processing of a file including its name
-export function onStreamEnd() {
-    // call function "sendEmail"
-    sendEmail(email);
-}
+// Example: sending an email
+services.EmailService.Send({
+    To: 'user@example.com',
+    From: 'sender@example.com',
+    Subject: 'Important Update',
+    Body: 'This is the email body.'
+});
 ```
 
-Check out the [Email Service class (Javascript)](/docs/04-language-reference/javascript/02-API/classes/Email.md) or the [Email Message class (Python)](/docs/04-language-reference/python/02-API/classes/Email.md) for more details.
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+# Example: sending an email
+services.EmailService.Send({
+    'To': 'user@example.com',
+    'From': 'sender@example.com',
+    'Subject': 'Important Update',
+    'Body': 'This is the email body.'
+})
+```
+
+  </TabItem>
+</Tabs>
 
 <Testcase></Testcase>
 
 ---
 
 <WipDisclaimer></WipDisclaimer>
-

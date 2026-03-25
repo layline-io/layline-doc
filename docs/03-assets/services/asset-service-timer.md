@@ -11,6 +11,8 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Timer Service
 
@@ -134,6 +136,9 @@ In our case we want to schedule the message's payload to be re-presented back to
 
 To do this, and because we have linked `MyTimerService` to the Javascript Processor, we can use the [Timer Service's methods](/docs/04-language-reference/javascript/02-API/classes/TimerService.md) to schedule the message's payload within the `MyTimerGroup` Timer Group. This scheduling happens in the Timer Service's internal storage and is independent of the message's payload. The Reactive Cluster takes care of the storage and retrieval of the payloads.
 
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
 ```javascript
 // We are defining a function "sendTeams" that will take teamsMessage parameters 
 // as input parameters
@@ -149,6 +154,26 @@ export function onMessage() {
     }
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+# We are defining a function "send_teams" that will take teams_message parameters 
+# as input parameters
+def on_message():
+    if message.data.MY_SOURCE.MY_RECORD_TYPE == 'HIGH_PRIORITY':
+        # Schedule the message's payload in 60 seconds within the `MyTimerGroup` Timer Group
+        services.TimerService.ScheduleOnce({
+            'Group': 'MyTimerGroup',
+            'When': DateTime.now().plus_seconds(60),
+            'Name': message.data.MY_SOURCE.MY_RECORD_UUID,
+            'Payload': message.data
+        })
+```
+
+  </TabItem>
+</Tabs>
 
 :::warning Name must be unique
 Please note that the `Name` parameter must be unique within the Timer Group. You cannot schedule multiple messages with the same name within the same Timer Group.
@@ -201,6 +226,9 @@ When the Workflow is running, the Timer Service in the background will periodica
 
 In the Script Processor `CheckPayload`[6] you can then look at the payload and do whatever you need to process the data. If a condition which the payload relies on is not met, you can simply discard the message and wait for the next cycle where it will be presented again. This happens until the message is committed via a Frame Committer Processor `MyCommitter` [7]. For the message to reach the Frame Committer Processor it needs to be passed on from the `CheckPayload` Script Processor.
 
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
 ```javascript
 // We are defining a function "checkPayload" that will take payload parameters 
 // as input parameters
@@ -226,6 +254,36 @@ export function onMessage() {
     }
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+# We are defining a function "check_payload" that will take payload parameters 
+# as input parameters
+def on_message():
+    if message.data:
+        stream.log_info("Payload received: " + str(message.data.Payload))
+        # This is an example received as a message from the Timer Service
+        # message.data = {
+        #     "Group":"TimerGroup",
+        #     "Name":"TEST-05",
+        #     "NumberOfTry":1,
+        #     "FireTime":"2025-02-26T15:00:27.006+01:00",
+        #     "ScheduledFireTime":"2025-02-26T15:00:27+01:00",
+        #     "Payload":"MyPayload"
+        # }
+        #
+        # Do something with the payload
+        # ...
+
+        # Emitting the message to the "Committer" Processor will commit the message.
+        # Otherwise the message will be rescheduled again for the configured period of time (depends on the type of schedule).
+        stream.emit(message, OUTPUT_PORT)  # -> Send message to "Committer" Processor
+```
+
+  </TabItem>
+</Tabs>
 
 A message from the Timer Service will be received as a message with the following structure (example content):
 

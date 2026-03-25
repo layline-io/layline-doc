@@ -12,6 +12,8 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
 import Testcase from '../../snippets/assets/_asset-service-test.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Teams Service
 
@@ -119,11 +121,15 @@ Processor** like so:
 * **`Logical Service Name`** (2): The name by which we want to use the Service within JavaScript. This could be the
   exact same name as the Service or a name which you can choose. Must not include whitespaces.
 
-#### Access the Service from within JavaScript
+#### Access the Service from within a Script Processor
 
-Now let’s finally use the service within JavaScript:
+Now let's use the service within a script processor:
+
 
 ##### Preparing Message to be Send to Teams
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 // We are defining a function "sendTeams" that will take teamsMessage parameters 
@@ -159,9 +165,45 @@ function onDetail(message) {
 }
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+# We are defining a function "send_teams" that will take teams_message parameters 
+# as input parameters
+def send_teams(teams_message):
+    if send_teams:
+        services.TeamsService.SendMessage({
+            'Conversation':   teams_message.conversation,            
+            'Content':        teams_message.content
+        })  
+
+
+/**
+ * Handle a message
+ */
+def on_message():
+    on_detail(message)
+
+# the on_detail function will send a teams_message for 
+# every message that arrives from the input file
+def on_detail(message):
+    # populate the teams_message structure to hand over input parameters for "send_teams" function
+    teams_message = {
+        'conversation':   "Support Group",
+        'content':        "Processing for Stream " + stream.getName() + " recordNo " + str(message.id)      
+    }
+    # call function "send_teams"
+    send_teams(teams_message)
+    # output the incoming message
+    stream.emit(message, OUTPUT_PORT)
+```
+
+  </TabItem>
+</Tabs>
+
 <Testcase></Testcase>
 
 ---
 
 <WipDisclaimer></WipDisclaimer>
-
