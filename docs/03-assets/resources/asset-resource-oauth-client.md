@@ -39,14 +39,15 @@ Use this Resource to:
 
 ### Secrets
 
-The Secrets table stores one or more client secrets associated with this OAuth client. Each row has three columns:
+The Secrets table stores one or more client secrets associated with this OAuth client. Each row has four columns:
 
-**`Description`** — a human-readable label identifying the secret (e.g. `Production key 2024`).
+**`Description`** — a human-readable label identifying the secret (e.g. `Production`).
 
 **`Valid until`** — an optional expiry date. If set, the secret is considered invalid after this date.
 
-**`Secret`** — the secret value. Enter the raw secret string or reference a value stored in [Secret Storage](../resources/asset-resource-secret).
+**`Secret`** — the secret value. Enable **Use a secret** to reference a value from [Secret Storage](../resources/asset-resource-secret), or disable it to enter a raw secret value directly.
 
+**`Ops`** — remove this secret entry.
 
 ## Behavior
 
@@ -55,8 +56,6 @@ The Secrets table stores one or more client secrets associated with this OAuth c
 - The Resource validates that `Authority`, `Client ID`, and `Token Endpoint` are non-blank at configuration export time; missing values produce build errors
 - At engine startup, credentials are registered with Security Storage — connections and targets reference this Resource by name to retrieve them
 - Multiple secrets can coexist; the connection or target selects the appropriate one based on its configuration
-
-
 
 ## Example
 
@@ -75,10 +74,16 @@ The following configures an OAuthClient for a Microsoft Entra ID application:
 
 | Description | Valid until | Secret |
 |-------------|-------------|--------|
-| Production | _(empty)_ | `{{secrets.myazureapp-prod-key}}` |
-| Development | _(empty)_ | `{{secrets.myazureapp-dev-key}}` |
+| Production | `2030-03-21` | Use a secret: `api-password` |
+| Development | `2030-03-21` | Raw value (masked in UI) |
 
-The secret values reference keys stored in [Secret Storage](../resources/asset-resource-secret), keeping credentials out of the Project configuration file. The Production secret has no expiry; the Development secret can be rotated independently.
+The Production secret references a key stored in [Secret Storage](../resources/asset-resource-secret), keeping credentials out of the Project configuration file. The Development secret uses a raw value for convenience during development. Both secrets have a validity period set to March 2030.
+
+<div className="frame">
+
+![OAuthClient Resource editor](.asset-resource-oauth-client_images/oauth-client-editor.png)
+
+</div>
 
 ## See Also
 
