@@ -9,25 +9,27 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 ## Purpose
 
-The **StatusDefinition** Resource defines a set of **vendors**, each with a collection of named **status codes** and their associated **multilingual message texts**. When the Reactive Engine starts, this Resource registers all of this information with the engine's central **Status Registry** singleton.
+The **StatusDefinition** Resource defines a set of **vendors**, each with a collection of named **status codes** and their associated **multilingual message texts**. When the Reactive Engine starts, this Resource registers all of its contents with the engine's central **Status Registry** singleton.
 
-The Status Registry provides a lookup service used throughout the engine: any component that needs to report or retrieve a status message calls `StatusRegistry.getMessage(vendorId, code)` to get the appropriate human-readable text in the configured language. This means status messages from external systems (EDI servers, HTTP APIs, database engines, etc.) can be mapped to clear, localized descriptions rather than raw numeric codes.
+The Status Registry acts as a lookup service used throughout the engine: any component — including your own JavaScript or Python scripts — can call `Status.create(vendor, statusCode, ...params)` to build a Status object, and then read `status.message` to get the human-readable message with all placeholders substituted.
+
+This means status codes from external systems (EDI servers, HTTP APIs, database engines, etc.) can be mapped to clear, localized descriptions rather than raw numeric codes, and your scripts can participate in this system.
 
 Use this Resource to:
 
 - Define custom status codes for an external system or protocol you are integrating with
 - Provide multilingual translations for status messages (e.g., English, German, French)
 - Organize status codes under logical vendor groupings
-- Override or extend the built-in layline.io status code set
+- Enable scripts to produce rich, localized status messages with dynamic parameters
 
 ## How It Works
 
 ### The Status Registry
 
-The Status Registry is a JVM-wide singleton (`StatusRegistry.getInstance()`) that acts as a centralized phone book for status messages. It is initialized at engine startup:
+The Status Registry is a JVM-wide singleton (`StatusRegistry.getInstance()`) initialized at engine startup:
 
 1. The built-in `LAY` vendor (vendor ID `1`) is registered first with layline.io's built-in status messages
-2. Each StatusDefinition Resource then adds its vendors and status messages on top
+2. Each StatusDefinition Resource then adds its vendors and status codes on top
 3. Throughout the engine, code calls `StatusRegistry.getMessage(vendorId, code, language)` to look up the text for a given status
 
 ### Vendor IDs
@@ -79,18 +81,9 @@ For the selected vendor, a table lists all defined status codes. Each row has fo
 
 **`Logical Name`** — a human-readable identifier for the status (e.g., `CONNECTION_TIMEOUT`, `AUTH_FAILED`). This is the key used to look up the message at runtime alongside the vendor ID and language.
 
-**`Languages`** — the multilingual message text entries. Each entry has a language code (ISO 639-1) and a corresponding translated message string. Click the **+** button on a status row to add a language entry. Language codes for inherited entries are not editable.
+**`Languages`** — the multilingual message text entries. Each entry has a language code (ISO 639-1) and a corresponding translated message string. Message text may contain positional placeholders — see [Using Status Codes in Scripts](#using-status-codes-in-scripts) below. Click the **+** button on a status row to add a language entry.
 
 **`Operations`** — add a language entry to this status, or delete the status entirely.
-
-#### Adding a Language Entry
-
-Click the **+** button on a status row to add a new language entry. A new row appears with:
-
-- **Language code** dropdown — select the language (e.g., `en`, `de`)
-- **Translation** — the message text for this language
-
-Clicking the trash icon on a language entry removes that translation. At least one language entry must remain per status.
 
 ## Behavior
 
@@ -117,16 +110,75 @@ A project integrates with an external EDI server called **Acme EDI**. The EDI se
 
 | ID | Logical Name | Languages |
 |----|-------------|-----------|
-| `1` | `CONNECTION_TIMEOUT` | `en` → `Connection to EDI server timed out`; `de` → `Zeitüberschreitung der Verbindung zum EDI-Server` |
-| `2` | `AUTH_FAILED` | `en` → `Authentication with EDI server failed`; `de` → `Authentifizierung mit EDI-Server fehlgeschlagen` |
-| `3` | `MESSAGE_REJECTED` | `en` → `EDI message rejected by server`; `de` → `EDI-Nachricht vom Server abgelehnt` |
+| `10` | `SEQ_DUPLICATE` | `en` → `duplicate sequence number %1 in sequence group %2`; `de` → `Doppelte Sequenznummer %1 in Sequenzgruppe %2` |
+| `11` | `SEQ_KEY_UNKNOWN` | `en` → `unknown sequence key '%1'`; `de` → `Unbekannter Sequenzschlüssel '%1'` |
 
-When the integration layer encounters status `(vendor=10, code=2)` and the configured language is `de`, the Status Registry returns `Authentifizierung mit EDI-Server fehlgeschlagen`.
+<div className="frame">
 
-## Screenshots Needed
+![StatusDefinition Resource editor](.asset-resource-status-definition_images/status-definition-editor.png)
 
-1. **Vendor selected with status table** — showing a vendor with multiple statuses, language entries expanded, and the Operations column visible
-2. **Language entry detail** — close-up of the language dropdown and translation text area for a single status
+</div>
+
+## Using Status Codes in Scripts
+
+Status codes defined in a StatusDefinition Resource can be used in JavaScript and Python scripts to produce rich, localized status messages with dynamic parameters.
+
+### Placeholder Syntax
+
+Message texts may contain positional placeholders: `%1`, `%2`, `%3`, etc. When you create a Status with `Status.create()`, pass the values as arguments — they replace the placeholders in order.
+
+Supported formats:
+- `%1`, `%2`, etc. — positional parameter (1-indexed)
+- `%{1}`, `%{2}`, etc. — same as above, with braces
+- `%%` — escaped percent sign (renders as a literal `%`)
+
+### JavaScript
+
+```javascript
+// Look up the ACM vendor by short name
+const ACM = Status.getVendorByShortName('ACM');
+
+// Create a Status with the SEQ_DUPLICATE code and two parameters
+const status = Status.create(ACM, 'SEQ_DUPLICATE', '42', 'orders');
+
+// Read the expanded message
+const msg = status.message;
+// Result: "duplicate sequence number 42 in sequence group orders"
+
+// Access individual parts
+const code = status.code;        // 'SEQ_DUPLICATE'
+const vendorId = status.vendorId; // 10
+const params = status.parameters; // ['42', 'orders']
+```
+
+### Python
+
+```python
+# Look up the ACM vendor by short name
+ACM = Status.get_vendor_by_short_name('ACM')
+
+# Create a Status with the SEQ_DUPLICATE code and two parameters
+status = Status.create(ACM, 'SEQ_DUPLICATE', '42', 'orders')
+
+# Read the expanded message
+msg = status.message
+# Result: "duplicate sequence number 42 in sequence group orders"
+
+# Access individual parts
+code = status.code        # 'SEQ_DUPLICATE'
+vendor_id = status.vendor_id  # 10
+params = status.parameters # ['42', 'orders']
+```
+
+### Vendor Lookup Methods
+
+Both languages provide three ways to get a Vendor instance:
+
+| Method | Description |
+|--------|-------------|
+| `Status.getVendorByShortName(name)` | Look up by Vendor Short Name (e.g., `'ACM'`) |
+| `Status.getVendorByLongName(name)` | Look up by Vendor Long Name (e.g., `'Acme EDI Server'`) |
+| `Status.getVendorById(id)` | Look up by numeric Vendor ID (e.g., `10`) |
 
 ## See Also
 
