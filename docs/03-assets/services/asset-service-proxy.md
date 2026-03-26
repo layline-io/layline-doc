@@ -118,7 +118,7 @@ In your Javascript Processor asset, add a **Service Mapping**:
 In your script, invoke the proxied function exactly as you would a local one:
 
 ```javascript
-export function onMessage(m) {
+export function onMessage() {
     const result = services.MyProxy.GetCustomer({
         customerId: m.data.customerId
     });

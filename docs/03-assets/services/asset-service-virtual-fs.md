@@ -81,7 +81,7 @@ import TabItem from '@theme/TabItem';
 
 **Copy a file:**
 ```javascript
-export function onMessage(m) {
+export function onMessage() {
     services.MyVfsService.CopyFile({
         sourcePath: '/data/inbox/report.pdf',
         targetPath: '/data/archive/report.pdf'
@@ -91,7 +91,7 @@ export function onMessage(m) {
 
 **Check if a file exists:**
 ```javascript
-export function onMessage(m) {
+export function onMessage() {
     const exists = services.MyVfsService.FileExists({
         path: '/data/inbox/report.pdf'
     });
@@ -107,7 +107,7 @@ export function onMessage(m) {
 
 **Read and process a file:**
 ```javascript
-export function onMessage(m) {
+export function onMessage() {
     const fileContent = services.MyVfsService.ReadFile({
         path: '/data/inbox/data.json'
     });
@@ -121,7 +121,7 @@ export function onMessage(m) {
 
 **Write a file:**
 ```javascript
-export function onMessage(m) {
+export function onMessage() {
     services.MyVfsService.WriteFile({
         path: '/data/outbox/result.json',
         content: JSON.stringify(resultData)
@@ -131,7 +131,7 @@ export function onMessage(m) {
 
 **Move a file:**
 ```javascript
-export function onMessage(m) {
+export function onMessage() {
     services.MyVfsService.MoveFile({
         sourcePath: '/data/inbox/report.pdf',
         targetPath: '/data/archive/report.pdf'
@@ -141,7 +141,7 @@ export function onMessage(m) {
 
 **Delete a file:**
 ```javascript
-export function onMessage(m) {
+export function onMessage() {
     services.MyVfsService.DeleteFile({
         path: '/data/inbox/report.pdf'
     });
