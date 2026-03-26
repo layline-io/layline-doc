@@ -4,6 +4,8 @@ description: AI Service Asset. Expose trained AI models as callable functions fr
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # AI Service
 
@@ -85,6 +87,9 @@ In the JavaScript or Python Processor editor, add the AI Service to the processo
 
 **2. Access the service in your script:**
 
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
 ```javascript
 // Access the AI Service via the services pseudo-class
 const aiService = services.MyServiceName;
@@ -101,18 +106,40 @@ const result = await aiService.CreditScoreGermanClassify({
 processor.logInfo("Classification result: " + result.classLabel);
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+# Access the AI Service via the services pseudo-class
+ai_service = services.MyServiceName
+
+# Call the Classify function for a trained model
+result = ai_service.CreditScoreGermanClassify({
+    # Input attributes matching the AI Model Resource's input schema
+    "call_type_ind": "VOICE",
+    "rate_scenario_cd": "STANDARD",
+    "primary_mcc_mnc": "26201"
+})
+
+# The result contains the predicted class label
+processor.log_info("Classification result: " + result.classLabel)
+```
+
+  </TabItem>
+</Tabs>
+
 ### Model versioning
 
 Each training run of the same model path creates a new version in AI Storage. Use `:latest` to always use the most recent version, or specify `:<version-number>` to pin to a known version.
 
 ## Example
 
-An AI Service exposes a trained credit scoring model for use by a JavaScript Processor.
+An AI Service exposes a trained credit scoring model for use by a script processor.
 
 **Step 1 — Prerequisites:**
 
 - AI Model Resource: `AI-Model-J48` (Weka J48, defines input attributes and class attribute)
-- Trained model in AI Storage: `models/usage-classifier:latest`
+- Trained model in AI Storage: `models/credit-score_german:latest`
 - Data Dictionary namespace: `CreditScore` (defines the input/output attribute types)
 
 **Step 2 — Configure the AI Service:**
@@ -129,12 +156,15 @@ This exposes the function `CreditScoreGermanClassify(...)` in scripts.
 
 **Step 3 — Link the service to a script processor:**
 
-In a JavaScript Processor, add `CreditScoringService` to its Service Assignments.
+In a JavaScript or Python Processor, add `CreditScoringService` to its Service Assignments.
 
-**Step 4 — Call from JavaScript:**
+**Step 4 — Classify records:**
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
-export function onMessage() {
+export function onMessage(message) {
     // Call the AI Classification function
     const result = await services.CreditScoringService.CreditScoreGermanClassify({
         call_type_ind: message.callType,
@@ -149,6 +179,28 @@ export function onMessage() {
 }
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+OUTPUT_PORT = processor.get_output_port('Output')
+
+def on_message(message):
+    # Call the AI Classification function
+    result = services.CreditScoringService.CreditScoreGermanClassify({
+        "call_type_ind": message.callType,
+        "rate_scenario_cd": message.rateScenario,
+        "primary_mcc_mnc": message.mccMnc
+    })
+
+    # Use the classification result
+    message.classification = result.classLabel
+
+    stream.emit(message, OUTPUT_PORT)
+```
+
+  </TabItem>
+</Tabs>
 
 **Incremental training via BeginTraining / Learn / FinishTraining**
 
@@ -168,6 +220,9 @@ This exposes the functions `CreditScoreGermanBeginTraining(...)`, `CreditScoreGe
 
 **Step 2 — Begin a training session:**
 
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
 ```javascript
 export function onMessage(message) {
     // Begin a new training session
@@ -176,7 +231,23 @@ export function onMessage(message) {
 }
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def on_message(message):
+    # Begin a new training session
+    handle = services.CreditScoringService.CreditScoreGermanBeginTraining({})
+    processor.log_info("Training session started, handle: " + handle)
+```
+
+  </TabItem>
+</Tabs>
+
 **Step 3 — Add training data:**
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 export function onMessage(message) {
@@ -194,7 +265,31 @@ export function onMessage(message) {
 }
 ```
 
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def on_message(message):
+    # Add a training record to the session
+    services.CreditScoringService.CreditScoreGermanLearn({
+        "Handle": sessionHandle,  # the handle returned by BeginTraining
+        "Attribute": {
+            "call_type_ind": message.callType,
+            "rate_scenario_cd": message.rateScenario,
+            "primary_mcc_mnc": message.mccMnc,
+            "classLabel": message.actualClass  # the known correct label
+        }
+    })
+    processor.log_info("Training data added")
+```
+
+  </TabItem>
+</Tabs>
+
 **Step 4 — Finish training:**
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
 
 ```javascript
 export function onStreamEnd() {
@@ -205,6 +300,21 @@ export function onStreamEnd() {
     processor.logInfo("Model training complete, stored in AI Storage");
 }
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def on_stream_end():
+    # Complete training and store the model in AI Storage
+    services.CreditScoringService.CreditScoreGermanFinishTraining({
+        "Handle": sessionHandle  # the handle returned by BeginTraining
+    })
+    processor.log_info("Model training complete, stored in AI Storage")
+```
+
+  </TabItem>
+</Tabs>
 
 ## See Also
 
