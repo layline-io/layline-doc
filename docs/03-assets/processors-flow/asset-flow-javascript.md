@@ -111,6 +111,102 @@ Entering invalid JSON will cause problems when using the Arguments in the underl
 
 <FailureHandling></FailureHandling>
 
+## Example
+
+A Workflow reads transaction records from a **File Source**. Each record carries a `transaction_id`, `customer_id`, `amount`, and `currency`. The JavaScript Processor enriches every record by looking up the customer's `name` and `loyalty_tier` from a **Reference Data** dictionary, then passes the enriched record downstream.
+
+```mermaid
+graph LR
+    A["CSV File<br/>(File Source)"] --> B["EnrichTransaction<br/>(JavaScript Processor)"]
+    B --> C["Output<br/>(File Sink)"]
+```
+
+**Workflow configuration:**
+
+| Setting | Value |
+|---------|-------|
+| Root Script | `EnrichTransaction.js` (defined in Sources) |
+| Input Port | `Input` (default) |
+| Output Port | `Output` (default) |
+
+**Script: `EnrichTransaction.js`**
+
+```javascript
+// Variable to hold the output port, initialized in onInit
+let OUTPUT_PORT = null;
+
+// Reference to the Reference Data dictionary
+const CUSTOMER_DICT = dictionary.getDataDictionary('CustomerReference');
+
+// Initialize output port on startup
+export function onInit() {
+    OUTPUT_PORT = processor.getOutputPort('Output');
+}
+
+// Process each incoming message
+export function onMessage() {
+    const customerId = message.data.getString('customer_id');
+    const amount = message.data.getFloat('amount');
+    const currency = message.data.getString('currency');
+
+    // Look up customer data from the Reference Data dictionary
+    let customerName = 'Unknown';
+    let loyaltyTier = 'STANDARD';
+
+    if (CUSTOMER_DICT.exists(customerId)) {
+        const customer = CUSTOMER_DICT.get(customerId);
+        customerName = customer.getString('name');
+        loyaltyTier = customer.getString('loyalty_tier');
+    } else {
+        // Log a warning for unrecognised customer IDs
+        stream.logWarn('Customer not found in Reference Data: ' + customerId);
+    }
+
+    // Write enriched fields back to the outgoing message
+    message.data.setString('customer_name', customerName);
+    message.data.setString('loyalty_tier', loyaltyTier);
+
+    // Pass the enriched record to the next processor
+    stream.emit(message, OUTPUT_PORT);
+}
+```
+
+**What happens at runtime:**
+
+1. The File Source reads a CSV record and produces a message with fields `transaction_id`, `customer_id`, `amount`, `currency`
+2. The JavaScript Processor's `onMessage` hook fires for each message
+3. The script extracts `customer_id` and looks it up in the `CustomerReference` Data Dictionary
+4. If found, `customer_name` and `loyalty_tier` are written to the message
+5. If not found, a warning is logged and default values are used
+6. The enriched message is emitted to the `Output` port and continues downstream
+
+**Arguments example:**
+
+To make the same script reusable across different dictionaries, pass the dictionary name as an argument:
+
+```json
+[
+  \{ "key": "dictionaryName", "value": "CustomerReference" \}
+]
+```
+
+```javascript
+export function onInit() {
+    const args = processor.getArguments();
+    const dictName = args?.dictionaryName ?? 'CustomerReference';
+    CUSTOMER_DICT = dictionary.getDataDictionary(dictName);
+    OUTPUT_PORT = processor.getOutputPort('Output');
+}
+```
+
+## See Also
+
+- [JavaScript Language Reference](../../language-reference/javascript/javascript_introduction) — full JavaScript language guide for layline.io
+- [JavaScriptProcessor API](../../language-reference/javascript/02-API/classes/JavaScriptProcessor) — available hooks and lifecycle methods
+- [DataDictionary API](../../language-reference/javascript/02-API/classes/DataDictionary) — working with Reference Data in scripts
+- [PackedMessage API](../../language-reference/javascript/02-API/classes/PackedMessage) — reading and writing message fields
+- [Service Mappings](#service-mappings) — connecting external services (HTTP, DB, etc.) to a JavaScript Asset
+
 ---
 
 <WipDisclaimer></WipDisclaimer>

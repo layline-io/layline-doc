@@ -111,6 +111,102 @@ Entering invalid JSON will cause problems when using the Arguments in the underl
 
 <FailureHandling></FailureHandling>
 
+## Example
+
+A Workflow reads transaction records from a **File Source**. Each record carries a `transaction_id`, `customer_id`, `amount`, and `currency`. The Python Processor enriches every record by looking up the customer's `name` and `loyalty_tier` from a **Reference Data** dictionary, then passes the enriched record downstream.
+
+```mermaid
+graph LR
+    A["CSV File<br/>(File Source)"] --> B["EnrichTransaction<br/>(Python Processor)"]
+    B --> C["Output<br/>(File Sink)"]
+```
+
+**Workflow configuration:**
+
+| Setting | Value |
+|---------|-------|
+| Root Script | `enrich_transaction.py` (defined in Sources) |
+| Input Port | `Input` (default) |
+| Output Port | `Output` (default) |
+
+**Script: `enrich_transaction.py`**
+
+```python
+import json
+
+# Global variables initialised in on_init
+OUTPUT_PORT = None
+CUSTOMER_DICT = None
+
+
+def on_init():
+    """Called once when the Project starts. Set up the output port and dictionary."""
+    global OUTPUT_PORT, CUSTOMER_DICT
+    OUTPUT_PORT = processor.get_output_port('Output')
+    CUSTOMER_DICT = dictionary.get_data_dictionary('CustomerReference')
+
+
+def on_message():
+    """Called for every message arriving at the Input port."""
+    customer_id = message.data.get_string('customer_id')
+    amount = message.data.get_float('amount')
+    currency = message.data.get_string('currency')
+
+    # Look up customer data from the Reference Data dictionary
+    customer_name = 'Unknown'
+    loyalty_tier = 'STANDARD'
+
+    if CUSTOMER_DICT.exists(customer_id):
+        customer = CUSTOMER_DICT.get(customer_id)
+        customer_name = customer.get_string('name')
+        loyalty_tier = customer.get_string('loyalty_tier')
+    else:
+        # Log a warning for unrecognised customer IDs
+        stream.log_warn('Customer not found in Reference Data: ' + str(customer_id))
+
+    # Write enriched fields back to the outgoing message
+    message.data.set_string('customer_name', customer_name)
+    message.data.set_string('loyalty_tier', loyalty_tier)
+
+    # Pass the enriched record to the next processor
+    stream.emit(message, OUTPUT_PORT)
+```
+
+**What happens at runtime:**
+
+1. The File Source reads a CSV record and produces a message with fields `transaction_id`, `customer_id`, `amount`, `currency`
+2. The Python Processor's `on_message` hook fires for each message
+3. The script extracts `customer_id` and looks it up in the `CustomerReference` Data Dictionary
+4. If found, `customer_name` and `loyalty_tier` are written to the message
+5. If not found, a warning is logged and default values are used
+6. The enriched message is emitted to the `Output` port and continues downstream
+
+**Arguments example:**
+
+To make the same script reusable across different dictionaries, pass the dictionary name as an argument:
+
+```json
+[
+  \{ "key": "dictionaryName", "value": "CustomerReference" \}
+]
+```
+
+```python
+def on_init():
+    global OUTPUT_PORT, CUSTOMER_DICT
+    args = processor.get_arguments()
+    dict_name = args.get('dictionaryName', 'CustomerReference') if args else 'CustomerReference'
+    CUSTOMER_DICT = dictionary.get_data_dictionary(dict_name)
+    OUTPUT_PORT = processor.get_output_port('Output')
+```
+
+## See Also
+
+- [Python Language Reference](../../language-reference/python/python_introduction) — full Python language guide for layline.io
+- [PythonProcessor API](../../language-reference/python/02-API/classes/PythonProcessor) — available hooks and lifecycle methods
+- [DataDictionary API (Python)](../../language-reference/python/02-API/classes/DataDictionary) — working with Reference Data in Python scripts
+- [PackedMessage API (Python)](../../language-reference/python/02-API/classes/PackedMessage) — reading and writing message fields
+- [Service Mappings](#service-mappings) — connecting external services (HTTP, DB, etc.) to a Python Asset
 
 Please see section [Forced Errors](../../language-reference/python/python_introduction#forced-errors) to understand how to use these settings.
 
