@@ -403,7 +403,7 @@ Let's also say following the Input Processor we again have a Javascript Flow Pro
 This could then access the data like with any other applied format like so:
 
 ```js title="Accessing parse data of Format MyNewDataDictionary"
-function onMessage(message) {
+export function onMessage() {
     if (message.is(dataDictionary.type.Record.Boat)) {
         onBoat(message);
     } else if (message.is(dataDictionary.type.Record.Car)) {
