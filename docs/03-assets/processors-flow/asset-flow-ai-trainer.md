@@ -11,30 +11,33 @@ import OutputPorts from '../../snippets/assets/_output-ports-single.md';
 
 ## Purpose
 
-The **AI Trainer** Processor trains one or more AI models using message data collected from a Workflow. It reads attribute values from incoming messages, assembles them into a training dataset, trains a machine learning model using the Weka library, and exports the trained model as a `.joblib` file.
+The **AI Trainer** Processor trains one or more AI models using message data collected from a Workflow. It reads attribute values from incoming messages, assembles them into a training dataset, trains a machine learning model using the Weka library, and stores the trained model in the cluster's **AI Storage**.
 
-The trained model file is then used by an [AI Classifier](./asset-flow-ai-classifier) Processor to classify new messages.
+The trained model is then used by an [AI Classifier](./asset-flow-ai-classifier) Processor to classify new messages.
 
 Use this Processor to:
 
 - Train a classification model from historical or sample message data
 - Collect training data over time (time/message-based mode) or in batches (stream-based mode)
-- Produce a trained `.joblib` model file that can be deployed for real-time classification
+- Store a trained model in AI Storage that can be deployed for real-time classification
 
-The relationship between Trainer and Classifier:
+```mermaid
+graph LR
+    A["[AI Trainer]"] --> B["AI Storage<br/>(Cluster)"]
+    B --> C["[AI Classifier]"]
+    C --> D["Classified messages"]
+```
 
-```
-[AI Trainer] → produces trained .joblib model file
-                    ↓
-[AI Classifier] → loads the .joblib file and applies it to new messages
-```
+:::note
+Each training run creates a new **version** of the model in AI Storage, identified by a running number. Use `:latest` to reference the most recent version, or `:<version-number>` to reference a specific version.
+:::
 
 ## Prerequisites
 
 This processor requires:
 
 1. An **[AI Model Resource](../resources/asset-resource-ai)** that defines the model's input/output attributes, model type (e.g., J48 Decision Tree, Multilayer Perceptron), and hyperparameters
-2. A path where the trained model file will be saved (`.joblib` format)
+2. A path in AI Storage where the trained model will be stored
 3. Incoming messages with attribute values that can be mapped to the model's input schema
 
 ## How Training Works
@@ -44,10 +47,9 @@ The Trainer accumulates message data as training samples and then runs a Weka mo
 1. **Collect** — read attribute values from each incoming message using the configured input attribute mappings
 2. **Aggregate** — store collected samples until the training trigger conditions are met
 3. **Train** — run the selected Weka training algorithm on the collected dataset
-4. **Export** — serialize the trained model to the configured `.joblib` file path
-5. **Register** — make the trained model available via **Operations → AI Storage**
+4. **Store** — save the trained model to the configured path in AI Storage
 
-Once trained, the model file can be referenced by an AI Classifier Processor using the same path.
+Each training run creates a new version of the model. The path combined with the version number uniquely identifies each model version in AI Storage.
 
 ## Configuration
 
@@ -98,14 +100,14 @@ Training begins when BOTH minimum conditions are met, and ends when EITHER maxim
 
 #### Models to train
 
-The models table lists all AI Model Resources to train and where to save the trained `.joblib` file for each.
+The models table lists all AI Model Resources to train and where to store each trained model in AI Storage.
 
 Click **+ ADD MODEL** to add a new model configuration. Each row has:
 
 | Column | Description |
 |--------|-------------|
 | **Model name** | A human-readable name for this trained model (e.g., `VoiceClassifier-v2`) |
-| **Path to trained model file** | The file path where the trained `.joblib` model will be saved. Supports [macros](../../language-reference/macros) for per-environment values. |
+| **Path in AI Storage** | The path in AI Storage where the trained model will be stored (e.g., `models/my-classifier`). Supports [macros](../../language-reference/macros) for per-environment values. |
 | **AI Model** | Reference to an existing **AI Model Resource** in the Project — defines the input/output schema, model type, and hyperparameters |
 | **Model type** | The Weka algorithm to use (read from the selected AI Model Resource, e.g., `J48 Decision Tree`, `Multilayer Perceptron`) |
 
@@ -137,7 +139,7 @@ These are the features that will be fed to the Weka model during training.
 1. Each message in the stream is added to the training batch as a training sample
 2. The input attribute mappings are used to extract feature values from each message
 3. When the stream ends (onCommit), the collected batch is used to train the model
-4. The trained model is serialized to the configured `.joblib` path
+4. The trained model is stored in AI Storage at the configured path
 5. If the stream contains fewer messages than `Minimum number of training messages`, training is skipped
 
 ### Time / Message Based Mode
@@ -177,7 +179,7 @@ The JavaScript Processor extracts and formats the relevant attributes from each 
 
 | Model name | Path to trained model file | AI Model | Model type |
 |-----------|--------------------------|----------|------------|
-| `UsageClassifier-v2` | `/models/usage-classifier-v2.joblib` | `UsageClassifier` | J48 Decision Tree |
+| `UsageClassifier-v2` | `models/usage-classifier-v2` | `UsageClassifier` | J48 Decision Tree |
 
 **Input attribute mappings:**
 
@@ -195,7 +197,7 @@ The JavaScript Processor extracts and formats the relevant attributes from each 
 3. The AI Trainer collects the formatted messages into a training batch
 4. After 1000+ messages have been collected, the Trainer assembles the feature data into a Weka dataset
 5. The J48 Decision Tree algorithm trains on the dataset
-6. The trained model is serialized to `/models/usage-classifier-v2.joblib`
+6. The trained model is stored in AI Storage at `models/usage-classifier-v2`
 7. The model is now available for the AI Classifier to load and use for classification
 
 ## See Also

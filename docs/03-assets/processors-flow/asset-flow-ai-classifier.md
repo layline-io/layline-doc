@@ -29,7 +29,7 @@ Use this Processor to:
 - Enrich messages with inferred attributes derived from their content
 
 :::tip Prerequisite
-This processor requires a **trained AI model file** (`.joblib` format) and an **AI Model Resource** that defines the model's technical details. Both must exist in the Project before you can configure this processor. If you need to train a model first, use the [AI Trainer](./asset-flow-ai-trainer) Processor.
+This processor requires an **AI Model Resource** that defines the model's technical details and a reference to a trained model stored in the cluster's **AI Storage**. If you need to train a model first, use the [AI Trainer](./asset-flow-ai-trainer) Processor.
 :::
 
 ## Configuration
@@ -109,7 +109,7 @@ recordType == "PREMIUM"
 
 **`AI model`** — a reference to an **AI Model Resource** in the Project. The Resource defines the model type (e.g., Weka) and which attributes are available as inputs and outputs.
 
-**`Path to load trained model from`** — the file path to the trained model file (`.joblib`). Must be a valid path accessible to the Reactive Engine at runtime. Supports [macros](../../language-reference/macros) for per-environment values.
+**`Path in AI Storage`** — the path of the trained model in AI Storage (e.g., `models/my-classifier`). Append `:<version>` to reference a specific version (e.g., `models/my-classifier:3`) or `:latest` for the most recent version. Supports [macros](../../language-reference/macros) for per-environment values.
 
 #### Rule: Input attribute mappings
 
@@ -160,7 +160,7 @@ When a message arrives:
 3. If the conditions match (or the rule has **None** conditions), the processor:
    a. Reads values from the message using the **input attribute mappings**
    b. Assembles them into a feature vector
-   c. Passes the vector to the trained AI model (loaded from the `.joblib` file)
+   c. Passes the vector to the trained AI model (loaded from AI Storage)
    d. Receives the predicted class label from the model
    e. Writes the prediction to the message attribute specified in the **classification attribute mappings**
 4. The message is emitted on the output port to the next processor in the Workflow
@@ -173,8 +173,8 @@ All settings support inheritance — a child Asset can override individual rules
 
 ### Trained Model Requirements
 
-- The model must be in **`.joblib`** format (serialized via Python's `joblib` or Weka's model serialization)
-- The model must be accessible at the path specified in `Path to load trained model from` on the Reactive Engine host
+- The model must be stored in the cluster's **AI Storage** at the path specified in `Path in AI Storage`
+- Append `:<version>` to reference a specific trained version (e.g., `models/my-classifier:3`) or `:latest` for the most recent version
 - The model's input schema (number and type of features) must match the **Input attribute mappings** configured in the rule
 - The model's output must be a **class label** (string or categorical) — the classifier writes this label directly to the configured message attribute
 
@@ -206,7 +206,7 @@ The JavaScript Processor first extracts and validates the raw fields. The AI Cla
 | Condition 1 | `Detail.D2_05.CALL_TYPE_IND == "X"` |
 | Condition 2 | `Detail.D2_05.RATE_SCENARIO_CD != "Y"` |
 | AI model | `UsageClassifier` |
-| Path to load trained model from | `/models/usage-classifier-v2.joblib` |
+| Path in AI Storage | `models/usage-classifier-v2` |
 
 **Input attribute mappings (16 features):**
 
@@ -228,7 +228,7 @@ The JavaScript Processor first extracts and validates the raw fields. The AI Cla
 1. A message arrives with `Detail.D2_05.CALL_TYPE_IND = "X"` and `Detail.D2_05.RATE_SCENARIO_CD = "Z"`
 2. The `Vodafone Voice` rule fires (at least one condition matches)
 3. The processor reads all 16 input attributes from the message
-4. The trained Weka model predicts the class label, e.g., `VOICE_STANDARD`
+4. The trained model from AI Storage predicts the class label, e.g., `VOICE_STANDARD`
 5. The processor writes `VOICE_STANDARD` to `Detail.MD.USAGE_CASE_ID`
 6. The message continues downstream with the classified `USAGE_CASE_ID`
 
