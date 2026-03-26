@@ -51,6 +51,12 @@ Click **+ Add model** to add a row:
 | **Model** | Reference to an **AI Model Resource** in the Project — defines the input/output schema and algorithm type. Select from the filtered list of AI Model Resources. |
 | **Trained model** | The path in AI Storage where the trained model is stored (e.g., `models/usage-classifier`). Append `:<version>` for a specific version (e.g., `models/usage-classifier:3`) or `:latest` for the most recent version. |
 
+<div className="frame">
+
+![AI Service Settings — data dictionary namespace and AI Models table](.asset-service-ai_images/ai-service-settings.png)
+
+</div>
+
 ## Behavior
 
 ### Service requests
@@ -72,26 +78,30 @@ All settings are inheritable — define base configuration on a parent AI Servic
 
 ## Example
 
-A Workflow exposes a trained telecom usage classifier as a service.
+An AI Service exposes a trained credit scoring model for use by external callers.
 
 **Step 1 — Prerequisites:**
 
-- AI Model Resource: `UsageClassifier` (Weka J48, input: call attributes, output: `usage_case_id`)
-- Trained model in AI Storage: `models/usage-classifier` (V2 is the latest version)
+- AI Model Resource: `AI-Model-J48` (Weka J48, defines input attributes and class attribute)
+- Trained model in AI Storage: `models/usage-classifier:latest` (latest version)
 
 **Step 2 — Configure the AI Service:**
 
 | Setting | Value |
 |---------|-------|
-| Name | `UsageClassifierService` |
-| Data dictionary namespace | `usage-service-params` |
-| Logical name | `classifier` |
-| Model | `UsageClassifier` |
+| Name | `CreditScoringService` |
+| Data dictionary namespace | `CreditScore` |
+| Logical name | `CreditScoreGerman` |
+| Model | `AI-Model-J48` |
 | Trained model | `models/usage-classifier:latest` |
 
-**Step 3 — Call the service:**
+**Step 3 — Test the service:**
 
-Send a request with the input attributes matching the AI Model Resource's input schema. The service returns the predicted class label.
+Use the **Test** tab in the Service Editor to create test cases and send requests to the service endpoint. Configure a test case with the input data matching the Data Dictionary namespace (`CreditScore`). Execute the test to verify the service returns the correct classification result.
+
+**Step 4 — Invoke at runtime:**
+
+At runtime, callers send HTTP requests to the service endpoint. The request payload must include the input attributes defined in the Data Dictionary namespace. The service loads the trained model from AI Storage, runs inference, and returns the predicted class label in the response.
 
 ## See Also
 
