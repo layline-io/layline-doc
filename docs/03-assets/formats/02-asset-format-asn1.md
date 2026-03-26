@@ -203,7 +203,7 @@ Explore the `Message Creation` box:
   We can then for example access this information within a Javascript Flow Processor script like so:
 
   ```js title="MyAsn1Processor.js""
-  function onMessage(message) {
+  export function onMessage() {
       
     if (message.typeName === 'Detail') {
       const msisdn = message.data.asn1.mobileTerminatedCall.basicCallInformation.chargeableSubscriber.simChargeableSubscriber.msisdn;
