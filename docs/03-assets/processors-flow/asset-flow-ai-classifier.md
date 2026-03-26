@@ -182,10 +182,10 @@ All settings support inheritance — a child Asset can override individual rules
 
 A Workflow reads raw usage records from a telecom source. Before further processing, each record needs to be classified by its **usage type** based on multiple record attributes.
 
-**Workflow chain:**
-
-```
-Source → ClassifyRecord (JavaScript Processor) → ClassifyUsageType (AI Classifier)
+```mermaid
+graph LR
+    A["Source"] --> B["ClassifyRecord<br/>(JavaScript Processor)"]
+    B --> C["ClassifyUsageType<br/>(AI Classifier)"]
 ```
 
 The JavaScript Processor first extracts and validates the raw fields. The AI Classifier then applies the trained model to write the classification result.

@@ -76,7 +76,7 @@ Controls how and when training data is collected and when training is triggered.
 | Option | Description |
 |-------|-------------|
 | **Stream based** | All messages from the same stream are collected as one training batch. Training starts when the stream ends (onCommit). Use this when you have a complete labeled dataset in one stream. |
-| **Time / Message based** | Messages are collected continuously over time. Training starts when both the minimum message count AND minimum duration have been reached, and ends when either the maximum message count OR maximum duration is reached. Use this for continuous data collection with periodic retraining. |
+| **Time / Message based** | Messages are collected continuously over time. Training begins when at least one of the minimum conditions (message count or duration) is satisfied, and ends when at least one of the maximum conditions (message count or duration) is reached. Use this for continuous data collection with periodic retraining. |
 
 #### Training set limits (Time / Message based only)
 
@@ -86,17 +86,17 @@ Configure the boundaries for when training starts and stops:
 
 | Field | Description |
 |-------|-------------|
-| **Minimum number of training messages** | The smallest number of messages required before training begins. Leave empty for no minimum. |
-| **Minimum training duration [s]** | The shortest time period (in seconds) that must elapse before training begins. Leave empty for no minimum. |
+| **Minimum number of training messages** | The minimum number of messages required before training can be performed. If fewer messages are received than this threshold, training will not run. |
+| **Minimum training duration [s]** | The minimum duration (in seconds) that training data must be streamed before training can be performed. |
 
 **Maximum training set:**
 
 | Field | Description |
 |-------|-------------|
-| **Maximum number of training messages** | The maximum number of messages to collect before training starts. Leave empty for no maximum. |
-| **Maximum training duration [s]** | The maximum time period (in seconds) before training starts, regardless of message count. Leave empty for no maximum. |
+| **Maximum number of training messages** | The maximum number of messages to collect before training ends. |
+| **Maximum training duration [s]** | The maximum duration (in seconds) before training ends, regardless of message count. |
 
-Training begins when BOTH minimum conditions are met, and ends when EITHER maximum condition is met.
+Training begins when at least one minimum condition is satisfied, and ends when at least one maximum condition is reached. Stream-based mode does not use these parameters — all incoming messages are used for training regardless of count or duration.
 
 #### Models to train
 
@@ -146,8 +146,8 @@ These are the features that will be fed to the Weka model during training.
 
 1. Messages are collected continuously over time
 2. Each message adds to the training batch
-3. Training starts when both minimum conditions are met (message count AND time elapsed)
-4. Training ends when either maximum condition is met (message count reached OR time elapsed)
+3. Training starts when at least one minimum condition is satisfied (message count OR time elapsed)
+4. Training ends when at least one maximum condition is reached (message count OR time elapsed)
 5. If neither maximum is set, training never triggers automatically (manual reset required)
 6. After training, the batch is cleared and collection begins again for the next training cycle
 
@@ -159,10 +159,10 @@ All settings support inheritance — a child Asset can override individual model
 
 A Workflow receives usage records and needs to train a classification model to categorize records by type.
 
-**Workflow chain:**
-
-```
-SAMPLE2 (Source) → ExtractTrainingData (JavaScript Processor) → TrainUsageClassifier (AI Trainer)
+```mermaid
+graph LR
+    A["SAMPLE2<br/>(Source)"] --> B["ExtractTrainingData<br/>(JavaScript Processor)"]
+    B --> C["TrainUsageClassifier<br/>(AI Trainer)"]
 ```
 
 The JavaScript Processor extracts and formats the relevant attributes from each record before passing them to the Trainer.
