@@ -64,7 +64,7 @@ Defines the input schema and output (class) attribute for the model. These must 
 
 <div className="frame">
 
-![Attributes — class attribute and input attribute table](.asset-resource-ai-model_images/ai-model-attributes.png)
+![Attributes — class attribute and input attribute table](.asset-resource-ai-model_images/ai-model-j48-settings.png)
 
 </div>
 
@@ -99,7 +99,7 @@ Appears when `Weka J48` is selected as the Classifier.
 
 <div className="frame">
 
-![J48 Settings — pruning and tree construction parameters](.asset-resource-ai-model_images/ai-model-j48-settings.png)
+![J48 Settings — pruning and tree construction parameters](.asset-resource-ai-model_images/ai-model-attributes.png)
 
 </div>
 
