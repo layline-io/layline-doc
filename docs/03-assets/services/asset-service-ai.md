@@ -123,7 +123,7 @@ An AI Service exposes a trained credit scoring model for use by a JavaScript Pro
 | Data dictionary namespace | `CreditScore` |
 | Logical name | `CreditScoreGerman` |
 | Model | `AI-Model-J48` |
-| Trained model | `models/usage-classifier:latest` |
+| Trained model | `models/credit-score_german:latest` |
 
 This exposes the function `CreditScoreGermanClassify(...)` in scripts.
 
@@ -134,7 +134,7 @@ In a JavaScript Processor, add `CreditScoringService` to its Service Assignments
 **Step 4 — Call from JavaScript:**
 
 ```javascript
-export function onMessage(message) {
+export function onMessage() {
     // Call the AI Classification function
     const result = await services.CreditScoringService.CreditScoreGermanClassify({
         call_type_ind: message.callType,
