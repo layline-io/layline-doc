@@ -149,6 +149,63 @@ export function onMessage() {
 }
 ```
 
+
+**Incremental training via BeginTraining / Learn / FinishTraining**
+
+If no trained model path is set in the AI Models table (only an AI Model Resource is configured), the service exposes three additional functions for online/incremental training. This is useful when training data arrives over time and you want to update the model without a full batch training run.
+
+**Step 1 — Configure for training:**
+
+| Setting | Value |
+|---------|-------|
+| Name | `CreditScoringService` |
+| Data dictionary namespace | `CreditScore` |
+| Logical name | `CreditScoreGerman` |
+| Model | `AI-Model-J48` |
+| Trained model | *(leave empty — this enables the training functions)* |
+
+This exposes the functions `CreditScoreGermanBeginTraining(...)`, `CreditScoreGermanLearn(...)`, and `CreditScoreGermanFinishTraining(...)`.
+
+**Step 2 — Begin a training session:**
+
+```javascript
+export function onMessage(message) {
+    // Begin a new training session
+    const handle = await services.CreditScoringService.CreditScoreGermanBeginTraining({});
+    processor.logInfo("Training session started, handle: " + handle);
+}
+```
+
+**Step 3 — Add training data:**
+
+```javascript
+export function onMessage(message) {
+    // Add a training record to the session
+    await services.CreditScoringService.CreditScoreGermanLearn({
+        Handle: sessionHandle,  // the handle returned by BeginTraining
+        Attribute: {
+            call_type_ind: message.callType,
+            rate_scenario_cd: message.rateScenario,
+            primary_mcc_mnc: message.mccMnc,
+            classLabel: message.actualClass  // the known correct label
+        }
+    });
+    processor.logInfo("Training data added");
+}
+```
+
+**Step 4 — Finish training:**
+
+```javascript
+export function onStreamEnd() {
+    // Complete training and store the model in AI Storage
+    await services.CreditScoringService.CreditScoreGermanFinishTraining({
+        Handle: sessionHandle  // the handle returned by BeginTraining
+    });
+    processor.logInfo("Model training complete, stored in AI Storage");
+}
+```
+
 ## See Also
 
 - [AI Trainer](../processors-flow/asset-flow-ai-trainer) — train and store models in AI Storage
