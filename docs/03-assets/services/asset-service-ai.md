@@ -1,6 +1,6 @@
 ---
 title: AI Service
-description: AI Service Asset. Expose one or more trained AI models as callable service endpoints so that Workflows or external clients can send classification requests.
+description: AI Service Asset. Expose trained AI models as callable functions from JavaScript or Python scripts within a Workflow.
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
@@ -9,15 +9,13 @@ import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 ## Purpose
 
-The **AI Service** exposes one or more trained AI models as callable service endpoints. Workflows or external clients can send requests to the endpoint, passing input data for classification. The service loads the trained model from AI Storage, runs inference, and returns the result.
-
-An AI Service acts as the bridge between a trained model (stored in AI Storage after a training run) and the outside world. It is used when you want to classify individual records through a service call rather than as part of a streaming pipeline.
+The **AI Service** exposes one or more trained AI models as callable functions from JavaScript or Python scripts within a Workflow. Scripts access the service via the `services` pseudo-class — the same mechanism used for other services like JDBC or KVS. Each logical model name in the service maps to a dynamically generated function that can classify new data.
 
 ## Prerequisites
 
 - One or more **AI Model Resources** defining the model type, input/output schema, and hyperparameters
 - One or more **trained models** stored in AI Storage (trained by an [AI Trainer](../processors-flow/asset-flow-ai-trainer))
-- Optionally, a **Data Dictionary** with attributes defined for the service request and response parameters
+- A **Data Dictionary** with attributes defined in the namespace configured in the service
 
 :::tip
 If you are not familiar with the AI workflow in layline.io, read [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) first.
@@ -47,8 +45,8 @@ Click **+ Add model** to add a row:
 
 | Column | Description |
 |--------|-------------|
-| **Logical name** | The parameter name exposed to service callers. Callers pass input data using this name. |
-| **Model** | Reference to an **AI Model Resource** in the Project — defines the input/output schema and algorithm type. Select from the filtered list of AI Model Resources. |
+| **Logical name** | The logical name for this model. This name is used as part of the function name in scripts. |
+| **Model** | Reference to an **AI Model Resource** in the Project. Select from the filtered list of AI Model Resources. |
 | **Trained model** | The path in AI Storage where the trained model is stored (e.g., `models/usage-classifier`). Append `:<version>` for a specific version (e.g., `models/usage-classifier:3`) or `:latest` for the most recent version. |
 
 <div className="frame">
@@ -59,31 +57,63 @@ Click **+ Add model** to add a row:
 
 ## Behavior
 
-### Service requests
+### Exposed functions
 
-When a request arrives at the AI Service endpoint:
+For each row in the AI Models table, the service dynamically generates one or more functions:
 
-1. The service validates the request payload against the Data Dictionary namespace
-2. It looks up the trained model path for each logical name in the request
-3. It loads the corresponding trained model from AI Storage
-4. It runs inference and returns the classification result
+**If a trained model path is set:**
+
+| Function name | Description |
+|--------------|-------------|
+| `<LogicalName>Classify` | Classify a single record using the trained model |
+
+**If an AI Model Resource is set (without a trained model path):**
+
+| Function name | Description |
+|--------------|-------------|
+| `<LogicalName>BeginTraining` | Begin a new training session |
+| `<LogicalName>Learn` | Add training data to the session |
+| `<LogicalName>FinishTraining` | Complete training and store the model in AI Storage |
+
+### Invocation from scripts
+
+The AI Service is accessed from JavaScript or Python scripts the same way as other services (JDBC, KVS, etc.) — via the `services` pseudo-class.
+
+**1. Link the service to a script processor:**
+
+In the JavaScript or Python Processor editor, add the AI Service to the processor's **Service Assignments**.
+
+**2. Access the service in your script:**
+
+```javascript
+// Access the AI Service via the services pseudo-class
+const aiService = services.MyServiceName;
+
+// Call the Classify function for a trained model
+const result = await aiService.CreditScoreGermanClassify({
+    // Input attributes matching the AI Model Resource's input schema
+    call_type_ind: "VOICE",
+    rate_scenario_cd: "STANDARD",
+    primary_mcc_mnc: "26201"
+});
+
+// The result contains the predicted class label
+processor.logInfo("Classification result: " + result.classLabel);
+```
 
 ### Model versioning
 
 Each training run of the same model path creates a new version in AI Storage. Use `:latest` to always use the most recent version, or specify `:<version-number>` to pin to a known version.
 
-### Inheritance
-
-All settings are inheritable — define base configuration on a parent AI Service and override specific logical names or model references on child instances.
-
 ## Example
 
-An AI Service exposes a trained credit scoring model for use by external callers.
+An AI Service exposes a trained credit scoring model for use by a JavaScript Processor.
 
 **Step 1 — Prerequisites:**
 
 - AI Model Resource: `AI-Model-J48` (Weka J48, defines input attributes and class attribute)
-- Trained model in AI Storage: `models/usage-classifier:latest` (latest version)
+- Trained model in AI Storage: `models/usage-classifier:latest`
+- Data Dictionary namespace: `CreditScore` (defines the input/output attribute types)
 
 **Step 2 — Configure the AI Service:**
 
@@ -95,13 +125,29 @@ An AI Service exposes a trained credit scoring model for use by external callers
 | Model | `AI-Model-J48` |
 | Trained model | `models/usage-classifier:latest` |
 
-**Step 3 — Test the service:**
+This exposes the function `CreditScoreGermanClassify(...)` in scripts.
 
-Use the **Test** tab in the Service Editor to create test cases and send requests to the service endpoint. Configure a test case with the input data matching the Data Dictionary namespace (`CreditScore`). Execute the test to verify the service returns the correct classification result.
+**Step 3 — Link the service to a script processor:**
 
-**Step 4 — Invoke at runtime:**
+In a JavaScript Processor, add `CreditScoringService` to its Service Assignments.
 
-At runtime, callers send HTTP requests to the service endpoint. The request payload must include the input attributes defined in the Data Dictionary namespace. The service loads the trained model from AI Storage, runs inference, and returns the predicted class label in the response.
+**Step 4 — Call from JavaScript:**
+
+```javascript
+export function onMessage(message) {
+    // Call the AI Classification function
+    const result = await services.CreditScoringService.CreditScoreGermanClassify({
+        call_type_ind: message.callType,
+        rate_scenario_cd: message.rateScenario,
+        primary_mcc_mnc: message.mccMnc
+    });
+
+    // Use the classification result
+    message.classification = result.classLabel;
+
+    stream.emit(message, OUTPUT_PORT);
+}
+```
 
 ## See Also
 
