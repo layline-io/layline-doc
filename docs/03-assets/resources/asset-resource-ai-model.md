@@ -62,19 +62,25 @@ MLP is a feedforward neural network trained via backpropagation. It consists of 
 
 Defines the input schema and output (class) attribute for the model. These must match the attribute names and types in your Data Dictionary.
 
+<div className="frame">
+
+![Attributes — class attribute and input attribute table](.asset-resource-ai-model_images/ai-model-attributes.png)
+
+</div>
+
 #### Classification Result
 
-**`Class attribute name`** *(inheritable)* — The name of the attribute that holds the classification result. This is the attribute the model will predict.
+**`Class attribute name`** — The name of the attribute that holds the classification result. This is the attribute the model will predict.
 
-**`Class attribute type`** *(inheritable)* — The data type of the class attribute:
+**`Class attribute type`** — The data type of the class attribute:
 
-| Type | Description |
-|------|-------------|
-| Numeric | Continuous numerical value |
-| String | Text or categorical label |
-| Nominal | One of a fixed set of categories |
-| Date | Date/time value |
-| Relation | Nested relation |
+| Type | Description | Example |
+|------|-------------|---------|
+| Numeric | Continuous numerical value | `age > 21`, `amount = 149.99` |
+| String | Free-text value | `"PREMIUM"`, `"error_message"` |
+| Nominal | One of a fixed set of categories | `call_type_ind IN {VOICE, SMS, DATA}` |
+| Date | Date or time value | `2024-01-15`, `14:30:00` |
+| Relation | Nested relation | A customer record containing multiple transaction attributes |
 
 #### Input Attributes
 
@@ -82,8 +88,8 @@ The attributes used as features for training and classification. Each row define
 
 | Column | Description |
 |--------|-------------|
-| **Name** *(inheritable)* | The attribute name — must match a Data Dictionary attribute |
-| **Type** *(inheritable)* | The attribute's data type (same options as Class Attribute Type above) |
+| **Name** | The attribute name — must match a Data Dictionary attribute |
+| **Type** | The attribute's data type (same options as Class Attribute Type above) |
 
 Click **+ ADD ATTRIBUTE** to add rows to the table. You need one row for each feature the model will use.
 
@@ -91,61 +97,69 @@ Click **+ ADD ATTRIBUTE** to add rows to the table. You need one row for each fe
 
 Appears when `Weka J48` is selected as the Classifier.
 
-**`Create an unpruned tree`** *(inheritable)* — When enabled, the tree is not pruned after building. An unpruned tree may perform better on training data but risks overfitting. Default: disabled.
+<div className="frame">
 
-**`Collapse`** *(inheritable)* — When enabled, the tree is collapsed (pruned) after building. Default: enabled.
+![J48 Settings — pruning and tree construction parameters](.asset-resource-ai-model_images/ai-model-j48-settings.png)
 
-**`Confidence factor`** *(inheritable)* — Controls how aggressively the tree is pruned. Smaller values = more aggressive pruning = simpler tree. Range: 0.0–1.0. Default: `0.25`.
+</div>
 
-**`Minimum number of objects`** *(inheritable)* — The minimum number of instances required at a leaf node. Higher values produce simpler trees; lower values allow more detail. Default: `2`.
+**`Create an unpruned tree`** — When enabled, the tree is not pruned after building. An unpruned tree may perform better on training data but risks overfitting. Default: disabled.
 
-**`Use MDL correction`** *(inheritable)* — Uses Minimum Description Length correction when pruning, which penalizes tree complexity. Default: enabled.
+**`Collapse`** — When enabled, the tree is collapsed (pruned) after building. Default: enabled.
 
-**`Use Laplace`** *(inheritable)* — Applies Laplace smoothing when calculating class probabilities. Default: disabled.
+**`Confidence factor`** — Controls how aggressively the tree is pruned. Smaller values = more aggressive pruning = simpler tree. Range: 0.0–1.0. Default: `0.25`.
 
-**`Reduced error pruning`** *(inheritable)* — Uses reduced error pruning instead of confidence-based pruning. Default: disabled.
+**`Minimum number of objects`** — The minimum number of instances required at a leaf node. Higher values produce simpler trees; lower values allow more detail. Default: `2`.
 
-**`Number of folds`** *(inheritable)* — The number of folds used for cross-validation during pruning. Higher values give more reliable estimates but take longer. Default: `3`.
+**`Use MDL correction`** — Uses Minimum Description Length correction when pruning, which penalizes tree complexity. Default: enabled.
 
-**`Binary splits`** *(inheritable)* — Uses binary splits for nominal attributes instead of multi-way splits. Default: disabled.
+**`Use Laplace`** — Applies Laplace smoothing when calculating class probabilities. Default: disabled.
 
-**`Subtree raising`** *(inheritable)* — Enables subtree raising during pruning. Default: enabled.
+**`Reduced error pruning`** — Uses reduced error pruning instead of confidence-based pruning. Default: disabled.
 
-**`Seed`** *(inheritable)* — Random seed used for tree construction and pruning. Set to a fixed value for reproducible results across runs. Default: `1`.
+**`Number of folds`** — The number of folds used for cross-validation during pruning. Higher values give more reliable estimates but take longer. Default: `3`.
 
-**`Do not make split point actual value`** *(inheritable)* — Prevents the algorithm from using actual data values as split points, forcing more generalizable boundaries. Default: disabled.
+**`Binary splits`** — Uses binary splits for nominal attributes instead of multi-way splits. Default: disabled.
+
+**`Subtree raising`** — Enables subtree raising during pruning. Default: enabled.
+
+**`Seed`** — Random seed used for tree construction and pruning. Set to a fixed value for reproducible results across runs. Default: `1`.
+
+**`Do not make split point actual value`** — Prevents the algorithm from using actual data values as split points, forcing more generalizable boundaries. Default: disabled.
 
 ### Weka Multilayer Perceptron Settings
 
 Appears when `Weka Multilayer Perceptron` is selected as the Classifier.
 
-**`Learning rate`** *(inheritable)* — Controls how much each weight update contributes during backpropagation. Range: 0.0–1.0. Higher values learn faster but may overshoot; lower values are more stable but slower. Default: `0.3`.
+<div className="frame">
 
-**`Momentum`** *(inheritable)* — Adds a fraction of the previous weight update to the current update, helping to prevent oscillation and escape local minima. Range: 0.0–1.0. Default: `0.2`.
+![Multilayer Perceptron Settings — neural network training parameters](.asset-resource-ai-model_images/ai-model-mlp-settings.png)
 
-**`Training time`** *(inheritable)* — The maximum number of epochs (complete passes through the training data) for training. Default: `500`.
+</div>
 
-**`Validation set size`** *(inheritable)* — The percentage of training data held out for validation during training. Validation is used to monitor convergence and stop early if overfitting begins. Default: `0` (no validation set).
+**`Learning rate`** — Controls how much each weight update contributes during backpropagation. Range: 0.0–1.0. Higher values learn faster but may overshoot; lower values are more stable but slower. Default: `0.3`.
 
-**`Validation threshold`** *(inheritable)* — The minimum improvement in validation error required to continue training. If validation error does not improve by this threshold for two consecutive epochs, training stops early. Default: `20`.
+**`Momentum`** — Adds a fraction of the previous weight update to the current update, helping to prevent oscillation and escape local minima. Range: 0.0–1.0. Default: `0.2`.
 
-**`Seed`** *(inheritable)* — Random seed for weight initialization and shuffling. Set to a fixed value for reproducible results. Default: `0`.
+**`Training time`** — The maximum number of epochs (complete passes through the training data) for training. Default: `500`.
 
-**`Hidden layers`** *(inheritable)* — Defines the number and size of hidden layers. Specify as comma-separated integers (e.g., `4,8,2`). Special letters can also be used: `a` = (attributes + classes)/2, `i` = number of attributes, `o` = number of classes, `t` = attributes + classes. Default: `a` (one hidden layer with (attributes + classes)/2 nodes).
+**`Validation set size`** — The percentage of training data held out for validation during training. Validation is used to monitor convergence and stop early if overfitting begins. Default: `0` (no validation set).
 
-**`Nominal to binary filter`** *(inheritable)* — Converts nominal attributes to binary attributes before training. May improve performance when your data contains nominal features. Default: disabled.
+**`Validation threshold`** — The minimum improvement in validation error required to continue training. If validation error does not improve by this threshold for two consecutive epochs, training stops early. Default: `20`.
 
-**`Normalize numeric class`** *(inheritable)* — Normalizes the class attribute values to the 0–1 range before training. Only applies when the class attribute is numeric. Default: disabled.
+**`Seed`** — Random seed for weight initialization and shuffling. Set to a fixed value for reproducible results. Default: `0`.
 
-**`Normalize attributes`** *(inheritable)* — Normalizes all numeric attributes to the 0–1 range before training. Recommended when attribute values have very different scales. Default: disabled.
+**`Hidden layers`** — Defines the number and size of hidden layers. Specify as comma-separated integers (e.g., `4,8,2`). Special letters can also be used: `a` = (attributes + classes)/2, `i` = number of attributes, `o` = number of classes, `t` = attributes + classes. Default: `a` (one hidden layer with (attributes + classes)/2 nodes).
 
-**`Decay`** *(inheritable)* — When enabled, the learning rate decreases linearly over the course of training (learning rate decay). Default: disabled.
+**`Nominal to binary filter`** — Converts nominal attributes to binary attributes before training. May improve performance when your data contains nominal features. Default: disabled.
+
+**`Normalize numeric class`** — Normalizes the class attribute values to the 0–1 range before training. Only applies when the class attribute is numeric. Default: disabled.
+
+**`Normalize attributes`** — Normalizes all numeric attributes to the 0–1 range before training. Recommended when attribute values have very different scales. Default: disabled.
+
+**`Decay`** — When enabled, the learning rate decreases linearly over the course of training (learning rate decay). Default: disabled.
 
 ## Behavior
-
-### Inheritance
-
-All settings marked *(inheritable)* can be defined on a parent AI Model Resource and overridden on child instances. Child models inherit any non-overridden settings from their parent, making it easy to define base configurations shared across multiple model variants.
 
 ### Model Training
 
