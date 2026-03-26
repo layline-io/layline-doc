@@ -113,92 +113,131 @@ Entering invalid JSON will cause problems when using the Arguments in the underl
 
 ## Example
 
-A Workflow reads transaction records from a **File Source**. Each record carries a `transaction_id`, `customer_id`, `amount`, and `currency`. The Python Processor enriches every record by looking up the customer's `name` and `loyalty_tier` from a **Reference Data** dictionary, then passes the enriched record downstream.
+The following example reads inbound product records and maps them to a structured output format with Header, Detail, and Trailer records.
 
 ```mermaid
 graph LR
-    A["CSV File<br/>(File Source)"] --> B["EnrichTransaction<br/>(Python Processor)"]
-    B --> C["Output<br/>(File Sink)"]
+    A["Input Records<br/>(File Source)"] --> B["MapProduct<br/>(Python Processor)"]
+    B --> C["Structured Output<br/>(File Sink)"]
 ```
 
-**Workflow configuration:**
+**Configuration:**
 
 | Setting | Value |
 |---------|-------|
-| Root Script | `enrich_transaction.py` (defined in Sources) |
+| Root Script | `map_product.py` (defined in Sources) |
 | Input Port | `Input` (default) |
-| Output Port | `Output` (default) |
+| Output Port | `Output-1` |
 
-**Script: `enrich_transaction.py`**
+**Script: `map_product.py`**
 
 ```python
-import json
+"""
+Maps input messages to a different output format.
+"""
 
-# Global variables initialised in on_init
-OUTPUT_PORT = None
-CUSTOMER_DICT = None
+OUTPUT_PORT = processor.get_output_port('Output-1')
+TOTAL_RECORDS = 0
+
+# Default column mapping, can be overridden via Arguments
+COLUMN_MAP = None
 
 
 def on_init():
-    """Called once when the Project starts. Set up the output port and dictionary."""
-    global OUTPUT_PORT, CUSTOMER_DICT
-    OUTPUT_PORT = processor.get_output_port('Output')
-    CUSTOMER_DICT = dictionary.get_data_dictionary('CustomerReference')
+    """Called once when the Project starts."""
+    global COLUMN_MAP
+    args = processor.get_arguments()
+    if args and args.get('columnMap'):
+        COLUMN_MAP = args.get('columnMap')
+    else:
+        COLUMN_MAP = {
+            "id": "Id",
+            "code": "Code",
+            "name": "Name",
+            "category": "Category",
+            "price": "Price",
+            "stock": "StockQuantity",
+            "color": "Color",
+            "launchDate": "LaunchDate"
+        }
+
+
+def on_shutdown():
+    """Called when the processor shuts down."""
+    pass
+
+
+def on_stream_start():
+    """Called when a new stream starts."""
+    global TOTAL_RECORDS
+    stream.log_info("--- on_stream_start")
+    TOTAL_RECORDS = 0
 
 
 def on_message():
     """Called for every message arriving at the Input port."""
-    customer_id = message.data.get_string('customer_id')
-    amount = message.data.get_float('amount')
-    currency = message.data.get_string('currency')
+    global TOTAL_RECORDS
+    stream.log_info("--- on_message. Message: " + message.to_json())
 
-    # Look up customer data from the Reference Data dictionary
-    customer_name = 'Unknown'
-    loyalty_tier = 'STANDARD'
+    # Write header on first record
+    if TOTAL_RECORDS == 0:
+        header_message = data_dictionary.create_message(data_dictionary.type.Header)
+        header_message.data.PRODUCT = {
+            "RECORD_TYPE": "H",
+            "FILENAME": "Id;Code;Name;Category;Price;StockQuantity;Color;LaunchDate"
+        }
+        stream.emit(header_message, OUTPUT_PORT)
 
-    if CUSTOMER_DICT.exists(customer_id):
-        customer = CUSTOMER_DICT.get(customer_id)
-        customer_name = customer.get_string('name')
-        loyalty_tier = customer.get_string('loyalty_tier')
-    else:
-        # Log a warning for unrecognised customer IDs
-        stream.log_warn('Customer not found in Reference Data: ' + str(customer_id))
+    # Create and emit a Detail record
+    detail_message = data_dictionary.create_message(data_dictionary.type.Detail)
+    detail_message.data.PRODUCT = {
+        "RECORD_TYPE": "D",
+        "ID": message.data[COLUMN_MAP["id"]],
+        "CODE": message.data[COLUMN_MAP["code"]],
+        "NAME": message.data[COLUMN_MAP["name"]],
+        "CATEGORY": message.data[COLUMN_MAP["category"]],
+        "PRICE": message.data[COLUMN_MAP["price"]],
+        "STOCK_QUANTITY": message.data[COLUMN_MAP["stock"]],
+        "COLOR": message.data[COLUMN_MAP["color"]],
+        "LAUNCH_DATE": message.data[COLUMN_MAP["launchDate"]]
+    }
+    stream.emit(detail_message, OUTPUT_PORT)
+    TOTAL_RECORDS += 1
 
-    # Write enriched fields back to the outgoing message
-    message.data.set_string('customer_name', customer_name)
-    message.data.set_string('loyalty_tier', loyalty_tier)
 
-    # Pass the enriched record to the next processor
-    stream.emit(message, OUTPUT_PORT)
+def on_stream_end():
+    """Called when the stream ends."""
+    global TOTAL_RECORDS
+    stream.log_info("--- on_stream_end")
+
+    # Write trailer if any records were processed
+    if TOTAL_RECORDS > 0:
+        trailer_message = data_dictionary.create_message(data_dictionary.type.Trailer)
+        trailer_message.data.PRODUCT = {
+            "RECORD_TYPE": "T",
+            "RECORD_COUNT": TOTAL_RECORDS
+        }
+        stream.emit(trailer_message, OUTPUT_PORT)
+```
+
+**Arguments:**
+
+To override the default column mapping, pass a JSON object argument:
+
+```json
+[
+    { "key": "columnMap", "value": { "id": "product_id", "code": "sku", "name": "product_name" } }
+]
 ```
 
 **What happens at runtime:**
 
-1. The File Source reads a CSV record and produces a message with fields `transaction_id`, `customer_id`, `amount`, `currency`
-2. The Python Processor's `on_message` hook fires for each message
-3. The script extracts `customer_id` and looks it up in the `CustomerReference` Data Dictionary
-4. If found, `customer_name` and `loyalty_tier` are written to the message
-5. If not found, a warning is logged and default values are used
-6. The enriched message is emitted to the `Output` port and continues downstream
+1. `on_stream_start` initializes the record counter to 0
+2. For the first message, `on_message` emits a Header record with the column header string
+3. For every message, `on_message` emits a Detail record with the mapped fields
+4. `on_stream_end` emits a Trailer record with the total record count
+5. `on_shutdown` is called when the processor shuts down (e.g., on workflow stop)
 
-**Arguments example:**
-
-To make the same script reusable across different dictionaries, pass the dictionary name as an argument:
-
-```json
-[
-  \{ "key": "dictionaryName", "value": "CustomerReference" \}
-]
-```
-
-```python
-def on_init():
-    global OUTPUT_PORT, CUSTOMER_DICT
-    args = processor.get_arguments()
-    dict_name = args.get('dictionaryName', 'CustomerReference') if args else 'CustomerReference'
-    CUSTOMER_DICT = dictionary.get_data_dictionary(dict_name)
-    OUTPUT_PORT = processor.get_output_port('Output')
-```
 
 ## See Also
 

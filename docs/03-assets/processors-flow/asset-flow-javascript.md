@@ -113,91 +113,126 @@ Entering invalid JSON will cause problems when using the Arguments in the underl
 
 ## Example
 
-A Workflow reads transaction records from a **File Source**. Each record carries a `transaction_id`, `customer_id`, `amount`, and `currency`. The JavaScript Processor enriches every record by looking up the customer's `name` and `loyalty_tier` from a **Reference Data** dictionary, then passes the enriched record downstream.
+The following example reads inbound product records and maps them to a structured output format with Header, Detail, and Trailer records.
 
 ```mermaid
 graph LR
-    A["CSV File<br/>(File Source)"] --> B["EnrichTransaction<br/>(JavaScript Processor)"]
-    B --> C["Output<br/>(File Sink)"]
+    A["Input Records<br/>(File Source)"] --> B["MapProduct<br/>(JavaScript Processor)"]
+    B --> C["Structured Output<br/>(File Sink)"]
 ```
 
-**Workflow configuration:**
+**Configuration:**
 
 | Setting | Value |
 |---------|-------|
-| Root Script | `EnrichTransaction.js` (defined in Sources) |
+| Root Script | `MapProduct.js` (defined in Sources) |
 | Input Port | `Input` (default) |
-| Output Port | `Output` (default) |
+| Output Port | `Output-1` |
 
-**Script: `EnrichTransaction.js`**
+**Script: `MapProduct.js`**
 
 ```javascript
-// Variable to hold the output port, initialized in onInit
-let OUTPUT_PORT = null;
+/**
+ * Maps input messages to a different output format.
+ */
 
-// Reference to the Reference Data dictionary
-const CUSTOMER_DICT = dictionary.getDataDictionary('CustomerReference');
+const OUTPUT_PORT = processor.getOutputPort('Output-1');
+let totalRecords = 0;
 
-// Initialize output port on startup
+// Configuration: override column mapping via Arguments if provided
+let COLUMN_MAP = null;
+
 export function onInit() {
-    OUTPUT_PORT = processor.getOutputPort('Output');
+    // Retrieve column mapping from Arguments if set
+    const args = processor.getArguments();
+    if (args && args.columnMap) {
+        COLUMN_MAP = args.columnMap;
+    } else {
+        // Default mapping
+        COLUMN_MAP = {
+            id: "Id",
+            code: "Code",
+            name: "Name",
+            category: "Category",
+            price: "Price",
+            stock: "StockQuantity",
+            color: "Color",
+            launchDate: "LaunchDate"
+        };
+    }
 }
 
-// Process each incoming message
+export function onShutdown() {
+}
+
+export function onStreamStart() {
+    stream.logInfo("--- onStreamStart");
+    totalRecords = 0;
+}
+
 export function onMessage() {
-    const customerId = message.data.getString('customer_id');
-    const amount = message.data.getFloat('amount');
-    const currency = message.data.getString('currency');
+    stream.logInfo("--- onMessage. Message: " + message.toJson());
 
-    // Look up customer data from the Reference Data dictionary
-    let customerName = 'Unknown';
-    let loyaltyTier = 'STANDARD';
-
-    if (CUSTOMER_DICT.exists(customerId)) {
-        const customer = CUSTOMER_DICT.get(customerId);
-        customerName = customer.getString('name');
-        loyaltyTier = customer.getString('loyalty_tier');
-    } else {
-        // Log a warning for unrecognised customer IDs
-        stream.logWarn('Customer not found in Reference Data: ' + customerId);
+    // Write header on first record
+    if (totalRecords === 0) {
+        const headerMessage = dataDictionary.createMessage(dataDictionary.type.Header);
+        headerMessage.data.PRODUCT = {
+            RECORD_TYPE: "H",
+            FILENAME: "Id;Code;Name;Category;Price;StockQuantity;Color;LaunchDate"
+        };
+        stream.emit(headerMessage, OUTPUT_PORT);
     }
 
-    // Write enriched fields back to the outgoing message
-    message.data.setString('customer_name', customerName);
-    message.data.setString('loyalty_tier', loyaltyTier);
-
-    // Pass the enriched record to the next processor
-    stream.emit(message, OUTPUT_PORT);
+    // Create and emit a Detail record
+    const detailMessage = dataDictionary.createMessage(dataDictionary.type.Detail);
+    detailMessage.data.PRODUCT = {
+        RECORD_TYPE: "D",
+        ID: message.data[COLUMN_MAP.id],
+        CODE: message.data[COLUMN_MAP.code],
+        NAME: message.data[COLUMN_MAP.name],
+        CATEGORY: message.data[COLUMN_MAP.category],
+        PRICE: message.data[COLUMN_MAP.price],
+        STOCK_QUANTITY: message.data[COLUMN_MAP.stock],
+        COLOR: message.data[COLUMN_MAP.color],
+        LAUNCH_DATE: message.data[COLUMN_MAP.launchDate]
+    };
+    stream.emit(detailMessage, OUTPUT_PORT);
+    totalRecords++;
 }
+
+export function onStreamEnd() {
+    stream.logInfo("--- onStreamEnd");
+
+    // Write trailer if any records were processed
+    if (totalRecords > 0) {
+        const trailerMessage = dataDictionary.createMessage(dataDictionary.type.Trailer);
+        trailerMessage.data.PRODUCT = {
+            RECORD_TYPE: "T",
+            RECORD_COUNT: totalRecords
+        };
+        stream.emit(trailerMessage, OUTPUT_PORT);
+    }
+}
+```
+
+**Arguments:**
+
+To override the default column mapping, pass a JSON object argument:
+
+```json
+[
+    { "key": "columnMap", "value": { "id": "product_id", "code": "sku", "name": "product_name" } }
+]
 ```
 
 **What happens at runtime:**
 
-1. The File Source reads a CSV record and produces a message with fields `transaction_id`, `customer_id`, `amount`, `currency`
-2. The JavaScript Processor's `onMessage` hook fires for each message
-3. The script extracts `customer_id` and looks it up in the `CustomerReference` Data Dictionary
-4. If found, `customer_name` and `loyalty_tier` are written to the message
-5. If not found, a warning is logged and default values are used
-6. The enriched message is emitted to the `Output` port and continues downstream
+1. `onStreamStart` initializes the record counter to 0
+2. For the first message, `onMessage` emits a Header record with the column header string
+3. For every message, `onMessage` emits a Detail record with the mapped fields
+4. `onStreamEnd` emits a Trailer record with the total record count
+5. `onShutdown` is called when the processor shuts down (e.g., on workflow stop)
 
-**Arguments example:**
-
-To make the same script reusable across different dictionaries, pass the dictionary name as an argument:
-
-```json
-[
-  \{ "key": "dictionaryName", "value": "CustomerReference" \}
-]
-```
-
-```javascript
-export function onInit() {
-    const args = processor.getArguments();
-    const dictName = args?.dictionaryName ?? 'CustomerReference';
-    CUSTOMER_DICT = dictionary.getDataDictionary(dictName);
-    OUTPUT_PORT = processor.getOutputPort('Output');
-}
-```
 
 ## See Also
 
