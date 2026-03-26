@@ -28,6 +28,12 @@ graph LR
     C --> D["Classified messages"]
 ```
 
+<div className="frame">
+
+![AI Storage — browsing trained model versions](.asset-flow-ai-trainer_images/ai-storage-models.png)
+
+</div>
+
 :::note
 Each training run creates a new **version** of the model in AI Storage, identified by a running number. Use `:latest` to reference the most recent version, or `:<version-number>` to reference a specific version.
 :::
@@ -110,6 +116,12 @@ Click **+ ADD MODEL** to add a new model configuration. Each row has:
 | **Path in AI Storage** | The path in AI Storage where the trained model will be stored (e.g., `models/my-classifier`). Supports [macros](../../language-reference/macros) for per-environment values. |
 | **AI Model** | Reference to an existing **AI Model Resource** in the Project — defines the input/output schema, model type, and hyperparameters |
 | **Model type** | The Weka algorithm to use (read from the selected AI Model Resource, e.g., `J48 Decision Tree`, `Multilayer Perceptron`) |
+
+<div className="frame">
+
+![AI Model Selector — path and input attribute mappings](.asset-flow-ai-trainer_images/ai-trainer-model-selector.png)
+
+</div>
 
 The AI Model Resource defines:
 

@@ -111,6 +111,12 @@ recordType == "PREMIUM"
 
 **`Path in AI Storage`** — the path of the trained model in AI Storage (e.g., `models/my-classifier`). Append `:<version>` to reference a specific version (e.g., `models/my-classifier:3`) or `:latest` for the most recent version. Supports [macros](../../language-reference/macros) for per-environment values.
 
+<div className="frame">
+
+![AI Classifier — rule configuration with Path in AI Storage](.asset-flow-ai-classifier_images/ai-classifier-rule-config.png)
+
+</div>
+
 #### Rule: Input attribute mappings
 
 Defines which Data Dictionary attributes from the AI model should receive values from the current message.
