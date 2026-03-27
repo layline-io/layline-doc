@@ -111,6 +111,141 @@ Entering invalid JSON will cause problems when using the Arguments in the underl
 
 <FailureHandling></FailureHandling>
 
+## Example
+
+The following example reads inbound product records, filters them by category, and maps the matching records to a structured output format with Header, Detail, and Trailer records.
+
+```mermaid
+graph LR
+    A["Input Records<br/>(File Source)"] --> B["MapProduct<br/>(Python Processor)"]
+    B --> C["Structured Output<br/>(File Sink)"]
+```
+
+**Configuration:**
+
+| Setting | Value |
+|---------|-------|
+| Root Script | `map_product.py` (defined in Sources) |
+| Input Port | `Input` (default) |
+| Output Port | `Output-1` |
+
+**Script: `map_product.py`**
+
+```python
+"""
+Filters inbound product records by category and maps them to a
+structured output format (Header / Detail / Trailer).
+"""
+
+OUTPUT_PORT = processor.getOutputPort('Output-1')
+TOTAL_RECORDS = 0
+HEADER_EMITTED = False
+
+# Category to filter on — set via Arguments (e.g. "Electronics")
+CATEGORY_FILTER = None
+
+
+def on_init():
+    """Called once when the Project starts."""
+    global CATEGORY_FILTER
+    args = processor.getArguments()
+    CATEGORY_FILTER = args.get('categoryFilter') if args else None
+
+
+def on_shutdown():
+    """Called when the processor shuts down."""
+    pass
+
+
+def on_stream_start():
+    """Called when a new stream starts."""
+    global TOTAL_RECORDS, HEADER_EMITTED
+    stream.log_info("--- on_stream_start")
+    TOTAL_RECORDS = 0
+    HEADER_EMITTED = False
+
+
+def on_message():
+    """Called for every message arriving at the Input port."""
+    global TOTAL_RECORDS, HEADER_EMITTED
+
+    category = message.data.get('Category')
+
+    # Skip records that don't match the filter
+    if CATEGORY_FILTER and category != CATEGORY_FILTER:
+        return
+
+    stream.log_info("--- on_message. Message: " + message.to_json())
+
+    # Write header on first matching record
+    if not HEADER_EMITTED:
+        header_message = dataDictionary.createMessage(dataDictionary.type.Header)
+        header_message.data.PRODUCT = {
+            "RECORD_TYPE": "H",
+            "FILENAME": "Id;Code;Name;Category;Price;StockQuantity;Color;LaunchDate"
+        }
+        stream.emit(header_message, OUTPUT_PORT)
+        HEADER_EMITTED = True
+
+    # Create and emit a Detail record
+    detail_message = dataDictionary.createMessage(dataDictionary.type.Detail)
+    detail_message.data.PRODUCT = {
+        "RECORD_TYPE": "D",
+        "ID": message.data.get("Id"),
+        "CODE": message.data.get("Code"),
+        "NAME": message.data.get("Name"),
+        "CATEGORY": message.data.get("Category"),
+        "PRICE": message.data.get("Price"),
+        "STOCK_QUANTITY": message.data.get("StockQuantity"),
+        "COLOR": message.data.get("Color"),
+        "LAUNCH_DATE": message.data.get("LaunchDate")
+    }
+    stream.emit(detail_message, OUTPUT_PORT)
+    TOTAL_RECORDS += 1
+
+
+def on_stream_end():
+    """Called when the stream ends."""
+    global TOTAL_RECORDS
+    stream.log_info("--- on_stream_end")
+
+    # Write trailer if any matching records were processed
+    if TOTAL_RECORDS > 0:
+        trailer_message = dataDictionary.createMessage(dataDictionary.type.Trailer)
+        trailer_message.data.PRODUCT = {
+            "RECORD_TYPE": "T",
+            "RECORD_COUNT": TOTAL_RECORDS
+        }
+        stream.emit(trailer_message, OUTPUT_PORT)
+```
+
+**Arguments:**
+
+To filter records by category, pass a `categoryFilter` argument in the Arguments editor:
+
+![Arguments editor showing categoryFilter](./.asset-flow-python_images/asset-flow-python-arguments.png "Arguments editor with categoryFilter")
+
+
+Only records whose `Category` field matches the filter value are emitted. Records that do not match are silently skipped. Omit the argument to emit all records without filtering.
+
+**What happens at runtime:**
+
+1. `on_stream_start` initialises the record counter and header flag
+2. For each message, `on_message` checks the `Category` field against the filter — non-matching records are skipped
+3. On the first matching record, `on_message` emits a Header record followed by the first Detail record
+4. All subsequent matching records emit Detail records only
+5. `on_stream_end` emits a Trailer record with the total count of matching records
+6. `on_shutdown` is called when the processor stops (e.g., on workflow stop)
+
+
+## See Also
+
+
+- [Python Language Reference](../../language-reference/python/python_introduction) — full Python language guide for layline.io
+- [PythonProcessor API](../../language-reference/python/API/classes/PythonProcessor) — available hooks and lifecycle methods
+- [DataDictionary API (Python)](../../language-reference/python/API/classes/DataDictionary) — working with Reference Data in Python scripts
+- [PackedMessage API (Python)](../../language-reference/python/API/classes/PackedMessage) — reading and writing message fields
+- [Service Mappings](#service-mappings) — connecting external services (HTTP, DB, etc.) to a Python Asset
 
 Please see section [Forced Errors](../../language-reference/python/python_introduction#forced-errors) to understand how to use these settings.
 
