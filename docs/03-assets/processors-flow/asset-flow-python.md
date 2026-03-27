@@ -224,9 +224,9 @@ def on_stream_end():
 To filter records by category, pass a `categoryFilter` argument:
 
 ```json
-[
-    { "key": "categoryFilter", "value": "Electronics" }
-]
+{
+  "categoryFilter": "Electronics"
+}
 ```
 
 Only records whose `Category` field matches the filter value are emitted. Records that do not match are silently skipped. Omit the argument to emit all records without filtering.
