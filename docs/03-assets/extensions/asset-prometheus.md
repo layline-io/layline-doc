@@ -57,9 +57,21 @@ A table of mapping rules. Each row defines how one internal metric is named and 
 | **Labels** | One or more key–value label pairs that add dimensions to the exported metric, making it filterable in Prometheus queries |
 | **Operations** | Action buttons per row: add a label, delete the mapping, reorder with up/down arrows |
 
-**How Match works:** The regex is evaluated against the full internal metric name. Use `.*` as a wildcard. The first matching row wins — ordering matters when multiple patterns could match the same metric.
+**How Match works:** The regex is evaluated against the full internal metric name. Use `*` as a wildcard to match any segment. The first matching row wins — ordering matters when multiple patterns could match the same metric.
 
-**How Labels work:** Labels are key–value pairs (Label Name → Label Value). Both fields accept static strings or variable placeholders derived from the metric name's path segments (e.g., extracting the source name from `Counter.Source.MySource.Files`).
+**How Labels work:** Labels are key–value pairs (Label Name → Label Value). The Label Name is a static string. The Label Value can be:
+
+* A **static string** — the same label value is applied to every matching metric (e.g., `FLEX` in the screenshot above)
+* A **wildcard placeholder** — `${N}` references the wildcard segment at position `N` in the Match pattern, where `${0}` is the first `*`, `${1}` is the second `*`, and so on. The placeholder is resolved at export time using the actual metric name that matched.
+
+**Example of placeholder resolution:**
+
+Given a Match of `Counter.Workflow.(*).(*).*` with labels `workflow=${0}` and `instance=${1}`:
+
+* For metric `Counter.Workflow.OrderProcessing.Inst1.Files` the exported label values would be: `workflow=OrderProcessing`, `instance=Inst1`
+* For metric `Counter.Workflow.Billing.Inst2.Files` the exported label values would be: `workflow=Billing`, `instance=Inst2`
+
+The `${0}` placeholder captures the first wildcard segment (between the start and the first `*`), and `${1}` captures the second.
 
 Press **Add Mapping** to add a new row. Press **+** in the Operations column of a row to add label pairs to that mapping.
 
@@ -67,36 +79,34 @@ Press **Add Mapping** to add a new row. Press **+** in the Operations column of 
 
 Export the file count metric for a source named `OrderFileSource`, adding a label so the metric can be filtered by source name in Prometheus.
 
-**Internal metric:** `Counter.Source.OrderFileSource.Files`
-
 **Match (regex):**
 ```
-Counter\.Source\.OrderFileSource\.Files
+Counter.Workflow.(*).(*).Input.Messages
 ```
 
 **Name:**
 ```
-io_layline_counter_source_orderfilesource_files
+io_layline_counter_workflow_input_messages
 ```
 
 **Labels:**
-| Label Name | Label Value |
-|------------|-------------|
-| `source` | `OrderFileSource` |
+| Label Name | Label Value | Meaning |
+|------------|-------------|---------|
+| `workflow` | `${0}` | First wildcard segment → workflow name |
+| `instance` | `${1}` | Second wildcard segment → instance name |
 
-**Resulting Prometheus metric:**
+**Placeholder resolution:** For the metric `Counter.Workflow.OrderProcessing.Inst1.Input.Messages`, the placeholders resolve to `workflow=OrderProcessing` and `instance=Inst1`. The exported Prometheus metric becomes:
+
 ```
-io_layline_counter_source_orderfilesource_files{source="OrderFileSource"}
+io_layline_counter_workflow_input_messages{workflow="OrderProcessing",instance="Inst1"}
 ```
+
+In contrast, a **static label value** (e.g., `mandant=FLEX`) applies the same value to every metric that matches — useful for tagging all exports from this Prometheus Extension with an environment or owner identifier.
 
 **What this enables in Prometheus:**
 
-* Query all source file counts: `io_layline_counter_source_*_files`
-* Filter to a specific source: `io_layline_counter_source_orderfilesource_files{source="OrderFileSource"}`
+* Query all workflow input messages: `io_layline_counter_workflow_input_messages`
+* Filter by workflow name: `io_layline_counter_workflow_input_messages{workflow="OrderProcessing"}`
 * Plot over time in Grafana
 
-**Export URL:** Once the Extension is assigned to a Project or Engine Configuration, metrics are available at:
-
-```
-http://<engine-host>:5842/engine/prometheus
-```
+**Export URL:** Metrics are available at `http://<engine-host>:5842/engine/prometheus` once the Extension is assigned to a Project or Engine Configuration.
