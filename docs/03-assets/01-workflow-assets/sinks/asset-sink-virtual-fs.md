@@ -32,7 +32,7 @@ You need:
 
 ### Name & Description
 
-![Name & Description (Virtual File System Sink)](../.l_File_System_Sink_images/vfs-sink-name-description.png "Name & Description (Virtual File System Sink)")
+![Name & Description (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-name-description.png "Name & Description (Virtual File System Sink)")
 
 **Name** — Unique name for this asset within the project. Spaces are not allowed.
 
@@ -42,13 +42,13 @@ You need:
 
 ### Required Roles
 
-![Required Roles (Virtual File System Sink)](../.l_File_System_Sink_images/vfs-sink-required-roles.png "Required Roles (Virtual File System Sink)")
+![Required Roles (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-required-roles.png "Required Roles (Virtual File System Sink)")
 
 In case you are deploying to a Cluster with Reactive Engine Nodes that have specific Roles configured, you can restrict use of this Asset to Nodes with matching roles. Leave empty to match all Nodes.
 
 ### Throttling & Failure Handling
 
-![Throttling & Failure Handling (Virtual File System Sink)](../.l_File_System_Sink_images/vfs-sink-throttling.png "Throttling & Failure Handling (Virtual File System Sink)")
+![Throttling & Failure Handling (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-throttling.png "Throttling & Failure Handling (Virtual File System Sink)")
 
 #### Throttling
 
@@ -74,7 +74,7 @@ Based on these values the next processing will be delayed: starting with the min
 
 ### Virtual File System Settings
 
-![Virtual File System Settings (Virtual File System Sink)](../.l_File_System_Sink_images/vfs-sink-vfs-settings.png "Virtual File System Settings (Virtual File System Sink)")
+![Virtual File System Settings (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-vfs-settings.png "Virtual File System Settings (Virtual File System Sink)")
 
 **Connection** — Select the [Virtual File System Connection](../../../../tions/asset-connection-virtual-fs) to use for writing files. If no connection exists, create one first.
 
@@ -84,7 +84,7 @@ The **Directories** tabbed section defines where files are written during proces
 
 #### Output Directory
 
-![Output Directory (Virtual File System Sink)](../.l_File_System_Sink_images/vfs-sink-output-dir.png "Output Directory (Virtual File System Sink)")
+![Output Directory (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-output-dir.png "Output Directory (Virtual File System Sink)")
 
 The **Output Directory** is where the final processed files are written.
 
@@ -107,7 +107,7 @@ The **Output Directory** is where the final processed files are written.
 
 #### Temporary Directory
 
-![Temporary Directory (Virtual File System Sink)](../.l_File_System_Sink_images/vfs-sink-temp-dir.png "Temporary Directory (Virtual File System Sink)")
+![Temporary Directory (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-temp-dir.png "Temporary Directory (Virtual File System Sink)")
 
 The **Temporary Directory** is where files are written during processing. Once processing completes successfully, the file is moved to the Output Directory.
 
@@ -119,7 +119,7 @@ The **Temporary Directory** is where files are written during processing. Once p
 
 #### Other Settings
 
-![Other Settings (Virtual File System Sink)](../.l_File_System_Sink_images/vfs-sink-other-settings.png "Other Settings (Virtual File System Sink)")
+![Other Settings (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-other-settings.png "Other Settings (Virtual File System Sink)")
 
 **Delay post processing steps (move, delete) [ms]** — Milliseconds to wait after processing before moving files from the temporary directory to the output directory or deleting them. Useful for connections that need time to settle. Default: `0`.
 

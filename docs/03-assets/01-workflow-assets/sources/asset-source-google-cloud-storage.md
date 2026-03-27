@@ -36,7 +36,7 @@ You need:
 
 ### Name & Description
 
-![Name & Description (Google Cloud Storage Source)](../._Cloud_Storage_Source_images/gcs-source-name-description.png "Name & Description (Google Cloud Storage Source)")
+![Name & Description (Google Cloud Storage Source)](./.Google_Cloud_Storage_Source_images/gcs-source-name-description.png "Name & Description (Google Cloud Storage Source)")
 
 **Name** — Unique name for this asset within the project. Spaces are not allowed.
 
@@ -46,7 +46,7 @@ You need:
 
 ### Required Roles
 
-![Required Roles (Google Cloud Storage Source)](../._Cloud_Storage_Source_images/gcs-source-required-roles.png "Required Roles (Google Cloud Storage Source)")
+![Required Roles (Google Cloud Storage Source)](./.Google_Cloud_Storage_Source_images/gcs-source-required-roles.png "Required Roles (Google Cloud Storage Source)")
 
 In case you are deploying to a Cluster with Reactive Engine Nodes that have specific Roles configured, you can restrict use of this Asset to Nodes with matching roles. Leave empty to match all Nodes.
 
@@ -60,7 +60,7 @@ In case you are deploying to a Cluster with Reactive Engine Nodes that have spec
 
 ### Input Buckets
 
-![Input Buckets (Google Cloud Storage Source)](../._Cloud_Storage_Source_images/gcs-source-input-buckets.png "Input Buckets (Google Cloud Storage Source)")
+![Input Buckets (Google Cloud Storage Source)](./.Google_Cloud_Storage_Source_images/gcs-source-input-buckets.png "Input Buckets (Google Cloud Storage Source)")
 
 The **Input Buckets** section defines which GCS buckets to poll and how to filter the objects within them.
 
@@ -70,7 +70,7 @@ Click **"+ ADD A BUCKET"** to add a new bucket entry. Use the toolbar to reorder
 
 **Connection** — Select the [Google Cloud Connection](../../../../tions/asset-connection-google-cloud) to use for accessing this bucket. The dropdown shows only valid Google Cloud Connection assets.
 
-![Bucket Connection](../._Cloud_Storage_Source_images/gcs-source-bucket-connection.png "Bucket Connection")
+![Bucket Connection](./.Google_Cloud_Storage_Source_images/gcs-source-bucket-connection.png "Bucket Connection")
 
 **Project Id** — The Google Cloud project ID that owns the target bucket.
 
@@ -78,7 +78,7 @@ Click **"+ ADD A BUCKET"** to add a new bucket entry. Use the toolbar to reorder
 
 **Folder prefix** — An optional object key prefix to narrow down the scope within the bucket (e.g., `media/`). Only objects whose keys start with this prefix are considered.
 
-![Bucket Detail — Project Id, Bucket Name, Folder Prefix](../._Cloud_Storage_Source_images/gcs-source-bucket-detail.png "Bucket Detail — Project Id, Bucket Name, Folder Prefix")
+![Bucket Detail — Project Id, Bucket Name, Folder Prefix](./.Google_Cloud_Storage_Source_images/gcs-source-bucket-detail.png "Bucket Detail — Project Id, Bucket Name, Folder Prefix")
 
 **Object regular expression** — A regular expression applied to the full object key to determine whether an object should be processed (e.g., `\S+\.csv` matches any key ending in `.csv`).
 
@@ -90,7 +90,7 @@ Click **"+ ADD A BUCKET"** to add a new bucket entry. Use the toolbar to reorder
 
 #### Housekeeping
 
-![Housekeeping (Google Cloud Storage Source)](../._Cloud_Storage_Source_images/gcs-source-housekeeping.png "Housekeeping (Google Cloud Storage Source)")
+![Housekeeping (Google Cloud Storage Source)](./.Google_Cloud_Storage_Source_images/gcs-source-housekeeping.png "Housekeeping (Google Cloud Storage Source)")
 
 **Enable housekeeping** — When enabled, objects that have been fully processed are automatically deleted after a configurable age threshold.
 

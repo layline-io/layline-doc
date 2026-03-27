@@ -16,7 +16,7 @@ The **AI Service** exposes one or more trained AI models as callable functions f
 ## Prerequisites
 
 - One or more **AI Model Resources** defining the model type, input/output schema, and hyperparameters
-- One or more **trained models** stored in AI Storage (trained by an [AI Trainer](../../../../sors-flow/asset-flow-ai-trainer))
+- One or more **trained models** stored in AI Storage (trained by an [AI Trainer](../processors-flow/asset-flow-ai-trainer))
 - A **Data Dictionary** with attributes defined in the namespace configured in the service
 
 :::tip
@@ -318,8 +318,8 @@ def on_stream_end():
 
 ## See Also
 
-- [AI Trainer](../../../../sors-flow/asset-flow-ai-trainer) — train and store models in AI Storage
-- [AI Classifier](../../../../sors-flow/asset-flow-ai-classifier) — use a trained model directly within a Workflow stream
+- [AI Trainer](../processors-flow/asset-flow-ai-trainer) — train and store models in AI Storage
+- [AI Classifier](../processors-flow/asset-flow-ai-classifier) — use a trained model directly within a Workflow stream
 - [AI Model Resource](../../../../ces/asset-resource-ai-model) — define the model specification used for training and by this service
 - [Using Artificial Intelligence in Workflows](../../../../../../../nced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
 

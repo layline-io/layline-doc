@@ -9,7 +9,7 @@ import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 
 ## Purpose
 
-The **AI Model Resource** defines the technical specification for an AI model — its input and output attributes, the algorithm to use, and the hyperparameters that control how that algorithm trains. It is a shared definition used by both the [AI Trainer](../../../../sors-flow/asset-flow-ai-trainer) (to train the model) and the [AI Classifier](../../../../sors-flow/asset-flow-ai-classifier) (to apply it at runtime).
+The **AI Model Resource** defines the technical specification for an AI model — its input and output attributes, the algorithm to use, and the hyperparameters that control how that algorithm trains. It is a shared definition used by both the [AI Trainer](../processors-flow/asset-flow-ai-trainer) (to train the model) and the [AI Classifier](../processors-flow/asset-flow-ai-classifier) (to apply it at runtime).
 
 Before you can train or classify with an AI model, the model must be defined here.
 
@@ -163,7 +163,7 @@ Appears when `Weka Multilayer Perceptron` is selected as the Classifier.
 
 ### Model Training
 
-After defining an AI Model Resource, use it in an [AI Trainer](../../../../sors-flow/asset-flow-ai-trainer) to train the model. The trained model is stored automatically in the cluster's AI Storage and can be referenced by an [AI Classifier](../../../../sors-flow/asset-flow-ai-classifier) using the same path and version scheme.
+After defining an AI Model Resource, use it in an [AI Trainer](../processors-flow/asset-flow-ai-trainer) to train the model. The trained model is stored automatically in the cluster's AI Storage and can be referenced by an [AI Classifier](../processors-flow/asset-flow-ai-classifier) using the same path and version scheme.
 
 ### Attribute Matching
 
@@ -207,8 +207,8 @@ Reference the same model from AI Storage at `models/usage-classifier-v2:latest`.
 
 ## See Also
 
-- [AI Trainer](../../../../sors-flow/asset-flow-ai-trainer) — train the model defined by this Resource
-- [AI Classifier](../../../../sors-flow/asset-flow-ai-classifier) — apply the trained model to classify new messages
+- [AI Trainer](../processors-flow/asset-flow-ai-trainer) — train the model defined by this Resource
+- [AI Classifier](../processors-flow/asset-flow-ai-classifier) — apply the trained model to classify new messages
 - [AI Service](../../../../es/asset-service-ai) — expose an AI model as a service endpoint
 - [Using Artificial Intelligence in Workflows](../../../../../../../nced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
 

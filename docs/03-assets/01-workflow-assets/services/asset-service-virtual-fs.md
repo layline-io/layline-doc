@@ -16,7 +16,7 @@ import Testcase from '../../../snippets/assets/_asset-service-test.md';
 The Virtual File System Service provides file operations — read, write, copy, move, delete — against the Virtual File System from within a Javascript or Python Processor. It allows you to manage files programmatically in your script code, independent of any VFS Source or Sink.
 
 :::info
-The Virtual File System Service is a pure script-facing service. It has no input/output ports and cannot be used as a standalone processing step in a Workflow. It must be invoked from a [Javascript Processor](../../../../sors-flow/asset-flow-javascript) or a [Python Processor](../../../../sors-flow/asset-flow-python).
+The Virtual File System Service is a pure script-facing service. It has no input/output ports and cannot be used as a standalone processing step in a Workflow. It must be invoked from a [Javascript Processor](../processors-flow/asset-flow-javascript) or a [Python Processor](../processors-flow/asset-flow-python).
 :::
 
 ## Configuration
@@ -64,7 +64,7 @@ Create a new **Virtual File System Service** Asset. In **Virtual FS Service Sett
 
 ### Step 3 — Map the Service in a Script Processor
 
-In your [Javascript Processor](../../../../sors-flow/asset-flow-javascript) or [Python Processor](../../../../sors-flow/asset-flow-python), add a **Service Mapping**:
+In your [Javascript Processor](../processors-flow/asset-flow-javascript) or [Python Processor](../processors-flow/asset-flow-python), add a **Service Mapping**:
 
 * **Service**: Select your Virtual File System Service
 * **Logical Service Name**: `MyVfsService` (or any name you will use in your script)
@@ -226,5 +226,5 @@ The parameter names (`sourcePath`, `targetPath`, `path`, `content`) match the se
 ## See Also
 
 - [Virtual File System Connection](../../../../tions/asset-connection-virtual-fs) — configuring mount points and storage backends
-- [JavaScript Processor](../../../../sors-flow/asset-flow-javascript) — calling services from JavaScript
-- [Python Processor](../../../../sors-flow/asset-flow-python) — calling services from Python
+- [JavaScript Processor](../processors-flow/asset-flow-javascript) — calling services from JavaScript
+- [Python Processor](../processors-flow/asset-flow-python) — calling services from Python

@@ -134,7 +134,7 @@ Workflow A contains this JavasScript Processor (could be Python, too).
 
 In our case we want to schedule the message's payload to be re-presented back to the Javascript Processor in 3600 seconds (1 hour).
 
-To do this, and because we have linked `MyTimerService` to the Javascript Processor, we can use the [Timer Service's methods](../../cs/04-language-reference/javascript/02-API/classes/TimerService.md) to schedule the message's payload within the `MyTimerGroup` Timer Group. This scheduling happens in the Timer Service's internal storage and is independent of the message's payload. The Reactive Cluster takes care of the storage and retrieval of the payloads.
+To do this, and because we have linked `MyTimerService` to the Javascript Processor, we can use the [Timer Service's methods](../../../04-language-reference/javascript/02-API/classes/TimerService.md) to schedule the message's payload within the `MyTimerGroup` Timer Group. This scheduling happens in the Timer Service's internal storage and is independent of the message's payload. The Reactive Cluster takes care of the storage and retrieval of the payloads.
 
 <Tabs>
   <TabItem value="javascript" label="JavaScript">
@@ -191,7 +191,7 @@ The Timer Service provides you with a number of methods to schedule and manage t
 | `GetTimer` | Get a timer. |
 | `GetTimers` | Get all timers. |
 
-For a full description of the methods please refer to the [TimerService API](../../cs/04-language-reference/javascript/02-API/classes/TimerService.md) documentation.
+For a full description of the methods please refer to the [TimerService API](../../../04-language-reference/javascript/02-API/classes/TimerService.md) documentation.
 
 
 #### Consuming an entry from a Timer Group (Workflow B)

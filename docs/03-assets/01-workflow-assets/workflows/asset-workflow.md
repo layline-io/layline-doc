@@ -90,7 +90,7 @@ Receive temperature and humidity readings from IoT sensors over TCP, filter out 
 |-------|-----------------|
 | [Source TCP](../../../../s/asset-source-tcp) `SensorTcpSource` | Listens on `acme.sensor.host:9000` |
 | [Stream Input Processor](../../../../sors-input/asset-input-stream) `SensorInput` | Reads the TCP stream as newline-delimited JSON |
-| [JavaScript Flow Processor](../../../../sors-flow/asset-flow-javascript) `FilterReadings` | Filters readings by temperature range |
+| [JavaScript Flow Processor](../processors-flow/asset-flow-javascript) `FilterReadings` | Filters readings by temperature range |
 | [Stream Output Processor](../../../../sors-output/asset-output-stream) `SensorOutput` | Writes cleaned records to a file |
 | [Generic Format](../../../../s/asset-format-generic) `SensorFormat` | Defines the structure of a sensor reading |
 | [File Sink](../../../../asset-sink-file) `SensorLogSink` | Output file `sensor-log.json` |

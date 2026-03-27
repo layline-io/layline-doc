@@ -301,7 +301,7 @@ It represents the bracket of every grammar.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/format.svg "Format Syntax Diagram (Format Generic)")
+![](.grammar-images/format.svg "Format Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -395,7 +395,7 @@ Use this if there are different options of what the next structure could be.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Choice.svg "Choice Syntax Diagram (Format Generic)")
+![](.grammar-images/Choice.svg "Choice Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -460,7 +460,7 @@ Like the [Choice](#choice) element, this element does not parse data, but furthe
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Sequence.svg "Sequence Syntax Diagram (Format Generic)")
+![](.grammar-images/Sequence.svg "Sequence Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -543,7 +543,7 @@ Id,Name,Surname,Street,City                      // First line contains column h
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/ListTerminal.svg "ListTerminal Syntax Diagram (Format Generic)")
+![](.grammar-images/ListTerminal.svg "ListTerminal Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -674,7 +674,7 @@ Use this if you
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/MultiPart.svg "MultiPart Syntax Diagram (Format Generic)")
+![](.grammar-images/MultiPart.svg "MultiPart Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -763,7 +763,7 @@ Because the lexical analyzer has no length information for the record, the regul
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Separated.svg "Separated Syntax Diagram (Format Generic)")
+![](.grammar-images/Separated.svg "Separated Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -858,7 +858,7 @@ A terminal element part which has a length calculated from some data in the inpu
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Calculated.svg "Calculated Syntax Diagram (Format Generic)")
+![](.grammar-images/Calculated.svg "Calculated Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -901,7 +901,7 @@ A terminal element part with a fixed length.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Fixed.svg "Fixed Syntax Diagram (Format Generic)")
+![](.grammar-images/Fixed.svg "Fixed Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -945,7 +945,7 @@ A terminal element part which is detected using a regular expression.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/RegExpr.svg "Regular Expression Syntax Diagram (Format Generic)")
+![](.grammar-images/RegExpr.svg "Regular Expression Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -995,7 +995,7 @@ The MessageMapping specifies how the current element is mapped into a layline.io
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/MessageMapping.svg "MessageMapping Syntax Diagram (Format Generic)")
+![](.grammar-images/MessageMapping.svg "MessageMapping Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1045,7 +1045,7 @@ E.g., the Sequence is a sequence of Header, Details, and a Footer element.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/ElementReference.svg "ElementReference Syntax Diagram (Format Generic)")
+![](.grammar-images/ElementReference.svg "ElementReference Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1135,7 +1135,7 @@ The following list of elements exists:
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Value.svg "Value Syntax Diagram (Format Generic)")
+![](.grammar-images/Value.svg "Value Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1147,7 +1147,7 @@ A binary ByteString value. The bytes from the input will be directly mapped into
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Binary.ByteString.svg "Binary.ByteString Syntax Diagram (Format Generic)")
+![](.grammar-images/Binary.ByteString.svg "Binary.ByteString Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1185,7 +1185,7 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Binary.HexString.svg "Binary.HexString Syntax Diagram (Format Generic)")
+![](.grammar-images/Binary.HexString.svg "Binary.HexString Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1223,7 +1223,7 @@ A value where the binary ByteString value is encoded as hexadecimal string.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Binary.Long.svg "Binary.Long Syntax Diagram (Format Generic)")
+![](.grammar-images/Binary.Long.svg "Binary.Long Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1262,7 +1262,7 @@ A 64-bit whole number value in text format.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Text.BigInteger.svg "Text.BigInteger Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.BigInteger.svg "Text.BigInteger Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1305,7 +1305,7 @@ For DateTime handling, see [Text.DateTime](#textdatetime).
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Text.Date.svg "Text.Date Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.Date.svg "Text.Date Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1346,7 +1346,7 @@ A DateTime value in text format. For handling pure Date formats see [Text.Date](
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Text.DateTime.svg "Text.DateTime Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.DateTime.svg "Text.DateTime Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1385,7 +1385,7 @@ A Decimal value in text format.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Text.Decimal.svg "Text.Decimal Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.Decimal.svg "Text.Decimal Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1429,7 +1429,7 @@ A Double value in text format.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Text.Double.svg "Text.Double Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.Double.svg "Text.Double Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1474,7 +1474,7 @@ A 32-bit whole number value in text format.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Text.Integer.svg "Text.Integer Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.Integer.svg "Text.Integer Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1516,7 +1516,7 @@ A 64-bit long value in text format.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Text.Long.svg "Text.Long Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.Long.svg "Text.Long Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1556,7 +1556,7 @@ A String value.
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Text.String.svg "Text.String Syntax Diagram (Format Generic)")
+![](.grammar-images/Text.String.svg "Text.String Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1611,7 +1611,7 @@ The following action can be performed when a state should change:
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Action.svg "Action Syntax Diagram (Format Generic)")
+![](.grammar-images/Action.svg "Action Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1629,7 +1629,7 @@ Please check the [QuickScript Language Reference](../../../../../../../erence/qu
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/Formula.svg "Formula Syntax Diagram (Format Generic)")
+![](.grammar-images/Formula.svg "Formula Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1659,7 +1659,7 @@ Please check the [QuickScript Language Reference](../../../../../../../erence/qu
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/boolean.svg "Boolean Syntax Diagram (Format Generic)")
+![](.grammar-images/boolean.svg "Boolean Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1669,7 +1669,7 @@ Please check the [QuickScript Language Reference](../../../../../../../erence/qu
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/string.svg "String Syntax Diagram (Format Generic)")
+![](.grammar-images/string.svg "String Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1679,7 +1679,7 @@ Please check the [QuickScript Language Reference](../../../../../../../erence/qu
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/integer.svg "Integer Syntax Diagram (Format Generic)")
+![](.grammar-images/integer.svg "Integer Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1697,7 +1697,7 @@ This data type is based on Java's BigDecimal data type from which the descriptio
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/decimal.svg "Decimal Syntax Diagram (Format Generic)")
+![](.grammar-images/decimal.svg "Decimal Syntax Diagram (Format Generic)")
 
 </div>
 
@@ -1707,7 +1707,7 @@ This data type is based on Java's BigDecimal data type from which the descriptio
 
 <div className="imgWhiteBackground">
 
-![](ammar-images/comment.svg "Comment Syntax Diagram (Format Generic)")
+![](.grammar-images/comment.svg "Comment Syntax Diagram (Format Generic)")
 
 </div>
 

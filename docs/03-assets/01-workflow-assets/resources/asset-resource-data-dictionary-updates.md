@@ -18,7 +18,7 @@ You can extend this global dictionary in two ways:
 
 The Resource exists for situations where you need a small data structure — for example a shared enum, a simple sequence used for internal bookkeeping, or a reusable type across Workflows — but where defining a complete Format Asset with input/output handling would be excessive.
 
-For full details of supported element types (Namespace, Sequence, Choice, Enumeration, Array, Map), see the [Data Dictionary Format](../../../../s/03-asset-format-data-dictionary.md) documentation.
+For full details of supported element types (Namespace, Sequence, Choice, Enumeration, Array, Map), see the [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md) documentation.
 
 ## Configuration
 
@@ -30,7 +30,7 @@ For full details of supported element types (Namespace, Sequence, Choice, Enumer
 
 ### Format Types
 
-The Format Types section provides the Data Dictionary tree editor — the same component used by the [Data Dictionary Format](../../../../s/03-asset-format-data-dictionary.md). It allows you to declare, organize, and maintain a hierarchy of custom type definitions.
+The Format Types section provides the Data Dictionary tree editor — the same component used by the [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md). It allows you to declare, organize, and maintain a hierarchy of custom type definitions.
 
 #### Tree Navigation
 
@@ -56,7 +56,7 @@ When a node is selected, the right panel shows its fields:
 
 **`Description`**: Free-text description of the type.
 
-Additional fields appear depending on the selected type (e.g., members table for Sequence/Choice, element list for Enumeration, contained type for Array/Map). See the [Data Dictionary Format](../../../../s/03-asset-format-data-dictionary.md) documentation for full details on all type-specific configuration options.
+Additional fields appear depending on the selected type (e.g., members table for Sequence/Choice, element list for Enumeration, contained type for Array/Map). See the [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md) documentation for full details on all type-specific configuration options.
 
 #### Root Types
 
@@ -101,7 +101,7 @@ Once defined, any Asset in the Project can reference `Customer.Profile.CustomerI
 
 ## See Also
 
-- [Data Dictionary Format](../../../../s/03-asset-format-data-dictionary.md) — full reference for all element types, encoding configuration, and examples
+- [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md) — full reference for all element types, encoding configuration, and examples
 - [Data Dictionary Concept](../../../../../../../-dictionary) — architectural overview of how layline.io maintains and uses the global Data Dictionary
 
 ---

@@ -286,7 +286,7 @@ result = dynamo_db_service.<Operation><FunctionName>({ /* parameters */ })
 
 4. **Handle the response** using the auto-generated result types in the Data Dictionary.
 
-For more information, see [JavaScript Processor](../../../../sors-flow/asset-flow-javascript.md) or [Python Processor](../../../../sors-flow/asset-flow-python).
+For more information, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md) or [Python Processor](../processors-flow/asset-flow-python).
 
 #### Example: Write
 

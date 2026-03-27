@@ -292,7 +292,7 @@ In case the conditions are met, the message is then forwarded to the topic and i
   You must have pre-defined the format [here](../../../../s).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` to `B´ in a previous step (e.g. by way of
-  the [Mapping Asset](../../../../sors-flow/asset-flow-mapping) or via [Javascript](../../../../sors-flow/asset-flow-javascript)).
+  the [Mapping Asset](../processors-flow/asset-flow-mapping) or via [Javascript](../processors-flow/asset-flow-javascript)).
 
 * **`Topic`**: Enter a [Quickscript](../../../../../../../erence/quickscript/quickscript) term which evaluates to the topic name of where you want to send the individual message.
   Let's assume your default topic name is "myTopic", then you simply enter "myTopic" (include quotes) in the field.
@@ -364,7 +364,7 @@ If exclusive access cannot be obtained, you will receive an error.
   You must have pre-defined the format [here](../../../../s).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` to `B´ in a previous step (e.g. by way of
-  the [Mapping Asset](../../../../sors-flow/asset-flow-mapping) or via [Javascript](../../../../sors-flow/asset-flow-javascript)).
+  the [Mapping Asset](../processors-flow/asset-flow-mapping) or via [Javascript](../processors-flow/asset-flow-javascript)).
 
 * **`Topic`**: Enter the name of the topic you want to exclusively obtain access to.
   You can use $\{...\} macros to expand variables defined in [environment variables](../../../../ces/asset-resource-environment).
@@ -429,7 +429,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
   You must have pre-defined the format [here](../../../../s).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` tpo `B´ in a previous step (e.g. by way of
-  the [Mapping Asset](../../../../sors-flow/asset-flow-mapping) or via [Javascript](../../../../sors-flow/asset-flow-javascript)).
+  the [Mapping Asset](../processors-flow/asset-flow-mapping) or via [Javascript](../processors-flow/asset-flow-javascript)).
 
   ](.asset-output-frame_images/38fa86be.png "Kinesis output format (Output Frame)")
 
@@ -534,7 +534,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
   You must have pre-defined the format [here](../../../../s).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` tpo `B´ in a previous step (e.g. by way of
-  the [Mapping Asset](../../../../sors-flow/asset-flow-mapping) or via [Javascript](../../../../sors-flow/asset-flow-javascript)).
+  the [Mapping Asset](../processors-flow/asset-flow-mapping) or via [Javascript](../processors-flow/asset-flow-javascript)).
 
   ](.asset-output-frame_images/44ee1b0a.png "SNS output format (Output Frame)")
 
@@ -740,7 +740,7 @@ In case the conditions are met, the message is then forwarded to SQS in the form
   You must have pre-defined the format [here](../../../../s).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` tpo `B´ in a previous step (e.g. by way of
-  the [Mapping Asset](../../../../sors-flow/asset-flow-mapping) or via [Javascript](../../../../sors-flow/asset-flow-javascript)).
+  the [Mapping Asset](../processors-flow/asset-flow-mapping) or via [Javascript](../processors-flow/asset-flow-javascript)).
 
   ](.asset-output-frame_images/328770d5.png "SQS output format (Output Frame)")
 

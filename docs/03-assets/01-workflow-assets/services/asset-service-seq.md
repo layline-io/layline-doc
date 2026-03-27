@@ -124,7 +124,7 @@ def reset_ticket_sequence(next_ticket_number):
   </TabItem>
 </Tabs>
 
-For more information, see [JavaScript Processor](../../../../sors-flow/asset-flow-javascript.md) or [Python Processor](../../../../sors-flow/asset-flow-python).
+For more information, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md) or [Python Processor](../processors-flow/asset-flow-python).
 
 <Testcase></Testcase>
 

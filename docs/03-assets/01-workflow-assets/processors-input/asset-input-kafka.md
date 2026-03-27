@@ -162,7 +162,7 @@ The SavePoint commit mode has no equivalent in Kafka. This actually represents "
 There are mechanisms within layline.io which allow to trigger a so called "upstream savepoint" based on certain conditions.
 If such a savepoint is triggered, this is then propagated back up. In this case the then current offset will be committed back to Kafka.
 
-An example can be found in the [Stream Boundary Controller Asset](../../../../sors-flow/asset-flow-streamboundary) where a savepoint can be triggered upon configurable conditions.
+An example can be found in the [Stream Boundary Controller Asset](../processors-flow/asset-flow-streamboundary) where a savepoint can be triggered upon configurable conditions.
 So if you have a Stream Boundary Controller in you Workflow, then a savepoint can be triggered from within that Processor.
 
 **Example:** Stream Boundary Controller SavePoint trigger
@@ -197,7 +197,7 @@ The Message Mode commits the read offset back to Kafka based on time and number 
 
 ### Internal
 
-* [Stream Boundary Controller Asset](../../../../sors-flow/asset-flow-streamboundary)
+* [Stream Boundary Controller Asset](../processors-flow/asset-flow-streamboundary)
 
 ### External
 

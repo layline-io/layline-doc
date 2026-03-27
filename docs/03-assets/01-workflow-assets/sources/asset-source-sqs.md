@@ -75,7 +75,7 @@ Amazon SQS sends an empty response only if the here configured polling wait time
 * **`Visibility timeout [sec]`**: The visibility timeout begins when Amazon SQS returns a message. During this time, the consumer has to process and delete the message. 
 You can define this timeout period in here. After the visibility timeout period the message becomes visible to other consumers again if it is not deleted. 
 If a message must be received only once, your consumer should delete it within the duration of the visibility timeout. ( see also [SQS Visibility Timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)).
-Within lalyine.io you need to ensure this behavior by adding the [Input Frame Committer](../../../../sors-flow/asset-flow-input-frame-committer) processor into your workflow since this is the instance that would finally delete the message from the queue.
+Within lalyine.io you need to ensure this behavior by adding the [Input Frame Committer](../processors-flow/asset-flow-input-frame-committer) processor into your workflow since this is the instance that would finally delete the message from the queue.
 Please note: DELETE is only executed when message has reached the Input Frame Committer!
 
 
