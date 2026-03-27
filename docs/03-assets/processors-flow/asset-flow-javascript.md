@@ -113,7 +113,7 @@ Entering invalid JSON will cause problems when using the Arguments in the underl
 
 ## Example
 
-The following example reads inbound product records and maps them to a structured output format with Header, Detail, and Trailer records.
+The following example reads inbound product records, filters them by category, and maps the matching records to a structured output format with Header, Detail, and Trailer records.
 
 ```mermaid
 graph LR
@@ -133,33 +133,20 @@ graph LR
 
 ```javascript
 /**
- * Maps input messages to a different output format.
+ * Filters inbound product records by category and maps them to a
+ * structured output format (Header / Detail / Trailer).
  */
 
 const OUTPUT_PORT = processor.getOutputPort('Output-1');
 let totalRecords = 0;
+let headerEmitted = false;
 
-// Configuration: override column mapping via Arguments if provided
-let COLUMN_MAP = null;
+// Category to filter on — set via Arguments (e.g. "Electronics")
+let CATEGORY_FILTER = null;
 
 export function onInit() {
-    // Retrieve column mapping from Arguments if set
     const args = processor.getArguments();
-    if (args && args.columnMap) {
-        COLUMN_MAP = args.columnMap;
-    } else {
-        // Default mapping
-        COLUMN_MAP = {
-            id: "Id",
-            code: "Code",
-            name: "Name",
-            category: "Category",
-            price: "Price",
-            stock: "StockQuantity",
-            color: "Color",
-            launchDate: "LaunchDate"
-        };
-    }
+    CATEGORY_FILTER = args?.categoryFilter ?? null;
 }
 
 export function onShutdown() {
@@ -168,33 +155,42 @@ export function onShutdown() {
 export function onStreamStart() {
     stream.logInfo("--- onStreamStart");
     totalRecords = 0;
+    headerEmitted = false;
 }
 
 export function onMessage() {
+    const category = message.data.Category;
+
+    // Skip records that don't match the filter
+    if (CATEGORY_FILTER && category !== CATEGORY_FILTER) {
+        return;
+    }
+
     stream.logInfo("--- onMessage. Message: " + message.toJson());
 
-    // Write header on first record
-    if (totalRecords === 0) {
+    // Write header on first matching record
+    if (!headerEmitted) {
         const headerMessage = dataDictionary.createMessage(dataDictionary.type.Header);
         headerMessage.data.PRODUCT = {
             RECORD_TYPE: "H",
             FILENAME: "Id;Code;Name;Category;Price;StockQuantity;Color;LaunchDate"
         };
         stream.emit(headerMessage, OUTPUT_PORT);
+        headerEmitted = true;
     }
 
     // Create and emit a Detail record
     const detailMessage = dataDictionary.createMessage(dataDictionary.type.Detail);
     detailMessage.data.PRODUCT = {
         RECORD_TYPE: "D",
-        ID: message.data[COLUMN_MAP.id],
-        CODE: message.data[COLUMN_MAP.code],
-        NAME: message.data[COLUMN_MAP.name],
-        CATEGORY: message.data[COLUMN_MAP.category],
-        PRICE: message.data[COLUMN_MAP.price],
-        STOCK_QUANTITY: message.data[COLUMN_MAP.stock],
-        COLOR: message.data[COLUMN_MAP.color],
-        LAUNCH_DATE: message.data[COLUMN_MAP.launchDate]
+        ID: message.data.Id,
+        CODE: message.data.Code,
+        NAME: message.data.Name,
+        CATEGORY: message.data.Category,
+        PRICE: message.data.Price,
+        STOCK_QUANTITY: message.data.StockQuantity,
+        COLOR: message.data.Color,
+        LAUNCH_DATE: message.data.LaunchDate
     };
     stream.emit(detailMessage, OUTPUT_PORT);
     totalRecords++;
@@ -203,7 +199,7 @@ export function onMessage() {
 export function onStreamEnd() {
     stream.logInfo("--- onStreamEnd");
 
-    // Write trailer if any records were processed
+    // Write trailer if any matching records were processed
     if (totalRecords > 0) {
         const trailerMessage = dataDictionary.createMessage(dataDictionary.type.Trailer);
         trailerMessage.data.PRODUCT = {
@@ -217,22 +213,24 @@ export function onStreamEnd() {
 
 **Arguments:**
 
-To override the default column mapping, pass a JSON object argument:
+To filter records by category, pass a `categoryFilter` argument:
 
 ```json
 [
-    { "key": "columnMap", "value": { "id": "product_id", "code": "sku", "name": "product_name" } }
+    { "key": "categoryFilter", "value": "Electronics" }
 ]
 ```
 
+Only records whose `Category` field matches the filter value are emitted. Records that do not match are silently skipped. Omit the argument to emit all records without filtering.
+
 **What happens at runtime:**
 
-1. `onStreamStart` initializes the record counter to 0
-2. For the first message, `onMessage` emits a Header record with the column header string
-3. For every message, `onMessage` emits a Detail record with the mapped fields
-4. `onStreamEnd` emits a Trailer record with the total record count
-5. `onShutdown` is called when the processor shuts down (e.g., on workflow stop)
-
+1. `onStreamStart` initialises the record counter and header flag
+2. For each message, `onMessage` checks the `Category` field against the filter — non-matching records are skipped
+3. On the first matching record, `onMessage` emits a Header record followed by the first Detail record
+4. All subsequent matching records emit Detail records only
+5. `onStreamEnd` emits a Trailer record with the total count of matching records
+6. `onShutdown` is called when the processor stops (e.g., on workflow stop)
 
 ## See Also
 

@@ -113,7 +113,7 @@ Entering invalid JSON will cause problems when using the Arguments in the underl
 
 ## Example
 
-The following example reads inbound product records and maps them to a structured output format with Header, Detail, and Trailer records.
+The following example reads inbound product records, filters them by category, and maps the matching records to a structured output format with Header, Detail, and Trailer records.
 
 ```mermaid
 graph LR
@@ -133,33 +133,23 @@ graph LR
 
 ```python
 """
-Maps input messages to a different output format.
+Filters inbound product records by category and maps them to a
+structured output format (Header / Detail / Trailer).
 """
 
 OUTPUT_PORT = processor.get_output_port('Output-1')
 TOTAL_RECORDS = 0
+HEADER_EMITTED = False
 
-# Default column mapping, can be overridden via Arguments
-COLUMN_MAP = None
+# Category to filter on — set via Arguments (e.g. "Electronics")
+CATEGORY_FILTER = None
 
 
 def on_init():
     """Called once when the Project starts."""
-    global COLUMN_MAP
+    global CATEGORY_FILTER
     args = processor.get_arguments()
-    if args and args.get('columnMap'):
-        COLUMN_MAP = args.get('columnMap')
-    else:
-        COLUMN_MAP = {
-            "id": "Id",
-            "code": "Code",
-            "name": "Name",
-            "category": "Category",
-            "price": "Price",
-            "stock": "StockQuantity",
-            "color": "Color",
-            "launchDate": "LaunchDate"
-        }
+    CATEGORY_FILTER = args.get('categoryFilter') if args else None
 
 
 def on_shutdown():
@@ -169,37 +159,46 @@ def on_shutdown():
 
 def on_stream_start():
     """Called when a new stream starts."""
-    global TOTAL_RECORDS
+    global TOTAL_RECORDS, HEADER_EMITTED
     stream.log_info("--- on_stream_start")
     TOTAL_RECORDS = 0
+    HEADER_EMITTED = False
 
 
 def on_message():
     """Called for every message arriving at the Input port."""
-    global TOTAL_RECORDS
+    global TOTAL_RECORDS, HEADER_EMITTED
+
+    category = message.data.get('Category')
+
+    # Skip records that don't match the filter
+    if CATEGORY_FILTER and category != CATEGORY_FILTER:
+        return
+
     stream.log_info("--- on_message. Message: " + message.to_json())
 
-    # Write header on first record
-    if TOTAL_RECORDS == 0:
+    # Write header on first matching record
+    if not HEADER_EMITTED:
         header_message = data_dictionary.create_message(data_dictionary.type.Header)
         header_message.data.PRODUCT = {
             "RECORD_TYPE": "H",
             "FILENAME": "Id;Code;Name;Category;Price;StockQuantity;Color;LaunchDate"
         }
         stream.emit(header_message, OUTPUT_PORT)
+        HEADER_EMITTED = True
 
     # Create and emit a Detail record
     detail_message = data_dictionary.create_message(data_dictionary.type.Detail)
     detail_message.data.PRODUCT = {
         "RECORD_TYPE": "D",
-        "ID": message.data[COLUMN_MAP["id"]],
-        "CODE": message.data[COLUMN_MAP["code"]],
-        "NAME": message.data[COLUMN_MAP["name"]],
-        "CATEGORY": message.data[COLUMN_MAP["category"]],
-        "PRICE": message.data[COLUMN_MAP["price"]],
-        "STOCK_QUANTITY": message.data[COLUMN_MAP["stock"]],
-        "COLOR": message.data[COLUMN_MAP["color"]],
-        "LAUNCH_DATE": message.data[COLUMN_MAP["launchDate"]]
+        "ID": message.data.get("Id"),
+        "CODE": message.data.get("Code"),
+        "NAME": message.data.get("Name"),
+        "CATEGORY": message.data.get("Category"),
+        "PRICE": message.data.get("Price"),
+        "STOCK_QUANTITY": message.data.get("StockQuantity"),
+        "COLOR": message.data.get("Color"),
+        "LAUNCH_DATE": message.data.get("LaunchDate")
     }
     stream.emit(detail_message, OUTPUT_PORT)
     TOTAL_RECORDS += 1
@@ -210,7 +209,7 @@ def on_stream_end():
     global TOTAL_RECORDS
     stream.log_info("--- on_stream_end")
 
-    # Write trailer if any records were processed
+    # Write trailer if any matching records were processed
     if TOTAL_RECORDS > 0:
         trailer_message = data_dictionary.create_message(data_dictionary.type.Trailer)
         trailer_message.data.PRODUCT = {
@@ -222,24 +221,29 @@ def on_stream_end():
 
 **Arguments:**
 
-To override the default column mapping, pass a JSON object argument:
+To filter records by category, pass a `categoryFilter` argument:
 
 ```json
 [
-    { "key": "columnMap", "value": { "id": "product_id", "code": "sku", "name": "product_name" } }
+    { "key": "categoryFilter", "value": "Electronics" }
 ]
 ```
 
+Only records whose `Category` field matches the filter value are emitted. Records that do not match are silently skipped. Omit the argument to emit all records without filtering.
+
 **What happens at runtime:**
 
-1. `on_stream_start` initializes the record counter to 0
-2. For the first message, `on_message` emits a Header record with the column header string
-3. For every message, `on_message` emits a Detail record with the mapped fields
-4. `on_stream_end` emits a Trailer record with the total record count
-5. `on_shutdown` is called when the processor shuts down (e.g., on workflow stop)
+1. `on_stream_start` initialises the record counter and header flag
+2. For each message, `on_message` checks the `Category` field against the filter — non-matching records are skipped
+3. On the first matching record, `on_message` emits a Header record followed by the first Detail record
+4. All subsequent matching records emit Detail records only
+5. `on_stream_end` emits a Trailer record with the total count of matching records
+6. `on_shutdown` is called when the processor stops (e.g., on workflow stop)
+
 
 
 ## See Also
+
 
 - [Python Language Reference](../../language-reference/python/python_introduction) — full Python language guide for layline.io
 - [PythonProcessor API](../../language-reference/python/API/classes/PythonProcessor) — available hooks and lifecycle methods
