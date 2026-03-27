@@ -26,7 +26,7 @@ Counter.Source.MySource.Files  →  io_layline_counter_source_mysource_files
 The Prometheus Extension is assigned to a [Project](../projects-workflows/project) or an [Engine Configuration](../deployment/asset-configuration-engine) to enable metric export.
 
 :::tip See Also
-For a full list of available default metrics and how to configure Prometheus + Grafana, see [Gathering Statistics through Metrics](../../concept/06-advanced/04-prometheus-extension).
+For a full list of available default metrics and how to configure Prometheus + Grafana, see [Gathering Statistics through Metrics](../../concept/advanced/prometheus-extension).
 :::
 
 ## This Asset can be used by:
@@ -56,6 +56,8 @@ A table of mapping rules. Each row defines how one internal metric is named and 
 | **Name** | The name under which Prometheus will expose this metric (e.g., `io_layline_counter_source_files`) |
 | **Labels** | One or more key–value label pairs that add dimensions to the exported metric, making it filterable in Prometheus queries |
 | **Operations** | Action buttons per row: add a label, delete the mapping, reorder with up/down arrows |
+
+![Prometheus Mappings editor — showing Match patterns, export names, and label values including wildcard placeholders ${0}, ${1}](./.asset-prometheus_images/prometheus-mappings-example.png "Prometheus Mappings — wildcard placeholder example")
 
 **How Match works:** The regex is evaluated against the full internal metric name. Use `*` as a wildcard to match any segment. The first matching row wins — ordering matters when multiple patterns could match the same metric.
 
