@@ -303,7 +303,7 @@ def on_order_confirmed(order_id, order_details):
     @param order_id: The ID of the confirmed order
     @param order_details: The order details
     """
-    confirmation_data = data_dictionary.create_message(
+    confirmation_data = data_dictionary.createMessage(
         data_dictionary.type.OrderConfirmation
     )
     confirmation_data.data.order_id = order_id
