@@ -31,14 +31,14 @@ You need:
 
 **A Stream Source, of either**
 
-* [File System Source](../sources/asset-source-file)
-* [FTP Source](../sources/asset-source-ftp)
-* [OneDrive Source](../sources/asset-source-onedrive)
-* [S3 Source](../sources/asset-source-s3)
-* [SharePoint Source](../sources/asset-source-sharepoint)
-* [SMB Source](../sources/asset-source-smb)
-* [TCP Source](../sources/asset-source-tcp)
-* [WebDav Source](../sources/asset-source-webdav)
+* [File System Source](/docs/assets/workflow-assets/sources/asset-source-file)
+* [FTP Source](/docs/assets/workflow-assets/sources/asset-source-ftp)
+* [OneDrive Source](/docs/assets/workflow-assets/sources/asset-source-onedrive)
+* [S3 Source](/docs/assets/workflow-assets/sources/asset-source-s3)
+* [SharePoint Source](/docs/assets/workflow-assets/sources/asset-source-sharepoint)
+* [SMB Source](/docs/assets/workflow-assets/sources/asset-source-smb)
+* [TCP Source](/docs/assets/workflow-assets/sources/asset-source-tcp)
+* [WebDav Source](/docs/assets/workflow-assets/sources/asset-source-webdav)
 
 ### Name & Description
 

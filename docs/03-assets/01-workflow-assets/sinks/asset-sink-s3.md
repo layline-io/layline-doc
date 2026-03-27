@@ -87,7 +87,7 @@ The status of these attempts is displayed at the bottom of the group box.
 ### Internal
 
 * [S3 Connection](../connections/asset-connection-aws)
-* [S3 Source](../sources/asset-source-s3)
+* [S3 Source](/docs/assets/workflow-assets/sources/asset-source-s3)
 
 ### External
 

@@ -43,6 +43,31 @@ Same as [getName](#getname).
 STREAM_NAME = stream.name
 ```
 
+### originalName
+
+> `readonly` **originalName**: str
+
+Returns the original name of a stream.
+
+#### Example
+
+```python
+STREAM_ORIGINAL_NAME = stream.originalName
+```
+
+### path
+
+
+> `readonly` **path**: str
+
+Returns the path of a stream.
+
+#### Example
+
+```python
+STREAM_PATH = stream.path
+```
+
 ### path
 
 > `readonly` **path**: str
@@ -302,7 +327,7 @@ STREAM_NAME = stream.getName()
 
 Returns the original name of a stream including the configured prefix and suffix.
 
-Same as [originalName](#originalName).
+Same as [originalName](#originalname).
 
 #### Returns
 

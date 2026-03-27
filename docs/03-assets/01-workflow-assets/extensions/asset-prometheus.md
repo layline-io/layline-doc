@@ -23,18 +23,18 @@ Metrics are named using dot notation — all layline.io metric names start with 
 Counter.Source.MySource.Files  →  io_layline_counter_source_mysource_files
 ```
 
-The Prometheus Extension is assigned to a [Project](../../concept/projects-workflows/project) or an [Engine Configuration](../deployment/asset-configuration-engine) to enable metric export.
+The Prometheus Extension is assigned to a [Project](/docs/concept/projects-workflows/project) or an [Engine Configuration](/docs/assets/deployment-assets/asset-deployment-engine) to enable metric export.
 
 :::tip See Also
-For a full list of available default metrics and how to configure Prometheus + Grafana, see [Gathering Statistics through Metrics](../../concept/advanced/prometheus-extension).
+For a full list of available default metrics and how to configure Prometheus + Grafana, see [Gathering Statistics through Metrics](/docs/concept/advanced/prometheus-extension).
 :::
 
 ## This Asset can be used by:
 
 | Asset type | Link |
 |---|---|
-| Projects | [Project](../../concept/projects-workflows/project) |
-| Deployment | [Engine Configuration](../deployment/asset-configuration-engine) |
+| Projects | [Project](/docs/concept/projects-workflows/project) |
+| Deployment | [Engine Configuration](/docs/assets/deployment-assets/asset-deployment-engine) |
 
 ## Configuration
 

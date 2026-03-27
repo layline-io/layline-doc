@@ -42,7 +42,7 @@ Each training run creates a new **version** of the model in AI Storage, identifi
 
 This processor requires:
 
-1. An **[AI Model Resource](../resources/asset-resource-ai)** that defines the model's input/output attributes, model type (e.g., J48 Decision Tree, Multilayer Perceptron), and hyperparameters
+1. An **[AI Model Resource](/docs/assets/workflow-assets/resources/asset-resource-ai-model)** that defines the model's input/output attributes, model type (e.g., J48 Decision Tree, Multilayer Perceptron), and hyperparameters
 2. A path in AI Storage where the trained model will be stored
 3. Incoming messages with attribute values that can be mapped to the model's input schema
 
@@ -221,10 +221,10 @@ The JavaScript Processor extracts and formats the relevant attributes from each 
 ## See Also
 
 - [AI Classifier](./asset-flow-ai-classifier) — for applying a trained model to classify new messages
-- [AI Model Resource](../resources/asset-resource-ai) — for defining the model's input/output schema, algorithm type, and hyperparameters
+- [AI Model Resource](/docs/assets/workflow-assets/resources/asset-resource-ai-model) — for defining the model's input/output schema, algorithm type, and hyperparameters
 - [AI Service](../services/asset-service-ai) — for defining the interface to an AI model
-- [Operations → AI Storage](../../../operations/cluster/cluster#ai-storage) — for managing trained models in AI Storage
-- [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
+- [Operations → AI Storage](/docs/operations/cluster/cluster#ai-storage) — for managing trained models in AI Storage
+- [Using Artificial Intelligence in Workflows](/docs/concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
 
 ---
 

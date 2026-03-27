@@ -20,7 +20,7 @@ Defines the connection parameters for a SMB endpoint.
 
 | Asset type | Link                                                |
 |------------|-----------------------------------------------------|
-| Source     | [SMB Source](../sources/asset-source-smb) |
+| Source     | [SMB Source](/docs/assets/workflow-assets/sources/asset-source-smb) |
 | Sink       | [SMB Sink](../sinks/asset-sink-smb)       |
 
 ## Configuration
@@ -86,7 +86,7 @@ You have two options to authenticate against the SMB endpoint:
 * **`Secret`**:
   Select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](../resources/asset-resource-secret) to be able to assign it here.
 
-  Please [follow this link to "Advanced Concepts"](../../concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
+  Please [follow this link to "Advanced Concepts"](/docs/concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
 
 #### Connection Test Result:
 

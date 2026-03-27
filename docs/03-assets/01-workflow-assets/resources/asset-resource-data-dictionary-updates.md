@@ -102,7 +102,7 @@ Once defined, any Asset in the Project can reference `Customer.Profile.CustomerI
 ## See Also
 
 - [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md) — full reference for all element types, encoding configuration, and examples
-- [Data Dictionary Concept](../../concept/data-dictionary) — architectural overview of how layline.io maintains and uses the global Data Dictionary
+- [Data Dictionary Concept](/docs/concept/data-dictionary) — architectural overview of how layline.io maintains and uses the global Data Dictionary
 
 ---
 

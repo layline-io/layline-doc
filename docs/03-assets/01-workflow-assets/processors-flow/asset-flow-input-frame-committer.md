@@ -156,9 +156,9 @@ If the same pattern used `Entire Stream` mode instead, the processor would emit 
 
 ## See Also
 
-- [SQS Source](../sources/asset-source-amazon-sqs) — message source that attaches `InputFrame` to SQS messages
-- [Kafka Source](../sources/asset-source-apache-kafka) — message source that attaches `InputFrame` to Kafka records
-- [Input Frame Processor](./asset-flow-input-frame) — counterpart that attaches `InputFrame` to messages; Input Frame Committer finalizes messages that carry it
+- [SQS Source](/docs/assets/workflow-assets/sources/asset-source-sqs) — message source that attaches `InputFrame` to SQS messages
+- [Kafka Source](/docs/assets/workflow-assets/sources/asset-source-kafka) — message source that attaches `InputFrame` to Kafka records
+- [Input Frame Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-input-frame-committer) — counterpart that attaches `InputFrame` to messages; Input Frame Committer finalizes messages that carry it
 
 ---
 

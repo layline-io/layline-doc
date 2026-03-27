@@ -9,7 +9,7 @@ import FailureHandling from '../../snippets/assets/_failure-handling-flow.mdx';
 ## Introduction
 
 In order to allow for complex message processing and applying custom business logic to message handling, layline.io
-provides the [Javascript Asset](../../assets/processors-flow/asset-flow-javascript).
+provides the [Javascript Asset](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript).
 This asset enables you to apply theoretically any kind of scriptable logic when handling messages.
 
 Popular examples are:

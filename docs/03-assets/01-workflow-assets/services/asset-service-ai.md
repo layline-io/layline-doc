@@ -20,7 +20,7 @@ The **AI Service** exposes one or more trained AI models as callable functions f
 - A **Data Dictionary** with attributes defined in the namespace configured in the service
 
 :::tip
-If you are not familiar with the AI workflow in layline.io, read [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) first.
+If you are not familiar with the AI workflow in layline.io, read [Using Artificial Intelligence in Workflows](/docs/concept/advanced/artificial-intelligence) first.
 :::
 
 ## Configuration
@@ -320,8 +320,8 @@ def on_stream_end():
 
 - [AI Trainer](../processors-flow/asset-flow-ai-trainer) — train and store models in AI Storage
 - [AI Classifier](../processors-flow/asset-flow-ai-classifier) — use a trained model directly within a Workflow stream
-- [AI Model Resource](../resources/asset-resource-ai-model) — define the model specification used for training and by this service
-- [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
+- [AI Model Resource](/docs/assets/workflow-assets/resources/asset-resource-ai-model) — define the model specification used for training and by this service
+- [Using Artificial Intelligence in Workflows](/docs/concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
 
 ---
 

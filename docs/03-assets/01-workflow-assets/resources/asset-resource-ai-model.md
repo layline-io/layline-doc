@@ -18,7 +18,7 @@ Before you can train or classify with an AI model, the model must be defined her
 - A **Data Dictionary** with attributes defined for the input features and the output (class) attribute. The attribute names and types must match what your Workflow messages provide at runtime.
 
 :::tip
-If you are not familiar with how AI fits into layline.io Workflows, read [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) first.
+If you are not familiar with how AI fits into layline.io Workflows, read [Using Artificial Intelligence in Workflows](/docs/concept/advanced/artificial-intelligence) first.
 :::
 
 ## Configuration
@@ -210,7 +210,7 @@ Reference the same model from AI Storage at `models/usage-classifier-v2:latest`.
 - [AI Trainer](../processors-flow/asset-flow-ai-trainer) — train the model defined by this Resource
 - [AI Classifier](../processors-flow/asset-flow-ai-classifier) — apply the trained model to classify new messages
 - [AI Service](../services/asset-service-ai) — expose an AI model as a service endpoint
-- [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
+- [Using Artificial Intelligence in Workflows](/docs/concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
 
 ---
 

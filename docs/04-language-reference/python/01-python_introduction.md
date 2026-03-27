@@ -9,7 +9,7 @@ import FailureHandling from '../../snippets/assets/_failure-handling-flow.mdx';
 ## Introduction
 
 In order to allow for complex message processing and applying custom business logic to message handling, layline.io
-provides the [Python Asset](../../assets/processors-flow/asset-flow-python).
+provides the [Python Asset](/docs/assets/workflow-assets/processors-flow/asset-flow-python).
 This asset enables you to apply theoretically any kind of scriptable logic when handling messages.
 
 Popular examples are:
@@ -46,7 +46,7 @@ You can use none, one or as many of these Assets within your Project and within 
 
 Since layline.io is a reactive system, a Python Asset receiving a message automatically starts processing this
 message with the underlying script you provided.
-One of the key methods here is [onMessage](./API/classes/PythonProcessor#onmessage):
+One of the key methods here is [onMessage](./API/classes/PythonProcessor#on_message):
 
 ![](./.01-python_introduction_images/1725885495836.png "Lifecycle Hooks (Python Introduction)")
 

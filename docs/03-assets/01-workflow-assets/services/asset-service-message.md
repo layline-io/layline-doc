@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
 
 ## Purpose
 
-The Message Service is the **producer side** of layline.io's internal publish/subscribe messaging system. It publishes messages to topics defined in a [Message Source](../sources/asset-source-message.md). Messages can be published from JavaScript or Python processors, making it useful for:
+The Message Service is the **producer side** of layline.io's internal publish/subscribe messaging system. It publishes messages to topics defined in a [Message Source](/docs/03-assets/01-workflow-assets/sources/asset-source-message.md). Messages can be published from JavaScript or Python processors, making it useful for:
 
 - Triggering downstream Workflows based on events
 - Broadcasting data to multiple consumers simultaneously
@@ -26,7 +26,7 @@ The Message Service is the **producer side** of layline.io's internal publish/su
 
 ### Architecture
 
-The Message Service is the counterpart to the [Message Source](../sources/asset-source-message.md) (consumer). Together they form a publish/subscribe system:
+The Message Service is the counterpart to the [Message Source](/docs/03-assets/01-workflow-assets/sources/asset-source-message.md) (consumer). Together they form a publish/subscribe system:
 
 ```mermaid
 flowchart LR
@@ -55,7 +55,7 @@ A single Message Service can reference multiple Message Sources. For each Messag
 
 | Asset | Description |
 |-------|-------------|
-| [Message Source](../sources/asset-source-message.md) | Defines the topics that this service publishes to |
+| [Message Source](/docs/03-assets/01-workflow-assets/sources/asset-source-message.md) | Defines the topics that this service publishes to |
 
 ## Configuration
 
@@ -77,7 +77,7 @@ Nodes (no restriction).
 
 ### Sources
 
-Under **Sources**, add references to the [Message Sources](../sources/asset-source-message.md) whose topics this service publishes to. Each entry links a Message Source asset to this service.
+Under **Sources**, add references to the [Message Sources](/docs/03-assets/01-workflow-assets/sources/asset-source-message.md) whose topics this service publishes to. Each entry links a Message Source asset to this service.
 
 | Column | Description |
 |--------|-------------|

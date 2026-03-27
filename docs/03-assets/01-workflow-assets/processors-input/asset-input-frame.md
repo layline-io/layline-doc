@@ -28,8 +28,8 @@ This Asset is used within a Workflow definition.
 ### Prerequisite
 
 You need:
-* [SQS Source](../sources/asset-source-sqs), or
-* [UDP Source](../sources/asset-source-udp)
+* [SQS Source](/docs/assets/workflow-assets/sources/asset-source-sqs), or
+* [UDP Source](/docs/assets/workflow-assets/sources/asset-source-udp)
 * [Format](../formats)
 
 ## Configuration

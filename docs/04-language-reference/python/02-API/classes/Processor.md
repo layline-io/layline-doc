@@ -41,7 +41,7 @@ name = processor.name  # Returns the name of the Processor, e.g. 'My-Processor'.
 > **expandString**(to_expand: str) -> str
 
 Expands all macros contained in a string.
-For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](../../../../assets/resources/asset-resource-environment) you can do so like this:
+For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](/docs/assets/workflow-assets/resources/asset-resource-environment) you can do so like this:
 
 #### Parameters
 

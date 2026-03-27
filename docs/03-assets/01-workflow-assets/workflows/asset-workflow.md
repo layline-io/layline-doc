@@ -33,7 +33,7 @@ graph LR
 
 | Asset type | Link |
 |---|---|
-| Projects | [Project](../../concept/projects-workflows/project) |
+| Projects | [Project](/docs/concept/projects-workflows/project) |
 
 ## Configuration
 
@@ -67,7 +67,7 @@ If a Resource is already deployed as part of another Workflow in the same deploy
 
 ### Alarming
 
-Configure notifications for Workflow lifecycle events. Each event type uses the [Alarm Center](../../../operations/cluster/alarm-center) to route alerts.
+Configure notifications for Workflow lifecycle events. Each event type uses the [Alarm Center](/docs/operations/cluster/alarm-center) to route alerts.
 
 | Event | When it fires |
 |-------|-------------|
@@ -78,7 +78,7 @@ Configure notifications for Workflow lifecycle events. Each event type uses the 
 
 ## Example: IoT Sensor Processing Workflow
 
-This example builds on the [TCP Source](../sources/asset-source-tcp) and [Stream Input Processor](../processors-input/asset-input-stream) to create a complete sensor data ingestion pipeline.
+This example builds on the [TCP Source](/docs/assets/workflow-assets/sources/asset-source-tcp) and [Stream Input Processor](../processors-input/asset-input-stream) to create a complete sensor data ingestion pipeline.
 
 ### Goal
 
@@ -88,7 +88,7 @@ Receive temperature and humidity readings from IoT sensors over TCP, filter out 
 
 | Asset | Role in workflow |
 |-------|-----------------|
-| [Source TCP](../sources/asset-source-tcp) `SensorTcpSource` | Listens on `acme.sensor.host:9000` |
+| [Source TCP](/docs/assets/workflow-assets/sources/asset-source-tcp) `SensorTcpSource` | Listens on `acme.sensor.host:9000` |
 | [Stream Input Processor](../processors-input/asset-input-stream) `SensorInput` | Reads the TCP stream as newline-delimited JSON |
 | [JavaScript Flow Processor](../processors-flow/asset-flow-javascript) `FilterReadings` | Filters readings by temperature range |
 | [Stream Output Processor](../processors-output/asset-output-stream) `SensorOutput` | Writes cleaned records to a file |
@@ -132,7 +132,7 @@ graph LR
 
 ## See Also
 
-* [Project](../../concept/projects-workflows/project) — Workflows are contained within Projects
+* [Project](/docs/concept/projects-workflows/project) — Workflows are contained within Projects
 * [Stream Input Processor](../processors-input/asset-input-stream) — the required entry point of every Workflow
-* [Deployment](../../concept/projects-workflows/deployment) — how Workflows are deployed to an engine
-* [Alarm Center](../../../operations/cluster/alarm-center) — how alarming events are routed and handled
+* [Deployment](/docs/concept/projects-workflows/deployment) — how Workflows are deployed to an engine
+* [Alarm Center](/docs/operations/cluster/alarm-center) — how alarming events are routed and handled

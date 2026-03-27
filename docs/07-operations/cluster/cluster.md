@@ -66,7 +66,7 @@ There are two tabs "_**Deployments**_" **(1)** and "**Node Assignments**" **(2)*
 ##### Deployments Tab
 
 The _Deployments_ Tab gives you a tree view of the Deployments **(3)** which are known to the Cluster and also persisted thereon. 
-We have explained earlier [how the Deployments are sent to a Cluster](../../concept/projects-workflows/deployment#deploy-to-cluster).
+We have explained earlier [how the Deployments are sent to a Cluster](/docs/concept/projects-workflows/deployment#deploy-to-cluster).
 
 One of the Deployments is set to "_Default_" **(4)**, which means this would be the Deployment which the Cluster is executing if nothing else has been configured.  "_DeploymentRoot_" has a special role in that it marks an empty Deployment. If this is set to "_Default_" then the Cluster is not executing at all (no Workflows).
 
@@ -128,7 +128,7 @@ You can only delete Deployments which are not active. It is also not possible to
 
 #### Deploy from File
 
-As explained [here](../../concept/projects-workflows/deployment#deploy-to-file) a Deployment can be written to a file. To install this Deployment on the Cluster you can select `Upload Deployments` **(1)**:
+As explained [here](/docs/concept/projects-workflows/deployment#deploy-to-file) a Deployment can be written to a file. To install this Deployment on the Cluster you can select `Upload Deployments` **(1)**:
 
 ![](.cluster_images/2021-11-04-15-59-59.png "Deploy from File (Operations --> Cluster)")
 

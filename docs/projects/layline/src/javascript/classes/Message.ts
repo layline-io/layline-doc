@@ -11,7 +11,7 @@ import Vendor from "@site/layline/src/javascript/classes/Vendor";
  * Events traversing layline.io Workflows are instantiated as a {@link Message}.
  * This class exposes a number of properties and methods to extract and set data within messages.
  *
- * To understand the anatomy of a message please read the respective [chapter in the documentation](../../../../concept/data-dictionary).
+ * To understand the anatomy of a message please read the respective [chapter in the documentation](/docs/concept/data-dictionary).
  *
  *
  * ## Example Message Structure

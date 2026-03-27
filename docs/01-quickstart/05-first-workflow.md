@@ -716,5 +716,5 @@ If you are interested in layline.io and need help getting started, you can alway
 
 - **[Concepts in depth](/docs/concept)** — understand the architecture and data model in detail
 - **[Asset Reference](/docs/assets)** — explore all available source, processor, and sink types
-- **[Mapping Processor](/docs/assets/processors-flow/asset-flow-mapping)** — learn about data transformation
-- **[Router](/docs/assets/processors-flow/asset-flow-filterrouting)** — learn about routing logic
+- **[Mapping Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-mapping)** — learn about data transformation
+- **[Router](/docs/assets/workflow-assets/processors-flow/asset-flow-filterrouting)** — learn about routing logic
