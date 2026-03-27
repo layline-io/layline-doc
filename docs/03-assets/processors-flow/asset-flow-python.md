@@ -137,7 +137,7 @@ Filters inbound product records by category and maps them to a
 structured output format (Header / Detail / Trailer).
 """
 
-OUTPUT_PORT = processor.get_output_port('Output-1')
+OUTPUT_PORT = processor.getOutputPort('Output-1')
 TOTAL_RECORDS = 0
 HEADER_EMITTED = False
 
@@ -148,7 +148,7 @@ CATEGORY_FILTER = None
 def on_init():
     """Called once when the Project starts."""
     global CATEGORY_FILTER
-    args = processor.arguments
+    args = processor.getArguments()
     CATEGORY_FILTER = args.get('categoryFilter') if args else None
 
 
@@ -179,7 +179,7 @@ def on_message():
 
     # Write header on first matching record
     if not HEADER_EMITTED:
-        header_message = data_dictionary.create_message(data_dictionary.type.Header)
+        header_message = dataDictionary.createMessage(dataDictionary.type.Header)
         header_message.data.PRODUCT = {
             "RECORD_TYPE": "H",
             "FILENAME": "Id;Code;Name;Category;Price;StockQuantity;Color;LaunchDate"
@@ -188,7 +188,7 @@ def on_message():
         HEADER_EMITTED = True
 
     # Create and emit a Detail record
-    detail_message = data_dictionary.create_message(data_dictionary.type.Detail)
+    detail_message = dataDictionary.createMessage(dataDictionary.type.Detail)
     detail_message.data.PRODUCT = {
         "RECORD_TYPE": "D",
         "ID": message.data.get("Id"),
@@ -211,7 +211,7 @@ def on_stream_end():
 
     # Write trailer if any matching records were processed
     if TOTAL_RECORDS > 0:
-        trailer_message = data_dictionary.create_message(data_dictionary.type.Trailer)
+        trailer_message = dataDictionary.createMessage(dataDictionary.type.Trailer)
         trailer_message.data.PRODUCT = {
             "RECORD_TYPE": "T",
             "RECORD_COUNT": TOTAL_RECORDS
@@ -225,13 +225,6 @@ To filter records by category, pass a `categoryFilter` argument in the Arguments
 
 ![Arguments editor showing categoryFilter](./.asset-flow-python_images/asset-flow-python-arguments.png "Arguments editor with categoryFilter")
 
-
-
-```json
-{
-  "categoryFilter": "Electronics"
-}
-```
 
 Only records whose `Category` field matches the filter value are emitted. Records that do not match are silently skipped. Omit the argument to emit all records without filtering.
 

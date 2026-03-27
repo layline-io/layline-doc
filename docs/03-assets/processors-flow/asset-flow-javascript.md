@@ -220,14 +220,6 @@ To filter records by category, pass a `categoryFilter` argument in the Arguments
 
 ![Arguments editor showing categoryFilter](./.asset-flow-javascript_images/asset-flow-javascript-arguments.png "Arguments editor with categoryFilter")
 
-
-
-```json
-{
-  "categoryFilter": "Electronics"
-}
-```
-
 Only records whose `Category` field matches the filter value are emitted. Records that do not match are silently skipped. Omit the argument to emit all records without filtering.
 
 **What happens at runtime:**
