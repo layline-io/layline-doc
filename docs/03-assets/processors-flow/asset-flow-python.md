@@ -242,9 +242,9 @@ To override the default column mapping, pass a JSON object argument:
 ## See Also
 
 - [Python Language Reference](../../language-reference/python/python_introduction) — full Python language guide for layline.io
-- [PythonProcessor API](../../language-reference/python/02-API/classes/PythonProcessor) — available hooks and lifecycle methods
-- [DataDictionary API (Python)](../../language-reference/python/02-API/classes/DataDictionary) — working with Reference Data in Python scripts
-- [PackedMessage API (Python)](../../language-reference/python/02-API/classes/PackedMessage) — reading and writing message fields
+- [PythonProcessor API](../../language-reference/python/API/classes/PythonProcessor) — available hooks and lifecycle methods
+- [DataDictionary API (Python)](../../language-reference/python/API/classes/DataDictionary) — working with Reference Data in Python scripts
+- [PackedMessage API (Python)](../../language-reference/python/API/classes/PackedMessage) — reading and writing message fields
 - [Service Mappings](#service-mappings) — connecting external services (HTTP, DB, etc.) to a Python Asset
 
 Please see section [Forced Errors](../../language-reference/python/python_introduction#forced-errors) to understand how to use these settings.

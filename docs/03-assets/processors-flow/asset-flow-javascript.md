@@ -237,9 +237,9 @@ To override the default column mapping, pass a JSON object argument:
 ## See Also
 
 - [JavaScript Language Reference](../../language-reference/javascript/javascript_introduction) — full JavaScript language guide for layline.io
-- [JavaScriptProcessor API](../../language-reference/javascript/02-API/classes/JavaScriptProcessor) — available hooks and lifecycle methods
-- [DataDictionary API](../../language-reference/javascript/02-API/classes/DataDictionary) — working with Reference Data in scripts
-- [PackedMessage API](../../language-reference/javascript/02-API/classes/PackedMessage) — reading and writing message fields
+- [JavaScriptProcessor API](../../language-reference/javascript/API/classes/JavaScriptProcessor) — available hooks and lifecycle methods
+- [DataDictionary API](../../language-reference/javascript/API/classes/DataDictionary) — working with Reference Data in scripts
+- [PackedMessage API](../../language-reference/javascript/API/classes/PackedMessage) — reading and writing message fields
 - [Service Mappings](#service-mappings) — connecting external services (HTTP, DB, etc.) to a JavaScript Asset
 
 ---
