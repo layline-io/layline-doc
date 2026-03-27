@@ -19,8 +19,8 @@ A Workflow contains exactly one **Input Processor**, any number of **Flow Proces
 
 ```mermaid
 graph LR
-    A["[Input Processor]"] --> B["[Flow Processor(s)]"]
-    B --> C["[Output Processor(s)]"]
+    A["Input Processor"] --> B["[Flow Processors]"]
+    B --> C["Output Processor"]
 ```
 
 ### Key concepts
@@ -92,8 +92,8 @@ Receive temperature and humidity readings from IoT sensors over TCP, filter out 
 | [Stream Input Processor](../processors-input/asset-input-stream) `SensorInput` | Reads the TCP stream as newline-delimited JSON |
 | [JavaScript Flow Processor](../processors-flow/asset-flow-javascript) `FilterReadings` | Filters readings by temperature range |
 | [Stream Output Processor](../processors-output/asset-output-stream) `SensorOutput` | Writes cleaned records to a file |
-| Generic Format `SensorFormat` | Defines the structure of a sensor reading |
-| File Sink `SensorLogSink` | Output file `sensor-log.json` |
+| [Generic Format](../formats/asset-format-generic) `SensorFormat` | Defines the structure of a sensor reading |
+| [File Sink](../sinks/asset-sink-file) `SensorLogSink` | Output file `sensor-log.json` |
 
 ### Workflow canvas
 
