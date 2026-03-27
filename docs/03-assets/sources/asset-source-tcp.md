@@ -72,11 +72,11 @@ Each line is a complete, independent JSON object. A newline character (`\n`) act
 
 | Setting | Value | Reason |
 |---------|-------|--------|
-| Bind host | `0.0.0.0` | Listen on all network interfaces so any sensor can reach the engine |
+| Bind host | `acme.sensor.host` | Hostname of the machine running the Reactive Engine |
 | Bind port | `9000` | Fixed port number — sensors are configured to connect here |
-| Connection backlog | `50` | Allows up to 50 simultaneous sensor connections without rejecting clients |
-| Receive buffer size | `65536` | 64 KB buffer handles bursty sensor data without losing frames |
-| Idle timeout | `300` | Closes connections idle for more than 5 minutes, freeing engine resources |
+| Connection backlog | `50` | Queue depth for incoming connection requests |
+| Receive buffer size | `65536` | 64 KB socket receive buffer |
+| Idle timeout | `300` | 5-minute idle timeout — closes dead connections |
 
 ### Workflow Wiring
 
