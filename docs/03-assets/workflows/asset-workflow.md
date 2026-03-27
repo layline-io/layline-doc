@@ -17,8 +17,10 @@ A Workflow is a configured pipeline of processor instances that moves data from 
 
 A Workflow contains exactly one **Input Processor**, any number of **Flow Processors**, and any number of **Output Processors**. Processors are arranged on a canvas and connected by links that define the data flow direction.
 
-```
-[Input Processor] → [Flow Processor(s)] → [Output Processor(s)]
+```mermaid
+graph LR
+    A["[Input Processor]"] --> B["[Flow Processor(s)]"]
+    B --> C["[Output Processor(s)]"]
 ```
 
 ### Key concepts
@@ -45,7 +47,11 @@ A Workflow contains exactly one **Input Processor**, any number of **Flow Proces
 
 ### Resources
 
-The Formats, Services, and Resources this Workflow depends on. Adding a resource here makes it available to all processors within the Workflow and enables inheritance if the Workflow is used as a base for child Workflows.
+Declares explicit dependencies on Formats, Services, and Resources that are not automatically deployed.
+
+Most Formats, Services, and Resources are automatically deployed with a Workflow when they are referenced by any Asset or processor within that Workflow. However, items that are only accessed programmatically — for example, a data dictionary used exclusively in a JavaScript or Python script — must be added here explicitly so that they are included in the deployment.
+
+If a Resource is already deployed as part of another Workflow in the same deployment, it does not need to be added again here.
 
 | Allowed type | Purpose |
 |---|---|
