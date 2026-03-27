@@ -6,7 +6,7 @@ tags:
   - cluster
 ---
 
-import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
+import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
 # ReactiveCluster
 
