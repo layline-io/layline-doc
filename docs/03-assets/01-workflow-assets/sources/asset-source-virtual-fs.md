@@ -34,7 +34,7 @@ You need:
 
 ### Name & Description
 
-![Name & Description (Virtual File System Source)](../.l_File_System_Source_images/vfs-source-name-description.png "Name & Description (Virtual File System Source)")
+![Name & Description (Virtual File System Source)![Image](./.asset-source-virtual-fs_images/vfs-source-name-description.png "Name & Description (Virtual File System Source)")
 
 **Name** — Unique name for this asset within the project. Spaces are not allowed.
 
@@ -44,7 +44,7 @@ You need:
 
 ### Required Roles
 
-![Required Roles (Virtual File System Source)](../.l_File_System_Source_images/vfs-source-required-roles.png "Required Roles (Virtual File System Source)")
+![Required Roles (Virtual File System Source)![Image](./.asset-source-virtual-fs_images/vfs-source-required-roles.png "Required Roles (Virtual File System Source)")
 
 In case you are deploying to a Cluster with Reactive Engine Nodes that have specific Roles configured, you can restrict use of this Asset to Nodes with matching roles. Leave empty to match all Nodes.
 
@@ -56,7 +56,7 @@ In case you are deploying to a Cluster with Reactive Engine Nodes that have spec
 <PollingAndProcessing></PollingAndProcessing>
 ### Virtual File System Settings
 
-![Virtual File System Settings (Virtual File System Source)](../.l_File_System_Source_images/vfs-source-vfs-settings.png "Virtual File System Settings (Virtual File System Source)")
+![Virtual File System Settings (Virtual File System Source)![Image](./.asset-source-virtual-fs_images/vfs-source-vfs-settings.png "Virtual File System Settings (Virtual File System Source)")
 
 **Connection** — Select the [Virtual File System Connection](../../../../tions/asset-connection-virtual-fs) to use for reading files. If no connection exists, create one first.
 
@@ -72,13 +72,13 @@ If the source needs to collect data from more than one folder structure, add mul
 
 #### Folders Toolbar
 
-![Folders Toolbar (Virtual File System Source)](../.l_File_System_Source_images/vfs-source-folders-toolbar.png "Folders Toolbar (Virtual File System Source)")
+![Folders Toolbar (Virtual File System Source)![Image](./.asset-source-virtual-fs_images/vfs-source-folders-toolbar.png "Folders Toolbar (Virtual File System Source)")
 
 Use **"+ ADD A FOLDER"** to add a new folder configuration entry. Use the toolbar to reorder, copy, or paste folder entries. Enable **"Allow unusable folder setups"** if you need to save configurations that would otherwise be considered invalid.
 
 #### Folder Configuration
 
-![Folder Configuration Detail (Virtual File System Source)](../.l_File_System_Source_images/vfs-source-folders-detail.png "Folder Configuration Detail (Virtual File System Source)")
+![Folder Configuration Detail (Virtual File System Source)![Image](./.asset-source-virtual-fs_images/vfs-source-folders-detail.png "Folder Configuration Detail (Virtual File System Source)")
 
 **Folder setup name** — Name of the folder. Spaces are not allowed.
 
@@ -88,7 +88,7 @@ Use **"+ ADD A FOLDER"** to add a new folder configuration entry. Use the toolba
 
 ##### Input Directory
 
-![Input Directory (Virtual File System Source)](../.l_File_System_Source_images/vfs-source-input-dir.png "Input Directory (Virtual File System Source)")
+![Input Directory (Virtual File System Source)![Image](./.asset-source-virtual-fs_images/vfs-source-input-dir.png "Input Directory (Virtual File System Source)")
 
 **Input Directory** — The directory to read files from. The path must be accessible to the Reactive Engine. You can use `${...}` macros to expand variables defined in environment variables.
 
@@ -104,7 +104,7 @@ Use **"+ ADD A FOLDER"** to add a new folder configuration entry. Use the toolba
 
 ##### Done Directory
 
-![Done Directory (Virtual File System Source)](../.l_File_System_Source_images/vfs-source-done-dir.png "Done Directory (Virtual File System Source)")
+![Done Directory (Virtual File System Source)![Image](./.asset-source-virtual-fs_images/vfs-source-done-dir.png "Done Directory (Virtual File System Source)")
 
 **Done Directory** — The directory to which files are moved when fully processed.
 
@@ -120,7 +120,7 @@ Use **"+ ADD A FOLDER"** to add a new folder configuration entry. Use the toolba
 
 ##### Error Directory
 
-![Error Directory (Virtual File System Source)](../.l_File_System_Source_images/vfs-source-error-dir.png "Error Directory (Virtual File System Source)")
+![Error Directory (Virtual File System Source)![Image](./.asset-source-virtual-fs_images/vfs-source-error-dir.png "Error Directory (Virtual File System Source)")
 
 **Error Directory** — The directory to which files are moved in case of a problem during processing.
 
