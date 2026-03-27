@@ -104,6 +104,12 @@ Configure the boundaries for when training starts and stops:
 
 Training begins when at least one minimum condition is satisfied, and ends when at least one maximum condition is reached. Stream-based mode does not use these parameters — all incoming messages are used for training regardless of count or duration.
 
+<div className="frame">
+
+![Training settings — Time/Message based mode with minimum and maximum training set limits](.asset-flow-ai-trainer_images/ai-trainer-training-settings.png)
+
+</div>
+
 #### Models to train
 
 The models table lists all AI Model Resources to train and where to store each trained model in AI Storage.
