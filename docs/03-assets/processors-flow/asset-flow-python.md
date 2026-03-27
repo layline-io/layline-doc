@@ -148,7 +148,7 @@ CATEGORY_FILTER = None
 def on_init():
     """Called once when the Project starts."""
     global CATEGORY_FILTER
-    args = processor.get_arguments()
+    args = processor.arguments
     CATEGORY_FILTER = args.get('categoryFilter') if args else None
 
 
@@ -221,7 +221,11 @@ def on_stream_end():
 
 **Arguments:**
 
-To filter records by category, pass a `categoryFilter` argument:
+To filter records by category, pass a `categoryFilter` argument in the Arguments editor:
+
+![Arguments editor showing categoryFilter](./.asset-flow-python_images/asset-flow-python-arguments.png "Arguments editor with categoryFilter")
+
+
 
 ```json
 {
@@ -239,7 +243,6 @@ Only records whose `Category` field matches the filter value are emitted. Record
 4. All subsequent matching records emit Detail records only
 5. `on_stream_end` emits a Trailer record with the total count of matching records
 6. `on_shutdown` is called when the processor stops (e.g., on workflow stop)
-
 
 
 ## See Also

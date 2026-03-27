@@ -149,6 +149,9 @@ export function onInit() {
     CATEGORY_FILTER = args?.categoryFilter ?? null;
 }
 
+/**
+ * Called when the processor shuts down.
+ */
 export function onShutdown() {
 }
 
@@ -213,7 +216,11 @@ export function onStreamEnd() {
 
 **Arguments:**
 
-To filter records by category, pass a `categoryFilter` argument:
+To filter records by category, pass a `categoryFilter` argument in the Arguments editor:
+
+![Arguments editor showing categoryFilter](./.asset-flow-javascript_images/asset-flow-javascript-arguments.png "Arguments editor with categoryFilter")
+
+
 
 ```json
 {
