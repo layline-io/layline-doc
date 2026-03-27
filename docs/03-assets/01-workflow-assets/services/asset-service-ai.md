@@ -37,7 +37,7 @@ If you are deploying to a Cluster with Reactive Engine Nodes that have specific 
 
 ### AI Service Settings
 
-**`Data dictionary namespace for the service parameters`** — The Data Dictionary namespace used to define the request and response parameters for this service. Supports [macros](../../language-reference/macros) for per-environment values.
+**`Data dictionary namespace for the service parameters`** — The Data Dictionary namespace used to define the request and response parameters for this service. Supports [macros](../../../language-reference/macros) for per-environment values.
 
 #### AI Models
 

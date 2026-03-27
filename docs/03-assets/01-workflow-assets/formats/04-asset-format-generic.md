@@ -1618,7 +1618,7 @@ The following action can be performed when a state should change:
 ##### Formula
 
 The `Formula` is based on layline.io's internal `QuickScript` language.
-Please check the [QuickScript Language Reference](../../language-reference/quickscript/quickscript) for more info.
+Please check the [QuickScript Language Reference](../../../language-reference/quickscript/quickscript) for more info.
 
 **Used in:**
 

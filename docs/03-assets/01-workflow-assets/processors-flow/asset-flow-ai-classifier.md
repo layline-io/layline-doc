@@ -94,7 +94,7 @@ Click **+ ADD CONDITION** to add a new condition row. Each row has:
 
 Conditions are written as **QuickScript** expressions — a lightweight expression language used throughout layline.io to reference message fields and write conditional logic. QuickScript allows you to read attributes from the message structure (e.g., `Detail.D2_05.CALL_TYPE_IND`) and compare them using standard operators.
 
-For the full QuickScript language reference, see [QuickScript Language Reference](../../language-reference/quickscript).
+For the full QuickScript language reference, see [QuickScript Language Reference](../../../language-reference/quickscript).
 
 Example QuickScript conditions:
 
@@ -109,7 +109,7 @@ recordType == "PREMIUM"
 
 **`AI model`** — a reference to an **AI Model Resource** in the Project. The Resource defines the model type (e.g., Weka) and which attributes are available as inputs and outputs.
 
-**`Path in AI Storage`** — the path of the trained model in AI Storage (e.g., `models/my-classifier`). Append `:<version>` to reference a specific version (e.g., `models/my-classifier:3`) or `:latest` for the most recent version. Supports [macros](../../language-reference/macros) for per-environment values.
+**`Path in AI Storage`** — the path of the trained model in AI Storage (e.g., `models/my-classifier`). Append `:<version>` to reference a specific version (e.g., `models/my-classifier:3`) or `:latest` for the most recent version. Supports [macros](../../../language-reference/macros) for per-environment values.
 
 <div className="frame">
 
@@ -242,8 +242,8 @@ The JavaScript Processor first extracts and validates the raw fields. The AI Cla
 
 - [AI Trainer](./asset-flow-ai-trainer) — for training new AI models before using them with this Processor
 - [AI Model Resource](../resources/asset-resource-ai) — for defining the model's input/output schema, algorithm type, and hyperparameters
-- [AI Service](../../assets/services/asset-service-ai) — for defining the interface to an AI model
-- [QuickScript Language Reference](../../language-reference/quickscript) — for the expression language used in rule conditions
+- [AI Service](../../../assets/services/asset-service-ai) — for defining the interface to an AI model
+- [QuickScript Language Reference](../../../language-reference/quickscript) — for the expression language used in rule conditions
 - [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
 
 ---

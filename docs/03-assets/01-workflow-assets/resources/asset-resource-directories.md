@@ -37,7 +37,7 @@ Use this Resource to:
 
 A table of directory path / permission pairs:
 
-**`Directory`** — the directory path. Can be relative (resolved against the Reactive Engine base directory) or absolute. Supports [macros](../../language-reference/macros) for environment-specific values.
+**`Directory`** — the directory path. Can be relative (resolved against the Reactive Engine base directory) or absolute. Supports [macros](../../../language-reference/macros) for environment-specific values.
 
 **`Permissions`** — a Unix permission string (e.g. `rw-r--r--`). Optional. If omitted, the filesystem's default umask applies.
 
@@ -45,7 +45,7 @@ A table of directory path / permission pairs:
 
 A table of symlink path / target pairs:
 
-**`Symbolic link`** — the path where the symlink is created. Can be relative or absolute. Supports [macros](../../language-reference/macros).
+**`Symbolic link`** — the path where the symlink is created. Can be relative or absolute. Supports [macros](../../../language-reference/macros).
 
 **`Target`** — the path the symlink points to. Must already exist at the time of symlink creation.
 
@@ -55,7 +55,7 @@ A table of symlink path / target pairs:
 - Directory creation is idempotent — existing directories are not modified, only created if absent
 - If a directory cannot be created (e.g. permission denied, parent path missing), engine startup fails with a `DIRECTORY_CREATION_FAILED` error
 - If a symbolic link already exists and points to a different target, it is updated to point to the configured target
-- Both paths and permissions support [macro substitution](../../language-reference/macros), enabling per-environment configuration through inheritance
+- Both paths and permissions support [macro substitution](../../../language-reference/macros), enabling per-environment configuration through inheritance
 
 ## Example
 
@@ -87,7 +87,7 @@ When the Reactive Engine starts, it creates `input/`, `archive/`, and `error/` d
 
 - [Secret](../resources/asset-resource-secret) — for managing sensitive credentials alongside directory paths
 - [Environment](../resources/asset-resource-environment) — for environment-specific variable substitution
-- [Macros](../../language-reference/macros) — for using macros in directory paths and permission strings
+- [Macros](../../../language-reference/macros) — for using macros in directory paths and permission strings
 
 ---
 

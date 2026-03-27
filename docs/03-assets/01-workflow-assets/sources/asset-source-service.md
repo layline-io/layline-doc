@@ -121,9 +121,9 @@ You should set it high enough, so that you are confident that the endpoint respo
 
 ![](./.asset-source-service_images/1715346864096.png "Object Name (Service Source)")
 
-A unique `Object name` configuration is necessary and relates to layline.io's [Access Coordinator](../../operations/cluster/cluster#access-coordinator) feature. 
-The [Sources Coordinator](../../operations/cluster/cluster#sources-coordinator-tab-2) will show the here defined object name in its list of sources processed. 
-As you can see from the screenshot above, you can use [Macros](../../language-reference/macros) here.
+A unique `Object name` configuration is necessary and relates to layline.io's [Access Coordinator](../../../operations/cluster/cluster#access-coordinator) feature. 
+The [Sources Coordinator](../../../operations/cluster/cluster#sources-coordinator-tab-2) will show the here defined object name in its list of sources processed. 
+As you can see from the screenshot above, you can use [Macros](../../../language-reference/macros) here.
 
 #### Ordering
 
@@ -167,7 +167,7 @@ it is possible to configure a constant parameter in here. Choosing this option a
 ![](./.asset-source-service_images/1715180981310.png "Stream and Transaction (Service Source)")
 
 * **`Stream name`** : Name to apply for the Stream created by this Service Source. You should ensure that the name is unique. 
-  As you can see from the example in the image above, you can use [Macros](../../language-reference/macros) here.
+  As you can see from the example in the image above, you can use [Macros](../../../language-reference/macros) here.
   If you use a macro in the Stream name, please ensure that the macro is configured to return a unique value.
   
   If, for instance, you use `${msg:DB.Product.Id}` as the Stream name, the Stream will be named after the `Id` of the processed Product.

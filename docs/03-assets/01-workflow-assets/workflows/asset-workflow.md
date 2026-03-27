@@ -33,7 +33,7 @@ graph LR
 
 | Asset type | Link |
 |---|---|
-| Projects | [Project](../projects-workflows/project) |
+| Projects | [Project](../../concept/projects-workflows/project) |
 
 ## Configuration
 
@@ -67,7 +67,7 @@ If a Resource is already deployed as part of another Workflow in the same deploy
 
 ### Alarming
 
-Configure notifications for Workflow lifecycle events. Each event type uses the [Alarm Center](../../operations/cluster/alarm-center) to route alerts.
+Configure notifications for Workflow lifecycle events. Each event type uses the [Alarm Center](../../../operations/cluster/alarm-center) to route alerts.
 
 | Event | When it fires |
 |-------|-------------|
@@ -132,7 +132,7 @@ graph LR
 
 ## See Also
 
-* [Project](../projects-workflows/project) — Workflows are contained within Projects
+* [Project](../../concept/projects-workflows/project) — Workflows are contained within Projects
 * [Stream Input Processor](../processors-input/asset-input-stream) — the required entry point of every Workflow
-* [Deployment](../projects-workflows/deployment) — how Workflows are deployed to an engine
-* [Alarm Center](../../operations/cluster/alarm-center) — how alarming events are routed and handled
+* [Deployment](../../concept/projects-workflows/deployment) — how Workflows are deployed to an engine
+* [Alarm Center](../../../operations/cluster/alarm-center) — how alarming events are routed and handled

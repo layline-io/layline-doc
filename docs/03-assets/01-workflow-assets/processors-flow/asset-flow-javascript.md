@@ -32,7 +32,7 @@ You need:
 
 * A Source Script which should be executed within this asset.
 * Knowledge on how to work with Javascript in layline.io. Please check
-  the [Javascript Language Reference](../../language-reference/javascript/javascript_introduction) to learn about this.
+  the [Javascript Language Reference](../../../language-reference/javascript/javascript_introduction) to learn about this.
 
 ## Configuration
 
@@ -72,7 +72,7 @@ The root script to be executed within this Asset is then selected here:
 
 :::tip Javascript Language Reference
 To understand how a Source must be structured to work in a Javascript Asset, please consult
-the [Javascript Language Reference](../../language-reference/javascript/javascript_introduction).
+the [Javascript Language Reference](../../../language-reference/javascript/javascript_introduction).
 :::
 
 ### Service Mappings
@@ -96,7 +96,7 @@ REST-Api. Let's also assume that the name of the Service to be linked is `BTCSer
 You can pass arguments to the assigned script. This may be useful when reusing the same script in various different
 Javascript Assets and Workflows, but the script should behave slightly different in each of those instances.
 Passing arguments from a Javascript Asset to can provide this functionality. Please check the `getArguments()`
-method [here](../../language-reference/javascript/API/classes/Processor#getarguments), on how to retrieve arguments in the script.
+method [here](../../../language-reference/javascript/API/classes/Processor#getarguments), on how to retrieve arguments in the script.
 
 ![](.asset-flow-javascript_images/140789d3.png "Arguments (Javascript)")
 
@@ -233,10 +233,10 @@ Only records whose `Category` field matches the filter value are emitted. Record
 
 ## See Also
 
-- [JavaScript Language Reference](../../language-reference/javascript/javascript_introduction) — full JavaScript language guide for layline.io
-- [JavaScriptProcessor API](../../language-reference/javascript/API/classes/JavaScriptProcessor) — available hooks and lifecycle methods
-- [DataDictionary API](../../language-reference/javascript/API/classes/DataDictionary) — working with Reference Data in scripts
-- [PackedMessage API](../../language-reference/javascript/API/classes/PackedMessage) — reading and writing message fields
+- [JavaScript Language Reference](../../../language-reference/javascript/javascript_introduction) — full JavaScript language guide for layline.io
+- [JavaScriptProcessor API](../../../language-reference/javascript/API/classes/JavaScriptProcessor) — available hooks and lifecycle methods
+- [DataDictionary API](../../../language-reference/javascript/API/classes/DataDictionary) — working with Reference Data in scripts
+- [PackedMessage API](../../../language-reference/javascript/API/classes/PackedMessage) — reading and writing message fields
 - [Service Mappings](#service-mappings) — connecting external services (HTTP, DB, etc.) to a JavaScript Asset
 
 ---

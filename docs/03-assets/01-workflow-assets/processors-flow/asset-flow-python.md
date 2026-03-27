@@ -32,7 +32,7 @@ You need:
 
 * A Source Script which should be executed within this asset.
 * Knowledge on how to work with Python in layline.io. Please check
-  the [Python Language Reference](../../language-reference/python/python_introduction) to learn about this.
+  the [Python Language Reference](../../../language-reference/python/python_introduction) to learn about this.
 
 ## Configuration
 
@@ -72,7 +72,7 @@ The root script to be executed within this Asset is then selected here:
 
 :::tip Python Language Reference
 To understand how a Source must be structured to work in a Python Asset, please consult
-the [Python Language Reference](../../language-reference/python/python_introduction).
+the [Python Language Reference](../../../language-reference/python/python_introduction).
 :::
 
 ### Service Mappings
@@ -96,7 +96,7 @@ REST-Api. Let's also assume that the name of the Service to be linked is `BTCSer
 You can pass arguments to the assigned script. This may be useful when reusing the same script in various different
 Python Assets and Workflows, but the script should behave slightly different in each of those instances.
 Passing arguments from a Python Asset can provide this functionality. Please check the `getArguments()`
-method [here](../../language-reference/python/API/classes/Processor#getarguments), on how to retrieve arguments in the script.
+method [here](../../../language-reference/python/API/classes/Processor#getarguments), on how to retrieve arguments in the script.
 
 ![Arguments (Python)](./.asset-flow-python_images/1725873064705.png "Arguments (Python)")
 
@@ -241,13 +241,13 @@ Only records whose `Category` field matches the filter value are emitted. Record
 ## See Also
 
 
-- [Python Language Reference](../../language-reference/python/python_introduction) — full Python language guide for layline.io
-- [PythonProcessor API](../../language-reference/python/API/classes/PythonProcessor) — available hooks and lifecycle methods
-- [DataDictionary API (Python)](../../language-reference/python/API/classes/DataDictionary) — working with Reference Data in Python scripts
-- [PackedMessage API (Python)](../../language-reference/python/API/classes/PackedMessage) — reading and writing message fields
+- [Python Language Reference](../../../language-reference/python/python_introduction) — full Python language guide for layline.io
+- [PythonProcessor API](../../../language-reference/python/API/classes/PythonProcessor) — available hooks and lifecycle methods
+- [DataDictionary API (Python)](../../../language-reference/python/API/classes/DataDictionary) — working with Reference Data in Python scripts
+- [PackedMessage API (Python)](../../../language-reference/python/API/classes/PackedMessage) — reading and writing message fields
 - [Service Mappings](#service-mappings) — connecting external services (HTTP, DB, etc.) to a Python Asset
 
-Please see section [Forced Errors](../../language-reference/python/python_introduction#forced-errors) to understand how to use these settings.
+Please see section [Forced Errors](../../../language-reference/python/python_introduction#forced-errors) to understand how to use these settings.
 
 ---
 

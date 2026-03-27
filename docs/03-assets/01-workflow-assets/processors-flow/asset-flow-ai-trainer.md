@@ -119,7 +119,7 @@ Click **+ ADD MODEL** to add a new model configuration. Each row has:
 | Column | Description |
 |--------|-------------|
 | **Model name** | A human-readable name for this trained model (e.g., `VoiceClassifier-v2`) |
-| **Path in AI Storage** | The path in AI Storage where the trained model will be stored (e.g., `models/my-classifier`). Supports [macros](../../language-reference/macros) for per-environment values. |
+| **Path in AI Storage** | The path in AI Storage where the trained model will be stored (e.g., `models/my-classifier`). Supports [macros](../../../language-reference/macros) for per-environment values. |
 | **AI Model** | Reference to an existing **AI Model Resource** in the Project — defines the input/output schema, model type, and hyperparameters |
 | **Model type** | The Weka algorithm to use (read from the selected AI Model Resource, e.g., `J48 Decision Tree`, `Multilayer Perceptron`) |
 
@@ -223,7 +223,7 @@ The JavaScript Processor extracts and formats the relevant attributes from each 
 - [AI Classifier](./asset-flow-ai-classifier) — for applying a trained model to classify new messages
 - [AI Model Resource](../resources/asset-resource-ai) — for defining the model's input/output schema, algorithm type, and hyperparameters
 - [AI Service](../services/asset-service-ai) — for defining the interface to an AI model
-- [Operations → AI Storage](../operations/cluster/cluster#ai-storage) — for managing trained models in AI Storage
+- [Operations → AI Storage](../../../operations/cluster/cluster#ai-storage) — for managing trained models in AI Storage
 - [Using Artificial Intelligence in Workflows](../../concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
 
 ---
