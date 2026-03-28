@@ -49,14 +49,14 @@ It works the same way with Secrets, only the [prefix (sec)](../../../language-re
 layline.io features a public/private-key encryption mechanism which ensures that secrets can only be decrypted by the system which holds the private key.
 
 In this system, the Configuration Server as well as each Reactive Engine Cluster can have zero or more public/private-key-pairs configured.
-For detailed information about this, please read through the [Security Storage](/docs/concept/advanced/secret-management#concept-in-laylineio) documentation first, and then return here.
+For detailed information about this, please read through the [Security Storage](../../../02-concept/06-advanced/02-secret-management.md#concept-in-laylineio) documentation first, and then return here.
 
 In order to create Secrets, you will first have to select with which public key you want to encrypt the secrets.
 
 ![](.asset-resource-secret_images/22e3f00f.png "Selecting Encryption Key (Secret Asset)")
 
 A dialog will open, showing you the Configuration Server Keys as well as the known Reactive Clusters.
-You will only see those Reactive Clusters, which have either been defined in [global cluster settings](/docs/concept/settings/settings-cluster), or within the currently opened Project
+You will only see those Reactive Clusters, which have either been defined in [global cluster settings](../../../02-concept/05-settings/04-settings-cluster.md), or within the currently opened Project
 
 ![](.asset-resource-secret_images/4a598def.png "Encryption Key Dialog (Secret Asset)")
 

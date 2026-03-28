@@ -133,4 +133,4 @@ graph TD
 
 - **[Install layline.io](install-local)** — get it running on your machine
 - **[Your First Workflow](first-workflow)** — walk through a complete end-to-end example
-- **[Asset Reference](/docs/assets)** — browse all available source, processor, and sink types
+- **[Asset Reference](../03-assets/index.mdx)** — browse all available source, processor, and sink types

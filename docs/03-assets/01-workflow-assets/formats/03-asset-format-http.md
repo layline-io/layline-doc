@@ -35,7 +35,7 @@ Please check the [Request-Response Input](../processors-input/asset-input-reques
 | Asset type       | Link                                                                 |
 |------------------|----------------------------------------------------------------------|
 | Input Processors | [Request-Response](../processors-input/asset-input-request-response) |
-| Source           | [Http Source](/docs/assets/workflow-assets/sources/asset-source-http)                          |
+| Source           | [Http Source](../sources/asset-source-http.md)                          |
 
 ## Configuration
 

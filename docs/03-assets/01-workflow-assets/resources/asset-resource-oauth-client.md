@@ -68,7 +68,7 @@ The Secrets table stores one or more client secrets associated with this OAuth c
 ## See Also
 
 - [Secret](../resources/asset-resource-secret) — for storing secret values in Secret Storage and referencing them in this Resource
-- [Secret Management (Concept)](/docs/concept/advanced/secret-management) — overview of how layline.io manages credentials
+- [Secret Management (Concept)](../../../02-concept/06-advanced/02-secret-management.md) — overview of how layline.io manages credentials
 
 ---
 

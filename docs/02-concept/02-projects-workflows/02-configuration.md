@@ -166,7 +166,7 @@ For example a _S3 Source Asset_ is of class `Source` and of type `S3`.
 _Kafka Output Processor_ is of class `Output`and of type `Kafka`.
 This is not something you need to remember, but good to understand nonetheless. 
 
-You can find a detailed description of all available Assets and how they are configured, [here](/docs/assets). 
+You can find a detailed description of all available Assets and how they are configured, [here](../../03-assets/index.mdx). 
 
 ### Understanding Inheritance
 

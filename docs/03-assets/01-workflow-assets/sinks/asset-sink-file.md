@@ -143,7 +143,7 @@ This configuration:
 ## See Also
 
 * [Stream Output Processor](../processors-output/asset-output-stream)
-* [File System Source](/docs/assets/workflow-assets/sources/asset-source-file)
+* [File System Source](../sources/asset-source-file.md)
 * [Environment Variables](../resources/asset-resource-environment)
 
 ---
