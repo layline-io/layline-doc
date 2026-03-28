@@ -24,8 +24,8 @@ This Asset is used within a Workflow definition.
 
 You need:
 
-* [Timer Source](/docs/assets/workflow-assets/sources/asset-source-timer), or
-* [Email Source](/docs/assets/workflow-assets/sources/asset-source-email)
+* [Timer Source](../sources/asset-source-timer.md), or
+* [Email Source](../sources/asset-source-email.md)
 
 ## Configuration
 
@@ -62,7 +62,7 @@ A Workflow shutdown at most goes through three phases:
 
 ### Source
 
-You need to assign either a [Timer Source](/docs/assets/workflow-assets/sources/asset-source-timer) or [Email Source](/docs/assets/workflow-assets/sources/asset-source-email). 
+You need to assign either a [Timer Source](../sources/asset-source-timer.md) or [Email Source](../sources/asset-source-email.md). 
 The Source defines the physical parameters to obtain the data.
 
 ![](.asset-input-message_images/e8a26a3e.png "Timer Source (Input Message)")
@@ -75,7 +75,7 @@ The Source defines the physical parameters to obtain the data.
 
 ### Internal
 
-* [Timer Source](/docs/assets/workflow-assets/sources/asset-source-timer)
+* [Timer Source](../sources/asset-source-timer.md)
 
 ---
 

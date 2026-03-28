@@ -78,7 +78,7 @@ Configure notifications for Workflow lifecycle events. Each event type uses the 
 
 ## Example: IoT Sensor Processing Workflow
 
-This example builds on the [TCP Source](/docs/assets/workflow-assets/sources/asset-source-tcp) and [Stream Input Processor](../processors-input/asset-input-stream) to create a complete sensor data ingestion pipeline.
+This example builds on the [TCP Source](../sources/asset-source-tcp.md) and [Stream Input Processor](../processors-input/asset-input-stream) to create a complete sensor data ingestion pipeline.
 
 ### Goal
 
@@ -88,7 +88,7 @@ Receive temperature and humidity readings from IoT sensors over TCP, filter out 
 
 | Asset | Role in workflow |
 |-------|-----------------|
-| [Source TCP](/docs/assets/workflow-assets/sources/asset-source-tcp) `SensorTcpSource` | Listens on `acme.sensor.host:9000` |
+| [Source TCP](../sources/asset-source-tcp.md) `SensorTcpSource` | Listens on `acme.sensor.host:9000` |
 | [Stream Input Processor](../processors-input/asset-input-stream) `SensorInput` | Reads the TCP stream as newline-delimited JSON |
 | [JavaScript Flow Processor](../processors-flow/asset-flow-javascript) `FilterReadings` | Filters readings by temperature range |
 | [Stream Output Processor](../processors-output/asset-output-stream) `SensorOutput` | Writes cleaned records to a file |
@@ -134,5 +134,5 @@ graph LR
 
 * [Project](/docs/concept/projects-workflows/project) — Workflows are contained within Projects
 * [Stream Input Processor](../processors-input/asset-input-stream) — the required entry point of every Workflow
-* [Deployment](/docs/concept/projects-workflows/deployment) — how Workflows are deployed to an engine
+* [Deployment](../../../02-concept/02-projects-workflows/03-deployment.md) — how Workflows are deployed to an engine
 * [Alarm Center](/docs/operations/cluster/alarm-center) — how alarming events are routed and handled

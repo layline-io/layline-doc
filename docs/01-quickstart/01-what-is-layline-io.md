@@ -7,7 +7,7 @@ sidebar_position: 1
 
 **layline.io is an opinionated event data processor.** It wraps the power of reactive stream management in a framework that makes setup, deployment, and monitoring of large-scale event data processing easy and straightforward — without requiring custom code for infrastructure.
 
-> This page gives you the 60-second picture. For the full story, see [What is layline.io?](/docs/concept/introduction) in the Concepts section.
+> This page gives you the 60-second picture. For the full story, see [What is layline.io?](../02-concept/02-introduction.md) in the Concepts section.
 
 ---
 
@@ -53,4 +53,4 @@ Projects you design in the Configuration Center are stored by the Configuration 
 - **[Core Concepts in 5 Minutes](core-concepts)** — understand Projects, Assets, Workflows, and Deployment
 - **[Install locally](install-local)** — full installation on your machine (Windows, macOS, Linux)
 - **[Run via Docker](install-docker)** — get up and running quickly with a pre-configured image
-- **[What is layline.io? (full)](/docs/concept/introduction)** — motivation, design philosophy, and feature overview
+- **[What is layline.io? (full)](../02-concept/02-introduction.md)** — motivation, design philosophy, and feature overview

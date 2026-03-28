@@ -28,7 +28,7 @@ This Asset is used within a Workflow definition.
 You need:
 
 * [Http-Format](../formats/asset-format-http)
-* [Http-Source](/docs/assets/workflow-assets/sources/asset-source-http)
+* [Http-Source](../sources/asset-source-http.md)
 
 ## Configuration
 
@@ -57,7 +57,7 @@ The format will be applied on the incoming data so that it can be accessed via t
 
 ### Source
 
-Assign a [Http-Source](/docs/assets/workflow-assets/sources/asset-source-http).
+Assign a [Http-Source](../sources/asset-source-http.md).
 The Source defines the physical addresses and ports on how this Input Asset can be reached.
 
 ![Source Assignment (Input Request-Response)](.asset-input-request-response_images/11611cf6.png)

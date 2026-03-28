@@ -121,8 +121,8 @@ You should set it high enough, so that you are confident that the endpoint respo
 
 ![](./.asset-source-service_images/1715346864096.png "Object Name (Service Source)")
 
-A unique `Object name` configuration is necessary and relates to layline.io's [Access Coordinator](/docs/operations/cluster/cluster#access-coordinator) feature. 
-The [Sources Coordinator](/docs/operations/cluster/cluster#sources-coordinator-tab-2) will show the here defined object name in its list of sources processed. 
+A unique `Object name` configuration is necessary and relates to layline.io's [Access Coordinator](../../../07-operations/cluster/cluster.md#access-coordinator) feature. 
+The [Sources Coordinator](../../../07-operations/cluster/cluster.md#sources-coordinator-tab-2) will show the here defined object name in its list of sources processed. 
 As you can see from the screenshot above, you can use [Macros](../../../language-reference/macros) here.
 
 #### Ordering
