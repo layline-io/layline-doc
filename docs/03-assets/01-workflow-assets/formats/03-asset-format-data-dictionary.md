@@ -8,6 +8,7 @@ tags:
 ---
 
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
+import DataDictionaryCardDetails from '../../../snippets/assets/data-dictionary-card.md';
 
 # Data Dictionary Format
 
@@ -98,17 +99,7 @@ This can occur when elements of that format are being referenced in a Workflow, 
 
 ### Format Types
 
-This is where you actually define your specific Data Dictionary itself.
-Remember that a Data Dictionary basically is a tree of elements with specific names and types.
-Types may reference other types within this Data Dictionary, or from another Data Dictionary (which stems from another format definition, e.g. Generic Format, etc.).
-
-Use the following dialog to define this tree.
-
-<div className="frame">
-
-![Format types (Format Data Dictionary)](.03-asset-format-data-dictionary_images/da98aee2.png)
-
-</div>
+<DataDictionaryCardDetails />
 
 #### Example
 
