@@ -22,7 +22,7 @@ Defines the connection parameters for an FTP/SFTP endpoint.
 
 | Asset type | Link                                                |
 |------------|-----------------------------------------------------|
-| Source     | [FTP Source](/docs/assets/workflow-assets/sources/asset-source-ftp) |
+| Source     | [FTP Source](../sources/asset-source-ftp.md) |
 | Sink       | [FTP Sink](../sinks/asset-sink-ftp)       |
 
 ## Configuration
@@ -61,7 +61,7 @@ Defines the connection parameters for an FTP/SFTP endpoint.
 * **`Accept only known hosts`** : Activate this, if you want to enable server validation.
   Ensuring the SSH server is validated is an important issue in SFTP.
   By activating this option, only those hosts which have been previously registered in Secret Management will be allowed.
-  You can define them [here](/docs/concept/advanced/secret-management#known-hosts-1).
+  You can define them [here](../../../02-concept/06-advanced/02-secret-management.md#known-hosts-1).
 
 #### Authentication
 
@@ -82,7 +82,7 @@ For FTP/SFTP, layline.io supports a number of different authentication methods:
   be
   able to assign it here.
 
-  Please [follow this link to "Advanced Concepts"](/docs/concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
+  Please [follow this link to "Advanced Concepts"](../../../02-concept/06-advanced/02-secret-management.md) to learn about the concept and use of the Security Storage.
 
 * **`Private Key`** : Authentication by public/private key. Enter a `Username` and enter the `Fingerprint` of this private key. You can either enter the value manually, or pick from a list of known
   fingerprints If the list is empty, then you need to first [create a private/public key pair] (/advanced/secret-management#concept) to be able to assign it here.
@@ -113,7 +113,7 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 
 ### Internal
 
-* [FTP Source](/docs/assets/workflow-assets/sources/asset-source-ftp)
+* [FTP Source](../sources/asset-source-ftp.md)
 * [FTP Sink](../sinks/asset-sink-ftp)
 * [Stream Input Processor](../processors-input/asset-input-stream)
 * [Stream Output Processor](../processors-output/asset-output-stream)

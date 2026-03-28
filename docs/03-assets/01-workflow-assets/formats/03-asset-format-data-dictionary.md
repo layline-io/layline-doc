@@ -21,12 +21,12 @@ to define data formats of any kind.
 :::tip First: Read about the Data Dictionary concept
 If you are not familiar with the concept of the Data Dictionary in layline.io, please read about it first and then return here.
 
--> [Data Dictionary Concept](/docs/concept/data-dictionary)
+-> [Data Dictionary Concept](../../../02-concept/03-data-dictionary.md)
 :::
 
 ## What is the purpose of the Data Dictionary Asset?
 
-As explained in the [Data Dictionary Concept](/docs/concept/data-dictionary), layline.io creates a global internal Data Dictionary based on all the data formats defined by you.
+As explained in the [Data Dictionary Concept](../../../02-concept/03-data-dictionary.md), layline.io creates a global internal Data Dictionary based on all the data formats defined by you.
 There might be cases, however, where this is not enough, and where you want to store additional information alongside a message which traverses the system.
 
 Some examples:

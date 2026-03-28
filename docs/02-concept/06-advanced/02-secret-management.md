@@ -318,7 +318,7 @@ Depending on the communication counterpart, the counterpart may require you to p
 #### Importing an Identity Certificate (3)
 
 You have to import an Identity Certificate if you are using it anywhere in your Project.
-For example in a [Kafka Connection Asset](/docs/assets/workflow-assets/connections/asset-connection-kafka).
+For example in a [Kafka Connection Asset](../../03-assets/01-workflow-assets/connections/asset-connection-kafka.md).
 
 To use the identity, you need to first import it to layline.io. Click `IMPORT A CERTFICATE ...`. A dialog opens:
 
@@ -354,7 +354,7 @@ It can also be stored in the Configuration Server **to test** the connection at 
 #### Importing a Trusted Certificate (3)
 
 You have to import a Trusted Certificate if you are require it when connecting to another party.
-For example if you enable SSL in a [Kafka Connection Asset](/docs/assets/workflow-assets/connections/asset-connection-kafka) and select "_Use truststore_".
+For example if you enable SSL in a [Kafka Connection Asset](../../03-assets/01-workflow-assets/connections/asset-connection-kafka.md) and select "_Use truststore_".
 
 To import a trusted certificate click `IMPORT A CERTFICATE ...` (3). A dialog opens:
 

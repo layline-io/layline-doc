@@ -31,7 +31,7 @@ You need:
 
 **A Kafka Sink:**
 
-* [Source Kafka](/docs/assets/workflow-assets/sources/asset-source-kafka)
+* [Source Kafka](../sources/asset-source-kafka.md)
 
 ## Configuration
 
@@ -75,7 +75,7 @@ If you have defined such a format, then you can select it from the list of avail
 
 ### Kafka Source
 
-You need to assign a [Kafka Source](/docs/assets/workflow-assets/sources/asset-source-kafka). The Source defines which topics can be read from.
+You need to assign a [Kafka Source](../sources/asset-source-kafka.md). The Source defines which topics can be read from.
 The Source must have been previously defined.
 
 ![](.asset-input-kafka_images/cd27054a.png "Format (Input Kafka)")

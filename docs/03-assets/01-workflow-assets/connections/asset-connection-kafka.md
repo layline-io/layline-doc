@@ -18,7 +18,7 @@ Defines the connection parameters for a Kafka endpoint.
 
 | Asset type | Link                                                    |
 |------------|---------------------------------------------------------|
-| Source     | [Kafka Source](/docs/assets/workflow-assets/sources/asset-source-kafka) |
+| Source     | [Kafka Source](../sources/asset-source-kafka.md) |
 | Sink       | [Kafka Sink](../sinks/asset-sink-kafka)       |
 
 ## Configuration
@@ -118,7 +118,7 @@ For _SASL / PLAIN_ and _SCRAM_ based authentication you need to consider the fol
   Enter a `Username` and select a `Secret` from the drop-down list. It the list is empty, then you need to first [create a secret](../resources/asset-resource-secret) to be able to assign it
   here.
 
-  Please [follow this link to "Advanced Concepts"](/docs/concept/advanced/secret-management) to learn about the concept and use of the Security Storage.
+  Please [follow this link to "Advanced Concepts"](../../../02-concept/06-advanced/02-secret-management.md) to learn about the concept and use of the Security Storage.
 
 #### Connection Test Result:
 
@@ -146,7 +146,7 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 
 ### Internal
 
-* [Kafka Source](/docs/assets/workflow-assets/sources/asset-source-kafka)
+* [Kafka Source](../sources/asset-source-kafka.md)
 * [Kafka Sink](../sinks/asset-sink-kafka)
 * [Kafka Input Processor](../processors-input/asset-input-kafka)
 * [Frame Output Processor](../processors-output/asset-output-frame)

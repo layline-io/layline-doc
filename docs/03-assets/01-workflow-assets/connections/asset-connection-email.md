@@ -23,7 +23,7 @@ Defines the connection parameters for an Email endpoint.
 
 | Asset type | Link                                             |
 |------------|--------------------------------------------------|
-| Source     | [Email Source](/docs/assets/workflow-assets/sources/asset-source-email)    |
+| Source     | [Email Source](../sources/asset-source-email.md)    |
 | Service    | [Email Service](../services/asset-service-email) |
 
 ## Configuration
