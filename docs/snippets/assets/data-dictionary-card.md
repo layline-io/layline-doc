@@ -1,81 +1,101 @@
-[//]: # (snippet: data-dictionary-card)
-[//]: # (Internal use — do not edit. Purpose: describe the DataDictionaryCard.vue UI component.)
-[//]: # (Usage in a doc page:)
-[//]: # `import DataDictionaryCardDetails from '@site/snippets/assets/data-dictionary-card.md';`
-[//]: # `<DataDictionaryCardDetails />`)
+## Data Dictionary {#data-dictionary-editor}
 
-## Data Dictionary Card {#data-dictionary-card}
+The Data Dictionary allows you to define complex data structures which can be mapped onto external data types and vice versa. This is necessary whenever an asset needs to exchange structured data with an external system — for example, when reading from or writing to a database, an HTTP API, a message queue, or any other format that carries typed fields.
 
-### Purpose
+Rather than hard-coding external field names and types into your Workflow, you define your own internal data types here. These internal types are then mapped to the external system's fields at the asset level. This means your Workflow scripts work with consistent, self-documenting data structures regardless of which external system the data came from.
 
-The **Data Dictionary Card** is a split-pane Vue component (`DataDictionaryCard.vue`) used throughout the layline.io SPA wherever a Data Dictionary needs to be configured — for example in the Data Dictionary Format Asset, Service configurations, and Resource configurations.
+### When you need it
 
-It provides a visual interface for browsing, adding, editing, and deleting Data Dictionary entity declarations (namespaces, sequences, enumerations, arrays, and choices).
+Whenever you configure an asset that exchanges structured data — a JDBC Service, a DynamoDB Service, an HTTP endpoint, an MQ message, a database Resource — you use the Data Dictionary to declare the types that represent:
 
-### UI Layout
+- **Request parameters** — the data your Workflow sends to the external system
+- **Result data** — the data the external system returns to your Workflow
+- **Intermediate structures** — types that hold data during a transformation
 
-The component is divided into two panes:
+### Entity Types
 
-| Pane | Content |
-|------|---------|
-| **Left** | Tree view of entity declarations with a toolbar above |
-| **Right** | Entity detail panel — shows the selected entity's fields and configuration options |
+The Data Dictionary is organized as a tree of typed entities. The available entity types are:
 
-The split position is draggable via a vertical divider.
+| Entity | Description |
+|--------|-------------|
+| **Namespace** | Groups related types. Optional. If you reuse a namespace name that already exists in the Project, the two namespaces merge. |
+| **Sequence** | An ordered list of typed members. Members are accessed by name, e.g. `MyNamespace.Customer.Name`. |
+| **Enumeration** | A fixed set of named integer constants. |
+| **Choice** | A type that holds exactly one of several possible member types. |
+| **Array** | A sequence of elements of a single contained type. |
 
-### Toolbar Controls
+### Defining Types — Step by Step
 
-The toolbar above the tree pane provides the following controls:
+The following walkthrough shows how to build a data structure using the Data Dictionary editor. The example assumes a SQL `customer` table with columns `id`, `name`, and `address` — but the same pattern applies whenever you need to declare types for any asset.
 
-| Control | Icon | Action |
-|---------|------|--------|
-| **Filter** | text input | Enter a value to filter tree nodes by name. Click the **×** button to clear. |
-| **Expand All** | expand icon | Expands all collapsed tree nodes |
-| **Collapse All** | collapse icon | Collapses all tree nodes |
-| **Sort Ascending** | A→Z | Sorts tree nodes alphabetically A → Z |
-| **Sort Descending** | Z→A | Sorts tree nodes alphabetically Z → A |
-| **Copy Entity** | copy icon | Copies the selected entity to the clipboard (disabled if nothing selected) |
-| **Paste Entity** | paste icon | Pastes the clipboard entity as a child/sibling of the selected node (disabled if clipboard is empty or no target selected) |
+#### 1. Declare a new type
 
-### Tree View
+Click **Declare Root Type** in the toolbar to add a top-level entity.
 
-The left pane displays all declared entities in a hierarchical tree:
+![Declare root type](./.asset-data-dictionary-card_images/0cd537d7.png "Declare root type ")
 
-- **Each node** shows the entity icon and name
-- **Inherited entities** (from parent formats) appear in a distinct inherited-text style
-- **Context menu** (click the **▼** arrow): offers per-entity operations (see below)
-- **Deleted/overridden entities** are shown with a disabled overlay
+#### 2. Declare a namespace (optional)
 
-Click a node to select it and load its details in the right pane.
+Namespaces organize related types. To add one, right-click an existing node and select **Add Sibling**, then set the element type to `Namespace`.
 
-### Entity Operations
+![Declare namespace](./.asset-data-dictionary-card_images/9182150d.png "Declare namespace ")
 
-Each entity node supports the following operations via its context menu:
+* **`Name`** — The name of the namespace. If a namespace with this name already exists elsewhere in the Project, their contents merge automatically. Otherwise the name must be unique and may not contain spaces.
 
-| Operation | Description |
-|-----------|-------------|
-| **Add Root Type** | Adds a new top-level entity to the dictionary (only visible when no node is selected) |
-| **Add Sibling** | Adds a new entity at the same hierarchical level as the selected node |
-| **Add Child** | Adds a new child entity nested under the selected node |
-| **Delete** | Removes the entity from the dictionary |
-| **Reset to Parent** | Resets the entity to its inherited definition from the parent format (only visible for overridden entities) |
+* **`Type`** — Pick the entity type. For a namespace, select `Namespace`.
 
-### Right Pane — Entity Detail
+* **`Description`** — Optional free-text description.
 
-When an entity is selected, the right pane shows an **Entity Detail** panel with fields relevant to that entity type (Name, Type, Description, Members, etc.). Configuration options vary by entity type:
+#### 3. Declare a Sequence under the namespace
 
-- **Namespace** — name, type, description
-- **Sequence** — name, type, description, optional members, extendable flag
-- **Enumeration** — name, type, description, named elements with integer values
-- **Choice** — name, type, description, exclusive member list
-- **Array** — name, type, description, contained type
+Right-click the namespace and choose **Add Child** to add a child element.
 
-### Importing This Snippet
+![Add child to namespace](./.asset-data-dictionary-card_images/14576d88.png "Add child to namespace ")
 
-In a Docusaurus doc page, import and use this snippet as follows:
+Click the arrow next to the namespace name and select `Add child`. Then fill in the element details:
 
-```mdx
-import DataDictionaryCardDetails from '@site/snippets/assets/data-dictionary-card.md';
+![Declare sequence](./.asset-data-dictionary-card_images/5821cb89.png "Declare customer sequence ")
 
-<DataDictionaryCardDetails />
-```
+* **`Name`** — The name of the element, e.g. `Customer`.
+
+* **`Type`** — Select `Sequence` as the element type. You will add individual fields (members) in the next step.
+
+* **`Extendable Sequence`** — When checked, layline.io can dynamically extend the sequence's member list if incoming data contains fields that are not explicitly defined. Leave unchecked if all fields are known in advance.
+
+#### 4. Add members to the Sequence
+
+With the Sequence selected, click **Add Child** to add individual fields:
+
+![Add sequence members](./.asset-data-dictionary-card_images/5ad3f74a.png "Add sequence members ")
+
+Each member maps to a column in the external data source. You can reference any member by its full path — for example, `MyNamespace.Customer.Name` — from your Workflow scripts.
+
+### Common Entity Fields
+
+These fields are available on all entity types:
+
+| Field | Description |
+|-------|-------------|
+| **Name** | Unique identifier within the namespace. Reusing a namespace name from another part of the Project merges the two. |
+| **Type** | The entity kind: Namespace, Sequence, Enumeration, Choice, or Array |
+| **Description** | Optional free-text description |
+| **Extendable Sequence** | (Sequence only) Allows the member list to be extended dynamically at runtime |
+| **Members** | (Sequence) Ordered list of typed fields — click **Add Child** to add each one |
+| **Elements** | (Enumeration) Named integer constants making up the enumeration |
+
+### Advanced Features
+
+**Inheritance and Override**  
+Entities inherited from a parent format or resource appear in the tree in a distinct inherited style. These are read-only unless overridden. Click **Reset to Parent** on an overridden entity to restore the inherited definition.
+
+**Copy and Paste**  
+Use the toolbar buttons to copy a complete entity subtree and paste it elsewhere in the tree. All members and nested entities travel with it.
+
+**Filter and Sort**  
+Use the **Filter** field to search entities by name. The sort buttons order nodes ascending or descending alphabetically.
+
+### See Also
+
+- [Data Dictionary Format Asset](/docs/formats/asset-format-data-dictionary) — standalone Data Dictionary asset
+- [DynamoDB Service](/docs/assets/01-workflow-assets/services/asset-service-dynamo-db) — Data Dictionary in context of a DynamoDB Service
+- [JDBC Service](/docs/assets/01-workflow-assets/services/asset-service-jdbc) — worked example mapping Data Dictionary types to SQL columns
