@@ -32,13 +32,13 @@ The following walkthrough shows how to build a data structure using the Data Dic
 
 Click **Declare Root Type** in the toolbar to add a top-level entity.
 
-![Declare root type](./.asset-service-jdbc_images/0cd537d7.png "Declare root type (Service JDBC)")
+![Declare root type](./.asset-data-dictionary-card_images/0cd537d7.png "Declare root type ")
 
 #### 2. Declare a namespace (optional)
 
 Namespaces organize related types. To add one, right-click an existing node and select **Add Sibling**, then set the element type to `Namespace`.
 
-![Declare namespace](./.asset-service-jdbc_images/9182150d.png "Declare namespace (Service JDBC)")
+![Declare namespace](./.asset-data-dictionary-card_images/9182150d.png "Declare namespace ")
 
 * **`Name`** — The name of the namespace. If a namespace with this name already exists elsewhere in the Project, their contents merge automatically. Otherwise the name must be unique and may not contain spaces.
 
@@ -50,11 +50,11 @@ Namespaces organize related types. To add one, right-click an existing node and 
 
 Right-click the namespace and choose **Add Child** to add a child element.
 
-![Add child to namespace](./.asset-service-jdbc_images/14576d88.png "Add child to namespace (Service JDBC)")
+![Add child to namespace](./.asset-data-dictionary-card_images/14576d88.png "Add child to namespace ")
 
 Click the arrow next to the namespace name and select `Add child`. Then fill in the element details:
 
-![Declare sequence](./.asset-service-jdbc_images/5821cb89.png "Declare customer sequence (Service JDBC)")
+![Declare sequence](./.asset-data-dictionary-card_images/5821cb89.png "Declare customer sequence ")
 
 * **`Name`** — The name of the element, e.g. `Customer`.
 
@@ -66,7 +66,7 @@ Click the arrow next to the namespace name and select `Add child`. Then fill in 
 
 With the Sequence selected, click **Add Child** to add individual fields:
 
-![Add sequence members](./.asset-service-jdbc_images/5ad3f74a.png "Add sequence members (Service JDBC)")
+![Add sequence members](./.asset-data-dictionary-card_images/5ad3f74a.png "Add sequence members ")
 
 Each member maps to a column in the external data source. You can reference any member by its full path — for example, `MyNamespace.Customer.Name` — from your Workflow scripts.
 
