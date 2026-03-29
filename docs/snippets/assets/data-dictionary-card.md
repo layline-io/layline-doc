@@ -1,81 +1,63 @@
-[//]: # (snippet: data-dictionary-card)
-[//]: # (Internal use — do not edit. Purpose: describe the DataDictionaryCard.vue UI component.)
-[//]: # (Usage in a doc page:)
-[//]: # `import DataDictionaryCardDetails from '@site/snippets/assets/data-dictionary-card.md';`
-[//]: # `<DataDictionaryCardDetails />`)
+## Data Dictionary {#data-dictionary-editor}
 
-## Data Dictionary Card {#data-dictionary-card}
-
-### Purpose
-
-The **Data Dictionary Card** is a split-pane Vue component (`DataDictionaryCard.vue`) used throughout the layline.io SPA wherever a Data Dictionary needs to be configured — for example in the Data Dictionary Format Asset, Service configurations, and Resource configurations.
-
-It provides a visual interface for browsing, adding, editing, and deleting Data Dictionary entity declarations (namespaces, sequences, enumerations, arrays, and choices).
+The Data Dictionary allows you to define custom data structures which can be mapped onto external data types and vice versa. Types are declared in a hierarchical tree of entities — namespaces contain sequences and enumerations, which contain members that map to typed fields.
 
 ### UI Layout
 
-The component is divided into two panes:
+The Data Dictionary editor is a split-pane component:
 
 | Pane | Content |
 |------|---------|
-| **Left** | Tree view of entity declarations with a toolbar above |
-| **Right** | Entity detail panel — shows the selected entity's fields and configuration options |
+| **Left** | Entity declaration tree with toolbar |
+| **Right** | Entity detail for the selected node |
 
-The split position is draggable via a vertical divider.
+The split position is adjustable via a drag handle.
 
-### Toolbar Controls
+![Data Dictionary editor](https://raw.githubusercontent.com/layline-io/layline-doc/main/docs/03-assets/01-workflow-assets/services/.asset-service-dynamo-db_images/05-data-dictionary.png)
 
-The toolbar above the tree pane provides the following controls:
+### Defining Types — Step by Step
 
-| Control | Icon | Action |
-|---------|------|--------|
-| **Filter** | text input | Enter a value to filter tree nodes by name. Click the **×** button to clear. |
-| **Expand All** | expand icon | Expands all collapsed tree nodes |
-| **Collapse All** | collapse icon | Collapses all tree nodes |
-| **Sort Ascending** | A→Z | Sorts tree nodes alphabetically A → Z |
-| **Sort Descending** | Z→A | Sorts tree nodes alphabetically Z → A |
-| **Copy Entity** | copy icon | Copies the selected entity to the clipboard (disabled if nothing selected) |
-| **Paste Entity** | paste icon | Pastes the clipboard entity as a child/sibling of the selected node (disabled if clipboard is empty or no target selected) |
+The following walkthrough uses a DynamoDB Service as context, but the same pattern applies whenever the Data Dictionary editor appears.
 
-### Tree View
+#### 1. Declare a root type
 
-The left pane displays all declared entities in a hierarchical tree:
+Click **Declare Root Type** in the toolbar to add a top-level entity to the dictionary.
 
-- **Each node** shows the entity icon and name
-- **Inherited entities** (from parent formats) appear in a distinct inherited-text style
-- **Context menu** (click the **▼** arrow): offers per-entity operations (see below)
-- **Deleted/overridden entities** are shown with a disabled overlay
+#### 2. Declare a namespace (optional)
 
-Click a node to select it and load its details in the right pane.
+Namespaces group related types. To add one, right-click an existing node and select **Add Sibling**, then set its type to `Namespace`. Namespaces can be reused across a Project — if you assign the same namespace name elsewhere, the elements merge into that namespace.
 
-### Entity Operations
+#### 3. Declare a Sequence or Enumeration under the namespace
 
-Each entity node supports the following operations via its context menu:
+Right-click the namespace and choose **Add Child**. Select `Sequence` or `Enumeration` as the element type:
 
-| Operation | Description |
-|-----------|-------------|
-| **Add Root Type** | Adds a new top-level entity to the dictionary (only visible when no node is selected) |
-| **Add Sibling** | Adds a new entity at the same hierarchical level as the selected node |
-| **Add Child** | Adds a new child entity nested under the selected node |
-| **Delete** | Removes the entity from the dictionary |
-| **Reset to Parent** | Resets the entity to its inherited definition from the parent format (only visible for overridden entities) |
+- **Sequence** — an ordered list of typed members; fields are accessed by name (e.g., `MyNamespace.Customer.Name`)
+- **Enumeration** — a fixed set of named integer constants
 
-### Right Pane — Entity Detail
+#### 4. Add members
 
-When an entity is selected, the right pane shows an **Entity Detail** panel with fields relevant to that entity type (Name, Type, Description, Members, etc.). Configuration options vary by entity type:
+For a Sequence, click **Add Child** on the sequence node to add individual fields. For an Enumeration, add elements with their named integer values.
 
-- **Namespace** — name, type, description
-- **Sequence** — name, type, description, optional members, extendable flag
-- **Enumeration** — name, type, description, named elements with integer values
-- **Choice** — name, type, description, exclusive member list
-- **Array** — name, type, description, contained type
+### Common Entity Fields
 
-### Importing This Snippet
+| Field | Applies to | Description |
+|-------|-----------|-------------|
+| **Name** | All | Unique identifier for the entity. Reusing a namespace name from another part of the Project merges the two. |
+| **Type** | All | The entity kind: Namespace, Sequence, Enumeration, Choice, Array |
+| **Description** | All | Optional free-text description |
+| **Extendable Sequence** | Sequence | When checked, layline.io can dynamically extend the member list if incoming data contains undefined fields |
+| **Members** | Sequence | Ordered list of typed fields; click **Add Child** to add each one |
+| **Elements** | Enumeration | Named integer constants making up the enumeration |
 
-In a Docusaurus doc page, import and use this snippet as follows:
+### Advanced Features
 
-```mdx
-import DataDictionaryCardDetails from '@site/snippets/assets/data-dictionary-card.md';
+- **Inheritance**: Entities inherited from a parent format or resource appear in the tree in a distinct inherited style. Inherited entities are read-only unless you override them.
+- **Override**: Click **Reset to Parent** on an overridden entity to restore the inherited definition.
+- **Copy/Paste**: Copy a complete entity node and paste it elsewhere in the tree (toolbar buttons). All member definitions travel with it.
+- **Filter & Sort**: Use the Filter field to search by name, and the sort buttons to order nodes ascending or descending.
 
-<DataDictionaryCardDetails />
-```
+### See Also
+
+- [Data Dictionary Format Asset](/docs/formats/asset-format-data-dictionary) — standalone Data Dictionary asset
+- [DynamoDB Service](/docs/assets/01-workflow-assets/services/asset-service-dynamo-db) — Data Dictionary in context of a Service
+- [JDBC Service](/docs/assets/01-workflow-assets/services/asset-service-jdbc) — worked example mapping Data Dictionary types to SQL columns
