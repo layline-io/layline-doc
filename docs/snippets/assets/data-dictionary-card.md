@@ -96,6 +96,6 @@ Use the **Filter** field to search entities by name. The sort buttons order node
 
 #### See Also
 
-- [Data Dictionary Format Asset](/docs/formats/asset-format-data-dictionary) — standalone Data Dictionary asset
-- [DynamoDB Service](/docs/assets/01-workflow-assets/services/asset-service-dynamo-db) — Data Dictionary in context of a DynamoDB Service
-- [JDBC Service](/docs/assets/01-workflow-assets/services/asset-service-jdbc) — worked example mapping Data Dictionary types to SQL columns
+- [Data Dictionary Format Asset](../../formats/asset-format-data-dictionary) — standalone Data Dictionary asset
+- [DynamoDB Service](../../assets/01-workflow-assets/services/asset-service-dynamo-db) — Data Dictionary in context of a DynamoDB Service
+- [JDBC Service](../../assets/01-workflow-assets/services/asset-service-jdbc) — worked example mapping Data Dictionary types to SQL columns
