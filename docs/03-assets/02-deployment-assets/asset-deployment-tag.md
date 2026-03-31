@@ -36,13 +36,13 @@ No specific prerequisites. The Tag Settings Asset is a standalone deployment con
 
 ### Deploy to Target
 
-<!-- SCREENSHOT: Tag Settings config panel, showing Deploy to Target card -->
+![Tag Settings Deploy to Target card showing cluster selection](./.asset-deployment-tag_images/deploy-to-target.png)
 
 Select the **Deployment Target** where this Tag Settings configuration should be applied. This determines which cluster and environment will use these tag definitions.
 
 ### Name & Description
 
-<!-- SCREENSHOT: Tag Settings config panel, showing Name & Description card -->
+![Tag Settings Name and Description card](./.asset-deployment-tag_images/name-description.png)
 
 **`Tag settings name`** — Name of the Asset. Spaces are not allowed in the name.
 
@@ -52,7 +52,7 @@ The **Asset Usage** box shows how many times this Asset is used and which parts 
 
 ### Tags
 
-<!-- SCREENSHOT: Tag Settings config panel, Tags section, showing all fields -->
+![Tag Settings Tags section showing Default Tag, Role Tags table, and Node Tags table](./.asset-deployment-tag_images/tags-section.png)
 
 The Tags section contains three configuration areas for defining your tagging strategy.
 
@@ -71,8 +71,6 @@ Role Tags assign deployment tags based on the roles assigned to engines. Each ma
 | **Order** | The evaluation order (first match wins) |
 | **Role Name** | The name of the engine role to match |
 | **Deployment Tag Name** | The tag to assign when the role matches |
-
-<!-- SCREENSHOT: Tag Settings config panel, Role Tags table with example entries -->
 
 **Key behaviors:**
 - Role tags are evaluated in the specified order
@@ -94,8 +92,6 @@ Node Tags assign deployment tags to specific nodes based on their address URL. T
 |--------|-------------|
 | **Node Address URL** | The URL or address of the specific node |
 | **Deployment Tag Name** | The tag to assign to this node |
-
-<!-- SCREENSHOT: Tag Settings config panel, Node Tags table with example entries -->
 
 **Key behaviors:**
 - Node tags take precedence over role tags and default tags
@@ -140,8 +136,6 @@ Tag Settings Assets are typically referenced in [Engine Configuration](asset-dep
 A common use case is organizing engines by environment and purpose:
 
 **Scenario**: You have a cluster with development, staging, and production environments, plus some specialized batch processing nodes.
-
-<!-- SCREENSHOT: Tag Settings config panel showing complete example configuration -->
 
 **Configuration:**
 
