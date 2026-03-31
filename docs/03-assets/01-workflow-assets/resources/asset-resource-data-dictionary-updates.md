@@ -29,8 +29,6 @@ For full details of supported element types (Namespace, Sequence, Choice, Enumer
 
 **`Description`**: Enter a description.
 
-### Format Types
-
 <DataDictionaryCard />
 
 ## Example
