@@ -11,6 +11,7 @@ import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../../snippets/assets/_asset-service-test.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import DataDictionaryCard from '../../../snippets/assets/data-dictionary-card.md';
 
 # Hazelcast Service
 
@@ -166,74 +167,7 @@ Following in the table, define the fields which are defined within the Portable 
 
 Create additional Portable Types that you want to work with within layline.io.
 
-### Service Types
-
-In this section, you define the data types which you wan to map Hazelcast Collections to/from.
-
-The Data Dictionary allows us to define complex data structures which can be mapped onto Hazelcast Collections and vice versa.
-For this purpose, we need to define an internal custom data type which can receive the results of the statement, and/or
-which we want to insert/update within the Collection.
-
-As an example, let’s do this for the above Collection `Customer`. What do we need here?
-
-1. The Collection contains a structure with three fields `ìd`, `name` and `address`.
-   So we need three corresponding fields in our own data dictionary that we can map these results to.
-
-Let's define the necessary custom data type using the data dictionary:
-
-1. Declare a new type
-2. Declare namespace (optional)
-3. Declare Sequence `Customer`
-
-##### 1. Declare a new type (1):
-
-![](.asset-service-hazelcast_images/cb57846b.png "Declare type (Service Hazelcast)")
-
-##### 2. Declare namespace
-
-To better organize data types, we declare a namespace first (optional):
-
-![](.asset-service-hazelcast_images/eb7d381f.png "Declare namespace (Service Hazelcast)")
-
-* **`Name`** (1): The name of the element.
-  If you are configuring a namespace, and you reuse the name of a namespace, which you have created elsewhere in this
-  Project, then the elements of the namespaces will be merged into the namespace by
-  this same name.
-  Otherwise the name must be unique and may not contain spaces.
-
-* **`Type`** (2): Pick the type of the element. In our example we first define a namespace. When we define additional
-  elements under that namespace we will pick any of the other data types to actually
-  hold the data.
-
-* **`Description`** (3): Anything which describes the element further.
-
-##### 3. Declare Customer Sequence
-
-Add a child to the namespace we just created:
-
-![](.asset-service-hazelcast_images/4efa05a7.png "Add child to namespace (Service Hazelcast)")
-
-* Click the small arrow next to the namespace name (1)
-* Select `Add child` to add a child element to the namespace
-* Fill in the details:
-
-![](.asset-service-hazelcast_images/88cf6280.png "Declare customer structure (Service Hazelcast)")
-
-* **`Name`** (1): Name the element `History`
-
-* **`Type`** (2): Select `Sequence` as the element type. In the next step we will create individual members of the
-  sequence.
-
-* **`Extendable Sequence`** (3): Leave this unchecked for the example. If checked, it allows you and layline.io to
-  dynamically extend the list of sequence members while working with the data type
-  which we are defining. If - for example - your incoming data format has additional fields which are not defined in the
-  sequence, the sequence will be automatically extended by these fields.
-
-Now we add a list of member fields which make up the sequence:
-
-![](.asset-service-hazelcast_images/8f3746e9.png "Customer sequence members (Service Hazelcast)")
-
-To later reference the `Name` field, we can use the path `MyNamespace.Customer.Name`, and so forth.
+<DataDictionaryCard />
 
 ## Example: Using the Hazelcast Service
 

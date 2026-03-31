@@ -7,6 +7,7 @@ import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../../snippets/assets/_asset-service-test.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import DataDictionaryCard from '../../../snippets/assets/data-dictionary-card.md';
 
 # JDBC Service
 
@@ -109,75 +110,7 @@ Next fill out the details:
   always preceded with `result.` and then followed by the member name. On the right hand side, enter the original field
   names used in your SQL-Statement.
 
-### Data Dictionary
-
-The Data Dictionary allows us to define complex data structures which can be mapped onto JDBC data types and vice versa.
-For this purpose, we need to define an internal custom data type which can receive the results of the statement, and/or
-also provide data for other parts of the statement, e.g. for the `where`-clause as in our example.
-
-As an example, let’s do this for the above SQL-Statement accessing the `customer` table. What do we need here?
-
-1. We are selecting three fields `ìd`, `name` and `address` from that table. So we need three corresponding fields in
-   our own data dictionary that we can map these results to.
-2. We query based on an `id` (of the customer). We need to map an internal Id field from the data dictionary to
-   the `where`-clause in the SQL-Statement. For this purpose we can use the same data structure as for 1., which already
-   contains an Id field.
-
-Let's define the necessary custom data type using the data dictionary:
-
-1. Declare a new type
-2. Declare namespace (optional)
-3. Declare Sequence `Customer`
-
-##### 1. Declare a new type (1):
-
-![](.asset-service-jdbc_images/0cd537d7.png "Declare type (Service JDBC)")
-
-##### 2. Declare namespace
-
-To better organize data types, we declare a namespace first (optional):
-
-![](.asset-service-jdbc_images/9182150d.png "Declare namespace (Service JDBC)")
-
-* **`Name`** (1): The name of the element.
-  If you are configuring a namespace, and you reuse the name of a namespace, which you have created elsewhere in this
-  Project, then the elements of the namespaces will be merged into the namespace by
-  this same name.
-  Otherwise the name must be unique and may not contain spaces.
-
-* **`Type`** (2): Pick the type of the element. In our example we first define a namespace. When we define additional
-  elements under that namespace we will pick any of the other data types to actually
-  hold the data.
-
-* **`Description`** (3): Anything which describes the element further.
-
-##### 3. Declare Customer Sequence
-
-Add a child to the namespace we just created:
-
-![](.asset-service-jdbc_images/14576d88.png "Add child to namespace (Service JDBC)")
-
-* Click the small arrow next to the namespace name (1)
-* Select `Add child` to add a child element to the namespace
-* Fill in the details:
-
-![](.asset-service-jdbc_images/5821cb89.png "Declare customer structure (Service JDBC)")
-
-* **`Name`** (1): Name the element `History`
-
-* **`Type`** (2): Select `Sequence` as the element type. In the next step we will create individual members of the
-  sequence.
-
-* **`Extendable Sequence`** (3): Leave this unchecked for the example. If checked, it allows you and layline.io to
-  dynamically extend the list of sequence members while working with the data type
-  which we are defining. If - for example - your incoming data format has additional fields which are not defined in the
-  sequence, the sequence will be automatically extended by these fields.
-
-Now we add a list of member fields which make up the sequence (1):
-
-![](.asset-service-jdbc_images/5ad3f74a.png "Customer sequence members (Service JDBC)")
-
-To later reference the `Name` field, we can use the path `MyNamespace.Customer.Name`, and so forth.
+<DataDictionaryCard></DataDictionaryCard>
 
 ### Example: Using the JDBC Service
 

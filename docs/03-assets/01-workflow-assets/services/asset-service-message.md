@@ -12,6 +12,7 @@ tags:
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../../snippets/assets/_asset-service-test.md';
 import Tabs from '@theme/Tabs';
+import DataDictionaryCard from '../../../snippets/assets/data-dictionary-card.md';
 import TabItem from '@theme/TabItem';
 
 # Message Service
@@ -132,15 +133,7 @@ When calling a Message Service function from a processor, the following paramete
 | `Request` | The message payload, matching the `Request type` defined above |
 | `Source` | Optional. The name of the Message Source to publish to. Required if the service references more than one Message Source |
 
-### Data Dictionary
-
-The Data Dictionary editor allows you to define custom data types for use as request and response types in your functions.
-
-The namespace for these types is determined by the **Data Dictionary Namespace** setting. If not specified, it defaults to `Service{Name}Types`.
-
-:::tip
-Use the Data Dictionary to define the structure of your message payloads. For example, define an `OrderConfirmation` type with fields like `orderId`, `customerId`, and `timestamp`, then assign it as the `Request type` of a `PublishOrderConfirmation` function.
-:::
+<DataDictionaryCard />
 
 ## Using the Message Service from a Script Processor
 
