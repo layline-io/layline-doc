@@ -167,8 +167,6 @@ Following in the table, define the fields which are defined within the Portable 
 
 Create additional Portable Types that you want to work with within layline.io.
 
-### Data Dictionary
-
 <DataDictionaryCard />
 
 ## Example: Using the Hazelcast Service

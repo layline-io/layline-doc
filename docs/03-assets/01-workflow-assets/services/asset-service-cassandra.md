@@ -135,8 +135,6 @@ Please note that the notation follows [HOCON format](https://www.w3schools.io/fi
 As you can see from the example above, you can use [Macros](../../../language-reference/macros) within the Typesafe Configuration.
 :::
 
-### Data Dictionary
-
 <DataDictionaryCard />
 
 ### Example: Using the Cassandra Service

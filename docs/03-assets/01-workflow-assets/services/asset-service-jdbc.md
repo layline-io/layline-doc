@@ -110,8 +110,6 @@ Next fill out the details:
   always preceded with `result.` and then followed by the member name. On the right hand side, enter the original field
   names used in your SQL-Statement.
 
-### Data Dictionary
-
 <DataDictionaryCard></DataDictionaryCard>
 
 ### Example: Using the JDBC Service

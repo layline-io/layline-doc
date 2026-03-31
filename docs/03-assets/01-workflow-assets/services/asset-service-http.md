@@ -266,8 +266,6 @@ A new Response will be added to the list of Responses, and you can now define th
 
 ![](.asset-service-http_images/2023-11-27-21.png "Response Definition (Service Http)")
 
-### Data Dictionary
-
 <DataDictionaryCard />
 
 ## Example: Using the Http Service

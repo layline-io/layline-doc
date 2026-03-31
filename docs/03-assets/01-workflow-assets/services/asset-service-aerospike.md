@@ -364,8 +364,6 @@ a Collection.
 We now have defined a Collection which references an Aerospike `Namespace`, `Set`, and two `Bins` `MSISDN`
 and  `History` with a simple and complex type.
 
-### Data Dictionary
-
 <DataDictionaryCard />
 
 ### Example: Using the Aerospike Service

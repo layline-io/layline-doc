@@ -133,8 +133,6 @@ When calling a Message Service function from a processor, the following paramete
 | `Request` | The message payload, matching the `Request type` defined above |
 | `Source` | Optional. The name of the Message Source to publish to. Required if the service references more than one Message Source |
 
-### Data Dictionary
-
 <DataDictionaryCard />
 
 ## Using the Message Service from a Script Processor

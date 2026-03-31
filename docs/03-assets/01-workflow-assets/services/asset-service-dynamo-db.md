@@ -185,8 +185,6 @@ Note: `Use AWS null attribute` for Value mapping is only available when `Attribu
 
 ![DynamoDB Attribute Mapping](./.asset-service-dynamo-db_images/04-attribute-mapping.png)
 
-### Data Dictionary
-
 <DataDictionaryCard />
 
 ### Auto-Generated Function Names
