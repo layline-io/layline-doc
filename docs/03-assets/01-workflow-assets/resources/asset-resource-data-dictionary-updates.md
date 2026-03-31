@@ -4,6 +4,7 @@ description: Data Dictionary Updates Resource. Extend the global Data Dictionary
 ---
 
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
+import DataDictionaryCard from '../../../snippets/assets/data-dictionary-card.md';
 
 # Data Dictionary Updates
 
@@ -30,37 +31,7 @@ For full details of supported element types (Namespace, Sequence, Choice, Enumer
 
 ### Format Types
 
-The Format Types section provides the Data Dictionary tree editor — the same component used by the [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md). It allows you to declare, organize, and maintain a hierarchy of custom type definitions.
-
-#### Tree Navigation
-
-Each node represents a declared type. Click a node to select it and view or edit its details in the right panel.
-
-#### Context Menu
-
-Right-click a node (or click the dropdown button) to access:
-
-- **Add sibling** — adds a new type at the same level as the selected node
-- **Add child** — adds a child type beneath the selected node (only available for types that support children, e.g. Namespace, Sequence, Choice)
-- **Delete** — removes the type from this Asset
-
-Deleted types can be reset to their parent definition using the reset button that appears on the node.
-
-#### Entity Detail Panel
-
-When a node is selected, the right panel shows its fields:
-
-**`Name`**: The type's name. Must be unique within the same parent.
-
-**`Type`**: The element type. Dropdown options include: `Namespace`, `Sequence`, `Choice`, `Enumeration`, `Array`, `Map`. Changing the type clears all previously declared members.
-
-**`Description`**: Free-text description of the type.
-
-Additional fields appear depending on the selected type (e.g., members table for Sequence/Choice, element list for Enumeration, contained type for Array/Map). See the [Data Dictionary Format](../formats/03-asset-format-data-dictionary.md) documentation for full details on all type-specific configuration options.
-
-#### Root Types
-
-Click **+ DECLARE ROOT TYPE** at the bottom of the tree to add a new top-level type declaration. Root types are not scoped under a parent Namespace.
+<DataDictionaryCard />
 
 ## Example
 

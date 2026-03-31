@@ -13,6 +13,7 @@ import CredentialType from '../../../snippets/assets/_credential-type.md';
 import Testcase from '../../../snippets/assets/_asset-service-test.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import DataDictionaryCard from '../../../snippets/assets/data-dictionary-card.md';
 
 
 # HTTP Service
@@ -264,6 +265,10 @@ A new Response will be added to the list of Responses, and you can now define th
 * **`Description`**: A description of the Response.
 
 ![](.asset-service-http_images/2023-11-27-21.png "Response Definition (Service Http)")
+
+### Data Dictionary
+
+<DataDictionaryCard />
 
 ## Example: Using the Http Service
 

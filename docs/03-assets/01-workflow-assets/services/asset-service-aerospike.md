@@ -11,6 +11,7 @@ import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../../snippets/assets/_asset-service-test.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import DataDictionaryCard from '../../../snippets/assets/data-dictionary-card.md';
 
 # Aerospike Service
 
@@ -365,82 +366,7 @@ and  `History` with a simple and complex type.
 
 ### Data Dictionary
 
-The Data Dictionary allows us to define complex data structures which can be mapped onto Aerospike data types (e.g.
-String).
-
-As an example, let’s configure the `History` Bin from our example above. The `History` Bin is a more complex type in
-that it contains data formatted in JSON. In Aerospike this is simply stored as a
-String. In layline.io, however, we want to be able to access the individual data within that JSON format as individual
-fields. To solve this, we can define our own data types using the Data Dictionary
-which reflects the JSON format stored in Aerospike and vice versa.
-
-```json
-{
-  "History": [
-    {
-      "ValidFrom": "2021",
-      "ValidTo": "2021",
-      "Provider": "XYZ",
-      "PaymentType": "PT"
-    }
-  ]
-} 
-```
-
-Let’s define this custom data type using the Data Dictionary:
-
-1. Declare namespace
-2. Declare `History`
-
-**Declare a new type (1):**
-
-![](.asset-service-aerospike_images/2e2039d9.png "Declare new Data Dictionary type (Service Aerospike)")
-
-##### 1. Declare namespace
-
-To better organize data types, we declare a namespace first:
-
-![](.asset-service-aerospike_images/92925da1.png "Declare namespace (Service Aerospike)")
-
-* **`Name`** (1): The name of the element.
-  If you are configuring a namespace, and you reuse the name of a namespace, which you have created elsewhere in this
-  Project, then the elements of the namespaces will be merged into the namespace by
-  this same name.
-  Otherwise the name must be unique and may not contain spaces.
-
-* **`Type`** (2): Pick the type of the element. In our example we first define a namespace. When we define additional
-  elements under that namespace we will pick any of the other data types to actually
-  hold the data.
-
-* **`Description`** (3): Anything which describes the element further.
-
-##### 2. Declare History
-
-Add a child to the namespace we just created:
-
-![](.asset-service-aerospike_images/527bde2c.png "Add child to namespace (Service Aerospike)")
-
-* Click the small arrow next to the namespace name (1)
-* Select `Add child` to add a child element to the namespace
-* Fill in the details:
-
-![](.asset-service-aerospike_images/3fc6c30e.png "Configure History element (Service Aerospike)")
-
-* **`Name`** (1): Name the element `History`
-
-* **`Type`** (2): Select `Sequence` as the element type. In the next step we will create individual members of the
-  sequence.
-
-* **`Extendable Sequence`** (3): Leave this unchecked for the example. If checked, it allows you and layline.io to
-  dynamically extend the list of sequence members while working with the data type
-  which we are defining. If - for example - your incoming data format has additional fields which are not defined in the
-  sequence, the sequence will be automatically extended by these fields.
-
-Now we add a list of member fields which make up the sequence (1):
-
-![](.asset-service-aerospike_images/a0b969a9.png "Add sequence members (Service Aerospike)")
-
-To later reference the `ValidFrom` field, we can use the path `MyNamespace.History.ValidFrom`, and so forth.
+<DataDictionaryCard />
 
 ### Example: Using the Aerospike Service
 

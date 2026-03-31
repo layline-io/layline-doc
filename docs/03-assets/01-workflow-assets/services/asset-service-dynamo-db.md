@@ -12,6 +12,7 @@ tags:
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import Testcase from '../../../snippets/assets/_asset-service-test.md';
 import Tabs from '@theme/Tabs';
+import DataDictionaryCard from '../../../snippets/assets/data-dictionary-card.md';
 import TabItem from '@theme/TabItem';
 
 # DynamoDB Service
@@ -186,25 +187,7 @@ Note: `Use AWS null attribute` for Value mapping is only available when `Attribu
 
 ### Data Dictionary
 
-The Data Dictionary editor allows you to define custom data types used by the Service's Functions and Collections.
-These types specify the structure of request parameters and response data for DynamoDB operations.
-
-The namespace for these types is determined by the **Target data dictionary namespace** setting.
-If not specified, it defaults to `Service{Name}Types` (e.g., `ServiceCustomerDataTypes`).
-
-For example, if your Service is named `CustomerData` and your namespace is `ServiceCustomerDataTypes`, a
-Read function's parameter type would be `ServiceCustomerDataTypes.ReadCustomerData.Parameter` and its result type
-would be `ServiceCustomerDataTypes.ReadCustomerData.Result`.
-
-Define types using the Data Dictionary editor. Each type consists of members that map to DynamoDB attributes
-via the attribute mapping configuration.
-
-:::tip
-The Data Dictionary section is available directly within the DynamoDB Service editor, allowing you to create and manage
-types in context while configuring your table mappings.
-:::
-
-![DynamoDB Data Dictionary](./.asset-service-dynamo-db_images/05-data-dictionary.png)
+<DataDictionaryCard />
 
 ### Auto-Generated Function Names
 
