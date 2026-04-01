@@ -8,10 +8,6 @@ tags:
 
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
-import DeployToCluster from './.asset-deployment-engine_images/engine-deploy-to-cluster.png';
-import TagSection from './.asset-deployment-engine_images/engine-tag-section.png';
-import AssetsToDeploy from './.asset-deployment-engine_images/engine-assets-to-deploy.png';
-import OtherSettings from './.asset-deployment-engine_images/engine-other-settings.png';
 
 # Engine Configuration
 
@@ -39,7 +35,7 @@ Before creating an Engine Configuration Asset:
 
 ### Deploy to Cluster
 
-<img src={DeployToCluster} alt="Deploy to Cluster configuration showing target type selector, cluster selection, and base deployment tag field" />
+![Deploy to Cluster configuration showing target type selector, cluster selection, and base deployment tag field](./.asset-deployment-engine_images/engine-deploy-to-cluster.png)
 
 This section configures where and how the deployment is executed.
 
@@ -69,7 +65,7 @@ When a base deployment tag is specified, the entire Engine Configuration is tran
 
 ### Tag
 
-<img src={TagSection} alt="Tag section showing Tag field with 'order-prod-v1' and Tag description" />
+![Tag section showing Tag field with 'order-prod-v1' and Tag description](./.asset-deployment-engine_images/engine-tag-section.png)
 
 **Tag** *(required)* — A unique identifier for this Engine Configuration within the target Cluster. The Tag appears in the Cluster's deployment list and is used to reference this specific engine instance. If a deployment with this Tag already exists in the Cluster, it will be updated.
 
@@ -77,7 +73,7 @@ When a base deployment tag is specified, the entire Engine Configuration is tran
 
 ### Assets to deploy
 
-<img src={AssetsToDeploy} alt="Assets to deploy section showing Workflow selection with Deploy all checkbox and available workflows list" />
+![Assets to deploy section showing Workflow selection with Deploy all checkbox and available workflows list](./.asset-deployment-engine_images/engine-assets-to-deploy.png)
 
 This section defines which assets are included in the deployment. The left panel lists asset categories with counts; clicking a category shows its configuration on the right.
 
@@ -130,7 +126,7 @@ Target Keys are public encryption keys used to encrypt Secrets for specific targ
 
 ### Other settings
 
-<img src={OtherSettings} alt="Other settings section showing Deployment timeout field set to 120 seconds" />
+![Other settings section showing Deployment timeout field set to 120 seconds](./.asset-deployment-engine_images/engine-other-settings.png)
 
 **Deployment timeout** — The maximum time (in seconds) to wait for the deployment to complete. If the deployment exceeds this timeout, it is marked as failed. Default: 120 seconds.
 
