@@ -8,6 +8,10 @@ tags:
 
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
+import DeployToCluster from '/img/assets/deployment/engine-deploy-to-cluster.png';
+import TagSection from '/img/assets/deployment/engine-tag-section.png';
+import AssetsToDeploy from '/img/assets/deployment/engine-assets-to-deploy.png';
+import OtherSettings from '/img/assets/deployment/engine-other-settings.png';
 
 # Engine Configuration
 
@@ -35,7 +39,7 @@ Before creating an Engine Configuration Asset:
 
 ### Deploy to Cluster
 
-<!-- SCREENSHOT: Engine Configuration config panel, Deploy to Cluster section showing target type dropdown and cluster selection -->
+<img src={DeployToCluster} alt="Deploy to Cluster configuration showing target type selector, cluster selection, and base deployment tag field" />
 
 This section configures where and how the deployment is executed.
 
@@ -49,7 +53,9 @@ When **Deploy to Cluster** is selected:
 - **Global clusters** — Available across all projects
 - **Project specific clusters** — Defined within the current project
 
-**Tag of the base deployment** — (Optional) Specify an existing deployment tag to use as a base. This enables incremental deployments where only changes since the base deployment are transferred.
+**Tag of the base deployment** — (Optional) Specify an existing deployment tag to use as a base. This enables incremental/differential deployment against a previous deployment.
+
+When a base deployment tag is specified, the entire Engine Configuration is transferred to the Cluster. The reactive cluster then compares the incoming configuration against the existing deployment with the specified base tag and determines what has changed. Only the differences are applied to create the new deployment, but the complete configuration is always transferred to ensure consistency.
 
 **Override deployment tag** — (Optional) Override the deployment tag that will be assigned in the Cluster. If not specified, the Tag defined in the Engine Configuration is used.
 
@@ -63,7 +69,7 @@ When **Deploy to Cluster** is selected:
 
 ### Tag
 
-<!-- SCREENSHOT: Engine Configuration config panel, Tag section showing Tag and Tag description fields -->
+<img src={TagSection} alt="Tag section showing Tag field with 'order-prod-v1' and Tag description" />
 
 **Tag** *(required)* — A unique identifier for this Engine Configuration within the target Cluster. The Tag appears in the Cluster's deployment list and is used to reference this specific engine instance. If a deployment with this Tag already exists in the Cluster, it will be updated.
 
@@ -71,15 +77,13 @@ When **Deploy to Cluster** is selected:
 
 ### Assets to deploy
 
-<!-- SCREENSHOT: Engine Configuration config panel, Assets to deploy section showing the asset type list on the left -->
+<img src={AssetsToDeploy} alt="Assets to deploy section showing Workflow selection with Deploy all checkbox and available workflows list" />
 
 This section defines which assets are included in the deployment. The left panel lists asset categories with counts; clicking a category shows its configuration on the right.
 
 #### Workflows
 
-<!-- SCREENSHOT: Engine Configuration config panel, Assets to deploy section, Workflows tab showing Deploy all toggle and workflow list -->
-
-**Deploy all workflows** — When enabled, all Workflows in the Project are included in the deployment. When disabled, you select individual Workflows from a list.
+**Deploy all workflows** — When enabled, all Workflows that are part of the current Project are included in the deployment. When disabled, you select individual Workflows from a list.
 
 When **Deploy all workflows** is disabled:
 
@@ -89,8 +93,6 @@ When **Deploy all workflows** is disabled:
 - Inherited Workflows (from a parent Engine Configuration) appear with inherited styling
 
 #### Environments
-
-<!-- SCREENSHOT: Engine Configuration config panel, Assets to deploy section, Environments tab showing selected Environment Assets -->
 
 Environment Assets provide configuration values (key-value pairs) that are injected at runtime. Multiple Environment Assets can be selected — their variables are merged, with later assets overriding earlier ones in case of key collisions.
 
@@ -102,8 +104,6 @@ For details on how Environment Assets work, see [Environment Asset](../01-workfl
 
 #### Secrets
 
-<!-- SCREENSHOT: Engine Configuration config panel, Assets to deploy section, Secrets tab showing selected Secret Assets with encryption status -->
-
 Secret Assets contain sensitive data like passwords, API keys, and tokens. They are encrypted and decrypted at deployment time using the target engine's keys.
 
 - Click **Add Secret** to select from available Secret Assets
@@ -111,8 +111,6 @@ Secret Assets contain sensitive data like passwords, API keys, and tokens. They 
 For details on how Secret Assets work, see [Secret Asset](../01-workflow-assets/resources/asset-resource-secret.md).
 
 #### Extensions
-
-<!-- SCREENSHOT: Engine Configuration config panel, Assets to deploy section, Extensions tab showing selected Extension Assets -->
 
 Extension Assets add capabilities to the engine, such as:
 - **Prometheus Extension** — Export metrics to Prometheus for monitoring
@@ -123,8 +121,6 @@ Extensions are loaded by the engine at startup and provide additional functional
 
 #### Target Keys
 
-<!-- SCREENSHOT: Engine Configuration config panel, Assets to deploy section, Target Keys tab showing encryption public keys -->
-
 Target Keys are public encryption keys used to encrypt Secrets for specific target engines. When deploying to a Cluster, Secrets are encrypted with the target engine's public key so they can only be decrypted by that engine.
 
 - Click **Add Encryption Target Key** to select from available public keys
@@ -134,7 +130,7 @@ Target Keys are public encryption keys used to encrypt Secrets for specific targ
 
 ### Other settings
 
-<!-- SCREENSHOT: Engine Configuration config panel, Other settings section showing Deployment timeout field -->
+<img src={OtherSettings} alt="Other settings section showing Deployment timeout field set to 120 seconds" />
 
 **Deployment timeout** — The maximum time (in seconds) to wait for the deployment to complete. If the deployment exceeds this timeout, it is marked as failed. Default: 120 seconds.
 
