@@ -17,7 +17,7 @@ import NameAndDescription from '../../snippets/assets/_asset-name-and-descriptio
 
 Think of a Deployment Composition as the "deployment blueprint" for your layline.io project. In complex data processing environments, you typically need to manage multiple configurations: where to deploy (cluster), what to deploy (workflows and resources), how much resource to allocate (scheduler limits), and how to organize deployments (tags). Rather than managing these as separate concerns every time you deploy, the Deployment Composition brings them together into one cohesive, versionable, and reusable package.
 
-The core idea is **configuration as code**. Just as you version-control your workflow logic, you should version-control your deployment configuration. A Deployment Composition lets you define a complete deployment scenario once — specifying the target cluster, engine configuration, scheduling policies, and environment variables — and then reuse it reliably across development, staging, and production environments.
+A Deployment Composition lets you define a complete deployment scenario once — specifying the target cluster, engine configuration, scheduling policies, and environment variables — and then reuse it reliably across development, staging, and production environments.
 
 Inheritance is the other key concept. Deployment Compositions can extend other compositions, allowing you to create a hierarchy of deployment configurations. For example, you might have a `ProductionDeployment` that defines your production cluster, engine configuration, and resource limits. Your `StagingDeployment` can inherit from it, automatically getting all those base settings while only overriding what's different (like the target cluster and perhaps more relaxed scheduling limits). This eliminates duplication and ensures consistency — when you update the base production configuration, all inherited deployments automatically reflect those changes.
 
@@ -44,7 +44,7 @@ This section is where you define the delivery mechanism for your deployment. The
 
 | Option | When to Use |
 |--------|-------------|
-| Deploy to Cluster | Choose this when you have a running layline.io cluster and want to deploy immediately. The deployment is transferred directly to the cluster and activated. |
+| Deploy to Cluster | Choose this when you have a running layline.io cluster and want to deploy immediately. The deployment is transferred directly to the cluster and stored in the Deployment Store for further activation. |
 | Write to File | Choose this when you need to export the deployment for manual distribution, version control, deployment to air-gapped environments, or auditing purposes. |
 
 When *Deploy to Cluster* is selected, you specify:
@@ -53,7 +53,7 @@ When *Deploy to Cluster* is selected, you specify:
 
 **Tag of the base deployment** — This is the inheritance hook. By specifying a base deployment tag here, you indicate that this deployment should inherit all settings from that parent deployment. This is how you build deployment hierarchies — the parent defines the common configuration, and this deployment only specifies what differs.
 
-**Override deployment tag** — Normally, deployments are identified by their asset name. Use this field if you need to assign a custom tag for identification, filtering, or organizational purposes.
+**Override deployment tag** — Normally, deployments are identified by the deployment tag in the Engine Configuration. Use this field if you need to assign a custom tag for identification, filtering, or organizational purposes overriding the Engine Configuration tag.
 
 ![Deploy to Cluster section showing target type selector and cluster selection](./.asset-deployment-composition_images/deploy-to-cluster.png)
 
@@ -87,7 +87,7 @@ The philosophy here is **separation of concerns**: your workflows define *how* t
 
 #### Environments to deploy
 
-Environment Assets contain configuration values as key-value pairs. These values are injected into your workflows at runtime and can be accessed via the API. Typical uses include database connection strings, API base URLs, feature flags, and tuning parameters.
+Environment Assets contain configuration values as key-value pairs. These values are injected into your workflows at runtime. Typical uses include database connection strings, API base URLs, feature flags, and tuning parameters.
 
 Multiple Environment Assets can be selected, and their variables are merged. If the same key exists in multiple environments, the value from the later (lower) asset in the list takes precedence. This allows for layering — for example, a base environment with common settings, overlaid with an environment-specific one that overrides certain values.
 
@@ -100,9 +100,9 @@ For details on creating and managing Environment Assets, see [Environment Asset]
 
 #### Secrets to deploy
 
-Secret Assets contain sensitive data like passwords, API keys, tokens, and certificates. They are encrypted at rest and decrypted only at deployment time using the target engine's keys. This ensures credentials are never exposed in plain text during transit or storage.
+Secret Assets contain sensitive data like passwords, API keys, tokens, and certificates. They are encrypted at rest and decrypted only at runtime using the target cluster's keys. This ensures credentials are never exposed in plain text during config, transit or storage.
 
-Secrets work similarly to environments — you can select multiple, reorder them, and inherit them from parent deployments. The encryption ensures that even if someone gains access to the deployment file or the project, they cannot extract the actual secret values.
+Secrets work similarly to environments — you can select multiple, reorder them, and inherit them from parent deployments. The encryption ensures that even if someone gains access to the deployment file or the project, they cannot extract the actual secret values, unless the private key is stored in the project (which is not recommended for production secrets). 
 
 - Click **Add Secret** to select from available Secret Assets
 - Each asset shows its name, description, and encryption status
@@ -134,7 +134,7 @@ When you initiate a deployment:
 1. The system resolves all inheritance — final values are computed by merging parent and child settings
 2. All referenced assets (Engine Configuration, Environments, Secrets, etc.) are collected and packaged
 3. If deploying to a cluster, the package is transferred to the target cluster's deployment endpoint
-4. The cluster validates the deployment, decrypts secrets using its keys, and activates the workflows
+4. The cluster validates the deployment, decrypts secrets using its keys, and adds the deployment to its Deployment Store.
 5. If exporting to a file, the package is serialized to the specified file path
 
 The deployment is atomic — either all components deploy successfully, or the operation fails with no partial changes applied.
