@@ -67,15 +67,15 @@ When *Deploy to Cluster* is selected, you specify:
 
 This section is the heart of the Deployment Composition — it's where you assemble the building blocks that define how your workflows will run. Think of it as specifying the "runtime environment" for your data processing.
 
-**Cluster Configuration** *(inheritable)* — This connects your deployment to a specific cluster asset. The cluster defines the physical or virtual infrastructure where your workflows will execute — the Reactive Engines that will process your data. By making this inheritable, you can have multiple deployment compositions targeting different clusters (staging vs. production) while sharing other configuration.
+**Cluster Configuration** — This connects your deployment to a specific cluster asset. The cluster defines the physical or virtual infrastructure where your workflows will execute — the Reactive Engines that will process your data. By making this inheritable, you can have multiple deployment compositions targeting different clusters (staging vs. production) while sharing other configuration.
 
 When a cluster is selected, the **Tag of the base deployment** field appears, allowing you to reference a parent deployment within that same cluster context. This creates the inheritance chain.
 
-**Engine Configuration** *(inheritable)* — This is arguably the most important component. The Engine Configuration defines which workflows are part of this deployment and how they're configured at runtime. It answers questions like: Which workflows should be active? What are their processing parameters? What resources do they need? Multiple Deployment Compositions can reference the same Engine Configuration, or they can each have their own.
+**Engine Configuration** — This is arguably the most important component. The Engine Configuration defines which workflows are part of this deployment and how they're configured at runtime. It answers questions like: Which workflows should be active? What are their processing parameters? What resources do they need? Multiple Deployment Compositions can reference the same Engine Configuration, or they can each have their own.
 
-**Scheduler Settings** *(inheritable)* — These settings control the resource allocation and scheduling policies for your deployment. They define limits on CPU, memory, and thread usage, as well as node assignment policies. Different environments often need different scheduling constraints — production might have strict limits to ensure stability, while development might have more relaxed settings.
+**Scheduler Settings** — These settings control the resource allocation and scheduling policies for your deployment. They define limits on CPU, memory, and thread usage, as well as node assignment policies. Different environments often need different scheduling constraints — production might have strict limits to ensure stability, while development might have more relaxed settings.
 
-**Tag Settings** *(inheritable)* — Tags are metadata labels applied to deployed workflows for organization, filtering, and management. The Tag Settings asset defines which tags should be applied to workflows deployed through this composition.
+**Tag Settings** — Tags are metadata labels applied to deployed workflows for organization, filtering, and management. The Tag Settings asset defines which tags should be applied to workflows deployed through this composition.
 
 ![Composition of Deployment Setup section showing all component fields](./.asset-deployment-composition_images/composition-setup.png)
 
