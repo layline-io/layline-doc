@@ -8,10 +8,10 @@ tags:
 
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../snippets/assets/_asset-required-roles.md';
-import DeployToCluster from '/img/assets/deployment/engine-deploy-to-cluster.png';
-import TagSection from '/img/assets/deployment/engine-tag-section.png';
-import AssetsToDeploy from '/img/assets/deployment/engine-assets-to-deploy.png';
-import OtherSettings from '/img/assets/deployment/engine-other-settings.png';
+import DeployToCluster from './.asset-deployment-engine_images/engine-deploy-to-cluster.png';
+import TagSection from './.asset-deployment-engine_images/engine-tag-section.png';
+import AssetsToDeploy from './.asset-deployment-engine_images/engine-assets-to-deploy.png';
+import OtherSettings from './.asset-deployment-engine_images/engine-other-settings.png';
 
 # Engine Configuration
 
