@@ -15,11 +15,15 @@ import NameAndDescription from '../../snippets/assets/_asset-name-and-descriptio
 
 ## Purpose
 
-A Deployment Composition is the top-level asset that orchestrates how your workflows and configurations are deployed to a layline.io cluster. It brings together all the necessary deployment components — cluster connection, engine configuration, scheduling policies, and tagging rules — into one cohesive package.
+Think of a Deployment Composition as the "deployment blueprint" for your layline.io project. In complex data processing environments, you typically need to manage multiple configurations: where to deploy (cluster), what to deploy (workflows and resources), how much resource to allocate (scheduler limits), and how to organize deployments (tags). Rather than managing these as separate concerns every time you deploy, the Deployment Composition brings them together into one cohesive, versionable, and reusable package.
 
-You can deploy a Deployment Composition directly to a running cluster or export it to a file for offline deployment. The asset also supports inheritance, allowing you to create deployment variants that extend a base configuration.
+The core idea is **configuration as code**. Just as you version-control your workflow logic, you should version-control your deployment configuration. A Deployment Composition lets you define a complete deployment scenario once — specifying the target cluster, engine configuration, scheduling policies, and environment variables — and then reuse it reliably across development, staging, and production environments.
 
-<!-- SCREENSHOT: Deployment Composition editor showing all configuration sections -->
+Inheritance is the other key concept. Deployment Compositions can extend other compositions, allowing you to create a hierarchy of deployment configurations. For example, you might have a `ProductionDeployment` that defines your production cluster, engine configuration, and resource limits. Your `StagingDeployment` can inherit from it, automatically getting all those base settings while only overriding what's different (like the target cluster and perhaps more relaxed scheduling limits). This eliminates duplication and ensures consistency — when you update the base production configuration, all inherited deployments automatically reflect those changes.
+
+You can deploy a Deployment Composition directly to a running cluster for immediate execution, or export it to a file for offline deployment, auditing, or distribution to air-gapped environments.
+
+![Deployment Composition editor showing the composition of deployment setup section](./.asset-deployment-composition_images/composition-setup.png)
 
 ## Prerequisites
 
@@ -34,100 +38,110 @@ Before creating a Deployment Composition, you need:
 
 ### Deploy to Cluster
 
-This section defines where and how the deployment will be delivered.
+This section is where you define the delivery mechanism for your deployment. The key decision here is whether you're deploying directly to a running cluster (immediate execution) or exporting to a file (for later use, auditing, or transfer to another environment).
 
-**Pick target type** — Select the deployment target:
+**Pick target type** — This determines how the deployment will be delivered:
 
-| Option | Behavior |
-|--------|----------|
-| Deploy to Cluster | Push the deployment directly to a running layline.io cluster. |
-| Write to File | Export the deployment as a file for manual distribution. |
+| Option | When to Use |
+|--------|-------------|
+| Deploy to Cluster | Choose this when you have a running layline.io cluster and want to deploy immediately. The deployment is transferred directly to the cluster and activated. |
+| Write to File | Choose this when you need to export the deployment for manual distribution, version control, deployment to air-gapped environments, or auditing purposes. |
 
-When *Deploy to Cluster* is selected:
+When *Deploy to Cluster* is selected, you specify:
 
-**Pick cluster to deploy to** — Select the target cluster from available global or project-specific clusters.
+**Pick cluster to deploy to** — Select from available clusters. Clusters can be defined globally (shared across projects) or locally (project-specific). The cluster defines the connection endpoint where your deployment will run.
 
-**Tag of the base deployment** — (Optional) Specify a base deployment tag to inherit from. This creates a deployment chain where this deployment extends another.
+**Tag of the base deployment** — This is the inheritance hook. By specifying a base deployment tag here, you indicate that this deployment should inherit all settings from that parent deployment. This is how you build deployment hierarchies — the parent defines the common configuration, and this deployment only specifies what differs.
 
-**Override deployment tag** — (Optional) Assign a custom tag to this deployment, overriding the default.
+**Override deployment tag** — Normally, deployments are identified by their asset name. Use this field if you need to assign a custom tag for identification, filtering, or organizational purposes.
 
-<!-- SCREENSHOT: Deploy to Cluster section showing target type selector and cluster selection -->
+![Deploy to Cluster section showing target type selector and cluster selection](./.asset-deployment-composition_images/deploy-to-cluster.png)
 
 ### Name & Description
 
 <NameAndDescription></NameAndDescription>
 
+![Name, Description & Inheritance section showing the inheritance chain](./.asset-deployment-composition_images/name-description-inheritance.png)
+
 ### Composition of Deployment Setup
 
-This section defines the core components that make up the deployment.
+This section is the heart of the Deployment Composition — it's where you assemble the building blocks that define how your workflows will run. Think of it as specifying the "runtime environment" for your data processing.
 
-**Cluster Configuration** *(inheritable)* — Select a Cluster asset that defines the target cluster. This can be inherited from a parent deployment.
+**Cluster Configuration** *(inheritable)* — This connects your deployment to a specific cluster asset. The cluster defines the physical or virtual infrastructure where your workflows will execute — the Reactive Engines that will process your data. By making this inheritable, you can have multiple deployment compositions targeting different clusters (staging vs. production) while sharing other configuration.
 
-When a cluster is selected, the **Tag of the base deployment** field appears, allowing you to specify a parent deployment to inherit from within that cluster.
+When a cluster is selected, the **Tag of the base deployment** field appears, allowing you to reference a parent deployment within that same cluster context. This creates the inheritance chain.
 
-**Engine Configuration** *(inheritable)* — Select an Engine Configuration asset that defines which workflows and resources are deployed and how they are configured at runtime.
+**Engine Configuration** *(inheritable)* — This is arguably the most important component. The Engine Configuration defines which workflows are part of this deployment and how they're configured at runtime. It answers questions like: Which workflows should be active? What are their processing parameters? What resources do they need? Multiple Deployment Compositions can reference the same Engine Configuration, or they can each have their own.
 
-**Scheduler Settings** *(inheritable)* — Select a Scheduler Settings asset that defines resource limits, node assignments, and scheduling policies.
+**Scheduler Settings** *(inheritable)* — These settings control the resource allocation and scheduling policies for your deployment. They define limits on CPU, memory, and thread usage, as well as node assignment policies. Different environments often need different scheduling constraints — production might have strict limits to ensure stability, while development might have more relaxed settings.
 
-**Tag Settings** *(inheritable)* — Select a Tag Settings asset that defines custom tags to apply to deployed workflows for organization and filtering.
+**Tag Settings** *(inheritable)* — Tags are metadata labels applied to deployed workflows for organization, filtering, and management. The Tag Settings asset defines which tags should be applied to workflows deployed through this composition.
 
-<!-- SCREENSHOT: Composition of Deployment Setup section showing all dropdown fields -->
+![Composition of Deployment Setup section showing all component fields](./.asset-deployment-composition_images/composition-setup.png)
 
 ### Default Environments and Secrets
 
-This section defines which Environment Assets and Secret Assets are included in the deployment by default. These assets provide configuration values and sensitive data to the deployed workflows.
+Environment Assets and Secret Assets provide the configuration data and credentials that your workflows need at runtime. This section defines which of these assets are bundled into the deployment.
 
-<!-- SCREENSHOT: Deployment Composition config panel, Default Environments and Secrets section showing Environment and Secrets tables -->
+The philosophy here is **separation of concerns**: your workflows define *how* to process data, while environments and secrets define *what* resources to use (database connections, API endpoints, credentials). By separating these, you can deploy the same workflow logic to different environments (dev, staging, prod) simply by changing which Environment and Secret Assets are included.
 
 #### Environments to deploy
 
-Environment Assets provide configuration values (key-value pairs) that are injected at runtime. Multiple Environment Assets can be selected — their variables are merged, with later assets overriding earlier ones in case of key collisions.
+Environment Assets contain configuration values as key-value pairs. These values are injected into your workflows at runtime and can be accessed via the API. Typical uses include database connection strings, API base URLs, feature flags, and tuning parameters.
 
-- Click **Add Environment** to select from available Environment Assets in the project
-- Each Environment Asset displays its name and description
-- Inherited Environment Assets (from a parent Deployment Composition) appear with inherited styling and can be reset to parent values
-- Use the delete button to remove an Environment from the deployment
-- Use the up/down buttons to reorder environments (affects variable precedence)
+Multiple Environment Assets can be selected, and their variables are merged. If the same key exists in multiple environments, the value from the later (lower) asset in the list takes precedence. This allows for layering — for example, a base environment with common settings, overlaid with an environment-specific one that overrides certain values.
 
-For details on how Environment Assets work, see [Environment Asset](../01-workflow-assets/resources/asset-resource-environment.md).
+- Click **Add Environment** to select from available Environment Assets
+- Each asset shows its name and description for identification
+- Inherited environments appear marked as such and can be reset to parent values
+- Reorder environments using the up/down buttons — order matters for variable precedence
+
+For details on creating and managing Environment Assets, see [Environment Asset](../01-workflow-assets/resources/asset-resource-environment.md).
 
 #### Secrets to deploy
 
-Secret Assets contain sensitive data like passwords, API keys, and tokens. They are encrypted and decrypted at deployment time using the target engine's keys.
+Secret Assets contain sensitive data like passwords, API keys, tokens, and certificates. They are encrypted at rest and decrypted only at deployment time using the target engine's keys. This ensures credentials are never exposed in plain text during transit or storage.
 
-- Click **Add Secret** to select from available Secret Assets in the project
-- Each Secret Asset displays its name, description, and encryption status (encrypted/decrypted icon)
-- Inherited Secret Assets appear with inherited styling and can be reset to parent values
-- Use the delete button to remove a Secret from the deployment
-- Use the up/down buttons to reorder secrets
+Secrets work similarly to environments — you can select multiple, reorder them, and inherit them from parent deployments. The encryption ensures that even if someone gains access to the deployment file or the project, they cannot extract the actual secret values.
 
-For details on how Secret Assets work, see [Secret Asset](../01-workflow-assets/resources/asset-resource-secret.md).
+- Click **Add Secret** to select from available Secret Assets
+- Each asset shows its name, description, and encryption status
+- Inherited secrets appear marked and can be reset to parent values
+- Reorder secrets using the up/down buttons
+
+For details on creating and managing Secret Assets, see [Secret Asset](../01-workflow-assets/resources/asset-resource-secret.md).
+
+![Default Environments and Secrets section showing environment and secret selection](./.asset-deployment-composition_images/environments-secrets.png)
 
 ## Behavior
 
 ### Inheritance
 
-Deployment Compositions support inheritance, allowing you to create deployment hierarchies:
+Inheritance in Deployment Compositions works on a field-by-field basis. When you specify a parent deployment via the **Tag of the base deployment** field, the system looks at each configurable field:
 
-1. Create a base Deployment Composition with common settings
-2. Create child deployments that reference the base via the **Tag of the base deployment** field
-3. Child deployments inherit all settings from the parent but can override specific fields
+1. If the field is explicitly set in the child deployment, that value is used
+2. If the field is not set (or is reset to "inherit"), the parent's value is used
+3. This applies to all inheritable fields: Cluster Configuration, Engine Configuration, Scheduler Settings, Tag Settings, and the lists of Environments and Secrets
 
-Inherited fields are marked in the UI and show the parent's value when not overridden.
+This creates a powerful pattern for managing deployment variants. You define your "golden" production deployment with all the correct settings, then create staging, QA, and development deployments that inherit from it, only overriding the specific fields that need to differ (like the target cluster).
+
+The UI visually indicates inherited fields, showing both the inherited value and the option to override it. This makes it clear what's being inherited versus what's explicitly configured.
 
 ### Deployment Execution
 
-When you're ready to deploy:
+When you initiate a deployment:
 
-1. Configure the **Deploy to Cluster** section with your target
-2. Click **Transfer Deployment to Cluster** or **Transfer Deployment to File**
-3. If deploying to a cluster, you'll be prompted to confirm and monitor the deployment status
+1. The system resolves all inheritance — final values are computed by merging parent and child settings
+2. All referenced assets (Engine Configuration, Environments, Secrets, etc.) are collected and packaged
+3. If deploying to a cluster, the package is transferred to the target cluster's deployment endpoint
+4. The cluster validates the deployment, decrypts secrets using its keys, and activates the workflows
+5. If exporting to a file, the package is serialized to the specified file path
 
-The deployment packages all referenced assets and transfers them to the target cluster or writes them to the specified file.
+The deployment is atomic — either all components deploy successfully, or the operation fails with no partial changes applied.
 
 ## Example
 
-**Basic deployment to a cluster:**
+**Basic deployment to a production cluster:**
 
 | Field | Value |
 |-------|-------|
@@ -136,6 +150,8 @@ The deployment packages all referenced assets and transfers them to the target c
 | Cluster | `prod-cluster-01` |
 | Engine Configuration | `ProductionEngine` |
 | Scheduler Settings | `ProdSchedulerLimits` |
+| Environments | `Production-Env` |
+| Secrets | `API-Keys` |
 
 **Inherited deployment for staging:**
 
@@ -145,10 +161,12 @@ The deployment packages all referenced assets and transfers them to the target c
 | Target Type | Deploy to Cluster |
 | Cluster | `staging-cluster` |
 | Tag of the base deployment | `ProductionDeployment` |
-| Engine Configuration | *(inherited)* |
+| Engine Configuration | *(inherited from ProductionDeployment)* |
 | Scheduler Settings | `StagingSchedulerLimits` |
+| Environments | `Staging-Env` (inherited `Production-Env` is overridden/reordered) |
+| Secrets | *(inherited from ProductionDeployment)* |
 
-In this example, `StagingDeployment` inherits the Engine Configuration from `ProductionDeployment` but uses different Scheduler Settings and targets a different cluster.
+In this example, `StagingDeployment` inherits the Engine Configuration and Secrets from `ProductionDeployment` but uses a different cluster, different scheduler settings (perhaps more relaxed limits for testing), and a different environment configuration. If the production Engine Configuration is updated, staging automatically gets those changes on its next deployment.
 
 ## See Also
 
@@ -156,5 +174,3 @@ In this example, `StagingDeployment` inherits the Engine Configuration from `Pro
 - [**Engine Configuration**](./asset-deployment-engine.md) — Defines workflows and runtime configuration
 - [**Scheduler Settings**](./asset-deployment-scheduler.md) — Defines resource limits and scheduling policies
 - [**Tag Settings**](./asset-deployment-tag.md) — Defines deployment tagging rules
-
-
