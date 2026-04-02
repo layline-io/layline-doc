@@ -24,7 +24,7 @@ The bootstrap nodes you define in a Cluster asset are the initial contact points
 
 Cluster assets support inheritance, allowing you to define base cluster configurations and extend them for specific environments. For example, you might have a `ProductionCluster` with three bootstrap nodes, and a `StagingCluster` that inherits from it but overrides the node list to point to your staging infrastructure.
 
-<!-- SCREENSHOT: ReactiveCluster asset editor showing the Name & Description section and Bootstrap Nodes list with example URLs -->
+![Cluster Name and Description section showing cluster configuration with asset reference warnings](./.asset-deployment-cluster_images/cluster-name-description.png)
 
 ## Prerequisites
 
@@ -65,7 +65,7 @@ Click **Add bootstrap node** to add a new node to the list. Each node appears as
 
 The order of bootstrap nodes does not matter — the Configuration Center will use any available node. However, listing all nodes in your cluster provides maximum redundancy.
 
-<!-- SCREENSHOT: Bootstrap Nodes section showing multiple node URLs with add/remove buttons and inheritance indicators -->
+![Bootstrap Nodes section showing multiple cluster node URLs with add and delete controls](./.asset-deployment-cluster_images/cluster-bootstrap-nodes.png)
 
 ## Behavior
 
