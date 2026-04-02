@@ -46,7 +46,7 @@ Before creating Scheduler Settings, you should have:
 
 This section establishes the inheritance chain for the Scheduler Settings. Like other deployment assets, Scheduler Settings can extend a parent configuration, inheriting all its workflow limits while allowing selective overrides.
 
-**Tag of the base deployment** — Select a parent Scheduler Settings asset to inherit from. When specified, all workflow limits from the parent are automatically inherited. You can then add additional workflows or override specific limits as needed. This is useful for creating environment-specific variants (e.g., `ProductionScheduler` as parent, `StagingScheduler` inheriting with relaxed limits).
+**Tag of the base deployment** — Select a parent Scheduler Settings asset to chain onto. Tags work differently from asset inheritance: when you base one deployment on another using a tag, deployments are chained together in sequence. At runtime, the cluster investigates how deployments are chained via tags and calculates the final deployment as a combination of all linked deployments. A later deployment in the chain always supersedes functionality from an earlier deployment — settings in the child override those in the parent. This enables layered configuration patterns where you define base policies and selectively override them for specific environments.
 
 <!-- SCREENSHOT: Deploy to Target section showing inheritance field -->
 
@@ -82,7 +82,7 @@ Click on a workflow in the list to select it, then click the delete icon. You'll
 
 For example, setting this to `3` means the scheduler will attempt to run exactly 3 instances of this workflow distributed across available nodes. If a node fails and an instance is lost, the scheduler will spin up a replacement on another node to maintain the target count.
 
-Default: `null` (no specific target — instances are created as needed based on input load)
+Default: `null` (no specific target — you must manually configure the number of instances on the operation side)
 
 <!-- SCREENSHOT: Requested Resources section showing the number of instances field -->
 
@@ -92,7 +92,7 @@ Default limits apply to all nodes unless overridden by specific role or node lim
 
 **Default min. instances** *(inheritable)* — The minimum number of instances that must run on each node that hosts this workflow. This is useful when you want to ensure baseline availability even during low-load periods.
 
-**Default max. instances** *(inheritable)* — The maximum number of instances allowed on a single node. This prevents any single node from becoming overwhelmed by too many workflow instances. Once a node reaches this limit, additional instances will be scheduled on other nodes.
+**Default max. instances** *(inheritable)* — The maximum number of workflow instances allowed across all nodes in the cluster. This sets an upper bound on the total instances of this workflow that can run simultaneously, regardless of how they're distributed across nodes.
 
 Both values are optional. If not specified, the scheduler uses its internal defaults (typically min: 0, max: unlimited).
 
