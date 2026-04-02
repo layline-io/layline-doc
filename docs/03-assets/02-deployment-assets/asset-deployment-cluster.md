@@ -1,6 +1,6 @@
 ---
-title: ReactiveCluster
-description: ReactiveCluster Asset. Defines connection endpoints for a layline.io cluster, enabling deployment of workflows to distributed engine instances.
+title: Cluster
+description: Cluster Asset. Defines connection endpoints for a layline.io cluster, enabling deployment of workflows to distributed engine instances.
 tags:
   - deployment
   - cluster
@@ -8,7 +8,7 @@ tags:
 
 import NameAndDescription from '../../snippets/assets/_asset-name-and-description.md';
 
-# ReactiveCluster
+# Cluster
 
 > Defines connection endpoints for a layline.io cluster, enabling deployment of workflows to distributed engine instances.
 
@@ -16,7 +16,7 @@ import NameAndDescription from '../../snippets/assets/_asset-name-and-descriptio
 
 ## Purpose
 
-A ReactiveCluster asset defines the network endpoints that the Configuration Center uses to communicate with a layline.io cluster. In layline.io's distributed architecture, workflows run on Reactive Engines that are organized into clusters for high availability and horizontal scaling. The Cluster asset tells the Configuration Center where to find these engines when deploying workflows.
+A (Reactive)Cluster asset defines the network endpoints that the Configuration Center uses to communicate with a layline.io cluster. In layline.io's distributed architecture, workflows run on Reactive Engines that are organized into clusters for high availability and horizontal scaling. The Cluster asset tells the Configuration Center where to find these engines when deploying workflows.
 
 Think of a Cluster asset as the "address book entry" for your runtime environment. You might have multiple Cluster assets defined in your project — one for development, one for staging, and one for production — each pointing to a different set of engine instances. When you create a Deployment Composition, you select which Cluster to target, determining where your workflows will actually execute.
 
