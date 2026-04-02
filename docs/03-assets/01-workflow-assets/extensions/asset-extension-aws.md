@@ -1,91 +1,111 @@
----
-title: Extension AWS
-description: AWS Extension Asset. Centralizes AWS credential configuration for reuse across workflow assets.
-tags:
-  - extension
-  - aws
-  - credentials
-  - authentication
----
-
-import NameAndDescription from '../../../snippets/assets/_asset-name-and-description.md';
-import RequiredRoles from '../../../snippets/assets/_asset-required-roles.md';
-
 # Extension AWS
 
-> Centralizes AWS credentials and region configuration for reuse across Sources, Sinks, and Connections.
+> Deploys an AWS macro resolver that provides `${aws:...}` macros for accessing
+> AWS Systems Manager Parameter Store and AWS Secrets Manager values at runtime.
 
 ## Purpose
 
-The AWS Extension stores shared AWS authentication settings that workflow assets can reference. Instead of configuring credentials separately for every S3 Source, SQS Queue, or Kinesis Stream, you define them once in an AWS Extension and inherit them where needed.
+The AWS Extension deploys a macro resolver into your engine configuration. Once
+deployed, you can use `${aws:<name>}` macros anywhere in your project where
+macros are supported — Environment assets, connection strings, configuration
+values, etc. The resolver connects to AWS and fetches values from either
+AWS Systems Manager (SSM) Parameter Store or AWS Secrets Manager.
 
-This pattern ensures consistency across your project — rotating credentials or switching regions requires updating a single asset rather than hunting through dozens of individual configurations.
-
-All AWS Extension fields support **inheritance**. A child asset can either define its own value or inherit from a parent AWS Extension in the asset hierarchy. This lets you set organization-level defaults while allowing overrides for specific use cases.
+**Deployment model:** Add the AWS Extension to an Engine Configuration under
+"Other Resources". Only one AWS Extension should be deployed per engine
+(behavior with multiple extensions is undefined).
 
 ## Prerequisites
 
-- A **Project** open in layline.io
-
-## This Asset can be used by:
-
-| Asset type | Link |
-|---|---|
-| Sources | [Amazon S3 Source](../sources/asset-source-s3.md), [Amazon SQS Source](../sources/asset-source-sqs.md) |
-| Sinks | [Amazon S3 Sink](../sinks/asset-sink-s3.md), [Amazon SQS Sink](../sinks/asset-sink-sqs.md), [Amazon SNS Sink](../sinks/asset-sink-sns.md), [Amazon Kinesis Sink](../sinks/asset-sink-kinesis.md), [Amazon EventBridge Sink](../sinks/asset-sink-eventbridge.md) |
-| Connections | [AWS Connection](../connections/asset-connection-aws.md) |
+- AWS credentials configured in the extension (IAM role, access keys, or
+  default credential chain)
+- Parameters/secrets must exist in AWS SSM Parameter Store or Secrets Manager
+  before they can be referenced
 
 ## Configuration
 
 ### Name & Description
 
-<NameAndDescription></NameAndDescription>
+**Name** — A unique identifier for this AWS Extension within the project.
 
-### Required Roles
+**Description** — Optional human-readable explanation of this extension's purpose.
 
-<RequiredRoles></RequiredRoles>
+![AWS Extension Name and Description section](./.asset-extension-aws_images/aws-extension-name-description.png)
 
 ### AWS Credentials
 
-<!-- SCREENSHOT: AWS Extension config panel showing AWS credentials section with Authentication mode radio buttons, Region dropdown, Access key field, and Secret key/Secret toggle -->
+**Authentication mode** — How layline.io authenticates with AWS:
 
-**Authentication mode** — How layline.io authenticates with AWS.
+| Mode | Behavior |
+|------|----------|
+| No credentials required | No authentication. Use only for public resources or local testing. |
+| Use the default credential provider chain | Uses AWS SDK default chain (environment variables, ~/.aws/credentials, IAM role, etc.). |
+| Access key / Secret key credentials | Explicit IAM credentials with optional Secrets Manager integration. |
 
-| Mode | When to use |
-|------|-------------|
-| **No credentials required** | Public S3 buckets or local testing scenarios where AWS doesn't require authentication. |
-| **Use the default credential provider chain (AWS only)** | Running on AWS infrastructure (EC2, ECS, Lambda) where IAM roles provide credentials automatically. No manual key management needed. |
-| **Access key / Secret key credentials** | Explicit IAM user credentials. Required when running outside AWS or when you need specific user-based permissions. |
+**Region** — The AWS region for SSM/Secrets Manager API calls (e.g., `eu-central-1`, `us-east-1`).
 
-**Region** *(inheritable)* — The AWS region for API calls. Required when authentication mode is **No credentials** or **Access key / Secret key**. Hidden when using the default credential provider chain (region comes from the AWS environment).
+**Access key** — The IAM access key ID (shown when using Access key / Secret key mode).
 
-**Access key** *(inheritable)* — The IAM user's access key ID. Only shown when authentication mode is **Access key / Secret key**.
+**Use a secret** — When enabled, the secret key is retrieved from a layline.io Secret asset instead of being stored directly.
 
-**Use a secret** — Toggle between storing the secret key inline (in the asset) or referencing a Secret asset.
+**Secret** — Reference to a layline.io Secret asset containing the AWS secret access key (shown when "Use a secret" is enabled).
 
-- **Disabled**: Enter the secret key directly in the **Secret key** field (password input, masked in UI).
-- **Enabled**: Select a pre-configured Secret asset from the **Secret** dropdown. The secret's value should contain the AWS secret access key.
+![AWS Extension AWS credentials section](./.asset-extension-aws_images/aws-extension-credentials.png)
+
+## Usage
+
+Once deployed as an Engine Configuration "Other Resource", reference AWS values using macros throughout your project:
+
+```yaml
+# In an Environment asset
+databasePassword: ${aws:prod/db/password}
+apiKey: ${aws:arn:aws:secretsmanager:eu-central-1:123456789:secret:api-key}
+jiraToken: ${aws:${lay:awsParamStoreArn}/jiraPassword}
+```
+
+**Macro syntax:**
+
+| Pattern | Resolves To |
+|---------|-------------|
+| `${aws:<parameter-name>}` | SSM Parameter Store parameter by name |
+| `${aws:<secret-name>}` | Secrets Manager secret by name |
+| `${aws:<param-arn>}` | SSM parameter by full ARN |
+| `${aws:<secret-arn>}` | Secret by full ARN |
+
+### Using Parameter Store ARN Prefix
+
+Configure the **Parameter Store ARN** field to set a base ARN prefix. Then reference parameters using the `${lay:awsParamStoreArn}` macro:
+
+```yaml
+# If Parameter Store ARN = arn:aws:ssm:eu-central-1:123:parameter/config/layline/prod
+# Then ${aws:${lay:awsParamStoreArn}/dbPassword} resolves to the value at:
+# arn:aws:ssm:eu-central-1:123:parameter/config/layline/prod/dbPassword
+```
+
+## Behavior
+
+- Macros are resolved at runtime when the value is accessed
+- The AWS Extension must be deployed in the active Engine Configuration for `${aws:...}` macros to resolve
+- Parameter Store values are retrieved using the GetParameter API
+- Secrets Manager values are retrieved using the GetSecretValue API
+- Encrypted SSM parameters are automatically decrypted (requires appropriate IAM permissions)
 
 ## Example
 
-Configure an AWS Extension for production S3 access:
+**Scenario:** Multiple workflows need to access a shared database password stored in AWS Secrets Manager.
 
-**Name:** `Production AWS`
+**Setup:**
+1. Create an AWS Extension named `Production-AWS` with access key credentials for `eu-central-1`
+2. Add the extension to your Engine Configuration under "Other Resources"
+3. In your Environment asset, reference the secret:
+   ```yaml
+     db-password: ${aws:prod/database/password}
+   ```
 
-**Authentication mode:** `Access key / Secret key credentials`
-
-**Region:** `eu-central-1`
-
-**Access key:** `AKIAIOSFODNN7EXAMPLE`
-
-**Use a secret:** `Enabled`
-
-**Secret:** `AWS Production Secret` *(references a Secret asset containing the secret access key)*
-
-With this extension configured, any S3 Source, S3 Sink, or SQS Source in your project can inherit these credentials instead of defining them separately. To use it, configure the child asset's AWS settings to inherit from `Production AWS`.
+**Result:** When the workflow runs, the `${lay:db-password}` macro resolves to the value of the database password stored in AWS Secrets Manager. You can also use the macro direct as `${aws:prod/database/password}`. When the secret rotates, workflows automatically pick up the new value on next execution — no deployment needed.
 
 ## See Also
 
-- [**AWS Connection**](../connections/asset-connection-aws.md) — Alternative connection method using AWS-specific protocols
-- [**Amazon S3 Source**](../sources/asset-source-s3.md) — Example Source that can inherit AWS Extension credentials
-- [**Amazon S3 Sink**](../sinks/asset-sink-s3.md) — Example Sink that can inherit AWS Extension credentials
+- [Secret](/docs/assets/secret) — Secure storage for sensitive values within layline.io
+- [Environment](/docs/assets/environment) — Project-wide configuration values
+- [Engine Configuration](/docs/assets/engine-configuration) — Runtime configuration including "Other Resources"
