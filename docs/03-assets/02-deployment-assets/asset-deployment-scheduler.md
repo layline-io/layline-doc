@@ -30,7 +30,7 @@ This is particularly important in production environments where you need to ensu
 
 Scheduler Settings support inheritance, allowing you to define base scheduling policies and override them for specific environments. For example, a production deployment might enforce strict limits, while a development deployment uses more relaxed settings.
 
-<!-- SCREENSHOT: Scheduler Settings editor showing the main configuration panel with workflow list and limits sections -->
+![Scheduler Settings editor showing the main configuration panel with workflow list and limits sections](./.asset-deployment-scheduler_images/workflows-limits-detail.png)
 
 ## Prerequisites
 
@@ -48,13 +48,13 @@ This section establishes the inheritance chain for the Scheduler Settings. Like 
 
 **Tag of the base deployment** — Select a parent Scheduler Settings asset to chain onto. Tags work differently from asset inheritance: when you base one deployment on another using a tag, deployments are chained together in sequence. At runtime, the cluster investigates how deployments are chained via tags and calculates the final deployment as a combination of all linked deployments. A later deployment in the chain always supersedes functionality from an earlier deployment — settings in the child override those in the parent. This enables layered configuration patterns where you define base policies and selectively override them for specific environments.
 
-<!-- SCREENSHOT: Deploy to Target section showing inheritance field -->
+![Deploy to Target section showing inheritance field](./.asset-deployment-scheduler_images/deploy-to-target.png)
 
 ### Name & Description
 
 <NameAndDescription></NameAndDescription>
 
-<!-- SCREENSHOT: Name and Description section showing inheritance chain -->
+![Name and Description section showing inheritance chain](./.asset-deployment-scheduler_images/name-description.png)
 
 ### Workflows and Limits
 
@@ -70,7 +70,7 @@ Workflows are displayed in a scrollable list with indicators showing:
 - **RL:N** — N role limits are configured
 - **NL:N** — N node limits are configured
 
-<!-- SCREENSHOT: Workflows and Limits section showing the workflow list with caption indicators -->
+![Workflows and Limits section showing the workflow list with caption indicators](./.asset-deployment-scheduler_images/workflows-list.png)
 
 #### Removing Workflows
 
@@ -84,7 +84,7 @@ For example, setting this to `3` means the scheduler will attempt to run exactly
 
 Default: `null` (no specific target — you must manually configure the number of instances on the operation side)
 
-<!-- SCREENSHOT: Requested Resources section showing the number of instances field -->
+![Workflows and Limits detail view showing Requested Resources, Default Limits, Role Limits, and Node Limits sections](./.asset-deployment-scheduler_images/workflows-limits-detail.png)
 
 #### Default Limits
 
@@ -96,7 +96,6 @@ Default limits apply to all nodes unless overridden by specific role or node lim
 
 Both values are optional. If not specified, the scheduler uses its internal defaults (typically min: 0, max: unlimited).
 
-<!-- SCREENSHOT: Default Limits section showing min and max instances fields -->
 
 #### Role Limits
 
@@ -116,7 +115,6 @@ Click **Add Role Limit** to create a new constraint. For example:
 
 If multiple role limits are specified, a node only needs to match one role to satisfy the constraints. The most specific applicable limit is used.
 
-<!-- SCREENSHOT: Role Limits section showing the limits table with example entries -->
 
 #### Node Limits
 
@@ -139,7 +137,6 @@ Click **Add Node Limit** to create a new constraint. Examples:
 
 Node limits take precedence over role limits, which take precedence over default limits.
 
-<!-- SCREENSHOT: Node Limits section showing the limits table with example entries -->
 
 ## Behavior
 
