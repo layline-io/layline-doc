@@ -2,8 +2,8 @@
 
 layline.io's primitive data types are based on Java's primitive data types. This is important to understand when working with data within layline.io.
 This is relevant, for example, when:
-* defining data formats (e.g. [Generic Formats](../../../../03-assets/01-workflow-assets/formats/04-asset-format-generic))
-* working with Python in the context of the [Python Flow Processor](../../../../03-assets/01-workflow-assets/processors-flow/asset-flow-python.md)
+* defining data formats (e.g. [Generic Formats](../../../../assets/workflow-assets/formats/asset-format-generic))
+* working with Python in the context of the [Python Flow Processor](../../../../assets/workflow-assets/processors-flow/asset-flow-python)
 
 This enumeration definition provides a map from layline.io's data types to the respective Java primitive data types. In Python, we don't directly use these Java types, but it's important to understand the correspondence for data handling and type conversion.
 

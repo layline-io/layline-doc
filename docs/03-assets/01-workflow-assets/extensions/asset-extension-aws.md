@@ -102,10 +102,10 @@ Configure the **Parameter Store ARN** field to set a base ARN prefix. Then refer
      db-password: ${aws:prod/database/password}
    ```
 
-**Result:** When the workflow runs, the `${lay:db-password}` macro resolves to the value of the database password stored in AWS Secrets Manager. You can also use the macro direct as `${aws:prod/database/password}`. When the secret rotates, workflows automatically pick up the new value on next execution — no deployment needed.
+**Result:** When the workflow runs, the `${lay:db-password}` macro resolves to thre value of the database password stored in AWS Secrets Manager. You can also use the macro direct as `${aws:prod/database/password}`. When the secret rotates, workflows automatically pick up the new value on next execution — no deployment needed.
 
 ## See Also
 
-- [Secret](/docs/assets/secret) — Secure storage for sensitive values within layline.io
-- [Environment](/docs/assets/environment) — Project-wide configuration values
-- [Engine Configuration](/docs/assets/engine-configuration) — Runtime configuration including "Other Resources"
+- [Secret](../resources/asset-resource-secret) — Secure storage for sensitive values within layline.io
+- [Environment](../resources/asset-resource-environment) — Project-wide configuration values
+- [Engine Configuration](../../deployment-assets/asset-deployment-engine) — Runtime configuration including "Other Resources"

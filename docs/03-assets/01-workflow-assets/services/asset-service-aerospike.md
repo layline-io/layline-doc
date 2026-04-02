@@ -250,7 +250,7 @@ more detail when defining the `History` Bin a bit further below.
 ![](.asset-service-aerospike_images/b73d45bc.png "Value encoding (Service Aerospike)")
 
 * **`Data Dictionary`**: This option will allow you to define a complex structure by way of defining a Data Dictionary
-  structure. We will go through an example in the [next chapter](#data-dictionary).
+  structure. We will go through an example in the [next chapter](#data-dictionary-editor).
 
 ![](.asset-service-aerospike_images/3e96856b.png "Data Dictionary encoding (Service Aerospike)")
 
@@ -311,7 +311,7 @@ In our example we still need to configure the Data bin.
 
 **Defining a complex data type**
 Because the Data bin is not a primitive type, we first need to define the complex type which it has. Go to
-the [following chapter “Data Dictionary”](#data-dictionary)  to learn how it is configured;
+the [following chapter “Data Dictionary”](#data-dictionary-editor)  to learn how it is configured;
 then return here to complete to configuration.
 
 Now that we have added the `History` data type we can actually add the `History` Bin:
