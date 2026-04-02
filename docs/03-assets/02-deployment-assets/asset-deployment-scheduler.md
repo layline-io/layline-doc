@@ -78,7 +78,7 @@ Click on a workflow in the list to select it, then click the delete icon. You'll
 
 #### Requested Resources
 
-**Requested # of instances** *(inheritable)* — The total number of workflow instances that should run across the entire cluster. This is the target count the scheduler attempts to maintain.
+**Requested # of instances** — The total number of workflow instances that should run across the entire cluster. This is the target count the scheduler attempts to maintain.
 
 For example, setting this to `3` means the scheduler will attempt to run exactly 3 instances of this workflow distributed across available nodes. If a node fails and an instance is lost, the scheduler will spin up a replacement on another node to maintain the target count.
 
@@ -90,9 +90,9 @@ Default: `null` (no specific target — you must manually configure the number o
 
 Default limits apply to all nodes unless overridden by specific role or node limits. These define the baseline constraints for how many instances of this workflow can run on a single node.
 
-**Default min. instances** *(inheritable)* — The minimum number of instances that must run on each node that hosts this workflow. This is useful when you want to ensure baseline availability even during low-load periods.
+**Default min. instances** — The minimum number of instances that must run on each node that hosts this workflow. This is useful when you want to ensure baseline availability even during low-load periods.
 
-**Default max. instances** *(inheritable)* — The maximum number of workflow instances allowed across all nodes in the cluster. This sets an upper bound on the total instances of this workflow that can run simultaneously, regardless of how they're distributed across nodes.
+**Default max. instances** — The maximum number of workflow instances allowed across all nodes in the cluster. This sets an upper bound on the total instances of this workflow that can run simultaneously, regardless of how they're distributed across nodes.
 
 Both values are optional. If not specified, the scheduler uses its internal defaults (typically min: 0, max: unlimited).
 
