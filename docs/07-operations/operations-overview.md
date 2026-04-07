@@ -1,6 +1,7 @@
 ---
 title: Operations Overview
 description: An introduction to the Operations section of the layline.io Configuration Center.
+sidebar_position: 1
 ---
 
 # Operations Overview
