@@ -223,7 +223,7 @@ The JavaScript Processor extracts and formats the relevant attributes from each 
 - [AI Classifier](./asset-flow-ai-classifier) — for applying a trained model to classify new messages
 - [AI Model Resource](../resources/asset-resource-ai-model.md) — for defining the model's input/output schema, algorithm type, and hyperparameters
 - [AI Service](../services/asset-service-ai) — for defining the interface to an AI model
-- [Operations → AI Storage](../../../07-operations/cluster/cluster.md#ai-storage) — for managing trained models in AI Storage
+- [Operations → AI Storage](../../../07-operations/02-cluster/01-cluster-overview.md#ai-storage) — for managing trained models in AI Storage
 - [Using Artificial Intelligence in Workflows](../../../02-concept/06-advanced/03-artificial-intelligence.md) — conceptual overview of supervised learning in layline.io
 
 ---
