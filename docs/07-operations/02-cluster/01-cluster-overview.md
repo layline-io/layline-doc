@@ -1,12 +1,12 @@
 ---
-title: Cluster
-slug: /operations/cluster/cluster
-description: Learn how to operate a Reactive Cluster from within the Configuration Center.
+title: Cluster Overview
+description: Get an overview of the Cluster concept and its components in layline.io.
+slug: /operations/02-cluster01-cluster-overview
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
-# Cluster
+# Cluster Overview
 
 To understand what we mean by Cluster, let's take a look at the topology of layline.io.
 
