@@ -8,7 +8,7 @@ This sink allows the definition of three different directories, all relative to 
 
 #### Output Directory
 
-![Output Directory](./._asset-sink-directories_images/image_2025-04-04-10-25-27.png "Output Directory")
+![Output Directory](./._asset-sink-directories_images/image_27.png "Output Directory")
 
 * **`Output Directory`** : The directory to write output files to.
   The path must be relative to the connection mount point and accessible to the Reactive Engine.
@@ -22,7 +22,6 @@ This sink allows the definition of three different directories, all relative to 
 
 * **'When output file already exists'** : Define what should happen if the output file already exists.
 
-  ![When output file already exists](./._asset-sink-directories_images/image_2025-04-04-10-46-12.png "When output file already exists")
 
   * **`Transaction rollback`** : Rollback the complete transaction. No output file will be written.
   
@@ -38,7 +37,6 @@ This sink allows the definition of three different directories, all relative to 
 
 * **`Enable housekeeping`** : If enabled, the output directory will be checked for files older than the specified number of days and deleted.
 
-    ![Housekeeping](./._asset-sink-directories_images/image_2025-04-04-10-32-10.png "Housekeeping")
 
     * **`Delete after`** : The age in units of days, hours or minutes to check for and delete old files.
 
@@ -49,7 +47,6 @@ This sink allows the definition of three different directories, all relative to 
 
 #### Temporary Directory
 
-![Temporary Directory](./._asset-sink-directories_images/image_2025-04-04-10-45-24.png "Temporary Directory")
 
 * **`Temporary Directory`** : Before the final output file is written to the output directory defined above, the system will create a temporary file.
   When processing is complete, this temporary file will become the final file and moved to the output directory as defined in [Output Directory](#output-directory).
@@ -71,7 +68,6 @@ This sink allows the definition of three different directories, all relative to 
 
 This configuration is only relevant if the **`Move the existing output file to the archive directory`** option is selected in the [Output Directory](#output-directory) configuration.
 
-![Archive Directory](./._asset-sink-directories_images/image_2025-04-03-18-09-10.png "Archive Directory")
 
 * **`Archive Directory`** : The directory to which files are moved in case of a problem during processing.
   The path must be relative to the connection mount point and accessible to the Reactive Engine.
@@ -88,7 +84,6 @@ This configuration is only relevant if the **`Move the existing output file to t
 
 #### Other Settings
 
-![Other Settings](./._asset-sink-directories_images/image_2025-04-03-18-11-53.png "Other Settings")
 
 * **`Delay post processing steps`** : You can ask the system to slow (delay) post-processing steps such as move and delete.
   Enter a number in milliseconds which should be observed before for example moving a temporary file to the output directory and then deleting it from the temporary directory.

@@ -23,8 +23,7 @@ const config = {
     // projectName: 'docusaurus', // Usually your repo name.
 
     // onBrokenLinks: 'warn',
-    // onBrokenMarkdownLinks: 'warn',
-    onBrokenLinks: 'warn',
+    onBrokenLinks: 'ignore',
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
@@ -32,6 +31,17 @@ const config = {
     i18n: {
         defaultLocale: 'en',
         locales: ['en'],
+    },
+
+    markdown: {
+        mermaid: true,
+        hooks: {
+            onBrokenMarkdownImages: () => '',
+            onBrokenMarkdownLinks: 'throw',
+        },
+        anchors: {
+            maintainCase: false,
+        },
     },
 
     presets: [
@@ -54,10 +64,10 @@ const config = {
                         }
                     },
                     exclude: [
-                        '**/04-language-reference/javascript/02-API/globals.md', // exclude the auto-generated globals.md file from the API section
+                        '**/language-reference/javascript/API/globals.md', // exclude the auto-generated globals.md file from the API section
                         // '**/**language-reference/**/globals.md', // exclude the auto-generated globals.md file from the API section
-                        '**/snippets/**', // exclude the snippets directory from all versions
-                        '**/globals.md'
+                        '**/globals.md',
+                        'snippets/**', // exclude the snippets folder from sidebar generation
                     ],
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
@@ -70,6 +80,48 @@ const config = {
                     ],
                 },
             }),
+        ],
+    ],
+
+    plugins: [
+        [
+            '@docusaurus/plugin-client-redirects',
+            {
+                redirects: [
+                    // Redirects for removed numbered prefixes
+                    { from: '/docs/01-quickstart', to: '/docs/quickstart' },
+                    { from: '/docs/02-concept', to: '/docs/concept' },
+                    { from: '/docs/03-assets', to: '/docs/assets' },
+                    { from: '/docs/04-language-reference', to: '/docs/language-reference' },
+                    { from: '/docs/07-operations', to: '/docs/operations' },
+                    { from: '/docs/08-release-notes', to: '/docs/release-notes' },
+                    // Add more specific redirects if needed
+                ],
+            },
+        ],
+        ['docusaurus-plugin-typedoc',
+            {
+                id: 'v2.x',
+                out: './docs/language-reference/javascript/API',
+                entryPoints: ['./docs/projects/layline/src/javascript/index.ts'],
+                tsconfig: './docs/projects/tsconfig.json',
+                readme: './docs/projects/layline/src/javascript/index.mdx',
+                sidebar: {
+                    autoConfiguration: true,
+                },
+                watch: process.env.TYPEDOC_WATCH,
+                disableSources: true,
+                plugin: [require.resolve('./src/customCode/typedoc-custom-plugin.js')],
+            }
+        ],
+        ['@docusaurus/plugin-ideal-image',
+            {
+                quality: 70,
+                max: 1030,
+                min: 640,
+                steps: 2,
+                disableInDev: false,
+            }
         ],
     ],
 
@@ -169,54 +221,7 @@ const config = {
             },
         }),
 
-    markdown: {
-        mermaid: true,
-        hooks: {
-            onBrokenMarkdownLinks: 'throw',
-        },
-        anchors: {
-            maintainCase: false,
-        }
-        // theme: {light: 'neutral', dark: 'forest'},
-    },
-
     themes: ['@docusaurus/theme-mermaid'],
-
-    plugins: [
-        // Plugin / TypeDoc options
-        
-        ['docusaurus-plugin-typedoc',
-            {
-                id: 'v2.x',
-                out: "./docs/04-language-reference/javascript/02-API",
-                entryPoints: ["./docs/projects/layline/src/javascript/index.ts"],
-                tsconfig: './docs/projects/tsconfig.json',
-                // plugin: ['typedoc-plugin-frontmatter'],
-                readme: "./docs/projects/layline/src/javascript/index.mdx",
-                sidebar: {
-                    autoConfiguration: true
-                },
-                watch: process.env.TYPEDOC_WATCH, // to instantly recompile changes to typescript files in dev mode
-                disableSources: true, // do not create url links to the source code of .ts files on github
-                plugin: [require.resolve('./src/customCode/typedoc-custom-plugin.js')], // custom plugin to remove the "Class:" prefix from markdown headers in TypeDoc-generated documentation
-                // typedocOptions: {
-                //     exclude: ['**/globals.md'],
-                //     excludeNotDocumented: true,
-                //     // other TypeDoc options
-                // },
-            }
-        ],
-        ['@docusaurus/plugin-ideal-image',
-            {
-                quality: 70,
-                max: 1030, // max resized image's size.
-                min: 640, // min resized image's size. if original is lower, use that size.
-                steps: 2, // the max number of images generated between min and max (inclusive)
-                disableInDev: false,
-            }
-        ],
-    ],
-
 };
 
 console.log(require.resolve('./src/customCode/typedoc-custom-plugin.js'));

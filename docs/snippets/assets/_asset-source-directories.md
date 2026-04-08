@@ -26,7 +26,6 @@ This source requires the definition of three different directories:
 
 * **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the input directory. You can configure your required options.
 
-  ![Enable Housekeeping](./._asset-source-directories_images/image_2025-04-04-10-30-25.png "Enable Housekeeping")
 
   * **`Delete after`** : The age in units of days, hours or minutes to check for and delete old files.
 
@@ -54,7 +53,6 @@ This source requires the definition of three different directories:
 
 * **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the done directory. You can configure your required options.
 
-  ![Enable Housekeeping](./._asset-source-directories_images/image_2025-04-04-10-30-25.png "Enable Housekeeping")
 
   * **`Delete after`** : The age in units of days, hours or minutes to check for and delete old files.
 
@@ -84,7 +82,6 @@ This source requires the definition of three different directories:
 
 * **`Enable housekeeping`** : Allows to apply housekeeping rules for files within the error directory. You can configure your required options.
 
-  ![Enable Housekeeping](./._asset-source-directories_images/image_2025-04-04-10-30-25.png "Enable Housekeeping")
 
   * **`Delete after`** : The age in units of days, hours or minutes to check for and delete old files.
 
