@@ -1,0 +1,179 @@
+---
+title: Workflow Assets
+sidebar_position: 1
+---
+
+# Workflow Assets
+
+Workflow assets are the building blocks of data processing pipelines in layline.io. Each asset type serves a specific purpose in the ingestion, processing, transformation, and output of data.
+
+## Connections
+
+Define reusable connection configurations for external systems.
+
+- [**Connection AWS**](./connections/asset-connection-aws) — AWS configuration and usage.
+- [**Connection Email**](./connections/asset-connection-email) — Email configuration and usage.
+- [**Connection FTP/SFTP**](./connections/asset-connection-ftp) — FTP/SFTP configuration and usage.
+- [**Connection Google Cloud**](./connections/asset-connection-google-cloud) — Google Cloud configuration and usage.
+- [**Connection Kafka**](./connections/asset-connection-kafka) — Kafka configuration and usage.
+- [**Connection MS Graph**](./connections/asset-connection-msgraph) — MS Graph configuration and usage.
+- [**Connection NFS**](./connections/asset-connection-nfs) — NFS configuration and usage.
+- [**Connection SMB**](./connections/asset-connection-smb) — SMB configuration and usage.
+- [**Connection Virtual File System**](./connections/asset-connection-virtual-fs) — Virtual File System configuration and usage.
+- [**Connection WebDav**](./connections/asset-connection-webdav) — WebDav configuration and usage.
+
+## Extensions
+
+Extend layline.io functionality with custom extensions and macros.
+
+- [**Extension AWS**](./extensions/asset-extension-aws) — AWS configuration and usage.
+- [**Extension Prometheus**](./extensions/asset-prometheus) — Prometheus configuration and usage.
+
+## Formats
+
+Define message formats for parsing and serialization.
+
+- [**ASN.1 Format**](./formats/asset-format-asn1) — ASN.1 Format configuration and usage.
+- [**Data Dictionary Format**](./formats/asset-format-data-dictionary) — Data Dictionary Format configuration and usage.
+- [**Formats Introduction**](./formats/asset-format-introduction) — Formats Introduction configuration and usage.
+- [**Generic Format**](./formats/asset-format-generic) — Generic Format configuration and usage.
+- [**Http Format**](./formats/asset-format-http) — Http Format configuration and usage.
+- [**XML Format**](./formats/asset-format-xml) — XML Format configuration and usage.
+
+## Flow Processors
+
+Process, transform, and route data within workflows.
+
+- [**AI Classifier**](./processors-flow/asset-flow-ai-classifier) — AI Classifier configuration and usage.
+- [**AI Trainer**](./processors-flow/asset-flow-ai-trainer) — AI Trainer configuration and usage.
+- [**Filter & Routing**](./processors-flow/asset-flow-filterroutingx) — Filter & Routing configuration and usage.
+- [**Input Frame Committer**](./processors-flow/asset-flow-input-frame-committer) — Input Frame Committer configuration and usage.
+- [**Javascript**](./processors-flow/asset-flow-javascript) — Javascript configuration and usage.
+- [**Mapping**](./processors-flow/asset-flow-mappingx) — Mapping configuration and usage.
+- [**Python**](./processors-flow/asset-flow-python) — Python configuration and usage.
+- [**Stream Boundary**](./processors-flow/asset-flow-streamboundary) — Stream Boundary configuration and usage.
+- [**Throttle**](./processors-flow/asset-flow-throttle) — Throttle configuration and usage.
+
+## Input Processors
+
+Receive and ingest data from various sources.
+
+- [**Input Frame**](./processors-input/asset-input-frame) — Input Frame configuration and usage.
+- [**Input Kafka**](./processors-input/asset-input-kafka) — Input Kafka configuration and usage.
+- [**Input Message**](./processors-input/asset-input-message) — Input Message configuration and usage.
+- [**Input Request-Response**](./processors-input/asset-input-request-response) — Input Request-Response configuration and usage.
+- [**Input Service**](./processors-input/asset-input-service) — Input Service configuration and usage.
+- [**Input Stream**](./processors-input/asset-input-stream) — Input Stream configuration and usage.
+
+## Output Processors
+
+Send and output data to destinations.
+
+- [**Output Dev Null**](./processors-output/asset-output-devnull) — Output Dev Null configuration and usage.
+- [**Output Frame**](./processors-output/asset-output-frame) — Output Frame configuration and usage.
+- [**Output Stream**](./processors-output/asset-output-stream) — Output Stream configuration and usage.
+
+## Resources
+
+Define reusable resources and configuration shared across assets.
+
+- [**AI Model Resource**](./resources/asset-resource-ai-model) — AI Model Resource configuration and usage.
+- [**Data Dictionary Updates**](./resources/asset-resource-data-dictionary-updates) — Data Dictionary Updates configuration and usage.
+- [**Directories**](./resources/asset-resource-directories) — Directories configuration and usage.
+- [**Environment**](./resources/asset-resource-environment) — Environment configuration and usage.
+- [**OAuthClient**](./resources/asset-resource-oauth-client) — OAuthClient configuration and usage.
+- [**Secret**](./resources/asset-resource-secret) — Secret configuration and usage.
+- [**StatusDefinition**](./resources/asset-resource-status-definition) — StatusDefinition configuration and usage.
+
+## Services
+
+Connect to and interact with external services and databases.
+
+- [**AI Service**](./services/asset-service-ai) — AI Service configuration and usage.
+- [**Aerospike Service**](./services/asset-service-aerospike) — Aerospike Service configuration and usage.
+- [**Cassandra Service**](./services/asset-service-cassandra) — Cassandra Service configuration and usage.
+- [**DynamoDB Service**](./services/asset-service-dynamo-db) — DynamoDB Service configuration and usage.
+- [**Email Service**](./services/asset-service-email) — Email Service configuration and usage.
+- [**HTTP Service**](./services/asset-service-http) — HTTP Service configuration and usage.
+- [**Hazelcast Service**](./services/asset-service-hazelcast) — Hazelcast Service configuration and usage.
+- [**JDBC Service**](./services/asset-service-jdbc) — JDBC Service configuration and usage.
+- [**KVS Service**](./services/asset-service-kvs) — KVS Service configuration and usage.
+- [**Message Service**](./services/asset-service-message) — Message Service configuration and usage.
+- [**Proxy Service**](./services/asset-service-proxy) — Proxy Service configuration and usage.
+- [**Queue Service**](./services/asset-service-queue) — Queue Service configuration and usage.
+- [**SOAP Service**](./services/asset-service-soap) — SOAP Service configuration and usage.
+- [**Sequence Number Service**](./services/asset-service-seq) — Sequence Number Service configuration and usage.
+- [**Services Introduction**](./services/asset-service-introduction) — Services Introduction configuration and usage.
+- [**Teams Service**](./services/asset-service-teams) — Teams Service configuration and usage.
+- [**Timer Service**](./services/asset-service-timer) — Timer Service configuration and usage.
+- [**UDP Service**](./services/asset-service-udp) — UDP Service configuration and usage.
+- [**Virtual File System Service**](./services/asset-service-virtual-fs) — Virtual File System Service configuration and usage.
+
+## Sinks
+
+Destination endpoints for data output and delivery.
+
+- [**Sink EventBridge**](./sinks/asset-sink-eventbridge) — EventBridge configuration and usage.
+- [**Sink FTP**](./sinks/asset-sink-ftp) — FTP configuration and usage.
+- [**Sink File System**](./sinks/asset-sink-file) — File System configuration and usage.
+- [**Sink GCS**](./sinks/asset-sink-gcs) — GCS configuration and usage.
+- [**Sink Kafka**](./sinks/asset-sink-kafka) — Kafka configuration and usage.
+- [**Sink Kinesis**](./sinks/asset-sink-kinesis) — Kinesis configuration and usage.
+- [**Sink NFS**](./sinks/asset-sink-nfs) — NFS configuration and usage.
+- [**Sink OneDrive**](./sinks/asset-sink-onedrive) — OneDrive configuration and usage.
+- [**Sink S3**](./sinks/asset-sink-s3) — S3 configuration and usage.
+- [**Sink SMB**](./sinks/asset-sink-smb) — SMB configuration and usage.
+- [**Sink SNS**](./sinks/asset-sink-sns) — SNS configuration and usage.
+- [**Sink SQS**](./sinks/asset-sink-sqs) — SQS configuration and usage.
+- [**Sink SharePoint**](./sinks/asset-sink-sharepoint) — SharePoint configuration and usage.
+- [**Sink Virtual File System**](./sinks/asset-sink-virtual-fs) — Virtual File System configuration and usage.
+- [**Sink WebDAV**](./sinks/asset-sink-webdav) — WebDAV configuration and usage.
+- [**Sink WebSocket**](./sinks/asset-sink-websocket) — WebSocket configuration and usage.
+
+## Sources
+
+Origin endpoints for data input and ingestion.
+
+- [**Source Email**](./sources/asset-source-email) — Email configuration and usage.
+- [**Source FTP**](./sources/asset-source-ftp) — FTP configuration and usage.
+- [**Source File System**](./sources/asset-source-file) — File System configuration and usage.
+- [**Source Google Cloud Storage**](./sources/asset-source-google-cloud-storage) — Google Cloud Storage configuration and usage.
+- [**Source Http**](./sources/asset-source-http) — Http configuration and usage.
+- [**Source Kafka**](./sources/asset-source-kafka) — Kafka configuration and usage.
+- [**Source Message**](./sources/asset-source-message) — Message configuration and usage.
+- [**Source NFS**](./sources/asset-source-nfs) — NFS configuration and usage.
+- [**Source OneDrive**](./sources/asset-source-onedrive) — OneDrive configuration and usage.
+- [**Source S3**](./sources/asset-source-s3) — S3 configuration and usage.
+- [**Source SMB**](./sources/asset-source-smb) — SMB configuration and usage.
+- [**Source SQS**](./sources/asset-source-sqs) — SQS configuration and usage.
+- [**Source Service**](./sources/asset-source-service) — Service configuration and usage.
+- [**Source SharePoint**](./sources/asset-source-sharepoint) — SharePoint configuration and usage.
+- [**Source TCP**](./sources/asset-source-tcp) — TCP configuration and usage.
+- [**Source Timer**](./sources/asset-source-timer) — Timer configuration and usage.
+- [**Source UDP**](./sources/asset-source-udp) — UDP configuration and usage.
+- [**Source Virtual File System**](./sources/asset-source-virtual-fs) — Virtual File System configuration and usage.
+- [**Source WebDAV**](./sources/asset-source-webdav) — WebDAV configuration and usage.
+
+## Workflows
+
+Orchestrate and coordinate data processing pipelines.
+
+- [**Workflow**](./workflows/asset-workflow) — Workflow configuration and usage.
+
+---
+
+## Asset Categories Overview
+
+| Category | Purpose |
+|----------|---------|
+| **Sources** | Define entry points for data ingestion from external systems. |
+| **Sinks** | Define destinations for data output and delivery. |
+| **Input Processors** | Handle the initial processing and validation of incoming data. |
+| **Output Processors** | Handle the final formatting and transmission of outgoing data. |
+| **Flow Processors** | Transform, route, and process data within the workflow pipeline. |
+| **Formats** | Specify how messages are parsed and serialized. |
+| **Connections** | Store reusable connection parameters for external services. |
+| **Services** | Interface with external APIs, databases, and cloud services. |
+| **Resources** | Define shared configuration and reusable components. |
+| **Extensions** | Add custom functionality and macros to the platform. |
+| **Workflows** | Orchestrate the flow of data through connected processors. |
