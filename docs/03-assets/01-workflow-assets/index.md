@@ -1,7 +1,7 @@
 ---
-title: Cluster
+title: Workflow Assets
 ---
-# Cluster
+# Workflow Assets
 
 
 import DocCardList from '@theme/DocCardList';

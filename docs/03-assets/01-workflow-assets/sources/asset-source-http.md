@@ -80,7 +80,7 @@ Please note: configuring an (unsecured) Http-Server provides the same parameter 
 
 ![](./.asset-source-http_images/1715771190829.png)
 
-Activating these check-boxes allow investigations through logs made available within the [Sources Operations - Engine State](../../../07-operations/03-engine-state/sources.md).
+Activating these check-boxes allow investigations through logs made available within the [Sources Operations - Engine State](../../../operations/engine-state/sources).
 Simply choose your configured Http Source component in the Engine State overview and select the LOG tab.
 
 ---

@@ -18,4 +18,4 @@ Deployment Assets define how and where workflows are deployed to Reactive Engine
 
 ## Related Resources
 
-Secrets and environments are configured as [Resource Assets](/docs/assets/workflow-assets/resources/asset-resource-secret) and [Environment Resource Assets](/docs/assets/workflow-assets/resources/asset-resource-environment) respectively — referenced here in deployment configurations rather than duplicated.
+Secrets and environments are configured as [Resource Assets](../workflow-assets/resources/asset-resource-secret) and [Environment Resource Assets](../workflow-assets/resources/asset-resource-environment) respectively — referenced here in deployment configurations rather than duplicated.
