@@ -67,7 +67,7 @@ If a Resource is already deployed as part of another Workflow in the same deploy
 
 ### Alarming
 
-Configure notifications for Workflow lifecycle events. Each event type uses the [Alarm Center](/docs/operations/cluster/alarm-center) to route alerts.
+Configure notifications for Workflow lifecycle events. Each event type uses the [Alarm Center](../../../operations/cluster/alarm-center) to route alerts.
 
 | Event | When it fires |
 |-------|-------------|
@@ -135,4 +135,4 @@ graph LR
 * [Project](/docs/concept/projects-workflows/project) — Workflows are contained within Projects
 * [Stream Input Processor](../processors-input/asset-input-stream) — the required entry point of every Workflow
 * [Deployment](../../../02-concept/02-projects-workflows/03-deployment.md) — how Workflows are deployed to an engine
-* [Alarm Center](/docs/operations/cluster/alarm-center) — how alarming events are routed and handled
+* [Alarm Center](../../../operations/cluster/alarm-center) — how alarming events are routed and handled
