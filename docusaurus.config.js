@@ -50,7 +50,7 @@ const config = {
                     versions: {
                         current: {
                             label: '2.x',
-                            // path: '2.x', // Do not add a path for the current version, it is the default. --> Helps with SEO.
+                            // path: '2.0.0', // Do not add a path for the current version, it is the default. --> Helps with SEO.
                         }
                     },
                     exclude: [
