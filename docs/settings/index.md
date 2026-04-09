@@ -1,16 +1,16 @@
 ---
-title: Configuration
+title: Settings
 sidebar_position: 5
 description: System-level configuration for layline.io — users, roles, clusters, and application settings.
 ---
 
-# Configuration
+# Settings
 
-> The Configuration section is for administrators. This is where you manage who can access the system, what they can do, and how the system is configured at the infrastructure level.
+> The Settings section is for administrators. This is where you manage who can access the system, what they can do, and how the system is configured at the infrastructure level.
 
-## What Is in Configuration?
+## What Is in Settings?
 
-Configuration covers system-wide settings that apply across all Projects and Operations:
+Settings covers system-wide settings that apply across all Projects and Operations:
 
 | Section | Description |
 |---------|-------------|
@@ -22,7 +22,7 @@ Configuration covers system-wide settings that apply across all Projects and Ope
 
 ## Access Requirements
 
-Configuration settings are typically restricted to administrators. Changes here affect the entire layline.io installation, not just individual Projects or Workflows.
+Settings are typically restricted to administrators. Changes here affect the entire layline.io installation, not just individual Projects or Workflows.
 
 Roles and permissions documentation is coming soon (see [LAY-70](https://linear.app/laylineio/issue/LAY-70)).
 
