@@ -17,7 +17,7 @@ Workflow assets are the building blocks of data processing pipelines in layline.
 
 - [**Connection AWS**](./connections/asset-connection-aws) — Centralized AWS credentials and region configuration. Use when connecting to any AWS service (S3, SQS, SNS, Kinesis, etc.) from multiple assets. Supports IAM roles, access keys, and session tokens.
 
-- [**Connection Email**](./connections/asset-connection-email) — SMTP server configuration for sending emails. Use when workflows need to send email notifications, alerts, or reports. Supports TLS/SSL, authentication, and multiple SMTP servers.
+- [**Connection Email**](./connections/asset-connection-email) — SMTP server configuration for sending and receiving emails. Use when workflows need to send or receive email notifications. Supports TLS/SSL, authentication, and multiple SMTP servers.
 
 - [**Connection FTP/SFTP**](./connections/asset-connection-ftp) — FTP or SFTP server access credentials. Use for file transfers to/from remote servers. Supports passive/active FTP modes and SSH key authentication for SFTP.
 
@@ -111,7 +111,7 @@ Workflow assets are the building blocks of data processing pipelines in layline.
 
 **When to use:** Output processors send and output data to destinations. These are the exit points of your workflow — choose based on where your processed data needs to go and in what format.
 
-- [**Output Dev Null**](./processors-output/asset-output-devnull) — Discard output for testing or debugging. Use when you want to test a workflow without actually sending data anywhere, or to measure throughput without I/O overhead.
+- [**Output Dev Null**](./processors-output/asset-output-devnull) — Discard output for testing or debugging, or to simply destroy a message. Use when you want to test a workflow without actually sending data anywhere, or to measure throughput without I/O overhead.
 
 - [**Output Frame**](./processors-output/asset-output-frame) — Write files to file systems, FTP, or object storage. Use when saving processed data as files (CSV, JSON, XML, binary) to local disks, NFS, SMB, S3, GCS, or FTP servers. Supports file naming patterns, rotation, and batching.
 
@@ -123,7 +123,7 @@ Workflow assets are the building blocks of data processing pipelines in layline.
 
 **When to use:** Resources define reusable configuration shared across multiple assets. Use when you have common settings, credentials, or configurations that multiple workflows or assets need to reference.
 
-- [**AI Model Resource**](./resources/asset-resource-ai-model) — Deploy and manage machine learning models. Use when using AI Classifier or AI Trainer — defines the model file, version, and runtime parameters. Supports TensorFlow, ONNX, and custom formats.
+- [**AI Model Resource**](./resources/asset-resource-ai-model) — Deploy and manage machine learning models. Use when using AI Classifier or AI Trainer — defines the model file, version, and runtime parameters.
 
 - [**Data Dictionary Updates**](./resources/asset-resource-data-dictionary-updates) — Manage updates to Data Dictionary definitions. Use when field definitions change over time or need versioning. Allows updating validation rules without modifying formats.
 
@@ -147,7 +147,7 @@ Workflow assets are the building blocks of data processing pipelines in layline.
 
 - [**Aerospike Service**](./services/asset-service-aerospike) — Read from and write to Aerospike databases. Use for high-performance key-value operations when Aerospike is your data store. Supports batch operations and complex queries.
 
-- [**Cassandra Service**](./services/asset-service-cassandra) — Query and update Apache Cassandra databases. Use when Cassandra is your primary data store. Supports CQL queries, batch operations, and asynchronous processing.
+- [**Cassandra Service**](./services/asset-service-cassandra) — Query and update Apache Cassandra or compatible databases like AWS Keyspaces. Use when Cassandra is your primary data store. Supports CQL queries, batch operations, and asynchronous processing.
 
 - [**DynamoDB Service**](./services/asset-service-dynamo-db) — Access AWS DynamoDB tables. Use for serverless applications or when DynamoDB is your data store. Supports get, put, query, scan, and batch operations with automatic retries.
 
@@ -179,7 +179,7 @@ Workflow assets are the building blocks of data processing pipelines in layline.
 
 - [**UDP Service**](./services/asset-service-udp) — Send UDP datagrams. Use for lightweight, high-performance messaging where delivery isn't guaranteed (metrics, logs, real-time telemetry). Supports multicast and broadcast.
 
-- [**Virtual File System Service**](./services/asset-service-virtual-fs) — Access virtual or in-memory file systems. Use for temporary storage, caching, or when you need file-like operations without physical storage.
+- [**Virtual File System Service**](./services/asset-service-virtual-fs) — Access a virtual file system source from within a Javascript/Python Asset. 
 
 ---
 
@@ -213,7 +213,7 @@ Workflow assets are the building blocks of data processing pipelines in layline.
 
 - [**Sink SharePoint**](./sinks/asset-sink-sharepoint) — Upload files to Microsoft SharePoint. Use for document management, collaboration scenarios, or Microsoft 365 integration.
 
-- [**Sink Virtual File System**](./sinks/asset-sink-virtual-fs) — Write to virtual or in-memory file systems. Use for testing, temporary storage, or when no physical output is needed.
+- [**Sink Virtual File System**](./sinks/asset-sink-virtual-fs) — Write to virtual file systems.
 
 - [**Sink WebDAV**](./sinks/asset-sink-webdav) — Upload files to WebDAV servers. Use for WebDAV-enabled content management systems, Nextcloud, ownCloud, or SharePoint WebDAV access.
 
