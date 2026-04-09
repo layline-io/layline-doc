@@ -10,7 +10,7 @@ description: How to import a project into layline.io from a ZIP archive.
 
 Use **Import from Archive** when you have a project packaged as a `.zip` file — for example, a project shared by a colleague, an exported backup, or a project template distributed as an archive.
 
-<!-- SCREENSHOT: Import from Archive panel expanded in the Get Started section, showing the Project name field, Target directory field, and the ZIP file uploader -->
+![Import from Archive panel — Project name, Target directory, and ZIP file uploader](.project_images/import-from-archive.png)
 
 ## Steps
 

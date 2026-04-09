@@ -14,7 +14,7 @@ A **Project** is the top-level container in layline.io. It holds all the Assets 
 
 When you open the Project tab and no project is currently open, layline.io shows the **Project Hub** — the central starting point for working with projects.
 
-<!-- SCREENSHOT: Project Hub screen — the full two-panel layout with Recent Projects on the left, All Projects list, and the Get Started panel on the right -->
+![Project Hub — full two-panel layout with Recent Projects, All Projects, and Get Started panel](.project_images/project-hub-overview.png)
 
 The Project Hub is split into two panels:
 
@@ -22,7 +22,11 @@ The Project Hub is split into two panels:
 - **Recent Projects** — a shortlist of projects you have opened recently. Click once to select, double-click to open. Use the × button to remove an entry from the recent list without deleting the project itself.
 - **All Projects** — the full list of all projects known to the configuration server. You can sort the list A–Z or Z–A and filter by name using the search field. Hover over any project for a tooltip showing its name, description, path, and version. Click once to select a project and reveal the action panel below; double-click to open it immediately.
 
+![All Projects list with filter field](.project_images/all-projects-filter.png)
+
 **Selected project actions** (appear below the list when a project is selected):
+
+![Project details panel — display name field, Open and Remove buttons](.project_images/project-details-panel.png)
 
 - **Open** — opens the project and loads it into the editor.
 - **Remove** — removes the project from the configuration server. This prompts for confirmation.
@@ -75,7 +79,7 @@ Click **Import**. On success, a confirmation banner appears with an **Open** but
 
 Once a project is open, the Project tab shows the project toolbar at the top and five sub-tabs below it.
 
-<!-- SCREENSHOT: Open project view — toolbar showing project name, Save button, and the five sub-tabs (Assets, Sources, Workflows, Tests, Deployments) -->
+<!-- SCREENSHOT: Open project view — toolbar showing project name, Save button, and the five sub-tabs (Assets, Sources, Workflows, Tests, Deployments) — screenshot pending -->
 
 ### Project Toolbar
 

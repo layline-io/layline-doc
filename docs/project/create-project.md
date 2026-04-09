@@ -10,7 +10,7 @@ description: How to create a new project in layline.io from scratch.
 
 Use **Create New Project** when you want to start building a new data pipeline from scratch. layline.io creates a new project folder at the path you specify and immediately opens the project editor.
 
-<!-- SCREENSHOT: Create New Project panel expanded in the Get Started section, showing the Project name, Description, and Path fields -->
+![Create New Project panel — Project name, Description, and Path fields](.project_images/create-new-project.png)
 
 ## Steps
 

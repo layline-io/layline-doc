@@ -10,7 +10,7 @@ description: How to register a project folder that already exists on the file sy
 
 Use **Add Existing Project** when you have a project folder on disk that is not yet visible in layline.io — for example, a project cloned from version control, copied from another machine, or previously removed from the Configuration Center.
 
-<!-- SCREENSHOT: Add Existing Project panel expanded in the Get Started section, showing the Project folder path field and Add Project button -->
+<!-- SCREENSHOT: Add Existing Project panel expanded — screenshot pending -->
 
 ## Steps
 
