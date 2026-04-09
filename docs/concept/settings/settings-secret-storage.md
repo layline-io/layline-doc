@@ -1,5 +1,5 @@
 ---
-title: Security Storage (Settings)
+title: Security Storage
 sidebar_position: 3
 description: Learn how to configure application-based secrets.
 ---
