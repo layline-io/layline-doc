@@ -1,135 +1,127 @@
 ---
 title: Project
 sidebar_position: 2
-description: The Project tab is where you build data pipelines — create and manage Projects, define Assets and Workflows, and configure deployments.
+description: The Project tab is where you build data pipelines — create and manage Projects, define Assets and Workflows, and configure Deployments.
 ---
 
 # Project
 
-> The Project tab is where you build. Every data pipeline in layline.io lives inside a Project.
+> The Project tab is your workspace. Every data pipeline in layline.io lives inside a Project.
 
-A **Project** contains all the Assets and Workflows that define how your data moves and transforms — what data comes in, how it's processed, and where results go. It also includes everything needed to deploy those Workflows to a Reactive Cluster.
+A **Project** is the top-level container in layline.io. It holds all the Assets and Workflows that define how your data moves and transforms — where data comes from, how it is processed, and where results go. When you are ready to run, you deploy the Project's Workflows to a Reactive Cluster via Deployment Assets.
 
-When you open layline.io and navigate to the **Project** tab, you land on the **Project Hub** — a split-panel screen for selecting an existing project or starting a new one.
+## The Project Hub
 
-<!-- SCREENSHOT: Project Hub — full view showing the split layout with Recent Projects + All Projects on the left, and Get Started panel on the right -->
+When you open the Project tab and no project is currently open, layline.io shows the **Project Hub** — the central starting point for working with projects.
 
-## Project Hub layout
+<!-- SCREENSHOT: Project Hub screen — the full two-panel layout with Recent Projects on the left, All Projects list, and the Get Started panel on the right -->
 
-The Project Hub is divided into two panels:
+The Project Hub is split into two panels:
 
-- **Left panel** — Browse your projects (Recent and All), filter by name, and manage project details.
-- **Right panel** — Actions to create, add, or import projects.
+**Left panel — your projects:**
+- **Recent Projects** — a shortlist of projects you have opened recently. Click once to select, double-click to open. Use the × button to remove an entry from the recent list without deleting the project itself.
+- **All Projects** — the full list of all projects known to the configuration server. You can sort the list A–Z or Z–A and filter by name using the search field. Hover over any project for a tooltip showing its name, description, path, and version. Click once to select a project and reveal the action panel below; double-click to open it immediately.
 
-You can drag the divider between the panels to adjust how much space each side takes.
+**Selected project actions** (appear below the list when a project is selected):
 
----
+- **Open** — opens the project and loads it into the editor.
+- **Remove** — removes the project from the configuration server. This prompts for confirmation.
 
-## Recent Projects
+#### Display Name {#display-name}
 
-The **Recent Projects** section shows up to 5 projects you've opened most recently. It only appears when at least one project has been opened before.
+You can set a **display name** — a friendlier label that appears in the UI instead of the internal project name. This is useful when the project name is a technical identifier. Leave the field empty to revert to showing the project name.
 
-<!-- SCREENSHOT: Recent Projects list showing 2–3 items with project name, path, and remove-from-recent button -->
+**Right panel — Get Started:**
 
-Each entry shows:
-- **Project name** (or display name if set) — click to select, double-click to open
-- **File system path** — shown below the project name
-- **Remove from recent** (×) — removes the entry from the recent list; does not delete the project itself
+Three expandable actions for bringing a project into layline.io (only one panel is open at a time):
 
-Hovering over a project shows a tooltip with its full name, display name (if different), description, path, and version.
+### Create New Project
 
----
+Start a fresh, empty project. [→ Detailed steps](create-project)
 
-## All Projects
+| Field | Description |
+|-------|-------------|
+| **Project name** | The internal name for the project. Required. |
+| **Description** | Optional free-text description. |
+| **Path** | The server-side directory where the project files will be stored. Required. |
 
-The **All Projects** section lists every project registered in your Configuration Center.
+Click **Create** to create the project. If creation fails, an error banner appears with a **Try Again** option.
 
-<!-- SCREENSHOT: All Projects list with filter field visible, showing several projects -->
+### Add Existing Project
 
-### Filtering
+Register a project that already exists on the server's file system (e.g. cloned from Git, restored from backup, or created outside the UI). [→ Detailed steps](add-existing-project)
 
-Type in the **Filter projects...** field to narrow the list by name. The filter matches against both the project's internal name and its display name (if set). Clear the field to restore the full list.
+| Field | Description |
+|-------|-------------|
+| **Project folder path** | The absolute path to the project directory on the server. |
 
-### Sorting
+Click **Add Project**. On success, a confirmation banner appears with an **Open** button to jump straight into the project. Click **Add Another** to register a second project without clearing the panel.
 
-Use the **Sort A–Z** and **Sort Z–A** toolbar buttons to sort the list alphabetically. The default order is A–Z.
+### Import from Archive
 
-### Refreshing
+Import a project from a ZIP archive — useful for sharing projects or restoring from an export. [→ Detailed steps](import-project)
 
-Click the **Refresh** button to reload the project list from the Configuration Center.
+| Field | Description |
+|-------|-------------|
+| **Project name** | The name to assign to the imported project. |
+| **Target directory** | The server-side directory where the project will be extracted. |
+| **Archive file** | Upload a `.zip` file using the file picker. Only one file is accepted. |
 
-### Opening a project
-
-Single-click a project to select it. Double-click to open it directly. Alternatively, select a project and use the **Open** button in the detail panel below the list.
-
----
-
-## Project details panel
-
-When a project is selected in the All Projects list, a detail panel appears below it.
-
-<!-- SCREENSHOT: Project details panel showing Display Name input field, Open button, and Remove button for a selected project -->
-
-### Display Name
-
-Projects are stored on the file system with a fixed **name** (the folder/internal identifier). The **Display Name** field lets you assign a human-friendly label that appears throughout the UI instead of the technical name.
-
-- If a display name is set, the list shows it as `Display Name [internal-name]`
-- Leave the field empty to use the project's internal name
-- Press **Enter** or click **Save** to apply changes
-
-### Opening
-
-Click **Open** to load the selected project in the editor.
-
-### Removing
-
-Click **Remove** to unregister the project from the Configuration Center. A confirmation dialog appears — you must type `remove` to confirm.
-
-:::caution
-Removing a project does not delete the files from the file system. The project folder remains in place and can be re-added later using **Add Existing Project**.
-:::
+Click **Import**. On success, a confirmation banner appears with an **Open** button. Click **Import Another** to import a second archive.
 
 ---
 
-## Get Started panel
+## Inside an Open Project
 
-The right panel contains three actions for bringing projects into layline.io:
+Once a project is open, the Project tab shows the project toolbar at the top and five sub-tabs below it.
 
-| Action | When to use |
-|--------|-------------|
-| [**Create New Project**](create-project) | Start a fresh project from scratch |
-| [**Add Existing Project**](add-existing-project) | Register a project folder that already exists on the file system |
-| [**Import from Archive**](import-project) | Restore a project from a ZIP archive |
+<!-- SCREENSHOT: Open project view — toolbar showing project name, Save button, and the five sub-tabs (Assets, Sources, Workflows, Tests, Deployments) -->
 
-Click any action to expand it. Only one panel is open at a time.
+### Project Toolbar
 
----
+The toolbar appears at the top of the Project tab when a project is open:
 
-## What a Project contains
+- **Project name** — shows the currently open project's name.
+- **Save** — saves all unsaved changes to the project. Only visible when there are unsaved changes. Keyboard shortcut: `Ctrl+S` / `⌘S`.
+- **Search** — opens the project-wide search dialog. Keyboard shortcut: `Ctrl+F` / `⌘F`.
+- **Close** — prompts for confirmation and closes the project, returning to the Project Hub.
+- **Remove** — removes the project from the configuration server (with confirmation).
 
-Once a project is open, you define **Assets** and **Workflows** inside it. Every data pipeline is built from assets:
+### Sub-tabs Overview
 
-- **Workflow Assets** — Input Processors, Flow Processors, and Output Processors that define how data moves
-- **Services** — Connections to external systems (databases, queues, APIs)
-- **Formats** — Definitions of the data structures you read and write
-- **Resources** — Shared configurations like Environments and Secrets
-- **Extensions** — Custom code that extends the system's capabilities
-- **Connections** — Configured connections to external systems
-- **Sinks** — Data output destinations
-- **Sources** — Data input sources
-- **Deployment Assets** — Engine Deployments, Schedulers, and Cluster configurations
+| Tab | Purpose |
+|-----|---------|
+| **Assets** | Define and configure all Assets in the project — Services, Formats, Connections, Sinks, Sources, Resources, Extensions, and Deployment assets. |
+| **Sources** | Manage project source files — scripts, configuration snippets, and other file-based resources referenced by Assets. |
+| **Workflows** | Build Workflows visually by placing and connecting Processors on a canvas. |
+| **Tests** | Create and run test cases for Services and Flow Processors. |
+| **Deployments** | Define Engine Deployments, Schedulers, Cluster configurations, and Tags. Manage deployment of Workflows to the Reactive Cluster. |
 
-:::info All asset classes are project members
-Every asset class is part of a Project — not just the ones listed above as examples. See the [Assets Reference](../assets) for the full list.
-:::
+## What a Project Contains
+
+A Project is the home for everything needed to run a data pipeline:
+
+- **Workflow Assets** — the pipeline definitions themselves
+- **Input Processors** — receive data from a Source (file, queue, stream, API, etc.)
+- **Flow Processors** — transform, route, enrich, or filter data in transit
+- **Output Processors** — write processed data to a Sink
+- **Services** — connections to external systems (databases, queues, APIs, etc.)
+- **Formats** — definitions of the data structures you read and write
+- **Resources** — shared configurations like Environments and Secrets
+- **Connections** — configured connections to external systems
+- **Sources** — data input origins
+- **Sinks** — data output destinations
+- **Extensions** — custom code that extends the system's capabilities
+- **Deployment Assets** — Engine Deployments, Schedulers, Tags, and Cluster configurations
+
+All Asset classes are part of a Project. When you deploy, you select which Workflows to deploy, along with the Environment and Secret Assets they need.
 
 ## See Also
 
-- [**Create New Project**](create-project) — Start a fresh project from scratch
-- [**Add Existing Project**](add-existing-project) — Register an existing project folder
-- [**Import from Archive**](import-project) — Restore a project from a ZIP archive
-- [**Building Workflows**](building-workflows) — How to define data pipelines inside a project
-- [**Assets Reference**](../assets) — Reference documentation for all asset types
-- [**Core Concepts**](../quickstart/core-concepts) — Mental models for understanding Projects and Workflows
-- [**Quickstart**](../quickstart) — Get started with your first pipeline
+- [**Create New Project**](create-project) — step-by-step guide for creating a project from scratch
+- [**Add Existing Project**](add-existing-project) — register an existing project folder
+- [**Import from Archive**](import-project) — restore a project from a ZIP archive
+- [**Building Workflows**](building-workflows) — how to assemble a Workflow in the visual editor
+- [**Assets Reference**](../assets) — reference documentation for all asset types
+- [**Core Concepts**](../quickstart/core-concepts) — mental models for Projects, Workflows, and Deployments
+- [**Quickstart**](../quickstart) — step-by-step guide to your first pipeline
