@@ -90,6 +90,8 @@ The **Shelf** tab is your reusable asset library. Assets published to the Shelf 
 Shelf documentation is in progress. See [LAY-69](https://linear.app/laylineio/issue/LAY-69) for status.
 :::
 
+→ [**Go to Shelf documentation**](./shelf)
+
 ---
 
 ## 🔧 Settings — Users, Roles, and System Settings
@@ -105,6 +107,8 @@ The **Settings** tab is for administrators. This is where you manage who can acc
 :::info Coming Soon
 Users & Roles documentation is in progress. See [LAY-70](https://linear.app/laylineio/issue/LAY-70) for status.
 :::
+
+→ [**Go to Settings documentation**](./configuration)
 
 ---
 
