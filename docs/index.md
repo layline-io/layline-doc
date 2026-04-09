@@ -23,7 +23,7 @@ flowchart LR
     CC --> P["🗂️ Project\nBuild and manage workflows"]
     CC --> O["⚙️ Operations\nMonitor and control deployments"]
     CC --> S["📚 Shelf\nAsset library and templates"]
-    CC --> C["🔧 Configuration\nUsers, roles, and system settings"]
+    CC --> C["🔧 Settings\nUsers, roles, and system settings"]
 
     P --> P1["Assets & Workflows"]
     P --> P2["Deployment Assets"]
@@ -43,16 +43,16 @@ The **Project** tab is where you build. A Project contains all the Assets and Wo
 
 **What you'll find here:**
 
-- [**Assets Overview**](/docs/assets) — All asset types: Sources, Sinks, Processors, Formats, Services, Connections, and more
-- [**Workflow Assets**](/docs/assets/workflow-assets) — The building blocks of a Workflow: input, flow, and output processors
-- [**Deployment Assets**](/docs/assets/deployment-assets) — Engine deployments, schedulers, tags, and cluster configuration
+- [**Assets Overview**](./assets) — All asset types: Sources, Sinks, Processors, Formats, Services, Connections, and more
+- [**Workflow Assets**](./assets/workflow-assets) — The building blocks of a Workflow: input, flow, and output processors
+- [**Deployment Assets**](./assets/deployment-assets) — Engine deployments, schedulers, tags, and cluster configuration
 
 **Key concepts:**
 - A **Workflow** has exactly one Input Processor as its driver, plus any number of Flow Processors and Output Processors
 - **Assets** are reusable components — a Format, a Source, a Service — shared across Workflows within a Project
 - A **Deployment** packages Workflows with their Environment and Secret Assets and ships them to a Reactive Engine
 
-→ [**Go to Assets documentation**](/docs/assets)
+→ [**Go to Assets documentation**](./assets)
 
 ---
 
@@ -62,17 +62,17 @@ The **Operations** tab is your mission control. Once workflows are deployed and 
 
 **What you'll find here:**
 
-- [**Operations Overview**](/docs/operations) — Introduction to the Operations section
-- [**Cluster Management**](/docs/operations/cluster) — Nodes, alarms, scheduler, stream monitor, and storage systems
-- [**Engine State**](/docs/operations/engine-state) — Live view of what's running: workflows, services, connections, sources, sinks
-- [**Audit Trail**](/docs/operations/audit-trail) — History of workflow executions and stream events
+- [**Operations Overview**](./operations) — Introduction to the Operations section
+- [**Cluster Management**](./operations/cluster) — Nodes, alarms, scheduler, stream monitor, and storage systems
+- [**Engine State**](./operations/engine-state) — Live view of what's running: workflows, services, connections, sources, sinks
+- [**Audit Trail**](./operations/audit-trail) — History of workflow executions and stream events
 
 **Key concepts:**
 - **Cluster** = infrastructure (nodes, network, storage)
 - **Engine** = the layline.io runtime process running on a cluster node
 - **Live State** in Operations reflects what's actually running now — not what's configured
 
-→ [**Go to Operations documentation**](/docs/operations)
+→ [**Go to Operations documentation**](./operations)
 
 ---
 
@@ -92,9 +92,9 @@ Shelf documentation is in progress. See [LAY-69](https://linear.app/laylineio/is
 
 ---
 
-## 🔧 Configuration — Users, Roles, and System Settings
+## 🔧 Settings — Users, Roles, and System Settings
 
-The **Configuration** tab is for administrators. This is where you manage who can access the system, what they can do, and how the overall system is configured.
+The **Settings** tab is for administrators. This is where you manage who can access the system, what they can do, and how the overall system is configured.
 
 **What you'll find here:**
 
@@ -114,44 +114,44 @@ Users & Roles documentation is in progress. See [LAY-70](https://linear.app/layl
 
 | Goal | Start Here |
 |------|-----------|
-| Install and run your first pipeline | [Quickstart Overview](/docs/quickstart/quickstart-overview) |
-| Install locally | [Local Installation](/docs/quickstart/install-local) |
-| Install with Docker | [Docker Deployment](/docs/quickstart/install-docker) |
-| Understand the core concepts | [Core Concepts](/docs/quickstart/core-concepts) |
+| Install and run your first pipeline | [Quickstart Overview](./quickstart/quickstart-overview) |
+| Install locally | [Local Installation](./quickstart/install-local) |
+| Install with Docker | [Docker Deployment](./quickstart/install-docker) |
+| Understand the core concepts | [Core Concepts](./quickstart/core-concepts) |
 
 ### Building Workflows
 
 | Goal | Start Here |
 |------|-----------|
-| Understand all asset types | [Assets Overview](/docs/assets) |
-| Learn about Workflow Assets | [Workflow Assets](/docs/assets/workflow-assets) |
-| Configure a deployment | [Deployment Assets](/docs/assets/deployment-assets) |
-| Choose a data source | [Sources](/docs/assets/workflow-assets/sources) |
-| Define a data format | [Formats](/docs/assets/workflow-assets/formats) |
-| Connect to external systems | [Connections](/docs/assets/workflow-assets/connections) |
+| Understand all asset types | [Assets Overview](./assets) |
+| Learn about Workflow Assets | [Workflow Assets](./assets/workflow-assets) |
+| Configure a deployment | [Deployment Assets](./assets/deployment-assets) |
+| Choose a data source | [Sources](./assets/workflow-assets/sources) |
+| Define a data format | [Formats](./assets/workflow-assets/formats) |
+| Connect to external systems | [Connections](./assets/workflow-assets/connections) |
 
 ### Operating the System
 
 | Goal | Start Here |
 |------|-----------|
-| Log in to a cluster | [Cluster Login](/docs/operations/cluster/cluster-login) |
-| Monitor a live workflow | [Engine State](/docs/operations/engine-state) |
-| Investigate an alarm | [Alarm Center](/docs/operations/cluster/alarm-center) |
-| Review execution history | [Audit Trail](/docs/operations/audit-trail) |
+| Log in to a cluster | [Cluster Login](./operations/cluster/cluster-login) |
+| Monitor a live workflow | [Engine State](./operations/engine-state) |
+| Investigate an alarm | [Alarm Center](./operations/cluster/alarm-center) |
+| Review execution history | [Audit Trail](./operations/audit-trail) |
 
 ### Reference
 
 | Goal | Start Here |
 |------|-----------|
-| JavaScript API reference | [JavaScript Language Reference](/docs/language-reference/javascript) |
-| Python API reference | [Python Language Reference](/docs/language-reference/python) |
-| Core concepts and architecture | [Concepts](/docs/concept) |
-| Release notes | [Release Notes](/docs/release-notes) |
+| JavaScript API reference | [JavaScript Language Reference](./language-reference/javascript) |
+| Python API reference | [Python Language Reference](./language-reference/python) |
+| Core concepts and architecture | [Concepts](./concept) |
+| Release notes | [Release Notes](./release-notes) |
 
 ---
 
 ## See Also
 
 - [**Corporate website**](https://layline.io) — Product overview, pricing, and case studies
-- [**Quickstart**](/docs/quickstart) — Install and run your first pipeline
-- [**Core Concepts**](/docs/quickstart/core-concepts) — Mental models that make everything else click
+- [**Quickstart**](./quickstart) — Install and run your first pipeline
+- [**Core Concepts**](./quickstart/core-concepts) — Mental models that make everything else click
