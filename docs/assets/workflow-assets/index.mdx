@@ -1,0 +1,61 @@
+---
+title: Workflow Assets
+sidebar_position: 1
+description: Building blocks for data workflows — connections, processors, sources, sinks, and more.
+---
+
+# Workflow Assets
+
+Workflow Assets are the building blocks used within a Workflow to define how data is sourced, processed, transformed, and delivered. Each asset type serves a specific purpose in the data flow pipeline.
+
+## Asset Categories
+
+### [Connections](./connections/index.mdx)
+
+External system connections for integrating with cloud providers, messaging systems, and storage services. Define once, reuse across multiple assets.
+
+### [Extensions](./extensions/index.mdx)
+
+Extension points for custom functionality including Prometheus metrics and AWS integrations.
+
+### [Formats](./formats/index.mdx)
+
+Data format definitions for parsing and serializing messages. Supports XML, ASN.1, Data Dictionary, HTTP, and generic formats.
+
+### [Flow Processors](./processors-flow/index.mdx)
+
+Processors that operate on streaming data within a workflow. Handle routing, transformation, AI/ML inference, and flow control.
+
+### [Input Processors](./processors-input/index.mdx)
+
+Processors that handle data ingestion from various sources including Kafka, streams, and service inputs.
+
+### [Output Processors](./processors-output/index.mdx)
+
+Processors that handle data delivery to destinations, managing frame outputs, stream writes, and dev/null sinks.
+
+### [Resources](./resources/index.mdx)
+
+Shared resources such as secrets, directories, OAuth clients, AI models, and environment definitions.
+
+### [Services](./services/index.mdx)
+
+Service integrations for databases, message queues, HTTP endpoints, caching systems, and external APIs.
+
+### [Sinks](./sinks/index.mdx)
+
+Data output destinations including file systems, cloud storage (S3, GCS), message queues (Kafka, SQS), and network protocols.
+
+### [Sources](./sources/index.mdx)
+
+Data input sources including file watchers, message queues, HTTP endpoints, timers, and cloud storage.
+
+### [Workflows](./workflows/index.mdx)
+
+Workflow definitions that orchestrate the flow of data through processors, sources, and sinks.
+
+---
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
