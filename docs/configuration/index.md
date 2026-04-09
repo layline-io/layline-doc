@@ -24,7 +24,7 @@ Configuration covers system-wide settings that apply across all Projects and Ope
 
 Configuration settings are typically restricted to administrators. Changes here affect the entire layline.io installation, not just individual Projects or Workflows.
 
-See the [**Roles**](/docs/configuration/roles) section for details on the permission model.
+Roles and permissions documentation is coming soon (see [LAY-70](https://linear.app/laylineio/issue/LAY-70)).
 
 :::info Coming Soon
 Users & Roles documentation is in progress. See [LAY-70](https://linear.app/laylineio/issue/LAY-70) for status.
