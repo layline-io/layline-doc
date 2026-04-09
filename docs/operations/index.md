@@ -1,6 +1,6 @@
 ---
 title: Operations 
-sidebar_position: 7
+sidebar_position: 3
 description: An introduction to the Operations section of the layline.io Configuration Center.
 ---
 
