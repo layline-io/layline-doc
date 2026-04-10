@@ -12,22 +12,9 @@ description: Efficiently find and use Shelf content with browsing and search.
 
 The Shelf interface is organized into three main areas:
 
-```
-┌─────────────────┬─────────────────┬─────────────────┐
-│   CATEGORIES    │    FOLDERS      │    ELEMENTS     │
-│   (Sidebar)     │   (List View)   │   (Grid/Detail) │
-├─────────────────┼─────────────────┼─────────────────┤
-│                 │                 │                 
-│ • Assets        │ □ Production    │ ┌─────────────┐ 
-│ • Messages      │ □ Staging       │ │ Element 1   │ 
-│                 │ □ Development   │ │ (preview)   │ 
-│                 │                 │ └─────────────┘ 
-│                 │                 │ ┌─────────────┐ 
-│                 │                 │ │ Element 2   │ 
-│                 │                 │ │ (preview)   │ 
-│                 │                 │ └─────────────┘ 
-└─────────────────┴─────────────────┴─────────────────┘
-```
+1. **Categories Sidebar** (left) — Lists the top-level Categories (Assets, Messages)
+2. **Folders List** (middle) — Shows Folders within the selected Category
+3. **Elements Grid** (right) — Displays Elements within the selected Folder or Category
 
 ![Shelf three-panel layout showing Categories sidebar, Folders list, and Element details](./.navigation_images/shelf-layout.png)
 
