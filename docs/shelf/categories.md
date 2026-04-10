@@ -41,15 +41,22 @@ When you copy an Asset from a Project and paste it into the Shelf, it is stored 
 
 ## Messages Category
 
-The **Messages** Category contains data format definitions and message schemas. These are typically:
+The **Messages** Category contains copies of messages that have been saved to the Shelf for later investigation or reuse.
 
-- JSON schemas
-- XML schemas
-- CSV format definitions
-- Custom message formats
-- Data validation templates
+### What Are Messages?
 
-Messages work similarly to Assets — you copy them from where they're defined and paste them into the Shelf for later reuse.
+**Messages are generic runtime structures** created by layline.io at runtime. They hold data that is read from data sources or travels through the system. The structure of messages is completely dynamic and based on a combination of all defined data formats (through format definitions, data dictionary, etc.).
+
+### Where Do Shelf Messages Come From?
+
+Messages that are pasted into the Shelf are usually taken from:
+
+- **Audit trail** — Historical message records from processed data
+- **Service function execution results** — Messages returned from function calls (see **Engine State → Services → Functions**)
+
+### Using Shelf Messages
+
+Copy a Message from the Shelf and paste it wherever message pasting is supported. A common use case is pasting into the Engine State when executing service functions.
 
 ## Navigating Categories
 
@@ -68,16 +75,6 @@ Each Category has a distinct icon for quick visual identification:
 
 - **Assets** — Cube/box icon (representing packaged configurations)
 - **Messages** — Document/message icon (representing data formats)
-
-## Category Contents
-
-Each Category displays:
-
-- **Folder Count** — Number of Folders within the Category
-- **Element Count** — Total Elements across all Folders
-- **Last Modified** — Date of the most recent change
-
-<!-- SCREENSHOT: Category metadata showing counts and dates -->
 
 ## Organizing Within Categories
 

@@ -87,7 +87,7 @@ The Asset is now available in your Project as a local copy.
 
 ### Using a Shelf Message
 
-Messages work similarly but can be pasted wherever message pasting is supported:
+Messages are generic runtime structures created by layline.io at runtime. You can copy them to the Shelf from the audit trail or service function execution results, then paste them wherever message pasting is supported:
 
 1. Copy a Message from the Shelf
 2. Navigate to where you want to use it (e.g., Engine State → Service Asset Functions)
