@@ -51,7 +51,7 @@ Processor name
 > **expandString**(`toExpand`): `string`
 
 Expands all macros contained in a string.
-For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](/docs/assets/workflow-assets/resources/asset-resource-environment) you can do so like this:
+For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](../../../../../../assets/workflow-assets/resources/asset-resource-environment.md) you can do so like this:
 
 #### Parameters
 
@@ -164,9 +164,9 @@ You can view this both via the Audit Trail in the UI and output in the process t
 
 ##### param
 
-Information you want to log. Can be either a string message or a Status object.
+`string` \| [`Status`](Status.md)
 
-`string` | [`Status`](Status.md)
+Information you want to log. Can be either a string message or a Status object.
 
 #### Returns
 
@@ -196,9 +196,9 @@ You can view this both via the Audit Trail in the UI and output in the process t
 
 ##### param
 
-Information you want to log. Can be either a string message or a Status object.
+`string` \| [`Status`](Status.md)
 
-`string` | [`Status`](Status.md)
+Information you want to log. Can be either a string message or a Status object.
 
 #### Returns
 
@@ -228,9 +228,9 @@ You can view this both via the Audit Trail in the UI and output in the process t
 
 ##### param
 
-Information you want to log. Can be either a string message or a Status object.
+`string` \| [`Status`](Status.md)
 
-`string` | [`Status`](Status.md)
+Information you want to log. Can be either a string message or a Status object.
 
 #### Returns
 
@@ -260,9 +260,9 @@ You can view this both via the Audit Trail in the UI and output in the process t
 
 ##### param
 
-Information you want to log. Can be either a string message or a Status object.
+`string` \| [`Status`](Status.md)
 
-`string` | [`Status`](Status.md)
+Information you want to log. Can be either a string message or a Status object.
 
 #### Returns
 
