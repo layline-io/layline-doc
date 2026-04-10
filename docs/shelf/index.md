@@ -12,7 +12,7 @@ description: The Shelf is layline.io's shared asset library — copy Assets and 
 
 The Shelf provides a central place to store copies of Assets and Messages for later reuse within the same Project or across different Projects. Instead of recreating the same configuration, you copy it to the Shelf once and paste it wherever it's needed.
 
-<!-- SCREENSHOT: Shelf main view showing the three-panel layout (Categories sidebar, Folders list, Elements grid) -->
+![Shelf overview showing the three-panel layout with Categories sidebar, Folders list, and Elements grid](./.shelf_images/shelf-overview.png)
 
 ## How It Works
 

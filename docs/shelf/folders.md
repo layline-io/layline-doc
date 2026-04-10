@@ -36,7 +36,7 @@ To create a new Folder:
 4. Optionally add a **Description**
 5. Click **Create**
 
-<!-- SCREENSHOT: Create Folder dialog with Name and Description fields -->
+![Create Folder dialog showing Name input field and Create button](./.folders_images/create-folder.png)
 
 ### Folder Naming Guidelines
 
@@ -64,7 +64,7 @@ Common naming patterns:
 4. Enter the new name
 5. Confirm to save
 
-<!-- SCREENSHOT: Folder rename in-place editing -->
+![Rename Folder dialog with current name "Sinks" highlighted in the input field](./.folders_images/rename-folder.png)
 
 ### Deleting a Folder
 
@@ -78,7 +78,7 @@ Deleting a Folder removes all Elements within it. This action cannot be undone.
 
 All Elements in the Folder are permanently removed from the Shelf.
 
-<!-- SCREENSHOT: Delete Folder confirmation dialog -->
+![Delete Folder confirmation dialog asking "Do you really want to delete the folder Production/Sinks?"](./.folders_images/delete-folder.png)
 
 ## Folder Organization Patterns
 

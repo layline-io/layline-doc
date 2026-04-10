@@ -29,7 +29,7 @@ The Shelf interface is organized into three main areas:
 └─────────────────┴─────────────────┴─────────────────┘
 ```
 
-<!-- SCREENSHOT: Shelf three-panel layout overview -->
+![Shelf three-panel layout showing Categories sidebar, Folders list, and Element details](./.navigation_images/shelf-layout.png)
 
 ## Browsing
 
