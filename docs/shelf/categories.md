@@ -1,145 +1,112 @@
 ---
 title: Categories
 sidebar_position: 1
-description: Categories are top-level groupings that organize Shelf Elements by function, team, or technology.
+description: Categories are the top-level groupings in the Shelf — Assets and Messages.
 ---
 
 # Categories
 
-> Categories are top-level groupings that organize Shelf Elements by function, team, or technology.
+> Categories are the top-level groupings that organize Shelf Elements. There are two built-in categories: Assets and Messages.
 
 ## What Are Categories?
 
-Categories provide the first level of organization in the Shelf. They help users find Assets by grouping related Elements together. Think of Categories like the main sections of a library — each contains related books (Folders) that hold specific titles (Elements).
+Categories provide the first level of organization in the Shelf. They separate two distinct types of content that can be stored and reused.
 
-<!-- SCREENSHOT: Shelf sidebar showing Category list with icons and counts -->
+<!-- SCREENSHOT: Shelf sidebar showing Category list with Assets and Messages -->
 
-## Default Categories
+## Built-in Categories
 
-layline.io provides several default Categories out of the box:
+layline.io provides two Categories:
 
-| Category | Purpose | Typical Contents |
-|----------|---------|------------------|
-| **Messages** | Data formats and schemas | Format Assets, data dictionaries, message definitions |
-| **Connections** | External system connections | Database connections, API credentials, file system configs |
-| **Services** | Reusable service configurations | HTTP services, email configurations, message queues |
-| **Flows** | Workflow templates and processors | Flow processors, input/output processors |
-| **Resources** | Supporting resources | Data dictionaries, status definitions |
+| Category | Purpose | Contents |
+|----------|---------|----------|
+| **Assets** | Reusable Asset configurations | Connections, Services, Formats, Processors, and other Asset types |
+| **Messages** | Data format definitions | Message schemas, format definitions, and data structure templates |
 
-<!-- SCREENSHOT: Default Categories view showing the five standard categories with descriptions -->
+These Categories are fixed and cannot be created, renamed, or deleted.
 
-## Creating a Category
+<!-- SCREENSHOT: Category sidebar showing Assets selected with folder list -->
 
-To create a new Category:
+## Assets Category
+
+The **Assets** Category contains copies of Project Assets that have been saved to the Shelf for reuse. This includes:
+
+- **Connections** — Database connections, API endpoints, file system configurations
+- **Services** — HTTP services, email configurations, message queue connections
+- **Formats** — Data format definitions and parsing configurations
+- **Processors** — Flow processors and transformation logic
+- **Other Asset Types** — Any Asset that can be copied from a Project
+
+When you copy an Asset from a Project and paste it into the Shelf, it is stored in the Assets Category within a Folder you select or create.
+
+## Messages Category
+
+The **Messages** Category contains data format definitions and message schemas. These are typically:
+
+- JSON schemas
+- XML schemas
+- CSV format definitions
+- Custom message formats
+- Data validation templates
+
+Messages work similarly to Assets — you copy them from where they're defined and paste them into the Shelf for later reuse.
+
+## Navigating Categories
+
+### Selecting a Category
 
 1. Navigate to the **Shelf** tab
-2. Click the **+** button next to the Categories header
-3. Enter a **Name** for the Category
-4. Optionally add a **Description**
-5. Choose an **Icon** to visually identify the Category
-6. Click **Create**
+2. Click on **Assets** or **Messages** in the left sidebar
+3. The middle panel updates to show Folders within that Category
+4. The selected Category is highlighted
 
-<!-- SCREENSHOT: Create Category dialog with Name, Description, and Icon selection -->
+<!-- SCREENSHOT: Category selection showing visual highlight -->
 
-### Category Naming Guidelines
+### Category Icons
 
-- Use clear, descriptive names (e.g., "Finance Data", "AWS Connections")
-- Avoid overly generic names like "Misc" or "Other"
-- Consider using team or domain names for organization-specific Categories
-- Keep names concise (2-3 words maximum)
+Each Category has a distinct icon for quick visual identification:
 
-## Managing Categories
+- **Assets** — Cube/box icon (representing packaged configurations)
+- **Messages** — Document/message icon (representing data formats)
 
-### Editing a Category
+## Category Contents
 
-1. Hover over the Category in the sidebar
-2. Click the **...** menu
-3. Select **Edit**
-4. Modify the name, description, or icon
-5. Click **Save**
+Each Category displays:
 
-<!-- SCREENSHOT: Category context menu showing Edit and Delete options -->
+- **Folder Count** — Number of Folders within the Category
+- **Element Count** — Total Elements across all Folders
+- **Last Modified** — Date of the most recent change
 
-### Deleting a Category
+<!-- SCREENSHOT: Category metadata showing counts and dates -->
 
-:::caution
-Deleting a Category permanently removes all Folders and Elements within it. This action cannot be undone.
-:::
+## Organizing Within Categories
 
-1. Hover over the Category in the sidebar
-2. Click the **...** menu
-3. Select **Delete**
-4. Confirm the deletion
-5. Optionally, choose to move Elements to another Category before deletion
+Since Categories are fixed, all organization happens at the Folder level:
 
-## Category Organization Strategies
+- Create Folders within Categories to group related Elements
+- Use clear, descriptive Folder names
+- Consider organizing by project, environment, or function
 
-### By Function
+See [Folders](./folders) for detailed guidance on Folder organization.
 
-Group Assets by what they do:
+## Copying Between Projects
 
-```
-├── Data Inputs
-├── Data Outputs
-├── Transformations
-├── Integrations
-└── Monitoring
-```
+The key benefit of Categories is that they enable cross-project reuse:
 
-### By Technology
+1. **Assets** — Copy an Asset from Project A, paste to Shelf, then copy from Shelf and paste into Project B
+2. **Messages** — Copy a Message definition from one context, save to Shelf, reuse in multiple Projects
 
-Group Assets by the technology they connect to:
-
-```
-├── Databases
-├── Cloud Storage
-├── Message Queues
-├── APIs
-└── File Systems
-```
-
-### By Team
-
-Group Assets by ownership:
-
-```
-├── Finance
-├── Engineering
-├── Marketing
-├── Operations
-└── Shared
-```
-
-### Hybrid Approach
-
-Combine strategies for large organizations:
-
-```
-├── Messages (universal data formats)
-├── Connections (shared infrastructure)
-├── Finance (team-specific)
-├── Engineering (team-specific)
-└── Templates (reusable patterns)
-```
-
-## Category Permissions
-
-Categories inherit permissions from the Shelf:
-
-- **View** — All authenticated users can see Categories
-- **Create/Edit** — Requires Shelf Admin role
-- **Delete** — Requires Shelf Admin role
+The Category structure (Assets vs Messages) remains consistent across all Projects.
 
 ## Best Practices
 
-1. **Start with defaults** — Use the built-in Categories before creating custom ones
-2. **Don't over-categorize** — 5-10 Categories is usually sufficient
-3. **Use Folders for detail** — Create Folders within Categories for finer organization
-4. **Document with descriptions** — Help teammates understand Category purpose
-5. **Review periodically** — Merge or split Categories as your library grows
+1. **Use both Categories** — Don't store everything in one Category; use Assets for configurations and Messages for data formats
+2. **Create meaningful Folders** — Since you can't create Categories, invest in good Folder structure
+3. **Name consistently** — Use the same naming patterns across Categories
+4. **Review periodically** — Clean up unused Elements in both Categories
 
 ## See Also
 
 - [**Folders**](./folders) — Organizing Elements within Categories
-- [**Elements**](./elements) — The Assets stored in Categories
+- [**Elements**](./elements) — The Assets and Messages stored in Categories
 - [**Shelf Overview**](./) — Introduction to the Shelf concept

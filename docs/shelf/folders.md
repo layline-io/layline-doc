@@ -1,40 +1,36 @@
 ---
 title: Folders
 sidebar_position: 2
-description: Folders provide secondary organization within Categories, helping you group related Elements together.
+description: Folders provide organization within Categories, helping you group related Elements together.
 ---
 
 # Folders
 
-> Folders provide secondary organization within Categories, helping you group related Elements together.
+> Folders provide organization within Categories, helping you group related Elements together.
 
 ## What Are Folders?
 
-Folders exist within Categories and provide a second level of organization. While Categories group Assets by broad function or domain, Folders let you organize by project, environment, or any other criteria that makes sense for your team.
+Folders exist within Categories and provide a way to organize Elements. While Categories separate Assets from Messages, Folders let you group related Elements by project, environment, or any criteria that makes sense for your team.
 
-<!-- SCREENSHOT: Folder list view showing folders within a Category with Element counts -->
+<!-- SCREENSHOT: Folder list view showing folders within a Category -->
 
 ## Folder Hierarchy
 
-The Shelf supports a two-level hierarchy:
+The Shelf supports a simple hierarchy:
 
 ```
 Category
 └── Folder
-    └── Elements (Assets)
+    └── Elements (Assets or Messages)
 ```
 
-Folders cannot contain sub-folders. If you need deeper organization, consider:
-
-- Using naming conventions (e.g., "Production-DB", "Staging-DB")
-- Creating additional Categories
-- Using tags on Elements
+Folders exist only at one level — there are no sub-folders. If you need additional organization, use naming conventions (e.g., "Production-DB", "Staging-DB") or create more Folders.
 
 ## Creating a Folder
 
 To create a new Folder:
 
-1. Navigate to the desired Category
+1. Navigate to the desired Category (Assets or Messages)
 2. Click the **New Folder** button (or right-click in the folder area)
 3. Enter a **Name** for the Folder
 4. Optionally add a **Description**
@@ -44,59 +40,45 @@ To create a new Folder:
 
 ### Folder Naming Guidelines
 
-- Use consistent naming patterns across Categories
+- Use clear, descriptive names
 - Include environment indicators when relevant (Prod, Staging, Dev)
-- Use clear, searchable names
-- Avoid special characters that might cause issues in paths
+- Use consistent naming patterns
+- Avoid special characters that might cause issues
 
 Common naming patterns:
 
 | Pattern | Example | Use Case |
 |---------|---------|----------|
 | By Environment | `Production`, `Staging`, `Development` | Environment-specific Assets |
-| By Project | `Invoice-Processing`, `Data-Sync` | Project-specific Assets |
+| By Project | `Invoice-Processing`, `Data-Sync` | Project-specific Elements |
 | By Type | `Databases`, `APIs`, `File-Systems` | Type grouping within Category |
-| By Version | `v1-Legacy`, `v2-Current` | Version management |
+| By Team | `Finance`, `Engineering` | Team ownership |
 
 ## Managing Folders
 
 ### Renaming a Folder
 
 1. Navigate to the Category containing the Folder
-2. Right-click the Folder or click the **...** menu
+2. Right-click the Folder or click the menu
 3. Select **Rename**
 4. Enter the new name
-5. Press Enter or click outside to save
+5. Confirm to save
 
 <!-- SCREENSHOT: Folder rename in-place editing -->
-
-### Moving a Folder
-
-Folders can be moved between Categories:
-
-1. Right-click the Folder
-2. Select **Move to Category**
-3. Choose the destination Category
-4. Click **Move**
-
-All Elements within the Folder move with it.
-
-<!-- SCREENSHOT: Move Folder dialog showing Category selection -->
 
 ### Deleting a Folder
 
 :::caution
-Deleting a Folder permanently removes all Elements within it. Consider moving Elements to another Folder first.
+Deleting a Folder removes all Elements within it. This action cannot be undone.
 :::
 
 1. Right-click the Folder
 2. Select **Delete**
-3. Choose an action:
-   - **Delete Folder and Elements** — Permanently removes everything
-   - **Move Elements to...** — Moves Elements to another Folder before deleting
-4. Confirm the action
+3. Confirm the deletion
 
-<!-- SCREENSHOT: Delete Folder confirmation dialog with options -->
+All Elements in the Folder are permanently removed from the Shelf.
+
+<!-- SCREENSHOT: Delete Folder confirmation dialog -->
 
 ## Folder Organization Patterns
 
@@ -105,17 +87,17 @@ Deleting a Folder permanently removes all Elements within it. Consider moving El
 Organize by deployment environment:
 
 ```
-Connections/
+Assets/
 ├── Production/
-│   ├── Primary-DB
-│   ├── Backup-DB
-│   └── API-Gateway
+│   ├── Primary-DB-Connection
+│   ├── API-Gateway-Config
+│   └── Backup-Service
 ├── Staging/
-│   ├── Staging-DB
-│   └── Test-API
+│   ├── Staging-DB-Connection
+│   └── Test-API-Config
 └── Development/
-    ├── Local-DB
-    └── Mock-Services
+    ├── Local-DB-Connection
+    └── Mock-Service-Config
 ```
 
 ### Project-Based
@@ -132,30 +114,30 @@ Messages/
 │   ├── Employee-Schema
 │   └── Timesheet-Format
 └── Common/
-    ├── Error-Response
+    ├── Error-Response-Format
     └── Standard-Headers
 ```
 
 ### Type-Based
 
-Organize by specific type within Category:
+Organize by specific type:
 
 ```
-Connections/
+Assets/
 ├── Databases/
 │   ├── PostgreSQL-Prod
 │   ├── MySQL-Analytics
 │   └── MongoDB-Logs
 ├── Cloud-Storage/
-│   ├── S3-Primary
-│   ├── GCS-Archive
-│   └── Azure-Backup
+│   ├── S3-Primary-Config
+│   ├── GCS-Archive-Config
+│   └── Azure-Backup-Config
 └── Message-Queues/
-    ├── Kafka-Main
-    └── RabbitMQ-Events
+    ├── Kafka-Main-Config
+    └── RabbitMQ-Events-Config
 ```
 
-## Folder Metadata
+## Folder Contents
 
 Each Folder displays:
 
@@ -163,20 +145,20 @@ Each Folder displays:
 - **Description** — Optional explanatory text
 - **Element Count** — Number of Elements in the Folder
 - **Last Modified** — Date of most recent change
-- **Created By** — User who created the Folder
 
-<!-- SCREENSHOT: Folder details panel showing metadata -->
+<!-- SCREENSHOT: Folder details showing metadata -->
 
 ## Best Practices
 
 1. **Be consistent** — Use the same organizational pattern across Categories
-2. **Don't nest concepts** — Folders are the final level; use naming for further grouping
-3. **Keep it flat** — Aim for 3-7 Folders per Category; create more Categories if needed
-4. **Review regularly** — Merge empty or duplicate Folders
-5. **Use descriptions** — Help teammates understand Folder purpose at a glance
+2. **Keep it flat** — Aim for 3-10 Folders per Category; create more Categories if needed (though only Assets and Messages are available)
+3. **Use clear names** — Folder names should indicate contents at a glance
+4. **Add descriptions** — Help teammates understand Folder purpose
+5. **Review regularly** — Merge empty or duplicate Folders
+6. **Don't over-organize** — Too many Folders make browsing harder
 
 ## See Also
 
 - [**Categories**](./categories) — Top-level Shelf organization
-- [**Elements**](./elements) — The Assets stored in Folders
+- [**Elements**](./elements) — The Assets and Messages stored in Folders
 - [**Shelf Overview**](./) — Introduction to the Shelf concept

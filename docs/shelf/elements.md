@@ -1,18 +1,18 @@
 ---
 title: Elements
 sidebar_position: 3
-description: Elements are the individual Assets stored on the Shelf — publish, import, and manage reusable configurations.
+description: Elements are individual Assets or Messages stored on the Shelf — copy them between Projects using the clipboard.
 ---
 
 # Elements
 
-> Elements are the individual Assets stored on the Shelf — publish, import, and manage reusable configurations.
+> Elements are individual Assets or Messages stored on the Shelf. Copy them to the Shelf, then paste them into any Project.
 
 ## What Are Elements?
 
-An Element is a published Asset that lives on the Shelf. It contains all the configuration, metadata, and version history for a reusable Asset. When you import an Element into a Project, you get a complete copy of that Asset that you can use and customize.
+An Element is a copy of an Asset or Message that lives on the Shelf. It contains the complete configuration of the original item, ready to be copied and pasted into Projects.
 
-<!-- SCREENSHOT: Element detail view showing configuration, metadata, and version tabs -->
+<!-- SCREENSHOT: Element detail view showing configuration overview -->
 
 ## Element Structure
 
@@ -20,221 +20,192 @@ Each Element contains:
 
 | Component | Description |
 |-----------|-------------|
-| **Configuration** | The complete Asset settings (all fields, values, and parameters) |
-| **Metadata** | Name, description, tags, creation date, author |
-| **Version History** | All published versions with change notes |
-| **Usage Info** | Which Projects have imported this Element |
-| **Dependencies** | Other Shelf Elements this Asset depends on |
+| **Configuration** | The complete settings of the copied Asset or Message |
+| **Metadata** | Name, description, creation date, author |
+| **Type** | The Asset type (Connection, Service, Format, etc.) or Message format |
 
-## Publishing an Element
+Unlike Project Assets, Elements on the Shelf are static — you don't edit them directly. To update an Element, you copy a new version from a Project.
 
-### From a Project Asset
+## Adding Elements to the Shelf
 
-To publish an existing Project Asset to the Shelf:
+### Copying an Asset
+
+To save an Asset to the Shelf:
 
 1. Open the Project containing the Asset
-2. Navigate to the Asset in the Asset tree
-3. Right-click the Asset and select **Publish to Shelf**
-4. Or select the Asset and click **Publish** in the toolbar
+2. Navigate to the **Asset Editor**
+3. Select the Asset you want to save
+4. **Copy** the Asset (using the application's copy function)
+5. Switch to the **Shelf** tab
+6. Select the desired Category and Folder
+7. **Paste** the Asset into the Folder
 
-<!-- SCREENSHOT: Right-click context menu on Asset showing "Publish to Shelf" option -->
+<!-- SCREENSHOT: Copying an Asset from Asset Editor -->
 
-### Publish Dialog
+### Copying a Message
 
-The Publish dialog guides you through the process:
+To save a Message to the Shelf:
 
-1. **Select Location** — Choose Category and Folder (or create new)
-2. **Name** — Provide a display name for the Element
-3. **Description** — Add context about what this Element does
-4. **Tags** — Add searchable tags (optional)
-5. **Version Notes** — Document what changed in this version
-6. **Click Publish**
+1. Navigate to where the Message is defined or used
+2. **Copy** the Message
+3. Switch to the **Shelf** tab
+4. Select the **Messages** Category and a Folder
+5. **Paste** the Message into the Folder
 
-<!-- SCREENSHOT: Publish to Shelf dialog with all fields filled out -->
+<!-- SCREENSHOT: Copying a Message to the Shelf -->
 
-### Publishing Behavior
+### What Gets Copied
 
-- **New Element** — If no Element with this name exists, a new one is created
-- **New Version** — If an Element with this name exists, a new version is added
-- **Validation** — The Asset is validated before publishing; errors must be fixed first
-- **Dependencies** — Required dependent Assets are noted but not auto-published
+When you copy an Element to the Shelf:
 
-## Importing an Element
+- ✅ The complete configuration of the Asset/Message
+- ✅ All settings, parameters, and values
+- ❌ **Not** the dependencies (other Assets it references)
 
-### Into a Project
+## Using Shelf Elements
 
-To import a Shelf Element into your Project:
+### Copying an Asset to a Project
+
+To use a Shelf Asset in your Project:
 
 1. Navigate to the **Shelf** tab
-2. Browse or search for the Element
-3. Click on the Element to view details
-4. Click **Import to Project**
-5. Select the target Project (defaults to current Project)
-6. Click **Import**
+2. Browse or search for the Asset you need
+3. **Copy** the Asset from the Shelf
+4. Switch to your Project's **Asset Editor**
+5. **Paste** the Asset into the Asset tree
 
-<!-- SCREENSHOT: Element detail panel with "Import to Project" button highlighted -->
+The Asset is now available in your Project as a local copy. Changes you make to this copy don't affect the Shelf Element.
 
-### Import Dialog
+<!-- SCREENSHOT: Shelf Asset selected with copy action -->
 
-The Import dialog provides options:
+### Copying a Message
 
-- **Target Project** — Which Project receives the imported Asset
-- **Asset Name** — Customize the name (defaults to Element name)
-- **Update Existing** — If an Asset with this name exists, update it instead of creating new
+To use a Shelf Message:
 
-<!-- SCREENSHOT: Import Element dialog with Project selection dropdown -->
+1. Navigate to the **Shelf** and find the Message
+2. **Copy** the Message
+3. Navigate to where you want to use it (e.g., Engine State → Service Asset Functions)
+4. **Paste** the Message into the appropriate field
 
-### Import Behavior
+<!-- SCREENSHOT: Message pasted into Engine State function parameters -->
 
-- **Copy** — The imported Asset is an independent copy; changes don't affect the Shelf Element
-- **Reference** — The Asset remembers it came from the Shelf (for update checking)
-- **Validation** — Imported Assets are validated against the Project's existing Assets
+### Cross-Project Workflow
 
-## Versioning
+The Shelf enables copying between Projects:
 
-### Version Numbers
+1. In Project A, **copy** an Asset
+2. **Paste** it into the Shelf
+3. Close Project A and open Project B
+4. **Copy** the Asset from the Shelf
+5. **Paste** it into Project B's Asset tree
 
-Shelf Elements use semantic versioning (or simple incrementing):
+This works because the Shelf is stored on the Configuration Server, not within any single Project.
+
+## Understanding Dependencies
+
+**Critical:** When you copy an Element, only that specific Element is copied — **not its dependencies**.
+
+### Example
+
+You have an Input Stream Processor that references a Format:
 
 ```
-Major.Minor.Patch  (e.g., 2.1.3)
+Input Stream Processor (Asset)
+└── References: Customer Format (another Asset)
 ```
 
-- **Major** — Breaking changes requiring Project updates
-- **Minor** — New features, backward compatible
-- **Patch** — Bug fixes, backward compatible
+When you copy the Input Stream Processor to the Shelf:
 
-### Viewing Version History
+- ✅ The Input Stream Processor configuration is saved
+- ❌ The Customer Format is **not** automatically saved
 
-1. Open an Element detail view
-2. Click the **Versions** tab
-3. See all published versions with:
-   - Version number
-   - Publish date
-   - Author
-   - Change notes
-   - Option to view or import specific version
+When you paste this into another Project:
 
-<!-- SCREENSHOT: Versions tab showing version history with dates and change notes -->
+- The pasted Asset still references "Customer Format"
+- **If that Format doesn't exist in Project B, the Asset will fail**
 
-### Comparing Versions
+### Managing Dependencies
 
-To see what changed between versions:
+To avoid broken references:
 
-1. In the Versions tab, select two versions
-2. Click **Compare**
-3. View the differences in configuration
+1. **Check dependencies before copying** — Note what other Assets are referenced
+2. **Copy dependencies too** — If needed, copy dependent Assets to the Shelf as well
+3. **Verify in target Project** — Ensure referenced Assets exist before or after pasting
+4. **Update references** — After pasting, you may need to reconnect dependencies
 
-<!-- SCREENSHOT: Version comparison view showing side-by-side diff -->
+<!-- SCREENSHOT: Asset detail showing referenced dependencies -->
 
-### Updating Imported Assets
+## Element Metadata
 
-When a Shelf Element has new versions:
+Each Element displays:
 
-1. A notification appears on imported Assets
-2. Click **Update Available** on the Asset
-3. Review the changes
-4. Choose to **Update** or **Ignore**
+| Field | Description |
+|-------|-------------|
+| **Name** | The Element name (from the original Asset/Message) |
+| **Type** | Asset type or Message format |
+| **Description** | Optional description added when created |
+| **Created** | Date and time the Element was added |
+| **Author** | User who created the Element |
+| **Folder** | Which Folder contains this Element |
 
-<!-- SCREENSHOT: Asset in Project showing "Update Available" badge -->
-
-## Element Details
-
-### Configuration Tab
-
-Shows the complete Asset configuration in read-only view:
-
-- All fields and values
-- Connection references
-- Format definitions
-- Script content (if applicable)
-
-<!-- SCREENSHOT: Configuration tab showing Asset settings -->
-
-### Metadata Tab
-
-Displays Element information:
-
-- Name and description
-- Tags
-- Created by / date
-- Last modified by / date
-- Total imports (how many Projects use this)
-
-<!-- SCREENSHOT: Metadata tab showing Element information -->
-
-### Usage Tab
-
-Shows where this Element is used:
-
-- List of Projects that imported this Element
-- Version each Project is using
-- Last import date
-- Option to notify Project owners of updates
-
-<!-- SCREENSHOT: Usage tab showing Projects that imported this Element -->
-
-### Dependencies Tab
-
-Lists other Shelf Elements this Asset depends on:
-
-- Required connections
-- Referenced formats
-- Dependent services
-- Status of each dependency
-
-<!-- SCREENSHOT: Dependencies tab showing required Shelf Elements -->
+<!-- SCREENSHOT: Element detail panel showing metadata -->
 
 ## Managing Elements
 
-### Editing an Element
-
-Elements are edited by:
-
-1. Importing into a Project
-2. Making changes to the Asset
-3. Re-publishing with updated version notes
-
-There is no direct "edit on Shelf" — the workflow is always Project → Shelf.
-
 ### Moving an Element
 
-To move an Element to a different Folder or Category:
+To move an Element to a different Folder:
 
 1. Open the Element detail view
 2. Click **Move**
-3. Select new Category and/or Folder
+3. Select the destination Folder
 4. Click **Move**
 
-All version history moves with the Element.
+### Renaming an Element
 
-<!-- SCREENSHOT: Move Element dialog with Category/Folder selection -->
+To rename an Element:
+
+1. Open the Element detail view
+2. Click **Rename**
+3. Enter the new name
+4. Confirm
+
+Renaming only affects the Shelf Element, not Assets already pasted into Projects.
 
 ### Deleting an Element
 
 :::caution
-Deleting an Element removes it from the Shelf permanently. Projects that imported it keep their copies, but can no longer check for updates.
+Deleting an Element removes it from the Shelf permanently. Projects that have already copied the Element keep their copies, but the Element is no longer available on the Shelf.
 :::
 
 1. Open the Element detail view
 2. Click **Delete**
 3. Confirm the deletion
-4. Optionally notify Project owners
 
 <!-- SCREENSHOT: Delete Element confirmation dialog -->
 
+## Updating Elements
+
+There is no "update" mechanism for Shelf Elements. To refresh an Element with a new version:
+
+1. Delete the old Element from the Shelf
+2. Copy the updated Asset/Message from your Project
+3. Paste it into the Shelf
+
+Projects that imported the old version keep their copies unchanged.
+
 ## Best Practices
 
-1. **Version everything** — Always add version notes when publishing
-2. **Use semantic versioning** — Help consumers understand impact of updates
-3. **Document dependencies** — Note what other Assets are required
-4. **Test before publishing** — Verify Assets work in a Project first
-5. **Clean up old versions** — Remove obsolete versions to reduce clutter
-6. **Monitor usage** — Check which Elements are heavily used vs. abandoned
+1. **Name clearly** — Use descriptive names that indicate purpose
+2. **Add descriptions** — Help teammates understand what the Element does
+3. **Organize in Folders** — Don't leave Elements at the root; use Folders
+4. **Document dependencies** — Note what other Assets are required
+5. **Clean up periodically** — Remove outdated Elements to reduce clutter
+6. **Test after pasting** — Verify imported Assets work in the target Project
 
 ## See Also
 
-- [**Categories**](./categories) — Top-level organization
+- [**Categories**](./categories) — Top-level organization (Assets and Messages)
 - [**Folders**](./folders) — Secondary organization
 - [**Navigation**](./navigation) — Finding Elements efficiently
 - [**Shelf Overview**](./) — Introduction to the Shelf concept

@@ -1,18 +1,28 @@
 ---
 title: Shelf
 sidebar_position: 4
-description: The Shelf is layline.io's shared asset library — browse, publish, and reuse Assets across Projects.
+description: The Shelf is layline.io's shared asset library — copy Assets and Messages between Projects.
 ---
 
 # Shelf
 
-> The Shelf is a shared library where reusable Assets live. Publish an Asset to the Shelf once, and any Project can import and use it.
+> The Shelf is a shared library where reusable Assets and Messages live. Copy an Asset to the Shelf, then paste it into any Project.
 
 ## What Is the Shelf?
 
-The Shelf provides a central catalog of Assets that can be shared across Projects and teams. Instead of recreating the same Format, Connection, or Service configuration in every Project, you define it once on the Shelf and reference it wherever it's needed.
+The Shelf provides a central place to store copies of Assets and Messages for later reuse within the same Project or across different Projects. Instead of recreating the same configuration, you copy it to the Shelf once and paste it wherever it's needed.
 
 <!-- SCREENSHOT: Shelf main view showing the three-panel layout (Categories sidebar, Folders list, Elements grid) -->
+
+## How It Works
+
+The Shelf works through **copy and paste** using the application's internal clipboard:
+
+1. **Copy to Shelf** — Select an Asset or Message in your Project, copy it, then paste it into a Shelf folder
+2. **Copy from Shelf** — Select an Element in the Shelf, copy it, then paste it into your Project
+3. **Cross-project** — Close one Project, open another, and paste the copied Element
+
+This allows you to temporarily or permanently park specific Asset setups or Messages of interest.
 
 ## Shelf Structure
 
@@ -22,128 +32,134 @@ The Shelf is organized hierarchically:
 Shelf
 ├── Categories
 │   ├── Folders
-│   │   └── Elements (Assets)
+│   │   └── Elements (Assets or Messages)
 ```
 
 ### Categories
 
-**Categories** are top-level groupings that help you organize Assets by team, data domain, or technology. Examples include:
+**Categories** are the top-level groupings. There are two built-in categories:
 
-- **Messages** — Data formats and schemas
-- **Connections** — External system connections (databases, APIs, file systems)
-- **Services** — Reusable service configurations
-- **Team-specific** — Assets owned by particular teams (e.g., "Finance", "Engineering")
+- **Assets** — Reusable Asset configurations (Connections, Services, Formats, etc.)
+- **Messages** — Data format definitions and message schemas
 
-See [Categories](./categories) for details on creating and managing categories.
+See [Categories](./categories) for details.
 
 ### Folders
 
-**Folders** exist within Categories and provide additional organization. You might organize folders by:
+**Folders** exist within Categories and help you organize Elements. You might organize folders by:
 
 - Environment (Production, Staging, Development)
 - Project or application name
-- Asset type sub-groupings
+- Asset type or domain
 
 See [Folders](./folders) for details on folder management.
 
 ### Elements
 
-**Elements** are the individual Assets stored on the Shelf. An Element contains:
+**Elements** are individual Assets or Messages stored on the Shelf. An Element contains the complete configuration of the copied Asset or Message.
 
-- The Asset configuration (all settings and parameters)
-- Version history
-- Metadata (created by, modified date, tags)
-- Usage information (which Projects import this Element)
-
-See [Elements](./elements) for details on publishing, importing, and managing Elements.
+See [Elements](./elements) for details on working with Elements.
 
 ## Key Workflows
 
-### Publishing an Asset
+### Copying an Asset to the Shelf
 
-When you publish an Asset from a Project to the Shelf:
+1. Open the Asset in your Project's Asset Editor
+2. Select the Asset and **copy** it (using the application's copy function)
+3. Navigate to the Shelf
+4. Select or create a Folder
+5. **Paste** the Asset into the Folder
 
-1. Select the Asset in your Project
-2. Choose **Publish to Shelf** from the actions menu
-3. Select or create a Category and Folder
-4. Provide a name and optional description
-5. The Asset becomes available for import in other Projects
+The Asset is now stored on the Shelf and available for reuse.
 
-<!-- SCREENSHOT: Publish to Shelf dialog showing Category/Folder selection and metadata fields -->
+<!-- SCREENSHOT: Copy/paste workflow showing Asset Editor and Shelf -->
 
-### Importing an Element
+### Using a Shelf Asset in a Project
 
-When you import a Shelf Element into a Project:
+1. Navigate to the Shelf and find the Asset you need
+2. **Copy** the Asset from the Shelf
+3. Open your Project and go to the Asset Editor
+4. **Paste** the Asset into the Asset tree
 
-1. Browse or search the Shelf for the desired Element
-2. Click **Import** on the Element
-3. Choose the target Project
-4. The Element is copied to your Project as a local Asset
-5. You can customize the imported Asset independently
+The Asset is now available in your Project as a local copy.
 
-<!-- SCREENSHOT: Import Element dialog showing Element details and Project selection -->
+<!-- SCREENSHOT: Shelf Element selected with copy action -->
 
-### Versioning
+### Using a Shelf Message
 
-Shelf Elements support versioning:
+Messages work similarly but can be pasted wherever message pasting is supported:
 
-- Each publish creates a new version
-- Projects can reference specific versions
-- Version history shows what changed between versions
-- You can revert to previous versions if needed
+1. Copy a Message from the Shelf
+2. Navigate to where you want to use it (e.g., Engine State → Service Asset Functions)
+3. Paste the Message into the appropriate field
 
-<!-- SCREENSHOT: Element version history panel showing version numbers and change notes -->
+<!-- SCREENSHOT: Message pasted into Engine State function parameters -->
+
+## Important: Dependencies
+
+**Assets may depend on other Assets.** When you copy an Asset to the Shelf, only that specific Asset is copied — **not its dependencies**.
+
+For example, if you copy an Input Stream Processor that references a Format:
+
+- Only the Input Stream Processor is stored on the Shelf
+- The Format it references is **not** automatically included
+
+When you paste this Asset into another Project:
+
+- The pasted Asset will still reference the original Format
+- **If that Format doesn't exist in the target Project, the Asset will fail**
+
+### Best Practice
+
+Before copying an Asset to the Shelf, check its dependencies. If you're moving it to a different Project, ensure those dependencies exist there or copy them to the Shelf as well.
 
 ## When to Use the Shelf
 
 **Use the Shelf when:**
 
-- Multiple Projects need the same Asset configuration
-- You want to standardize connections to external systems
-- Teams need to share approved data formats
-- You want to maintain a single source of truth for complex configurations
+- You want to reuse an Asset configuration in another Project
+- You need to temporarily park a specific Asset setup for later investigation
+- You want to save a Message for testing or debugging purposes
+- You need to standardize configurations across Projects
 
 **Don't use the Shelf when:**
 
 - An Asset is truly Project-specific with no reuse potential
-- You need tight control over changes (use Project-local Assets instead)
+- The Asset has complex dependencies that won't exist in target Projects
 
 ## Navigating the Shelf
 
-The Shelf interface provides multiple ways to find Assets:
+The Shelf interface provides multiple ways to find content:
 
 - **Browse** — Navigate the Category → Folder → Element hierarchy
-- **Search** — Find Elements by name, type, or tag
-- **Filter** — Narrow results by Asset type, owner, or date
-- **Recent** — Quickly access recently viewed or imported Elements
+- **Search** — Find Elements by name
+- **Recent** — Quickly access recently viewed Elements
 
-See [Navigation](./navigation) for detailed guidance on finding and using Shelf content.
+See [Navigation](./navigation) for detailed guidance.
 
 ## Permissions
 
-Access to Shelf operations is controlled by roles:
-
-| Action | Required Role |
-|--------|---------------|
+| Action | Requirements |
+|--------|--------------|
 | View Shelf | Any authenticated user |
-| Import Elements | Project Editor or higher |
-| Publish to Shelf | Shelf Publisher or Admin |
-| Manage Categories | Shelf Admin |
+| Copy from Shelf | Any authenticated user |
+| Paste to Shelf | Project Editor or higher |
+| Manage Folders | Shelf Admin |
 | Delete Elements | Shelf Admin |
 
 ## Best Practices
 
-1. **Organize by function, not by team** — Categories should reflect what Assets do, not who owns them
+1. **Organize by function** — Use clear Category and Folder names that reflect what the Elements do
 2. **Use descriptive names** — Element names should clearly indicate purpose
-3. **Document with descriptions** — Always add descriptions when publishing
-4. **Version thoughtfully** — Use semantic versioning or clear change notes
-5. **Review before importing** — Check the version and last modified date
+3. **Document with descriptions** — Add descriptions to folders and elements when possible
+4. **Check dependencies** — Before copying an Asset, verify its dependencies exist in target Projects
+5. **Clean up periodically** — Remove outdated Elements to keep the Shelf manageable
 
 ## See Also
 
 - [**Categories**](./categories) — Organizing Assets into Categories
 - [**Folders**](./folders) — Creating and managing Folders
-- [**Elements**](./elements) — Publishing, importing, and versioning
+- [**Elements**](./elements) — Working with Shelf Elements
 - [**Navigation**](./navigation) — Finding and using Shelf content
-- [**Project**](../project) — Where imported Assets are used
+- [**Project**](../project) — Where Assets are used
 - [**Assets Overview**](../assets) — Reference documentation for all Asset types
