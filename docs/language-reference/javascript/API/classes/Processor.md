@@ -51,7 +51,7 @@ Processor name
 > **expandString**(`toExpand`): `string`
 
 Expands all macros contained in a string.
-For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](../../../../../../assets/workflow-assets/resources/asset-resource-environment.md) you can do so like this:
+For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](../../../../assets/workflow-assets/resources/asset-resource-environment.md) you can do so like this:
 
 #### Parameters
 
