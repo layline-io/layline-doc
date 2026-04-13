@@ -2,7 +2,7 @@ import TimerResponse from "../interfaces/TimerResponse";
 import DateTime from "../classes/DateTime";
 
 /**
- * The [TimerService Asset](../../../../../../assets/workflow-assets/services/asset-service-timer.md) facilitates a way to schedule and execute tasks at specified intervals and with given payloads.
+ * The [TimerService Asset](../../../../assets/workflow-assets/services/asset-service-timer.md) facilitates a way to schedule and execute tasks at specified intervals and with given payloads.
  * It is configured via the Configuration Center. To create and manage scheduled tasks, it provides a number of functions which are described in this class.
  *
  * The way layline.io exposes this class is by providing an object `services` within a Javascript Asset.
