@@ -372,7 +372,7 @@ In the next step these counters need an appropriate mapping to ensure they are e
 
 #### 2. Map user specific Metrics in layline.io Prometheus Extension 
 
-Mapping user specific Counter is done in the same way as described in [Adding mapping of available metrics](#adding-mapping-of-available-metrics).
+Mapping user specific Counter is done in the same way as described in [Adding mapping of available metrics](#2-adding-mapping-of-available-metrics).
 
 ![Add user specific Metric Mapping](./.prometheus-extension_images/Screenshot19-04-2024AddCustomMetricMapping.png "Add user specific Metric Mapping")
 
