@@ -50,7 +50,7 @@ The table columns include:
 | **Digest** | Short digest label for the deployment. A `DUP` badge appears if the deployment is identical to a previous one |
 | **Created** | Timestamp when the deployment was created (toggleable via **Show time**) |
 | **Name** | The deployment tag name. Select a row to view its details in the panel below |
-| **Graph** | SVG visualization showing how this deployment relates to others in the hierarchy |
+| **Graph** | Visualization showing how this deployment relates to others in the hierarchy |
 
 At the top of the table, you can switch the view mode:
 
@@ -164,7 +164,7 @@ New deployments are not created directly in Deployment Storage. They are generat
 - Scheduler Setting
 - Tag Setting
 
-The generated file is in **JSON format** (not `.llproj`).
+The generated file is in **JSON format**.
 
 To upload it to the cluster:
 
