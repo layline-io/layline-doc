@@ -153,4 +153,4 @@ The Log tab displays real-time logs from the deployment-storage component. This 
 
 - [**Cluster Login**](../cluster-login) — Connect to a cluster to access Deployment Storage
 - [**Engine Deployment**](../../assets/deployment-assets/asset-deployment-engine.md) — Asset for configuring deployment settings
-- [**Engine State**](../../engine-state/engine-state) — Monitor running engines and their deployments
+- [**Engine State**](../engine-state) — Monitor running engines and their deployments
