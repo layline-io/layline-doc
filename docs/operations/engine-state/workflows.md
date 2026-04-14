@@ -1,11 +1,13 @@
 ---
-title: Audit Trail
-description: Browse workflow instances, streams, and sniffer sessions in the Audit Trail.
+title: Workflows
+id: workflows
+description: Observe and inspect cluster based processing Workflows from within the Configuration Center.
 ---
 
-# Audit Trail
-
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
+
+
+# Workflow Operations
 
 :::tip Oops! We are still working on the documentation.
 In the meantime, please don't hesitate to contact us at support@layline.io .
@@ -14,3 +16,5 @@ In the meantime, please don't hesitate to contact us at support@layline.io .
 ---
 
 <WipDisclaimer></WipDisclaimer>
+
+
