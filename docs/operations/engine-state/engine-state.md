@@ -63,12 +63,12 @@ The right panel shows the detailed state of the selected asset on the selected n
 
 | Asset Type | Detail View Shows |
 |------------|-------------------|
-| **Workflow** | Instance state, processor list, throughput metrics, error counts |
+| **Workflow** | Instance state, processor list, throughput metrics, instance counts |
 | **Processor** | Individual processor state, configuration, metrics |
-| **Service** | Service-specific state (connection pools, subscriptions, etc.) |
+| **Service** | Service-specific state (service calls and failures, etc.) |
 | **Source/Sink** | Connection status, read/write positions, error logs |
 | **Connection** | Connection health, pool status |
-| **Format** | Parser state, cache info |
+| **Format** | Format specific runtime information |
 | **Resource** | Resource configuration and state |
 | **Extension** | Extension-specific runtime info |
 
