@@ -41,7 +41,7 @@ When listing objects from the source for processing, you can define the order in
 
 #### Reprocessing mode
 
-The `Reprocessing mode` setting controls how layline.io's [Access Coordinator](../../../operations/cluster/cluster#access-coordinator) handles previously processed sources that are re-ingested.
+The `Reprocessing mode` setting controls how layline.io's [Access Coordinator](../../operations/cluster/access-coordinator.md) handles previously processed sources that are re-ingested.
 
 ![Reprocessing mode options](./._asset-source-polling-and-processing_images/1714998468162.png)
 

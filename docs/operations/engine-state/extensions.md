@@ -5,7 +5,6 @@ description: Observe and inspect cluster based processing Extensions from within
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'
 
-
 # Extensions Operations
 
 :::tip Oops! We are still working on the documentation.
