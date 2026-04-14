@@ -18,11 +18,39 @@ Use Engine State to:
 - Monitor startup and shutdown progress
 - Check resource utilization across cluster nodes
 
+## Engine Summary
+
+At the top of the Engine State tab, the **Engine Summary** toolbar gives you an at-a-glance health check of every asset category across the cluster.
+
+![Engine Summary toolbar showing status of all asset categories](.engine-state_images/engine-summary-toolbar.png)
+
+Each button represents one asset type and shows a quick visual status:
+
+- **Green checkmark** — Everything in that category is healthy
+- **Red exclamation mark** — One or more assets in that category have errors
+
+The summary covers:
+
+| Button | Meaning |
+|--------|---------|
+| **Workflows** | Overall health of all running workflows |
+| **Services** | Health of all services (Timer, HTTP, JDBC, etc.) |
+| **Sources** | Status of all input sources |
+| **Sinks** | Status of all output sinks |
+| **Connections** | Health of all connection assets |
+| **Formats** | State of format parsers and serializers |
+| **Resources** | Availability of resources (Data Dictionaries, Directories, etc.) |
+| **Extensions** | Health of loaded extensions (Prometheus, AWS, etc.) |
+
+Use the Engine Summary as your first stop when checking cluster health. If everything is green, you know the cluster is running smoothly. If you see red, click the category button or look at the asset list in the left panel to dig deeper and find the specific asset that needs attention.
+
+You can also filter the left panel using the icons below the summary buttons — show only healthy assets, only assets with warnings or errors, or access settings.
+
 ## Layout
 
 The Engine State interface is divided into three panels:
 
-<!-- SCREENSHOT: Engine State tab showing all three panels — left category list, middle cluster nodes, right detail view -->
+![Engine State tab overview showing workflows list and detail panels](.engine-state_images/engine-state-overview.png)
 
 ### Left Panel: Asset Categories
 
@@ -53,7 +81,7 @@ When you select an asset from the left panel, the middle panel displays all clus
 - **Workflows**: Shows nodes with workflow instances, plus a list of processors within each instance
 - **Other assets**: Shows nodes running that specific asset with health indicators
 
-<!-- SCREENSHOT: Middle panel showing cluster nodes for a selected workflow -->
+![Middle panel showing cluster nodes and processor states for a selected workflow](.engine-state_images/cluster-nodes-processors.png)
 
 Click a node (or processor for workflows) to view detailed state in the right panel.
 
@@ -72,7 +100,7 @@ The right panel shows the detailed state of the selected asset on the selected n
 | **Resource** | Resource configuration and state |
 | **Extension** | Extension-specific runtime info |
 
-<!-- SCREENSHOT: Right panel showing detailed workflow state with metrics -->
+![Right panel showing detailed workflow state with metrics and alarm settings](.engine-state_images/workflow-detail.png)
 
 ## Asset Status Indicators
 
@@ -119,8 +147,6 @@ Each asset in the list displays an icon indicating its current state:
 ## Toolbar Controls
 
 The toolbar above the left panel provides filtering options:
-
-<!-- SCREENSHOT: Engine State toolbar with filter controls -->
 
 **Filter by name**: Type to filter the asset list to matching names
 
