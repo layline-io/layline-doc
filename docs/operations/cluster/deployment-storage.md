@@ -36,18 +36,35 @@ The Deployment Configuration section contains two sub-tabs for managing deployme
 
 #### Deployments Tab
 
-The Deployments tab displays a tree view of all deployments stored in the cluster. Each deployment consists of:
+The Deployments tab shows all deployments that are available on the cluster in a table. The rightmost column of the table displays a graph that visualizes the dependency relationships between deployments hierarchically.
 
-- **Deployment Tag**: A named version of a deployment (e.g., "production-v1.2")
-- **Workflows**: The workflows contained within that deployment
-- **Resources**: Associated environment assets and secret assets
+The table columns include:
 
-From this view you can:
-- Browse the deployment tree to see available deployments and their contents
-- Upload new deployments from file
-- Select a specific deployment to view its details
+| Column | Description |
+|--------|-------------|
+| **Action** | Indicates whether a deployment is the cluster default, or a button to make the selected deployment the default |
+| **Digest** | Short digest label for the deployment. A `DUP` badge appears if the deployment is identical to a previous one |
+| **Created** | Timestamp when the deployment was created (toggleable via **Show time**) |
+| **Name** | The deployment tag name. Select a row to view its details in the panel below |
+| **Graph** | SVG visualization showing how this deployment relates to others in the hierarchy |
 
-<!-- SCREENSHOT: Deployment Storage > Deployments tab showing the deployment tree with expanded nodes -->
+At the top of the table, you can switch the view mode:
+
+- **View by time** — Displays deployments in chronological order, with ascending/descending sort options
+- **View by digest** — Groups deployments by their digest to identify identical or related deployments
+
+When you select a deployment from the table, the bottom panel shows its details:
+
+- **Tag** — The selected deployment's name
+- **Other tags for this digest** — Any alternate tags pointing to the same deployment content
+- **Digest** — The full deployment digest
+- **Description** — Deployment description (if provided)
+- **Created at / Created by** — Timestamp and user who created the deployment
+- **Assignment Details** — Whether this is the default deployment and which nodes it is explicitly assigned to
+
+The bottom panel also provides the **Upload Deployments** button for adding new deployments to the cluster.
+
+<!-- SCREENSHOT: Deployment Storage > Deployments tab showing the deployment table with the dependency graph column -->
 
 #### Assignments Tab
 
@@ -73,23 +90,23 @@ The assignments are calculated using the following precedence (highest to lowest
 
 ##### Assignment Rules
 
-The lower section lets you define the rules used to calculate assignments:
+Below the **Current Node Assignments** table, an arrow indicates that the calculated assignments above are a result of the rules configured below. The **Rules to override default Deployment Tags for Nodes** section contains three configuration areas:
 
 **Direct Node Assignments**
 
-Assign specific deployments to individual nodes. These take highest precedence.
+Assign specific deployments to individual nodes. These take highest precedence and override both role and default assignments.
 
 <!-- SCREENSHOT: Assignments tab > Node Assignments section showing the node assignment table -->
 
 **Role Assignments**
 
-Assign deployments to roles. Any node with that role will receive the assigned deployment (unless overridden by a direct node assignment).
+Assign deployments to node roles. Any node with that role will receive the assigned deployment unless a direct node assignment overrides it.
 
 <!-- SCREENSHOT: Assignments tab > Role Assignments section showing the role assignment table -->
 
 **Default Assignment**
 
-Set a fallback deployment tag that applies to all nodes not matched by node or role assignments.
+Set the fallback deployment tag that applies to all nodes not matched by either a direct node assignment or a role assignment.
 
 <!-- SCREENSHOT: Assignments tab > Default Assignment section showing the default tag selector -->
 
@@ -105,9 +122,9 @@ The Log tab displays real-time logs from the deployment-storage component. This 
 
 ### Uploading a New Deployment
 
-1. In the **Deployments** tab, click the upload button
+1. In the **Deployments** tab, click the **Upload Deployments** button in the bottom panel
 2. Select or drag-and-drop a deployment file (`.llproj` file)
-3. The deployment will be uploaded and added to the deployment tree
+3. The deployment will be uploaded and added to the deployment table
 4. Once uploaded, the deployment can be assigned to nodes
 
 <!-- SCREENSHOT: Modal dialog for uploading a deployment file -->
@@ -134,6 +151,6 @@ The Log tab displays real-time logs from the deployment-storage component. This 
 
 ## See Also
 
-- [**Cluster Login**](/docs/operations/cluster/cluster-login) — Connect to a cluster to access Deployment Storage
-- [**Engine Deployment**](/docs/assets/deployment-assets/asset-deployment-engine) — Asset for configuring deployment settings
-- [**Engine State**](/docs/operations/engine-state) — Monitor running engines and their deployments
+- [**Cluster Login**](../cluster-login) — Connect to a cluster to access Deployment Storage
+- [**Engine Deployment**](../../assets/deployment-assets/asset-deployment-engine.md) — Asset for configuring deployment settings
+- [**Engine State**](../../engine-state/engine-state) — Monitor running engines and their deployments
