@@ -19,6 +19,8 @@ The Deployment Storage interface is divided into two main tabs:
 
 The main tab displays controller information at the top and deployment configuration below.
 
+![Controller information panel](.deployment-storage_images/controller-info.png)
+
 ### Controller Information
 
 The Controller panel displays the current state of the Deployment Storage component:
@@ -38,11 +40,13 @@ The Deployment Configuration section contains two sub-tabs for managing deployme
 
 The Deployments tab shows all deployments that are available on the cluster in a table. The rightmost column of the table displays a graph that visualizes the dependency relationships between deployments hierarchically.
 
+![Deployments tab](.deployment-storage_images/deployments-tab.png)
+
 The table columns include:
 
 | Column | Description |
 |--------|-------------|
-| **Action** | Indicates whether a deployment is the cluster default, or a button to make the selected deployment the default |
+| **Action** | Indicates whether a deployment is the cluster default (`DEFAULT` badge), or a **Make default** button for the selected row |
 | **Digest** | Short digest label for the deployment. A `DUP` badge appears if the deployment is identical to a previous one |
 | **Created** | Timestamp when the deployment was created (toggleable via **Show time**) |
 | **Name** | The deployment tag name. Select a row to view its details in the panel below |
@@ -52,6 +56,18 @@ At the top of the table, you can switch the view mode:
 
 - **View by time** — Displays deployments in chronological order, with ascending/descending sort options
 - **View by digest** — Groups deployments by their digest to identify identical or related deployments
+
+##### Making a Deployment Active
+
+The primary action in the Deployments tab is to make a specific deployment the **default** for the cluster. Clicking **Make default** on a selected row immediately activates that deployment across all nodes that do not have a more specific node or role assignment.
+
+There is always one special tag called **`DeploymentRoot`**. This is the *zero deployment* — it contains no workflows and means that no deployment runs on the cluster. Making `DeploymentRoot` the default effectively shuts down all processing. `DeploymentRoot` is always present and cannot be deleted.
+
+##### Deleting Deployments
+
+Deployments that can be removed display a delete (trash) icon next to their name. Click the icon to remove the tag from the cluster. Note that you cannot delete the currently active default deployment, nor can you delete `DeploymentRoot`.
+
+##### Deployment Details Panel
 
 When you select a deployment from the table, the bottom panel shows its details:
 
@@ -64,11 +80,15 @@ When you select a deployment from the table, the bottom panel shows its details:
 
 The bottom panel also provides the **Upload Deployments** button for adding new deployments to the cluster.
 
-<!-- SCREENSHOT: Deployment Storage > Deployments tab showing the deployment table with the dependency graph column -->
-
 #### Assignments Tab
 
 The Assignments tab shows how deployments are assigned to Reactive Engine nodes and lets you configure assignment rules.
+
+![Assignments tab](.deployment-storage_images/assignments-tab.png)
+
+:::important One deployment per engine
+A single Reactive Engine node can only run **one deployment at a time**. It is not possible for an engine to execute two or more deployments simultaneously.
+:::
 
 ##### Current Node Assignments
 
@@ -78,9 +98,9 @@ The top section displays a table showing the calculated deployment tag for each 
 |--------|-------------|
 | **Status** | Whether the node is active (green) or inactive (red) |
 | **Node** | The cluster node address |
-| **Node Roles** | Roles assigned to this node (e.g., "worker", "primary") |
+| **Node Roles** | Roles assigned to this node (e.g., "dc-default") |
 | **Calculated Deployment Tag** | The deployment tag currently assigned to this node |
-| **Tag assigned through** | Which rule determined this assignment (Node Assignment, Role, or Default) |
+| **Tag assigned through** | Which rule determined this assignment (`Node Assignment`, `Role`, or `default`) |
 
 The assignments are calculated using the following precedence (highest to lowest):
 
@@ -96,19 +116,21 @@ Below the **Current Node Assignments** table, an arrow indicates that the calcul
 
 Assign specific deployments to individual nodes. These take highest precedence and override both role and default assignments.
 
-<!-- SCREENSHOT: Assignments tab > Node Assignments section showing the node assignment table -->
+![Add node assignment dialog](.deployment-storage_images/add-node-assignment.png)
+
+Click **Add Node Assignment** to open a dialog where you select the node address and the deployment tag to assign.
 
 **Role Assignments**
 
 Assign deployments to node roles. Any node with that role will receive the assigned deployment unless a direct node assignment overrides it.
 
-<!-- SCREENSHOT: Assignments tab > Role Assignments section showing the role assignment table -->
+![Add role assignment dialog](.deployment-storage_images/add-role-assignment.png)
+
+Click **Add Role Assignment** to open a dialog where you select the role and the deployment tag to assign.
 
 **Default Assignment**
 
 Set the fallback deployment tag that applies to all nodes not matched by either a direct node assignment or a role assignment.
-
-<!-- SCREENSHOT: Assignments tab > Default Assignment section showing the default tag selector -->
 
 ## Log Tab
 
@@ -118,32 +140,54 @@ The Log tab displays real-time logs from the deployment-storage component. This 
 - Monitoring deployment activation and deactivation
 - Debugging assignment-related problems
 
+![Log tab](.deployment-storage_images/log-tab.png)
+
 ## Common Tasks
+
+### Setting the Default Deployment
+
+The most common task is to make a deployment the cluster default so that all engines run it.
+
+1. Go to the **Deployments** tab
+2. Select the deployment you want to activate
+3. Click **Make default**
+4. The deployment becomes active immediately on all nodes without a more specific assignment
+
+For simpler setups (single-node or single-deployment clusters), using the default assignment is usually sufficient. Direct node assignments and role assignments are intended for more sophisticated multi-node clusters that need to run multiple deployments in parallel.
 
 ### Uploading a New Deployment
 
-1. In the **Deployments** tab, click the **Upload Deployments** button in the bottom panel
-2. Select or drag-and-drop a deployment file (`.llproj` file)
-3. The deployment will be uploaded and added to the deployment table
-4. Once uploaded, the deployment can be assigned to nodes
+New deployments are not created directly in Deployment Storage. They are generated in the **Project &rarr; Deployments** tab by using the **Write to file** feature on one of the deployment assets:
 
-<!-- SCREENSHOT: Modal dialog for uploading a deployment file -->
+- Deployment Composition
+- Engine Configuration
+- Scheduler Setting
+- Tag Setting
+
+The generated file is in **JSON format** (not `.llproj`).
+
+To upload it to the cluster:
+
+1. In the **Deployments** tab, click the **Upload Deployments** button in the bottom panel
+2. Select or drag-and-drop the JSON deployment file
+3. The deployment will be uploaded and added to the deployment table
+4. Once uploaded, the deployment can be made the default or assigned to specific nodes
 
 ### Assigning a Deployment to a Node
 
 1. Go to the **Assignments** tab
-2. In the **Node Assignments** section, click "Add Node Assignment"
+2. In the **Node Assignments** section, click **Add Node Assignment**
 3. Select the node and the deployment tag to assign
 4. The assignment takes effect immediately
 
 ### Assigning a Deployment via Role
 
 1. Go to the **Assignments** tab
-2. In the **Role Assignments** section, click "Add Role Assignment"
+2. In the **Role Assignments** section, click **Add Role Assignment**
 3. Select the role and the deployment tag
 4. All nodes with that role will receive this deployment (unless they have a direct node assignment)
 
-### Setting the Default Deployment
+### Setting the Fallback Deployment
 
 1. Go to the **Assignments** tab
 2. In the **Default Assignment** section, select the deployment tag to use as fallback
