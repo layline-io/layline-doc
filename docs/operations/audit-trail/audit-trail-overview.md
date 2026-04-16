@@ -65,6 +65,8 @@ The Workflow Instances tab shows every execution instance of your deployed workf
 
 The master pane displays workflow instances in a table with the following columns:
 
+![Workflow instances table showing state, workflow name, node/instance, restarts, messages, and stream columns](./assets/workflow-instances-table.png)
+
 | Column | Description |
 |--------|-------------|
 | **State** | Visual indicator showing the instance severity state and workflow type icon |
@@ -99,6 +101,8 @@ Rows with changing values are highlighted with a pulse animation. Message deltas
 
 Click any workflow instance to open the detail pane, which shows:
 
+![Workflow instance detail pane showing state, actions, live log, and workflow diagram](./assets/workflow-instance-detail.png)
+
 **Header fields**
 - **State** — Current state as a color-coded badge
 - **Workflow** — Workflow name
@@ -128,6 +132,8 @@ The Streams tab monitors the lifecycle of data streams moving through your workf
 
 The master pane displays active and historical streams:
 
+![Streams table showing state, workflow, name, messages, start, and end columns](./assets/streams-table.png)
+
 | Column | Description |
 |--------|-------------|
 | **State** | Stream state icon and type icon |
@@ -153,6 +159,23 @@ The master pane displays active and historical streams:
 
 A progress indicator shows whether the view is in Live View or searching archives.
 
+### Live View vs. Archive View
+
+The Streams tab offers two distinct viewing modes for inspecting stream data:
+
+**Live View**
+When Live View is active, the table continuously updates with the most recent streams as they are created and closed in real time. This is the default mode when you first open the Streams tab. Use Live View when you want to monitor active data flows and react to changes as they happen.
+
+**Archive View (Non-Live View)**
+When you navigate away from page 1 using the pagination controls, the view switches to archive mode and displays a static snapshot of historical streams. In this mode, the table does not auto-update, allowing you to inspect a fixed set of past streams without the display shifting underneath you. Use archive view when investigating a specific time window or comparing stream behavior across historical pages.
+
+### History Size
+
+The **History size** setting controls how many stream log entries are retained and displayed per page. Once the configured limit is reached, older entries are discarded from the view as new streams arrive (in Live View), or the display is truncated to the most recent *N* entries (in archive view). Adjusting the history size lets you balance between visibility breadth and interface responsiveness:
+
+- A **smaller history size** keeps the view focused and reduces memory usage
+- A **larger history size** provides more context but may take longer to refresh
+
 ### Stream Lifecycle
 
 Streams move through well-defined states:
@@ -169,6 +192,8 @@ A closed stream has an `End` timestamp set.
 ### Stream Details
 
 Click a stream to view its details in the detail pane:
+
+![Stream detail pane showing log entries, workflow diagram, and message inspection](./assets/stream-detail.png)
 
 **Header fields**
 - **Stream name** — Name of the selected stream
@@ -250,6 +275,9 @@ The Sniffer Message View is split horizontally:
 #### Message Table Filters
 
 The toolbar above the message table provides:
+
+![Sniffer session message filters showing Id, Type, Workflow instance, Stream, and Location filter dropdowns](./assets/sniffer-filters.png)
+
 - **Id filter** — Filter by message ID
 - **Type filter** — Quick text filter plus a dropdown menu to include/exclude specific message types
 - **Workflow instance filter** — Quick text filter plus a dropdown menu to include/exclude specific workflow instances
@@ -272,6 +300,8 @@ The message table displays captured messages with the following columns:
 | **Location** | Processing location within the workflow |
 
 Click the **expand** button on any row to reveal the full message content in a tree view. Click the row itself to select the message and highlight its location in the workflow diagram viewer (when enabled).
+
+![Sniffer session message detail showing expanded message tree with BILL_OUT record fields](./assets/sniffer-message-detail.png)
 
 #### Pagination
 
