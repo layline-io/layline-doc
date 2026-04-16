@@ -68,12 +68,12 @@ The master pane displays workflow instances in a table with the following column
 | Column | Description |
 |--------|-------------|
 | **State** | Visual indicator showing the instance state (running, completed, failed, etc.) and type icon |
-| **ID** | Unique identifier for this workflow instance |
-| **Start** | When the instance began executing |
-| **Stop** | When the instance finished (blank if still running) |
-| **Messages** | Total number of messages processed by this instance |
+| **Workflow** | Workflow Name |
+| **Node / Instance** | URL of node for this Workflow and instance number of Workflow |
 | **Restarts** | Number of times this instance has been restarted |
 | **State Description** | Additional state information or error details |
+| **Messages** | Total number of messages processed by this instance |
+| **Stream** | Stream Name of processed data, if applicable |
 
 ### Grouping by Workflow
 
