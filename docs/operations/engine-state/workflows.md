@@ -1,6 +1,6 @@
 ---
-title: Workflow
-id: workflow-operations
+title: Workflows
+id: workflows
 description: Observe and inspect cluster based processing Workflows from within the Configuration Center.
 ---
 
