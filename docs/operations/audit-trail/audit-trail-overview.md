@@ -52,8 +52,8 @@ Each tab uses a split-pane layout with two areas:
 - **Detail pane (right or bottom)** — Shows detailed information for the selected item
 
 **Split Orientation Toggle** — Use the toolbar button to switch between:
-- **Horizontal split** — Master on top, detail below (good for wide tables)
-- **Vertical split** — Master on left, detail on right (default, good for browsing)
+- **Horizontal split** — Master on top, detail below
+- **Vertical split** — Master on left, detail on right (default)
 
 Your split position preference is saved per session.
 
@@ -67,88 +67,91 @@ The master pane displays workflow instances in a table with the following column
 
 | Column | Description |
 |--------|-------------|
-| **State** | Visual indicator showing the instance state (running, completed, failed, etc.) and type icon |
-| **ID** | Unique identifier for this workflow instance |
-| **Start** | When the instance began executing |
-| **Stop** | When the instance finished (blank if still running) |
-| **Messages** | Total number of messages processed by this instance |
+| **State** | Visual indicator showing the instance severity state and workflow type icon |
+| **Workflow** | Name of the workflow this instance belongs to |
+| **Node / Instance** | Cluster node address and instance identifier |
 | **Restarts** | Number of times this instance has been restarted |
-| **State Description** | Additional state information or error details |
+| **State** | Current state description text |
+| **Msgs.** | Total number of messages processed by this instance |
+| **Stream** | Name of the current stream associated with this instance |
 
-### Grouping by Workflow
+### Toolbar Controls
 
-Toggle the **Group by Workflow** button to organize instances by their parent workflow:
+The toolbar above the workflow instance table provides:
 
-- When enabled, instances are grouped under expandable workflow headers
-- Each group shows aggregate statistics: total instances, total messages, and combined state
-- Groups use color-coded state indicators based on the most severe state in the group
-- Expand or collapse all groups using the **Expand** / **Collapse** buttons
+**Instance filter** — Select a predefined or custom filter from the dropdown to narrow the list.
 
-Grouping is useful when you have many instances across multiple workflows and want to see the big picture.
+**Quick filter** — Free-text filter with two toggle buttons:
+- **Negate** — Invert the filter result
+- **Regex** — Treat the filter text as a regular expression
 
-### Filtering
+**Group** — Toggle grouping by workflow. When enabled, instances are grouped under expandable workflow headers showing aggregate statistics (number of instances, restarts, state description, and total messages). Use the **Expand** and **Collapse** buttons to open or close all groups.
 
-Click the **Filter** button to open the filter editor. You can filter workflow instances by:
+**State severity buttons** — Toggle visibility of instances by severity state:
+- **OK** (green)
+- **Warning** (yellow)
+- **Error** (red)
+- **Fatal** (dark red)
 
-- **Workflow** — Show only instances of specific workflows
-- **State** — Filter by instance state (Running, Completed, Failed, etc.)
-- **Time range** — Show instances that started within a specific window
-- **Message count** — Filter by volume of processed messages
-
-Filters are applied immediately and persist for the session.
+Rows with changing values are highlighted with a pulse animation. Message deltas show a tooltip with the change rate per second.
 
 ### Instance Details
 
 Click any workflow instance to open the detail pane, which shows:
 
-**Summary Section**
-- Workflow name and version
-- Instance ID and correlation ID (if set)
-- Start time and duration (or current runtime if active)
-- Current state with detailed description
+**Header fields**
+- **State** — Current state as a color-coded badge
+- **Workflow** — Workflow name
+- **Node** — Cluster node running the instance
+- **Instance** — Instance identifier
+- **Restarts** — Restart count. When the instance is in `RESTART_BACKOFF` state, also shows the countdown to the next restart attempt
+- **Messages** — Total messages processed
+- **Started at** — Start timestamp
+- **Current Stream** — Associated stream name (or "N/A")
+- **Initialization problems** — Any failures encountered during startup
 
-**Statistics Section**
-- Messages processed (total, per second)
-- Restart count and history
-- Peak memory usage
-- Thread allocation
+**Actions**
+- **Shutdown** — Gracefully stop the current stream and terminate the workflow instance afterwards
+- **Abort** — Abort the current stream and terminate the workflow instance afterwards
+- **Terminate** — Terminate the current stream and the workflow instance afterwards
+- **Show Diagram for Workflow Instance** — Toggle a workflow diagram viewer in the lower detail pane
 
-**Stream Associations**
-- Input streams feeding this instance
-- Output streams produced by this instance
-- Quick links to view stream details
-
-**Error Information** (when applicable)
-- Stack traces for failed instances
-- Error messages and error codes
-- Suggested remediation steps
-
-### Actions
-
-Right-click a workflow instance or use toolbar buttons to:
-
-- **Terminate** — Gracefully stop a running instance
-- **Abort** — Forcefully terminate an instance
-- **Restart** — Stop and restart the instance with the same configuration
-- **View in Engine State** — Switch to the Engine State view for this workflow
+The lower portion of the detail pane is split horizontally:
+- **Top** — Live log output from the workflow instance
+- **Bottom** — Workflow diagram viewer (when enabled)
 
 ## Streams Tab
 
-The Streams tab monitors the lifecycle of data streams moving through your workflows. While Workflow Instances show you the execution context, Streams show you the data itself.
+The Streams tab monitors the lifecycle of data streams moving through your workflows.
 
 ### Stream List
 
-The master pane displays active and recently completed streams:
+The master pane displays active and historical streams:
 
 | Column | Description |
 |--------|-------------|
-| **State** | Stream state (Open, Closing, Closed) with type indicator |
+| **State** | Stream state icon and type icon |
 | **Workflow** | The workflow this stream belongs to |
-| **Stream** | Stream name and identifier |
-| **Messages** | Total messages in this stream |
+| **Name** | Stream name |
+| **Msgs.** | Total messages in this stream |
 | **Start** | When the stream opened |
-| **End** | When the stream closed (blank if open) |
-| **Duration** | How long the stream was/has been open |
+| **End** | When the stream closed (blank if still open) |
+
+### Toolbar Controls
+
+**Stream filter** — Select a predefined or custom filter from the dropdown.
+
+**Stream quick filter** — Free-text filter with negate and regex toggles.
+
+**Log filter** — Appears when viewing archive pages (page > 1). Filters log output with negate and regex toggles.
+
+**Group** — Toggle grouping by workflow, with expand/collapse controls.
+
+**Live View / Pagination** — Streams start in Live View (page 1). Use the pagination controls to browse historical archive pages. Navigation buttons include first page, previous page, next page, and last page.
+
+**History size** — Select how many archived streams to load per page (configurable via dropdown).
+
+A progress indicator shows whether the view is in Live View or searching archives.
 
 ### Stream Lifecycle
 
@@ -156,66 +159,34 @@ Streams move through well-defined states:
 
 | State | Description |
 |-------|-------------|
-| **Open** | Stream is actively receiving and/or emitting messages |
-| **Closing** | Stream has been marked for closure but hasn't fully terminated |
-| **Closed** | Stream has completed and been archived |
+| **OPEN** | Stream is actively receiving and/or emitting messages |
+| **PAUSED** | Stream processing has been temporarily paused |
+| **ABORT_REQUESTED** | An abort has been requested but not yet completed |
+| **SHUTDOWN_REQUESTED** | A shutdown has been requested but not yet completed |
 
-### Grouping by Workflow
-
-Similar to Workflow Instances, you can group streams by their parent workflow to see aggregate throughput and identify which workflows are most active.
-
-### Stream Filtering
-
-The Streams tab has a powerful filter editor supporting:
-
-- **Workflow filter** — Show streams for specific workflows only
-- **State filter** — Show only open, closing, or closed streams
-- **Time range** — Streams active within a window
-- **Message count threshold** — High-volume or low-volume streams
-
-**Log Filter** — When paginating through history, you can apply additional text filters to search within the loaded results.
+A closed stream has an `End` timestamp set.
 
 ### Stream Details
 
-Click a stream to view its complete lifecycle:
+Click a stream to view its details in the detail pane:
 
-**Overview Tab**
-- Stream ID and type (Input, Output, or Internal)
-- Parent workflow and workflow instance
-- State timeline with state transitions
-- Message count and throughput metrics
+**Header fields**
+- **Stream name** — Name of the selected stream
+- **Node address** — Cluster node running the stream
+- **Workflow instance** — Identifier of the associated workflow instance
 
-**Messages Tab**
-- Sample messages from the stream (when sniffer data is available)
-- Message rate graphs over time
-- Peak throughput indicators
+**Actions**
+- **Pause** — Pause the stream processing (available when state is `OPEN`)
+- **Resume** — Resume the stream processing (available when state is `PAUSED`)
+- **Shutdown** — Shutdown the current stream and terminate the workflow instance afterwards
+- **Abort** — Abort the current stream and terminate the workflow instance afterwards
+- **Terminate** — Terminate the aborting stream
 
-**Associations Tab**
-- Source or sink this stream connects to
-- Related workflow instances
-- Parent or child streams in multi-step workflows
-
-### Actions
-
-Available actions for streams:
-
-- **View Associated Instance** — Jump to the workflow instance processing this stream
-- **Create Sniffer Session** — Start capturing messages from this stream
-- **Terminate** — Close an open stream (use with caution)
+The lower portion of the detail pane shows the live log output from the stream.
 
 ## Sniffer Sessions Tab
 
-Sniffer Sessions are diagnostic tools that capture actual messages flowing through your workflows. Unlike the passive monitoring of Workflow Instances and Streams, Sniffers actively intercept and store messages for inspection.
-
-### What Sniffers Capture
-
-A Sniffer Session captures:
-- Raw message content as it enters or exits a workflow
-- Message headers and metadata
-- Timestamps and ordering information
-- Processing context (which workflow, which stream)
-
-Captured messages are stored temporarily and automatically purged based on retention policies.
+Sniffer Sessions are diagnostic tools that capture actual messages flowing through your workflows for inspection.
 
 ### Sniffer Session List
 
@@ -223,165 +194,122 @@ The master pane shows all active and historical sniffer sessions:
 
 | Column | Description |
 |--------|-------------|
-| **State** | Session state (Active, Paused, Closed) |
+| **State** | Session state icon (play for active, checkmark for closed) |
 | **Workflow** | Target workflow for this session |
-| **Session Name** | User-defined or auto-generated name |
+| **Name** | User-defined or auto-generated session name |
 | **Messages** | Number of messages captured |
 | **Start** | When the session began |
 | **End** | When the session closed (blank if active) |
 
+### Toolbar Controls
+
+**Create Session** — Open the dialog to create a new sniffer session.
+
+**Sniff filter** — Select a predefined or custom filter from the dropdown.
+
+**Quick filter** — Free-text filter with negate and regex toggles.
+
+**Close / Delete** — Close the selected active session, or delete the selected closed session.
+
 ### Creating a Sniffer Session
 
 1. Click **Create Session** to open the session creation dialog
-2. Select the target **Workflow** from the dropdown
-3. Optionally select a specific **Stream** (or leave as "All Streams")
-4. Set a **Filter** to capture only matching messages (optional)
-5. Configure **Message Limit** to auto-close after N messages (optional)
-6. Give the session a **Name** (or accept the auto-generated name)
-7. Click **Start Sniffing**
+2. In the **Workflow selection** tree on the left, select a workflow or a specific workflow instance
+3. Configure the **Session parameter** on the right:
+   - **Workflow / workflow instance** — Read-only confirmation of the selected target
+   - **Name of the session** — Defaults to "Session"
+   - **Maximum number of messages in session** — Auto-close after this many messages
+   - **Maximum duration of session [sec]** — Auto-close after this many seconds
+4. Choose a **Trigger mode**:
+   - **Sniff all messages** — Capture every message on the target
+   - **Sniff messages of first new stream** — Start capturing when the first new stream appears
+   - **Sniff messages of first reporting instance** — Start capturing when the first instance reports
+   - **Sniff messages of first reporting stream** — Start capturing when the first stream reports
+5. Click **OK** to start the session
 
-The session immediately begins capturing messages. Active sessions show a pulsing indicator.
+### Session Details
 
-### Filter Editor
+Select a session to view its details. The detail pane shows:
 
-Sniffer Sessions support sophisticated filtering to capture only relevant messages:
+**Header fields**
+- **Session name** — Name of the sniffer session
+- **Workflow** — Target workflow name
 
-**Basic Filters**
-- Message content contains / does not contain
-- Message size greater than / less than
-- Header field equals / not equals
+**Actions**
+- **Close** — End an active session and preserve captured data
+- **Delete** — Remove a closed session and free storage
 
-**Advanced Filters**
-- JavaScript/JSONPath expressions evaluated against message content
-- Regular expression matching
-- Compound conditions (AND/OR logic)
+The remainder of the detail pane is the **Sniffer Message View**.
 
-The filter editor provides real-time validation and shows estimated match rates against recent traffic.
+### Sniffer Message View
 
-### Message Table
+The Sniffer Message View is split horizontally:
+- **Top** — Message table with filtering controls
+- **Bottom** — Workflow diagram viewer (optional, toggle via checkbox)
 
-Select an active or closed session to view captured messages in the detail pane:
+#### Message Table Filters
+
+The toolbar above the message table provides:
+- **Id filter** — Filter by message ID
+- **Type filter** — Quick text filter plus a dropdown menu to include/exclude specific message types
+- **Workflow instance filter** — Quick text filter plus a dropdown menu to include/exclude specific workflow instances
+- **Stream filter** — Quick text filter plus a dropdown menu to include/exclude specific streams
+- **Location filter** — Quick text filter plus a dropdown menu to include/exclude specific locations
+- **Message filter** — Quick text filter on message content
+- **Show Workflow** — Toggle the workflow diagram viewer in the bottom pane
+
+#### Message Table
+
+The message table displays captured messages with the following columns:
 
 | Column | Description |
 |--------|-------------|
-| **#** | Sequence number in capture order |
 | **Timestamp** | When the message was captured |
-| **Stream** | Which stream this message was on |
-| **Size** | Message size in bytes |
-| **Preview** | First 100 characters of content |
+| **Id** | Message identifier (or "n/a") |
+| **Type** | Message type |
+| **Workflow instance** | Node address and instance ordinal number |
+| **Stream** | Stream name |
+| **Location** | Processing location within the workflow |
 
-### Message Detail View
+Click the **expand** button on any row to reveal the full message content in a tree view. Click the row itself to select the message and highlight its location in the workflow diagram viewer (when enabled).
 
-Click any message in the table to open the full detail view:
+#### Pagination
 
-**Content Panel**
-- Full message body with syntax highlighting
-- Format detection and pretty-printing (JSON, XML, etc.)
-- Raw hex view for binary content
-- Search within message body
+The message table supports pagination with the following controls:
+- **Live View** — Jump to the latest messages (for open sessions)
+- **First page**, **Previous page**, **Next page**, **Last page**
 
-**Metadata Panel**
-- All message headers and properties
-- Capture timestamp and processing latency
-- Stream and workflow context
-- Previous/next message navigation
-
-### Session Actions
-
-**For Active Sessions:**
-- **Pause/Resume** — Temporarily stop/resume capture
-- **Close** — End the session and preserve captured data
-- **Edit Filter** — Modify the filter without closing the session
-
-**For Closed Sessions:**
-- **Reopen** — Create a new session with the same configuration
-- **Export** — Download captured messages (JSON, CSV, or raw)
-- **Delete** — Remove the session and free storage
+A page description shows the current message range.
 
 ## Common Workflows
 
 ### Investigating a Failed Workflow
 
-1. Go to **Workflow Instances** tab
-2. Filter by state "Failed" or look for red state indicators
+1. Go to the **Workflow Instances** tab
+2. Use the state severity buttons to filter by error/fatal states, or look for red indicators
 3. Click the failed instance to view details
-4. Check the **Error Information** section for stack traces
-5. Note the **Correlation ID** if available
-6. Switch to **Streams** tab and filter by the same time range
-7. Check if input data was reaching the workflow
-8. Create a **Sniffer Session** on the input stream to capture sample messages
-9. Compare captured messages against expected format
+4. Check the **State** badge and **Initialization problems** for failure information
+5. Review the live log in the detail pane for stack traces and error messages
+6. Switch to the **Streams** tab and browse streams for the same workflow
+7. Create a **Sniffer Session** on the workflow to capture sample messages and compare them against expected formats
 
 ### Monitoring High-Volume Data Flows
 
-1. Go to **Streams** tab
-2. Enable **Group by Workflow** to see aggregate volumes
-3. Sort by **Messages** column to identify highest-throughput workflows
-4. Click into high-volume workflows to see individual streams
-5. Watch for streams stuck in "Closing" state (indicates potential issues)
-6. Use **Sniffer Sessions** with message count limits to sample traffic without overwhelming storage
+1. Go to the **Streams** tab
+2. Enable **Group** to see aggregate volumes per workflow
+3. Sort by the **Msgs.** column to identify highest-throughput streams
+4. Look for streams stuck in `ABORT_REQUESTED` or `SHUTDOWN_REQUESTED` state (indicates potential termination issues)
+5. Use **Sniffer Sessions** with message count limits to sample traffic
 
 ### Debugging Message Processing Issues
 
 1. Identify the workflow with issues in **Workflow Instances**
-2. Note the stream names in the **Stream Associations** section
-3. Go to **Sniffer Sessions** tab
-4. Create a new session targeting the specific workflow and stream
-5. Use a filter to narrow to messages of interest (by content, size, or header)
-6. Trigger the workflow or wait for natural traffic
-7. Examine captured messages in the **Message Detail View**
-8. Check for format issues, encoding problems, or unexpected content
-
-### Analyzing Performance
-
-1. Go to **Workflow Instances** tab
-2. Sort by **Duration** to find slow executions
-3. Group by workflow to identify systematically slow processes
-4. Check **Messages/Second** in instance details
-5. Compare with **Streams** tab throughput metrics
-6. Look for workflows with high restart counts
-7. Correlate performance drops with specific time periods
-
-## Best Practices
-
-### Sniffer Session Hygiene
-
-- **Always set message limits** for high-traffic sniffers to prevent storage exhaustion
-- **Name sessions descriptively** — "Debug_OrderFlow_2024_01_15" not "Session_12345"
-- **Close sessions when done** — Active sessions consume resources
-- **Use filters aggressively** — Capture only what you need to diagnose
-- **Export important captures** — Sniffer data is purged automatically; export if you need it long-term
-
-### Filter Strategies
-
-- Start broad, then narrow — Remove filters that return zero results
-- Use time ranges to limit result sets on busy systems
-- Combine multiple filter types (workflow + state + time)
-- Save complex filters as presets (if your deployment supports it)
-
-### Navigation Tips
-
-- The split view orientation can be changed per tab — set it how you like it
-- Column widths are resizable and persist
-- Use the expand/collapse buttons to manage grouped views
-- Right-click on most items for context-specific actions
-
-## Limitations and Retention
-
-**Data Retention:**
-- Workflow instance history is retained based on cluster configuration (typically 7-30 days)
-- Stream history follows the same retention policy
-- Sniffer session data is short-term (hours to days depending on volume)
-
-**Performance Impact:**
-- Sniffer Sessions add minimal overhead when filtered properly
-- Unfiltered sniffers on high-volume streams can impact performance
-- Historical queries (beyond current data) may be slower
-
-**Security:**
-- Sniffer Sessions may capture sensitive data — use filters to exclude PII when possible
-- Access to Audit Trail data is governed by your cluster's permission model
-- Exported sniffer data should be handled according to your data governance policies
+2. Note the **Current Stream** in the instance details
+3. Go to **Sniffer Sessions** and create a new session targeting the workflow
+4. Configure a **Maximum number of messages** limit and an appropriate **Trigger mode**
+5. Once messages are captured, use the message table filters to narrow to messages of interest
+6. Expand rows to inspect full message content in the tree view
+7. Enable **Show Workflow** to correlate messages with their processing location in the diagram
 
 ## See Also
 
