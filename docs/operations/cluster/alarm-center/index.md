@@ -70,3 +70,5 @@ The Alarm Center will open with the **Alarms** tab active by default. Badge coun
 
 - **Alarms** — Number of unconfirmed `Error` (red) and `Warning` (orange) alarms.
 - **Alarm Targets** — Number of targets currently in an error state.
+
+![Alarm Center overview](.index_images/alarm-center-overview.png)

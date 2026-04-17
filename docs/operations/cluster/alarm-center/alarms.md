@@ -15,6 +15,8 @@ The tab is split into two main areas:
 - **Top: Alarm toolbar** — Contains filters, refresh controls, and bulk confirmation actions.
 - **Bottom: Splitter view** — Left side shows the alarm table; right side shows the details of the selected alarm.
 
+![Alarms tab](.alarms_images/alarms-tab-full.png)
+
 ## Alarm table
 
 The table displays one row per alarm with the following columns:
@@ -104,6 +106,10 @@ The left border of the header is color-coded to match the alarm severity.
 | **Confirmed at** | (Only if confirmed) The confirmation timestamp with relative time. |
 | **Canceled at** | (Only if canceled) The cancellation timestamp with relative time. |
 
+A canceled alarm shows both the raised and canceled timestamps, along with the status code that identifies the condition:
+
+![Canceled alarm details](.alarms_images/alarm-details-canceled.png)
+
 ### Status
 
 The **Status** section displays the full status message associated with the alarm. This is often a stack trace, error message, or descriptive text explaining why the alarm was raised.
@@ -111,6 +117,8 @@ The **Status** section displays the full status message associated with the alar
 ### Actions
 
 For alarms that are neither confirmed nor canceled, a **Confirm Alarm** button appears at the bottom of the details panel. Click it to mark the alarm as acknowledged.
+
+![Unconfirmed alarm details](.alarms_images/alarm-details-unconfirmed.png)
 
 :::tip
 You can also confirm an alarm directly from the table by clicking the close icon in the **Confirmed** column.
