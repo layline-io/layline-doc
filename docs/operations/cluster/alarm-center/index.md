@@ -34,6 +34,10 @@ Understanding the lifecycle helps you use the Alarm Center effectively:
 Canceled alarms do not mean they were "deleted." They are still visible (especially when "Group by canceled alarms" is enabled) so you can trace the history of an issue.
 :::
 
+## Alarm configuration as project assets
+
+In addition to runtime configuration through the Alarm Center UI, **Alarm Rules**, **Email Targets**, and **Teams Targets** can be defined as assets inside a layline.io project and deployed together with it. This lets you version-control your alarming setup alongside your workflows and ensures the same configuration is present on every cluster the project is deployed to.
+
 ## The six tabs
 
 The Alarm Center is divided into six tabs. Each tab has a dedicated documentation page:

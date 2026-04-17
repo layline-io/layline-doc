@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Alarm Targets
 
-**Alarm Targets** are the destinations where alarm notifications are sent. The Alarm Center supports two target types:
+**Alarm Targets** are the destinations where alarm notifications are sent. They can be configured at runtime through the Alarm Center, or defined as project assets and deployed with your project. The Alarm Center supports two target types:
 
 - **Email** — Send alarms via SMTP (Jakarta Mail) or Microsoft 365 (MS 365).
 - **Microsoft Teams** — Send alarms to Teams chats or channels.
@@ -147,8 +147,8 @@ The **Mail Ops Editor** shows a splitter:
 | **CC** | Carbon-copy recipients. |
 | **BCC** | Blind carbon-copy recipients. |
 | **Use HTML** | Enables HTML formatting for this mail. |
-| **Subject Template** | Template expression for the email subject. |
-| **Body Template** | Template expression for the email body. |
+| **Subject Template** | Name of a template defined in the [Templates](./templates) tab. Used for the email subject. |
+| **Body Template** | Name of a template defined in the [Templates](./templates) tab. Used for the email body. |
 
 ![Email target Recipients section showing the Mail Ops Editor](.targets_images/email-target-recipients.png)
 
@@ -194,7 +194,7 @@ The **Chats** section lets you define one or more group chats that will receive 
 | **Description** | Optional description. |
 | **Members** | List of member identifiers (emails or user IDs). Press Enter after each entry. |
 | **Use HTML** | Enables HTML formatting for chat messages. |
-| **Body Template** | Template expression for the chat message body. |
+| **Body Template** | Name of a template defined in the [Templates](./templates) tab. Used for the chat message body. |
 
 ![Teams target Chats section showing SupportChat with members andrew and stefan](.targets_images/teams-target-chats.png)
 
@@ -209,7 +209,7 @@ The **Channels** section lets you define one or more Teams channels.
 | **Team Name or ID** | The Microsoft Teams team name or its internal ID. |
 | **Channel Name or ID** | The channel name or its internal ID. |
 | **Use HTML** | Enables HTML formatting for channel messages. |
-| **Body Template** | Template expression for the channel message body. |
+| **Body Template** | Name of a template defined in the [Templates](./templates) tab. Used for the channel message body. |
 
 ![Teams target Channels section showing SupportChannel with team and channel identifiers](.targets_images/teams-target-channels.png)
 

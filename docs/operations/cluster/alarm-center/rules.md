@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Rules
 
-**Rules** determine which alarm notifications are sent to which targets or target groups. Each rule defines a **regular expression** that is matched against the alarm name, plus an optional **severity filter**. When an alarm matches, the rule routes it to the configured targets.
+**Rules** determine which alarm notifications are sent to which targets or target groups. They can be configured at runtime through the Alarm Center, or defined as project assets and deployed with your project. Each rule defines a **regular expression** that is matched against the alarm name, plus an optional **severity filter**. When an alarm matches, the rule routes it to the configured targets.
 
 ## Layout
 
