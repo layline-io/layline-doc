@@ -54,7 +54,7 @@ The right panel contains three sections: **Rule Details**, **Targets**, and **Ta
 | Field | Description |
 |-------|-------------|
 | **Rule Name** | The rule name (read-only). |
-| **Regular Expression** | A JavaScript-compatible regular expression applied to the alarm name. If the alarm name matches, the rule is triggered. An invalid regex is highlighted with a validation error. |
+| **Regular Expression** | A Java-compatible regular expression applied to the alarm name. If the alarm name matches, the rule is triggered. An invalid regex is highlighted with a validation error. |
 | **Severity** | Optional. If set, the rule only matches alarms of the selected severity. If left empty, the rule matches all severities. Valid values are `Error`, `Warning`, and `Info`. |
 
 ### Targets

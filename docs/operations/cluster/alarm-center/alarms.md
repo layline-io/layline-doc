@@ -13,7 +13,7 @@ The **Alarms** tab is the default view of the Alarm Center. It shows all trigger
 The tab is split into two main areas:
 
 - **Top: Alarm toolbar** — Contains filters, refresh controls, and bulk confirmation actions.
-- **Bottom: Splitter view** — Left side shows the alarm table; right side shows the details of the selected alarm.
+- **Bottom: Splitter view** — Top side shows the alarm table; bottom side shows the details of the selected alarm.
 
 ![Alarms tab](.alarms_images/alarms-tab-full.png)
 
