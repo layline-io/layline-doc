@@ -34,6 +34,8 @@ The log is a live or near-live stream of log events emitted by the Alarm Center 
    - **Filter** by log level or search for specific text.
    - **Select an event** to view its full details in a side or bottom panel.
 
+![Alarm Center Log tab showing runtime events with timestamps and status messages](.log_images/alarm-center-log.png)
+
 ## When to check the log
 
 | Symptom | What to look for in the log |

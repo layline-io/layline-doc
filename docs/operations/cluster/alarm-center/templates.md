@@ -61,6 +61,8 @@ A code editor for the text-only version of the notification. The language mode i
 
 A code editor for the HTML version of the notification. The language mode is HTML, so syntax highlighting is active.
 
+![Templates tab showing the SupportEmail template with Plain Content and HTML Content editors](.templates_images/templates-tab-editor.png)
+
 ## Template syntax
 
 Both Plain and HTML content are evaluated as templates that can reference the alarm object. The default template created by layline.io uses the following preamble:

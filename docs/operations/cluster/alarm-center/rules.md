@@ -76,6 +76,8 @@ A table listing the **target group names** that should also receive notification
 - **Dropdown selector** — Each row has a dropdown arrow that lists all existing target groups, making it easy to pick one without typing.
 - **Duplicate detection** — Duplicate entries are marked in red.
 
+![Rules tab showing the OneToRuleThemAll rule with targets and target groups](.rules_images/rules-tab-details.png)
+
 ### Saving changes
 
 After editing any field, an **Apply Changes** button appears in the bottom-right. The save is blocked until all validation passes (valid regex, no empty names, no duplicates).

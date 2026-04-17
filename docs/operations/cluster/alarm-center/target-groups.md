@@ -57,6 +57,8 @@ A **chip input** lists the current members of the group. Members are the **names
 - **Add a member** — Type the exact name of an existing target and press Enter.
 - **Remove a member** — Click the `×` on the member chip.
 
+![Target Groups tab showing MyTargetGroup with members Andrew and Stefan](.target-groups_images/target-groups-tab.png)
+
 :::tip
 The member names must match target names exactly. If you mistype a name, the rule that uses this group will fail to resolve the target at runtime.
 :::
