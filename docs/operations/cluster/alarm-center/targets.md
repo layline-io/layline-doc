@@ -182,6 +182,8 @@ Like MS 365 Email, Teams targets use OAuth:
 | **Account id** | (Read-only) Authenticated account. |
 | **Access token expires on** | (Read-only) Token expiry. Re-authenticate if expired. |
 
+![Teams target OAuth settings showing flow type, authority, client ID, and scopes](.targets_images/teams-target-oauth.png)
+
 ### Chats
 
 The **Chats** section lets you define one or more group chats that will receive alarm messages.
@@ -193,6 +195,8 @@ The **Chats** section lets you define one or more group chats that will receive 
 | **Members** | List of member identifiers (emails or user IDs). Press Enter after each entry. |
 | **Use HTML** | Enables HTML formatting for chat messages. |
 | **Body Template** | Template expression for the chat message body. |
+
+![Teams target Chats section showing SupportChat with members andrew and stefan](.targets_images/teams-target-chats.png)
 
 ### Channels
 
@@ -206,6 +210,8 @@ The **Channels** section lets you define one or more Teams channels.
 | **Channel Name or ID** | The channel name or its internal ID. |
 | **Use HTML** | Enables HTML formatting for channel messages. |
 | **Body Template** | Template expression for the channel message body. |
+
+![Teams target Channels section showing SupportChannel with team and channel identifiers](.targets_images/teams-target-channels.png)
 
 ---
 
