@@ -69,6 +69,8 @@ The **Target** tab displays runtime information and editable configuration.
 
 A **Restart Target** button in the header lets you restart the target service on the cluster. This is useful after changing credentials or network settings.
 
+![Alarm Targets tab with an MS 365 Email target selected](.targets_images/targets-tab-overview.png)
+
 #### Target-specific configuration
 
 Below the header, an editor appears based on the target type.
@@ -147,6 +149,8 @@ The **Mail Ops Editor** shows a splitter:
 | **Use HTML** | Enables HTML formatting for this mail. |
 | **Subject Template** | Template expression for the email subject. |
 | **Body Template** | Template expression for the email body. |
+
+![Email target Recipients section showing the Mail Ops Editor](.targets_images/email-target-recipients.png)
 
 :::tip
 Templates can reference alarm variables. See [Templates](./templates) for the available variables and syntax.
