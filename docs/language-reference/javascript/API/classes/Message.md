@@ -293,13 +293,13 @@ This method allows you to search for status entries using three different approa
 
 ##### value
 
-[`Vendor`](Vendor.md) \| [`Severity`](../enumerations/Severity.md) \| ((`status`) => `boolean`)
-
 The filter to apply:
   - If a [Vendor](Vendor.md) is provided, it returns all statuses from that vendor.
   - If a [Severity](../enumerations/Severity.md) is provided, it returns all statuses of that severity level.
   - If a function is provided, it should take a [Status](Status.md) as input and return a boolean.
     The method will return all statuses for which this function returns `true`.
+
+[`Vendor`](Vendor.md) | [`Severity`](../enumerations/Severity.md) | (`status`) => `boolean`
 
 #### Returns
 
@@ -1044,9 +1044,9 @@ message.setByte(dataDictionary.type.Detail.CSV.FIELD, 'X')
 
 ##### value
 
-`string` \| `number`
-
 A native Byte value or a value which can be implicitly converted to such.
+
+`string` | `number`
 
 #### Returns
 
@@ -1169,9 +1169,9 @@ message.setDecimal(dataDictionary.type.Detail.CSV.FIELD, 123.45)
 
 ##### value
 
-[`BigDecimal`](../enumerations/JavaType.md#bigdecimal) \| [`BigInteger`](../enumerations/JavaType.md#biginteger) \| [`Double`](../enumerations/JavaType.md#double) \| [`Integer`](../enumerations/JavaType.md#integer) \| [`Long`](../enumerations/JavaType.md#long) \| [`Number`](../enumerations/JavaType.md#number) \| [`String`](../enumerations/JavaType.md#string)
-
 A value which can be represented as a Decimal.
+
+[`BigDecimal`](../enumerations/JavaType.md#bigdecimal) | [`BigInteger`](../enumerations/JavaType.md#biginteger) | [`Double`](../enumerations/JavaType.md#double) | [`Integer`](../enumerations/JavaType.md#integer) | [`Long`](../enumerations/JavaType.md#long) | [`Number`](../enumerations/JavaType.md#number) | [`String`](../enumerations/JavaType.md#string)
 
 #### Returns
 
@@ -1201,9 +1201,9 @@ message.setDouble(dataDictionary.type.Detail.CSV.FIELD, 123.45)
 
 ##### value
 
-`Number` \| [`BigDecimal`](../enumerations/JavaType.md#bigdecimal) \| [`BigInteger`](../enumerations/JavaType.md#biginteger) \| [`Double`](../enumerations/JavaType.md#double) \| [`Integer`](../enumerations/JavaType.md#integer) \| [`Long`](../enumerations/JavaType.md#long) \| [`String`](../enumerations/JavaType.md#string)
-
 A value which can be represented as a Double.
+
+`Number` | [`BigDecimal`](../enumerations/JavaType.md#bigdecimal) | [`BigInteger`](../enumerations/JavaType.md#biginteger) | [`Double`](../enumerations/JavaType.md#double) | [`Integer`](../enumerations/JavaType.md#integer) | [`Long`](../enumerations/JavaType.md#long) | [`String`](../enumerations/JavaType.md#string)
 
 #### Returns
 
@@ -1233,9 +1233,9 @@ message.setInt(dataDictionary.type.Detail.CSV.FIELD, 123)
 
 ##### value
 
-`Number` \| `Uint8Array` \| [`BigDecimal`](../enumerations/JavaType.md#bigdecimal) \| [`Double`](../enumerations/JavaType.md#double) \| [`Integer`](../enumerations/JavaType.md#integer) \| [`Long`](../enumerations/JavaType.md#long) \| [`String`](../enumerations/JavaType.md#string)
-
 A value which can be represented as a Int.
+
+`Number` | `Uint8Array` | [`BigDecimal`](../enumerations/JavaType.md#bigdecimal) | [`Double`](../enumerations/JavaType.md#double) | [`Integer`](../enumerations/JavaType.md#integer) | [`Long`](../enumerations/JavaType.md#long) | [`String`](../enumerations/JavaType.md#string)
 
 #### Returns
 
@@ -1265,9 +1265,9 @@ message.setLong(dataDictionary.type.Detail.CSV.FIELD, 12345)
 
 ##### value
 
-[`BigDecimal`](../enumerations/JavaType.md#bigdecimal) \| [`BigInteger`](../enumerations/JavaType.md#biginteger) \| [`Double`](../enumerations/JavaType.md#double) \| [`Integer`](../enumerations/JavaType.md#integer) \| [`Long`](../enumerations/JavaType.md#long) \| [`Number`](../enumerations/JavaType.md#number) \| [`String`](../enumerations/JavaType.md#string)
-
 A value which can be represented as a Long.
+
+[`BigDecimal`](../enumerations/JavaType.md#bigdecimal) | [`BigInteger`](../enumerations/JavaType.md#biginteger) | [`Double`](../enumerations/JavaType.md#double) | [`Integer`](../enumerations/JavaType.md#integer) | [`Long`](../enumerations/JavaType.md#long) | [`Number`](../enumerations/JavaType.md#number) | [`String`](../enumerations/JavaType.md#string)
 
 #### Returns
 
