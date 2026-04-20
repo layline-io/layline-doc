@@ -38,7 +38,7 @@ A read-only view of the Scheduler Master log file. Use this for troubleshooting 
 The Scheduler Settings panel has three tabs that show the same underlying scheduling state from different angles: **Workflows**, **Nodes**, and **Weight**.
 
 :::tip No active deployment
-If no deployment is active on the cluster, the Scheduler Settings panel shows a banner: "No active deployment. Scheduler info will be visible and adjustments possible once you have activated a deployment."
+If no deployment is active on the cluster, the Scheduler Settings panel shows a banner: "No active deployment." Scheduler info will be visible and adjustments possible once you have activated a deployment.
 :::
 
 ### Workflows
