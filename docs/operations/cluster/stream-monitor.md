@@ -36,7 +36,7 @@ The overview tab shows a **Controller** panel with read-only status fields:
 
 These values update automatically when you navigate to this tab.
 
-<!-- SCREENSHOT: Stream Monitor overview tab showing the Controller panel with State chip, "Running on cluster node" address, Number of Streams, Oldest stream, and Newest stream fields. File: stream-monitor-overview.png -->
+![Stream Monitor overview tab showing the Controller panel with State badge (RECOVERED), Running on cluster node address, Number of Streams, Oldest stream, and Newest stream](./.stream-monitor_images/stream-monitor-overview.png)
 
 ---
 
@@ -46,7 +46,7 @@ Streams the live log output from the stream monitor controller process. Useful f
 
 The log view uses the same shared log component as other Operations pages. Events can be selected to inspect details.
 
-<!-- SCREENSHOT: Log tab showing the live log stream from the stream monitor controller with timestamped log entries. File: stream-monitor-log.png -->
+![Log tab showing the live log stream from the stream monitor controller with timestamped entries and status messages](./.stream-monitor_images/stream-monitor-log.png)
 
 ## Behavior
 
