@@ -209,10 +209,10 @@ The log view uses the same shared log component as other Operations pages. Event
 - [**Cluster Overview**](/docs/operations/cluster/cluster-overview) — Introduction to the cluster operations panel
 - [**Access Coordinator**](/docs/operations/cluster/access-coordinator) — Manages resource and source coordination across cluster nodes
 - [**OAuthClient Resource**](/docs/assets/resources/resource-oauth-client) — Configures OAuth clients for use within workflow assets
-<!-- SCREENSHOT: Security Storage tab — overview tab showing Controller panel with State, Running on cluster node, and counter fields -->
-<!-- SCREENSHOT: Private Keys tab — showing key table with Alias, Description, Fingerprint columns and action buttons, plus Create/Import/Paste buttons at bottom -->
-<!-- SCREENSHOT: Identity certificates tab — showing certificate table with Alias, Common Name, Fingerprint columns -->
-<!-- SCREENSHOT: Trusted certificates tab — showing certificate table -->
-<!-- SCREENSHOT: Known hosts tab — showing known hosts table with Alias, Description, Entry columns -->
-<!-- SCREENSHOT: OAuth tab — showing Clients table above and Access tokens table below -->
-<!-- SCREENSHOT: Log tab — showing log stream output -->
+![Security Storage overview tab showing the Controller panel with State, Running on cluster node, and item counters](./.security-storage_images/security-storage-overview.png)
+![Private Keys tab showing the key table with Alias, Description, and Fingerprint columns, and the Create, Import, and Paste buttons](./.security-storage_images/security-storage-private-keys.png)
+![Identity certificates tab showing the certificate table with Alias, Common Name, and Fingerprint columns, and the Import certificate dialog](./.security-storage_images/security-storage-identity-certificates.png)
+![Trusted certificates tab showing the empty certificate table and the Import certificate dialog](./.security-storage_images/security-storage-trusted-certificates.png)
+![Known hosts tab showing the table with Alias, Description, and Entry columns, with one example entry for ProdHost](./.security-storage_images/security-storage-known-hosts.png)
+![OAuth tab showing the Clients table with Azure AD and Google Cloud entries above, and the Access tokens table with active tokens below](./.security-storage_images/security-storage-oauth.png)
+![Log tab showing the live log stream from the security storage controller with timestamped entries](./.security-storage_images/security-storage-log.png)
