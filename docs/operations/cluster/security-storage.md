@@ -45,6 +45,8 @@ The overview tab shows a **Controller** panel with read-only status fields:
 
 These counters update automatically when you navigate to this tab.
 
+![Security Storage overview tab showing the Controller panel with State, Running on cluster node, and item counters](./.security-storage_images/security-storage-overview.png)
+
 ---
 
 ### Private Keys
@@ -71,6 +73,8 @@ Displays a table of all private key pairs stored in the cluster, with columns:
 - **Delete** (remove icon) — Permanently removes the key from the storage after confirmation.
 - **Copy** (copy icon) — Copies the private key to the internal clipboard so it can be pasted into another Security Storage (e.g. a different cluster).
 
+![Private Keys tab showing the key table with Alias, Description, and Fingerprint columns, and the Create, Import, and Paste buttons](./.security-storage_images/security-storage-private-keys.png)
+
 ---
 
 ### Identity certificates
@@ -93,6 +97,8 @@ Displays a table of identity certificates — certificates that represent this c
 
 - **Edit** — Update the alias or description of an existing certificate entry.
 - **Delete** — Permanently removes the certificate after confirmation.
+
+![Identity certificates tab showing the certificate table with Alias, Common Name, and Fingerprint columns, and the Import certificate dialog](./.security-storage_images/security-storage-identity-certificates.png)
 
 ---
 
@@ -117,6 +123,8 @@ Displays a table of trusted CA and peer certificates — certificates that the c
 - **Edit** — Update alias or description.
 - **Delete** — Removes the certificate after confirmation.
 
+![Trusted certificates tab showing the empty certificate table and the Import certificate dialog](./.security-storage_images/security-storage-trusted-certificates.png)
+
 ---
 
 ### Known hosts
@@ -140,6 +148,8 @@ Displays SSH known-host entries, which the cluster uses to verify SSH server fin
 - **Edit** — Modify the alias, description, or entry text.
 - **Delete** — Removes the entry after confirmation.
 - **Copy** — Copies the entry to the internal clipboard for use elsewhere.
+
+![Known hosts tab showing the table with Alias, Description, and Entry columns, with one example entry for ProdHost](./.security-storage_images/security-storage-known-hosts.png)
 
 ---
 
@@ -187,6 +197,8 @@ A read-only table of active OAuth access tokens that the cluster has acquired:
 - **Logout** — Revokes the token at the identity provider and removes it from storage. Available only while the token is still valid (expiry in the future).
 - **Remove** — Removes an expired token from storage without contacting the identity provider.
 
+![OAuth tab showing the Clients table with Azure AD and Google Cloud entries above, and the Access tokens table with active tokens below](./.security-storage_images/security-storage-oauth.png)
+
 ---
 
 ### Log
@@ -194,6 +206,8 @@ A read-only table of active OAuth access tokens that the cluster has acquired:
 Streams the live log output from the security storage controller process. Useful for diagnosing issues with certificate loading, key operations, or OAuth token refresh failures.
 
 The log view uses the same shared log component as other Operations pages. Events can be selected to inspect details.
+
+![Log tab showing the live log stream from the security storage controller with timestamped entries](./.security-storage_images/security-storage-log.png)
 
 ## Behavior
 
@@ -209,10 +223,3 @@ The log view uses the same shared log component as other Operations pages. Event
 - [**Cluster Overview**](/docs/operations/cluster/cluster-overview) — Introduction to the cluster operations panel
 - [**Access Coordinator**](/docs/operations/cluster/access-coordinator) — Manages resource and source coordination across cluster nodes
 - [**OAuthClient Resource**](/docs/assets/resources/resource-oauth-client) — Configures OAuth clients for use within workflow assets
-![Security Storage overview tab showing the Controller panel with State, Running on cluster node, and item counters](./.security-storage_images/security-storage-overview.png)
-![Private Keys tab showing the key table with Alias, Description, and Fingerprint columns, and the Create, Import, and Paste buttons](./.security-storage_images/security-storage-private-keys.png)
-![Identity certificates tab showing the certificate table with Alias, Common Name, and Fingerprint columns, and the Import certificate dialog](./.security-storage_images/security-storage-identity-certificates.png)
-![Trusted certificates tab showing the empty certificate table and the Import certificate dialog](./.security-storage_images/security-storage-trusted-certificates.png)
-![Known hosts tab showing the table with Alias, Description, and Entry columns, with one example entry for ProdHost](./.security-storage_images/security-storage-known-hosts.png)
-![OAuth tab showing the Clients table with Azure AD and Google Cloud entries above, and the Access tokens table with active tokens below](./.security-storage_images/security-storage-oauth.png)
-![Log tab showing the live log stream from the security storage controller with timestamped entries](./.security-storage_images/security-storage-log.png)
