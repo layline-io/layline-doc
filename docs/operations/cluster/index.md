@@ -153,97 +153,11 @@ Finally, click `Apply Deployment` **(6)** to execute the Deployment.
 
 
 
-### Scheduler Master
-#### Controller
-Shows which Reactive Engine the Controller Service "lives" on in the Cluster. If the Engine fails, the Controller will automatically switch to another available Engine.
+### Scheduler
 
-#### How Workflows are "scheduled" (scaled) in a Cluster
+The Scheduler is the controller that decides which node runs which workflow instances. It continuously balances the load, respects min/max limits you define, and considers workflow weights to keep the cluster evenly utilized.
 
-:::tip Let's understand how Workflows scale:
-
-- Clusters run Workflows.
-- Workflows run on Nodes.
-- The same Workflow can run multiple times on a Node
-- A Workflow can run on multiple Nodes.
-
-Example:
-
-![](.index_images/af2b1235.png "How Workflows are scheduled (scaled) in a Cluster (Operations --> Cluster)")
-
-A Workflow "**_W_**" **(1)** is deployed onto a Cluster of Reactive Engines running on 6 Cluster Nodes **(2)**. We have "_scheduled_" this Workflow "**_W_**" to run 12 times **(3)**. This means running the Workflow 12 times in parallel. Because Node 2 is a stronger Node, we set a target number of instances there to be 3 **(4)**. Node 1 is a weaker Node so we only want the Workflow to run a maximum number of 1 **(5)**. 
-
-As a result, the layline.io Reactive Cluster will balance the 12 instances across the 6 Nodes as shown in the image.
-
-If we request additional instances, they will be balanced out across Nodes 2 to 6. Node 1 will not be considered because it has a "_Max. Instances_" setting of one **(5)**.
-
-:::
-
-#### Scheduler Settings
-
-A "_Schedule_" means the plan, of
-- which Workflows should run  
-- how many times, 
-- and on which Nodes.
-
-The "_Scheduler Settings_" display the current settings and support you in adjusting them.
-
-![](.index_images/23.png "Scheduler Settings (Operations --> Cluster)")
-
-There are two tabs `Nodes` and `Workflows` in the Scheduler Settings **(1)**. The _Nodes_ tab shows a tree view prioritizing Nodes and their Workflows, while the _Workflows_ view reverses this from the perspective of the Workflows.
-
-In the above image there is only one Node and Workflow configured, but it works the same way for multiple Nodes and Workflows. 
-
-Selecting the "_Scheduler_" Node in the tree will give you an overview over all Nodes and Workflows. Selecting the Workflow itself ("_FileMapping_") will only show you the settings of this Workflow on the given Node ("_akka://layline@127.0.0.1:5843_").
-
-
-Let's look at the Scheduler Overview (all Nodes and Workflows):
-
-##### Box: Workflow Distribution in Cluster
-
-Here we can see how Workflows are distributed within a Cluster. For the Workflow "_DWH-to-File_" we have scheduled a total number of instances of 10 **(2)**  The Ring **(1)** shows how these 10 instances are distributed across a number of Nodes in the Cluster (5 Nodes in this slightly different example).
-
-![](.index_images/37.png "Box: Workflow Distribution in Cluster (Operations --> Cluster)")
-
-We can adjust the "_target number of running instances_" **(3)** through the +/- buttons. Increasing the number to 12 for example will instruct the Cluster in real-time to increase the number of this Workflow to 12. If no maximum or minimum number of instances per Node have been defined, the Cluster will itself balance on where to run the additional two instances of this Workflow. This will be mirrorred in the display wihtin a few seconds.
-
-Running Workflows are competing for available resources. We can therefore assign a "_weight_" to a type of workflow to be considered across Nodes in a Cluster. The weight will then be taken in to consideration when the Reactive Cluster manages the balance between Nodes.
-
-In the following example we have a small Cluster with two Nodes **(1) and (2)**. Our Deployment has two Workflows **_A_** and **_B_**. Workflow A runs a total of 5 instances and is configured with a weight of _**50**_. Workflow B runs a total of 1 instance and has a weight of _**100**_.
-
-The following images shows how the Workflows are distributed across the two Nodes.
-
-![](.index_images/bfcabb84.png "Workflow distribution across nodes (Operations --> Cluster)")
-
-The "_Total Weight_" on each Cluster Node is then "_200_" **(3)** on Node 1 and "_150_" **(4)** on Node 2 respectively. Unless there are other restrictions (e.g. max instances per Node), layline.io will balance Workflows across available Nodes so that the total weight per Node is as evenly distributed as possible. 
-
-**Let's see what happens when adding another instance 7 of Workflow A:**
-
-![](.index_images/a43a6ee1.png "Adding another Node to a Cluster (Operations --> Cluster)")
-
-layline.io - having the choice on where to mount instance 7 of Workflow A will always opt for the Node **which will lead to the smallest total weight difference between all available Nodes**.
-
-:::tip Weights and Single Node Clusters
-Please note, that differing weights have no impact in single Node clusters.
-:::
-
-##### Box: Workflow Assignments
-
-"_Workflow Assignments_" shows how Workflows are assigned on a per Node basis. 
-
-![](.index_images/29.png "Box: Workflow Assignments (Operations --> Cluster)")
-
-You can view the number of running instances per Node **(1)**, then also set the minimum and maximum number of instances supposed to run on this Node **(2)** and **(3)**. Checking "_unlimited_" for the minumum number of instances, essentially means that it can be zero on this Node.
-
-##### Box: Workflow Weight Distribution
-
-This is essentially an overview of all weight distributions of all workflows. Changing the weight here **(1)** is the same as changing it above. 
-
-![](.index_images/50.png "Box: Workflow Weight Distribution (Operations --> Cluster)")
-
-::: details UI change coming
-We know that the Scheduler display is not perfect. But it serves the purpose for now. We are planning to completely overwork it shortly.
-:::
-
+For a full description of the Scheduler Master view, the Scheduler Settings panel, and the scheduling model, see the [Scheduler](./scheduler.md) page.
 
 
 ### Access Coordinator
