@@ -13,7 +13,7 @@ In a layline.io cluster, workflows run as multiple instances spread across avail
 
 The Scheduler Master view in Operations → Cluster gives you real-time insight into the scheduling state and lets you change settings without restarting the cluster.
 
-<!-- SCREENSHOT: Scheduler Master tab, showing Controller State and Scheduler Settings panel -->
+![Scheduler Master showing Controller state RECOVERED and the cluster node address](.scheduler_images/scheduler-master-controller.png)
 
 ## Scheduler Master
 
@@ -53,7 +53,7 @@ At the top, summary chips show:
 
 A stacked bar chart visualizes the distribution. Each bar represents one workflow, segmented by node. A translucent segment shows missing instances waiting to be started.
 
-<!-- SCREENSHOT: Scheduler Settings Workflows tab, showing summary chips and stacked bar chart -->
+![Scheduler Settings Workflows tab showing summary chips and stacked bar chart of workflow distribution across nodes](.scheduler_images/scheduler-settings-workflows-chart.png)
 
 #### Workflow Detail
 
@@ -76,7 +76,7 @@ A table with four adjustable values per workflow:
 | **Default min. running instances** | The minimum instances per node unless overridden by a node-specific or role-specific limit. |
 | **Default max. running instances** | The maximum instances per node unless overridden. `∞` means unlimited. |
 
-<!-- SCREENSHOT: Scheduler Settings Workflows tab, Workflow Detail showing Schedule Settings table for a single workflow -->
+![Schedule Settings table for the HTTP-Server workflow showing target instances, weight, and min/max values](.scheduler_images/scheduler-settings-workflow-detail.png)
 
 ##### Schedule Status
 
@@ -87,7 +87,7 @@ Chips summarize the selected workflow:
 
 A bar chart shows the instance count per node for this workflow.
 
-<!-- SCREENSHOT: Scheduler Settings Workflows tab, Schedule Status chips and bar chart for a single workflow -->
+![Schedule Status chips and bar chart for HTTP-Server showing 3 running instances across 3 nodes](.scheduler_images/scheduler-settings-schedule-status.png)
 
 ##### Node Limits
 
@@ -99,7 +99,7 @@ A table with one row per cluster node:
 | **Min. running instances** | Node-specific minimum |
 | **Max. running instances** | Node-specific maximum |
 
-<!-- SCREENSHOT: Scheduler Settings Workflows tab, Node Limits table for a single workflow -->
+![Node Limits table for a workflow showing min/max running instances per cluster node](.scheduler_images/scheduler-settings-node-limits.png)
 
 ##### Role Limits
 
@@ -111,7 +111,7 @@ A table with one row per cluster role:
 | **Min. running instances** | Role-specific minimum |
 | **Max. running instances** | Role-specific maximum |
 
-<!-- SCREENSHOT: Scheduler Settings Workflows tab, Role Limits table for a single workflow -->
+![Role Limits table showing min/max running instances for the dc-default role](.scheduler_images/scheduler-settings-role-limits.png)
 
 ### Nodes
 
@@ -124,7 +124,7 @@ Summary chips show:
 
 A stacked bar chart shows nodes on the Y-axis and instance counts on the X-axis, with each workflow in a different color.
 
-<!-- SCREENSHOT: Scheduler Settings Nodes tab, showing summary chips and stacked bar chart -->
+![Scheduler Settings Nodes tab showing summary chips and workflow-colored grid of instances across 3 nodes](.scheduler_images/scheduler-settings-nodes-chart.png)
 
 #### Node Detail
 
@@ -137,7 +137,7 @@ The detail card shows:
 
 A bar chart shows the instance count per workflow on the selected node, plus thin bars for max/min limits.
 
-<!-- SCREENSHOT: Scheduler Settings Nodes tab, Node Detail showing a selected node with bar chart and chips -->
+![Node Detail for the selected node showing 7 workflow instances and their distribution as a bar chart](.scheduler_images/scheduler-settings-node-detail.png)
 
 ##### Node Limits
 
@@ -149,7 +149,7 @@ A table with one row per workflow running on this node:
 | **Min. running instances** | Minimum instances of this workflow on this node |
 | **Max. running instances** | Maximum instances of this workflow on this node |
 
-<!-- SCREENSHOT: Scheduler Settings Nodes tab, Node Limits table for a selected node -->
+![Node Limits table listing workflows on the selected node with their min/max running instance counts](.scheduler_images/scheduler-settings-node-workflow-limits.png)
 
 ### Weight
 
@@ -161,7 +161,7 @@ The Weight tab gives a quick overview of every workflow's weight in one table.
 | **Weight** | The current weight value (editable inline) |
 | **Chart** | A mini horizontal stacked bar showing the weighted vs. unweighted proportion |
 
-<!-- SCREENSHOT: Scheduler Settings Weight tab, showing the weight table with mini bar charts -->
+![Weight tab showing all workflows with their weight values and proportional bar charts](.scheduler_images/scheduler-settings-weight.png)
 
 ## How the scheduling model works
 
