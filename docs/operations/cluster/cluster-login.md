@@ -1,6 +1,6 @@
 ---
 title: Cluster Login
-sidebar_position: 2
+sidebar_position: 0
 description: Learn how to connect to and authenticate with a layline.io cluster.
 ---
 

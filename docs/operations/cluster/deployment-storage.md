@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 title: Deployment Storage
 description: View and manage deployments on a running layline.io cluster.
 ---
