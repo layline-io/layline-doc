@@ -1,44 +1,30 @@
 ---
 sidebar_position: 9
 title: Cluster Monitor
-description: Monitor the overall state of the cluster — node count, active workflows, services, sources, sinks, and processor instances.
+description: Monitor the overall state of the Cluster Monitor controller and view its live log.
 ---
 
 # Cluster Monitor
 
-> A read-only view of the Cluster Monitor controller's current state, showing aggregate counts of nodes, deployments, and running components.
-
-## Purpose
-
-The Cluster Monitor gives you a bird's-eye view of what the cluster is currently running. It shows aggregate runtime statistics — how many nodes are connected, how many workflow instances are active, how many sources, sinks, and services are running — without drilling into any individual engine.
+> A view of the Cluster Monitor controller's current state and its live log.
 
 ## Tabs
 
 ### Cluster Monitor Tab
 
-Shows the controller status and a summary of runtime metrics for the cluster:
+Shows the controller status:
 
-**State** — Current state of the Cluster Monitor controller (e.g., `Running`).
+**Controller** section:
 
-**Running on cluster node** — The address of the Reactive Engine node hosting the Cluster Monitor controller. If that node fails, the controller automatically migrates to another available node.
+**State** — Current state of the Cluster Monitor controller (e.g., `RECOVERED`, `RUNNING`).
 
-The following runtime counters are displayed:
-
-| Counter | Description |
-|---------|-------------|
-| Number of nodes | Total Reactive Engine nodes currently connected to the cluster. |
-| Number of activations | Total active deployment activations across all nodes. |
-| Number of workflows | Total workflow definitions currently deployed. |
-| Number of workflow instances | Total running workflow instances across all nodes. |
-| Number of processors | Total processor definitions in active deployments. |
-| Number of processor instances | Total running processor instances. |
-| Number of services | Total service instances active in the cluster. |
-| Number of sources | Total source instances active in the cluster. |
-| Number of sinks | Total sink instances active in the cluster. |
+**Running on cluster node** — The address of the Reactive Engine node hosting the Cluster Monitor controller (e.g., `pekko://layline@127.0.0.1:5843`).
 
 ### Log Tab
 
-Shows the live log output of the Cluster Monitor controller. Useful for diagnosing controller startup issues or unexpected state transitions.
+Shows the live log of the Cluster Monitor controller. Log entries include a timestamp and a status message (e.g., `recovery of the cluster monitor completed`, `starting the cluster monitor`).
+
+Entries can be filtered by date range using the **From** and **To** fields.
 
 ## See Also
 
