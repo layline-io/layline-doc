@@ -14,6 +14,8 @@ description: Monitor the overall state of the Cluster Monitor controller and vie
 
 Shows the controller status:
 
+![Cluster Monitor tab](./.cluster-monitor_images/cluster-monitor-tab.png)
+
 **Controller** section:
 
 **State** — Current state of the Cluster Monitor controller (e.g., `RECOVERED`, `RUNNING`).
@@ -25,6 +27,8 @@ Shows the controller status:
 Shows the live log of the Cluster Monitor controller. Log entries include a timestamp and a status message (e.g., `recovery of the cluster monitor completed`, `starting the cluster monitor`).
 
 Entries can be filtered by date range using the **From** and **To** fields.
+
+![Cluster Monitor log tab](./.cluster-monitor_images/cluster-monitor-log-tab.png)
 
 ## See Also
 
