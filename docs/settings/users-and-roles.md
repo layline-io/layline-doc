@@ -54,7 +54,7 @@ A **Claims** panel on the right shows all privileges the current user holds, gro
 
 Clicking **Edit user…** opens a dialog where the current user can update their description, name, email, and password. Username and role assignments cannot be changed here — only admins can change role assignments.
 
-<!-- SCREENSHOT: Settings > User Storage tab — full view showing Controller section and Current User section with Claims panel -->
+![Settings > User Storage tab showing the Controller state and Current User profile with Claims](./.users-and-roles_images/user-storage-tab.png)
 
 ### Users
 
@@ -99,9 +99,9 @@ When **creating** a new user, the **Username** field also appears (read-only on 
 The username cannot be changed after a user is created.
 :::
 
-<!-- SCREENSHOT: Settings > Users tab — showing user list on left and user detail panel on right with Claims section visible -->
+![Settings > Users tab showing the user list on the left and selected user details on the right](./.users-and-roles_images/users-tab-detail.png)
 
-<!-- SCREENSHOT: Settings > Users tab — Create/Edit user dialog with all fields visible -->
+![Edit user dialog showing all editable fields including roles and password](./.users-and-roles_images/users-edit-dialog.png)
 
 ### Roles
 
@@ -133,9 +133,7 @@ Clicking the **▾** dropdown next to a selected role reveals a **Remove** optio
 The role name cannot be changed after a role is created.
 :::
 
-<!-- SCREENSHOT: Settings > Roles tab — showing role list on left and role detail panel on right with Claims section visible -->
-
-<!-- SCREENSHOT: Settings > Roles tab — Create/Edit role dialog with claim checkboxes visible -->
+![Settings > Roles tab showing the role list and selected role details with privilege checkboxes](./.users-and-roles_images/roles-tab-detail.png)
 
 ## Privileges Reference
 
