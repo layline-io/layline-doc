@@ -27,7 +27,7 @@ The **Users** and **Roles** tabs are only visible to users who hold the `Read us
 
 The **User Storage** tab is always visible. It shows the current state of the cluster's user storage and the profile of the logged-in user.
 
-<!-- SCREENSHOT: Operations → User Storage → User Storage tab, showing the Controller group, Current User group, and Claims group -->
+![User Storage tab showing Controller, Current User, and Claims sections](./.operations-user-storage_images/user-storage-tab.png)
 
 ### Controller
 
@@ -71,7 +71,7 @@ See [Available Claims](#available-claims) for a description of each claim.
 
 The **Users** tab lists all users registered on the cluster (the `admin` user is excluded from the list). It is only visible if the logged-in user holds the `Read users & roles` or `Write users & roles` claim.
 
-<!-- SCREENSHOT: Operations → User Storage → Users tab, showing the user list on the left and a selected user's details on the right -->
+![Users tab with a user selected, showing the detail panel on the right](./.operations-user-storage_images/users-tab-user-selected.png)
 
 The tab uses a split-panel layout: the user list is on the left, and the details for the selected user are on the right.
 
@@ -97,7 +97,7 @@ Click **Edit user …** to modify the user. This button is disabled if the logge
 
 Click the **+** button next to the _Users_ heading to create a new user.
 
-<!-- SCREENSHOT: Operations → User Storage → Users tab, "Create user" dialog open, showing username, enabled toggle, description, and role assignment fields -->
+![Create new user dialog](./.operations-user-storage_images/users-tab-create-user.png)
 
 :::warning
 The username cannot be changed after creation. Choose it carefully.
@@ -108,6 +108,7 @@ The create dialog lets you set:
 - **Enabled** — Whether the account is active immediately.
 - **Description, First name, Last name, Email** — Optional profile fields.
 - **Assigned roles** — One or more roles to assign at creation time.
+- **Password / Retype password** — Initial password for the account.
 
 ### Removing a User
 
@@ -117,7 +118,7 @@ Select the user in the list. A dropdown arrow appears next to the username — c
 
 The **Roles** tab lists all roles defined on the cluster. It is only visible if the logged-in user holds the `Read users & roles` or `Write users & roles` claim.
 
-<!-- SCREENSHOT: Operations → User Storage → Roles tab, showing the roles list on the left and a selected role's claims on the right -->
+![Roles tab with a role selected, showing the claims detail panel on the right](./.operations-user-storage_images/roles-tab-role-selected.png)
 
 The tab uses a split-panel layout: the role list is on the left, and the claims for the selected role are shown on the right.
 
