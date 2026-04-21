@@ -24,11 +24,7 @@ Settings covers system-wide settings that apply across all Projects and Operatio
 
 Settings are typically restricted to administrators. Changes here affect the entire layline.io installation, not just individual Projects or Workflows.
 
-Roles and permissions documentation is coming soon (see [LAY-70](https://linear.app/laylineio/issue/LAY-70)).
-
-:::info Coming Soon
-Users & Roles documentation is in progress. See [LAY-70](https://linear.app/laylineio/issue/LAY-70) for status.
-:::
+See [**Users & Roles**](/docs/settings/users-and-roles) for the full reference.
 
 ## See Also
 
