@@ -27,6 +27,8 @@ The Users & Roles section lives under **Settings > User Storage**. It is accessi
 
 The **User Storage** tab is the default view when you open Settings. It shows:
 
+![Settings > User Storage tab showing the Controller state and Current User profile with Claims](./.users-and-roles_images/user-storage-tab.png)
+
 **Controller**
 
 | Field | Description |
@@ -54,8 +56,6 @@ A **Claims** panel on the right shows all privileges the current user holds, gro
 
 Clicking **Edit user…** opens a dialog where the current user can update their description, name, email, and password. Username and role assignments cannot be changed here — only admins can change role assignments.
 
-![Settings > User Storage tab showing the Controller state and Current User profile with Claims](./.users-and-roles_images/user-storage-tab.png)
-
 ### Users
 
 The **Users** tab is visible only to the `admin` account and users with the *Read users & roles* privilege.
@@ -64,6 +64,8 @@ The tab shows a left/right split:
 
 - **Left panel** — a list of all user accounts (excluding `admin`). Click a user to select them. The **+** button at the top creates a new user (requires *Write users & roles* privilege).
 - **Right panel** — details of the selected user.
+
+![Settings > Users tab showing the user list on the left and selected user details on the right](./.users-and-roles_images/users-tab-detail.png)
 
 **User detail fields:**
 
@@ -83,6 +85,8 @@ Clicking the **▾** dropdown next to a selected user in the list reveals a **Re
 
 Clicking **Edit user…** opens the user edit dialog with the following fields:
 
+![Edit user dialog showing all editable fields including roles and password](./.users-and-roles_images/users-edit-dialog.png)
+
 | Field | Description |
 |-------|-------------|
 | Enabled | Enable or disable the account. |
@@ -99,10 +103,6 @@ When **creating** a new user, the **Username** field also appears (read-only on 
 The username cannot be changed after a user is created.
 :::
 
-![Settings > Users tab showing the user list on the left and selected user details on the right](./.users-and-roles_images/users-tab-detail.png)
-
-![Edit user dialog showing all editable fields including roles and password](./.users-and-roles_images/users-edit-dialog.png)
-
 ### Roles
 
 The **Roles** tab is visible only to the `admin` account and users with the *Read users & roles* privilege.
@@ -111,6 +111,8 @@ The tab shows a left/right split:
 
 - **Left panel** — a list of all defined roles. Click a role to select it. The **+** button creates a new role (requires *Write users & roles* privilege).
 - **Right panel** — details of the selected role.
+
+![Settings > Roles tab showing the role list and selected role details with privilege checkboxes](./.users-and-roles_images/roles-tab-detail.png)
 
 **Role detail fields:**
 
@@ -132,8 +134,6 @@ Clicking the **▾** dropdown next to a selected role reveals a **Remove** optio
 :::warning
 The role name cannot be changed after a role is created.
 :::
-
-![Settings > Roles tab showing the role list and selected role details with privilege checkboxes](./.users-and-roles_images/roles-tab-detail.png)
 
 ## Privileges Reference
 
