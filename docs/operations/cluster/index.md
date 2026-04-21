@@ -221,7 +221,7 @@ The "_**AI Storage**_" is a process (Controller) which manages AI models.
 
 ### User Storage
 
-To learn how to manage Users, Roles and permissions within layline.io, please check [User Storage](./operations-user-storage) for user management on the cluster, or .
+To learn how to manage Users, Roles and permissions within layline.io, please check [User Storage](./operations-user-storage) for user management on the cluster.
 
 ### Security Storage
 
@@ -230,12 +230,25 @@ These Secrets can be very sensitive in nature. But when working with such Secret
 especially in Software and Configuration Projects where Secrets may end up in clear text more often than not, for lack of better mechanisms. 
 
 To learn how to manage secrets resp. security within layline.io, 
-please check [Security Storage](./operations-secret-storage) for security management on the cluster.
+please check [Security Storage](./security-storage) for security management on the cluster.
+
+### Sniffer Directory
+
+The Sniffer Directory lists all sniffer sessions currently known to the cluster, allowing you to browse and manage packet capture sessions across nodes.
+
+For full details, see the [Sniffer Directory](./sniffer-directory) page.
+
+### Cluster Monitor
+
+The Cluster Monitor provides aggregate runtime statistics for the entire cluster — number of connected nodes, active deployments, running workflow instances, processors, services, sources, and sinks.
+
+For full details, see the [Cluster Monitor](./cluster-monitor) page.
 
 ### Stream Monitor
 
+The Stream Monitor shows the current state of active data streams in the cluster, including total stream count and the timestamps of the oldest and newest streams.
 
-
+For full details, see the [Stream Monitor](./stream-monitor) page.
 
 ### Starting / stopping Workflows
 

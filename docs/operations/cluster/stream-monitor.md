@@ -1,4 +1,5 @@
 ---
+sidebar_position: 10
 title: Stream Monitor
 description: Inspect the real-time status of the Stream Monitor controller — active stream count, oldest and newest stream timestamps, and the controller's live log.
 ---

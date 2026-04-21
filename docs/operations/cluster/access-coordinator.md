@@ -1,4 +1,5 @@
 ---
+sidebar_position: 3
 title: Access Coordinator
 description: Manage resource and source coordination across cluster nodes.
 ---

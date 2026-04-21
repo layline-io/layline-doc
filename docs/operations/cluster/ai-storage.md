@@ -1,4 +1,5 @@
 ---
+sidebar_position: 5
 title: AI Storage
 description: Browse and manage AI models deployed to the cluster.
 ---

@@ -1,4 +1,5 @@
 ---
+sidebar_position: 2
 title: Scheduler
 description: Understand how the SchedulerMaster distributes workflows across cluster nodes.
 ---

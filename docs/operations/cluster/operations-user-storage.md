@@ -1,4 +1,5 @@
 ---
+sidebar_position: 6
 title: User Storage
 description: Learn how to configure cluster based users and roles.
 ---

@@ -1,4 +1,5 @@
 ---
+sidebar_position: 8
 title: Sniffer Directory
 description: Browse and manage sniffer sessions from the cluster view.
 ---

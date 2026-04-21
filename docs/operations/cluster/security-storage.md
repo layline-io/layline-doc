@@ -1,4 +1,5 @@
 ---
+sidebar_position: 7
 title: Security Storage
 description: Inspect and manage cryptographic material stored in the cluster — private keys, certificates, known SSH hosts, and OAuth clients.
 ---
