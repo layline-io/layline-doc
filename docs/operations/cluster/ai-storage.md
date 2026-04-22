@@ -30,6 +30,8 @@ The Controller panel shows the current state of the AI Storage component:
 
 **Running on cluster node** — The address of the cluster node that currently hosts the active AI storage controller instance.
 
+![Controller panel showing AI Storage state](.ai-storage_images/controller-panel.png "Controller panel showing AI Storage state")
+
 ---
 
 ### AI Models Panel
@@ -62,6 +64,8 @@ Right-clicking a selected node or clicking the dropdown button reveals actions:
 - **Copy path** — Copies the fully qualified path of the selected node to the clipboard.
 - **Rename path** — Renames the selected folder or model.
 - **Delete path** — Permanently deletes the selected folder, model, or version.
+
+![Model tree hierarchy](.ai-storage_images/model-tree-hierarchy.png "Model tree hierarchy")
 
 #### Model Details (Right Pane)
 
@@ -97,6 +101,8 @@ Displays a **Model version info** panel with comprehensive details:
   - **Name** — Attribute name
   - **Data dictionary type** — The data type produced
 
+![Model version details panel](.ai-storage_images/model-version-details.png "Model version details panel")
+
 **Import Button**
 
 At the top of the details panel is an **Import an AI model...** button. This opens the import dialog, pre-filled with the path of the currently selected node (if any).
@@ -112,6 +118,9 @@ To add a new model or model version to the storage:
 3. In the import dialog:
    - **Target model path in the AI storage** — The fully qualified path where the model will be stored (e.g., `/MyModels/Classifier`). If importing to an existing model, this creates a new version.
    - **File containing the trained model** — Drag and drop or select a trained model file. The file format depends on the model type (e.g., PMML, H2O, Weka, etc.).
+
+   ![Import model dialog](.ai-storage_images/import-model-dialog.png "Import model dialog")
+
 4. Click **OK** to upload. The model is validated, versioned automatically, and added to the tree.
 
 ---
