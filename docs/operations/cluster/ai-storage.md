@@ -185,10 +185,57 @@ The log view uses the same shared log component as other Operations pages. Event
 
 ---
 
+## Relationship to Other AI Components
+
+AI Storage is the central hub in layline.io's machine learning pipeline. Understanding how it connects to other components is essential for designing effective AI-powered workflows.
+
+### The AI Pipeline
+
+```mermaid
+graph LR
+    A["AI Trainer<br/>(Workflow Processor)"] -->|"Trains model<br/>saves to path"| B["AI Storage<br/>(Cluster)"]
+    B -->|"Loads model from path<br/>for inference"| C["AI Classifier<br/>(Workflow Processor)"]
+    C --> D["Classified output"]
+```
+
+### AI Trainer → AI Storage
+
+The [**AI Trainer**](/docs/assets/workflow-assets/processors-flow/asset-flow-ai-trainer) processor trains machine learning models from message data within a Workflow. When training completes, the trained model is automatically stored in AI Storage at a configurable path (e.g., `/models/fraud-detector`). Each training run creates a new **version** of the model at that path — V1, V2, V3, and so on.
+
+**Key point:** The path you configure in the AI Trainer's "Target model path in the AI storage" setting becomes the address where all versions of that model live.
+
+### AI Storage → AI Classifier
+
+The [**AI Classifier**](/docs/assets/workflow-assets/processors-flow/asset-flow-ai-classifier) processor uses trained models to classify messages in real time. It references models by their **path in AI Storage**:
+
+- **`/models/fraud-detector`** — Uses the model at this path (defaults to latest version)
+- **`/models/fraud-detector:latest`** — Explicitly uses the most recent version
+- **`/models/fraud-detector:3`** — Uses a specific version (V3 in this example)
+
+**Why the path matters:** The AI Classifier does not embed the model file — it loads it from AI Storage at runtime. This means:
+- You can update a model (create a new version in AI Storage) without modifying the Workflow
+- Multiple Workflows can share the same model by referencing the same path
+- You can pin a Workflow to a specific model version for reproducibility, or use `:latest` to always get the newest trained version
+
+### AI Model Resource
+
+Both the AI Trainer and AI Classifier require an [**AI Model Resource**](/docs/assets/workflow-assets/resources/asset-resource-ai-model) asset. This Resource defines:
+- The model type (e.g., J48 Decision Tree, Multilayer Perceptron)
+- Input and output attribute schemas
+- Training hyperparameters
+
+The AI Model Resource is the **schema contract** — AI Storage holds the **trained model files** that conform to that schema.
+
+### AI Service
+
+The [**AI Service**](/docs/assets/workflow-assets/services/asset-service-ai) provides additional AI capabilities for workflows, such as accessing external AI models or services. Unlike the Classifier/Trainer which use models from AI Storage directly, the AI Service may interact with external AI endpoints.
+
+---
+
 ## See Also
 
-- [**Cluster Overview**](/docs/operations/cluster/cluster-overview) — Introduction to cluster operations
-- [**AI Service**](/docs/assets/services/service-ai) — Service for executing AI models in workflows
-- [**AI Classifier Processor**](/docs/assets/processors-flow/processor-ai-classifier) — Flow processor for real-time classification using AI models
-- [**AI Trainer Processor**](/docs/assets/processors-flow/processor-ai-trainer) — Flow processor for training models from streaming data
-- [**AI Model Resource**](/docs/assets/resources/resource-ai-model) — Resource asset for managing AI model configurations
+- [**Cluster Login**](cluster-login.md) — How to connect to a cluster
+- [**AI Service**](/docs/assets/workflow-assets/services/asset-service-ai) — Service for executing AI models in workflows
+- [**AI Classifier Processor**](/docs/assets/workflow-assets/processors-flow/asset-flow-ai-classifier) — Flow processor for real-time classification using AI models
+- [**AI Trainer Processor**](/docs/assets/workflow-assets/processors-flow/asset-flow-ai-trainer) — Flow processor for training models from streaming data
+- [**AI Model Resource**](/docs/assets/workflow-assets/resources/asset-resource-ai-model) — Resource asset for managing AI model configurations
