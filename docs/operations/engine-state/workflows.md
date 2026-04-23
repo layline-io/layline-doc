@@ -51,15 +51,33 @@ The middle panel displays a table of cluster nodes where the selected workflow i
 
 #### Expanding to View Processor States
 
-Each row in the address table can be expanded to reveal the **Processor States** list for that node. Click the expand button (+) to see:
+Each row in the address table can be expanded to reveal the **Processor States** contained within that workflow instance:
 
-- All processors within the workflow instance
-- Processor icons indicating their type (Input, Output, Flow, Script)
-- Selectable list for inspecting individual processor details
+1. Click the expand button (+) on the left side of the node row
+2. The row expands to show a **Processor States** section listing all processors in the workflow
+3. Each processor displays:
+   - **Icon** indicating the processor type (Input, Output, Flow, Script/JS/Python)
+   - **Name** of the processor (e.g., "File-Input", "Mapping", "Router", "Trailer-Calc-A")
 
-![Expanded workflow row showing processor states including File-Input, Mapping, Router, and Trailer-Calc processors](./.workflows_images/processor-states.png)
+![Expanded workflow row showing processor states list with icons and names](./.workflows_images/processor-states.png)
 
-When you select a processor from this list, the right panel updates to show processor-specific details. For JavaScript and Python processors, you can also view the source code files and their content.
+#### Selecting a Processor for Inspection
+
+Click on any processor in the expanded list to view its detailed state in the **right panel**. The selected processor is highlighted in the list.
+
+:::tip JavaScript and Python Processors
+For **JavaScript** and **Python** processors, selecting the processor in the middle panel displays the assigned script files in the right panel. You can view:
+- The script file name and path
+- Source code content
+- Function definitions
+- Configuration parameters
+:::
+
+The processor inspection view in the right panel shows:
+- **Processor state** and health indicators
+- **Configuration details** specific to the processor type
+- **Runtime metrics** (message counts, processing times)
+- **Script source** (for JavaScript/Python processors)
 
 ### Right Panel: Workflow Detail
 
@@ -243,10 +261,33 @@ Workflow instances can be in various lifecycle states. The state is displayed as
 
 ### Viewing Processor States
 
-1. Select a workflow and node as described above
-2. In the middle panel, click the expand (+) button on the node row
-3. The **Processor States** list appears showing all processors
-4. Click on any processor to view its details in the right panel
+To inspect individual processors within a workflow:
+
+1. In the left panel, select the **workflow** you want to inspect
+2. In the middle panel, find the cluster node running the workflow
+3. Click the **expand button** (+) on the left side of the node row
+4. The **Processor States** section appears, listing all processors in the workflow with their icons:
+   - **Speaker icons** — Input/Output processors
+   - **AB icon** — Mapping processors
+   - **Funnel icon** — Router processors
+   - **JS icon** — JavaScript processors
+   - **Python icon** — Python processors
+5. **Click on any processor** in the list to view its details in the right panel
+
+:::note Right Panel Updates
+When you select a processor, the right panel changes from showing workflow-level details to showing processor-specific details. This includes configuration, runtime metrics, and (for script processors) the source code files.
+:::
+
+### Inspecting JavaScript/Python Processor Scripts
+
+For script processors, the right panel displays:
+
+1. **Script file tabs** — If multiple files are assigned, each appears as a tab
+2. **Source code viewer** — Syntax-highlighted code with line numbers
+3. **Function list** — Quick navigation to script functions
+4. **Configuration panel** — Script arguments and parameters
+
+This allows you to debug script issues without leaving the Operations view.
 
 ### Analyzing Performance Bottlenecks
 
@@ -274,21 +315,46 @@ Workflow instances can be in various lifecycle states. The state is displayed as
 
 ## Processor Inspection
 
-When you select an individual processor from the expanded processor list in the middle panel, the right panel shows processor-specific details:
+When you select an individual processor from the expanded processor list in the middle panel, the right panel switches to show processor-specific details.
 
-<!-- SCREENSHOT: Processor detail view showing configuration, metrics, and code for a script processor -->
+### Processor Detail View
 
-For **JavaScript and Python processors**, you can view:
-- Source code files
-- Function definitions
-- Configuration parameters
-- Runtime metrics
+The processor detail view varies by processor type but typically includes:
 
-For **Input/Output processors**, you can view:
-- Connection status
-- Read/write positions
-- Error counts
-- Throughput metrics
+| Section | Content |
+|---------|---------|
+| **Processor Info** | Name, type, state, and health status |
+| **Configuration** | Processor-specific settings and parameters |
+| **Runtime Metrics** | Message counts, processing times, error rates |
+| **Connections** | Input/output port status and throughput |
+
+### Script Processor Source Code
+
+For **JavaScript** and **Python processors**, the right panel includes a **Script** section:
+
+<!-- SCREENSHOT: Processor detail view showing script source code for a JavaScript processor -->
+
+The script viewer provides:
+- **File tabs** — Switch between multiple assigned script files
+- **Syntax highlighting** — Color-coded source code for readability
+- **Line numbers** — Reference specific lines when debugging
+- **Function navigation** — Jump to specific functions within the script
+
+This is particularly useful for:
+- Debugging runtime errors
+- Verifying deployed script versions
+- Reviewing configuration parameters passed to scripts
+- Understanding processor behavior without switching to the Project view
+
+### Input/Output Processor Details
+
+For **Input** and **Output** processors, the detail view shows:
+
+- **Connection status** — Whether the source/sink is connected
+- **Read/Write position** — Current offset in the data stream
+- **Throughput metrics** — Messages per second, bytes transferred
+- **Error counts** — Failed read/write operations
+- **Source/Sink specific info** — File paths, Kafka offsets, HTTP endpoints, etc.
 
 ## Auto-Refresh Behavior
 
