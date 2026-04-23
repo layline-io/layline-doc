@@ -1,33 +1,33 @@
 ---
 title: Services
-description: Monitor and inspect running services across your cluster, including health status, service calls, failures, and function testing.
+description: Monitor and inspect running services across your cluster, including their runtime state, initialization status, and function testing capabilities.
 ---
 
 # Service State
 
-> Real-time monitoring of services (Timer, HTTP, JDBC, and custom services) running on your cluster — their health, call statistics, and testing interface.
+> Real-time monitoring of services — Timer, HTTP, JDBC, and custom services — running on your layline.io cluster.
 
 ## Purpose
 
-The Service State view provides detailed visibility into every service instance running on your layline.io cluster. Services are reusable components that provide functionality like scheduled triggers (Timer), HTTP endpoints, database connections (JDBC), and custom business logic. The Service State drill-down shows you which nodes are running each service, the current health state, service call statistics, initialization status, and a testing interface for service functions.
+The Service State view provides detailed visibility into every service instance running on your cluster. While the Engine State overview shows you which services exist and their general health, the Service State drill-down reveals the specifics: exactly which nodes are running each service, the current initialization state, any startup failures, and the ability to test service functions interactively.
 
 Use Service State to:
-
 - Verify services started successfully across all intended nodes
 - Debug initialization failures and configuration errors
-- Monitor service health and call statistics
-- Test service functions with custom input parameters
+- Monitor service startup and shutdown progress
+- Test service functions with custom parameters
 - View service logs for troubleshooting
+- Restart services when needed
 
 ## Layout
 
-The Service State interface uses a tabbed layout within the detail panel:
+The Service State interface uses a three-tab layout:
 
-<!-- SCREENSHOT: Service State view showing the Service tab with header fields and initialization status -->
+<!-- SCREENSHOT: Service State view showing the Service tab with state badge, initialization status, and details -->
 
 ### Service Tab
 
-The primary view showing runtime state, configuration, and service details:
+The primary view showing runtime state and configuration:
 
 **Header Fields:**
 
@@ -41,70 +41,76 @@ The primary view showing runtime state, configuration, and service details:
 **Initialization Status:**
 
 Displays a list of initialization failures if the service failed to start properly. Shows "No problems reported" when initialization completed successfully. Common failures include:
-
-- Missing or invalid dependencies (resources, connections)
+- Missing or invalid dependencies (connections, resources)
 - Configuration validation errors
-- Activation failures from the reactive engine
+- Network connectivity issues (for external services)
+- Authentication failures
 
 **Service Details:**
 
-The lower portion displays service-specific runtime information. The content varies by service type and may include:
+The lower portion of the panel displays detailed service configuration retrieved from the runtime. This varies by service type and may include:
+- Connection parameters
+- Service-specific configuration
+- Runtime metadata
 
-- Service call statistics (total calls, failures)
-- Connection pool status
-- Endpoint URLs (for HTTP services)
-- Schedule information (for Timer services)
-- Database connection status (for JDBC services)
+**Actions:**
 
-<!-- SCREENSHOT: Service Details section showing call statistics and health metrics -->
+- **Restart** — If an **Activation digest** is displayed, a Restart button appears. Clicking this opens a confirmation dialog, then restarts the service instance on the current node. The service transitions through shutdown, then startup states. Monitor the state indicators to track restart progress.
 
 ### Functions Tab
 
-<!-- SCREENSHOT: Functions tab showing the function list and parameter input panel -->
+<!-- SCREENSHOT: Service Functions tab showing the function list on the left and parameter testing interface on the right -->
 
-Provides an interactive testing interface for service functions:
+The Functions tab provides an interactive testing interface for service functions. This is useful for:
+- Debugging service logic during development
+- Verifying service connectivity and behavior
+- Testing functions with custom parameter values
 
-**Left Panel — Function List:**
+**Layout:**
 
-Lists all functions exposed by the service:
+The tab is split into two panels:
 
+**Left Panel: Function List**
+
+Displays all functions exposed by the service:
 - **Function name** — The name of the function as defined in the service
-- Click any function to select it for testing
+- Click any function to select it and configure its test parameters
 
-**Right Panel — Function Testing:**
+**Right Panel: Parameter Testing**
 
-Two sub-tabs for testing the selected function:
+When you select a function, this panel displays two subtabs:
 
-#### Input Parameter Tab
-
-Configure and execute the function:
-
-| Field | Description |
-|-------|-------------|
-| **Parameter Type** | The data type expected by the function (if applicable) |
-| **Parameter Message** | Message editor for constructing the input payload. Uses the service's data dictionary for type-aware editing. |
-| **Execute** | Button to invoke the function with the configured parameters |
-
-#### Result Tab
-
-View the function execution result:
+**Input Parameter tab:**
 
 | Element | Description |
 |---------|-------------|
-| **Status icon** | Success (✓), failure (✗), or not executed (?) |
-| **Result Type** | The data type returned by the function, or "Function does not return a result" |
-| **Result Message** | Tree view of the returned message data |
-| **Failure** | Error details if the execution failed |
+| **Parameter Type** | The expected parameter type for this function (if any) |
+| **Parameter Message** | A message editor for constructing the input parameter. Populated with a template based on the parameter type's data dictionary definition. |
+| **Execute** | Button to invoke the function with the configured parameter |
+
+Edit the parameter message using the message editor. The editor provides type-aware assistance based on the service's data dictionary.
+
+**Result tab:**
+
+Displays the outcome of the function execution:
+
+| Element | Description |
+|---------|-------------|
+| **Status icon** | Green check (success), red X (failure), or question mark (not yet executed) |
+| **Result Type** | The return type of the function, or "Function does not return a result" for void functions |
+| **Result Message** | The returned message data (if any), displayed in a tree view |
+| **Failure** | Error details if the function execution failed |
 | **Execute again** | Re-run the function with the same or modified parameters |
+
+**Note:** Function testing is performed against the live service instance on the selected cluster node. Changes made during testing may affect production data depending on the service implementation.
 
 ### Log Tab
 
 <!-- SCREENSHOT: Service Log tab showing log entries for a service -->
 
 Displays the runtime log for this specific service instance. Use this to:
-
 - View initialization messages
-- Trace service function calls
+- Trace service activity
 - Debug errors and exceptions
 - Monitor service lifecycle events
 
@@ -121,45 +127,35 @@ States are grouped into three severity categories indicated by badge color:
 | Color | Category | Meaning |
 |-------|----------|---------|
 | **Green** | OK | Service is healthy and operating normally |
-| **Yellow** | Warning | Service is in a transitional state |
-| **Red** | Failure | Service has encountered an error |
+| **Yellow** | Warning | Service is in a transitional state or requires attention |
+| **Red** | Failure | Service has encountered an error and is not operating correctly |
 
 ### All Service States
 
 | State | Category | Description |
 |-------|----------|-------------|
-| **UNUSED** | OK | Service is configured but not currently in use |
-| **USED** | OK | Service is active and being called by workflows |
 | **CLUSTER_ROLE_MISMATCH** | OK | Service's cluster role assignment doesn't match current node (intentional non-placement) |
+| **UNUSED** | OK | Service is configured but not currently in use |
+| **USED** | OK | Service is active and being used by workflows |
 | **VERIFYING_CONFIGURATION** | Warning | Service is validating its configuration during startup |
 | **VERIFYING_DEPENDENCIES** | Warning | Service is checking that all required dependencies are available |
 | **SHUTTING_DOWN** | Warning | Service is shutting down and releasing resources |
 | **TERMINATED** | Failure | Service was forcibly terminated |
 | **INITIALIZATION_FAILED** | Failure | Service failed to initialize |
 | **CONFIGURATION_FAILURE** | Failure | Configuration validation failed |
-| **DEPENDENCY_FAILURE** | Failure | Required dependency is missing or unavailable |
+| **DEPENDENCY_FAILURE** | Failure | Required dependency (connection, resource) is missing or unavailable |
 
-## Actions
+## State Indicators
 
-### Restart Service
+In the Engine State left panel service list, icons provide at-a-glance status:
 
-If a service has an **Activation digest** displayed, a **Restart** button appears in the header. Clicking this:
-
-1. Opens a confirmation dialog
-2. Upon confirmation, restarts the service instance on the current node
-3. The service transitions through shutdown, then startup states
-4. Monitor the state indicators to track restart progress
-
-**Note:** Restart only affects the service instance on the currently selected cluster node. Other instances on different nodes are not affected.
-
-### Test Service Functions
-
-1. Switch to the **Functions** tab
-2. Select a function from the left panel list
-3. In the **Input Parameter** tab, configure the input message (if the function accepts parameters)
-4. Click **Execute** to invoke the function
-5. Switch to the **Result** tab to view the output
-6. If needed, modify parameters and execute again
+| Icon | Meaning |
+|------|---------|
+| Green checkmark | Service is in an OK state (running normally) |
+| Yellow warning triangle | Service is in a transitional or warning state |
+| Red error icon | Service has failures and needs attention |
+| Spinning/animated icon | Service is currently starting up |
+| Power/shutdown icon | Service is shutting down |
 
 ## Common Tasks
 
@@ -167,7 +163,7 @@ If a service has an **Activation digest** displayed, a **Restart** button appear
 
 1. Locate the service in the Engine State left panel
 2. Look for the green checkmark icon
-3. Verify the **State** field shows `USED` or `UNUSED`
+3. Verify the **State** field shows `USED`
 4. Check **Initialization status** shows "No problems reported"
 
 ### Debugging a Failed Service
@@ -179,28 +175,77 @@ If a service has an **Activation digest** displayed, a **Restart** button appear
 5. Switch to the **Log** tab for detailed error traces
 6. Common fixes:
    - `CONFIGURATION_FAILURE` — Review service configuration in the Project
-   - `DEPENDENCY_FAILURE` — Verify required resources or connections are deployed and healthy
-   - `INITIALIZATION_FAILED` — Check service logs for stack traces
+   - `DEPENDENCY_FAILURE` — Verify required connections or resources are deployed and healthy
+   - `INITIALIZATION_FAILED` — Check service logs; may indicate invalid credentials or unreachable endpoints
 
-### Monitoring Service Calls
+### Monitoring Service Startup
 
-1. Select the service from the left panel
-2. View the **Service Details** section
-3. Look for call statistics (total invocations, failures)
-4. High failure rates may indicate downstream issues
+1. After deploying a service, locate it in the left panel
+2. Watch for the spinning startup icon
+3. Select the service to view detail panel
+4. Observe state transitions:
+   - `VERIFYING_CONFIGURATION` → `VERIFYING_DEPENDENCIES` → `USED`
+5. Yellow warning states during startup are normal and transient
+6. If startup hangs in a warning state for an extended period, check the Log tab
 
 ### Testing a Service Function
 
-1. Select the service and switch to the **Functions** tab
-2. Choose the function you want to test from the list
-3. The **Input Parameter** tab opens automatically
-4. If the function requires input, fill in the parameter message
-5. Click **Execute**
-6. Review the result in the **Result** tab — success shows the returned data, failure shows error details
+1. Select the service from the Engine State left panel
+2. Click the **Functions** tab
+3. Select a function from the list on the left
+4. Review the **Parameter Type** displayed
+5. Edit the **Parameter Message** in the message editor (if the function requires input)
+6. Click **Execute**
+7. The view automatically switches to the **Result** tab showing:
+   - Success: The returned result type and message
+   - Failure: Error details and diagnostic information
+
+### Restarting a Service
+
+1. Select the service from the left panel
+2. Verify the **Activation digest** field is displayed (restart requires this)
+3. Click the **Restart** button in the header
+4. Confirm the restart in the dialog
+5. Monitor the state indicators — the service will transition through shutdown and startup states
+6. Wait for the state to return to `USED` with a green checkmark
+
+**Note:** Restart only affects the service instance on the currently selected cluster node. Other instances on different nodes are not affected.
+
+### Viewing Service Logs
+
+1. Select the service from the left panel
+2. Click the **Log** tab
+3. Logs stream in real-time from the cluster node
+4. Use log entries to trace:
+   - Initialization sequences
+   - Service activity
+   - Error conditions and stack traces
+
+## Service Types
+
+The Services category in Engine State includes all service assets deployed to your cluster:
+
+| Service Type | Purpose |
+|--------------|---------|
+| **Timer Service** | Scheduled execution and cron-like triggers |
+| **HTTP Service** | HTTP client for REST API calls |
+| **JDBC Service** | Database connectivity and queries |
+| **Message Service** | Message queue integration |
+| **SOAP Service** | SOAP web service client |
+| **Proxy Service** | Network proxy configuration |
+| **AI Service** | AI/ML model integration |
+| **DynamoDB Service** | AWS DynamoDB access |
+| **Virtual File System Service** | Abstracted file system operations |
+| **Queue File Service** | File-based queue operations |
+| **Custom Services** | Extension-provided service types |
+
+Each service type exposes different functions and accepts different parameters. Refer to the service-specific documentation in [Service Assets](../../assets/service-assets/) for configuration details.
 
 ## See Also
 
 - [Engine State Overview](./index.mdx) — Understanding the full Engine State interface
+- [Workflow State](./workflows.md) — Monitoring workflow instances
+- [Source State](./sources.md) — Monitoring input sources
+- [Sink State](./sinks.md) — Monitoring output sinks
 - [Cluster Monitor](../cluster/cluster-monitor.md) — Infrastructure-level cluster health
-- [Audit Trail](../audit-trail/index.md) — Historical record of workflow executions
-- [Service Assets](../../assets/workflow-assets/services/asset-service-introduction.md) — Configuring services in projects
+- [Service Assets](../../assets/service-assets/) — Configuring services in projects
