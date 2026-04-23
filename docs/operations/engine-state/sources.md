@@ -3,6 +3,8 @@ title: Sources
 description: Monitor and inspect input sources running on your cluster, including connection status, read positions, throughput metrics, and folder configurations.
 ---
 
+import VersionedLink from '@site/src/components/VersionedLink';
+
 # Source State
 
 > Real-time monitoring of input sources — File, Kafka, FTP, S3, and more — including their connection status, processing metrics, and folder-level controls.
@@ -241,18 +243,18 @@ The Sources category in Engine State includes all source assets deployed to your
 
 | Source Type | Purpose |
 |-------------|---------|
-| **File System** | Local and mounted filesystem polling |
-| **FTP/SFTP** | Remote file transfer protocol sources |
-| **S3** | Amazon S3 bucket polling |
-| **GCS** | Google Cloud Storage bucket polling |
+| **File System** | <VersionedLink to="/assets/sources/asset-source-file">Local and mounted filesystem polling</VersionedLink> |
+| **FTP/SFTP** | <VersionedLink to="/assets/sources/asset-source-ftp">Remote file transfer protocol sources</VersionedLink> |
+| **S3** | <VersionedLink to="/assets/sources/asset-source-s3">Amazon S3 bucket polling</VersionedLink> |
+| **GCS** | <VersionedLink to="/assets/sources/asset-source-google-cloud-storage">Google Cloud Storage bucket polling</VersionedLink> |
 | **Azure Blob** | Azure Blob Storage sources |
-| **Kafka** | Apache Kafka consumer |
-| **HTTP** | HTTP endpoint polling |
-| **Timer** | Scheduled/triggered execution |
-| **Message Queue** | JMS, SQS, and other message queues |
-| **UDP** | UDP socket listener |
-| **OneDrive** | Microsoft OneDrive integration |
-| **SMB/NFS** | Network file share polling |
+| **Kafka** | <VersionedLink to="/assets/sources/asset-source-kafka">Apache Kafka consumer</VersionedLink> |
+| **HTTP** | <VersionedLink to="/assets/sources/asset-source-http">HTTP endpoint polling</VersionedLink> |
+| **Timer** | <VersionedLink to="/assets/sources/asset-source-timer">Scheduled/triggered execution</VersionedLink> |
+| **Message Queue** | <VersionedLink to="/assets/sources/asset-source-message">JMS, SQS, and other message queues</VersionedLink> |
+| **UDP** | <VersionedLink to="/assets/sources/asset-source-udp">UDP socket listener</VersionedLink> |
+| **OneDrive** | <VersionedLink to="/assets/sources/asset-source-onedrive">Microsoft OneDrive integration</VersionedLink> |
+| **SMB/NFS** | <VersionedLink to="/assets/sources/asset-source-smb">Network file share polling</VersionedLink> |
 | **Custom Sources** | Extension-provided source types |
 
 Each source type exposes different configuration and runtime details. Refer to the source-specific documentation in [Source Assets](../../assets/source-assets/) for configuration details.
