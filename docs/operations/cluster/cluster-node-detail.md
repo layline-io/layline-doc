@@ -161,13 +161,131 @@ Use the filter toggles to show only Warning and Error messages when troubleshoot
 
 ### Debugging a Workflow
 
-1. Navigate to the **Debug** tab
-2. Locate your workflow in the context tree (expand projects/workflows as needed)
-3. Find the specific processor you want to debug
-4. Enable debugging using the toggle
-5. Configure whether to suspend on hit
-6. Connect your external debugger to the bind host:port shown
-7. Trigger the workflow — execution will pause at your breakpoint
+This section provides a detailed, step-by-step guide to debugging JavaScript and Python processors in your workflows using the browser's developer tools.
+
+#### Step 1: Navigate to the Debug Tab
+
+From the Cluster Node Detail view, click on the **Debug** tab. You'll see the Host configuration panel and the Debug contexts tree.
+
+![Debug tab showing Host configuration with Bind host set to 127.0.0.1 and Bind port set to 5844, plus the Debug contexts section](./.cluster-node-detail_images/debug-host-config.png)
+
+The **Host** panel shows the network binding for debug connections:
+- **Bind host** — The IP address to bind the debugger to (typically `127.0.0.1` for local debugging)
+- **Bind port** — The TCP port number for debug connections (shown in the example as `5844`)
+
+:::tip Note the bind port
+The bind port value is important — you'll need it to construct the debug URL later. If the port shows `0`, the system will auto-assign a port when you enable debugging.
+:::
+
+#### Step 2: Find Your Workflow and Processor
+
+The Debug contexts tree shows all workflows with debuggable processors organized hierarchically by project, workflow, and instance. Expand the tree to locate:
+1. Your **Project** (e.g., `Sample-ASN1-TAP3`)
+2. Your **Workflow** (e.g., `FilterTransactions`)
+3. The **Instance** (e.g., `Instance 1`)
+4. The specific **Processor** you want to debug (e.g., `Trailer-Calc-A`)
+
+![Debug contexts tree showing expanded workflow hierarchy with processors listed and their debug toggle states](./.cluster-node-detail_images/debug-contexts-tree.png)
+
+Processors that can be debugged show:
+- A **JS** icon for JavaScript processors or a **Python** icon for Python processors
+- A **State** column showing whether the processor is active
+- A **Debug** toggle to enable/disable debugging
+- A **Suspend** toggle to control whether execution pauses on breakpoints
+
+#### Step 3: Enable Debugging
+
+Click the **Debug** toggle switch next to the processor you want to debug. The toggle will turn green when enabled.
+
+When you enable debugging:
+- A green checkmark appears in the State column
+- The **RESTART WORKFLOW INSTANCE** button becomes available
+- The system prepares the debug endpoint for that processor
+
+![Debug contexts showing enabled debugging for Trailer-Calc-A with the RESTART WORKFLOW INSTANCE button visible](./.cluster-node-detail_images/debug-restart-button.png)
+
+#### Step 4: Restart the Workflow Instance
+
+After enabling debugging, click the **RESTART WORKFLOW INSTANCE** button. This action:
+- Restarts the workflow instance with debugging enabled
+- Allocates the debug port (if auto-assigned)
+- Makes the **COPY DEBUG URL** button available
+
+:::warning Restart required
+You must restart the workflow instance after enabling debugging. The debugger cannot attach to a running instance that wasn't started with debug support.
+:::
+
+#### Step 5: Copy the Debug URL
+
+Once the workflow has restarted, click the **COPY DEBUG URL** button. This copies a WebSocket URL to your clipboard that looks like:
+
+```
+devtools://devtools/bundled/js_app.html?ws=127.0.0.1:5844/FilterTransactions.I1/Trailer-Calc-A/d785b428-d611-4f02-9082-e55f1890d6bb
+```
+
+The URL structure contains:
+- **Host and port** (`127.0.0.1:5844`) — The debug server endpoint
+- **Workflow instance** (`FilterTransactions.I1`) — The workflow name and ordinal
+- **Processor name** (`Trailer-Calc-A`) — The specific processor being debugged
+- **Session ID** — A unique identifier for this debug session
+
+#### Step 6: Open the Debugger in Your Browser
+
+Paste the copied URL into your browser's address bar and press Enter. This opens Chrome DevTools (or your browser's equivalent) connected to the running workflow processor.
+
+![Browser DevTools showing the TrailerCalc.js source file with debugging panels for Watch, Breakpoints, Scope, and Call Stack](./.cluster-node-detail_images/debug-browser-devtools.png)
+
+The debugger interface shows:
+- **Source code** — The JavaScript or Python script from your processor
+- **Watch panel** — Add expressions to monitor variable values
+- **Breakpoints panel** — Manage active breakpoints
+- **Scope panel** — Inspect local and global variables when paused
+- **Call Stack panel** — Navigate the execution stack
+
+#### Step 7: Set Your Breakpoints
+
+In the source code panel, click on a line number to set a breakpoint. The line will be highlighted to indicate the breakpoint is active.
+
+Common places to set breakpoints:
+- Inside the `onMessage()` function to inspect incoming messages
+- Inside the `onStreamEnd()` function to debug stream completion logic
+- Any conditional logic where you need to verify variable values
+
+#### Step 8: Trigger the Workflow
+
+With the debugger attached and breakpoints set, trigger your workflow by starting a stream. This could be:
+- Sending test data through a Source connector
+- Triggering a scheduled workflow execution
+- Manually starting a test stream from the Engine State view
+
+#### Step 9: Debug Your Code
+
+When the workflow processes data and hits your breakpoint, execution will pause automatically.
+
+![Debugger paused at a breakpoint showing the highlighted line and the Scope panel with message data including TRANS_IN and TRANS_OUT fields](./.cluster-node-detail_images/debug-breakpoint-hit.png)
+
+While paused, you can:
+- **Inspect variables** — View current values in the Scope panel
+- **Step through code** — Use the step-over (↷), step-into (⏎), and step-out (⏏) buttons
+- **Watch expressions** — Add variables to the Watch panel to monitor their values
+- **Modify variables** — Double-click values in Scope to change them during execution
+- **Resume execution** — Click the play button (▶️) to continue until the next breakpoint
+- **View the call stack** — Navigate through the execution path
+
+:::tip Inspecting message data
+When debugging message processors, the `message` object in the Scope panel contains the full message structure. Expand it to see field values like `TRANS_IN`, `TRANS_OUT`, and other data dictionary entries.
+:::
+
+#### Step 10: Continue or Stop Debugging
+
+After investigating:
+- Click **Resume** (▶️) to continue execution until the next breakpoint
+- Click **Restart** (🔄) to restart the debugging session from the beginning
+- Disable the **Debug** toggle in the Cluster Node Detail view to stop debugging entirely
+
+:::info Debugging performance impact
+Debugging adds overhead to workflow execution. Always disable debugging when you're finished troubleshooting to restore normal performance.
+:::
 
 ### Investigating Node Issues
 
