@@ -284,11 +284,6 @@ To inspect individual processors within a workflow:
 2. In the middle panel, find the cluster node running the workflow
 3. Click the **expand button** (+) on the left side of the node row
 4. The **Processor States** section appears, listing all processors in the workflow with their icons:
-   - **Speaker icons** — Input/Output processors
-   - **AB icon** — Mapping processors
-   - **Funnel icon** — Router processors
-   - **JS icon** — JavaScript processors
-   - **Python icon** — Python processors
 5. **Click on any processor** in the list to view its details in the right panel
 
 :::note Right Panel Updates
