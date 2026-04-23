@@ -23,7 +23,7 @@ Use Sink State to:
 
 The Sink State interface uses a two-tab layout:
 
-<!-- SCREENSHOT: Sink State view showing the Sink tab with state badge, initialization status, and Kafka-specific details sections -->
+![Sink tab showing state badge, initialization status, and cluster node information](./.sinks_images/sink-state-detail.png)
 
 ### Sink Tab
 
@@ -79,13 +79,15 @@ All sink types display metrics relevant to their operation:
 For file-based sinks, the counters show the complete lifecycle: messages are first written to temporary files, then committed when the batch is complete, or rolled back if an error occurs. Retry files indicate transient failures that will be retried automatically.
 :::
 
+![Sink details panel showing WebDAV connection settings and file metrics](./.sinks_images/sink-file-details.png)
+
 **Actions:**
 
 - **Restart** — If an **Activation digest** is displayed, a Restart button appears. Clicking this opens a confirmation dialog, then restarts the sink instance on the current node. The restart affects **only the node where triggered** — other nodes running the same sink are unaffected. The sink transitions through shutdown, then startup states. Monitor the state indicators to track restart progress.
 
 ### Log Tab
 
-<!-- SCREENSHOT: Sink Log tab showing log entries for a sink -->
+![Log tab showing file movement entries with timestamps](./.sinks_images/sink-log-tab.png)
 
 The Log tab displays the runtime log for this specific sink instance. This is the same log that would be written to disk on the cluster node, accessible here without needing SSH access to the server.
 
