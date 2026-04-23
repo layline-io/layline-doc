@@ -25,7 +25,7 @@ The Sniffer Directory view has two tabs:
 
 The overview tab shows a **Controller** panel with read-only status fields:
 
-<!-- SCREENSHOT: Sniffer Directory controller panel showing State badge, Running on cluster node, Maximum number of storages, Number of storages, and Number of storages used fields -->
+![Sniffer Directory controller panel showing State badge (RECOVERED), Running on cluster node address, Maximum number of storages (256), Number of storages (41), and Number of storages used (39)](./.sniffer-directory_images/controller-overview.png)
 
 **State** — Current lifecycle state of the sniffer directory controller (e.g., `RUNNING`, `RECOVERED`).
 
@@ -44,6 +44,8 @@ These values update automatically when you navigate to this tab.
 ### Log
 
 Streams the live log output from the sniffer directory controller process. Useful for diagnosing issues with storage allocation, session persistence, or controller startup failures.
+
+![Sniffer Directory Log tab showing timestamped events including "recovery of the sniffer directory completed" and "starting the sniffer directory" entries, with From/To date filters and status indicators](./.sniffer-directory_images/log-view.png)
 
 The log view uses the same shared log component as other Operations pages. Events can be selected to inspect details.
 
