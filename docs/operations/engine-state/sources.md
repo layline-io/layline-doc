@@ -260,7 +260,19 @@ The Sources category in Engine State includes all source assets deployed to your
 | **OneDrive** | <VersionedLink to="/assets/sources/asset-source-onedrive">Microsoft OneDrive integration</VersionedLink> |
 | **SMB/NFS** | <VersionedLink to="/assets/sources/asset-source-smb">Network file share polling</VersionedLink> |
 | **Custom Sources** | Extension-provided source types |
-
+| **File System** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-file">Local and mounted filesystem polling</VersionedLink> |
+| **FTP/SFTP** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-ftp">Remote file transfer protocol sources</VersionedLink> |
+| **S3** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-s3">Amazon S3 bucket polling</VersionedLink> |
+| **GCS** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-google-cloud-storage">Google Cloud Storage bucket polling</VersionedLink> |
+| **Azure Blob** | Azure Blob Storage sources |
+| **Kafka** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-kafka">Apache Kafka consumer</VersionedLink> |
+| **HTTP** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-http">HTTP endpoint polling</VersionedLink> |
+| **Timer** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-timer">Scheduled/triggered execution</VersionedLink> |
+| **Message Queue** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-message">JMS, SQS, and other message queues</VersionedLink> |
+| **UDP** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-udp">UDP socket listener</VersionedLink> |
+| **OneDrive** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-onedrive">Microsoft OneDrive integration</VersionedLink> |
+| **SMB/NFS** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-smb">Network file share polling</VersionedLink> |
+| **Custom Sources** | Extension-provided source types |
 Each source type exposes different configuration and runtime details. Refer to the source-specific documentation in [Source Assets](../../assets/source-assets/) for configuration details.
 
 ## See Also
