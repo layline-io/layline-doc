@@ -23,7 +23,12 @@ Use Service State to:
 
 The Service State interface follows the standard Engine State three-panel layout:
 
-![Service State overview showing filter components, cluster nodes, and service detail panels](./.services_images/filter-components-services.png)
+![Service State overview showing connections list, service details, and metrics for Lookup-Service](./.services_images/three-panel-lookup-service.png)
+
+The screenshot above shows the complete three-panel view:
+- **Left**: Filter components with Connections list (Kafka, Graph, MS, S3, Sharepoint, SMB, WebDAV, etc.)
+- **Middle**: Filter addresses with cluster nodes running the selected service
+- **Right**: Service detail panel showing Lookup-Service configuration and metrics
 
 ### Left Panel: Filter Components
 
