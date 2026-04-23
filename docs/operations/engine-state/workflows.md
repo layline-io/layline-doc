@@ -206,15 +206,32 @@ The bottom row (highlighted in green) shows aggregates:
 
 The **Log** tab displays the live log output from the workflow instance:
 
-<!-- SCREENSHOT: Workflow Log tab showing timestamped log entries with level indicators -->
+![Workflow Log tab showing timestamped entries with processor status messages](./.workflows_images/workflow-log-tab.png)
+
+The log shows timestamped events from the workflow lifecycle:
+- **Workflow creation** — `creating workflow 'FilterTransactions'`
+- **Workflow startup** — `starting workflow 'FilterTransactions'`
+- **Processor readiness** — `processor 'FilterTransactions.File-Input' is ready to process`
+- **Status changes** — Individual processor state transitions
+
+**Log Filter Controls**
+
+At the top of the log view:
+- **From/To date range** — Filter logs to a specific time period using the calendar selectors
+- **Log filter dropdown** — Filter by log level or event type
+- **Status icons** — Quick filters for errors (red), warnings (yellow), and successes (green)
 
 The log view uses the shared log component and shows:
-- Timestamped events
+- Timestamped events (down to millisecond precision)
 - Log levels (INFO, WARN, ERROR, DEBUG)
-- Message details
-- Filtering and search capabilities
+- Message details describing workflow and processor events
+- Real-time updates as new log entries are generated
 
-Use the log to diagnose runtime issues, trace execution flow, and investigate errors.
+Use the log to:
+- Diagnose runtime issues and error conditions
+- Trace workflow startup and shutdown sequences
+- Monitor processor initialization progress
+- Investigate processing failures and exceptions
 
 ## Workflow States
 
