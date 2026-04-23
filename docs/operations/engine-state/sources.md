@@ -28,6 +28,8 @@ The Source State interface uses a two-tab layout:
 
 <!-- SCREENSHOT: Source State view showing the Source tab with state badge, initialization status, and details sections -->
 
+![Source State view showing FTP source with object database, connection details, folder setups, and alarm settings](./.sources_images/source-state-detail.png)
+
 ### Source Tab
 
 The primary view showing runtime state, metrics, and source-specific details:
@@ -99,6 +101,8 @@ Use folder enablement to temporarily stop processing from a specific directory d
 ### Log Tab
 
 <!-- SCREENSHOT: Source Log tab showing log entries for a source -->
+
+![Source Log tab showing timestamped entries with source lifecycle events including startup messages](./.sources_images/source-log-tab.png)
 
 Displays the runtime log for this specific source instance. Use this to:
 
