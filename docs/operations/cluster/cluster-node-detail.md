@@ -20,11 +20,15 @@ The interface is organized into three tabs:
 
 The main tab displays detailed runtime information about the selected cluster node, organized into several collapsible sections.
 
+![Cluster Node tab showing Node State, Activation Controller, Scheduler Slave, and Java Virtual Machine panels](./.cluster-node-detail_images/cluster-node-tab-overview.png)
+
 ### Node State
 
 This panel shows the fundamental identity and status information for the node:
 
-**State** — Current operational state of the cluster node (e.g., "Up", "Shutting down").
+![Node State panel showing operational status, hostname, version, addresses, and system information](./.cluster-node-detail_images/node-state-panel.png)
+
+**State** — Current operational state of the cluster node (e.g., "UP", "Shutting down").
 
 **Started at** — Timestamp when the node was started, formatted according to the application's date/time settings.
 
@@ -46,6 +50,8 @@ At the right side of this panel, a **Shutdown Node** button allows you to gracef
 
 This section shows the status of the node's connection to the cluster's deployment storage and its current deployment assignment:
 
+![Activation Controller panel showing connection state, current tag, and deployment information](./.cluster-node-detail_images/activation-controller-panel.png)
+
 **State** — Indicates whether the node is successfully connected to the deployment storage controller. Shows either:
 - ✅ **Connected** with the node address where deployment storage is running
 - ❌ **Not connected** — no connection to the cluster's deployment storage
@@ -65,6 +71,8 @@ When an activation failure occurs, hovering over the error message reveals a det
 
 Displays the node's connection status to the cluster's scheduler master:
 
+![Scheduler Slave panel showing connection to the scheduler master](./.cluster-node-detail_images/scheduler-slave-panel.png)
+
 **State** — Shows either:
 - ✅ **Connected** with the node address where the scheduler master is running
 - ❌ **Not connected** — no connection to the scheduler master
@@ -72,6 +80,8 @@ Displays the node's connection status to the cluster's scheduler master:
 ### Java Virtual Machine
 
 This panel displays JVM metrics and system resources available to the node:
+
+![Java Virtual Machine panel showing vendor, version, processors, threads, and memory statistics](./.cluster-node-detail_images/jvm-panel.png)
 
 **Vendor** — The JVM vendor (e.g., "Eclipse Adoptium", "Oracle Corporation").
 
