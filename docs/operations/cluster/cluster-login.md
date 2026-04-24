@@ -40,7 +40,7 @@ If your cluster is configured to use external identity providers (IdP), addition
 
 Click the provider button to initiate the OAuth/OIDC flow. You will be redirected to the provider's authentication page, then returned to the Configuration Center upon successful authentication.
 
-<!-- SCREENSHOT: Cluster Login panel showing both username/password form and OIDC provider buttons (e.g., "Login with Google", "Login with Okta") -->
+![Cluster Login panel showing username/password form with OIDC provider buttons ("Login with Google", "Login with Okta")](./.cluster-login_images/cluster-login-oidc.png)
 
 ## Connection Status
 
@@ -64,7 +64,7 @@ When the cluster responds successfully:
 
 This indicates the cluster is ready to accept authentication requests.
 
-<!-- SCREENSHOT: Cluster Login panel showing "Cluster available" status with green checkmark -->
+![Cluster Login panel showing "Cluster available" status with green checkmark and active Login button](./.cluster-login_images/cluster-login-available.png)
 
 ### Cluster Not Available
 
@@ -94,7 +94,7 @@ For security, sessions automatically expire after a period of inactivity. When t
 
 Login again to restore your session. You will return to the same operational context you were viewing before logout.
 
-<!-- SCREENSHOT: Cluster Login panel showing "You were logged out due to inactivity" orange banner -->
+<!-- This state is described in text; no screenshot available in .cluster-login_images/ -->
 
 ### Connection Lost State
 
@@ -106,7 +106,7 @@ If the network connection to the cluster is lost while you are logged in:
 
 Once connectivity is restored, you may need to re-authenticate depending on how long the interruption lasted and your cluster's session policies.
 
-<!-- SCREENSHOT: "Network connection to cluster lost" warning modal -->
+!["Network connection to cluster lost" warning modal showing reconnect status](./.cluster-login_images/cluster-connection-lost.png)
 
 ### Manual Logout
 
@@ -117,7 +117,7 @@ When logged in, your username appears in the top-right corner of the Operations 
 
 This immediately terminates your session and returns you to the login panel.
 
-<!-- SCREENSHOT: User menu in top-right showing "Log out" option -->
+![User menu in top-right corner showing username dropdown with "Log out" option](./.cluster-login_images/cluster-logout-menu.png)
 
 ## Troubleshooting
 
