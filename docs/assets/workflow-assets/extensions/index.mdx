@@ -1,8 +1,34 @@
 ---
 title: Extensions
 ---
+
 # Extensions
 
+> Extensions deploy custom functionality beyond built-in processors, enabling integrations with external systems and platforms through macro resolvers and metric exporters.
+
+## Overview
+
+Extensions expand layline.io's capabilities by providing runtime integrations that aren't covered by standard processors. They deploy as resolver services within your engine configuration, making their functionality available across your workflows.
+
+Unlike processors that handle message flow, Extensions typically provide:
+- **Macro resolvers** — Dynamic value substitution from external systems
+- **Metric exporters** — Integration with monitoring and observability platforms
+
+## Available Extensions
+
+| Extension | Description |
+|-----------|-------------|
+| [AWS Extension](./asset-extension-aws.md) | Deploys an AWS macro resolver that provides `${aws:...}` macros for accessing AWS Systems Manager Parameter Store and AWS Secrets Manager values at runtime. |
+| [Prometheus Extension](./asset-prometheus.md) | Exports layline.io processing metrics to Prometheus, mapping internal metric names to Prometheus-compatible names for monitoring and visualization. |
+
+## When to Use Extensions
+
+| If you need to... | Use this extension |
+|-------------------|-------------------|
+| Reference AWS secrets or parameters in your configuration | [AWS Extension](./asset-extension-aws.md) |
+| Export metrics to Prometheus for monitoring | [Prometheus Extension](./asset-prometheus.md) |
+
+---
 
 import DocCardList from '@theme/DocCardList';
 
