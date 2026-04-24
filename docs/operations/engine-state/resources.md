@@ -1,6 +1,6 @@
 ---
 title: Resources
-description: Monitor and inspect resource instances running on your cluster, including Data Dictionaries, Directories, Environment variables, and Secrets.
+description: Monitor and inspect resource instances running on your cluster, including Data Dictionaries, Directories, Environment, Secrets, OAuth, AlarmRules, AlarmTargets, and Status Settings.
 ---
 
 # Resource State
@@ -15,6 +15,10 @@ The Resource State view provides visibility into resource instances running on y
 - **Directories** — Configure file system access for Sources and Sinks
 - **Environment** — Store configuration values and variables
 - **Secrets** — Securely manage sensitive credentials and API keys
+- **OAuth** — Manage OAuth client credentials for external API authentication
+- **AlarmRules** — Define conditions and thresholds for triggering alarms
+- **AlarmTargets** — Configure notification destinations for alarm delivery
+- **Status Settings** — Define custom status endpoints and health check configurations
 
 This page lets you monitor resource health, inspect configuration, view initialization status, and diagnose issues.
 
@@ -88,6 +92,44 @@ Lists all defined environment variables and their current values. Shows variable
 #### Secret Resources
 
 Shows the secret name and type (API key, password, certificate, etc.). Values are masked for security. Displays validation status (e.g., whether an API key format is valid).
+
+#### OAuth Resources
+
+Displays OAuth client configuration and token status:
+
+- **Client ID** — The OAuth client identifier (masked for security)
+- **Authorization URL** — The endpoint for authorization requests
+- **Token URL** — The endpoint for token exchange
+- **Scopes** — List of authorized scopes
+- **Token Status** — Current token state (valid, expired, refresh pending)
+- **Token Expiry** — When the current access token expires (if applicable)
+
+#### AlarmRules Resources
+
+Shows alarm condition definitions and their current evaluation state:
+
+- **Rule Name** — Identifier for the alarm condition
+- **Condition** — The threshold or expression being evaluated
+- **Severity** — Default severity level when triggered (INFO, WARN, ERROR, CRITICAL)
+- **Evaluation State** — Whether the rule is currently active or suppressed
+
+#### AlarmTargets Resources
+
+Displays notification destination configuration:
+
+- **Target Type** — Channel type (Email, Slack, Webhook, PagerDuty, etc.)
+- **Configuration** — Connection details (endpoint URLs, channel names)
+- **Delivery Status** — Last successful/failed delivery timestamp
+- **Health Check** — Whether the target is reachable
+
+#### Status Settings Resources
+
+Shows custom status endpoint configuration:
+
+- **Endpoint Path** — The URL path for the status endpoint
+- **Response Type** — Format of status response (JSON, plain text, etc.)
+- **Monitored Components** — Which subsystems are included in the status
+- **Last Check** — When the status endpoint was last queried
 
 ### Log Tab
 
@@ -204,6 +246,77 @@ Secret resources securely store sensitive information like API keys, passwords, 
 Secret values are never displayed in the UI. Only metadata (name, type, validation status) is shown. The actual values remain encrypted and are only accessible to authorized assets at runtime.
 :::
 
+### OAuth
+
+OAuth resources manage OAuth 2.0 client credentials for authenticating with external APIs and services.
+
+**Initialization behavior:**
+- Validates client ID and secret format
+- Tests connectivity to authorization and token endpoints
+- Performs initial token exchange (if using client credentials flow)
+
+**Common issues:**
+- Invalid client credentials
+- Authorization server unreachable
+- Incorrect token endpoint URL
+- Scope not authorized for client
+
+**In Resource State view:**
+Monitor token status and expiry. When a token is near expiry or shows as expired, the system typically auto-refreshes it. Check the Log tab for refresh failures.
+
+### AlarmRules
+
+AlarmRules define conditions that trigger alerts when thresholds are breached or specific events occur.
+
+**Initialization behavior:**
+- Compiles rule expressions
+- Validates threshold values and metric references
+- Registers rules with the alarm evaluation engine
+
+**Common issues:**
+- Invalid metric references
+- Syntax errors in rule expressions
+- Circular rule dependencies
+- Threshold values outside valid ranges
+
+**In Resource State view:**
+Rules show their evaluation state. A rule in error state indicates a problem with the condition expression or the metric it's monitoring.
+
+### AlarmTargets
+
+AlarmTargets configure where alarm notifications are sent when rules trigger.
+
+**Initialization behavior:**
+- Validates target configuration (email format, URL validity, etc.)
+- Tests connectivity to notification endpoints
+- Verifies authentication credentials for the target service
+
+**Common issues:**
+- Invalid email addresses or webhook URLs
+- Network connectivity to notification services
+- Authentication failures (expired API tokens, invalid credentials)
+- Rate limiting from notification providers
+
+**In Resource State view:**
+Check the Delivery Status to see when notifications were last successfully sent. Persistent failures may indicate configuration issues or service outages.
+
+### Status Settings
+
+Status Settings define custom health check endpoints that expose system status to external monitoring tools.
+
+**Initialization behavior:**
+- Validates endpoint path syntax
+- Checks for path conflicts with existing endpoints
+- Initializes status aggregation for configured components
+
+**Common issues:**
+- Path conflicts with existing system endpoints
+- Invalid response type configuration
+- Missing component references
+
+**In Resource State view:**
+Shows the endpoint configuration and when it was last accessed. Use this to verify the endpoint is responding to health check queries.
+
 ## Common Tasks
 
 ### Checking Resource Health
@@ -223,6 +336,10 @@ Secret values are never displayed in the UI. Only metadata (name, type, validati
    - **Data Dictionary**: Syntax error in definitions
    - **Secret**: Decryption failure, invalid format
    - **Environment**: Circular reference, type error
+   - **OAuth**: Invalid client credentials, authorization server unreachable
+   - **AlarmRules**: Invalid metric references, syntax errors in expressions
+   - **AlarmTargets**: Invalid email/URL, authentication failure
+   - **Status Settings**: Path conflicts, invalid response type
 
 ### Restarting a Resource
 
