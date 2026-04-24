@@ -82,6 +82,3 @@ Most Source Assets share these configuration sections:
 - [Connections](../connections) — Reusable connection definitions used by Sources
 - [Sinks](../sinks) — The counterpart to Sources — where data goes
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
