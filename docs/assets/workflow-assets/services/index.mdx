@@ -1,8 +1,150 @@
 ---
 title: Services
 ---
+
 # Services
 
+> Services are external function calls from within your workflows — similar to web services, but specialized for different backends like databases, APIs, messaging systems, and more.
+
+## Overview
+
+Services provide callable functions that workflows invoke during processing. Unlike Input/Output Processors which define workflow boundaries, Services are used *within* a workflow — typically from JavaScript or Python Processors — to call external systems, query data, or perform operations.
+
+**Key characteristics:**
+- **Callable from scripts** — Services expose functions you call from JavaScript/Python Processors using the `services` pseudo-class
+- **Backend-specific** — Each service type is specialized (JDBC for SQL databases, HTTP for REST APIs, etc.)
+- **Configuration in asset** — Most services configure connection parameters directly (except Email and Teams, which use Connection assets)
+- **Reusable across workflows** — Define once, call from any workflow that links the service
+
+**Service vs Connection:** Connections store reusable credentials and endpoint configuration. Services define *how* to use those connections — the functions, queries, or operations to perform. Most Services embed their connection config directly; only Email and Teams Services reference separate Connection assets.
+
+---
+
+## Available Services
+
+### Databases & Storage
+
+| Service | Description |
+|---------|-------------|
+| [Aerospike Service](./asset-service-aerospike) | Read from and write to Aerospike NoSQL databases. High-performance key-value operations with batch support. |
+| [Cassandra Service](./asset-service-cassandra) | Query and update Apache Cassandra or AWS Keyspaces databases. Supports CQL queries and asynchronous processing. |
+| [DynamoDB Service](./asset-service-dynamo-db) | Access AWS DynamoDB tables. Supports get, put, query, scan, and batch operations with automatic retries. |
+| [Hazelcast Service](./asset-service-hazelcast) | Access Hazelcast in-memory data grid. Use for distributed caching, shared state, or high-speed data access across workflows. |
+| [JDBC Service](./asset-service-jdbc) | Execute SQL queries against relational databases. Works with PostgreSQL, MySQL, Oracle, SQL Server, and any JDBC-compatible database. |
+| [KVS Service](./asset-service-kvs) | Lightweight persistent key-value store shared across the cluster. Use for caching, session state, or fast local storage. |
+
+### APIs & Web Services
+
+| Service | Description |
+|---------|-------------|
+| [AI Service](./asset-service-ai) | Call external AI/ML APIs (OpenAI, Azure ML, etc.). Expose trained models as callable functions from your scripts. |
+| [HTTP Service](./asset-service-http) | Call REST APIs and HTTP endpoints. Supports GET, POST, PUT, DELETE, custom headers, and authentication. |
+| [Proxy Service](./asset-service-proxy) | Forward service calls to another Reactive Engine cluster. Enable cross-cluster service invocation without code changes. |
+| [SOAP Service](./asset-service-soap) | Call SOAP web services. Supports WSDL parsing, SOAP headers, and legacy enterprise system integration. |
+
+### Messaging & Notifications
+
+| Service | Description |
+|---------|-------------|
+| [Email Service](./asset-service-email) | Send emails via configured Email Connections. Supports HTML/text templates, attachments, and multiple recipients. |
+| [Message Service](./asset-service-message) | Send messages to topics defined in Message Sources. Use for pub/sub patterns and asynchronous communication. |
+| [Queue Service](./asset-service-queue) | Interface with file-based message queues. Reliable message delivery with persistence. |
+| [Teams Service](./asset-service-teams) | Send notifications to Microsoft Teams channels and chats. Requires MS Graph Connection. Supports adaptive cards and mentions. |
+| [UDP Service](./asset-service-udp) | Send UDP datagrams. Use for lightweight, high-performance messaging where delivery isn't guaranteed. |
+
+### Utility & Workflow
+
+| Service | Description |
+|---------|-------------|
+| [Sequence Number Service](./asset-service-seq) | Generate unique sequential counters across the cluster. Use for order numbers, ticket IDs, or guaranteed-unique identifiers. |
+| [Timer Service](./asset-service-timer) | Schedule delayed or periodic operations. Store payloads and re-present them to workflows at specified times with retry logic. |
+| [Virtual File System Service](./asset-service-virtual-fs) | Perform file operations (read, write, copy, move, delete) against Virtual File System mounts from within scripts. |
+
+---
+
+## How to Choose a Service
+
+| If you need to... | Use this service |
+|-------------------|------------------|
+| Query a SQL database (PostgreSQL, MySQL, Oracle, etc.) | **JDBC Service** |
+| Use a NoSQL database (Aerospike, Cassandra, DynamoDB) | **Aerospike**, **Cassandra**, or **DynamoDB Service** |
+| Cache data or share state across workflows | **KVS Service** or **Hazelcast Service** |
+| Call a REST API | **HTTP Service** |
+| Integrate with a legacy SOAP service | **SOAP Service** |
+| Send an email notification | **Email Service** |
+| Post to a Teams channel | **Teams Service** |
+| Send a message to a topic/queue | **Message Service** or **Queue Service** |
+| Generate unique sequential IDs | **Sequence Number Service** |
+| Schedule delayed processing or retries | **Timer Service** |
+| Access files from script code | **Virtual File System Service** |
+| Call a service on another cluster | **Proxy Service** |
+| Call an external AI/ML model | **AI Service** |
+| Send lightweight UDP messages | **UDP Service** |
+
+---
+
+## Common Service Patterns
+
+### 1. Database Lookup Pattern
+Use JDBC, Cassandra, or Aerospike Services to enrich incoming data with reference information:
+
+```javascript
+// In a JavaScript Processor
+const customerData = services.CustomerDB.GetCustomerById({
+    CustomerId: message.data.CustomerId
+});
+message.data.CustomerName = customerData.data.Name;
+```
+
+### 2. API Call Pattern
+Use HTTP or SOAP Services to call external APIs during processing:
+
+```javascript
+// Call a partner API
+const result = services.PartnerAPI.SubmitOrder({
+    OrderData: message.data
+});
+if (result.data.Status === 'ACCEPTED') {
+    stream.emit(message, OUTPUT_PORT);
+}
+```
+
+### 3. Notification Pattern
+Use Email or Teams Services to alert on specific conditions:
+
+```javascript
+// Send alert for high-priority errors
+if (message.data.Priority === 'CRITICAL') {
+    services.AlertService.SendMessage({
+        Conversation: 'Ops Team',
+        Content: 'Critical error: ' + message.data.ErrorCode
+    });
+}
+```
+
+### 4. Delayed Processing Pattern
+Use Timer Service when a message can't be processed immediately:
+
+```javascript
+// Schedule for retry in 5 minutes
+services.RetryTimer.ScheduleOnce({
+    Group: 'RetryGroup',
+    When: DateTime.now().plusMinutes(5),
+    Name: message.data.RecordId,
+    Payload: message.data
+});
+```
+
+---
+
+## See Also
+
+- [Services Introduction](./asset-service-introduction) — Detailed walkthrough of service concepts and usage patterns
+- [Connections](../connections/) — Reusable connection credentials for Email, Teams, and Virtual File System Services
+- [JavaScript Processor](../processors-flow/asset-flow-javascript) — Writing scripts that call services
+- [Python Processor](../processors-flow/asset-flow-python) — Python scripting with service integration
+
+---
 
 import DocCardList from '@theme/DocCardList';
 
