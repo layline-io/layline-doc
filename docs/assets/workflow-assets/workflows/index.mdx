@@ -1,8 +1,90 @@
 ---
 title: Workflows
 ---
+
 # Workflows
 
+> Workflows orchestrate data processing pipelines by connecting inputs, processors, and outputs into a coordinated data flow.
+
+## Overview
+
+In layline.io, a **Workflow** is the central asset that defines how data moves through your processing pipeline. Every data processing pipeline requires exactly one Workflow asset.
+
+A Workflow serves as the orchestration layer that:
+- Defines the flow of data from input to output
+- Connects processors in a directed graph
+- Configures runtime behavior and resource allocation
+- Handles error conditions and retry logic
+- Manages deployment and versioning
+
+```mermaid
+graph LR
+    A["Source"] --> B["Input Processor"]
+    B --> C["[Flow Processors]"]
+    C --> D["Output Processor"]
+    D --> E["Sink"]
+```
+
+While Sources, Processors, and Sinks define *what* to process and *where* to read/write, the Workflow defines *how* they connect and *when* to run.
+
+## Available Workflow Assets
+
+There is a single Workflow asset that provides all orchestration capabilities:
+
+| Asset | Description |
+|-------|-------------|
+| [Workflow](./asset-workflow) | Defines a complete data processing pipeline. Configures the directed graph of processors, resource allocation, scheduling priority, error handling, and alarming. Every pipeline needs one Workflow asset. |
+
+## Key Concepts
+
+### Processor Instances
+
+A Workflow creates **instances** of processor assets on a visual canvas. You drag Input, Flow, and Output processors onto the canvas and connect them with links that define data flow direction. Each instance inherits its base configuration from the referenced asset but can be further customized for this specific workflow.
+
+### Workflow Deployment
+
+Workflows are deployed to [Engines](../../../concept/projects-workflows/deployment.md) as part of a [Deployment Composition](../../deployment-assets/asset-deployment-composition.md). When deployed, the Engine instantiates the processor graph and begins processing data according to the configured schedule and triggers.
+
+### Versioning and Inheritance
+
+Workflows support inheritance like other assets. A child Workflow can override specific settings (scheduler weight, timeouts, alarming) while inheriting the processor graph and base configuration from its parent. This enables pattern reuse across similar pipelines.
+
+### Resource Dependencies
+
+Workflows explicitly declare dependencies on Formats, Services, and Resources they use. While most dependencies are automatically detected, items accessed only programmatically (like data dictionaries used in JavaScript) must be explicitly added to ensure they're included in deployment.
+
+## Relationship to Other Assets
+
+Workflows are the orchestration layer that references and connects all other asset types:
+
+| Asset Type | Relationship |
+|------------|--------------|
+| **Sources** | Workflows reference Sources through Input Processors. The Source provides the connection endpoint; the Input Processor defines how to read from it. |
+| **Input Processors** | Every Workflow has exactly one Input Processor as its entry point. Defines how data enters the pipeline. |
+| **Flow Processors** | Optional processors that transform, filter, route, or enrich data between input and output. Business logic lives here. |
+| **Output Processors** | Define where processed data exits the Workflow. Every Workflow has at least one Output Processor. |
+| **Sinks** | Workflows reference Sinks through Output Processors. The Sink provides the destination endpoint; the Output Processor defines what to send. |
+| **Formats** | Workflows declare Format dependencies for parsing input and serializing output. |
+| **Services** | Workflows declare Service dependencies for calling external APIs and databases during processing. |
+| **Connections** | Connections are referenced by Sources, Sinks, and Services — not directly by Workflows, but required for the pipeline to function. |
+
+## Quick Start
+
+New to Workflows? Follow the [Building Your First Workflow](../../../quickstart/first-workflow.md) guide to create a complete data processing pipeline from scratch.
+
+## See Also
+
+- [**Input Processors**](../processors-input/) — Entry points that bring data into your Workflow
+- [**Flow Processors**](../processors-flow/) — Transform, route, and process data within the pipeline
+- [**Output Processors**](../processors-output/) — Exit points that send data to destinations
+- [**Sources**](../sources/) — Reusable inbound connection endpoints
+- [**Sinks**](../sinks/) — Reusable outbound connection endpoints
+- [**Deployment**](../../../concept/projects-workflows/deployment.md) — How Workflows are deployed to engines
+- [**Building Your First Workflow**](../../../quickstart/first-workflow.md) — Step-by-step tutorial
+
+---
+
+## Workflow Reference
 
 import DocCardList from '@theme/DocCardList';
 
