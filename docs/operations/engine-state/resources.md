@@ -79,19 +79,70 @@ Below the header, the Resource Details section displays type-specific informatio
 
 #### Data Dictionary Resources
 
-Shows the compiled data dictionary structure and field definitions. Displays validation status and any compilation errors.
+Displays the compiled data dictionary with complete field structure:
+
+**Field Definitions:**
+- **Field name** — The identifier for each field in the dictionary
+- **Data type** — The type (string, integer, decimal, date, etc.)
+- **Constraints** — Validation rules (required, min/max length, pattern, etc.)
+- **Default values** — Default value if none provided
+
+**Status Information:**
+- **Compilation status** — Whether the dictionary compiled successfully
+- **Validation errors** — Any syntax errors or type conflicts in field definitions
+- **Dependencies** — References to other dictionaries if applicable
 
 #### Directory Resources
 
-Shows configured paths, access permissions, and connection status. For remote directories (NFS, SMB), displays connection state and mount status.
+Shows filesystem path configuration and access verification:
+
+**Path Configuration:**
+- **Base path** — The root directory path configured for this resource
+- **Path type** — Local filesystem, NFS, SMB, or other remote protocol
+- **Access mode** — Read, write, or read-write permissions
+
+**Connection Status:**
+- **Accessibility** — Whether the path is currently accessible (green checkmark or error)
+- **Permission test** — Result of read/write permission validation
+- **Mount status** — For remote directories: connection state and mount point availability
+
+**Remote Directory Details (NFS/SMB):**
+- **Server address** — Hostname or IP of the remote server
+- **Share name** — The exported share or volume name
+- **Connection state** — Connected, connecting, or connection failed
 
 #### Environment Resources
 
-Lists all defined environment variables and their current values. Shows variable names, types, and resolved values.
+Lists all defined environment variables in a key-value table:
+
+**Variable Properties:**
+- **Variable name** — The identifier used to reference this variable
+- **Type** — Data type (string, integer, boolean, etc.)
+- **Value** — The resolved value after variable substitution
+- **Source** — Whether defined inline, inherited, or from external source
+
+**Resolution Status:**
+- **Resolved** — Whether all variable references were successfully resolved
+- **Circular reference check** — Validation that no circular dependencies exist
+- **Missing references** — Any undefined variables referenced in values
 
 #### Secret Resources
 
-Shows the secret name and type (API key, password, certificate, etc.). Values are masked for security. Displays validation status (e.g., whether an API key format is valid).
+Displays secret metadata and validation status (values are never shown):
+
+**Secret Metadata:**
+- **Secret name** — The identifier for this secret resource
+- **Secret type** — API key, password, certificate, OAuth token, etc.
+- **Created/Updated** — Timestamps for secret lifecycle
+
+**Validation Status:**
+- **Format validation** — Whether the secret value matches expected format (e.g., API key structure)
+- **Decryption status** — Whether the secret can be successfully decrypted
+- **Expiration** — For certificates and tokens: expiration date and validity status
+
+:::tip Security Note
+Secret values are never displayed in the UI. Only metadata (name, type, validation status) is shown. The actual values remain encrypted and are only accessible to authorized assets at runtime.
+:::
 
 #### OAuth Resources
 
