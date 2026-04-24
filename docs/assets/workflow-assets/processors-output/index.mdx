@@ -1,9 +1,93 @@
 ---
 title: Output Processors
 ---
+
 # Output Processors
 
+> Output Processors are the exit points of a Workflow, determining how and where processed data leaves the pipeline.
 
-import DocCardList from '@theme/DocCardList';
+## Overview
 
-<DocCardList />
+In layline.io, **Output Processors** serve as the final step in your Workflow. They receive processed messages from Flow Processors and deliver them to their final destinations. While [Sinks](../sinks/) define *where* data goes (the connection endpoint), Output Processors define *how* data is sent (the delivery mechanism and format).
+
+This relationship mirrors the input side: just as [Input Processors](../processors-input/) work with [Sources](../sources/) to bring data in, Output Processors work with Sinks to send data out. A single Sink can be reused across multiple Output Processors, each configured for different message types or delivery patterns.
+
+## Available Output Processors
+
+### File & Stream Output
+
+| Asset | Description |
+|-------|-------------|
+| [Output Stream](./asset-output-stream) | Write data to stream-based Sinks (File System, S3, FTP, WebSocket, etc.) with support for compression, format serialization, and batch control. Use when outputting to file systems, cloud storage, or streaming endpoints. |
+| [Output Frame](./asset-output-frame) | Send data as discrete datagrams to frame-based Sinks (Kafka, Kinesis, SQS, SNS, EventBridge). Use when publishing to message queues, event buses, or streaming platforms that handle individual messages. |
+
+### Utility Output
+
+| Asset | Description |
+|-------|-------------|
+| [Output Dev Null](./asset-output-devnull) | Discard messages without sending them anywhere. Use for testing workflows without producing output, handling dead-letter scenarios, or measuring throughput without I/O overhead. |
+
+## How to Choose an Output Processor
+
+| If you need to... | Use this processor |
+|-------------------|-------------------|
+| Write files to disk, S3, FTP, or cloud storage | [Output Stream](./asset-output-stream) |
+| Publish to Kafka topics | [Output Frame](./asset-output-frame) |
+| Send messages to SQS queues | [Output Frame](./asset-output-frame) |
+| Push events to Kinesis or EventBridge | [Output Frame](./asset-output-frame) |
+| Publish SNS notifications | [Output Frame](./asset-output-frame) |
+| Test workflows without actual output | [Output Dev Null](./asset-output-devnull) |
+| Discard messages that don't need processing | [Output Dev Null](./asset-output-devnull) |
+
+## Common Patterns
+
+### Error Handling
+
+Output Processors support configurable failure handling when a Sink is unreachable or returns an error:
+
+- **Discard Message** — Skip the failed message and continue processing subsequent messages
+- **Rollback Stream** — Roll back the entire transaction and retry from the beginning
+- **Retry with Backoff** — Automatically retry failed deliveries with exponential backoff
+
+Configure these behaviors in the Output Processor's **Failure Handling** section.
+
+### Retry Logic
+
+All Output Processors include built-in retry mechanisms:
+
+- Configure **maximum retry attempts** for transient failures
+- Set **retry intervals** to control backoff behavior
+- Define **timeout values** for slow destinations
+- Use **circuit breaker patterns** to prevent overwhelming failing endpoints
+
+### Output Batching
+
+Optimize throughput by batching messages:
+
+- **Output Stream** supports batching multiple records into a single file or stream operation
+- **Output Frame** can batch messages for queue and topic destinations
+- Configure batch size limits and flush intervals to balance latency vs. throughput
+
+### Format Serialization
+
+Output Processors that write to file-based Sinks ([Output Stream](./asset-output-stream)) require a [Format](../formats/) asset:
+
+- The Format defines how messages are serialized (JSON, XML, CSV, etc.)
+- Multiple Output Processors can use the same Sink with different Formats
+- Formats ensure data consistency and validation before writing
+
+### Transaction Boundaries
+
+Output Processors participate in Workflow transaction management:
+
+- Messages are committed to Sinks as part of the Workflow's transaction
+- Failed outputs can trigger rollback of the entire processing batch
+- Use [Input Frame Committer](../processors-flow/asset-flow-input-frame-committer) for precise control over when offsets are committed relative to output
+
+## See Also
+
+- [**Sinks**](../sinks/) — Reusable destination endpoints that Output Processors write to
+- [**Input Processors**](../processors-input/) — Entry points to Workflows (the counterpart to Output Processors)
+- [**Flow Processors**](../processors-flow/) — Transform and route data between input and output
+- [**Formats**](../formats/) — Define how data is structured when written by Output Processors
+
