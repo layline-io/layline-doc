@@ -71,7 +71,3 @@ Most Connection Assets share these configuration sections:
 - [Sources](../sources) — Use Connections to define where data comes from
 - [Sinks](../sinks) — Use Connections to define where data goes
 - [Services](../services) — Use Connections for database, cache, and API service access
-
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
