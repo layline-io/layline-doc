@@ -1,0 +1,84 @@
+---
+title: Sources
+---
+
+# Sources
+
+> Sources define **where your data comes from** — the connection parameters and technical details for inbound data endpoints.
+
+## What are Sources?
+
+A Source Asset specifies the technical parameters for connecting to an external system that provides data. This includes:
+
+- **Connection details** — endpoints, credentials, and access parameters
+- **Location configuration** — folders, buckets, queues, or topics to read from
+- **Polling behavior** — how often to check for new data
+- **Failure handling** — retry logic and error management
+
+Sources are **referenced by Input Processors**, which handle the actual message ingestion and processing workflow.
+
+## Sources vs Input Processors
+
+Understanding the distinction helps you build maintainable workflows:
+
+| Sources | Input Processors |
+|---------|------------------|
+| Define **where** data comes from (connection/location) | Define **how** data is processed (workflow entry) |
+| Reusable across multiple workflows | Workflow-specific configuration |
+| Configure endpoints, folders, credentials | Configure format parsing, routing, initial processing |
+| Example: S3 bucket name and region | Example: Which format to parse, where to route |
+
+### When to define a Source vs using Input Processor directly
+
+**Define a Source Asset when:**
+- The same connection/location is used across multiple workflows
+- You need to centralize credential management
+- You want to monitor and manage connections independently
+- You're connecting to external systems (S3, Kafka, Email, FTP, etc.)
+
+**Input Processor configuration is sufficient when:**
+- The data source is internal to the workflow (Message Source, Timer)
+- No external connection parameters are needed
+- The configuration is truly workflow-specific
+
+## Sources Overview
+
+| Source | Purpose | Common Use Case |
+|--------|---------|-----------------|
+| [Email](./asset-source-email) | Connect to mail servers (IMAP, POP3, MS 365) | Process incoming emails and attachments |
+| [File System](./asset-source-file) | Read from local or mounted file systems | Pick up files from local directories |
+| [FTP](./asset-source-ftp) | Connect to FTP/SFTP servers | Retrieve files from FTP endpoints |
+| [Google Cloud Storage](./asset-source-google-cloud-storage) | Poll GCS buckets for objects | Cloud storage integration |
+| [HTTP](./asset-source-http) | Define HTTP endpoint parameters | REST API data ingestion |
+| [Kafka](./asset-source-kafka) | Connect to Apache Kafka topics | Stream processing from Kafka |
+| [Message](./asset-source-message) | Define inline message sources | Static or template messages |
+| [NFS](./asset-source-nfs) | Connect to NFS shares | Network file system access |
+| [OneDrive](./asset-source-onedrive) | Connect to Microsoft OneDrive | Cloud document processing |
+| [S3](./asset-source-s3) | Poll Amazon S3 buckets | Object storage integration |
+| [Service](./asset-source-service) | Use Service Assets as data sources | JDBC queries, HTTP calls as streams |
+| [SharePoint](./asset-source-sharepoint) | Connect to Microsoft SharePoint | Enterprise document management |
+| [SMB](./asset-source-smb) | Connect to SMB/CIFS shares | Windows file sharing |
+| [SQS](./asset-source-sqs) | Poll Amazon SQS queues | Message queue processing |
+| [TCP](./asset-source-tcp) | Receive data over TCP connections | Network socket data ingestion |
+| [Timer](./asset-source-timer) | Generate scheduled message triggers | Cron-based workflow initiation |
+| [UDP](./asset-source-udp) | Receive data over UDP | Lightweight network messaging |
+| [Virtual File System](./asset-source-virtual-fs) | Poll VFS for files | Abstracted file system access |
+| [WebDAV](./asset-source-webdav) | Connect to WebDAV servers | Web-based file management |
+
+## Common Configuration Patterns
+
+Most Source Assets share these configuration sections:
+
+- **Name & Description** — Asset identification
+- **Required Roles** — Access control for the asset
+- **Connection** — Reference to a Connection Asset (for external sources)
+- **Directories/Folders** — Source location configuration
+- **Polling & Processing** — How often to check for new data
+- **Throttling & Failure Handling** — Rate limiting and error recovery
+
+## See Also
+
+- [Input Processors](../processors-input) — Process data from Sources
+- [Connections](../connections) — Reusable connection definitions used by Sources
+- [Sinks](../sinks) — The counterpart to Sources — where data goes
+
