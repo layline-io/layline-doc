@@ -428,4 +428,4 @@ When viewing the Log tab, new entries appear automatically as they are generated
 - [**Directory Assets**](../../assets/workflow-assets/resources/asset-resource-directories.md) — Configuring directory access
 - [**Environment Assets**](../../assets/workflow-assets/resources/asset-resource-environment.md) — Managing environment variables
 - [**Secret Assets**](../../assets/workflow-assets/resources/asset-resource-secret.md) — Managing sensitive credentials
-- [**Deployment Assets**](../../assets/workflow-assets/deployments/) — Understanding how resources are deployed
+- [**Deployment Assets**](../../../assets/deployment-assets) — Understanding how resources are deployed
