@@ -34,7 +34,7 @@ Use Resource State to:
 
 The Resource State interface uses a two-tab layout:
 
-<!-- SCREENSHOT: Resource State detail view showing Resource tab with a Directory resource in USED state, including State badge, Name, Running on cluster node, Activation digest, and Initialization status -->
+![Resource State detail view showing an ActivationSecrets resource in UNUSED state with secrets table displaying masked values (DBPW, S3SecretKey, SFTP, etc.)](./.resources_images/resource-detail-secrets.png)
 
 ### Resource Tab
 
@@ -184,7 +184,7 @@ Shows custom status endpoint configuration:
 
 ### Log Tab
 
-<!-- SCREENSHOT: Resource Log tab showing lifecycle events including initialization, configuration loading, and any errors -->
+![Resource Log tab showing initialization events for ActivationSecrets resource, including timestamps and success messages](./.resources_images/resource-log-initialization.png)
 
 The Log tab displays the runtime log for this specific resource instance. This is the same log that would be written to disk on the cluster node, accessible here without needing SSH access to the server.
 
