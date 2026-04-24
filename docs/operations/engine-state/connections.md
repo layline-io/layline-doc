@@ -23,7 +23,7 @@ Use Connection State to:
 
 The Connection State interface uses a two-tab layout:
 
-<!-- SCREENSHOT: Connection State view showing the Connection tab with state badge, initialization status, and connection-specific details sections -->
+![Connection State view showing the Connection tab with Microsoft Graph connection details including state badge, initialization status, and connection-specific configuration](./.connections_images/connection-tab-msgraph.png)
 
 ### Connection Tab
 
@@ -79,7 +79,7 @@ Many connection types include configurable health check parameters: check interv
 
 ### Log Tab
 
-<!-- SCREENSHOT: Connection Log tab showing log entries for a connection -->
+![Connection Log tab showing Microsoft Graph connection renewal events with timestamps and expiration details](./.connections_images/log-tab-msgraph.png)
 
 The Log tab displays the runtime log for this specific connection instance. This is the same log that would be written to disk on the cluster node, accessible here without needing SSH access to the server.
 
