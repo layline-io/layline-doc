@@ -22,7 +22,7 @@ Use Extension State to:
 
 The Extension State interface uses a two-tab layout:
 
-<!-- SCREENSHOT: Extension State detail view showing Extension tab with state badge, name, cluster node, activation digest, and initialization status -->
+![Extension State detail view showing the Extension tab with ACTIVE state badge, extension name "Prometheus", cluster node address, activation digest, initialization status, and extension-specific counter mappings table](./.extensions_images/extension-tab-prometheus.png)
 
 ### Extension Tab
 
@@ -50,7 +50,7 @@ The lower section displays extension-specific information loaded dynamically bas
 
 ### Log Tab
 
-<!-- SCREENSHOT: Extension Log tab showing runtime log entries with timestamps, severity levels, and lifecycle events -->
+![Extension Log tab showing runtime log entries with timestamps, severity indicators, and lifecycle events including extension startup messages](./.extensions_images/log-tab-prometheus.png)
 
 The Log tab displays the runtime log for this specific extension instance. This is the same log that would be written to disk on the cluster node, accessible here without needing SSH access to the server.
 
