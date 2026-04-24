@@ -4,29 +4,30 @@ title: Extensions
 
 # Extensions
 
-> Extensions deploy custom functionality beyond built-in processors, enabling integrations with external systems and platforms through macro resolvers and metric exporters.
+> Extensions deploy additional capabilities into your engine runtime — from secret resolution to metrics export.
 
 ## Overview
 
-Extensions expand layline.io's capabilities by providing runtime integrations that aren't covered by standard processors. They deploy as resolver services within your engine configuration, making their functionality available across your workflows.
+Extensions are optional runtime components that you attach to a [Project](../../project/asset-project) or [Engine Configuration](../../deployment-assets/asset-deployment-engine). Unlike processors or connections that handle data flow, Extensions provide cross-cutting infrastructure services:
 
-Unlike processors that handle message flow, Extensions typically provide:
-- **Macro resolvers** — Dynamic value substitution from external systems
-- **Metric exporters** — Integration with monitoring and observability platforms
+- **Secret resolution** — Fetch secrets from external vaults at runtime using macros
+- **Metrics export** — Expose internal processing metrics to external monitoring systems
+
+Extensions are configured as assets in your project, then assigned at deployment time to become active in the running engine.
 
 ## Available Extensions
 
-| Extension | Description |
-|-----------|-------------|
-| [AWS Extension](./asset-extension-aws.md) | Deploys an AWS macro resolver that provides `${aws:...}` macros for accessing AWS Systems Manager Parameter Store and AWS Secrets Manager values at runtime. |
-| [Prometheus Extension](./asset-prometheus.md) | Exports layline.io processing metrics to Prometheus, mapping internal metric names to Prometheus-compatible names for monitoring and visualization. |
+| Extension | Purpose |
+|-----------|---------|
+| [Extension AWS](./asset-extension-aws) | Deploys an AWS macro resolver that provides `${aws:...}` macros for accessing AWS Systems Manager Parameter Store and AWS Secrets Manager values at runtime |
+| [Extension Prometheus](./asset-prometheus) | Exports layline.io processing metrics to Prometheus for monitoring and visualization |
 
-## When to Use Extensions
+## How to Choose an Extension
 
-| If you need to... | Use this extension |
+| If you need to... | Use this Extension |
 |-------------------|-------------------|
-| Reference AWS secrets or parameters in your configuration | [AWS Extension](./asset-extension-aws.md) |
-| Export metrics to Prometheus for monitoring | [Prometheus Extension](./asset-prometheus.md) |
+| Reference secrets stored in AWS (SSM Parameter Store or Secrets Manager) | [Extension AWS](./asset-extension-aws) |
+| Export workflow metrics to Prometheus for monitoring | [Extension Prometheus](./asset-prometheus) |
 
 ---
 
