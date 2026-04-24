@@ -74,24 +74,38 @@ Processors for managing message queue semantics and delivery guarantees.
 ## Common Flow Patterns
 
 ### Simple Transformation Pipeline
-```
-Input Processor → [Mapping] → Output Processor
+```mermaid
+flowchart LR
+	A[Input Processor] --> B[Mapping]
+	B --> C[Output Processor]
 ```
 
 ### Conditional Routing
-```
-Input Processor → [Filter & Routing] → (multiple branches) → Output Processors
+```mermaid
+flowchart LR
+	A[Input Processor] --> B[Filter & Routing]
+	B --> C1[Output Processor 1]
+	B --> C2[Output Processor 2]
+	B --> C3[Output Processor 3]
 ```
 
 ### AI-Powered Classification
-```
-Input Processor → [AI Trainer - training phase] → AI Storage
-Input Processor → [AI Classifier - runtime] → [Filter & Routing] → Output Processors
+```mermaid
+flowchart TD
+	A[Input Processor] --> B[AI Trainer - training phase]
+	B --> C[AI Storage]
+
+	D[Input Processor] --> E[AI Classifier - runtime]
+	E --> F[Filter & Routing]
+	F --> G[Output Processors]
 ```
 
 ### Rate-Limited Custom Processing
-```
-Input Processor → [Throttle] → [JavaScript/Python] → Output Processor
+```mermaid
+flowchart LR
+	A[Input Processor] --> B[Throttle]
+	B --> C[JavaScript/Python]
+	C --> D[Output Processor]
 ```
 
 ## See Also
