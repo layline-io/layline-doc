@@ -192,5 +192,5 @@ When viewing the Log tab, new entries appear automatically as they are generated
 - [**Engine State Overview**](./index.mdx) — High-level monitoring of all asset types
 - [**Source State**](./sources.md) — Monitoring input sources that use formats
 - [**Sink State**](./sinks.md) — Monitoring output sinks that use formats
-- [**Processor State**](./processors.md) — Processors that use formats for parsing/serialization
+- [**Processor State**](./workflows.md) — Processors that use formats for parsing/serialization
 - [**Format Assets**](../../assets/formats/) — Designing and configuring formats
