@@ -14,7 +14,7 @@ The Format State view provides visibility into format instances running on your 
 Use Format State to:
 
 - Verify formats are initialized correctly on specific nodes
-- Inspect format configuration and activation details
+- Inspect activation details
 - Monitor format initialization status and failures
 - View format logs for errors and diagnostics
 - Restart format instances when needed
@@ -23,7 +23,7 @@ Use Format State to:
 
 The Format State interface uses a two-tab layout:
 
-<!-- SCREENSHOT: Format State detail view showing Format tab with state badge, name, cluster node, activation digest, and initialization status -->
+![Format State detail view showing Format tab with Cirpack format in USED state, including cluster node, activation digest, and initialization status](./.formats_images/format-tab-cirpack.png)
 
 ### Format Tab
 
@@ -58,7 +58,7 @@ Common initialization failures include:
 
 ### Log Tab
 
-<!-- SCREENSHOT: Format Log tab showing timestamped entries with format lifecycle events -->
+![Format Log tab showing Cirpack format lifecycle events including creation, usability confirmation, and workflow subscriptions](./.formats_images/log-tab-cirpack.png)
 
 The Log tab displays the runtime log for this specific format instance. This is the same log that would be written to disk on the cluster node, accessible here without needing SSH access to the server.
 
@@ -192,5 +192,4 @@ When viewing the Log tab, new entries appear automatically as they are generated
 - [**Engine State Overview**](./index.mdx) — High-level monitoring of all asset types
 - [**Source State**](./sources.md) — Monitoring input sources that use formats
 - [**Sink State**](./sinks.md) — Monitoring output sinks that use formats
-- [**Processor State**](./workflows.md) — Processors that use formats for parsing/serialization
 - [**Format Assets**](../../assets/formats/) — Designing and configuring formats
