@@ -83,60 +83,6 @@ Services provide callable functions that workflows invoke during processing. Unl
 
 ---
 
-## Common Service Patterns
-
-### 1. Database Lookup Pattern
-Use JDBC, Cassandra, or Aerospike Services to enrich incoming data with reference information:
-
-```javascript
-// In a JavaScript Processor
-const customerData = services.CustomerDB.GetCustomerById({
-    CustomerId: message.data.CustomerId
-});
-message.data.CustomerName = customerData.data.Name;
-```
-
-### 2. API Call Pattern
-Use HTTP or SOAP Services to call external APIs during processing:
-
-```javascript
-// Call a partner API
-const result = services.PartnerAPI.SubmitOrder({
-    OrderData: message.data
-});
-if (result.data.Status === 'ACCEPTED') {
-    stream.emit(message, OUTPUT_PORT);
-}
-```
-
-### 3. Notification Pattern
-Use Email or Teams Services to alert on specific conditions:
-
-```javascript
-// Send alert for high-priority errors
-if (message.data.Priority === 'CRITICAL') {
-    services.AlertService.SendMessage({
-        Conversation: 'Ops Team',
-        Content: 'Critical error: ' + message.data.ErrorCode
-    });
-}
-```
-
-### 4. Delayed Processing Pattern
-Use Timer Service when a message can't be processed immediately:
-
-```javascript
-// Schedule for retry in 5 minutes
-services.RetryTimer.ScheduleOnce({
-    Group: 'RetryGroup',
-    When: DateTime.now().plusMinutes(5),
-    Name: message.data.RecordId,
-    Payload: message.data
-});
-```
-
----
-
 ## See Also
 
 - [Services Introduction](./asset-service-introduction) — Detailed walkthrough of service concepts and usage patterns
@@ -144,8 +90,3 @@ services.RetryTimer.ScheduleOnce({
 - [JavaScript Processor](../processors-flow/asset-flow-javascript) — Writing scripts that call services
 - [Python Processor](../processors-flow/asset-flow-python) — Python scripting with service integration
 
----
-
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
