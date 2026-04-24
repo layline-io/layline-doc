@@ -1,9 +1,84 @@
 ---
 title: Resources
 ---
+
 # Resources
 
+> Resources store shared configuration, credentials, and state that multiple assets and workflows reference. They centralize common settings so you can define them once and reuse them across your project.
 
-import DocCardList from '@theme/DocCardList';
+## Overview
 
-<DocCardList />
+Resources in layline.io provide a way to externalize configuration from individual assets. Instead of hardcoding credentials, paths, or environment-specific values directly into Connections, Processors, or Services, you define them in a Resource and reference them using [macros](../../../language-reference/macros).
+
+This separation of configuration from logic enables:
+
+- **Environment-specific deployments** — Use different values for development, testing, and production without changing asset definitions
+- **Centralized credential management** — Store secrets securely and rotate them without modifying dependent assets
+- **Reduced duplication** — Define common paths, variables, or status codes once, reference them everywhere
+
+---
+
+## Available Resources
+
+| Resource | Description |
+|----------|-------------|
+| [**AI Model Resource**](./asset-resource-ai-model) | Define the technical specification for machine learning models — input/output schema, algorithm type, and hyperparameters. Used by AI Trainer and AI Classifier assets. |
+| [**Data Dictionary Updates**](./asset-resource-data-dictionary-updates) | Extend the global Data Dictionary with custom type definitions — namespaces, sequences, enumerations, and more. Lightweight alternative to full Format Assets for internal types. |
+| [**Directories**](./asset-resource-directories) | Define directory paths and symbolic links that are automatically created at engine startup with specified POSIX permissions. Ensures required filesystem layout exists before processing begins. |
+| [**Environment**](./asset-resource-environment) | Store environment variables and configuration values as key-value pairs. Reference in any asset using `${lay:variableName}` macros for environment-specific settings. |
+| [**OAuthClient**](./asset-resource-oauth-client) | Store OAuth 2.0 client credentials (authority, client ID, token endpoint, secrets) for the layline.io platform's REST API security management. |
+| [**Secret**](./asset-resource-secret) | Store sensitive data such as passwords, API keys, and certificates with public-key encryption. Reference in any asset using `${sec:secretName}` macros. |
+| [**StatusDefinition**](./asset-resource-status-definition) | Define custom status codes with multilingual message texts organized by vendor. Enables scripts to produce localized status messages via the Status Registry. |
+
+---
+
+## How to Choose a Resource
+
+| If you need to... | Use this Resource |
+|-------------------|-------------------|
+| Store passwords, API keys, or certificates securely | [**Secret**](./asset-resource-secret) |
+| Manage environment-specific settings (dev/staging/prod) | [**Environment**](./asset-resource-environment) |
+| Define or reuse file system paths | [**Directories**](./asset-resource-directories) |
+| Deploy and manage ML models for classification | [**AI Model Resource**](./asset-resource-ai-model) |
+| Store OAuth client credentials for API authentication | [**OAuthClient**](./asset-resource-oauth-client) |
+| Define custom types without full Format encoding | [**Data Dictionary Updates**](./asset-resource-data-dictionary-updates) |
+| Map external status codes to localized messages | [**StatusDefinition**](./asset-resource-status-definition) |
+
+---
+
+## Security Best Practices
+
+### Encrypt Secrets with Environment-Specific Keys
+
+Always encrypt secrets using the public key of the target environment (development cluster, testing cluster, or production cluster). Secrets encrypted with a cluster's public key can only be decrypted by that cluster — ensuring credentials remain inaccessible even if configuration files are compromised.
+
+See [Secret Management](../../../concept/advanced/secret-management.md) for details on public/private key encryption in layline.io.
+
+### Separate Assets by Environment
+
+Create separate Environment and Secret Assets for each deployment target:
+
+- `Environment_DEV` / `Secrets_DEV` — development settings
+- `Environment_TEST` / `Secrets_TEST` — testing/staging settings  
+- `Environment_PROD` / `Secrets_PROD` — production settings
+
+All assets share the same key names but contain environment-specific values. At deployment, include only the appropriate Resource for the target environment.
+
+### Use Macros for All Sensitive Values
+
+Never hardcode credentials or environment-specific paths in asset configurations. Always reference Resources using macros:
+
+- `${lay:dbHost}` — Environment variable
+- `${sec:apiKey}` — Encrypted secret
+- `${lay:dataDirectory}` — Shared directory path
+
+---
+
+## See Also
+
+- [**Connections**](../connections/asset-connection-aws) — Reusable connection parameters for external systems (often reference Secrets and Environment variables)
+- [**Services**](../services/asset-service-http) — External API and database integrations (use Resources for credentials and endpoint configuration)
+- [**Deployment Assets**](../../deployment-assets/) — How Resources are included in deployments and combined with environment-specific values
+- [**Macros**](../../../language-reference/macros) — Syntax for referencing Resource values in asset configurations
+- [**Secret Management**](../../../concept/advanced/secret-management.md) — Architectural overview of credential encryption and storage
+
