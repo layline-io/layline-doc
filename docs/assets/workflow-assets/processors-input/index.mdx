@@ -1,9 +1,53 @@
 ---
 title: Input Processors
 ---
+
 # Input Processors
 
+> Input Processors define how data enters a Workflow, connecting Sources to the processing pipeline.
 
-import DocCardList from '@theme/DocCardList';
+## Overview
 
-<DocCardList />
+Input Processors serve as the entry point to your Workflows. They ingest data from various Sources—such as file systems, message queues, APIs, and streaming platforms—and prepare it for processing within the Workflow. Each Input Processor is designed for a specific ingestion pattern, from continuous streams to request-response APIs.
+
+## Available Input Processors
+
+### Event & Stream Processing
+
+| Asset | Description |
+|-------|-------------|
+| [Input Kafka](./asset-input-kafka.md) | Ingest data from Apache Kafka topics with support for consumer groups, offset management, and multiple commit strategies. |
+| [Input Stream](./asset-input-stream.md) | Process continuous data streams from file systems, cloud storage, and network sources with compression support. |
+
+### Message & Datagram
+
+| Asset | Description |
+|-------|-------------|
+| [Input Frame](./asset-input-frame.md) | Handle datagram-based sources like SQS and UDP that deliver data in discrete packets. |
+| [Input Message](./asset-input-message.md) | Ingest messages from Timer and Email Sources for scheduled or event-triggered processing. |
+
+### API & Service
+
+| Asset | Description |
+|-------|-------------|
+| [Input Request-Response](./asset-input-request-response.md) | Provide a two-way HTTP interface for synchronous API calls with request/response handling. |
+| [Input Service](./asset-input-service.md) | Connect to generic Service Sources for flexible integration with external systems. |
+
+## How to Choose an Input Processor
+
+| If you need to... | Use this processor |
+|-------------------|-------------------|
+| Consume from Kafka topics | [Input Kafka](./asset-input-kafka.md) |
+| Read files from S3, SMB, FTP, or local filesystem | [Input Stream](./asset-input-stream.md) |
+| Receive SQS messages or UDP packets | [Input Frame](./asset-input-frame.md) |
+| Trigger workflows on schedules or incoming emails | [Input Message](./asset-input-message.md) |
+| Expose a REST API endpoint | [Input Request-Response](./asset-input-request-response.md) |
+| Connect to a custom service integration | [Input Service](./asset-input-service.md) |
+
+## See Also
+
+- [Sources](../sources) - Define *where* data comes from — file systems, message queues, APIs, and more. Sources work with Input Processors to ingest data into Workflows.
+- [Output Processors](../processors-output/) - Define *where* data goes after processing — the counterpart to Input Processors.
+- [Flow Processors](../processors-flow) - Transform, route, and enrich data between Input and Output Processors.
+- [Formats](../formats) - Parse and serialize data formats like JSON, XML, CSV, and Protocol Buffers.
+---
