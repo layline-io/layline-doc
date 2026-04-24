@@ -147,4 +147,4 @@ When viewing the Log tab, new entries appear automatically as they are generated
 - [**Engine State Overview**](./index.mdx) — High-level monitoring of all asset types
 - [**Workflow State**](./workflows.md) — Monitoring workflows that may use extensions
 - [**Service State**](./services.md) — Monitoring services that may interact with extensions
-- [**Project Extensions**](../../project/) — Configuring extensions in projects
+- [**Project Extensions**](../../../assets/workflow-assets/extensions) — Configuring extensions in projects
