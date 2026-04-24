@@ -1,8 +1,94 @@
 ---
 title: Sinks
 ---
+
 # Sinks
 
+> Sinks define where your processed data goes. They are the outbound connection endpoints that write messages to files, cloud storage, message queues, and other external systems.
+
+## Overview
+
+In layline.io, a **Sink** is an asset that configures how and where output messages are delivered. Sinks work together with [Output Processors](../processors-output/) — the processor determines *what* to send (which messages, in what format), while the Sink determines *where* to send it (which destination, using what connection parameters).
+
+Sinks handle connection details, authentication, retry logic, and destination-specific behaviors. Once configured, a single Sink can be reused across multiple workflows and output processors.
+
+## Available Sinks
+
+### File System
+
+Sinks for writing to traditional file systems and network shares.
+
+| Sink | Description |
+|------|-------------|
+| [Sink File System](./asset-sink-file) | Write files to the local file system accessible by the Reactive Engine. No Connection asset required. |
+| [Sink NFS](./asset-sink-nfs) | Write files to Network File System (NFS) shares. Requires an [NFS Connection](../connections/asset-connection-nfs). |
+| [Sink SMB](./asset-sink-smb) | Write files to SMB/CIFS shares (Windows file shares). Requires an [SMB Connection](../connections/asset-connection-smb). |
+| [Sink FTP](./asset-sink-ftp) | Write files to FTP or FTPS servers. Requires an [FTP Connection](../connections/asset-connection-ftp). |
+| [Sink WebDAV](./asset-sink-webdav) | Write files to WebDAV-enabled servers. Requires a [WebDAV Connection](../connections/asset-connection-webdav). |
+
+### Cloud Storage
+
+Sinks for major cloud object storage providers.
+
+| Sink | Description |
+|------|-------------|
+| [Sink S3](./asset-sink-s3) | Write objects to Amazon S3 or S3-compatible storage (GCS, IONOS, etc.). Requires an [AWS Connection](../connections/asset-connection-aws). |
+| [Sink GCS](./asset-sink-gcs) | Write objects to Google Cloud Storage buckets. Requires a [Google Cloud Connection](../connections/asset-connection-google-cloud). |
+
+### Messaging & Streaming
+
+Sinks for event streaming, message queues, and event buses.
+
+| Sink | Description |
+|------|-------------|
+| [Sink Kafka](./asset-sink-kafka) | Publish messages to Apache Kafka topics. Requires a [Kafka Connection](../connections/asset-connection-kafka). |
+| [Sink Kinesis](./asset-sink-kinesis) | Write records to Amazon Kinesis Data Streams. Requires an [AWS Connection](../connections/asset-connection-aws). |
+| [Sink SQS](./asset-sink-sqs) | Send messages to Amazon Simple Queue Service queues. Requires an [AWS Connection](../connections/asset-connection-aws). |
+| [Sink SNS](./asset-sink-sns) | Publish notifications to Amazon Simple Notification Service topics. Requires an [AWS Connection](../connections/asset-connection-aws). |
+| [Sink EventBridge](./asset-sink-eventbridge) | Send events to Amazon EventBridge event bus. Requires an [AWS Connection](../connections/asset-connection-aws). |
+
+### Microsoft 365
+
+Sinks for Microsoft cloud services.
+
+| Sink | Description |
+|------|-------------|
+| [Sink OneDrive](./asset-sink-onedrive) | Write files to Microsoft OneDrive. Requires an [MSGraph Connection](../connections/asset-connection-msgraph). |
+| [Sink SharePoint](./asset-sink-sharepoint) | Write files to Microsoft SharePoint document libraries. Requires an [MSGraph Connection](../connections/asset-connection-msgraph). |
+
+### Network & Protocol
+
+Sinks for direct network protocols and abstraction layers.
+
+| Sink | Description |
+|------|-------------|
+| [Sink WebSocket](./asset-sink-websocket) | Send data to a WebSocket server as a client. Connection parameters configured inline — no Connection asset required. |
+| [Sink Virtual File System](./asset-sink-virtual-fs) | Write to any backend supported by a Virtual File System Connection (local, SMB, NFS, etc.) through a unified abstraction. Requires a [Virtual File System Connection](../connections/asset-connection-virtual-fs). |
+
+## How to Choose a Sink
+
+| If you need to... | Use this Sink type |
+|-------------------|-------------------|
+| Write to local disk | [File System](./asset-sink-file) |
+| Write to network shares | [NFS](./asset-sink-nfs), [SMB](./asset-sink-smb), [FTP](./asset-sink-ftp), or [WebDAV](./asset-sink-webdav) |
+| Store objects in cloud | [S3](./asset-sink-s3) or [GCS](./asset-sink-gcs) |
+| Stream events | [Kafka](./asset-sink-kafka) or [Kinesis](./asset-sink-kinesis) |
+| Send to message queues | [SQS](./asset-sink-sqs) |
+| Push notifications | [SNS](./asset-sink-sns) or [EventBridge](./asset-sink-eventbridge) |
+| Write to Microsoft cloud | [OneDrive](./asset-sink-onedrive) or [SharePoint](./asset-sink-sharepoint) |
+| Real-time bidirectional | [WebSocket](./asset-sink-websocket) |
+| Flexible backend switching | [Virtual File System](./asset-sink-virtual-fs) |
+
+## See Also
+
+- [**Sources**](../sources/) — Inbound connection endpoints that read data from external systems (the counterpart to Sinks)
+- [**Output Processors**](../processors-output/) — Workflow processors that determine what data to send to a Sink
+- [**Connections**](../connections/) — Reusable connection configurations (authentication, endpoints) used by many Sinks
+- [**Formats**](../formats/) — Define how data is structured when written by Sinks
+
+---
+
+## Sink Reference Documents
 
 import DocCardList from '@theme/DocCardList';
 
