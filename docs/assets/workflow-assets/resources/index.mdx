@@ -1,8 +1,54 @@
 ---
 title: Resources
 ---
+
 # Resources
 
+> Resources are supporting configuration Assets that define shared data, credentials, and infrastructure settings used across Workflows.
+
+## Overview
+
+While Processors, Sources, Sinks, and Services define the flow of data through a Workflow, Resources define the underlying infrastructure and shared definitions that these components rely on. Resources handle environment-specific configuration, security credentials, type definitions, and system integration settings.
+
+Resources are instantiated once at engine startup and remain available throughout the engine's lifecycle. They provide a central place to manage cross-cutting concerns like environment variables, encryption keys, and directory provisioning.
+
+## Available Resources
+
+### Environment & Configuration
+
+| Resource | Description |
+|----------|-------------|
+| [Environment](./asset-resource-environment.md) | Define global environment variables (key-value pairs) that vary by deployment target (development, staging, production). Accessed via the `${LAY:...}` macro syntax. |
+| [Secret](./asset-resource-secret.md) | Store confidential information (passwords, API keys, certificates) with public/private-key encryption. Supports different secret values per environment. |
+| [Directories](./asset-resource-directories.md) | Define filesystem paths and symbolic links that are automatically created at engine startup with specified POSIX permissions. |
+
+### Data & Type Definitions
+
+| Resource | Description |
+|----------|-------------|
+| [Data Dictionary Updates](./asset-resource-data-dictionary-updates.md) | Extend the global Data Dictionary with lightweight custom type definitions (enums, sequences, namespaces) without creating full Format Assets. |
+| [AI Model Resource](./asset-resource-ai-model.md) | Define the technical specification for machine learning models — input/output schema, algorithm type, and training hyperparameters. Used by AI Trainer and AI Classifier. |
+
+### System Integration
+
+| Resource | Description |
+|----------|-------------|
+| [StatusDefinition](./asset-resource-status-definition.md) | Define vendors, status codes, and multilingual message texts that register with the engine's central Status Registry for mapping external system codes to human-readable messages. |
+| [OAuthClient](./asset-resource-oauth-client.md) | Store OAuth 2.0 client credentials (authority, client ID, secrets) for use by the layline.io platform's internal Security Storage and REST API endpoints. |
+
+## How to Choose a Resource
+
+| If you need to... | Use this Resource |
+|-------------------|-------------------|
+| Store different values for development vs. production environments | [Environment](./asset-resource-environment.md) |
+| Encrypt passwords or API keys | [Secret](./asset-resource-secret.md) |
+| Create directories automatically at engine startup | [Directories](./asset-resource-directories.md) |
+| Define shared enums or simple data structures | [Data Dictionary Updates](./asset-resource-data-dictionary-updates.md) |
+| Configure a machine learning model for training or classification | [AI Model Resource](./asset-resource-ai-model.md) |
+| Map external system status codes to readable messages | [StatusDefinition](./asset-resource-status-definition.md) |
+| Store OAuth credentials for platform integrations | [OAuthClient](./asset-resource-oauth-client.md) |
+
+---
 
 import DocCardList from '@theme/DocCardList';
 
