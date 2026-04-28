@@ -22,7 +22,7 @@ Navigate to **Settings → Cluster Storage**. This section is available to the `
 
 The Cluster Storage page uses a **left/right split** layout:
 
-<!-- SCREENSHOT: Cluster Storage page showing the left panel with cluster list and the right panel with selected cluster details -->
+![Cluster Storage page showing the left panel with cluster list and the right panel with selected cluster details](./.cluster-storage_images/cluster-storage-main.png)
 
 ### Left Panel — Cluster List
 
@@ -51,7 +51,7 @@ The **Edit Cluster...** button opens a dialog where you can modify the selected 
 1. Click the **+** button in the left panel
 2. The **Edit data of Cluster NewCluster** dialog opens with:
 
-<!-- SCREENSHOT: Edit Cluster dialog showing the cluster name, description, and bootstrap nodes fields -->
+![Edit Cluster dialog showing the cluster name, description, and bootstrap nodes fields](./.cluster-storage_images/cluster-storage-edit-dialog.png)
 
 | Field | Description |
 |-------|-------------|
