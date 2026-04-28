@@ -2,8 +2,89 @@
 title: Configuration Server
 sidebar_position: 5
 ---
+
 # Configuration Server
 
+> The central brain of layline.io that manages global settings, user access, security credentials, and cluster coordination.
+
+## Overview
+
+The Configuration Server is the administrative control plane for your layline.io deployment. While Projects and Workflows define how data flows through your systems, the Configuration Server governs who can access what, how credentials are secured, and how multiple processing clusters are coordinated.
+
+Think of it as the operating system layer: it sits beneath your Workflow configurations, providing identity management, secrets storage, and infrastructure connectivity that all Projects share.
+
+## Configuration Server Topics
+
+### Identity & Access
+
+| Topic | Description |
+|-------|-------------|
+| [Introduction](./introduction.md) | Overview of Configuration Server architecture and its relationship to Projects and Reactive Engine Clusters. Understand the separation between global settings and Project-specific configurations. |
+| [User Storage](./settings-user-storage.md) | Manage users, roles, and privileges for the Configuration Server. Define who can create Projects, manage assets, and administer the system. |
+
+### Security & Credentials
+
+| Topic | Description |
+|-------|-------------|
+| [Security Storage](./settings-secret-storage.md) | Centralized management of private keys, identity certificates, trust certificates, and known hosts. The secure vault for credentials that the Configuration Server needs to authenticate with external systems. |
+
+### Infrastructure & Connectivity
+
+| Topic | Description |
+|-------|-------------|
+| [Cluster Storage](./settings-cluster.md) | Define Reactive Engine Clusters that this Configuration Server manages. Configure connectivity to processing clusters where your Workflows actually execute. |
+| [Application Settings](./settings-application.md) | Preferences and configuration options for the Configuration Center web interface itself. |
+
+## System Architecture
+
+```
+┌───────────────────────────────────────────────────────────┐
+│         Configuration Server (Control Plane)          │
+│  ──────────────────────────────────────────────────  │
+│  ┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────┐  │
+│  │User Storage  │ │Security      │ │Cluster       │ │Application   │  │
+│  │  • Users    │ │  Storage     │ │  Storage      │ │  Settings     │  │
+│  │  • Roles    │ │  • Keys       │ │  • Clusters    │ │  • UI prefs    │  │
+│  │  • Privs    │ │  • Certs      │ │               │ │               │  │
+│  └────────────┘ └────────────┘ └────────────┘ └────────────┘  │
+└───────────────────────────────────────────────────────────┘
+                           │
+                           │ manages & deploys to
+                           ▼
+┌───────────────────────────────────────────────────────────┐
+│         Reactive Engine Cluster (Data Plane)            │
+│  ──────────────────────────────────────────────────  │
+│  ┌───────────────────────────────────────────────────┐         │
+│  │  Projects & Workflows (where data actually flows)     │         │
+│  └───────────────────────────────────────────────────┘         │
+└───────────────────────────────────────────────────────────┘
+```
+
+## When to Configure the Configuration Server
+
+**Configure these settings when:**
+
+- You're setting up layline.io for the first time and need to define administrative users
+- You're adding team members who need access to create or manage Projects
+- You're connecting to external systems that require TLS certificates or SSH keys
+- You're deploying multiple Reactive Engine Clusters and need to register them
+- You're configuring SSO, LDAP, or other authentication integrations
+
+**The Configuration Server is NOT where you:**
+
+- Design Workflows (that's in [Projects](../projects-workflows/))
+- Configure data processing logic (that's in [Assets](../../assets/))
+- Monitor running engines (that's in [Operations](../../operations/))
+
+## Key Concepts
+
+| Concept | Description |
+|---------|-------------|
+| **User Storage vs. Cluster User Storage** | The Configuration Server has its own user store separate from each Reactive Engine Cluster. A user with admin rights on the Configuration Server does NOT automatically have rights on processing clusters. |
+| **Security Storage Scope** | Credentials stored here are available to the Configuration Server itself (for Git operations, external API calls, etc.), not to running Workflows. Workflow credentials are configured per-Cluster. |
+| **Cluster Registration** | Before a Reactive Engine Cluster can be managed, it must be registered in Cluster Storage. This establishes the trust relationship between control plane and data plane. |
+
+---
 
 import DocCardList from '@theme/DocCardList';
 
