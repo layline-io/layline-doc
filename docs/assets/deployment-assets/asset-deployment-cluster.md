@@ -122,4 +122,4 @@ In this example, `StagingCluster` inherits the third node from `ProductionCluste
 
 - [**Deployment Composition**](./asset-deployment-composition.md) — Groups Cluster with other deployment assets into a deployable unit
 - [**Engine Configuration**](./asset-deployment-engine.md) — Defines workflows and runtime settings deployed to a cluster
-- [**Cluster Storage**](../../concept/settings/settings-cluster) — System-level cluster storage configuration for the Configuration Center
+- [**Cluster Storage**](../../settings/cluster-storage) — System-level cluster storage configuration for the Configuration Center

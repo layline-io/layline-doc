@@ -12,7 +12,7 @@ description: Manage users and roles on a Reactive Engine Cluster from the Operat
 
 layline.io separates user management between two systems: the **Configuration Server** and each **Reactive Engine Cluster**. Users and roles on these two systems are independent — being a user on one does not grant access to the other.
 
-The Operations → User Storage page is where you manage cluster-level users and roles. If you need to manage users on the Configuration Server itself, see [Settings → User Storage](../../concept/settings/settings-user-storage.md).
+The Operations → User Storage page is where you manage cluster-level users and roles. If you need to manage users on the Configuration Server itself, see [**Settings → Users & Roles**](../../settings/users-and-roles.md).
 
 Access control on the cluster follows a standard model:
 - Each **user** can be assigned to one or more **roles**.
@@ -175,5 +175,5 @@ Claims on the Reactive Engine Cluster are grouped by area:
 
 ## See Also
 
-- [**Settings → User Storage**](../../concept/settings/settings-user-storage.md) — Managing users and roles on the Configuration Server
+- [**Settings → Users & Roles**](../../settings/users-and-roles.md) — Managing users and roles on the Configuration Server
 - [**Operations → Security Storage**](./security-storage.md) — Managing key pairs on the cluster
