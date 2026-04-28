@@ -28,7 +28,7 @@ The concept of Users and Roles should be familiar to most:
 ## Where next?
 
 Pick which User Storage you want to learn about and manage:
-* [User Storage on the Configuration Server](../settings/settings-user-storage) 
+* [User Storage on the Configuration Server](../../settings/users-and-roles.md) 
 * [User Storage on the Reactive Engine Cluster](../../operations/cluster/operations-user-storage) 
 
 

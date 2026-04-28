@@ -56,7 +56,7 @@ In order to create Secrets, you will first have to select with which public key 
 ![](.asset-resource-secret_images/22e3f00f.png "Selecting Encryption Key (Secret Asset)")
 
 A dialog will open, showing you the Configuration Server Keys as well as the known Reactive Clusters.
-You will only see those Reactive Clusters, which have either been defined in [global cluster settings](../../../concept/settings/settings-cluster.md), or within the currently opened Project
+You will only see those Reactive Clusters, which have either been defined in [global cluster settings](../../../settings/cluster-storage.md), or within the currently opened Project
 
 ![](.asset-resource-secret_images/4a598def.png "Encryption Key Dialog (Secret Asset)")
 
