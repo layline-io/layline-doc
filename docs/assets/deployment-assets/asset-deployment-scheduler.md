@@ -36,7 +36,7 @@ Scheduler Settings support inheritance, allowing you to define base scheduling p
 
 Before creating Scheduler Settings, you should have:
 
-- [**Workflows**](../workflow-assets/workflows/asset-workflow.md) defined in your project (these are what you'll be scheduling)
+- [**Workflows**](../workflow-assets/workflows/index.mdx) defined in your project (these are what you'll be scheduling)
 - An understanding of your cluster topology if using node or role limits
 - A parent Scheduler Settings asset (optional) if you want to inherit base scheduling policies
 
@@ -232,4 +232,4 @@ The child inherits the `DataPipeline` configuration but increases capacity for h
 - [**Deployment Composition**](./asset-deployment-composition.md) — Combines Scheduler Settings with other deployment assets
 - [**Engine Configuration**](./asset-deployment-engine.md) — Defines which workflows are part of the deployment
 - [**Cluster**](./asset-deployment-cluster.md) — The target infrastructure where scheduled workflows run
-- [**Workflow**](../workflow-assets/workflows/asset-workflow.md) — The units being scheduled
+- [**Workflow**](../workflow-assets/workflows/index.mdx) — The units being scheduled
