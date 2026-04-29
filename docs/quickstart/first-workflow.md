@@ -8,7 +8,7 @@ sidebar_position: 5
 This tutorial walks you through building a simple data processing workflow in layline.io. By the end, you will have a working pipeline that reads from a file, maps records into a different output structure, filters records by type, and writes them to two different output files.
 
 **Time to complete:** approximately 15–20 minutes  
-**Prerequisites:** layline.io installed and running ([local install](install-local) or [Docker](install-docker)). We assume a running, standard local installation for this example.
+**Prerequisites:** layline.io installed and running ([local install](./install-local.md) or [Docker](./install-docker.md)). We assume a running, standard local installation for this example.
 
 ---
 

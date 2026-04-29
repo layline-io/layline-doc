@@ -10,9 +10,9 @@ import WipDisclaimer from '../snippets/common/_wip-disclaimer.md'
 
 Now that layline.io is running, here are the recommended next steps:
 
-1. **Understand the platform** — Read [What is layline.io?](what-is-layline-io) and [Core Concepts in 5 Minutes](core-concepts) for a solid mental model before building anything.
+1. **Understand the platform** — Read [What is layline.io?](./what-is-layline-io.md) and [Core Concepts in 5 Minutes](./core-concepts.md) for a solid mental model before building anything.
 
-2. **Build something** — Work through [Your First Workflow](first-workflow) for a complete end-to-end example: file input → transform → Kafka + database output.
+2. **Build something** — Work through [Your First Workflow](./first-workflow.md) for a complete end-to-end example: file input → transform → Kafka + database output.
 
 3. **Explore the samples** — If you are running the Docker image, it includes pre-installed sample projects. Open any project from **Project → Open** in the Configuration Center.
 
