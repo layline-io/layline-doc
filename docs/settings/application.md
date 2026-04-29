@@ -27,13 +27,15 @@ Access to the Settings section requires appropriate privileges (typically `admin
 
 The Preferences page displays as a **single scrollable panel** with configuration grouped into three sections:
 
-<!-- SCREENSHOT: Application Settings Preferences page showing all three sections: Log settings, Display Settings, and AI Chat -->
+![Application Settings Preferences showing Log settings section](./.application-settings_images/preferences-log-settings.png)
 
 Each section uses a group box to visually separate the settings by function.
 
 ---
 
 ## Log Settings
+
+![Log settings configuration panel](./.application-settings_images/log-settings-detail.png)
 
 Controls how many log entries are retained and displayed in the browser.
 
@@ -61,6 +63,8 @@ Controls how many log entries are retrieved from the server when viewing server-
 ---
 
 ## Display Settings
+
+![Display Settings configuration panel](./.application-settings_images/display-settings.png)
 
 Configures the visual appearance of the layline.io interface.
 
