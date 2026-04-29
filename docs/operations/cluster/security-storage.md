@@ -221,6 +221,7 @@ The log view uses the same shared log component as other Operations pages. Event
 
 ## See Also
 
+- [**Settings Secret Storage**](/docs/settings/secret-storage) — Settings-level vault for managing cryptographic material that can be referenced across deployments
 - [**Cluster Overview**](/docs/operations/cluster/cluster-overview) — Introduction to the cluster operations panel
 - [**Access Coordinator**](/docs/operations/cluster/access-coordinator) — Manages resource and source coordination across cluster nodes
 - [**OAuthClient Resource**](/docs/assets/resources/resource-oauth-client) — Configures OAuth clients for use within workflow assets

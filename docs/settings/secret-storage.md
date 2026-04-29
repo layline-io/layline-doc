@@ -36,7 +36,7 @@ The Private keys tab displays a table of all private key pairs stored at the set
 | **Fingerprint** | Cryptographic fingerprint of the public key for verification. |
 | *(actions)* | Edit, download, delete, and copy buttons per row. |
 
-<!-- SCREENSHOT: Settings > Secret Storage page, Private keys tab, showing the table with example keys and action buttons at bottom -->
+![Private keys tab showing the table with Alias, Description, and Fingerprint columns, plus Create/Import/Paste buttons](./.secret-storage_images/private-keys-tab.png)
 
 **Actions available from this tab:**
 
@@ -66,7 +66,7 @@ The Identity certificates tab manages certificates that identify this layline.io
 | **Fingerprint** | Cryptographic fingerprint of the certificate. |
 | *(actions)* | Edit, delete, and copy buttons per row. |
 
-<!-- SCREENSHOT: Settings > Secret Storage page, Identity certificates tab, showing the table and Import/Paste buttons -->
+![Identity certificates tab showing an empty state with Import/Paste buttons](./.secret-storage_images/identity-certificates-tab.png)
 
 **Actions available from this tab:**
 
@@ -94,7 +94,7 @@ The Trusted certificates tab manages CA certificates and peer certificates that 
 | **Fingerprint** | Cryptographic fingerprint of the certificate. |
 | *(actions)* | Edit, delete, and copy buttons per row. |
 
-<!-- SCREENSHOT: Settings > Secret Storage page, Trusted certificates tab, showing the table and Import/Paste buttons -->
+![Trusted certificates tab showing the table with Alias, Common Name, and Fingerprint columns, plus Import/Paste buttons](./.secret-storage_images/trusted-certificates-tab.png)
 
 **Actions available from this tab:**
 
@@ -122,7 +122,7 @@ The Known hosts tab manages SSH known-hosts entries, which layline.io uses to ve
 | **Entry** | The raw known-hosts line (hostname, key type, and public key). Long entries are truncated in the table view. |
 | *(actions)* | Edit, delete, and copy buttons per row. |
 
-<!-- SCREENSHOT: Settings > Secret Storage page, Known hosts tab, showing the table with example entries -->
+![Known hosts tab showing the table with Alias, Description, and Entry columns, plus Create/Paste buttons](./.secret-storage_images/known-hosts-tab.png)
 
 **Actions available from this tab:**
 
