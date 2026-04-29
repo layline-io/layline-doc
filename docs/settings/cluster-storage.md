@@ -118,7 +118,7 @@ This separation allows:
 
 ### Scope
 
-- Cluster definitions are **global** — visible to all projects
+- Cluster definitions are **global** as opposed to local to a specific project
 - Changes to a cluster definition affect all Deployment assets that reference it
 - Cluster definitions are stored by the Configuration Server, not within project files
 
