@@ -56,12 +56,10 @@ Run:
 ./layline-macos-<currentVersion>.dmg
 ```
 
-layline.io is not signed by Apple. You will therefore get a warning. Hit ok and then <kbd>Alt</kbd> + <kbd>Right-click</kbd> and select <kbd>open</kbd> from the menu. Don't worry, there is nothing "
-fishy" in the software.
+Open the installer:
 
 ![Open layline.io installer on MacOS (Quickstart)](.install-local_images/b8c3098f.png "Open layline.io installer on MacOS (Quickstart)")
 
-![](.install-local_images/c87c7a7d.png "Confirm macOS warning (Quickstart)")
 </TabItem>
 </Tabs>
 </div>
