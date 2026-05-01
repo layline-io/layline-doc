@@ -33,10 +33,10 @@ The deployment consists of four Linux virtual machines, each with a specific rol
 
 | Machine | Role | Key Ports | Purpose |
 |---------|------|-----------|---------|
-| `ll-mysql.org.local` | Database | 3306 | Stores cluster state, journal, and snapshots |
-| `ll-config-server.org.local` | Configuration Server | 5841 | Web UI, REST API, project management |
-| `ll-node1.org.local` | Reactive Engine | 5842 (REST), 5843 (Cluster) | Processing node 1 |
-| `ll-node2.org.local` | Reactive Engine | 5842 (REST), 5843 (Cluster) | Processing node 2 |
+| `ll-mysql.orb.local` | Database | 3306 | Stores cluster state, journal, and snapshots |
+| `ll-config-server.orb.local` | Configuration Server | 5841 | Web UI, REST API, project management |
+| `ll-node-1.orb.local` | Reactive Engine | 5842 (REST), 5843 (Cluster) | Processing node 1 |
+| `ll-node-2.orb.local` | Reactive Engine | 5842 (REST), 5843 (Cluster) | Processing node 2 |
 
 **Network Flow:**
 - Configuration Server connects to MySQL for persistence
@@ -68,10 +68,10 @@ Before starting, ensure you have:
 Each machine must be addressable by its canonical hostname. Add entries to `/etc/hosts` on all machines if DNS is not available:
 
 ```
-192.168.1.10  ll-mysql.org.local
-192.168.1.11  ll-config-server.org.local
-192.168.1.12  ll-node1.org.local
-192.168.1.13  ll-node2.org.local
+192.168.1.10  ll-mysql.orb.local
+192.168.1.11  ll-config-server.orb.local
+192.168.1.12  ll-node-1.orb.local
+192.168.1.13  ll-node-2.orb.local
 ```
 
 ---
@@ -128,21 +128,17 @@ layline.io provides SQL scripts to create the required tables. These are located
 
 ```bash
 # On the config server machine (after layline.io is installed)
-cd /opt/layline/scripts/mysql
+cd /opt/layline/scripts/sql/mysql
 ls -la
 ```
 
-You should see three SQL files:
-- `journal.sql` — Event journal for cluster state
-- `snapshot.sql` — Snapshot storage for recovery
-- `read-journal.sql` — Read-side journal for queries
+You should see one SQL file:
+- `persistence-schema.sql` — Contains DDL statements for three tables
 
 Apply these scripts to your database:
 
 ```bash
-mysql -u layline -p -h ll-mysql.org.local layline < journal.sql
-mysql -u layline -p -h ll-mysql.org.local layline < snapshot.sql
-mysql -u layline -p -h ll-mysql.org.local layline < read-journal.sql
+mysql -u root -p -h ll-mysql.orb.local layline < persistence-schema.sql
 ```
 
 ### 1.4 Verify Tables
@@ -150,7 +146,7 @@ mysql -u layline -p -h ll-mysql.org.local layline < read-journal.sql
 Connect to MySQL and confirm the tables exist:
 
 ```bash
-mysql -u layline -p -h ll-mysql.org.local layline
+mysql -u root -p -h ll-mysql.orb.local layline
 ```
 
 ```sql
@@ -193,7 +189,7 @@ Verify connectivity from the other machines:
 
 ```bash
 # From config server or reactive nodes
-mysql -u layline -p -h ll-mysql.org.local -e "SELECT 1"
+mysql -u root -p -h ll-mysql.orb.local -e "SELECT 1"
 ```
 
 ---
@@ -229,76 +225,66 @@ Replace the contents with the following configuration, adjusting values for your
 
 ```hocon title="Configuration Server application.conf"
 layline {
-  config-server {
+   config-server {
     rest-server {
-      # Canonical hostname - must be resolvable by all clients
-      canonical-hostname = "ll-config-server.org.local"
-      
-      # Bind to all interfaces
-      bind-hostname = "0.0.0.0"
-      bind-port = 5841
+      canonical {
+        hostname = "ll-config-server.orb.local"
+      }
+      bind {
+         port = 5841
+         hostname = 0.0.0.0
+      }
     }
+
+    # logging {
+    #   short-logger-names = true
+    #   show-status-codes = false
+    # }
   }
 }
 
 pekko {
+
   persistence {
-    jdbc {
-      # MySQL connection for journal and snapshots
+    journal {
+      plugin = "jdbc-journal"
+    }
+    snapshot-store {
+      plugin = "jdbc-snapshot-store"
+    }
+  }
+
+}
+
+pekko-persistence-jdbc {
+  shared-databases {
+    h2file {
+      profile = "slick.jdbc.H2Profile$"
       db {
-        mysql {
-          driver = "com.mysql.cj.jdbc.Driver"
-          url = "jdbc:mysql://ll-mysql.org.local:3306/layline?useSSL=false&serverTimezone=UTC"
-          user = "layline"
-          password = "your_secure_password"
-        }
-      }
-      
-      # Use MySQL for all persistence
-      journal {
-        plugin = "jdbc-journal"
-      }
-      
-      snapshot-store {
-        plugin = "jdbc-snapshot-store"
-      }
-      
-      read-journal {
-        plugin = "jdbc-read-journal"
+        url = "jdbc:h2:file:/root/.layline/config-server/database/h2/journal;DATABASE_TO_UPPER=false;INIT=runscript from '/mnt/machines/ll-config-server/opt/layline/scripts/sql/h2/persistence-schema.sql';"
+        user = "root"
+        password = "root"
+        driver = "org.h2.Driver"
+        numThreads = 5
+        maxConnections = 5
+        minConnections = 1
       }
     }
-  }
-}
-
-# Journal configuration
-jdbc-journal {
-  slick = ${pekko.persistence.jdbc.db.mysql}
-  tables {
-    journal {
-      tableName = "journal"
-    }
-    deletedTo {
-      tableName = "deleted_to"
-    }
-  }
-}
-
-# Snapshot store configuration
-jdbc-snapshot-store {
-  slick = ${pekko.persistence.jdbc.db.mysql}
-  tables {
-    snapshot {
-      tableName = "snapshot"
-    }
-  }
-}
-
-# Read journal configuration
-jdbc-read-journal {
-  slick = ${pekko.persistence.jdbc.db.mysql}
-  tables {
-    journal {
-      tableName = "journal"
+    mysql {
+      profile = "slick.jdbc.MySQLProfile$"
+      db {
+        host = "ll-mysql.orb.local"
+        port = "3306"
+        url = "jdbc:mysql://ll-mysql.orb.local:3306/layline?cachePrepStmts=true&cacheCallableStmts=true&cacheServerConfiguration=true&useLocalSessionState=true&elideSetAutoCommits=true&alwaysSendSetIsolatio
+n=false&enableQueryTimeouts=false&connectionAttributes=none&verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&rewriteBatc
+hedStatements=true"
+        user = "root"
+        password = ""
+        driver = "com.mysql.cj.jdbc.Driver"
+        numThreads = 5
+        maxConnections = 5
+        minConnections = 1
+      }
     }
   }
 }
@@ -335,7 +321,7 @@ The server is ready when you see the "up and running" message. Keep this termina
 Open a browser and navigate to:
 
 ```
-http://ll-config-server.org.local:5841
+http://ll-config-server.orb.local:5841
 ```
 
 You should see the login page. Default credentials are `admin` / `admin`.
@@ -350,7 +336,7 @@ Each reactive engine node requires identical configuration except for the canoni
 
 ### 3.1 Install layline.io on Both Nodes
 
-On **both** `ll-node1` and `ll-node2`:
+On **both** `ll-node-1` and `ll-node-2`:
 
 ```bash
 # Download and install (same as config server)
@@ -361,118 +347,126 @@ sudo ./layline-linux-amd64-2.5.4.sh
 
 ### 3.2 Configure Node 1
 
-On `ll-node1.org.local`, edit the reactive engine configuration:
+On `ll-node-1.orb.local`, edit the reactive engine configuration:
 
 ```bash
-sudo vi /opt/layline/config/reactive-engine/application.conf
+sudo vi ~/.layline/reactive-engine/config/application.conf
 ```
 
 ```hocon title="Node 1 application.conf"
 layline {
   reactive-engine {
-    # Canonical hostname for this node
-    canonical-hostname = "ll-node1.org.local"
-    
-    # REST API bind settings
-    bind-hostname = "0.0.0.0"
-    bind-port = 5842
+    rest-server {
+      canonical {
+        hostname = "ll-node-1.orb.local"
+      }
+      bind {
+         port = 5842
+         hostname = 0.0.0.0
+      }
+    }
+
+    # logging {
+    #   short-logger-names = true
+    #   show-status-codes = false
+    # }
   }
 }
 
 pekko {
+
   actor {
-    provider = "cluster"
+    provider = cluster
   }
-  
+
+#  discovery {
+#    method = akka-dns
+#  }
+
+  management {
+    http {
+      bind-port = 8558
+    }
+  }
+
   remote {
+    log-remote-lifecycle-events = off
     artery {
       enabled = on
       transport = tcp
-      canonical {
-        hostname = "ll-node1.org.local"
-        port = 5843
-      }
-      bind {
-        hostname = "0.0.0.0"
-        port = 5843
-      }
+      canonical.hostname="ll-node-1.orb.local"
+      canonical.port = 5843
+      bind.hostname = "0.0.0.0"
+      bind.port = 5843
     }
   }
-  
+
   cluster {
-    # Minimum members required to form a cluster
-    # Set to 2 so cluster forms only when both nodes are up
-    min-nr-of-members = 2
-    
-    # Seed nodes - both nodes must be listed
+    min-nr-of-members = 2 # Minimum expected number of cluster members
     seed-nodes = [
-      "pekko://LaylineSystem@ll-node1.org.local:5843",
-      "pekko://LaylineSystem@ll-node2.org.local:5843"
+      "pekko://layline@ll-node-1.orb.local:5843" # 1st node
+      "pekko://layline@ll-node-2.orb.local:5843" # 2nd node
     ]
-    
-    # Downing provider for handling network partitions
-    downing-provider-class = "pekko.cluster.sbr.SplitBrainResolverProvider"
-    
+
     split-brain-resolver {
-      active-strategy = "keep-majority"
+      active-strategy = keep-majority
     }
   }
-  
+
   persistence {
-    jdbc {
-      db {
-        mysql {
-          driver = "com.mysql.cj.jdbc.Driver"
-          url = "jdbc:mysql://ll-mysql.org.local:3306/layline?useSSL=false&serverTimezone=UTC"
-          user = "layline"
-          password = "your_secure_password"
-        }
-      }
-      
-      journal {
-        plugin = "jdbc-journal"
-      }
-      
-      snapshot-store {
-        plugin = "jdbc-snapshot-store"
-      }
-      
-      read-journal {
-        plugin = "jdbc-read-journal"
-      }
-    }
-  }
-}
-
-# Journal configuration (same as config server)
-jdbc-journal {
-  slick = ${pekko.persistence.jdbc.db.mysql}
-  tables {
     journal {
-      tableName = "journal"
+      plugin = "jdbc-journal"
     }
-    deletedTo {
-      tableName = "deleted_to"
+    snapshot-store {
+      plugin = "jdbc-snapshot-store"
+    }
+  }
+
+}
+
+pekko-persistence-jdbc {
+  shared-databases {
+    h2file {
+      profile = "slick.jdbc.H2Profile$"
+      db {
+        url = "jdbc:h2:file:/root/.layline/reactive-engine/database/h2/journal;DATABASE_TO_UPPER=false;INIT=runscript from '/mnt/machines/ll-node-1/opt/layline/scripts/sql/h2/persistence-schema.sql';"
+        user = "root"
+        password = "root"
+        driver = "org.h2.Driver"
+        numThreads = 5
+        maxConnections = 5
+        minConnections = 1
+      }
+    }
+    mysql {
+      profile = "slick.jdbc.MySQLProfile$"
+      db {
+        host = "ll-mysql.orb.local"
+        port = "3306"
+        url = "jdbc:mysql://ll-mysql.orb.local:3306/layline?cachePrepStmts=true&cacheCallableStmts=true&cacheServerConfiguration=true&useLocalSessionState=true&elideSetAutoCommits=true&alwaysSendSetIsolatio
+n=false&enableQueryTimeouts=false&connectionAttributes=none&verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&rewriteBatc
+hedStatements=true"
+        user = "root"
+        password = ""
+        driver = "com.mysql.cj.jdbc.Driver"
+        numThreads = 5
+        maxConnections = 5
+        minConnections = 1
+      }
     }
   }
 }
 
-jdbc-snapshot-store {
-  slick = ${pekko.persistence.jdbc.db.mysql}
-  tables {
-    snapshot {
-      tableName = "snapshot"
-    }
-  }
+jdbc-journal {
+  use-shared-db = "mysql"
 }
 
 jdbc-read-journal {
-  slick = ${pekko.persistence.jdbc.db.mysql}
-  tables {
-    journal {
-      tableName = "journal"
-    }
-  }
+  use-shared-db = "mysql"
+}
+
+jdbc-snapshot-store {
+  use-shared-db = "mysql"
 }
 ```
 
@@ -480,43 +474,122 @@ jdbc-read-journal {
 
 ### 3.3 Configure Node 2
 
-On `ll-node2.org.local`, create an identical configuration **except** change the canonical hostname:
+On `ll-node-2.orb.local`, create an identical configuration **except** change the canonical hostname:
 
 ```hocon title="Node 2 application.conf (only changes shown)"
 layline {
   reactive-engine {
-    # Only difference from Node 1
-    canonical-hostname = "ll-node2.org.local"
-    bind-hostname = "0.0.0.0"
-    bind-port = 5842
+    rest-server {
+      canonical {
+        hostname = "ll-node-2.orb.local"
+      }
+      bind {
+         port = 5842
+         hostname = 0.0.0.0
+      }
+    }
+
+    # logging {
+    #   short-logger-names = true
+    #   show-status-codes = false
+    # }
   }
 }
 
 pekko {
+
+  actor {
+    provider = cluster
+  }
+
+#  discovery {
+#    method = akka-dns
+#  }
+
+  management {
+    http {
+      bind-port = 8558
+    }
+  }
+
   remote {
+    log-remote-lifecycle-events = off
     artery {
-      canonical {
-        # Only difference from Node 1
-        hostname = "ll-node2.org.local"
-        port = 5843
+      enabled = on
+      transport = tcp
+      canonical.hostname="ll-node-2.orb.local"
+      canonical.port = 5843
+      bind.hostname = "0.0.0.0"
+      bind.port = 5843
+    }
+  }
+
+  cluster {
+    min-nr-of-members = 2 # Minimum expected number of cluster members
+    seed-nodes = [
+      "pekko://layline@ll-node-1.orb.local:5843" # 1st node
+      "pekko://layline@ll-node-2.orb.local:5843" # 2nd node
+    ]
+
+    split-brain-resolver {
+      active-strategy = keep-majority
+    }
+  }
+
+  persistence {
+    journal {
+      plugin = "jdbc-journal"
+    }
+    snapshot-store {
+      plugin = "jdbc-snapshot-store"
+    }
+  }
+
+}
+
+pekko-persistence-jdbc {
+  shared-databases {
+    h2file {
+      profile = "slick.jdbc.H2Profile$"
+      db {
+        url = "jdbc:h2:file:/root/.layline/reactive-engine/database/h2/journal;DATABASE_TO_UPPER=false;INIT=runscript from '/mnt/machines/ll-node-2/opt/layline/scripts/sql/h2/persistence-schema.sql';"
+        user = "root"
+        password = "root"
+        driver = "org.h2.Driver"
+        numThreads = 5
+        maxConnections = 5
+        minConnections = 1
       }
-      bind {
-        hostname = "0.0.0.0"
-        port = 5843
+    }
+    mysql {
+      profile = "slick.jdbc.MySQLProfile$"
+      db {
+        host = "ll-mysql.orb.local"
+        port = "3306"
+        url = "jdbc:mysql://ll-mysql.orb.local:3306/layline?cachePrepStmts=true&cacheCallableStmts=true&cacheServerConfiguration=true&useLocalSessionState=true&elideSetAutoCommits=true&alwaysSendSetIsolatio
+n=false&enableQueryTimeouts=false&connectionAttributes=none&verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&rewriteBatc
+hedStatements=true"
+        user = "root"
+        password = ""
+        driver = "com.mysql.cj.jdbc.Driver"
+        numThreads = 5
+        maxConnections = 5
+        minConnections = 1
       }
     }
   }
-  
-  cluster {
-    # Same seed nodes on both machines
-    min-nr-of-members = 2
-    seed-nodes = [
-      "pekko://LaylineSystem@ll-node1.org.local:5843",
-      "pekko://LaylineSystem@ll-node2.org.local:5843"
-    ]
-    # ... rest identical to Node 1
-  }
-  # ... persistence config identical to Node 1
+}
+
+jdbc-journal {
+  use-shared-db = "mysql"
+}
+
+jdbc-read-journal {
+  use-shared-db = "mysql"
+}
+
+jdbc-snapshot-store {
+  use-shared-db = "mysql"
 }
 ```
 
@@ -529,14 +602,13 @@ Both nodes must have identical `seed-nodes` lists. The order matters — nodes t
 **On Node 1:**
 
 ```bash
-sudo /opt/layline/bin/reactive-engine
+reactive-engine
 ```
 
 You'll see log messages indicating the node is waiting for the cluster to form:
 
 ```
-[INFO] Trying to connect to the cluster...
-[INFO] Cluster Node [pekko://LaylineSystem@ll-node1.org.local:5843] - Waiting for minimum members (2)
+[INFO] trying to connect to the cluster
 ```
 
 <!-- SCREENSHOT: Node 1 terminal showing "Waiting for minimum members" message -->
@@ -544,22 +616,14 @@ You'll see log messages indicating the node is waiting for the cluster to form:
 **On Node 2:**
 
 ```bash
-sudo /opt/layline/bin/reactive-engine
+reactive-engine
 ```
 
-Once Node 2 starts, the nodes discover each other and form the cluster:
-
-```
-[INFO] Cluster Node [pekko://LaylineSystem@ll-node2.org.local:5843] - Node joined cluster
-[INFO] Cluster Node [pekko://LaylineSystem@ll-node1.org.local:5843] - Welcome [ll-node2.org.local]
-```
-
-<!-- SCREENSHOT: Node 2 terminal showing successful cluster formation with both nodes listed -->
-
+Once Node 2 starts, both nodes should discover each other and form the cluster:
 Both nodes should now show:
 ```
-[INFO] Cluster successfully formed with 2 members
-[INFO] Layline Reactive Engine up and running
+26-04-30 15:56:23.561 INFO  Layline - [LAY-11000] trying to connect to the cluster
+26-04-30 15:56:24.374 INFO  Layline - [LAY-11001] cluster successfully joined, member status is up
 ```
 
 ---
@@ -570,10 +634,10 @@ With the services running, configure the cluster in the Configuration Center.
 
 ### 4.1 Access Configuration Center
 
-Navigate to:
+Open the browser and navigate to:
 
 ```
-http://ll-config-server.org.local:5841
+http://ll-config-server.orb.local:5841
 ```
 
 Login with `admin` / `admin`.
@@ -592,8 +656,8 @@ Login with `admin` / `admin`.
 | Field | Value | Description |
 |-------|-------|-------------|
 | **Name** | `Production` | Display name for this cluster |
-| **Bootstrap Nodes** | `ll-node1.org.local:5842` | First reactive engine address |
-| | `ll-node2.org.local:5842` | Second reactive engine address |
+| **Bootstrap Nodes** | `ll-node-1.orb.local:5842` | First reactive engine address |
+| | `ll-node-2.orb.local:5842` | Second reactive engine address |
 
 <!-- SCREENSHOT: "Add Cluster" dialog showing Name field and Bootstrap Nodes list with two entries -->
 
@@ -637,12 +701,12 @@ Confirm the setup is working correctly:
 On either reactive node, check the cluster status via logs:
 
 ```bash
-grep "Cluster successfully formed" /opt/layline/logs/reactive-engine.log
+grep "cluster successfully joined" ~/.layline/reactive-engine/log/reactive-engine.log
 ```
 
 Expected output:
 ```
-Cluster successfully formed with 2 members
+24-12-20 14:01:08.427 INFO  Layline - [LAY-11001] cluster successfully joined, member status is up
 ```
 
 ### 5.2 Test Database Connectivity
@@ -651,7 +715,7 @@ Verify both nodes are writing to MySQL:
 
 ```sql
 -- In MySQL, check for recent journal entries
-SELECT COUNT(*) FROM journal WHERE persistence_id LIKE '% reactive-engine%';
+SELECT COUNT(*) FROM layline.event_journal WHERE persistence_id LIKE '% reactive-engine%';
 ```
 
 The count should increase as operations occur.
@@ -672,7 +736,7 @@ To add a third node (or more), follow this pattern:
 ### 6.1 Provision New Machine
 
 - Install layline.io
-- Configure hostname (e.g., `ll-node3.org.local`)
+- Configure hostname (e.g., `ll-node-3.orb.local`)
 - Ensure network connectivity to MySQL and existing nodes
 
 ### 6.2 Update Configuration
@@ -683,9 +747,9 @@ On **all nodes**, update the `seed-nodes` list:
 pekko {
   cluster {
     seed-nodes = [
-      "pekko://LaylineSystem@ll-node1.org.local:5843",
-      "pekko://LaylineSystem@ll-node2.org.local:5843",
-      "pekko://LaylineSystem@ll-node3.org.local:5843"  # Added
+      "pekko://layline@ll-node-1.orb.local:5843",
+      "pekko://layline@ll-node-2.orb.local:5843",
+      "pekko://layline@ll-node-3.orb.local:5843"  # Added
     ]
   }
 }
@@ -700,7 +764,7 @@ After changing seed-nodes, restart reactive engines one at a time to avoid clust
 In Configuration Center:
 1. Settings → Cluster Storage → Clusters
 2. Edit your cluster
-3. Add `ll-node3.org.local:5842` to Bootstrap Nodes
+3. Add `ll-node-3.orb.local:5842` to Bootstrap Nodes
 4. Save
 
 The new node will appear in Operations → Cluster once it joins.
@@ -724,7 +788,7 @@ After=network.target mysql.service
 Type=simple
 User=layline
 Group=layline
-ExecStart=/opt/layline/bin/config-server
+ExecStart=/root/.layline/bin/config-server
 Restart=always
 RestartSec=10
 
@@ -743,7 +807,7 @@ After=network.target mysql.service
 Type=simple
 User=layline
 Group=layline
-ExecStart=/opt/layline/bin/reactive-engine
+ExecStart=/root/layline/bin/reactive-engine
 Restart=always
 RestartSec=10
 
@@ -801,7 +865,7 @@ For production, enable SSL for MySQL connections:
    ```
 3. Update `application.conf` on all nodes:
    ```hocon
-   url = "jdbc:mysql://ll-mysql.org.local:3306/layline?useSSL=true&serverTimezone=UTC"
+   url = "jdbc:mysql://ll-mysql.orb.local:3306/layline?useSSL=true&serverTimezone=UTC"
    ```
 
 ### Backup Strategy
@@ -810,7 +874,7 @@ For production, enable SSL for MySQL connections:
 
 ```bash
 # Daily backup script
-mysqldump -u layline -p layline > layline-backup-$(date +%Y%m%d).sql
+mysqldump -u root -p root > layline-backup-$(date +%Y%m%d).sql
 ```
 
 **Configuration Backups:**
@@ -833,7 +897,7 @@ layline {
 }
 ```
 
-See [Gathering Statistics through Metrics](./prometheus-extension.md) for details.
+See [Gathering Statistics through Metrics](../../assets/workflow-assets/extensions/asset-prometheus) for details.
 
 ---
 
@@ -846,12 +910,12 @@ See [Gathering Statistics through Metrics](./prometheus-extension.md) for detail
 **Check:**
 1. Network connectivity between nodes on port 5843:
    ```bash
-   telnet ll-node1.org.local 5843
+   telnet ll-node-1.orb.local 5843
    ```
 2. Hostname resolution works from both nodes:
    ```bash
-   ping ll-node1.org.local
-   ping ll-node2.org.local
+   ping ll-node-1.orb.local
+   ping ll-node-2.orb.local
    ```
 3. Seed node addresses match the canonical hostnames in configuration
 4. Firewalls allow traffic on cluster port (5843)
@@ -863,9 +927,9 @@ See [Gathering Statistics through Metrics](./prometheus-extension.md) for detail
 **Check:**
 1. MySQL is running and accessible:
    ```bash
-   mysql -u layline -p -h ll-mysql.org.local -e "SELECT 1"
+   mysql -u root -p -h ll-mysql.orb.local -e "SELECT 1"
    ```
-2. Database and tables exist (run scripts in `/opt/layline/scripts/mysql/`)
+2. Database and tables exist (run script in `/opt/layline/scripts/mysql/`)
 3. MySQL user has correct permissions and host wildcard
 4. `bind-address` in MySQL config allows remote connections
 
