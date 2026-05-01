@@ -29,7 +29,7 @@ The two-node cluster demonstrated here scales to any number of nodes. Whether yo
 
 The deployment consists of four Linux virtual machines, each with a specific role:
 
-<!-- SCREENSHOT: Architecture diagram showing 4 machines (MySQL, Config Server, Node 1, Node 2) with arrows indicating network connections -->
+![Multi-node cluster architecture diagram showing Configuration Center web UI, ll-config-server, reactive cluster with ll-node-1 and ll-node-2, and ll-mysql database](./.multi-node-cluster-setup_images/architecture-diagram.png)
 
 | Machine | Role | Key Ports | Purpose |
 |---------|------|-----------|---------|
@@ -642,14 +642,12 @@ http://ll-config-server.orb.local:5841
 
 Login with `admin` / `admin`.
 
-<!-- SCREENSHOT: Configuration Center dashboard after initial login -->
+![Configuration Center login page with username, password, and Config Server URL fields](./.multi-node-cluster-setup_images/config-center-login.png)
 
 ### 4.2 Create Cluster Settings
 
 1. Go to **Settings → Cluster Storage → Clusters**
 2. Click the **+** button to add a new cluster
-
-<!-- SCREENSHOT: Settings → Cluster Storage → Clusters page with "+" button visible -->
 
 3. Enter the cluster details:
 
@@ -659,7 +657,7 @@ Login with `admin` / `admin`.
 | **Bootstrap Nodes** | `ll-node-1.orb.local:5842` | First reactive engine address |
 | | `ll-node-2.orb.local:5842` | Second reactive engine address |
 
-<!-- SCREENSHOT: "Add Cluster" dialog showing Name field and Bootstrap Nodes list with two entries -->
+![Edit Cluster dialog showing Name & Description section with "Production" cluster name and Bootstrap Nodes list with ll-node-1 and ll-node-2 URLs](./.multi-node-cluster-setup_images/edit-cluster-dialog.png)
 
 4. Click **Save**
 
@@ -670,7 +668,7 @@ Login with `admin` / `admin`.
 3. Click **Login** when prompted
 4. Enter credentials: `admin` / `admin`
 
-<!-- SCREENSHOT: Operations page showing cluster selector dropdown and login prompt -->
+![Operations page login form for Production cluster with username, password fields and cluster available indicator](./.multi-node-cluster-setup_images/operations-login.png)
 
 ### 4.4 Verify Node Status
 
@@ -688,7 +686,7 @@ Click on a node to view detailed information:
 - Architecture and OS details
 - Thread and connection counts
 
-<!-- SCREENSHOT: Cluster monitoring page showing both nodes with "Up" status and detailed node information panel -->
+![Cluster monitoring page showing Controllers and Nodes sections, with detailed node information panel for ll-node-1 including state, roles, version, and JVM metrics](./.multi-node-cluster-setup_images/cluster-monitoring.png)
 
 ---
 
@@ -968,18 +966,22 @@ This architecture scales horizontally by adding more reactive nodes and provides
 
 ## Screenshot Checklist
 
-The following screenshots are needed to complete this documentation:
+The following screenshots have been integrated into this documentation:
 
-1. **Architecture diagram** — 4-machine setup with network connections
-2. **MySQL tables** — SHOW TABLES output with journal, snapshot, read_journal
-3. **Config server startup** — Terminal showing "Configuration Server up and running"
-4. **Config server config** — application.conf showing layline.config-server section
-5. **Node 1 config** — application.conf showing layline.reactive-engine and pekko.cluster sections
-6. **Node waiting** — Terminal showing "Waiting for minimum members (2)"
-7. **Cluster formation** — Terminal showing successful formation with both nodes
-8. **Login page** — Configuration Center initial login screen
-9. **Add cluster dialog** — Settings → Cluster Storage with cluster creation form
-10. **Cluster monitoring** — Operations page showing both nodes with Up status
+- ✅ **Architecture diagram** — 4-machine setup with network connections
+- ✅ **Configuration Center login** — Initial login page with Config Server URL
+- ✅ **Operations login** — Cluster login prompt with "Production" selector
+- ✅ **Edit Cluster dialog** — Settings form with cluster name and bootstrap nodes
+- ✅ **Cluster monitoring** — Operations page showing nodes with Up status
+
+The following screenshots are still pending (terminal/command-line outputs):
+
+- [ ] **MySQL tables** — `SHOW TABLES` output with journal, snapshot, read_journal
+- [ ] **Config server config** — `application.conf` showing layline.config-server section
+- [ ] **Config server startup** — Terminal showing "Configuration Server up and running"
+- [ ] **Node 1 config** — `application.conf` showing layline.reactive-engine and pekko.cluster sections
+- [ ] **Node waiting** — Terminal showing "Waiting for minimum members (2)"
+- [ ] **Cluster formation** — Terminal showing successful formation with both nodes
 
 ## See Also
 
