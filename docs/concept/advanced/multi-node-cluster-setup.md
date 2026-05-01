@@ -63,6 +63,12 @@ Before starting, ensure you have:
 | **Root/sudo access** | For installing MySQL and layline.io services |
 | **Hostnames configured** | Each VM has a resolvable hostname (DNS or `/etc/hosts`) |
 
+:::tip New to layline.io?
+This guide covers production multi-node deployment. For single-machine development setup, see:
+- [Install Locally](../quickstart/install-local) — Full local installation for development
+- [Install with Docker](../quickstart/install-docker) — Quick evaluation via Docker
+:::
+
 ### Hostname Configuration
 
 Each machine must be addressable by its canonical hostname. Add entries to `/etc/hosts` on all machines if DNS is not available:
