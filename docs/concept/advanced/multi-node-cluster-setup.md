@@ -105,7 +105,7 @@ sudo systemctl start mysqld
 
 ### 1.2 Create Database and User
 
-Connect to MySQL as root and create the layline database:
+Connect to MySQL as  and create the layline database:
 
 ```bash
 sudo mysql -u root
@@ -144,7 +144,7 @@ You should see one SQL file:
 Apply these scripts to your database:
 
 ```bash
-mysql -u root -p -h ll-mysql.orb.local layline < persistence-schema.sql
+mysql -u layline -p -h ll-mysql.orb.local layline < persistence-schema.sql
 ```
 
 ### 1.4 Verify Tables
@@ -152,7 +152,7 @@ mysql -u root -p -h ll-mysql.orb.local layline < persistence-schema.sql
 Connect to MySQL and confirm the tables exist:
 
 ```bash
-mysql -u root -p -h ll-mysql.orb.local layline
+mysql -u layline -p -h ll-mysql.orb.local layline
 ```
 
 ```sql
@@ -195,7 +195,7 @@ Verify connectivity from the other machines:
 
 ```bash
 # From config server or reactive nodes
-mysql -u root -p -h ll-mysql.orb.local -e "SELECT 1"
+mysql -u layline -p -h ll-mysql.orb.local -e "SELECT 1"
 ```
 
 ---
@@ -284,8 +284,8 @@ pekko-persistence-jdbc {
         url = "jdbc:mysql://ll-mysql.orb.local:3306/layline?cachePrepStmts=true&cacheCallableStmts=true&cacheServerConfiguration=true&useLocalSessionState=true&elideSetAutoCommits=true&alwaysSendSetIsolatio
 n=false&enableQueryTimeouts=false&connectionAttributes=none&verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&rewriteBatc
 hedStatements=true"
-        user = "root"
-        password = ""
+        user = "layline"
+        password = "your_secure_password"
         driver = "com.mysql.cj.jdbc.Driver"
         numThreads = 5
         maxConnections = 5
@@ -452,8 +452,8 @@ pekko-persistence-jdbc {
         url = "jdbc:mysql://ll-mysql.orb.local:3306/layline?cachePrepStmts=true&cacheCallableStmts=true&cacheServerConfiguration=true&useLocalSessionState=true&elideSetAutoCommits=true&alwaysSendSetIsolatio
 n=false&enableQueryTimeouts=false&connectionAttributes=none&verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&rewriteBatc
 hedStatements=true"
-        user = "root"
-        password = ""
+        user = "laylien"
+        password = "your_secure_password"
         driver = "com.mysql.cj.jdbc.Driver"
         numThreads = 5
         maxConnections = 5
@@ -575,8 +575,8 @@ pekko-persistence-jdbc {
         url = "jdbc:mysql://ll-mysql.orb.local:3306/layline?cachePrepStmts=true&cacheCallableStmts=true&cacheServerConfiguration=true&useLocalSessionState=true&elideSetAutoCommits=true&alwaysSendSetIsolatio
 n=false&enableQueryTimeouts=false&connectionAttributes=none&verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&rewriteBatc
 hedStatements=true"
-        user = "root"
-        password = ""
+        user = "layline"
+        password = "your_secure_password"
         driver = "com.mysql.cj.jdbc.Driver"
         numThreads = 5
         maxConnections = 5
@@ -878,7 +878,7 @@ For production, enable SSL for MySQL connections:
 
 ```bash
 # Daily backup script
-mysqldump -u root -p root > layline-backup-$(date +%Y%m%d).sql
+mysqldump -u layline -p your_secure_password > layline-backup-$(date +%Y%m%d).sql
 ```
 
 **Configuration Backups:**
@@ -931,7 +931,7 @@ See [Gathering Statistics through Metrics](../../assets/workflow-assets/extensio
 **Check:**
 1. MySQL is running and accessible:
    ```bash
-   mysql -u root -p -h ll-mysql.orb.local -e "SELECT 1"
+   mysql -u layline -p -h ll-mysql.orb.local -e "SELECT 1"
    ```
 2. Database and tables exist (run script in `/opt/layline/scripts/mysql/`)
 3. MySQL user has correct permissions and host wildcard
@@ -969,29 +969,9 @@ You now have a working multi-node layline.io deployment with:
 This architecture scales horizontally by adding more reactive nodes and provides the foundation for production deployments.
 
 ---
-
-## Screenshot Checklist
-
-The following screenshots have been integrated into this documentation:
-
-- ✅ **Architecture diagram** — 4-machine setup with network connections
-- ✅ **Configuration Center login** — Initial login page with Config Server URL
-- ✅ **Operations login** — Cluster login prompt with "Production" selector
-- ✅ **Edit Cluster dialog** — Settings form with cluster name and bootstrap nodes
-- ✅ **Cluster monitoring** — Operations page showing nodes with Up status
-
-The following screenshots are still pending (terminal/command-line outputs):
-
-- [ ] **MySQL tables** — `SHOW TABLES` output with journal, snapshot, read_journal
-- [ ] **Config server config** — `application.conf` showing layline.config-server section
-- [ ] **Config server startup** — Terminal showing "Configuration Server up and running"
-- [ ] **Node 1 config** — `application.conf` showing layline.reactive-engine and pekko.cluster sections
-- [ ] **Node waiting** — Terminal showing "Waiting for minimum members (2)"
-- [ ] **Cluster formation** — Terminal showing successful formation with both nodes
-
 ## See Also
 
 - [**Security Storage**](./secret-management.md) — Managing certificates and keys for secure cluster communication
 - [**User and Role Management**](./advanced-user-storage.md) — Configuring access control across the cluster
 - [**Gathering Statistics through Metrics**](./prometheus-extension.md) — Monitoring cluster health and performance
-- [**Quickstart: Install Locally**](../../quickstart/install-local) — Single-machine installation for development
+- [**Quickstart: Install Locally**](../../quickstart/install-local.md) — Single-machine installation for development
