@@ -141,4 +141,12 @@ docker exec -it <container-id> /bin/bash
 
 ---
 
+## Production Deployment
+
+This Docker setup is ideal for quick evaluation and development. For production deployments requiring high availability and scalability across multiple machines, see:
+
+- [**Multi-Node Cluster Setup**](../concept/advanced/multi-node-cluster-setup) — Deploy with MySQL persistence and reactive clustering
+
+---
+
 <WipDisclaimer></WipDisclaimer>

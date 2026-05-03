@@ -76,6 +76,10 @@ Pick one installation method:
 | [Install Locally](./install-local) | 10–15 min | Development, production deployments, persistent state |
 | [Install via Docker](./install-docker) | 5 min | Quick evaluation, pre-installed samples, no system changes |
 
+:::tip Production Deployments
+For high-availability production deployments across multiple machines with clustering, see the [Multi-Node Cluster Setup](../concept/advanced/multi-node-cluster-setup) guide.
+:::
+
 ### 5. [Your First Workflow](./first-workflow)
 **Time: 15–20 minutes**
 
