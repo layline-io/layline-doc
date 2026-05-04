@@ -37,51 +37,64 @@ Assets are the reusable, independently versioned components that make up your Wo
 Unlike hardcoded configuration, Assets are:
 
 - **Reusable** — Define a Source once (e.g., "Production Kafka Cluster"), use it in dozens of Workflows
-- **Versioned** — Change an Asset and all referencing Workflows automatically use the new configuration
-- **Environment-agnostic** — The same Workflow works in dev, staging, and production by swapping Assets
 - **Inheritable** — Create specialized Assets that inherit and extend base configurations
+- **Environment-agnostic** — Use Environment Variables within Assets to change behavior based on deployment target (dev, staging, production)
 
-#### Asset Types
-
-| Asset Type | Defines | Example |
-|------------|---------|---------|
-| **Source** | *Where* data comes from | A path on an NFS share, a Kafka consumer group, an HTTP endpoint |
-| **Sink** | *Where* data goes | An S3 bucket prefix, a database table, a message queue |
-| **Format** | *How* data is structured | A JSON schema, an XML definition, a CSV parser configuration |
-| **Service** | *Auxiliary capabilities* | A JDBC connection pool, an HTTP client, a cache |
-| **Connection** | *How to connect* | AWS credentials, SMB authentication, OAuth tokens |
+For a complete list of available Asset types, see [**Assets Overview**](../assets).
 
 #### The Asset-Processor Relationship
 
-When you configure a processor, you don't enter connection strings or parse settings directly. Instead, you **reference Assets**:
+**Every processor is based on an Asset.** This is a fundamental concept in layline.io — there is no such thing as a processor without an underlying Asset.
 
+When you add a processor to a Workflow, you have three options:
+
+1. **Reference an existing Asset** — Select a pre-defined Asset from your Project. This Asset can be referenced by multiple Workflows.
+
+2. **Create a new Asset** — Define a new Asset during processor creation. This Asset becomes part of your Project's asset library and can be reused.
+
+3. **Create without a visible Asset** — The processor appears to have no Asset, but in reality it references a **hidden Asset** that exists only for this specific processor. The configuration is embedded and not reusable.
+
+**Shared vs. Workflow-Specific Assets**
+
+| Approach | Visibility | Reusability | Use Case |
+|----------|------------|-------------|----------|
+| Shared Asset | Listed in Project assets | Multiple Workflows can reference it | Standard connections, common formats |
+| Hidden Asset | Only visible within this Workflow | Single use | One-off configurations, prototyping |
+
+The key insight: **Assets define the configuration; Processors are instances of Assets within a Workflow.** A Workflow defines *what happens to the data* (the flow); Assets define *how to connect, parse, and transform* (the capabilities).
+
+#### Asset Inheritance Chains
+
+Assets can inherit from other Assets, creating chains of specialization:
+
+```mermaid
+flowchart TD
+    A[HTTP Connection<br/>baseUrl, auth] --> B[REST API Service<br/>inherits + retryPolicy]
+    B --> C[Customer API<br/>inherits + customer endpoints]
+    C --> D[Customer Lookup Processor<br/>inherits + caching]
 ```
-Input Processor → references → Source Asset + Format Asset
-Output Processor → references → Sink Asset + Format Asset
-Flow Processor → references → Service Asset (for enrichment)
-```
 
-This separation is crucial: the Workflow defines *what happens to the data*; Assets define *where it comes from and goes*.
+**Example: Service Asset Inheritance**
 
-#### Asset Inheritance
+**Base**: `HTTP-Base-Connection`
+- Base URL: `${API_BASE_URL}` (Environment Variable)
+- Authentication: OAuth2 credentials
 
-Assets support **inheritance**, allowing you to build specialized configurations from general ones:
+**Inherits**: `REST-Service-Base`
+- Inherits connection from `HTTP-Base-Connection`
+- Adds: Retry policy (3 attempts)
+- Adds: Timeout (30s)
 
-**Base Asset**: `NFS-Production-Connection`
-- Server: `nfs.prod.internal`
-- Credentials: `prod-nfs-user`
+**Inherits**: `Customer-API-Service`
+- Inherits from `REST-Service-Base`
+- Adds: Customer lookup endpoint (`/customers/{id}`)
+- Adds: Response caching (5 minutes)
 
-**Inherited Asset**: `NFS-Customer-Data-Source`
-- Inherits: `NFS-Production-Connection`
-- Path: `/data/customers/incoming`
-- Polling interval: `30s`
+**Processor**: Uses `Customer-API-Service`
+- Inherits entire chain
+- Can override specific properties locally
 
-**Inherited Asset**: `NFS-Orders-Source`
-- Inherits: `NFS-Production-Connection`
-- Path: `/data/orders`
-- Polling interval: `60s`
-
-Both sources share the same server and credentials, but each has its own path and polling behavior. Change the base connection credentials, and both sources automatically update.
+This chain means: change the OAuth credentials in `HTTP-Base-Connection`, and all services inheriting from it automatically use the new credentials.
 
 #### Overriding Asset Properties
 
@@ -106,8 +119,8 @@ Define Format Assets for your organization's standard schemas (`Order-Format`, `
 **Pattern 3: Service Abstractions**
 Create a `Customer-Lookup-Service` Asset that wraps your CRM API with caching and retry logic. Multiple Workflows reference it for enrichment without duplicating configuration.
 
-**Pattern 4: Environment Promotion**
-The same Workflow Asset deployed to dev, staging, and production uses different Source/Sink Assets in each environment. The Workflow logic stays identical; only the external connections change.
+**Pattern 4: Environment Variables for Deployment Targets**
+Use Environment Variable Assets to steer behavior across deployments. A single `Database-Service` Asset can use `${DB_HOST}` and `${DB_PORT}` variables. Deploy to dev, staging, or production — the same Workflow and Assets are used, but the Environment Variables resolve to different values based on the deployment target.
 
 ## The Workflow Editor
 
@@ -135,7 +148,7 @@ To build a Workflow:
 
 ![ADD PROCESSOR dropdown showing available processor types organized by category](./.building-workflows_images/add-processor-dropdown.png)
 
-Data flows in one direction: Input → Flow → Output. The editor enforces this topology — you cannot create cycles or connect outputs to inputs.
+Data flows from Input → Flow → Output. You can connect output ports to input ports to build arbitrarily complex flows. While the editor generally enforces acyclic graphs for clarity, cycles are technically possible though not recommended for most use cases.
 
 ### Configuring Processors
 
@@ -143,9 +156,9 @@ Each processor node has its own configuration panel. When you select a node, the
 
 ![Configuration inspector showing a Router processor's Filter & Routing settings](./.building-workflows_images/configuration-inspector.png)
 
-#### Referencing Assets
+#### Referencing Assets and Inheritance Chains
 
-The primary configuration task is **referencing Assets** you've already defined:
+The primary configuration task is **referencing Assets** you've already defined. But Assets are more than just configuration containers — they can form **inheritance chains** where each level adds or modifies capabilities.
 
 **Input Processors** reference:
 - A **Source** Asset (where to read from)
@@ -155,10 +168,18 @@ The primary configuration task is **referencing Assets** you've already defined:
 - A **Sink** Asset (where to write to)
 - A **Format** Asset (how to serialize outgoing data)
 
-**Flow Processors** reference:
-- **Service** Assets (for data enrichment, lookups, or external API calls)
-- Transformation logic (JavaScript or Python code)
-- Routing rules (which output path based on message content)
+**Flow Processors** are themselves Assets and can inherit from other Flow Processor Assets:
+- Base `JavaScript-Processor` Asset defines common scripting infrastructure
+- `Validation-Processor` inherits from `JavaScript-Processor`, adds validation library imports
+- Your processor inherits from `Validation-Processor`, adds your specific validation logic
+
+```mermaid
+flowchart TD
+    A[JavaScript Processor<br/>core scripting] --> B[Validation Processor<br/>+ validation lib]
+    B --> C[Your Validator<br/>+ business rules]
+```
+
+When you create a processor, you're at the end of an inheritance chain. You see all the accumulated configuration from parent Assets, and can add your own or override specific values.
 
 When you click the Source or Format dropdown in a processor's configuration, you see all compatible Assets of that type defined in your Project.
 
@@ -190,12 +211,17 @@ Understanding how data actually moves through a Workflow is critical to designin
 
 ### Message-Based Processing
 
-layline.io processes data as discrete **messages**. Each message consists of:
-- **Payload** — the actual data content
-- **Metadata** — system-generated properties (timestamp, source ID, routing history)
-- **Headers** — optional user-defined key-value pairs
+layline.io processes data as discrete **messages**. The structure of each message is defined by the **Data Dictionary** — a schema created from the Formats defined in your Project.
 
-When an Input Processor reads data, it parses the raw bytes into a message using the configured Format. This message then flows through the Workflow, potentially being transformed by each Flow Processor, until it reaches an Output Processor where it is serialized and written to the destination.
+The Data Dictionary determines what fields a message contains:
+- **Payload fields** — the core data content, defined by your Format (JSON, XML, CSV, etc.)
+- **Metadata fields** — optional system or user-defined data (timestamps, routing history, source IDs)
+- **Header fields** — optional key-value pairs for protocol-specific information
+- **Custom fields** — any additional structure your use case requires
+
+When an Input Processor reads data, it parses the raw bytes into a message using the configured Format. The Format defines how to interpret the bytes, and the resulting message structure is determined by the Data Dictionary. This message then flows through the Workflow, potentially being transformed by each Flow Processor, until it reaches an Output Processor where it is serialized according to the output Format and written to the destination.
+
+**Key point:** The message structure is not fixed — it emerges from the Formats you define. A Project processing XML invoices has different message fields than one processing JSON events. The Data Dictionary ensures consistency: once you define a Format, all messages parsed with that Format have the same structure.
 
 ### Routing and Branching
 
@@ -211,9 +237,9 @@ Each output port connects to a subsequent processor. Messages flow down exactly 
 
 By default, if any processor encounters an error, the entire message is rejected. You can configure alternative behaviors:
 
-- **Dead letter routing** — send failed messages to a designated error handling path
 - **Retry with backoff** — automatically retry transient failures
 - **Skip and continue** — log the error but process subsequent messages
+- **Dead letter routing** — configure a custom error handling path using Workflow tools (not enabled by default)
 
 Error handling is configured per-processor, allowing fine-grained control over fault tolerance.
 
@@ -229,7 +255,7 @@ The editor continuously validates your Workflow as you build:
 - **Configuration validation** — Are all referenced Assets defined? Are required fields populated?
 - **Semantic validation** — Will this Workflow actually process data correctly?
 
-Validation errors appear inline on the canvas and in the configuration panel. You cannot deploy a Workflow with validation errors.
+Validation errors appear inline on the canvas and in the configuration panel. **Final validation occurs upon deployment** — the system performs comprehensive checks and points out any errors, allowing you to jump directly to the areas that need fixing. Runtime errors that occur after deployment are flagged by the cluster.
 
 ### Test Runs
 
@@ -242,27 +268,17 @@ For interactive testing:
 
 Test runs execute against the configured Assets, so if your Source points to a development filesystem, test runs read from that location.
 
-## Workflow Assets
-
-Once you've designed a Workflow in the editor, you encapsulate it in a **Workflow Asset** — the deployable unit that references your pipeline definition.
-
-The Workflow Asset serves several purposes:
-- **Versioning** — Track changes to your pipeline over time
-- **Reusability** — Reference the same Workflow from multiple Deployment configurations
-- **Configuration** — Override specific settings at deployment time (e.g., different Sources for different environments)
-
-Workflow Assets appear in your Project's asset list alongside Sources, Sinks, Formats, and Services. They can be imported, exported, and shared between Projects.
-
 ## From Workflow to Production
 
 A Workflow in the editor is a design. To make it operational:
 
-1. **Create a Workflow Asset** — Save your canvas design as a versioned asset
-2. **Create a Deployment Asset** — Define which Workflows to run, on which clusters, with which resource allocations
-3. **Deploy** — Submit the Deployment to a Reactive Cluster
-4. **Monitor** — Use the Operations interface to observe running Workflows, inspect message flow, and manage lifecycle
+1. **Create a Deployment Asset** — Define which Workflows to run, on which clusters, with which resource allocations
+2. **Deploy** — Submit the Deployment to a Reactive Cluster
+3. **Monitor** — Use the Operations interface to observe running Workflows, inspect message flow, and manage lifecycle
 
-The same Workflow Asset can be deployed multiple times with different configurations — for example, the same data processing logic applied to different customer data streams.
+The same Workflow can be deployed multiple times with different configurations — for example, the same data processing logic applied to different customer data streams.
+
+**Note on Versioning:** Workflows and Assets are not versioned internally by layline.io. Use your preferred version control system (Git, etc.) to version the underlying infrastructure configuration files, just as you would with any other code.
 
 ## Design Patterns
 
@@ -322,16 +338,15 @@ flowchart LR
 
 **Keep transformations focused.** Each Flow Processor should do one thing well. Complex business logic spread across many small processors is easier to maintain than monolithic transformations.
 
-**Use Assets for environment differences.** Never hardcode connection strings in processor configuration. Use Source and Sink Assets so the same Workflow works in dev, staging, and production.
+**Use Assets for reusable configuration.** Never hardcode connection strings in processor configuration. Use Source, Sink, and Connection Assets with Environment Variables for environment-specific values.
 
 **Test with realistic data.** Sample files that match production volume and edge cases reveal issues before deployment.
 
-**Version your Workflows.** Treat Workflow Assets like code — commit changes, tag releases, and document breaking changes.
+**Version your Project.** Use Git (or your preferred VCS) to track changes to your Project configuration, commit meaningful changes, and tag releases.
 
 ## See Also
 
 - [**Your First Workflow**](../quickstart/first-workflow) — Step-by-step tutorial for building your first pipeline
-- [**Workflow Asset**](../assets/workflow-assets) — Reference documentation for Workflow assets
 - [**Assets Overview**](../assets) — Complete guide to all asset types
 - [**Deployment Assets**](../assets/deployment-assets) — How to deploy Workflows to production
 - [**Reactive Clusters**](../operations/clusters) — Understanding the runtime environment
