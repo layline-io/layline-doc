@@ -47,25 +47,31 @@ The visual editor is where you assemble your pipeline. The interface presents a 
 
 The editor displays processors as nodes and data flows as connecting lines:
 
-- **Left panel** — Asset palette: available processor types organized by category
 - **Center canvas** — The Workflow diagram: add, move, and connect processors
 - **Right panel** — Configuration inspector: edit the selected processor's settings
-- **Bottom panel** — Logs and validation messages
+- **ADD PROCESSOR dropdown** — Access the palette of available processor types organized by category (Input Processors, Flow Processors, Output Processors)
+
+![Workflow Editor showing the canvas with connected processors and the right-side configuration panel](./.building-workflows_images/workflow-editor-full.png)
 
 ### Adding Processors
 
 To build a Workflow:
 
-1. **Drag an Input Processor** from the palette onto the canvas — this is your entry point
-2. **Drag Flow Processors** to transform the data — add as many as needed
-3. **Drag an Output Processor** to define where results go
-4. **Connect the nodes** — click and drag from an output port to an input port
+1. **Click "ADD PROCESSOR"** to open the processor dropdown
+2. **Select an Input Processor** — this is your entry point
+3. **Select Flow Processors** to transform the data — add as many as needed
+4. **Select an Output Processor** to define where results go
+5. **Connect the nodes** — click and drag from an output port to an input port
+
+![ADD PROCESSOR dropdown showing available processor types organized by category](./.building-workflows_images/add-processor-dropdown.png)
 
 Data flows in one direction: Input → Flow → Output. The editor enforces this topology — you cannot create cycles or connect outputs to inputs.
 
 ### Configuring Processors
 
 Each processor node has its own configuration panel. When you select a node, the right inspector panel displays its settings:
+
+![Configuration inspector showing a Router processor's Filter & Routing settings](./.building-workflows_images/configuration-inspector.png)
 
 **Input Processors** require:
 - A **Source** Asset (where to read from)
@@ -127,7 +133,7 @@ The editor continuously validates your Workflow as you build:
 - **Configuration validation** — Are all referenced Assets defined? Are required fields populated?
 - **Semantic validation** — Will this Workflow actually process data correctly?
 
-Validation errors appear in the bottom panel. You cannot deploy a Workflow with validation errors.
+Validation errors appear inline on the canvas and in the configuration panel. You cannot deploy a Workflow with validation errors.
 
 ### Test Runs
 
@@ -213,35 +219,6 @@ flowchart LR
     B -->|alerts| D[Output<br/>Monitoring]
     B -->|default| E[Output<br/>Archive]
 ```
-
-<!-- SCREENSHOT PLACEHOLDERS:
-The following sections describe UI elements that would benefit from visual screenshots.
-These can be added later if desired.
-
-### Workflow Editor Overview
-*A full-width screenshot showing the Workflow Editor with a sample pipeline:*
-- Three connected processors (Input → Flow → Output) visible on the canvas
-- Connection lines showing data flow between processors
-- Left panel showing the Asset palette with processor categories expanded
-- Right panel showing configuration fields for the selected processor
-
-### Asset Palette
-*The left sidebar showing available processor types:*
-- Categories: Input Processors, Flow Processors, Output Processors
-- Expandable sections with specific processor icons
-- Search/filter field at the top
-
-### Configuration Inspector
-*The right sidebar showing processor settings:*
-- Form fields for the selected processor (e.g., Source selection, Format selection)
-- Required vs optional field indicators
-- Help text or validation messages
-
-### Validation Panel
-*The bottom panel showing build status:*
-- List of validation errors or "No errors" confirmation
-- Warning indicators for incomplete configurations
--->
 
 ## Best Practices
 
