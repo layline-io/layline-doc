@@ -30,14 +30,84 @@ These processors are not hardcoded components — they are **Asset instances**. 
 
 ### Assets as Building Blocks
 
-Assets are the reusable, independently versioned components that make up your Workflows:
+Assets are the reusable, independently versioned components that make up your Workflows. Think of them as **configured capabilities** that you define once and reference many times.
 
-- **Source** — Defines *where* data comes from (filesystem path, message broker, API endpoint)
-- **Sink** — Defines *where* data goes (destination connection and parameters)
-- **Format** — Defines *how* data is structured (JSON, XML, CSV, custom schemas)
-- **Service** — Defines *auxiliary capabilities* (caching, external API calls, data lookups)
+#### What Makes Assets Powerful
 
-When you add an Input Processor to a Workflow, you don't configure connection strings inline — you select a Source Asset. This separation of concerns means the same Workflow can be deployed to different environments (dev, staging, production) simply by swapping the Source/Sink Assets it references.
+Unlike hardcoded configuration, Assets are:
+
+- **Reusable** — Define a Source once (e.g., "Production Kafka Cluster"), use it in dozens of Workflows
+- **Versioned** — Change an Asset and all referencing Workflows automatically use the new configuration
+- **Environment-agnostic** — The same Workflow works in dev, staging, and production by swapping Assets
+- **Inheritable** — Create specialized Assets that inherit and extend base configurations
+
+#### Asset Types
+
+| Asset Type | Defines | Example |
+|------------|---------|---------|
+| **Source** | *Where* data comes from | A path on an NFS share, a Kafka consumer group, an HTTP endpoint |
+| **Sink** | *Where* data goes | An S3 bucket prefix, a database table, a message queue |
+| **Format** | *How* data is structured | A JSON schema, an XML definition, a CSV parser configuration |
+| **Service** | *Auxiliary capabilities* | A JDBC connection pool, an HTTP client, a cache |
+| **Connection** | *How to connect* | AWS credentials, SMB authentication, OAuth tokens |
+
+#### The Asset-Processor Relationship
+
+When you configure a processor, you don't enter connection strings or parse settings directly. Instead, you **reference Assets**:
+
+```
+Input Processor → references → Source Asset + Format Asset
+Output Processor → references → Sink Asset + Format Asset
+Flow Processor → references → Service Asset (for enrichment)
+```
+
+This separation is crucial: the Workflow defines *what happens to the data*; Assets define *where it comes from and goes*.
+
+#### Asset Inheritance
+
+Assets support **inheritance**, allowing you to build specialized configurations from general ones:
+
+**Base Asset**: `NFS-Production-Connection`
+- Server: `nfs.prod.internal`
+- Credentials: `prod-nfs-user`
+
+**Inherited Asset**: `NFS-Customer-Data-Source`
+- Inherits: `NFS-Production-Connection`
+- Path: `/data/customers/incoming`
+- Polling interval: `30s`
+
+**Inherited Asset**: `NFS-Orders-Source`
+- Inherits: `NFS-Production-Connection`
+- Path: `/data/orders`
+- Polling interval: `60s`
+
+Both sources share the same server and credentials, but each has its own path and polling behavior. Change the base connection credentials, and both sources automatically update.
+
+#### Overriding Asset Properties
+
+When you reference an Asset in a processor, you can **override specific properties** without modifying the Asset itself. This is useful for:
+
+- **One-off adjustments** — Use the same Source but with a different file pattern for this specific Workflow
+- **Environment variations** — Override a timeout for testing without affecting production
+- **Dynamic behavior** — Set properties at deployment time via environment variables
+
+Example: A File Source Asset defines `/data/invoices/*.xml`. In your processor, you override the pattern to `/data/invoices/2024-*.xml` for a backfill job.
+
+Overrides are **local to the processor reference** — they don't modify the underlying Asset, and other Workflows using the same Asset are unaffected.
+
+#### Asset Reuse Patterns
+
+**Pattern 1: Standardized Connections**
+Define one `Kafka-Production` Connection Asset with cluster endpoints and TLS settings. Create separate Source Assets for each topic (`Kafka-Orders-Source`, `Kafka-Events-Source`), all referencing the same Connection. Change cluster endpoints in one place.
+
+**Pattern 2: Format Libraries**
+Define Format Assets for your organization's standard schemas (`Order-Format`, `Invoice-Format`, `Customer-Format`). Any Workflow processing orders uses `Order-Format` — ensuring consistent parsing everywhere.
+
+**Pattern 3: Service Abstractions**
+Create a `Customer-Lookup-Service` Asset that wraps your CRM API with caching and retry logic. Multiple Workflows reference it for enrichment without duplicating configuration.
+
+**Pattern 4: Environment Promotion**
+The same Workflow Asset deployed to dev, staging, and production uses different Source/Sink Assets in each environment. The Workflow logic stays identical; only the external connections change.
 
 ## The Workflow Editor
 
@@ -73,20 +143,46 @@ Each processor node has its own configuration panel. When you select a node, the
 
 ![Configuration inspector showing a Router processor's Filter & Routing settings](./.building-workflows_images/configuration-inspector.png)
 
-**Input Processors** require:
+#### Referencing Assets
+
+The primary configuration task is **referencing Assets** you've already defined:
+
+**Input Processors** reference:
 - A **Source** Asset (where to read from)
 - A **Format** Asset (how to parse incoming data)
-- Optional: filtering criteria, rate limits, or error handling policies
 
-**Flow Processors** require:
-- Transformation logic (often expressed in JavaScript or Python)
-- Routing rules (which output path to take based on data content)
-- Optional: lookup configurations, enrichment parameters
-
-**Output Processors** require:
+**Output Processors** reference:
 - A **Sink** Asset (where to write to)
 - A **Format** Asset (how to serialize outgoing data)
-- Optional: batching settings, retry policies, idempotency controls
+
+**Flow Processors** reference:
+- **Service** Assets (for data enrichment, lookups, or external API calls)
+- Transformation logic (JavaScript or Python code)
+- Routing rules (which output path based on message content)
+
+When you click the Source or Format dropdown in a processor's configuration, you see all compatible Assets of that type defined in your Project.
+
+#### Overriding Asset Properties
+
+Each Asset reference shows **inherited** properties from the Asset and allows **local overrides**:
+
+```
+Source: NFS-Customer-Data-Source
+├── Server: nfs.prod.internal (inherited)
+├── Path: /data/customers/incoming (inherited)
+├── Pattern: *.json (OVERRIDE: changed from *.xml)
+└── Polling Interval: 30s (inherited)
+```
+
+Overrides appear highlighted in the configuration panel. They apply **only to this processor reference** — the underlying Asset remains unchanged, and other Workflows using the same Asset see the original values.
+
+Common override scenarios:
+- **File pattern changes** for one-time backfills or specific processing jobs
+- **Timeout adjustments** for large files or slow networks
+- **Batch size tuning** for performance optimization
+- **Environment-specific parameters** set via deployment variables
+
+To remove an override and revert to the Asset's default value, click the reset icon next to the field.
 
 ## Data Flow Semantics
 
