@@ -169,14 +169,57 @@ Common Workflow patterns that emerge in practice:
 ### Extract-Transform-Load (ETL)
 A single Input Processor reads files, Flow Processors clean and transform the data, and an Output Processor writes to a database or data warehouse.
 
+```mermaid
+flowchart LR
+    A[Input<br/>File Source] --> B[Flow<br/>Parse & Validate]
+    B --> C[Flow<br/>Transform]
+    C --> D[Flow<br/>Enrich]
+    D --> E[Output<br/>Database Sink]
+```
+
 ### Event-Driven Processing
 An Input Processor listens to a message bus (Kafka, SQS), Flow Processors apply business logic, and Output processors publish results or trigger downstream actions.
+
+```mermaid
+flowchart LR
+    A[Input<br/>Kafka Consumer] --> B[Flow<br/>Parse Event]
+    B --> C[Flow<br/>Business Logic]
+    C --> D[Output<br/>Publish Results]
+    C --> E[Output<br/>Trigger Actions]
+```
 
 ### Fan-Out / Fan-In
 A single Input splits into multiple parallel processing branches (fan-out), each handling a different aspect of the data, then rejoins into a single Output (fan-in).
 
+```mermaid
+flowchart LR
+    A[Input] --> B[Flow<br/>Split]
+    B --> C[Flow<br/>Branch A]
+    B --> D[Flow<br/>Branch B]
+    B --> E[Flow<br/>Branch C]
+    C --> F[Flow<br/>Merge]
+    D --> F
+    E --> F
+    F --> G[Output]
+```
+
 ### Content-Based Router
 A Flow Processor inspects message content and routes to different Outputs based on business rules — orders to the order system, alerts to the monitoring system, etc.
+
+```mermaid
+flowchart LR
+    A[Input] --> B[Flow<br/>Content Router]
+    B -->|orders| C[Output<br/>Order System]
+    B -->|alerts| D[Output<br/>Monitoring]
+    B -->|default| E[Output<br/>Archive]
+```
+
+<!-- TODO: Screenshots needed for this page:
+  1. Full Workflow Editor view showing canvas with connected processors
+  2. Left panel: Asset palette with processor categories
+  3. Right panel: Configuration inspector for a selected processor
+  4. Bottom panel: Validation messages and logs
+-->
 
 ## Best Practices
 
