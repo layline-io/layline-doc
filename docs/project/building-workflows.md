@@ -169,15 +169,17 @@ The primary configuration task is **referencing Assets** you've already defined.
 - A **Format** Asset (how to serialize outgoing data)
 
 **Flow Processors** are themselves Assets and can inherit from other Flow Processor Assets:
-- Base `JavaScript-Processor` Asset defines common scripting infrastructure
-- `Validation-Processor` inherits from `JavaScript-Processor`, adds validation library imports
-- Your processor inherits from `Validation-Processor`, adds your specific validation logic
+- Base `Filter-Routing` Asset defines common filtering infrastructure
+- `Order-Validation-Filter` inherits from `Filter-Routing`, adds order-specific validation rules
+- `Premium-Order-Filter` inherits from `Order-Validation-Filter`, adds premium customer logic
 
 ```mermaid
 flowchart TD
-    A[JavaScript Processor<br/>core scripting] --> B[Validation Processor<br/>+ validation lib]
-    B --> C[Your Validator<br/>+ business rules]
+    A[Filter & Routing<br/>base filtering] --> B[Order Validation Filter<br/>+ order rules]
+    B --> C[Premium Order Filter<br/>+ premium logic]
 ```
+
+**Important:** For script-based Flow Processors (JavaScript, Python), inheritance applies to the processor configuration (timeouts, retry policies) but **not to the script code itself** — inherited script processors replace the entire script, they don't extend it.
 
 When you create a processor, you're at the end of an inheritance chain. You see all the accumulated configuration from parent Assets, and can add your own or override specific values.
 
@@ -218,9 +220,31 @@ The Data Dictionary determines what fields a message contains:
 - **Metadata fields** — optional system or user-defined data (timestamps, routing history, source IDs)
 - **Custom fields** — any additional structure your use case requires added by way of defining your own data dictionary structures
 
-When an Input Processor reads data, it parses the raw bytes into a message using the configured Format. The Format defines how to interpret the bytes, and the resulting message structure is determined by the Data Dictionary. This message then flows through the Workflow, potentially being transformed by each Flow Processor, until it reaches an Output Processor where it is serialized according to the output Format and written to the destination.
+Beyond the data dictionary fields, every message carries **system properties**:
 
-**Key point:** The message structure is not fixed — it emerges from the Formats you define. A Project processing XML invoices has different message fields than one processing JSON events. The Data Dictionary ensures consistency: once you define a Format, all messages parsed with that Format have the same structure.
+| Property | Description |
+|----------|-------------|
+| `message.id` | Unique identifier for this message within the stream (e.g., "1", "1.1", "1.2" for clones) |
+| `message.typeName` | The data dictionary type name (e.g., "Header", "Detail", "Trailer") |
+
+**Stream Metadata**
+
+Streams also carry metadata accessible via `stream.getMetadata()`. This returns a Message containing stream-type specific information:
+
+- **File streams**: Path, Size, LastModified, FolderSetup
+- **Kafka streams**: GroupId, Topic, Partition
+- **HTTP streams**: BindAddress, BindPort
+- **S3 streams**: Path, Size, StorageClass, LastModified
+
+Additionally, the Stream object provides:
+
+| Property | Description |
+|----------|-------------|
+| `stream.id` | UUID of the stream (v4) |
+| `stream.name` | Stream name (filename for files, configured name for other sources) |
+| `stream.inputProcessorName` | Name of the input processor that created this stream |
+
+When an Input Processor reads data, it parses the raw bytes into a message using the configured Format. This message then flows through the Workflow, potentially being transformed by each Flow Processor, until it reaches an Output Processor where it is serialized and written to the destination.
 
 ### Routing and Branching
 
