@@ -214,11 +214,33 @@ flowchart LR
     B -->|default| E[Output<br/>Archive]
 ```
 
-<!-- TODO: Screenshots needed for this page:
-  1. Full Workflow Editor view showing canvas with connected processors
-  2. Left panel: Asset palette with processor categories
-  3. Right panel: Configuration inspector for a selected processor
-  4. Bottom panel: Validation messages and logs
+<!-- SCREENSHOT PLACEHOLDERS:
+The following sections describe UI elements that would benefit from visual screenshots.
+These can be added later if desired.
+
+### Workflow Editor Overview
+*A full-width screenshot showing the Workflow Editor with a sample pipeline:*
+- Three connected processors (Input → Flow → Output) visible on the canvas
+- Connection lines showing data flow between processors
+- Left panel showing the Asset palette with processor categories expanded
+- Right panel showing configuration fields for the selected processor
+
+### Asset Palette
+*The left sidebar showing available processor types:*
+- Categories: Input Processors, Flow Processors, Output Processors
+- Expandable sections with specific processor icons
+- Search/filter field at the top
+
+### Configuration Inspector
+*The right sidebar showing processor settings:*
+- Form fields for the selected processor (e.g., Source selection, Format selection)
+- Required vs optional field indicators
+- Help text or validation messages
+
+### Validation Panel
+*The bottom panel showing build status:*
+- List of validation errors or "No errors" confirmation
+- Warning indicators for incomplete configurations
 -->
 
 ## Best Practices
