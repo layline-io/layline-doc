@@ -18,12 +18,9 @@ Think of this as the blueprint phase. You're not running anything yet; you're de
 
 Building workflows follows a predictable path:
 
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   Create    │ →  │  Configure  │ →  │   Validate  │ →  │   Deploy    │
-│   Project   │    │   Assets &  │    │   & Test    │    │  to Cluster │
-│             │    │   Workflows │    │             │    │             │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+```mermaid
+flowchart LR
+    A[Create<br>Project] --> B[Configure<br>Assets &<br>Workflows] --> C[Validate<br>& Test] --> D[Deploy<br>to Cluster]
 ```
 
 1. **Create a Project** — The container for all your work
