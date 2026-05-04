@@ -217,7 +217,6 @@ layline.io processes data as discrete **messages**. The structure of each messag
 
 The Data Dictionary determines what fields a message contains:
 - **Payload fields** — the core data content, defined by all of your used Formats (JSON, XML, CSV, etc.)
-- **Metadata fields** — optional system or user-defined data (timestamps, routing history, source IDs)
 - **Custom fields** — any additional structure your use case requires added by way of defining your own data dictionary structures
 
 Beyond the data dictionary fields, every message carries **system properties**:
