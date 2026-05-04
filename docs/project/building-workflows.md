@@ -77,7 +77,7 @@ flowchart TD
 **Example: Service Asset Inheritance**
 
 **Base**: `HTTP-Base-Connection`
-- Base URL: `${API_BASE_URL}` (Environment Variable)
+- Base URL: `${lay:API_BASE_URL}` (Environment Variable)
 - Authentication: OAuth2 credentials
 
 **Inherits**: `REST-Service-Base`
@@ -120,7 +120,7 @@ Define Format Assets for your organization's standard schemas (`Order-Format`, `
 Create a `Customer-Lookup-Service` Asset that wraps your CRM API with caching and retry logic. Multiple Workflows reference it for enrichment without duplicating configuration.
 
 **Pattern 4: Environment Variables for Deployment Targets**
-Use Environment Variable Assets to steer behavior across deployments. A single `Database-Service` Asset can use `${DB_HOST}` and `${DB_PORT}` variables. Deploy to dev, staging, or production — the same Workflow and Assets are used, but the Environment Variables resolve to different values based on the deployment target.
+Use Environment Variable Assets to steer behavior across deployments. A single `Database-Service` Asset can use `${lay:DB_HOST}` and `${lay:DB_PORT}` variables. Deploy to dev, staging, or production — the same Workflow and Assets are used, but the Environment Variables resolve to different values based on the deployment target.
 
 ## The Workflow Editor
 
@@ -214,10 +214,9 @@ Understanding how data actually moves through a Workflow is critical to designin
 layline.io processes data as discrete **messages**. The structure of each message is defined by the **Data Dictionary** — a schema created from the Formats defined in your Project.
 
 The Data Dictionary determines what fields a message contains:
-- **Payload fields** — the core data content, defined by your Format (JSON, XML, CSV, etc.)
+- **Payload fields** — the core data content, defined by all of your used Formats (JSON, XML, CSV, etc.)
 - **Metadata fields** — optional system or user-defined data (timestamps, routing history, source IDs)
-- **Header fields** — optional key-value pairs for protocol-specific information
-- **Custom fields** — any additional structure your use case requires
+- **Custom fields** — any additional structure your use case requires added by way of defining your own data dictionary structures
 
 When an Input Processor reads data, it parses the raw bytes into a message using the configured Format. The Format defines how to interpret the bytes, and the resulting message structure is determined by the Data Dictionary. This message then flows through the Workflow, potentially being transformed by each Flow Processor, until it reaches an Output Processor where it is serialized according to the output Format and written to the destination.
 
