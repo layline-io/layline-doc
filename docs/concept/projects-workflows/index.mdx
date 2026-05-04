@@ -1,9 +1,115 @@
 ---
 title: Workflow Configurations
 sidebar_position: 2
+description: Design-time concepts for building, configuring, and deploying workflows in layline.io.
 ---
+
 # Workflow Configurations
 
+> The building phase: how you design, assemble, and prepare workflows for production.
+
+## Overview
+
+Workflow Configurations is where **design happens**. This section covers the complete lifecycle of creating workflows — from creating a Project to deploying your work to a live cluster.
+
+Think of this as the blueprint phase. You're not running anything yet; you're defining what *will* run. The counterparts to this section are [**Operations**](/docs/operations) (where you monitor live systems) and [**Assets**](/docs/assets) (the reusable components that workflows are built from).
+
+### The Design-Time Lifecycle
+
+Building workflows follows a predictable path:
+
+```mermaid
+flowchart LR
+    A[Create<br>Project] --> B[Configure<br>Assets &<br>Workflows] --> C[Validate<br>& Test] --> D[Deploy<br>to Cluster]
+```
+
+1. **Create a Project** — The container for all your work
+2. **Configure Assets** — Reusable components (Sources, Sinks, Formats, Services)
+3. **Build Workflows** — Assemble processors into data pipelines
+4. **Deploy** — Package and ship to a Reactive Engine cluster
+
+## Design-Time vs Runtime
+
+Understanding this distinction is fundamental to using layline.io effectively:
+
+| Design-Time (this section) | Runtime ([Operations](/docs/operations)) |
+|----------------------------|------------------------------------------|
+| **What you're building** — configurations, blueprints, assets | **What's actually running** — live workflows, active connections, flowing data |
+| Static: you edit and save | Dynamic: changes in real-time |
+| Lives in the Configuration Server | Lives on the Reactive Engine cluster |
+| Think: IDE, editor, blueprint | Think: Dashboard, monitor, control panel |
+
+**Example:** You design a workflow that reads from an FTP source and writes to a database. That's design-time. When you deploy it and data starts flowing — that's runtime.
+
+Most users spend their time in **design-time** when building new integrations. Once deployed, you switch to **Operations** to monitor, debug, and manage the live system.
+
+## Topics in This Section
+
+| Topic | Description |
+|-------|-------------|
+| [**Getting Started**](./getting-started) | Installation, directory structure, and first steps after setup. Start here if you're new. |
+| [**Workflow Configuration**](./configuration) | Deep dive into Projects, Assets, Workflows, and inheritance. The comprehensive reference. |
+| [**Workflow Deployment**](./deployment) | How to package your work and deploy it to a cluster of Reactive Engines. |
+| [**Server Config Settings**](./server-config-settings) | Reference for Configuration Server settings and preferences. |
+
+## Getting Started Path
+
+New to layline.io? Follow this sequence:
+
+1. **Read [What is layline.io?](/docs/concept/introduction)** — Understand the philosophy
+2. **Read [Architecture Overview](/docs/concept/architecture-overview)** — Learn the system components
+3. **Follow [Getting Started](./getting-started)** — Install and set up
+4. **Work through [Workflow Configuration](./configuration)** — Build your first workflow
+5. **Deploy with [Workflow Deployment](./deployment)** — Go live
+6. **Monitor in [Operations](/docs/operations)** — Run and observe
+
+## Key Concepts
+
+### Projects
+
+A **Project** is the organizational container for your work. It holds:
+- **Workflows** — The data pipelines you design
+- **Assets** — Reusable components (Sources, Sinks, Formats, etc.)
+- **Configuration** — Environment-specific settings
+
+Projects are stored on disk as a directory structure. You can import, export, and version-control them like any code project.
+
+### Workflows
+
+A **Workflow** is a data pipeline — a connected graph of **Processors** that read, transform, and write data. Every workflow has:
+- Exactly one **Input Processor** (where data enters)
+- Zero or more **Flow Processors** (transformation logic)
+- One or more **Output Processors** (where data exits)
+
+### Assets
+
+**Assets** are reusable building blocks. Instead of configuring a database connection in every workflow, you create a **Service Asset** once and reference it everywhere. Asset types include:
+
+- **Sources & Sinks** — Where data comes from and goes to
+- **Formats** — How data is structured (CSV, JSON, fixed-width, etc.)
+- **Services** — Reusable connections (databases, APIs, etc.)
+- **Processors** — Logic components used in workflows
+
+Assets support **inheritance**: you can create a base asset with common settings, then derive specialized versions that override specific fields.
+
+### Deployment
+
+**Deployment** is the act of moving your design-time work to a runtime environment. A Deployment includes:
+- Selected Workflows
+- Required Assets and Environments
+- Secrets and Extensions
+
+Deployments are versioned and tagged. You can deploy directly to a cluster, or export to a file for later use.
+
+## See Also
+
+- [**Concept Overview**](/docs/concept) — All conceptual topics
+- [**Architecture Overview**](/docs/concept/architecture-overview) — System components explained
+- [**Operations**](/docs/operations) — The runtime counterpart to this section
+- [**Assets**](/docs/assets) — Detailed reference for every asset type
+- [**Quickstart**](/docs/quickstart) — Hands-on tutorial path
+
+---
 
 import DocCardList from '@theme/DocCardList';
 
