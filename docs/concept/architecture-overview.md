@@ -272,7 +272,7 @@ Multiple clusters in different geographic regions, all managed from a central Co
 | Configuration Server | Vertical + Horizontal (read replicas) | Project storage I/O |
 | Configuration Center | Stateless (any number of UI instances) | Backend (Config Server) |
 | Reactive Engine | Horizontal (add nodes to cluster) | Network bandwidth, CPU |
-| Cluster Coordination | Automatic (gossip protocol) | Cluster size (tested to 100+ nodes) |
+| Cluster Coordination | Automatic (gossip protocol) | Cluster size |
 
 ## See Also
 
