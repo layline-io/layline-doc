@@ -102,20 +102,34 @@ Clusters are defined in the Configuration Center. An engine joins a cluster by b
 
 ### Design-Time Flow
 
-```
-Configuration Center ↔ Configuration Server → Project Storage
-         ↕                              
-    User edits                 Git (optional)
+```mermaid
+graph LR
+    CC[Configuration Center]
+    CS[Configuration Server]
+    PS[Project Storage]
+    Git[(Git Optional)]
+    
+    CC <-->|Edit| CS
+    CS -->|Persist| PS
+    PS <-->|Version| Git
 ```
 
 When you design workflows in the Configuration Center, changes are persisted to the Configuration Server's project store. Projects can optionally be backed by Git for version control and collaboration.
 
 ### Deployment Flow
 
-```
-Configuration Server → Deployment Package → Reactive Engine(s)
-                                              
-                                         Validation → Activation
+```mermaid
+graph LR
+    CS[Configuration Server]
+    DP[Deployment Package]
+    RE[Reactive Engine]
+    VAL[Validation]
+    ACT[Activation]
+    
+    CS -->|Create| DP
+    DP -->|Transmit| RE
+    RE --> VAL
+    VAL -->|Success| ACT
 ```
 
 Deploying a Project creates a **Deployment Package** containing:
@@ -128,10 +142,18 @@ The package is transmitted to one or more Reactive Engines, validated, and then 
 
 ### Runtime Flow
 
-```
-Sources → Reactive Engine → Workflow Processing → Sinks
-                ↕
-        Cluster Coordination
+```mermaid
+graph LR
+    SRC[Sources]
+    RE[Reactive Engine]
+    WP[Workflow Processing]
+    SNK[Sinks]
+    CC[Cluster Coordination]
+    
+    SRC -->|Ingest| RE
+    RE --> WP
+    WP -->|Output| SNK
+    RE <-->|Sync| CC
 ```
 
 During runtime, data flows through the Reactive Engine(s). In a cluster, engines coordinate to:
@@ -161,34 +183,64 @@ layline.io supports multiple deployment patterns:
 
 ### Single-Node Development
 
-```
-[Laptop/Workstation]
-    │
-    ├── Configuration Server
-    ├── Configuration Center (UI)
-    └── Reactive Engine
+```mermaid
+graph TB
+    subgraph "Laptop/Workstation"
+        CS[Configuration Server]
+        CC[Configuration Center]
+        RE[Reactive Engine]
+    end
+    
+    CC <-->|UI| CS
+    CS -->|Deploy| RE
 ```
 
 All components run on a single machine. Ideal for development and testing.
 
 ### Dedicated Config Server
 
-```
-[Config Server Host]          [Cluster]
-    │                            │
-    ├── Config Server              ├── Engine Node 1
-    └── Config Center (UI)         ├── Engine Node 2
-                                 └── Engine Node N
+```mermaid
+graph TB
+    subgraph "Config Server Host"
+        CS[Configuration Server]
+        CC[Configuration Center]
+    end
+    
+    subgraph "Cluster"
+        RE1[Engine Node 1]
+        RE2[Engine Node 2]
+        RE3[Engine Node N]
+    end
+    
+    CC <-->|UI| CS
+    CS -->|Deploy| RE1
+    CS -->|Deploy| RE2
+    CS -->|Deploy| RE3
 ```
 
 Configuration Server runs on dedicated infrastructure; engines run on separate cluster nodes. Common for production environments.
 
 ### Distributed Cluster
 
-```
-[Config Server] → [Cluster A - Region 1]
-            → [Cluster B - Region 2]
-            → [Cluster C - Edge]
+```mermaid
+graph LR
+    CS[Configuration Server]
+    
+    subgraph "Region 1"
+        C1[Cluster A]
+    end
+    
+    subgraph "Region 2"
+        C2[Cluster B]
+    end
+    
+    subgraph "Edge"
+        C3[Cluster C]
+    end
+    
+    CS -->|Manage| C1
+    CS -->|Manage| C2
+    CS -->|Manage| C3
 ```
 
 Multiple clusters in different geographic regions, all managed from a central Configuration Server. Enables edge computing and disaster recovery scenarios.

@@ -27,7 +27,7 @@ if (message.is(dataDictionary.type.SomeNamespace.SomeMessageType)) {
 
 ## Indexable
 
-\[`key`: `string`\]: `any`
+> \[`key`: `string`\]: `any`
 
 Allows for dynamic properties based on the specific configuration.
 These can be namespaces, sequences, or other types of declarations.
