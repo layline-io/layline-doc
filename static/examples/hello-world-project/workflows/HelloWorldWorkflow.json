@@ -1,0 +1,46 @@
+{
+  "id": "hello-world-workflow",
+  "name": "HelloWorldWorkflow",
+  "description": "Reads names from CSV, adds greeting, writes to output",
+  "enabled": true,
+  "graph": {
+    "nodes": [
+      {
+        "id": "input-processor",
+        "type": "InputProcessor",
+        "name": "InputFrame",
+        "position": { "x": 100, "y": 150 },
+        "config": {
+          "source": "InputFolder",
+          "format": "NameFormat"
+        }
+      },
+      {
+        "id": "greeter",
+        "type": "FlowProcessor",
+        "name": "Greeter",
+        "position": { "x": 300, "y": 150 }
+      },
+      {
+        "id": "output-processor",
+        "type": "OutputProcessor",
+        "name": "OutputFrame",
+        "position": { "x": 500, "y": 150 },
+        "config": {
+          "sink": "OutputFolder",
+          "format": "NameFormat"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "input-processor",
+        "to": "greeter"
+      },
+      {
+        "from": "greeter",
+        "to": "output-processor"
+      }
+    ]
+  }
+}

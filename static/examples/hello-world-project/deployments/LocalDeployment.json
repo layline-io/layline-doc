@@ -1,0 +1,12 @@
+{
+  "id": "local-deployment",
+  "name": "LocalDeployment",
+  "description": "Deploys Hello World workflow to local engine",
+  "type": "EngineDeployment",
+  "config": {
+    "workflows": ["HelloWorldWorkflow"],
+    "environments": [],
+    "secrets": [],
+    "extensions": []
+  }
+}

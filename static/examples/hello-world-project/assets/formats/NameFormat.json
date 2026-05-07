@@ -1,0 +1,9 @@
+{
+  "id": "name-format",
+  "name": "NameFormat",
+  "description": "Simple CSV format with name field",
+  "type": "GenericFormat",
+  "config": {
+    "grammar": "format {\n  name = \"Name Format\"\n  description = \"Simple name CSV format\"\n  start-element = \"File\"\n  target-namespace = \"Names\"\n  \n  elements = [\n    {\n      name = \"File\"\n      type = \"Sequence\"\n      references = [\n        {\n          name = \"Records\"\n          max-occurs = \"unlimited\"\n          referenced-element = \"Record\"\n        }\n      ]\n    },\n    {\n      name = \"Record\"\n      type = \"Separated\"\n      separator = \",\"\n      terminator = \"\\n\"\n      \n      mapping = {\n        message = \"Record\"\n        element = \"NAME_IN\"\n      }\n      \n      fields = [\n        {\n          name = \"name\"\n          type = \"String\"\n        }\n      ]\n    }\n  ]\n}"
+  }
+}

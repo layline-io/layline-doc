@@ -1,0 +1,23 @@
+{
+  "id": "input-folder",
+  "name": "InputFolder",
+  "description": "Polls the input folder for CSV files",
+  "type": "FileSource",
+  "config": {
+    "polling": {
+      "enabled": true,
+      "interval": 5000,
+      "pattern": "*.csv"
+    },
+    "processing": {
+      "onSuccess": "Delete",
+      "onFailure": "Keep"
+    },
+    "directories": [
+      {
+        "path": "${project.basePath}/input",
+        "createIfMissing": true
+      }
+    ]
+  }
+}

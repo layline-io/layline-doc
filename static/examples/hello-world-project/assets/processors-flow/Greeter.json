@@ -1,0 +1,10 @@
+{
+  "id": "greeter",
+  "name": "Greeter",
+  "description": "Adds a greeting to each name",
+  "type": "JavaScriptFlowProcessor",
+  "config": {
+    "categoryFilter": [],
+    "script": "function process(context, message) {\n  // Get the name from the input record\n  var name = message.getString('name');\n  \n  // Create greeting\n  var greeting = \"Hello, \" + name + \"!\";\n  \n  // Add greeting to the message\n  message.setString('greeting', greeting);\n  \n  // Log for visibility\n  logger.info('Greeting created: ' + greeting);\n  \n  return message;\n}"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "output-folder",
+  "name": "OutputFolder",
+  "description": "Writes processed files to the output folder",
+  "type": "FileSink",
+  "config": {
+    "directory": "${project.basePath}/output",
+    "createDirectory": true,
+    "fileName": "greetings-${timestamp}.csv"
+  }
+}
