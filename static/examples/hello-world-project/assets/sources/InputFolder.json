@@ -15,7 +15,7 @@
     },
     "directories": [
       {
-        "path": "${project.basePath}/input",
+        "path": "./input",
         "createIfMissing": true
       }
     ]

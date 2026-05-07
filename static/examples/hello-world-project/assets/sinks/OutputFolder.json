@@ -4,7 +4,7 @@
   "description": "Writes processed files to the output folder",
   "type": "FileSink",
   "config": {
-    "directory": "${project.basePath}/output",
+    "directory": "./output",
     "createDirectory": true,
     "fileName": "greetings-${timestamp}.csv"
   }

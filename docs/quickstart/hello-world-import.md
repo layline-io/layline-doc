@@ -157,7 +157,7 @@ The workflow automatically:
 
 - **Modify the greeting** — Open the `Greeter` JavaScript processor and change the message
 - **Add more fields** — Edit the `NameFormat` to include additional columns
-- **Learn how it was built** — Follow [Build from Scratch](./build-from-scratch.md) to recreate this workflow component by component
+- **Learn how it was built** — Recreate this workflow component by component (tutorial coming in LAY-201)
 - **Try a real tutorial** — Move on to [Your First Workflow](./first-workflow.md) for routing, filtering, and complex transformations
 
 ---
