@@ -15,16 +15,10 @@ Get your first workflow running in **3 minutes** — no building required. Impor
 
 ## What we're building
 
-A simple file-processing workflow:
-
-```mermaid
-flowchart LR
-   FI[File Source<br/>input/ folder] --> JS[JavaScript Processor<br/>adds greeting]
-   JS --> FO[File Output<br/>output/ folder]
-```
+A simple file-processing workflow that reads CSV files from an `input/` folder, adds a greeting to each name, and writes the results to an `output/` folder.
 
 1. **Reads** CSV files from an `input/` folder
-2. **Transforms** each line by adding "Hello, {name}!"
+2. **Transforms** each line by adding "Hello, Name!"
 3. **Writes** results to an `output/` folder
 
 ---
@@ -122,10 +116,10 @@ Charlie,Hello, Charlie!
 
 | Component | Purpose |
 |-----------|---------|
-| **InputFolder** (Source) | Polls `input/` every 5 seconds for `.csv` files |
-| **NameFormat** (Format) | Parses simple CSV with a `name` field |
-| **Greeter** (Processor) | JavaScript that adds a `greeting` field |
-| **OutputFolder** (Sink) | Writes results to `output/` with timestamps |
+| **InputFolder** (Source) | Polls input/ every 5 seconds for .csv files |
+| **NameFormat** (Format) | Parses simple CSV with a name field |
+| **Greeter** (Processor) | JavaScript that adds a greeting field |
+| **OutputFolder** (Sink) | Writes results to output/ with timestamps |
 | **HelloWorldWorkflow** | Connects everything in a pipeline |
 
 The workflow automatically:
@@ -143,9 +137,9 @@ The workflow automatically:
 - Check **Operations** → **Engine State** → **HelloWorldWorkflow** → **Log** for errors
 - Make sure the workflow shows as **ACTIVE** (green) in Engine State
 
-**"Directory not found" error?**
-- The paths in Source/Sink assets use `${project.basePath}` which resolves at runtime
-- Ensure folders are created at the same level as the imported project
+**|"Directory not found" error?**
+- The paths in Source/Sink assets use relative paths (`./input` and `./output`)
+- Ensure folders are created in your project directory
 
 **Files not being processed?**
 - The File Source only processes files with `.csv` extension
