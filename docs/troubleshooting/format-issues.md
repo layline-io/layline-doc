@@ -7,7 +7,8 @@ description: Troubleshoot message format and parsing errors.
 
 > Messages are failing to parse or validation errors are occurring.
 
-<!-- SCREENSHOT: Operations > Audit Trail showing a parse error with message details expanded -->
+![Audit Trail parse error](.format-issues_images/audit-trail-parse-error.png)
+*Audit Trail showing parse error with LAY-04067 "stream closed with failures, starting rollback" and LAY-00584 token recognition error*
 
 ## Common Symptoms
 
@@ -23,7 +24,8 @@ description: Troubleshoot message format and parsing errors.
 
 ### 1. Verify Format Definition
 
-<!-- SCREENSHOT: Project view showing a Format Asset configuration with schema/structure definition visible -->
+![Format Asset configuration](.format-issues_images/format-asset-config.png)
+*Format Asset configuration showing Format Definition with schema structure (Transaction Format with File, Header, and Detail elements)*
 
 The Format Asset defines how raw bytes are converted to structured messages. Check:
 
@@ -56,15 +58,18 @@ Expected (Format Definition):    Actual (Received Data):
 
 ### 3. Check Encoding
 
-<!-- SCREENSHOT: Format Asset settings showing character encoding dropdown with UTF-8 selected -->
+![Format encoding configuration](.format-issues_images/format-encoding-config.png)
+*Format grammar configuration showing encoding set to "utf-8" within a field value definition*
+
+Encoding is configured within the format grammar (not via dropdown). Check the `encoding` property in your format definition:
 
 **Common encoding issues:**
 
 | Symptom | Likely Cause | Fix |
 |---------|--------------|-----|
-| Garbled special characters | Wrong encoding | Set to UTF-8 or source encoding |
+| Garbled special characters | Wrong encoding | Set encoding to match source (e.g., `encoding = "utf-8"` or `encoding = "iso-8859-1"`) |
 | "�" replacement characters | Invalid UTF-8 bytes | Check source encoding |
-| Accented chars wrong | Latin-1 vs UTF-8 mismatch | Match source encoding |
+| Accented chars wrong | Latin-1 vs UTF-8 mismatch | Match source encoding in format grammar |
 
 ### 4. Validate Binary vs Text Mode
 
