@@ -1,0 +1,183 @@
+---
+title: Workflow Processing Issues
+description: Troubleshoot when workflows are running but not processing data.
+---
+
+# Workflow Processing Issues
+
+> My workflow is deployed and running, but no data is being processed.
+
+<!-- SCREENSHOT: Operations > Engine State > Workflows view showing a workflow in running state but with 0 messages processed -->
+
+## Common Symptoms
+
+- Workflow shows as **RUNNING** but message count is **0**
+- Messages **stuck** in a particular processor
+- **No output** being written to sinks
+- Workflow **processes some messages then stops**
+
+---
+
+## Diagnosis Checklist
+
+### 1. Verify the Input Processor
+
+Every workflow has exactly **one Input Processor** that drives execution. If it's not triggering, nothing flows.
+
+**Check in Operations → Engine State:**
+
+<!-- SCREENSHOT: Engine State workflows panel showing expanded workflow with Input Processor highlighted -->
+
+1. Find your workflow in the list
+2. Expand it to see component processors
+3. Check the Input Processor state:
+   - Should show **HEALTHY** or active processing indicators
+   - Look for error states or warnings
+
+**Common Input Processor issues:**
+
+| Processor Type | Check This |
+|----------------|------------|
+| **File** | Is the source directory configured correctly? Are files present? |
+| **Timer** | Is the schedule expression valid? Check cron syntax |
+| **Kafka** | Is the consumer group active? Are there messages in the topic? |
+| **HTTP** | Is the endpoint accessible? Check network/firewall |
+| **Database** | Is the connection valid? Does the query return data? |
+
+### 2. Check Message Flow
+
+<!-- SCREENSHOT: Workflow editor showing message flow with highlighted connections between processors -->
+
+In the Project view, open the Workflow:
+
+1. **Verify connections:** Are all processors properly connected?
+2. **Check routing:** Are route conditions correct? (e.g., `msg.type === 'order'`)
+3. **Look for dead ends:** Does every path lead to an Output Processor?
+
+### 3. Inspect Processor Logs
+
+<!-- SCREENSHOT: Operations > Engine State > Workflow detail view with Log tab selected showing error messages -->
+
+1. Go to **Operations → Engine State**
+2. Select your workflow
+3. Click the **Log** tab
+4. Look for:
+   - JavaScript/Python errors
+   - Connection timeouts
+   - Format parsing errors
+
+### 4. Test Message Processing
+
+For Services with callable functions:
+
+1. Go to **Operations → Engine State → Services**
+2. Select the service
+3. Click the **Functions** tab
+4. Test with sample input
+
+---
+
+## Common Error Scenarios
+
+### Messages Not Entering the Workflow
+
+**Symptoms:** Input Processor shows 0 messages received.
+
+**Diagnosis:**
+```
+Source → Input Processor → [NOT REACHING WORKFLOW]
+```
+
+**Check:**
+1. Source connection parameters
+2. Network/firewall access
+3. Authentication credentials
+4. File permissions (for file-based sources)
+
+### Messages Stuck Mid-Workflow
+
+**Symptoms:** Messages enter but don't reach the output.
+
+**Diagnosis:**
+```
+Input → Flow Processor A → [STUCK] → Output
+```
+
+**Common causes:**
+- JavaScript/Python runtime error in a Flow Processor
+- Route condition that never matches
+- Infinite loop or blocking operation
+- Resource exhaustion
+
+**Resolution:**
+1. Check processor logs for errors
+2. Simplify route conditions to test flow
+3. Review processor code for blocking calls
+
+### Output Processor Failures
+
+**Symptoms:** Messages process but sink shows errors.
+
+**Diagnosis:**
+```
+Input → Flow → [Output Processor ERROR]
+```
+
+**Check:**
+1. Sink connection parameters
+2. Destination availability
+3. Write permissions
+4. Disk space (for file sinks)
+
+---
+
+## Debugging Techniques
+
+### Add Logging
+
+Add explicit logging to your processors:
+
+```javascript
+// JavaScript Processor
+logger.info('Processing message: ' + message.id);
+logger.debug('Payload: ' + JSON.stringify(message.payload));
+```
+
+```python
+# Python Processor  
+logger.info(f"Processing message: {message.id}")
+logger.debug(f"Payload: {message.payload}")
+```
+
+### Use a Test Sink
+
+Route messages to a **DevNull Sink** temporarily to isolate output issues:
+
+```
+Input → Flow Processor → DevNull Sink
+                    → [Your Original Sink]
+```
+
+If flow works to DevNull but not your sink, the issue is sink-specific.
+
+### Check Message Content
+
+<!-- SCREENSHOT: JavaScript Processor code editor showing message inspection code with logger statements -->
+
+Log the full message structure:
+
+```javascript
+logger.info('Message structure:');
+logger.info('  payload: ' + JSON.stringify(message.payload));
+logger.info('  metadata: ' + JSON.stringify(message.metadata));
+logger.info('  headers: ' + JSON.stringify(message.headers));
+```
+
+---
+
+## See Also
+
+- [**Engine State**](../operations/engine-state) — Monitoring running workflows
+- [**Audit Trail**](../operations/audit-trail) — Message execution history
+- [**JavaScript Processor**](../assets/workflow-assets/processors-flow/asset-flow-javascript) — Writing JavaScript processors
+- [**Python Processor**](../assets/workflow-assets/processors-flow/asset-flow-python) — Writing Python processors
