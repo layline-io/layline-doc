@@ -42,7 +42,7 @@ Deployments usually need:
 |------------|---------|-------|
 | **Workflows** | At least one workflow to execute | Confirm workflows are saved and valid |
 | **Environment Assets** | Runtime configuration values | Verify all `${lay:VAR}` references have matching Environment Assets |
-| **Secret Assets** | Credentials and sensitive data | Check all secret references exist in Secret Storage |
+| **Secret Assets** | Credentials and sensitive data | Check all secret references exist in Secret Resource Asset |
 
 ### 3. Check Environment Variables
 
@@ -60,7 +60,7 @@ If your Assets use `${lay:VAR_NAME}` syntax:
 
 For Assets referencing secrets:
 
-1. Go to **Project → Assets → Secret Storage**
+1. Go to **Project → Assets → Resources → Secrets**
 2. Verify a Secrets Asset exists with matching variable names
 3. Ensure the Secret Asset is included in the deployment
 
