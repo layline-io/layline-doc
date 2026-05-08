@@ -3,7 +3,7 @@
 A packed message represents an ordinary [Message](Message.md), but in a compressed format.
 This is useful in case you need to retain a large number or messages in memory, and reduce memory overhead.
 
-The only way to create a packed message is by invoking the '[Message.pack](./Message.md#pack)' method.
+The only way to create a packed message is by invoking the '[Message.pack](./Message#pack)' method.
 
 ## Properties
 

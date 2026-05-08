@@ -133,7 +133,7 @@ if (message.typeName === 'MyType') {
 > **addStatus**(`severity`, `status`, `addToLog?`): `void`
 
 Adds a [Status](Status.md) to a message.
-The [Status](Status.md) must have been created with [Status.create](Status.md#create) or otherwise instantiated.
+The [Status](Status.md) must have been created with [Status.create](Status#create) or otherwise instantiated.
 
 #### Parameters
 
