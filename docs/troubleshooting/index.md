@@ -74,6 +74,8 @@ This section helps you diagnose and resolve the most common issues encountered w
 
 **What you see:** Alarms appearing in the Alarm Center, red error states in Engine State, or failure indicators on Assets.
 
+![Engine State showing DEPENDENCY_FAILURE](.index_images/engine-state-dependency-failure.png)
+
 **Common causes:**
 - Runtime exceptions in processors
 - Resource exhaustion
