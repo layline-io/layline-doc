@@ -78,7 +78,7 @@ the [Python Language Reference](../../../language-reference/python/python_introd
 ### Service Mappings
 
 Python scripts may make use of Services which you may have
-configured [here](../services/asset-service-introduction#purpose-of-services). These methods could be database
+configured [here](../services/asset-service-introduction.md#purpose-of-services). These methods could be database
 operations, HTTP-request and whatever else Services do provide.
 
 Let's say your Python script invokes an HTTP-Service which provides a method to retrieve the current Bitcoin price via a
@@ -96,7 +96,7 @@ REST-Api. Let's also assume that the name of the Service to be linked is `BTCSer
 You can pass arguments to the assigned script. This may be useful when reusing the same script in various different
 Python Assets and Workflows, but the script should behave slightly different in each of those instances.
 Passing arguments from a Python Asset can provide this functionality. Please check the `getArguments()`
-method [here](../../../language-reference/python/API/classes/Processor#getarguments), on how to retrieve arguments in the script.
+method [here](../../../language-reference/python/API/classes/Processor.md#getarguments), on how to retrieve arguments in the script.
 
 ![Arguments (Python)](./.asset-flow-python_images/1725873064705.png "Arguments (Python)")
 
@@ -247,7 +247,7 @@ Only records whose `Category` field matches the filter value are emitted. Record
 - [PackedMessage API (Python)](../../../language-reference/python/API/classes/PackedMessage) — reading and writing message fields
 - [Service Mappings](#service-mappings) — connecting external services (HTTP, DB, etc.) to a Python Asset
 
-Please see section [Forced Errors](../../../language-reference/python/python_introduction#forced-errors) to understand how to use these settings.
+Please see section [Forced Errors](../../../language-reference/python/python_introduction.md#forced-errors) to understand how to use these settings.
 
 ---
 

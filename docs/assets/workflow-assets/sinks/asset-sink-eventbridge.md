@@ -51,7 +51,7 @@ If it does not exist, you need to create it first.
 Once you picked an EventBridge Connection above the system will try to test the connection and
 show available event buses within the drop-down list under `ARN` (Amazon Resource Name).
 Having chosen an ARN the appropriate `Name` for referencing it when guiding resp. routing messages towards EventBridge sink queues within the
-_**Frame Output Processor**_ configurations will be selected. More details can be found [here](../processors-output/asset-output-frame#sink-settings-for-eventbridge).
+_**Frame Output Processor**_ configurations will be selected. More details can be found [here](../processors-output/asset-output-frame.md#sink-settings-for-eventbridge).
 
 ---
 

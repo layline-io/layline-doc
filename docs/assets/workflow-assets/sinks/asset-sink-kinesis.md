@@ -51,7 +51,7 @@ If it does not exist, you need to create it first.
 Once you picked a Kinesis Connection above the system will try to test the connection and
 show available data streams within the drop-down list under `ARN` (Amazon Resource Name).
 You can define a `Name` for each ARN in here to reference those when guiding resp. routing messages towards Kinesis sink queues within the
-_**Frame Output Processor**_ configurations will be selected. More details can be found [here](../processors-output/asset-output-frame#sink-settings-for-kinesis).
+_**Frame Output Processor**_ configurations will be selected. More details can be found [here](../processors-output/asset-output-frame.md#sink-settings-for-kinesis).
 
 
 ---

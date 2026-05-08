@@ -78,7 +78,7 @@ the [Javascript Language Reference](../../../language-reference/javascript/javas
 ### Service Mappings
 
 Javascripts may make use of Services which you may have
-configured [here](../services/asset-service-introduction#purpose-of-services). These methods could be database
+configured [here](../services/asset-service-introduction.md#purpose-of-services). These methods could be database
 operations, HTTP-request and whatever else Services do provide.
 
 Let's say your Javascript invokes an HTTP-Service which provides a method to retrieve the current Bitcoin price via a

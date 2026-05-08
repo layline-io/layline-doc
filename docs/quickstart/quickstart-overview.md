@@ -45,6 +45,6 @@ If you do not have [Docker](https://docs.docker.com/get-docker/) installed, choo
 
 ### Running layline.io
 
-After a local installation, follow the [start-up instructions](install-local#starting-everything) to launch the Configuration Server and Reactive Engine.
+After a local installation, follow the [start-up instructions](install-local.md#starting-everything) to launch the Configuration Server and Reactive Engine.
 
 When using the Docker image, both components start automatically — no additional steps required.
