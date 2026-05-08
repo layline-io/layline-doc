@@ -70,7 +70,7 @@ See also: [Core Concepts](../quickstart/core-concepts.md#5-deployment)
 
 The **Data Dictionary** is a unified schema built from all configured Format Assets in a Project. It represents the superset of all data structures, allowing data to flow through the system without intermediate mapping steps.
 
-See also: [Data Dictionary](./data-dictionary)
+See also: [Data Dictionary](../data-dictionary)
 
 ---
 
@@ -141,7 +141,7 @@ A **Node** is a host machine (physical or virtual) where a Reactive Engine runs.
 
 **Engine State** is the live view of what is currently running on a Reactive Engine or Cluster. It shows active workflows, services, sources, sinks, and their current status. Engine State is accessed through the Operations tab in the Configuration Center.
 
-See also: [Engine State](../operations/engine-state)
+See also: [Engine State](../operations/engine-state/index.mdx)
 
 ### Activation Digest
 
@@ -151,25 +151,25 @@ An **Activation Digest** is a short hash (first 6 characters displayed, full val
 
 An **Alarm** is a notification triggered by the system when something requires attention — such as a workflow failure, resource exhaustion, or configuration error. Alarms are managed in the Alarm Center.
 
-See also: [Alarm Center](../operations/cluster/alarm-center)
+See also: [Alarm Center](../operations/cluster/alarm-center/index.md)
 
 ### Audit Trail
 
 The **Audit Trail** is a log of workflow executions, stream events, and system activities. It provides a historical record for debugging, compliance, and performance analysis.
 
-See also: [Audit Trail](../operations/audit-trail)
+See also: [Audit Trail](../operations/audit-trail/index.md)
 
 ### Stream Monitor
 
 The **Stream Monitor** is an operations view that provides real-time visibility into data flowing through the system, including throughput metrics and processing latency.
 
-See also: [Stream Monitor](../operations/cluster/stream-monitor)
+See also: [Stream Monitor](../operations/cluster/stream-monitor.md)
 
 ### Scheduler
 
 The **Scheduler** is a component that manages time-based execution of workflows, allowing scheduled starts, stops, and recurring processing windows.
 
-See also: [Scheduler](../operations/cluster/scheduler)
+See also: [Scheduler](../operations/cluster/scheduler.md)
 
 ---
 
@@ -208,31 +208,31 @@ A **Secret Asset** stores sensitive configuration values (passwords, API keys, c
 
 A **Source** is an Asset that defines where data enters the system — such as a file directory, message queue, HTTP endpoint, or database. Sources are used by Input Processors to read data.
 
-See also: [Sources](../assets/workflow-assets/sources)
+See also: [Sources](../assets/workflow-assets/sources/index.md)
 
 ### Sink
 
 A **Sink** is an Asset that defines where data exits the system — such as a file, database, message queue, or API endpoint. Sinks are used by Output Processors to write results.
 
-See also: [Sinks](../assets/workflow-assets/sinks)
+See also: [Sinks](../assets/workflow-assets/sinks/index.mdx)
 
 ### Format
 
 A **Format** is an Asset that defines the structure of data — such as XML, JSON, ASN.1, or custom schemas. Formats enable layline.io to parse and validate incoming data and serialize outgoing data.
 
-See also: [Formats](../assets/workflow-assets/formats)
+See also: [Formats](../assets/workflow-assets/formats/index.mdx)
 
 ### Connection
 
 A **Connection** is an Asset that defines connectivity parameters to external systems — such as AWS credentials, Kafka brokers, or FTP servers. Connections are reusable across multiple Sources, Sinks, or Services.
 
-See also: [Connections](../assets/workflow-assets/connections)
+See also: [Connections](../assets/workflow-assets/connections/index.md)
 
 ### Service
 
 A **Service** is an Asset that provides shared functionality — such as database access, HTTP clients, message queues, or AI/ML inference. Services can be called from Processors using the JavaScript or Python API.
 
-See also: [Services](../assets/workflow-assets/services)
+See also: [Services](../assets/workflow-assets/services/index.mdx)
 
 ### Message / Event
 
@@ -262,13 +262,13 @@ The **Operations Tab** is the section of the Configuration Center where you moni
 
 The **Shelf Tab** is the section of the Configuration Center that serves as a reusable Asset library. Assets published to the Shelf can be shared across Projects.
 
-See also: [Shelf](../shelf)
+See also: [Shelf](../shelf/index.md)
 
 ### Settings Tab
 
 The **Settings Tab** is the section of the Configuration Center for administrative functions — managing users, roles, clusters, and application settings.
 
-See also: [Settings](../settings)
+See also: [Settings](../settings/index.md)
 
 ### Asset Viewer
 
@@ -293,7 +293,7 @@ A **Deployment Asset** is configuration that controls how Workflows are deployed
 
 An **Engine Deployment** is a Deployment Asset that defines which Workflows and Assets are deployed to which Reactive Engines, along with runtime parameters like parallelism and resource limits.
 
-See also: [Engine Deployment](../assets/deployment-assets/engine-deployment)
+See also: [Engine Deployment](../assets/deployment-assets/asset-deployment-engine.md)
 
 ### Activation
 
@@ -308,6 +308,6 @@ A **Digest** is a hash that uniquely identifies a specific version of a Deployme
 ## See Also
 
 - [Core Concepts](../quickstart/core-concepts.md) — Mental models for understanding layline.io
-- [Architecture Overview](./architecture-overview) — System components and how they fit together
-- [What is layline.io?](./introduction) — Product overview and motivation
-- [Assets Overview](../assets) — Reference documentation for all Asset types
+- [Architecture Overview](./architecture-overview.md) — System components and how they fit together
+- [What is layline.io?](./introduction.md) — Product overview and motivation
+- [Assets Overview](../assets/index.mdx) — Reference documentation for all Asset types
