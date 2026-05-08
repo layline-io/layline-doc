@@ -7,7 +7,8 @@ description: Troubleshoot when workflows are running but not processing data.
 
 > My workflow is deployed and running, but no data is being processed.
 
-<!-- SCREENSHOT: Operations > Engine State > Workflows view showing a workflow in running state but with 0 messages processed -->
+![Engine State Workflows list](.workflow-issues_images/engine-state-workflows-list.png)
+*Operations → Engine State → Workflows showing workflow instances with their states and message counts*
 
 ## Common Symptoms
 
@@ -26,7 +27,8 @@ Every workflow has exactly **one Input Processor** that drives execution. If it'
 
 **Check in Operations → Engine State:**
 
-<!-- SCREENSHOT: Engine State workflows panel showing expanded workflow with Input Processor highlighted -->
+![Engine State workflow expanded](.workflow-issues_images/engine-state-workflow-expanded.png)
+*Engine State showing expanded workflow with component processors and their initialization status*
 
 1. Find your workflow in the list
 2. Expand it to see component processors
@@ -46,7 +48,8 @@ Every workflow has exactly **one Input Processor** that drives execution. If it'
 
 ### 2. Check Message Flow
 
-<!-- SCREENSHOT: Workflow editor showing message flow with highlighted connections between processors -->
+![Workflow editor showing message flow](.workflow-issues_images/workflow-editor-flow.png)
+*Workflow editor displaying processor connections: File-Input → Mapping → Router → Trailer-Calc-A/B → File-Output-A/B*
 
 In the Project view, open the Workflow:
 
@@ -56,7 +59,8 @@ In the Project view, open the Workflow:
 
 ### 3. Inspect Processor Logs
 
-<!-- SCREENSHOT: Operations > Engine State > Workflow detail view with Log tab selected showing error messages -->
+![Engine State Log tab](.workflow-issues_images/engine-state-log-tab.png)
+*Operations → Engine State → Log tab showing error messages including service availability issues (Email-Service not available)*
 
 1. Go to **Operations → Engine State**
 2. Select your workflow
@@ -178,7 +182,8 @@ If flow works to DevNull but not your sink, the issue is sink-specific.
 
 ### Check Message Content
 
-<!-- SCREENSHOT: JavaScript Processor code editor showing message inspection code with logger statements -->
+![JavaScript Processor editor](.workflow-issues_images/javascript-processor-editor.png)
+*JavaScript Processor code editor showing TrailerCalc.js with logger statements for debugging message processing*
 
 Log the full message structure:
 
