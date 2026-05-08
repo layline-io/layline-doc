@@ -7,7 +7,8 @@ description: Troubleshoot connectivity problems with sources and sinks.
 
 > I can't connect to my source/sink or keep getting connection errors.
 
-<!-- SCREENSHOT: Operations > Engine State > Sources view showing a source in ERROR state with connection failure details -->
+![Engine State Sources in ERROR state](.connection-issues_images/engine-state-sources-error.png)
+*Operations → Engine State → Sources showing FtpTap3Source in RUNTIME_FAILURE state with connection polling errors*
 
 ## Common Symptoms
 
@@ -22,9 +23,10 @@ description: Troubleshoot connectivity problems with sources and sinks.
 
 ### 1. Verify Connection Asset Configuration
 
-<!-- SCREENSHOT: Project view showing a Connection Asset configuration panel with all fields visible -->
+![Connection Asset configuration](.connection-issues_images/connection-asset-config.png)
+*Connection Asset configuration panel for SFTP showing FTP Settings (host, port), Communication settings, and Authentication with environment variable placeholders*
 
-Most external systems require a Connection Asset. Check:
+Most external systems require a Connection Asset. Connections are tested automatically when possible. Check:
 
 | Field | What to Verify |
 |-------|----------------|
@@ -173,16 +175,7 @@ Ensure the external service is actually running (examples):
 
 ## Testing Connections
 
-### Use the Test Button
-
-<!-- SCREENSHOT: Connection Asset configuration with the "Test Connection" button highlighted and showing success result -->
-
-Most Connection Assets have a **Test Connection** button:
-
-1. Open the Connection Asset
-2. Fill in all required fields
-3. Click **Test Connection**
-4. Review the result message
+Connections are tested automatically by the system when possible. Monitor the connection status in **Operations → Engine State → Sources** or **Sinks**.
 
 ### Create a Minimal Test
 
