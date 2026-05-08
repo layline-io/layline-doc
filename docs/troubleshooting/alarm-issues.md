@@ -7,7 +7,8 @@ description: Troubleshoot system alarms and error states in Operations.
 
 > I'm seeing alarms or red error states in the Operations view.
 
-<!-- SCREENSHOT: Operations > Alarm Center showing active alarms with severity indicators and details -->
+![Alarm Center showing active alarms](.alarm-issues_images/alarm-center-list.png)
+*Alarm Center showing 513 active alarms with severity breakdown and Workflow.HTTP-ServiceInputWorkflow.Rollback error details*
 
 ## Common Symptoms
 
@@ -48,7 +49,8 @@ description: Troubleshoot system alarms and error states in Operations.
 
 ### 2. Check Engine State
 
-<!-- SCREENSHOT: Operations > Engine State overview showing color-coded status of all components -->
+![Engine State overview](.alarm-issues_images/engine-state-overview.png)
+*Engine State overview showing color-coded component status: 19 workflows, 6 services, 16 sources, 18 sinks with warning indicator on Sharepoint-Source-For-Copy*
 
 In **Operations → Engine State**:
 
@@ -58,7 +60,8 @@ In **Operations → Engine State**:
 
 ### 3. Review Component Logs
 
-<!-- SCREENSHOT: Engine State detail view with Log tab selected showing error stack traces -->
+![Alarm detail view](.alarm-issues_images/alarm-detail-view.png)
+*Expanded alarm detail view for Workflow.HTTP-ServiceInputWorkflow.Rollback showing LAY-04047 rollback error, LAY-02603 input processor error, and LAY-00100 connection refused stack trace*
 
 For any component showing errors:
 
