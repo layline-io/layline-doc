@@ -84,8 +84,12 @@ For Services with callable functions:
 **Symptoms:** Input Processor shows 0 messages received.
 
 **Diagnosis:**
-```
-Source → Input Processor → [NOT REACHING WORKFLOW]
+
+```mermaid
+graph LR
+    A[Source] --> B[Input Processor]
+    B -->|not reaching| C[Workflow]
+    style C fill:#ffcccc
 ```
 
 **Check:**
@@ -99,8 +103,12 @@ Source → Input Processor → [NOT REACHING WORKFLOW]
 **Symptoms:** Messages enter but don't reach the output.
 
 **Diagnosis:**
-```
-Input → Flow Processor A → [STUCK] → Output
+
+```mermaid
+graph LR
+    A[Input] --> B[Flow Processor A]
+    B -->|stuck| C[Output]
+    style B fill:#ffcccc
 ```
 
 **Common causes:**
@@ -119,8 +127,12 @@ Input → Flow Processor A → [STUCK] → Output
 **Symptoms:** Messages process but sink shows errors.
 
 **Diagnosis:**
-```
-Input → Flow → [Output Processor ERROR]
+
+```mermaid
+graph LR
+    A[Input] --> B[Flow]
+    B -->|error| C[Output Processor]
+    style C fill:#ffcccc
 ```
 
 **Check:**
@@ -153,9 +165,13 @@ stream.logInfo(f"Payload: {message.data}")
 
 Route messages to a **DevNull Sink** temporarily to isolate output issues:
 
-```
-Input → Flow Processor → DevNull Sink
-                    → [Your Original Sink]
+```mermaid
+graph LR
+    A[Input] --> B[Flow Processor]
+    B --> C[DevNull Sink]
+    B -.-> D[Your Original Sink]
+    style C fill:#ccffcc
+    style D stroke:#999,stroke-dasharray: 5 5
 ```
 
 If flow works to DevNull but not your sink, the issue is sink-specific.
