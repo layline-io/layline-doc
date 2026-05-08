@@ -7,7 +7,8 @@ description: Troubleshoot when deployments fail to start or activate.
 
 > My deployment won't start or fails to activate.
 
-<!-- SCREENSHOT: Operations > Engine State view showing a deployment in error state with initialization failures visible -->
+![Engine State showing DEPENDENCY_FAILURE](.deployment-issues_images/engine-state-dependency-failure.png)
+*Operations → Engine State view showing a workflow in DEPENDENCY_FAILURE state with initialization status details*
 
 ## Common Symptoms
 
@@ -46,7 +47,8 @@ Deployments usually need:
 
 ### 3. Check Environment Variables
 
-<!-- SCREENSHOT: Project view showing an Environment Asset with variable definitions highlighted -->
+![Environment Asset configuration](.deployment-issues_images/environment-asset-config.png)
+*Project view showing an Environment Asset with variable definitions (Env-Docker with database and directory paths)*
 
 If your Assets use `${lay:VAR_NAME}` syntax:
 
@@ -56,7 +58,8 @@ If your Assets use `${lay:VAR_NAME}` syntax:
 
 ### 4. Review Secrets Variables
 
-<!-- SCREENSHOT: Settings > Secret Storage view showing stored secrets -->
+![Secret Storage view](.deployment-issues_images/secret-storage-view.png)
+*Project → Assets → Secret Storage showing Secrets-Docker asset with encrypted DbPassword and DbUser credentials*
 
 For Assets referencing secrets:
 
