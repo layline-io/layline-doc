@@ -272,13 +272,23 @@ for (let i = 0; i < 10; ) {  // i never changes!
 ![Service Functions testing interface](.script-issues_images/service-functions-tab.png)
 *Service Functions tab showing testing interface for LookupSelect function with INPUT PARAMETER section for TEST.LookupData*
 
+> **Note:** This testing method only applies to **Service Assets** (e.g., Database Service, HTTP Service). It does NOT work for Flow Processors (JavaScript Processor, Python Processor) that are part of workflows.
+>
+> Service Assets expose callable functions that can be invoked directly. Flow Processors in workflows are event-driven and can only be tested by sending messages through the workflow.
+
 For callable services, test directly:
 
 1. Go to **Operations → Engine State → Services**
-2. Select your service
+2. Select your **Service Asset** (not a workflow processor)
 3. Click the **Functions** tab
-4. Enter test parameters (use TABLE VIEW or JSON VIEW)
-5. Execute and review results
+4. Select the function you want to test (e.g., `LookupSelect`)
+5. Enter test parameters (use TABLE VIEW or JSON VIEW)
+6. Execute and review results
+
+**To test Flow Processors in workflows**, use these methods instead:
+- Send a test message through the workflow's Input Processor
+- Use the **Audit Trail** to inspect message processing
+- Add logging to your processor and monitor the stream log
 
 ### Log-Driven Development
 
