@@ -59,11 +59,11 @@ curl -v https://your-api.example.com/health
 
 ### 4. Verify Service Status
 
-Ensure the external service is actually running:
+Ensure the external service is actually running (examples):
 
 | Service Type | Check Command |
 |--------------|---------------|
-| **Database** | `psql -h host -U user -d db` or check DB admin console |
+| **Database** | Try to connect using database's cli tools or check DB admin console |
 | **Kafka** | `kafka-topics.sh --list --bootstrap-server host:9092` |
 | **HTTP API** | `curl -I https://api.example.com` |
 | **SFTP** | `sftp user@host` |
@@ -199,7 +199,7 @@ If this fails, the issue is the connection itself.
 
 ## See Also
 
-- [**Sources**](../assets/workflow-assets/sources) — Source Asset documentation
-- [**Sinks**](../assets/workflow-assets/sinks) — Sink Asset documentation
-- [**Connections**](../assets/workflow-assets/connections) — Connection Asset types
-- [**Secret Storage**](../settings/secret-storage) — Managing credentials
+- [**Sources**](../assets/workflow-assets/sources/index.md) — Source Asset documentation
+- [**Sinks**](../assets/workflow-assets/sinks/index.mdx) — Sink Asset documentation
+- [**Connections**](../assets/workflow-assets/connections/index.md) — Connection Asset types
+- [**Secret Storage**](../settings/secret-storage.md) — Managing credentials

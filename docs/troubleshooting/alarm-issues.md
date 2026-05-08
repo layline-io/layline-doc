@@ -89,7 +89,7 @@ For any component showing errors:
 1. Check Connection Asset configuration
 2. Verify network connectivity
 3. Confirm external service availability
-4. See [Connection Issues](./connection-issues)
+4. See [Connection Issues](./connection-issues.md)
 
 ### Resource Exhaustion
 
@@ -147,14 +147,14 @@ For any component showing errors:
 
 ## Responding to Alarms
 
-### Acknowledging Alarms
+### Confirming Alarms
 
 <!-- SCREENSHOT: Alarm Center with acknowledge action button highlighted -->
 
 When you've started working on an issue:
 
 1. Select the alarm in Alarm Center
-2. Click **Acknowledge**
+2. Click **Confirm Alarm**
 3. This silences notifications but keeps the alarm visible
 
 ### Clearing Alarms
@@ -187,6 +187,6 @@ Some alarms may need manual clearing after verification.
 
 ## See Also
 
-- [**Alarm Center**](../operations/cluster/alarm-center) — Managing system alarms
-- [**Engine State**](../operations/engine-state) — Live system monitoring
-- [**Cluster Management**](../operations/cluster) — Cluster health and configuration
+- [**Alarm Center**](../operations/cluster/alarm-center/index.md) — Managing system alarms
+- [**Engine State**](../operations/engine-state/index.mdx) — Live system monitoring
+- [**Cluster Management**](../operations/cluster/index.md) — Cluster health and configuration

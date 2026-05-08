@@ -22,46 +22,47 @@ description: Troubleshoot when deployments fail to start or activate.
 
 ### 1. Check Validation Errors
 
-Before deploying, run validation in the Project view:
+Upon deployment to Cluster the Config Server runs validations on the Deployment itself. Problems are pointed out, if any:
 
-1. Open your Project
-2. Click the **Validate** button in the toolbar
+1. Go through the list of issues.
+2. Click on each to navigate to the problem area
 3. Review any errors or warnings
 
 **Common validation failures:**
 - Missing required fields in Assets
 - Invalid references to other Assets
-- Syntax errors in JavaScript/Python processors
+- Incoherent workflows
+- More
 
 ### 2. Verify Required Assets
 
-Every deployment needs:
+Deployments usually need:
 
 | Asset Type | Purpose | Check |
 |------------|---------|-------|
 | **Workflows** | At least one workflow to execute | Confirm workflows are saved and valid |
-| **Environment Assets** | Runtime configuration values | Verify all `${VAR}` references have matching Environment Assets |
+| **Environment Assets** | Runtime configuration values | Verify all `${lay:VAR}` references have matching Environment Assets |
 | **Secret Assets** | Credentials and sensitive data | Check all secret references exist in Secret Storage |
 
 ### 3. Check Environment Variables
 
 <!-- SCREENSHOT: Project view showing an Environment Asset with variable definitions highlighted -->
 
-If your Assets use `${VAR_NAME}` syntax:
+If your Assets use `${lay:VAR_NAME}` syntax:
 
-1. Navigate to **Project → Deployment Assets → Environments**
+1. Navigate to **Project → Assets → Environments**
 2. Verify an Environment Asset exists with matching variable names
 3. Ensure the Environment Asset is included in the deployment
 
-### 4. Review Secret Storage
+### 4. Review Secrets Variables
 
 <!-- SCREENSHOT: Settings > Secret Storage view showing stored secrets -->
 
 For Assets referencing secrets:
 
-1. Go to **Settings → Secret Storage**
-2. Confirm the referenced secret exists
-3. Verify the secret value is correct
+1. Go to **Project → Assets → Secret Storage**
+2. Verify a Secrets Asset exists with matching variable names
+3. Ensure the Secret Asset is included in the deployment
 
 ---
 
