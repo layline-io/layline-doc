@@ -104,13 +104,15 @@ When you encounter an error message or code, use this reference to understand wh
 
 ### Deployment Error Codes
 
-| Code | Description | Resolution |
-|------|-------------|------------|
-| `DEP-001` | Missing Environment Asset | Ensure all referenced Environment Assets are included in the deployment |
-| `DEP-002` | Missing Secret Asset | Verify all Secret Assets referenced by workflows are deployed |
-| `DEP-003` | Asset Validation Failed | Check the validation message for specific configuration errors |
-| `DEP-004` | Cyclic Dependency Detected | Review asset dependencies and remove circular references |
-| `DEP-005` | Workflow Has No Input Processor | Every workflow must have exactly one Input Processor configured |
+| Status Code | Error Message | Resolution |
+|-------------|---------------|------------|
+| `AssetStatus` | `missing environment variable name` | Ensure all Environment Asset entries have a name defined |
+| `AssetStatus` | `asset has no valid name` | Check the asset Name field is not empty and uses valid characters |
+| `AssetStatus` | `asset uses a reserved name '%1'` | Rename the asset to avoid reserved keywords |
+| `AssetStatus` | `cyclic inheritance relationship for asset %1` | Review and break the circular inheritance chain |
+| `AssetStatus` | `duplicate environment value '%1'` | Remove duplicate entries in the Environment Asset |
+| `WorkflowStatus` | `workflow has no valid name` | Ensure the workflow has a valid name defined |
+| `DeploymentStorageStatus` | `unknown deployment with digest '%1'` | Verify the deployment exists and is correctly referenced |
 
 ### Runtime Error Codes
 

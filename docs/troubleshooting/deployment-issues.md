@@ -68,32 +68,44 @@ For Assets referencing secrets:
 
 ## Common Error Scenarios
 
-### Error: "Missing Environment Asset"
+### Error: "missing environment variable name"
 
-**Cause:** A workflow or asset references an environment variable that isn't defined in any deployed Environment Asset.
+***Cause:*** An Environment Asset has an entry without a variable name defined.
 
-**Resolution:**
-1. Identify the missing variable from the error message
-2. Create or update an Environment Asset with that variable
-3. Include the Environment Asset in your deployment
+***Resolution:***
+1. Navigate to **Project → Resources → Environments**
+2. Open the Environment Asset mentioned in the error
+3. Check each entry and ensure all variables have a name filled in
+4. Remove any empty entries or add the missing variable names
 
-### Error: "Asset Validation Failed"
+### Error: "asset has no valid name"
 
-**Cause:** One or more assets have configuration errors.
+***Cause:*** An asset is missing a name or has an invalid name (e.g., contains special characters or is empty).
 
-**Resolution:**
+***Resolution:***
 1. Go to Project view
 2. Look for assets with red error indicators
-3. Open each asset and correct the highlighted issues
+3. Open each problematic asset and check the **Name** field
+4. Enter a valid name (alphanumeric characters, underscores, and hyphens allowed)
 
-### Error: "Cyclic Dependency Detected"
+### Error: "asset uses a reserved name '%1'"
 
-**Cause:** Assets reference each other in a circular chain.
+***Cause:*** An asset is using a reserved keyword as its name.
 
-**Resolution:**
-1. Review asset dependencies
-2. Break the cycle by refactoring the asset structure
-3. Consider using a different asset type or restructuring workflows
+***Resolution:***
+1. Identify the asset with the reserved name from the error message
+2. Open the asset in the Project view
+3. Change the name to something that is not a reserved keyword
+
+### Error: "cyclic inheritance relationship for asset %1"
+
+***Cause:*** Assets inherit from each other in a circular chain (e.g., Asset A inherits from Asset B, which inherits from Asset A).
+
+***Resolution:***
+1. Identify the asset mentioned in the error message
+2. Review the inheritance chain by checking each asset's **Base Asset** or parent reference
+3. Break the cycle by changing one asset to inherit from a different parent
+4. Alternatively, remove the inheritance relationship if not needed
 
 ---
 
