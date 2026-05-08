@@ -7,7 +7,8 @@ description: Troubleshoot JavaScript and Python processor errors.
 
 > My JavaScript or Python processor isn't working as expected.
 
-<!-- SCREENSHOT: JavaScript Processor code editor showing syntax error highlighting with error message tooltip -->
+![JavaScript Processor syntax error](.script-issues_images/javascript-syntax-error.png)
+*JavaScript Processor code editor showing syntax error highlighting - missing opening parenthesis in if statement with error tooltip*
 
 ## Common Symptoms
 
@@ -23,8 +24,6 @@ description: Troubleshoot JavaScript and Python processor errors.
 
 ### 1. Check for Syntax Errors
 
-<!-- SCREENSHOT: Project view with JavaScript Processor open showing red error squiggles under problematic code -->
-
 In the Project code editor:
 
 1. Open your JavaScript/Python Processor
@@ -33,13 +32,15 @@ In the Project code editor:
 
 ### 2. Review Runtime Logs
 
-<!-- SCREENSHOT: Operations > Engine State > Workflow > Log tab showing JavaScript error with line number -->
+![Audit Trail showing script error](.script-issues_images/audit-trail-script-error.png)
+*Audit Trail stream log showing JavaScript error - processor 'Trailer-Calc-B' failed with ReferenceError "sage is not defined" at TrailerCalc.js line 15*
 
-1. Go to **Operations → Engine State**
-2. Find your workflow
-3. Select the failing processor
-4. Click the **Log** tab
-5. Look for error messages with line numbers
+JavaScript/Python errors appear in the **Audit Trail** stream log:
+
+1. Go to **Operations → Audit Trail**
+2. Find the stream for your workflow
+3. Look for error entries with status codes (e.g., LAY-35008, LAY-00105)
+4. Click to expand and see full error details with line numbers
 
 ### 3. Test with Minimal Code
 
@@ -268,12 +269,15 @@ for (let i = 0; i < 10; ) {  // i never changes!
 
 ### Use Service Functions
 
+![Service Functions testing interface](.script-issues_images/service-functions-tab.png)
+*Service Functions tab showing testing interface for LookupSelect function with INPUT PARAMETER section for TEST.LookupData*
+
 For callable services, test directly:
 
 1. Go to **Operations → Engine State → Services**
 2. Select your service
 3. Click the **Functions** tab
-4. Enter test parameters
+4. Enter test parameters (use TABLE VIEW or JSON VIEW)
 5. Execute and review results
 
 ### Log-Driven Development
