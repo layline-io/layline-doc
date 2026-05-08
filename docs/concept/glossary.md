@@ -16,13 +16,13 @@ sidebar_position: 10
 
 A **Project** is the top-level container for everything you build in layline.io. It contains all configured Assets, Workflows, Deployment Assets, and project-specific configurations. Projects are created and managed in the **Configuration Center**.
 
-See also: [Core Concepts](../quickstart/core-concepts#1-projects)
+See also: [Core Concepts](../quickstart/core-concepts.md#1-projects)
 
 ### Asset
 
 An **Asset** is a reusable building block that captures a specific piece of configuration — a connection, data format, processing step, or service — independently of any particular Workflow. Assets can be shared across multiple Workflows within a Project and support inheritance.
 
-See also: [Core Concepts](../quickstart/core-concepts#2-assets)
+See also: [Core Concepts](../quickstart/core-concepts.md#2-assets)
 
 ### Asset Class
 
@@ -50,7 +50,7 @@ An **Asset Type** is a specific implementation within an Asset Class. For exampl
 
 A **Workflow** is the core unit of execution in layline.io. It defines how data flows from a single Input Processor through a series of Flow Processors to one or more Output Processors. Each Workflow has exactly one Input Processor that drives execution.
 
-See also: [Core Concepts](../quickstart/core-concepts#3-workflows)
+See also: [Core Concepts](../quickstart/core-concepts.md#3-workflows)
 
 ### Processor
 
@@ -64,7 +64,7 @@ A **Processor** is a runtime instance of an Asset within a Workflow. Processors 
 
 A **Deployment** defines which Workflows, Environment Assets, and Secret Assets are deployed to a Reactive Cluster. Deploying sends the configuration to one Reactive Engine, which propagates it to all cluster members.
 
-See also: [Core Concepts](../quickstart/core-concepts#5-deployment)
+See also: [Core Concepts](../quickstart/core-concepts.md#5-deployment)
 
 ### Data Dictionary
 
@@ -86,7 +86,7 @@ The **Configuration Server** is the central design-time component that:
 
 The Configuration Server does not process data — it is the authoritative source of "what should be running."
 
-See also: [Architecture Overview](./architecture-overview#configuration-server)
+See also: [Architecture Overview](./architecture-overview.md#configuration-server)
 
 ### Configuration Center
 
@@ -96,7 +96,7 @@ The **Configuration Center** is the web-based UI served by the Configuration Ser
 - Deployment interface to push configurations to Reactive Engines
 - Operations dashboard for monitoring clusters and workflows
 
-See also: [Architecture Overview](./architecture-overview#configuration-center)
+See also: [Architecture Overview](./architecture-overview.md#configuration-center)
 
 ### Reactive Engine
 
@@ -108,7 +108,7 @@ A **Reactive Engine** is the runtime component that executes Workflows. It:
 
 Each Reactive Engine is an independent process that can run standalone or as part of a cluster.
 
-See also: [Architecture Overview](./architecture-overview#reactive-engine)
+See also: [Architecture Overview](./architecture-overview.md#reactive-engine)
 
 ### Reactive Cluster
 
@@ -119,7 +119,7 @@ A **Reactive Cluster** (also called **Cluster**) is a logical grouping of one or
 
 A single Reactive Engine running alone is technically a Reactive Cluster with one node.
 
-See also: [Architecture Overview](./architecture-overview#reactive-cluster)
+See also: [Architecture Overview](./architecture-overview.md#reactive-cluster)
 
 ### Node
 
@@ -307,7 +307,7 @@ A **Digest** is a hash that uniquely identifies a specific version of a Deployme
 
 ## See Also
 
-- [Core Concepts](../quickstart/core-concepts) — Mental models for understanding layline.io
+- [Core Concepts](../quickstart/core-concepts.md) — Mental models for understanding layline.io
 - [Architecture Overview](./architecture-overview) — System components and how they fit together
 - [What is layline.io?](./introduction) — Product overview and motivation
 - [Assets Overview](../assets) — Reference documentation for all Asset types

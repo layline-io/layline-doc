@@ -57,7 +57,7 @@ If it does not exist, you need to create it first.
 Once you picked a SQS Connection above the system will try to test the connection and
 show available queues within the drop-down list under `URL`.
 You can define a `Name` for each URL in here to reference those when guiding resp. routing messages towards SQS sink queues within the
-_**Frame Output Processor**_ configurations. More details can be found [here](../processors-output/asset-output-frame#sink-settings-for-sqs).
+_**Frame Output Processor**_ configurations. More details can be found [here](../processors-output/asset-output-frame.md#sink-settings-for-sqs).
 
 ---
 

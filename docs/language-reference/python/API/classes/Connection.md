@@ -50,7 +50,7 @@ Let's assume you have defined a function named `MyInsert` which inserts a record
 All of these functions expect a [Message](Message.md) as input. The message must contain the expected parameters.
 You can pass this in either
 * As an already existing message
-* A message which you created using [datadictionary.createMessage](./DataDictionary#createmessage)
+* A message which you created using [datadictionary.createMessage](./DataDictionary.md#createmessage)
 * A dict object in the expected format (see example below). This will then be implicitly converted to a message format.
 
 #### Parameters

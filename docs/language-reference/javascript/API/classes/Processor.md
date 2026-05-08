@@ -164,9 +164,9 @@ You can view this both via the Audit Trail in the UI and output in the process t
 
 ##### param
 
-`string` \| [`Status`](Status.md)
-
 Information you want to log. Can be either a string message or a Status object.
+
+`string` | [`Status`](Status.md)
 
 #### Returns
 
@@ -196,9 +196,9 @@ You can view this both via the Audit Trail in the UI and output in the process t
 
 ##### param
 
-`string` \| [`Status`](Status.md)
-
 Information you want to log. Can be either a string message or a Status object.
+
+`string` | [`Status`](Status.md)
 
 #### Returns
 
@@ -228,9 +228,9 @@ You can view this both via the Audit Trail in the UI and output in the process t
 
 ##### param
 
-`string` \| [`Status`](Status.md)
-
 Information you want to log. Can be either a string message or a Status object.
+
+`string` | [`Status`](Status.md)
 
 #### Returns
 
@@ -260,9 +260,9 @@ You can view this both via the Audit Trail in the UI and output in the process t
 
 ##### param
 
-`string` \| [`Status`](Status.md)
-
 Information you want to log. Can be either a string message or a Status object.
+
+`string` | [`Status`](Status.md)
 
 #### Returns
 

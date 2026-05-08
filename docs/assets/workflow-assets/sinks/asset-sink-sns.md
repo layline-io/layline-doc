@@ -51,7 +51,7 @@ If it does not exist, you need to create it first.
 Once you picked an SNS Connection above the system will try to test the connection and
 show available topics within the drop-down list under `ARN` (Amazon Resource Name).
 You can define a `Name` for each ARN in here to reference those when guiding resp. routing messages towards SNS sink queues within the
-_**Frame Output Processor**_ configurations will be selected. More details can be found [here](../processors-output/asset-output-frame#sink-settings-for-sns).
+_**Frame Output Processor**_ configurations will be selected. More details can be found [here](../processors-output/asset-output-frame.md#sink-settings-for-sns).
 
 ---
 
