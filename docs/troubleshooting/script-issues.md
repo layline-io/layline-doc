@@ -30,7 +30,6 @@ In the Project code editor:
 1. Open your JavaScript/Python Processor
 2. Look for red error indicators in the editor
 3. Hover over highlighted code for error messages
-4. Check the Problems panel for a list of issues
 
 ### 2. Review Runtime Logs
 
@@ -48,14 +47,14 @@ Replace your processor code with a simple test:
 
 ```javascript
 // Minimal JavaScript test
-logger.info('Processor executed');
-logger.info('Message payload: ' + JSON.stringify(message.payload));
+stream.logInfo('Processor executed');
+stream.logInfo('Message payload: ' + message.toJson());
 ```
 
 ```python
 # Minimal Python test
-logger.info("Processor executed")
-logger.info(f"Message payload: {message.payload}")
+stream.logInfo("Processor executed")
+stream.logInfo(f"Message payload: {message.toJson()}")
 ```
 
 If this works, the issue is in your specific code logic.
@@ -71,10 +70,10 @@ If this works, the issue is in your specific code logic.
 **Example:**
 ```javascript
 // WRONG - fails if payload is null
-const id = message.payload.id;
+const id = message.data.id;
 
 // RIGHT - safe access
-const id = message.payload?.id;
+const id = message.data?.id;
 ```
 
 ### "JSON.parse: unexpected character"
@@ -85,9 +84,9 @@ const id = message.payload?.id;
 ```javascript
 // Add error handling
 try {
-    const data = JSON.parse(message.payload);
+    const data = JSON.parse(message.data);
 } catch (e) {
-    logger.error('Parse failed: ' + e.message);
+    stream.logError('Parse failed: ' + e.message);
 }
 ```
 
@@ -111,7 +110,7 @@ try {
 **Resolution:**
 ```python
 # Check variable names
-logger.info(message.payload)  # not logger.Info or Logger.info
+stream.logInfo(message.data)  # not stream.logInfo or stream.logInfo
 ```
 
 ### "AttributeError: 'dict' object has no attribute 'X'"
@@ -121,13 +120,13 @@ logger.info(message.payload)  # not logger.Info or Logger.info
 **Example:**
 ```python
 # WRONG - Python dicts use brackets
-id = message.payload.id
+id = message.data.id
 
 # RIGHT
-id = message.payload['id']
+id = message.data['id']
 
 # Or use get() for safe access
-id = message.payload.get('id')
+id = message.data.get('id')
 ```
 
 ### "IndentationError"
@@ -147,20 +146,20 @@ id = message.payload.get('id')
 
 ```javascript
 // JavaScript debugging
-logger.info('=== DEBUG ===');
-logger.info('Message type: ' + typeof message);
-logger.info('Payload type: ' + typeof message.payload);
-logger.info('Payload keys: ' + Object.keys(message.payload || {}));
-logger.info('Full payload: ' + JSON.stringify(message.payload, null, 2));
+stream.logInfo('=== DEBUG ===');
+stream.logInfo('Message type: ' + typeof message);
+stream.logInfo('Payload type: ' + typeof message.data);
+stream.logInfo('Payload keys: ' + Object.keys(message.data || {}));
+stream.logInfo('Full payload: ' + JSON.stringify(message.data, null, 2));
 ```
 
 ```python
 # Python debugging
-logger.info("=== DEBUG ===")
-logger.info(f"Message type: {type(message)}")
-logger.info(f"Payload type: {type(message.payload)}")
-logger.info(f"Payload keys: {list(message.payload.keys()) if message.payload else 'None'}")
-logger.info(f"Full payload: {message.payload}")
+stream.logInfo("=== DEBUG ===")
+stream.logInfo(f"Message type: {type(message)}")
+stream.logInfo(f"Payload type: {type(message.data)}")
+stream.logInfo(f"Payload keys: {list(message.data.keys()) if message.data else 'None'}")
+stream.logInfo(f"Full payload: {message.data}")
 ```
 
 ### Test with Hardcoded Values
@@ -174,26 +173,8 @@ const testData = {
 
 // Test your logic
 const result = processData(testData);
-logger.info('Test result: ' + JSON.stringify(result));
+stream.logInfo('Test result: ' + JSON.stringify(result));
 ```
-
-### Check API Method Names
-
-**Important:** API methods use **camelCase** in both JavaScript AND Python.
-
-```javascript
-// JavaScript - correct
-message.setPayload(newPayload);
-stream.commit();
-```
-
-```python
-# Python - also use camelCase (NOT snake_case)
-message.setPayload(newPayload)  # NOT set_payload
-stream.commit()                  # NOT stream.Commit
-```
-
-See the [JavaScript API](../language-reference/javascript) or [Python API](../language-reference/python) reference for correct method names.
 
 ---
 
@@ -203,23 +184,23 @@ See the [JavaScript API](../language-reference/javascript) or [Python API](../la
 
 ```javascript
 // JavaScript - defensive coding
-const value = message.payload?.nested?.property ?? 'default';
+const value = message.data?.nested?.property ?? 'default';
 
 // Or with explicit checks
 let value = null;
-if (message.payload && message.payload.nested) {
-    value = message.payload.nested.property;
+if (message.data && message.data.nested) {
+    value = message.data.nested.property;
 }
 ```
 
 ```python
 # Python - defensive coding
-value = message.payload.get('nested', {}).get('property', 'default')
+value = message.data.get('nested', {}).get('property', 'default')
 
 # Or with explicit checks
 value = None
-if message.payload and 'nested' in message.payload:
-    value = message.payload['nested'].get('property')
+if message.data and 'nested' in message.data:
+    value = message.data['nested'].get('property')
 ```
 
 ### Error Handling in Processors
@@ -228,10 +209,10 @@ if message.payload and 'nested' in message.payload:
 // JavaScript - graceful error handling
 try {
     const result = riskyOperation();
-    message.payload.result = result;
+    message.data.result = result;
 } catch (error) {
-    logger.error('Operation failed: ' + error.message);
-    message.payload.error = error.message;
+    stream.logError('Operation failed: ' + error.message);
+    message.data.error = error.message;
     // Optionally route to error path
     message.setErrorPath('error-handler');
 }
@@ -241,10 +222,10 @@ try {
 # Python - graceful error handling
 try:
     result = risky_operation()
-    message.payload['result'] = result
+    message.data['result'] = result
 except Exception as e:
-    logger.error(f"Operation failed: {str(e)}")
-    message.payload['error'] = str(e)
+    stream.logError(f"Operation failed: {str(e)}")
+    message.data['error'] = str(e)
     message.setErrorPath("error-handler")
 ```
 
@@ -299,22 +280,22 @@ For callable services, test directly:
 
 ```javascript
 // Add logs at key points
-logger.info('1. Entering processor');
-const input = message.payload;
-logger.info('2. Input: ' + JSON.stringify(input));
+stream.logInfo('1. Entering processor');
+const input = message.data;
+stream.logInfo('2. Input: ' + JSON.stringify(input));
 
 const result = transform(input);
-logger.info('3. Transform result: ' + JSON.stringify(result));
+stream.logInfo('3. Transform result: ' + JSON.stringify(result));
 
-message.payload = result;
-logger.info('4. Exiting processor');
+message.data = result;
+stream.logInfo('4. Exiting processor');
 ```
 
 ---
 
 ## See Also
 
-- [**JavaScript Language Reference**](../language-reference/javascript) — Complete API documentation
-- [**Python Language Reference**](../language-reference/python) — Complete API documentation
-- [**JavaScript Processor**](../assets/workflow-assets/processors-flow/asset-flow-javascript) — Asset configuration
-- [**Python Processor**](../assets/workflow-assets/processors-flow/asset-flow-python) — Asset configuration
+- [**JavaScript Language Reference**](../language-reference/javascript/index.mdx) — Complete API documentation
+- [**Python Language Reference**](../language-reference/python/index.mdx) — Complete API documentation
+- [**JavaScript Processor**](../assets/workflow-assets/processors-flow/asset-flow-javascript.md) — Asset configuration
+- [**Python Processor**](../assets/workflow-assets/processors-flow/asset-flow-python.md) — Asset configuration

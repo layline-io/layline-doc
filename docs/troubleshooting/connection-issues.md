@@ -189,7 +189,7 @@ Most Connection Assets have a **Test Connection** button:
 Create a simple workflow to isolate the issue:
 
 ```
-[Timer Source] → [JavaScript: logger.info("Test")] → [Your Sink]
+[Timer Source] → [JavaScript: stream.logInfo("Test")] → [Your Sink]
 ```
 
 If this works, the issue is in your main workflow logic.

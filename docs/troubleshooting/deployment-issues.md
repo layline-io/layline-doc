@@ -121,7 +121,7 @@ If the deployment still won't start:
 
 ## See Also
 
-- [**Deployment Assets**](../assets/deployment-assets) — Understanding deployment configuration
-- [**Environment Assets**](../assets/deployment-assets/asset-deployment-environment) — Runtime configuration
-- [**Secret Assets**](../assets/deployment-assets/asset-deployment-secret) — Managing credentials
-- [**Alarm Center**](../operations/cluster/alarm-center) — System alarm management
+- [**Deployment Assets**](../assets/deployment-assets/index.md) — Understanding deployment configuration
+- [**Environment Assets**](../assets/workflow-assets/resources/asset-resource-environment.md) — Runtime configuration
+- [**Secret Assets**](../assets/workflow-assets/resources/asset-resource-secret.md) — Managing credentials
+- [**Alarm Center**](../operations/cluster/alarm-center/index.md) — System alarm management

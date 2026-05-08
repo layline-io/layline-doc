@@ -51,7 +51,7 @@ Every workflow has exactly **one Input Processor** that drives execution. If it'
 In the Project view, open the Workflow:
 
 1. **Verify connections:** Are all processors properly connected?
-2. **Check routing:** Are route conditions correct? (e.g., `msg.type === 'order'`)
+2. **Check routing:** Are route conditions correct? (e.g., `msg.typeName === 'order'`)
 3. **Look for dead ends:** Does every path lead to an Output Processor?
 
 ### 3. Inspect Processor Logs
@@ -139,14 +139,14 @@ Add explicit logging to your processors:
 
 ```javascript
 // JavaScript Processor
-logger.info('Processing message: ' + message.id);
-logger.debug('Payload: ' + JSON.stringify(message.payload));
+stream.logInfo('Processing message: ' + message.id);
+stream.logInfo('Payload: ' + JSON.stringify(message.data));
 ```
 
 ```python
 # Python Processor  
-logger.info(f"Processing message: {message.id}")
-logger.debug(f"Payload: {message.payload}")
+stream.logInfo(f"Processing message: {message.id}")
+stream.logInfo(f"Payload: {message.data}")
 ```
 
 ### Use a Test Sink
@@ -167,17 +167,15 @@ If flow works to DevNull but not your sink, the issue is sink-specific.
 Log the full message structure:
 
 ```javascript
-logger.info('Message structure:');
-logger.info('  payload: ' + JSON.stringify(message.payload));
-logger.info('  metadata: ' + JSON.stringify(message.metadata));
-logger.info('  headers: ' + JSON.stringify(message.headers));
+stream.logInfo('Message structure:');
+stream.logInfo('  payload: ' + message.toJson());
 ```
 
 ---
 
 ## See Also
 
-- [**Engine State**](../operations/engine-state) — Monitoring running workflows
-- [**Audit Trail**](../operations/audit-trail) — Message execution history
-- [**JavaScript Processor**](../assets/workflow-assets/processors-flow/asset-flow-javascript) — Writing JavaScript processors
-- [**Python Processor**](../assets/workflow-assets/processors-flow/asset-flow-python) — Writing Python processors
+- [**Engine State**](../operations/engine-state/index.mdx) — Monitoring running workflows
+- [**Audit Trail**](../operations/audit-trail/index.md) — Message execution history
+- [**JavaScript Processor**](../assets/workflow-assets/processors-flow/asset-flow-javascript.md) — Writing JavaScript processors
+- [**Python Processor**](../assets/workflow-assets/processors-flow/asset-flow-python.md) — Writing Python processors

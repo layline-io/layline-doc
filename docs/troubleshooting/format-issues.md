@@ -135,9 +135,9 @@ Add a processor to see what's being received:
 
 ```javascript
 // At the start of your workflow
-logger.info('Raw message received:');
-logger.info('Content type: ' + message.contentType);
-logger.info('Payload: ' + message.getPayloadAsString());
+stream.logInfo('Raw message received:');
+stream.logInfo('Content type: ' + message.typeName);
+stream.logInfo('Payload: ' + message.toJson());
 ```
 
 ### Test with a Simple Format
@@ -179,8 +179,8 @@ If data format varies:
 
 ```javascript
 // JavaScript Processor to normalize
-if (typeof message.payload.id === 'string') {
-    message.payload.id = parseInt(message.payload.id);
+if (typeof message.data.id === 'string') {
+    message.data.id = parseInt(message.data.id);
 }
 ```
 
@@ -200,6 +200,7 @@ Keep a sample message in your Project documentation:
 
 ## See Also
 
-- [**Formats**](../assets/workflow-assets/formats) — All format types and configuration
-- [**Audit Trail**](../operations/audit-trail) — Inspecting processed messages
-- [**JavaScript Processor**](../assets/workflow-assets/processors-flow/asset-flow-javascript) — Message transformation
+- [**Formats**](../assets/workflow-assets/formats/index.mdx) — All format types and configuration
+- [**Audit Trail**](../operations/audit-trail/index.md) — Inspecting processed messages
+- [**JavaScript Processor**](../assets/workflow-assets/processors-flow/asset-flow-javascript.md) — Message transformation
+- [**Python Processor**](../assets/workflow-assets/processors-flow/asset-flow-python.md) — Message transformation
