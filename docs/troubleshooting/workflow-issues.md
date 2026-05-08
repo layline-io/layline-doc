@@ -89,7 +89,7 @@ For Services with callable functions:
 graph LR
     A[Source] --> B[Input Processor]
     B -->|not reaching| C[Workflow]
-    style C fill:#ffcccc
+    style C fill:#8b0000,color:#fff
 ```
 
 **Check:**
@@ -108,7 +108,7 @@ graph LR
 graph LR
     A[Input] --> B[Flow Processor A]
     B -->|stuck| C[Output]
-    style B fill:#ffcccc
+    style B fill:#8b4513,color:#fff
 ```
 
 **Common causes:**
@@ -132,7 +132,7 @@ graph LR
 graph LR
     A[Input] --> B[Flow]
     B -->|error| C[Output Processor]
-    style C fill:#ffcccc
+    style C fill:#8b0000,color:#fff
 ```
 
 **Check:**
@@ -170,7 +170,7 @@ graph LR
     A[Input] --> B[Flow Processor]
     B --> C[DevNull Sink]
     B -.-> D[Your Original Sink]
-    style C fill:#ccffcc
+    style C fill:#006400,color:#fff
     style D stroke:#999,stroke-dasharray: 5 5
 ```
 
