@@ -19,8 +19,8 @@ Define an XML data format based on an XSD schema. The XSD schema is parsed to ex
 
 Formats defined this way may be used to both read and write XML data. The format can be attached to:
 
-- [Stream Input](../processors-input/asset-input-stream) / [Stream Output](../processors-output/asset-output-stream)
-- [Frame Input](../processors-input/asset-input-frame) / [Frame Output](../processors-output/asset-output-frame)
+- [Stream Input](/docs/assets/workflow-assets/processors-input/asset-input-stream) / [Stream Output](/docs/assets/workflow-assets/processors-output/asset-output-stream)
+- [Frame Input](/docs/assets/workflow-assets/processors-input/asset-input-frame) / [Frame Output](/docs/assets/workflow-assets/processors-output/asset-output-frame)
 
 The editor enables you to:
 
@@ -110,7 +110,7 @@ Click **Add Converter** to add a new converter entry.
 
 ![Converters — context and pre-defined converter type selection](./.asset-format-xml_images/converters.png)
 
-For more on using formats in processors, see [Stream Input](../processors-input/asset-input-stream) and [Frame Input](../processors-input/asset-input-frame).
+For more on using formats in processors, see [Stream Input](/docs/assets/workflow-assets/processors-input/asset-input-stream) and [Frame Input](/docs/assets/workflow-assets/processors-input/asset-input-frame).
 
 ---
 

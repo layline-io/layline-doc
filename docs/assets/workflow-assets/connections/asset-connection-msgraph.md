@@ -22,11 +22,11 @@ Defines the connection parameters for various Microsoft application endpoints, f
 
 | Asset type | Link                                                    |
 |------------|---------------------------------------------------------|
-| Source     | [OneDrive Source](../sources/asset-source-onedrive.md)     |
-|            | [SharePoint Source](../sources/asset-source-sharepoint.md) |
-| Sink       | [OneDrive Sink](../sinks/asset-sink-onedrive)           |
-|            | [SharePoint Sink](../sinks/asset-sink-sharepoint)       |
-| Service    | [Teams Service](../services/asset-service-teams)        |
+| Source     | [OneDrive Source](/docs/assets/workflow-assets/sources/asset-source-onedrive.md)     |
+|            | [SharePoint Source](/docs/assets/workflow-assets/sources/asset-source-sharepoint.md) |
+| Sink       | [OneDrive Sink](/docs/assets/workflow-assets/sinks/asset-sink-onedrive)           |
+|            | [SharePoint Sink](/docs/assets/workflow-assets/sinks/asset-sink-sharepoint)       |
+| Service    | [Teams Service](/docs/assets/workflow-assets/services/asset-service-teams)        |
 
 ## Configuration
 

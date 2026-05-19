@@ -28,7 +28,7 @@ So we really have two requirements here in regard to handling confidential infor
 
    Be able to define different Secret Environments, for different target environments such as development, testing, and production.
 
-What's needed is very similar to how we are using variables from [Environment Assets](../resources/asset-resource-environment).
+What's needed is very similar to how we are using variables from [Environment Assets](/docs/assets/workflow-assets/resources/asset-resource-environment).
 There we reference Environment Variables with [macros](../../../language-reference/macros.md#lay).
 It works the same way with Secrets, only the [prefix (sec)](../../../language-reference/macros.md#sec) is different.
 

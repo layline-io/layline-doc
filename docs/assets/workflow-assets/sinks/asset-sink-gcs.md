@@ -18,7 +18,7 @@ Writes messages to a Google Cloud Storage (GCS) bucket as objects. Each incoming
 
 ## Prerequisites
 
-- A [**Google Cloud Connection**](../connections/asset-connection-google-cloud) asset configured with the appropriate OAuth scopes.
+- A [**Google Cloud Connection**](/docs/assets/workflow-assets/connections/asset-connection-google-cloud) asset configured with the appropriate OAuth scopes.
 - A Google Cloud project with the Google Cloud Storage API enabled.
 - A GCS bucket in that project.
 
@@ -134,8 +134,8 @@ If an object with that key already exists, it is replaced.
 
 ## See Also
 
-- [**Google Cloud Connection**](../connections/asset-connection-google-cloud) — Authentication for GCS assets
-- [**GCS Source**](../sources/asset-source-google-cloud-storage.md) — Read objects from Google Cloud Storage
+- [**Google Cloud Connection**](/docs/assets/workflow-assets/connections/asset-connection-google-cloud) — Authentication for GCS assets
+- [**GCS Source**](/docs/assets/workflow-assets/sources/asset-source-google-cloud-storage.md) — Read objects from Google Cloud Storage
 
 ---
 <WipDisclaimer></WipDisclaimer>

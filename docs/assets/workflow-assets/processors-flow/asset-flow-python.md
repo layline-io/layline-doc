@@ -78,7 +78,7 @@ the [Python Language Reference](../../../language-reference/python/python_introd
 ### Service Mappings
 
 Python scripts may make use of Services which you may have
-configured [here](../services/asset-service-introduction.md#purpose-of-services). These methods could be database
+configured [here](/docs/assets/workflow-assets/services/asset-service-introduction.md#purpose-of-services). These methods could be database
 operations, HTTP-request and whatever else Services do provide.
 
 Let's say your Python script invokes an HTTP-Service which provides a method to retrieve the current Bitcoin price via a

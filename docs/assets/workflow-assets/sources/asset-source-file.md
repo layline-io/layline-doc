@@ -24,7 +24,7 @@ Defines the specific source parameters for a File System connected endpoint.
 
 | Asset type       | Link                                                             |
 |------------------|------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
+| Input Processors | [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream) |
 
 ### Prerequisite
 
@@ -58,8 +58,8 @@ None
 
 ### Internal
 
-* [Stream Input Processor](../processors-input/asset-input-stream)
-* [File System Sink](../sinks/asset-sink-file)
+* [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream)
+* [File System Sink](/docs/assets/workflow-assets/sinks/asset-sink-file)
 
 ### External
 

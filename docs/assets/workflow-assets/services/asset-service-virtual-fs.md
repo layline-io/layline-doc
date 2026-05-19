@@ -16,7 +16,7 @@ import Testcase from '../../../snippets/assets/_asset-service-test.md';
 The Virtual File System Service provides file operations — read, write, copy, move, delete — against the Virtual File System from within a Javascript or Python Processor. It allows you to manage files programmatically in your script code, independent of any VFS Source or Sink.
 
 :::info
-The Virtual File System Service is a pure script-facing service. It has no input/output ports and cannot be used as a standalone processing step in a Workflow. It must be invoked from a [Javascript Processor](../processors-flow/asset-flow-javascript) or a [Python Processor](../processors-flow/asset-flow-python).
+The Virtual File System Service is a pure script-facing service. It has no input/output ports and cannot be used as a standalone processing step in a Workflow. It must be invoked from a [Javascript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript) or a [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python).
 :::
 
 ## Configuration
@@ -37,7 +37,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ### Virtual FS Service Settings
 
-* **`Connection`** : Select the [Virtual File System Connection](../connections/asset-connection-virtual-fs) asset to use. This connection defines the mount points and storage backends (local filesystem, SMB, OneDrive, SharePoint, etc.) accessible to this service. The service will only be able to operate within the paths defined by that connection's mount points.
+* **`Connection`** : Select the [Virtual File System Connection](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs) asset to use. This connection defines the mount points and storage backends (local filesystem, SMB, OneDrive, SharePoint, etc.) accessible to this service. The service will only be able to operate within the paths defined by that connection's mount points.
 
 ## Service Functions
 
@@ -56,7 +56,7 @@ The Virtual File System Service provides the following built-in functions:
 
 ### Step 1 — Create a Virtual File System Connection
 
-Before using the Virtual File System Service, configure a [Virtual File System Connection](../connections/asset-connection-virtual-fs) with the mount points you need to access. This connection defines which filesystem backends (local paths, SMB shares, OneDrive, SharePoint) are available.
+Before using the Virtual File System Service, configure a [Virtual File System Connection](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs) with the mount points you need to access. This connection defines which filesystem backends (local paths, SMB shares, OneDrive, SharePoint) are available.
 
 ### Step 2 — Create the Virtual File System Service
 
@@ -64,7 +64,7 @@ Create a new **Virtual File System Service** Asset. In **Virtual FS Service Sett
 
 ### Step 3 — Map the Service in a Script Processor
 
-In your [Javascript Processor](../processors-flow/asset-flow-javascript) or [Python Processor](../processors-flow/asset-flow-python), add a **Service Mapping**:
+In your [Javascript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript) or [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python), add a **Service Mapping**:
 
 * **Service**: Select your Virtual File System Service
 * **Logical Service Name**: `MyVfsService` (or any name you will use in your script)
@@ -225,6 +225,6 @@ The parameter names (`sourcePath`, `targetPath`, `path`, `content`) match the se
 
 ## See Also
 
-- [Virtual File System Connection](../connections/asset-connection-virtual-fs) — configuring mount points and storage backends
-- [JavaScript Processor](../processors-flow/asset-flow-javascript) — calling services from JavaScript
-- [Python Processor](../processors-flow/asset-flow-python) — calling services from Python
+- [Virtual File System Connection](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs) — configuring mount points and storage backends
+- [JavaScript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript) — calling services from JavaScript
+- [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python) — calling services from Python

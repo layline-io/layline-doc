@@ -28,14 +28,14 @@ You need:
 
 **A Stream Sink:**
 
-* [Sink File System](../sinks/asset-sink-file)
-* [Sink FTP](../sinks/asset-sink-ftp)
-* [Sink OneDrive](../sinks/asset-sink-onedrive)
-* [Sink S3](../sinks/asset-sink-s3)
-* [Sink Sharepoint](../sinks/asset-sink-sharepoint)
-* [Sink SMB](../sinks/asset-sink-smb)
-* [Sink WebDav](../sinks/asset-sink-webdav)
-* [Sink WebSocket](../sinks/asset-sink-websocket)
+* [Sink File System](/docs/assets/workflow-assets/sinks/asset-sink-file)
+* [Sink FTP](/docs/assets/workflow-assets/sinks/asset-sink-ftp)
+* [Sink OneDrive](/docs/assets/workflow-assets/sinks/asset-sink-onedrive)
+* [Sink S3](/docs/assets/workflow-assets/sinks/asset-sink-s3)
+* [Sink Sharepoint](/docs/assets/workflow-assets/sinks/asset-sink-sharepoint)
+* [Sink SMB](/docs/assets/workflow-assets/sinks/asset-sink-smb)
+* [Sink WebDav](/docs/assets/workflow-assets/sinks/asset-sink-webdav)
+* [Sink WebSocket](/docs/assets/workflow-assets/sinks/asset-sink-websocket)
 
 ### Name & Description
 

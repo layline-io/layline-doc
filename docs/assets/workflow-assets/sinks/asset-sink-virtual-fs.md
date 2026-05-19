@@ -20,13 +20,13 @@ Writes messages to a Virtual File System (VFS). The VFS abstraction allows the s
 
 | Asset type        | Link                                                                 |
 |-------------------|---------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
+| Output Processors | [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream) |
 
 ### Prerequisite
 
 You need:
 
-- A [**Virtual File System Connection**](../connections/asset-connection-virtual-fs)
+- A [**Virtual File System Connection**](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs)
 
 ## Configuration
 
@@ -76,7 +76,7 @@ Based on these values the next processing will be delayed: starting with the min
 
 ![Virtual File System Settings (Virtual File System Sink)](./.Virtual_File_System_Sink_images/vfs-sink-vfs-settings.png "Virtual File System Settings (Virtual File System Sink)")
 
-**Connection** — Select the [Virtual File System Connection](../connections/asset-connection-virtual-fs) to use for writing files. If no connection exists, create one first.
+**Connection** — Select the [Virtual File System Connection](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs) to use for writing files. If no connection exists, create one first.
 
 ### Directories
 
@@ -137,8 +137,8 @@ Temporary files that remain in the Temporary Directory after no active processin
 
 ## See Also
 
-- [**VFS Source**](../sources/asset-source-virtual-fs.md) — Read files from a VFS mount
-- [**VFS Connection**](../connections/asset-connection-virtual-fs) — VFS connection configuration
+- [**VFS Source**](/docs/assets/workflow-assets/sources/asset-source-virtual-fs.md) — Read files from a VFS mount
+- [**VFS Connection**](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs) — VFS connection configuration
 - [**SMB Sink**](../sinks/asset-sink-smb) — Write files to SMB/CIFS shares
 
 ---

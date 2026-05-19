@@ -22,13 +22,13 @@ Defines the outbound connection parameters for an NFS sink.
 
 | Asset type        | Link                                                                          |
 |-------------------|-------------------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
+| Output Processors | [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream) |
 
 ### Prerequisite
 
 You need:
 
-* [NFS Connection](../connections/asset-connection-nfs)
+* [NFS Connection](/docs/assets/workflow-assets/connections/asset-connection-nfs)
 
 ## Configuration
 
@@ -46,7 +46,7 @@ You need:
 
 ![NFS Connection (NFS Sink)](.asset-sink-nfs_images/image_47.png "NFS Connection (NFS Sink)")
 
-Select the [NFS Connection](../connections/asset-connection-nfs) that you want to use with this Asset.
+Select the [NFS Connection](/docs/assets/workflow-assets/connections/asset-connection-nfs) that you want to use with this Asset.
 If it does not exist, you need to create it first.
 
 ### Directories
@@ -57,9 +57,9 @@ If it does not exist, you need to create it first.
 
 ### Internal
 
-* [Stream Output Processor](../processors-output/asset-output-stream)
-* [NFS Source](../sources/asset-source-nfs.md)
-* [NFS Connection](../connections/asset-connection-nfs)
+* [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream)
+* [NFS Source](/docs/assets/workflow-assets/sources/asset-source-nfs.md)
+* [NFS Connection](/docs/assets/workflow-assets/connections/asset-connection-nfs)
 
 ## Potential problems
 

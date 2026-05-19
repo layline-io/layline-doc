@@ -22,8 +22,8 @@ TCP is a connection-oriented (stateful) protocol — unlike UDP, a TCP connectio
 
 | Asset type | Link |
 |---|---|
-| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
-| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
+| Input Processors | [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream) |
+| Output Processors | [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream) |
 
 ### Prerequisite
 

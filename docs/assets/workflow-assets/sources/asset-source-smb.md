@@ -24,13 +24,13 @@ Defines the specific source parameters for a SMB connected endpoint.
 
 | Asset type       | Link                                                                       |
 |------------------|----------------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
+| Input Processors | [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream) |
 
 ### Prerequisite
 
 You need:
 
-* [SMB Connection](../connections/asset-connection-smb)
+* [SMB Connection](/docs/assets/workflow-assets/connections/asset-connection-smb)
 
 ## Configuration
 
@@ -60,13 +60,13 @@ Configure the parameters for your SMB endpoint:
 
 #### Connection
 
-Use the drop-down list to select an [SMB Connection](../connections/asset-connection-smb) that should
+Use the drop-down list to select an [SMB Connection](/docs/assets/workflow-assets/connections/asset-connection-smb) that should
 support this SMB configuration. If it does not exist, you need to create it first.
 
 #### Share
 
 * **`Share`** : Configure your basic location information for your SMB endpoint. 
-You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
 
 ### Folders
 

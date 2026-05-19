@@ -17,19 +17,19 @@ import ThrottlingAndFailure from '../../../snippets/assets/_asset-source-throttl
 
 ## Purpose
 
-Polls one or more Google Cloud Storage (GCS) buckets for objects and makes them available to downstream processors. Authentication is handled via a [Google Cloud Connection](../connections/asset-connection-google-cloud) using OAuth 2.0. Objects can be filtered by prefix, suffix, and regular expression patterns. Housekeeping rules can be configured to automatically delete processed objects after a configurable age threshold.
+Polls one or more Google Cloud Storage (GCS) buckets for objects and makes them available to downstream processors. Authentication is handled via a [Google Cloud Connection](/docs/assets/workflow-assets/connections/asset-connection-google-cloud) using OAuth 2.0. Objects can be filtered by prefix, suffix, and regular expression patterns. Housekeeping rules can be configured to automatically delete processed objects after a configurable age threshold.
 
 ### This Asset can be used by:
 
 | Asset type       | Link                                                               |
 |------------------|--------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream)   |
+| Input Processors | [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream)   |
 
 ### Prerequisites
 
 You need:
 
-- A [**Google Cloud Connection**](../connections/asset-connection-google-cloud) with a valid OAuth client configured
+- A [**Google Cloud Connection**](/docs/assets/workflow-assets/connections/asset-connection-google-cloud) with a valid OAuth client configured
 - A GCS bucket reachable from the Google Cloud project referenced by the connection
 
 ## Configuration
@@ -68,7 +68,7 @@ Click **"+ ADD A BUCKET"** to add a new bucket entry. Use the toolbar to reorder
 
 #### Bucket Entry Fields
 
-**Connection** — Select the [Google Cloud Connection](../connections/asset-connection-google-cloud) to use for accessing this bucket. The dropdown shows only valid Google Cloud Connection assets.
+**Connection** — Select the [Google Cloud Connection](/docs/assets/workflow-assets/connections/asset-connection-google-cloud) to use for accessing this bucket. The dropdown shows only valid Google Cloud Connection assets.
 
 ![Bucket Connection](./.Google_Cloud_Storage_Source_images/gcs-source-bucket-connection.png "Bucket Connection")
 
@@ -114,8 +114,8 @@ The **Access Coordinator** tracks which objects have been processed to prevent d
 
 ## See Also
 
-- [**Google Cloud Connection**](../connections/asset-connection-google-cloud) — OAuth configuration for GCS access
-- [**GCS Sink**](../sinks/asset-sink-gcs) — Write objects to Google Cloud Storage
+- [**Google Cloud Connection**](/docs/assets/workflow-assets/connections/asset-connection-google-cloud) — OAuth configuration for GCS access
+- [**GCS Sink**](/docs/assets/workflow-assets/sinks/asset-sink-gcs) — Write objects to Google Cloud Storage
 - [**VFS Source**](asset-source-virtual-fs.md) — Read files from a Virtual File System mount
 
 ---

@@ -17,13 +17,13 @@ Defines the outbound connection parameters for an AWS EventBridge sink.
 
 | Asset type        | Link                                                              |
 |-------------------|-------------------------------------------------------------------|
-| Output Processors | [Frame Output Processor](../processors-output/asset-output-frame) |
+| Output Processors | [Frame Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-frame) |
 
 ### Prerequisite
 
 You need:
 
-* [AWS Connection](../connections/asset-connection-aws)
+* [AWS Connection](/docs/assets/workflow-assets/connections/asset-connection-aws)
 
 ## Configuration
 
@@ -41,7 +41,7 @@ You need:
 
 ![AWS Connection (EventBridge Sink)](./.asset-sink-eventbridge_images/1722859138750.png "AWS Connection (EventBridge Sink)")
 
-Select the [AWS Connection](../connections/asset-connection-aws) to use with this Asset.
+Select the [AWS Connection](/docs/assets/workflow-assets/connections/asset-connection-aws) to use with this Asset.
 If it does not exist, you need to create it first.
 
 ### Event Buses
@@ -51,7 +51,7 @@ If it does not exist, you need to create it first.
 Once you picked an EventBridge Connection above the system will try to test the connection and
 show available event buses within the drop-down list under `ARN` (Amazon Resource Name).
 Having chosen an ARN the appropriate `Name` for referencing it when guiding resp. routing messages towards EventBridge sink queues within the
-_**Frame Output Processor**_ configurations will be selected. More details can be found [here](../processors-output/asset-output-frame.md#sink-settings-for-eventbridge).
+_**Frame Output Processor**_ configurations will be selected. More details can be found [here](/docs/assets/workflow-assets/processors-output/asset-output-frame.md#sink-settings-for-eventbridge).
 
 ---
 

@@ -25,7 +25,7 @@ The data is then available for further processing by other Assets in the same Wo
 It is important to understand, that the same JDBC Service Asset can also be used as an ordinary Service Asset for use in other Assets which allow to use Services Assets.
 So you could have a JDBC Servivce Asset that you use as an inpput Service for this Service Source Asset, and yet use the same JDBC Service Asset within a Scripting Asset (e.g. to read a configuration).
 
-Depending on their setup other Service Assets like [Http](../services/asset-service-http) or [SOAP](../services/asset-service-soap) might also serve the input data aspect. 
+Depending on their setup other Service Assets like [Http](/docs/assets/workflow-assets/services/asset-service-http) or [SOAP](/docs/assets/workflow-assets/services/asset-service-soap) might also serve the input data aspect. 
 Basically layline.io allows any Service Asset to be used as a Service Source. Though, you need to check whether an available service reflects a reasonable input source respectively other approaches might be more applicable (e.g.: Email Service vs. Email Source).     
 
 ![Service Source Asset](.asset-source-service_images/image_25.png "Service Source Asset")
@@ -34,7 +34,7 @@ Basically layline.io allows any Service Asset to be used as a Service Source. Th
 
 | Asset type       | Link                                                                         |
 |------------------|------------------------------------------------------------------------------|
-| Input Processors | [Service Input Processor](../processors-input/asset-input-service) |
+| Input Processors | [Service Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-service) |
 
 ### Prerequisite
 
@@ -42,12 +42,12 @@ You need:
 
 **A Service Asset, of either**
 
-* [Aerospike](../services/asset-service-aerospike)
-* [Cassandra](../services/asset-service-cassandra)
-* [Hazelcast](../services/asset-service-hazelcast)
-* [Http](../services/asset-service-http)
-* [JDBC](../services/asset-service-jdbc)
-* [SOAP](../services/asset-service-soap)
+* [Aerospike](/docs/assets/workflow-assets/services/asset-service-aerospike)
+* [Cassandra](/docs/assets/workflow-assets/services/asset-service-cassandra)
+* [Hazelcast](/docs/assets/workflow-assets/services/asset-service-hazelcast)
+* [Http](/docs/assets/workflow-assets/services/asset-service-http)
+* [JDBC](/docs/assets/workflow-assets/services/asset-service-jdbc)
+* [SOAP](/docs/assets/workflow-assets/services/asset-service-soap)
 
 (other Service Assets are available while at this stage the ones linked in here are making most sense at this stage)
 

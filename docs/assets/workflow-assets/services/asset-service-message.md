@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
 
 ## Purpose
 
-The Message Service is the **producer side** of layline.io's internal publish/subscribe messaging system. It publishes messages to topics defined in a [Message Source](../sources/asset-source-message.md). Messages can be published from JavaScript or Python processors, making it useful for:
+The Message Service is the **producer side** of layline.io's internal publish/subscribe messaging system. It publishes messages to topics defined in a [Message Source](/docs/assets/workflow-assets/sources/asset-source-message). Messages can be published from JavaScript or Python processors, making it useful for:
 
 - Triggering downstream Workflows based on events
 - Broadcasting data to multiple consumers simultaneously
@@ -27,7 +27,7 @@ The Message Service is the **producer side** of layline.io's internal publish/su
 
 ### Architecture
 
-The Message Service is the counterpart to the [Message Source](../sources/asset-source-message.md) (consumer). Together they form a publish/subscribe system:
+The Message Service is the counterpart to the [Message Source](/docs/assets/workflow-assets/sources/asset-source-message) (consumer). Together they form a publish/subscribe system:
 
 ```mermaid
 flowchart LR
@@ -49,14 +49,14 @@ A single Message Service can reference multiple Message Sources. For each Messag
 
 | Asset type | Link |
 |------------|------|
-| Processors | [JavaScript Processor](../processors-flow/asset-flow-javascript.md) |
-| | [Python Processor](../processors-flow/asset-flow-python.md) |
+| Processors | [JavaScript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript.md) |
+| | [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python.md) |
 
 ### Related Asset
 
 | Asset | Description |
 |-------|-------------|
-| [Message Source](../sources/asset-source-message.md) | Defines the topics that this service publishes to |
+| [Message Source](/docs/assets/workflow-assets/sources/asset-source-message) | Defines the topics that this service publishes to |
 
 ## Configuration
 
@@ -78,7 +78,7 @@ Nodes (no restriction).
 
 ### Sources
 
-Under **Sources**, add references to the [Message Sources](../sources/asset-source-message.md) whose topics this service publishes to. Each entry links a Message Source asset to this service.
+Under **Sources**, add references to the [Message Sources](/docs/assets/workflow-assets/sources/asset-source-message) whose topics this service publishes to. Each entry links a Message Source asset to this service.
 
 | Column | Description |
 |--------|-------------|
@@ -315,7 +315,7 @@ def on_order_confirmed(order_id, order_details):
 
 A downstream Workflow that references `OrderSource` will receive this message via its Input Processor and can process the confirmation further.
 
-For more on processors, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md) and [Python Processor](../processors-flow/asset-flow-python.md).
+For more on processors, see [JavaScript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript.md) and [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python.md).
 
 <Testcase></Testcase>
 
