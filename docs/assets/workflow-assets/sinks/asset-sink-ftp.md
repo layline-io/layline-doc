@@ -21,13 +21,13 @@ Defines the outbound connection parameters for an FTP sink.
 
 | Asset type        | Link                                                                          |
 |-------------------|-------------------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
+| Output Processors | [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream) |
 
 ### Prerequisite
 
 You need:
 
-* [FTP Connection](../connections/asset-connection-ftp)
+* [FTP Connection](/docs/assets/workflow-assets/connections/asset-connection-ftp)
 
 ## Configuration
 
@@ -43,7 +43,7 @@ You need:
 
 ![FTP Settings (FTP Sink Asset)](.asset-sink-ftp_images/067b010e.png)
 
-Select the [FTP Connection](../connections/asset-connection-ftp) to use with this Asset.
+Select the [FTP Connection](/docs/assets/workflow-assets/connections/asset-connection-ftp) to use with this Asset.
 If it does not exist, you need to create it first.
 
 ### Directories
@@ -54,9 +54,9 @@ If it does not exist, you need to create it first.
 
 ### Internal
 
-* [Stream Output Processor](../processors-output/asset-output-stream)
+* [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream)
 * [FTP Source](../sources/asset-source-ftp.md)
-* [FTP Connection](../connections/asset-connection-ftp)
+* [FTP Connection](/docs/assets/workflow-assets/connections/asset-connection-ftp)
 
 ---
 

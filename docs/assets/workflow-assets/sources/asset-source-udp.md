@@ -20,7 +20,7 @@ Defines the specific source parameters for a UDP connected endpoint.
 
 | Asset type       | Link                                                                     |
 |------------------|--------------------------------------------------------------------------|
-| Input Processors | [Frame Input Processor](../processors-input/asset-input-frame) |
+| Input Processors | [Frame Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-frame) |
 
 ### Prerequisite
 

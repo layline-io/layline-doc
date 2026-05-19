@@ -16,8 +16,8 @@ Defines the connection parameters for a WebDav endpoint.
 
 | Asset type | Link                                                      |
 |------------|-----------------------------------------------------------|
-| Source     | [WebDav Source](../sources/asset-source-webdav.md) |
-| Sink       | [WebDav Sink](../sinks/asset-sink-webdav)       |
+| Source     | [WebDav Source](/docs/assets/workflow-assets/sources/asset-source-webdav.md) |
+| Sink       | [WebDav Sink](/docs/assets/workflow-assets/sinks/asset-sink-webdav)       |
 
 ## Configuration
 

@@ -54,10 +54,10 @@ Some examples:
 | Asset type      | Link                                                                      |
 |-----------------|---------------------------------------------------------------------------|
 | Formats         | [Generic Format](../formats/asset-format-generic)               |
-| Flow Processors | [Filter & Routing](../processors-flow/asset-flow-filterrouting) |
-|                 | [Javascript](../processors-flow/asset-flow-javascript)          |
-|                 | [Mapping](../processors-flow/asset-flow-mapping)                |
-|                 | [Stream Boundary](../processors-flow/asset-flow-streamboundary) |
+| Flow Processors | [Filter & Routing](/docs/assets/workflow-assets/processors-flow/asset-flow-filterrouting) |
+|                 | [Javascript](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript)          |
+|                 | [Mapping](/docs/assets/workflow-assets/processors-flow/asset-flow-mapping)                |
+|                 | [Stream Boundary](/docs/assets/workflow-assets/processors-flow/asset-flow-streamboundary) |
 
 ## Configuration
 

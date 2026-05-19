@@ -23,13 +23,13 @@ This UI helps to define the outbound connection parameters for an AWS S3 sink.
 
 | Asset type        | Link                                                                |
 |-------------------|---------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
+| Output Processors | [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream) |
 
 ### Prerequisite
 
 You need:
 
-* [AWS Connection](../connections/asset-connection-aws)
+* [AWS Connection](/docs/assets/workflow-assets/connections/asset-connection-aws)
 
 ## Configuration
 
@@ -57,7 +57,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 #### S3 Connection (A)
 
-Select the [AWS Connection](../connections/asset-connection-aws) to use for this Asset. If it does not exist, you need to create it first.
+Select the [AWS Connection](/docs/assets/workflow-assets/connections/asset-connection-aws) to use for this Asset. If it does not exist, you need to create it first.
 
 #### S3 Bucket (B)
 
@@ -86,7 +86,7 @@ The status of these attempts is displayed at the bottom of the group box.
 
 ### Internal
 
-* [S3 Connection](../connections/asset-connection-aws)
+* [S3 Connection](/docs/assets/workflow-assets/connections/asset-connection-aws)
 * [S3 Source](../sources/asset-source-s3.md)
 
 ### External

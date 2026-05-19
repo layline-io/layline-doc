@@ -22,8 +22,8 @@ Defines the connection parameters for an FTP/SFTP endpoint.
 
 | Asset type | Link                                                |
 |------------|-----------------------------------------------------|
-| Source     | [FTP Source](../sources/asset-source-ftp.md) |
-| Sink       | [FTP Sink](../sinks/asset-sink-ftp)       |
+| Source     | [FTP Source](/docs/assets/workflow-assets/sources/asset-source-ftp.md) |
+| Sink       | [FTP Sink](/docs/assets/workflow-assets/sinks/asset-sink-ftp)       |
 
 ## Configuration
 
@@ -113,8 +113,8 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 
 ### Internal
 
-* [FTP Source](../sources/asset-source-ftp.md)
-* [FTP Sink](../sinks/asset-sink-ftp)
+* [FTP Source](/docs/assets/workflow-assets/sources/asset-source-ftp.md)
+* [FTP Sink](/docs/assets/workflow-assets/sinks/asset-sink-ftp)
 * [Stream Input Processor](../processors-input/asset-input-stream)
 * [Stream Output Processor](../processors-output/asset-output-stream)
 * [Create and manage secrets](../resources/asset-resource-secret)

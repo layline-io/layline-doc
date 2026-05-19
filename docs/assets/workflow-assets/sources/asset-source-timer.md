@@ -26,7 +26,7 @@ What will be relevant is that something should happen, and the timer source make
 
 ## Used by
 
-* [Input Message](../processors-input/asset-input-message)
+* [Input Message](/docs/assets/workflow-assets/processors-input/asset-input-message)
 
 ## Configuration
 
@@ -123,7 +123,7 @@ A new timer with default values is automatically created. Let's go through the p
 
 In this mode, the Timer Source will not use its own internal timer but will rely on the timer service to trigger messages. The timer service will be used to trigger messages at specified intervals.
 
-So instead of defining timers within the Timer Source, you will define them in the [Timer Service](../services/asset-service-timer).
+So instead of defining timers within the Timer Source, you will define them in the [Timer Service](/docs/assets/workflow-assets/services/asset-service-timer).
 
 ![Using timer service (Timer Source)](.asset-source-timer_images/image_44.png "Using timer service (Timer Source)")
 
@@ -213,8 +213,8 @@ When a message is issued within a Batch or Event Stream and sent downstream in t
 ## Related Topics
 
 ### Internal
-* [Input Message](../processors-input/asset-input-message)
-* [Timer Service](../services/asset-service-timer)
+* [Input Message](/docs/assets/workflow-assets/processors-input/asset-input-message)
+* [Timer Service](/docs/assets/workflow-assets/services/asset-service-timer)
 
 ### External
 * [Cron](https://en.wikipedia.org/wiki/Cron)

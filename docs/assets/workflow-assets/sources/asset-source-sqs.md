@@ -28,13 +28,13 @@ This UI helps to define the specific bucket and folder source of an SQS connecte
 
 | Asset type       | Link                                                                     |
 |------------------|--------------------------------------------------------------------------|
-| Input Processors | [Frame Input Processor](../processors-input/asset-input-frame) |
+| Input Processors | [Frame Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-frame) |
 
 ### Prerequisite
 
 You need:
 
-* [AWS Connection](../connections/asset-connection-aws)
+* [AWS Connection](/docs/assets/workflow-assets/connections/asset-connection-aws)
 
 ## Configuration
 
@@ -56,7 +56,7 @@ Configure the parameters for your SQS endpoint:
 
 #### SQS Connection
 
-Use the drop-down list to select an [AWS Connection](../connections/asset-connection-aws) that should support this Asset. If it does not exist, you need to create it first.
+Use the drop-down list to select an [AWS Connection](/docs/assets/workflow-assets/connections/asset-connection-aws) that should support this Asset. If it does not exist, you need to create it first.
 
 #### SQS Queue
 

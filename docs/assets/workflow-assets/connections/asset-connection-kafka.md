@@ -18,8 +18,8 @@ Defines the connection parameters for a Kafka endpoint.
 
 | Asset type | Link                                                    |
 |------------|---------------------------------------------------------|
-| Source     | [Kafka Source](../sources/asset-source-kafka.md) |
-| Sink       | [Kafka Sink](../sinks/asset-sink-kafka)       |
+| Source     | [Kafka Source](/docs/assets/workflow-assets/sources/asset-source-kafka.md) |
+| Sink       | [Kafka Sink](/docs/assets/workflow-assets/sinks/asset-sink-kafka)       |
 
 ## Configuration
 
@@ -146,8 +146,8 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 
 ### Internal
 
-* [Kafka Source](../sources/asset-source-kafka.md)
-* [Kafka Sink](../sinks/asset-sink-kafka)
+* [Kafka Source](/docs/assets/workflow-assets/sources/asset-source-kafka.md)
+* [Kafka Sink](/docs/assets/workflow-assets/sinks/asset-sink-kafka)
 * [Kafka Input Processor](../processors-input/asset-input-kafka)
 * [Frame Output Processor](../processors-output/asset-output-frame)
 * [Create and manage secrets](../resources/asset-resource-secret)

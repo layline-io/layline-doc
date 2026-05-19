@@ -22,11 +22,11 @@ Defines the specific sink parameters for a SharePoint connected endpoint.
 
 | Asset type        | Link                                                                          |
 |-------------------|-------------------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
+| Output Processors | [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream) |
 
 You need:
 
-* [MS Graph Connection](../connections/asset-connection-msgraph)
+* [MS Graph Connection](/docs/assets/workflow-assets/connections/asset-connection-msgraph)
 
 ## Configuration
 
@@ -50,11 +50,11 @@ Configure the parameters for your SharePoint endpoint:
 
 ![MSGraph Connection drop-down list](./.asset-sink-sharepoint_images/1714668065803.png "MSGraph Connection drop-down list")
 
-Use the drop-down list to select an [MS Graph Connection](../connections/asset-connection-msgraph) that should
+Use the drop-down list to select an [MS Graph Connection](/docs/assets/workflow-assets/connections/asset-connection-msgraph) that should
 support this SharePoint configuration. If it does not exist, you need to create it first.
 
 :::info
-Your [MS Graph Connection](../connections/asset-connection-msgraph) needs to have the following configured scope:
+Your [MS Graph Connection](/docs/assets/workflow-assets/connections/asset-connection-msgraph) needs to have the following configured scope:
 * Sites.ReadWrite.All
 * Files.ReadWrite.All
 :::

@@ -49,8 +49,8 @@ A single Message Service can reference multiple Message Sources. For each Messag
 
 | Asset type | Link |
 |------------|------|
-| Processors | [JavaScript Processor](../processors-flow/asset-flow-javascript.md) |
-| | [Python Processor](../processors-flow/asset-flow-python.md) |
+| Processors | [JavaScript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript.md) |
+| | [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python.md) |
 
 ### Related Asset
 
@@ -315,7 +315,7 @@ def on_order_confirmed(order_id, order_details):
 
 A downstream Workflow that references `OrderSource` will receive this message via its Input Processor and can process the confirmation further.
 
-For more on processors, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md) and [Python Processor](../processors-flow/asset-flow-python.md).
+For more on processors, see [JavaScript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript.md) and [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python.md).
 
 <Testcase></Testcase>
 

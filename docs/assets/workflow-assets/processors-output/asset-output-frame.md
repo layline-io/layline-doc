@@ -34,11 +34,11 @@ This Asset is used within a Workflow definition.
 You need:
 **A Sink, either one of:**
 
-* [EventBridge](../sinks/asset-sink-eventbridge)
-* [Kafka](../sinks/asset-sink-kafka)
-* [Kinesis](../sinks/asset-sink-kinesis)
-* [SNS](../sinks/asset-sink-sns)
-* [SQS](../sinks/asset-sink-sqs)
+* [EventBridge](/docs/assets/workflow-assets/sinks/asset-sink-eventbridge)
+* [Kafka](/docs/assets/workflow-assets/sinks/asset-sink-kafka)
+* [Kinesis](/docs/assets/workflow-assets/sinks/asset-sink-kinesis)
+* [SNS](/docs/assets/workflow-assets/sinks/asset-sink-sns)
+* [SQS](/docs/assets/workflow-assets/sinks/asset-sink-sqs)
 
 ## Configuration
 
@@ -131,16 +131,16 @@ In case the conditions are met, the message is then forwarded to an [EventBridge
 
   ![](.asset-output-frame_images/a6b1b590.png "Add EventBridge Event Bus (Output Frame)")
 
-  An Event Bus reference can be selected from Event Buses which you have already defined in an [Event Bridge Sink](../sinks/asset-sink-eventbridge),
+  An Event Bus reference can be selected from Event Buses which you have already defined in an [Event Bridge Sink](/docs/assets/workflow-assets/sinks/asset-sink-eventbridge),
   or you can define a term which returns the Event Bus name through a [Quickscript](../../../language-reference/quickscript/quickscript.md) term.
 
-    * **Constant**: Pick this option to select from Event Buses which you have defined in an [Event Bridge Sink](../sinks/asset-sink-eventbridge).
+    * **Constant**: Pick this option to select from Event Buses which you have defined in an [Event Bridge Sink](/docs/assets/workflow-assets/sinks/asset-sink-eventbridge).
       Select the available Event Buses from the drop-down on the right:
 
   ![Select pre-configured Event Bus (Output Frame)](.asset-output-frame_images/bc80c560.png)
 
     * **Calculated**: Enter a [Quickscript](../../../language-reference/quickscript/quickscript.md) term which evaluates to an Event Bus name.
-      You can also use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+      You can also use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/c24d9aea.png "Define a calculated Event Bus term")
@@ -367,7 +367,7 @@ If exclusive access cannot be obtained, you will receive an error.
   the [Mapping Asset](../processors-flow/asset-flow-mapping) or via [Javascript](../processors-flow/asset-flow-javascript)).
 
 * **`Topic`**: Enter the name of the topic you want to exclusively obtain access to.
-  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
 
 ## Sink Settings for Kinesis
 
@@ -439,7 +439,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
   A Kinesis data stream is a category through which you can send and receive real-time streaming data.
   It acts as a durable and ordered log of the data records. The stream parameter is used to identify the stream to which you want to send or receive data.
 
-    * **Constant**: Pick this option to select from Streams which you have defined in a [Kinesis Sink](../sinks/asset-sink-kinesis).
+    * **Constant**: Pick this option to select from Streams which you have defined in a [Kinesis Sink](/docs/assets/workflow-assets/sinks/asset-sink-kinesis).
       Select an available stream from the drop-down on the right:
 
       ![](.asset-output-frame_images/9e956db9.png "Select pre-configured Kinesis Stream (Output Frame)")
@@ -447,7 +447,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
       Alternatively, simply enter the name of the stream.
 
     * **Calculated**: Enter a [Quickscript](../../../language-reference/quickscript/quickscript.md) term which evaluates to an SNS topic name.
-      You can also use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+      You can also use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/dd7d8b93.png "Define a calculated Kinesis Stream term")
@@ -467,7 +467,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
       ![](.asset-output-frame_images/780d740e.png "Enter fixed Kinesis Partition Key (Output Frame)")
 
     * **Calculated**: Enter a [Quickscript](../../../language-reference/quickscript/quickscript.md) term which evaluates to Kinesis Partition Key.
-      You can also use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+      You can also use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/7ff5ab22.png "Define a calculated Partition Key term")
@@ -540,7 +540,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
 
 * **`Topic`**: Enter a term (Constant) or a QuickScript (Calculated) which is passed to SNS as the topic name to which the data should be written.
 
-    * **Constant**: Pick this option to select from Topics which you have defined in an [SNS Sink](../sinks/asset-sink-sns).
+    * **Constant**: Pick this option to select from Topics which you have defined in an [SNS Sink](/docs/assets/workflow-assets/sinks/asset-sink-sns).
       Select the available topics from the drop-down on the right:
 
       ![](.asset-output-frame_images/e13973fe.png "Select pre-configured SNS Topic (Output Frame)")
@@ -548,7 +548,7 @@ In case the conditions are met, the message is then forwarded to SNS in the form
       Alternatively, simply enter the name of the topic.
 
     * **Calculated**: Enter a [Quickscript](../../../language-reference/quickscript/quickscript.md) term which evaluates to an SNS topic name.
-      You can also use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+      You can also use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/bbe776b5.png "Define a calculated SNS Topic term")
@@ -746,7 +746,7 @@ In case the conditions are met, the message is then forwarded to SQS in the form
 
 * **`Queue`**: Enter a term (Constant) or a QuickScript (Calculated) which is passed to SQS as the queue name to which the data should be written.
 
-    * **Constant**: Pick this option to select from Queues which you have defined in an [SQS Sink](../sinks/asset-sink-sqs).
+    * **Constant**: Pick this option to select from Queues which you have defined in an [SQS Sink](/docs/assets/workflow-assets/sinks/asset-sink-sqs).
       Select the available Queues from the drop-down on the right:
 
       ![](.asset-output-frame_images/ddaba884.png)
@@ -754,7 +754,7 @@ In case the conditions are met, the message is then forwarded to SQS in the form
       Alternatively, simply enter the name of the topic.
 
     * **Calculated**: Enter a [Quickscript](../../../language-reference/quickscript/quickscript.md) term which evaluates to an SQS topic name.
-      You can also use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+      You can also use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
       Make sure the result is enclosed in quotes as a result to form a valid result string.
 
       ![](.asset-output-frame_images/8ce31e60.png "Define a calculated SQS Topic term")

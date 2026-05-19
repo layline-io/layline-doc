@@ -18,7 +18,7 @@ Defines the parameters for writing output files to the local file system. The Fi
 
 | Asset type        | Link                                                                |
 |-------------------|---------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
+| Output Processors | [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream) |
 
 ### Prerequisite
 
@@ -142,7 +142,7 @@ This configuration:
 
 ## See Also
 
-* [Stream Output Processor](../processors-output/asset-output-stream)
+* [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream)
 * [File System Source](../sources/asset-source-file.md)
 * [Environment Variables](../resources/asset-resource-environment)
 

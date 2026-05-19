@@ -15,13 +15,13 @@ Defines the outbound connection parameters for a Kafka sink.
 
 | Asset type        | Link                                                              |
 |-------------------|-------------------------------------------------------------------|
-| Output Processors | [Frame Output Processor](../processors-output/asset-output-frame) |
+| Output Processors | [Frame Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-frame) |
 
 ### Prerequisite
 
 You need:
 
-* [Kafka Connection](../connections/asset-connection-kafka)
+* [Kafka Connection](/docs/assets/workflow-assets/connections/asset-connection-kafka)
 
 ## Configuration
 
@@ -47,7 +47,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ![](.asset-sink-kafka-images/a44e1dd8.png "Kafka Connection (Kafka Sink)")
 
-Select the [Kafka Connection](../connections/asset-connection-kafka) to use with this Asset.
+Select the [Kafka Connection](/docs/assets/workflow-assets/connections/asset-connection-kafka) to use with this Asset.
 If it does not exist, you need to create it first.
 
 ### Kafka Producer Settings
@@ -86,7 +86,7 @@ Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** in the new table 
 
 * [Kafka Input Processor](../processors-input/asset-input-kafka)
 * [Kafka Source](../sources/asset-source-kafka.md)
-* [Frame Output Processor](../processors-output/asset-output-frame)
+* [Frame Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-frame)
 * [Create and manage secrets](../resources/asset-resource-secret)
 
 ### External

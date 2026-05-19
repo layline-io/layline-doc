@@ -22,13 +22,13 @@ Polls a Virtual File System (VFS) for files and makes them available to downstre
 
 | Asset type       | Link                                                               |
 |------------------|--------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream)   |
+| Input Processors | [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream)   |
 
 ### Prerequisite
 
 You need:
 
-- A [**Virtual File System Connection**](../connections/asset-connection-virtual-fs)
+- A [**Virtual File System Connection**](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs)
 
 ## Configuration
 
@@ -58,7 +58,7 @@ In case you are deploying to a Cluster with Reactive Engine Nodes that have spec
 
 ![Virtual File System Settings (Virtual File System Source)](./.Virtual_File_System_Source_images/vfs-source-vfs-settings.png "Virtual File System Settings (Virtual File System Source)")
 
-**Connection** — Select the [Virtual File System Connection](../connections/asset-connection-virtual-fs) to use for reading files. If no connection exists, create one first.
+**Connection** — Select the [Virtual File System Connection](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs) to use for reading files. If no connection exists, create one first.
 
 ### Folders
 

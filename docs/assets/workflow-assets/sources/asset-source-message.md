@@ -18,7 +18,7 @@ Define a Message Source. A Message Source defines one or more topics that can be
 
 ### Architecture
 
-The Message Source is the **consumer side** of layline.io's internal messaging system. The corresponding **producer side** is the [Message Service](../services/asset-service-message.md), which is used to publish messages to topics defined in a Message Source.
+The Message Source is the **consumer side** of layline.io's internal messaging system. The corresponding **producer side** is the [Message Service](/docs/assets/workflow-assets/services/asset-service-message.md), which is used to publish messages to topics defined in a Message Source.
 
 Together, they form a publish/subscribe system:
 
@@ -36,7 +36,7 @@ flowchart LR
     IP -->|"processes"| WF
 ```
 
-Messages published via a Message Service are routed to the configured topic. Any Input Processor (such as [Stream Input](../processors-input/asset-input-stream) or [Frame Input](../processors-input/asset-input-frame)) that references this Message Source can subscribe to and consume those messages.
+Messages published via a Message Service are routed to the configured topic. Any Input Processor (such as [Stream Input](/docs/assets/workflow-assets/processors-input/asset-input-stream) or [Frame Input](/docs/assets/workflow-assets/processors-input/asset-input-frame)) that references this Message Source can subscribe to and consume those messages.
 
 ### Use Cases
 
@@ -51,14 +51,14 @@ A Message Source is useful in scenarios such as:
 
 | Asset type | Link |
 |------------|------|
-| Input Processors | [Stream Input](../processors-input/asset-input-stream) |
-| | [Frame Input](../processors-input/asset-input-frame) |
+| Input Processors | [Stream Input](/docs/assets/workflow-assets/processors-input/asset-input-stream) |
+| | [Frame Input](/docs/assets/workflow-assets/processors-input/asset-input-frame) |
 
 ### Related Asset
 
 | Asset | Description |
 |-------|-------------|
-| [Message Service](../services/asset-service-message.md) | Publishes messages to topics defined in this Message Source |
+| [Message Service](/docs/assets/workflow-assets/services/asset-service-message.md) | Publishes messages to topics defined in this Message Source |
 
 ## Configuration
 
@@ -104,7 +104,7 @@ Click **Add Topic** to add a new topic entry.
 
 ### How It Works
 
-In a layline.io Workflow, a Message Source is assigned to an Input Processor (such as [Stream Input](../processors-input/asset-input-stream) or [Frame Input](../processors-input/asset-input-frame)). The Input Processor connects to the source and receives messages from the configured topics. The messages are then passed through the Workflow for processing.
+In a layline.io Workflow, a Message Source is assigned to an Input Processor (such as [Stream Input](/docs/assets/workflow-assets/processors-input/asset-input-stream) or [Frame Input](/docs/assets/workflow-assets/processors-input/asset-input-frame)). The Input Processor connects to the source and receives messages from the configured topics. The messages are then passed through the Workflow for processing.
 
 Topics with `Cluster` scope are visible and accessible from any Reactive Engine node in the cluster. Topics with `Node` scope are only visible to the local node, which can be useful for node-local caching or coordination.
 
@@ -112,7 +112,7 @@ The number of partitions determines how many parallel instances of a processor c
 
 ### Example: Publishing to a Topic
 
-To publish messages to a topic, use a [Message Service](../services/asset-service-message.md) from a JavaScript or Python processor. The Message Service references this Message Source and exposes functions that publish to its topics.
+To publish messages to a topic, use a [Message Service](/docs/assets/workflow-assets/services/asset-service-message.md) from a JavaScript or Python processor. The Message Service references this Message Source and exposes functions that publish to its topics.
 
 Example (JavaScript):
 
@@ -130,7 +130,7 @@ function publishOrderConfirmation(orderData) {
 }
 ```
 
-For a complete example, see [Message Service](../services/asset-service-message.md).
+For a complete example, see [Message Service](/docs/assets/workflow-assets/services/asset-service-message.md).
 
 For information on using JavaScript Processors, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md).
 

@@ -24,13 +24,13 @@ Defines the specific mount point and directory source of an NFS connected endpoi
 
 | Asset type       | Link                                                                       |
 |------------------|----------------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
+| Input Processors | [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream) |
 
 ### Prerequisite
 
 You need:
 
-* [NFS Connection](../connections/asset-connection-nfs)
+* [NFS Connection](/docs/assets/workflow-assets/connections/asset-connection-nfs)
 
 ## Configuration
 
@@ -54,7 +54,7 @@ You need:
 
 ![NFS Settings (NFS Source)](.asset-source-nfs_images/image_37.png "NFS Settings (NFS Source)")
 
-Select the previously configured [NFS Connection](../connections/asset-connection-nfs) that you want to use for this Source.
+Select the previously configured [NFS Connection](/docs/assets/workflow-assets/connections/asset-connection-nfs) that you want to use for this Source.
 
 ### Folders
 
@@ -66,9 +66,9 @@ The folder paths specified here are relative to the NFS export path configured i
 
 ### Internal
 
-* [NFS Connection](../connections/asset-connection-nfs)
+* [NFS Connection](/docs/assets/workflow-assets/connections/asset-connection-nfs)
 * [NFS Sink](../sinks/asset-sink-nfs)
-* [Stream Input Processor](../processors-input/asset-input-stream)
+* [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream)
 
 ### External
 

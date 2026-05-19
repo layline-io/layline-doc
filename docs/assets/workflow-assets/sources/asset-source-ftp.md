@@ -23,13 +23,13 @@ Defines the specific bucket and folder source of a FTP connected endpoint.
 
 | Asset type       | Link                                                                       |
 |------------------|----------------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
+| Input Processors | [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream) |
 
 ### Prerequisite
 
 You need:
 
-* [FTP Connection](../connections/asset-connection-ftp)
+* [FTP Connection](/docs/assets/workflow-assets/connections/asset-connection-ftp)
 
 ## Configuration
 
@@ -63,7 +63,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ![](.asset-source-ftp_images/df31d8ca.png "FTP Connection (FTP Source)")
 
-Select the previously configured [FTP Connection](../connections/asset-connection-ftp) to use for this Source.
+Select the previously configured [FTP Connection](/docs/assets/workflow-assets/connections/asset-connection-ftp) to use for this Source.
 
 ### Folders
 
@@ -73,7 +73,7 @@ Select the previously configured [FTP Connection](../connections/asset-connectio
 
 ### Internal
 
-* [FTP Connection](../connections/asset-connection-ftp)
+* [FTP Connection](/docs/assets/workflow-assets/connections/asset-connection-ftp)
 * [FTP Sink](../sinks/asset-sink-ftp)
 
 ### External

@@ -20,7 +20,7 @@ Defines the outbound connection parameters for a WebSocket sink. The sink acts a
 
 | Asset type         | Link                                                                          |
 |--------------------|-------------------------------------------------------------------------------|
-| Output Processors  | [Stream Output Processor](../processors-output/asset-output-stream) |
+| Output Processors  | [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream) |
 
 ### Prerequisite
 
@@ -58,7 +58,7 @@ No other assets are required to configure this sink. All connection parameters a
 
 ### Internal
 
-* [Stream Output Processor](../processors-output/asset-output-stream)
+* [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream)
 
 ---
 

@@ -22,13 +22,13 @@ Defines the specific sink parameters for a WebDAV connected endpoint.
 
 | Asset type        | Link                                                                |
 |-------------------|---------------------------------------------------------------------|
-| Output Processors | [Stream Output Processor](../processors-output/asset-output-stream) |
+| Output Processors | [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream) |
 
 ### Prerequisite
 
 You need:
 
-* [WebDAV Connection](../connections/asset-connection-webdav "Name & Description (WebDAV Sink Asset)")
+* [WebDAV Connection](/docs/assets/workflow-assets/connections/asset-connection-webdav "Name & Description (WebDAV Sink Asset)")
 
 ## Configuration
 
@@ -46,7 +46,7 @@ You need:
 
 ![](./.asset-sink-webdav_images/1723038026663.png "WebDAV Connection (WebDAV Sink Asset)")
 
-Select the [WebDAV Connection](../connections/asset-connection-webdav) to use with this Asset.
+Select the [WebDAV Connection](/docs/assets/workflow-assets/connections/asset-connection-webdav) to use with this Asset.
 If it does not exist, you need to create it first.
 
 ### Directories

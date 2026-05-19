@@ -26,13 +26,13 @@ Defines the specific source parameters for an Email connected endpoint.
 
 | Asset type       | Link                                                            |
 |------------------|-----------------------------------------------------------------|
-| Input Processors | [Stream Input Message](../processors-input/asset-input-message) |
+| Input Processors | [Stream Input Message](/docs/assets/workflow-assets/processors-input/asset-input-message) |
 
 ### Prerequisite
 
 You need:
 
-* [Email Connection](../connections/asset-connection-email)
+* [Email Connection](/docs/assets/workflow-assets/connections/asset-connection-email)
 
 ## Configuration
 
@@ -64,11 +64,11 @@ Configure the parameters for your Email endpoint:
 
 ![Email Connection drop-down list](./.asset-source-email_images/1714733850284.png "Email Connection drop-down list")
 
-Use the drop-down list to select an [Email Connection](../connections/asset-connection-email) that should
+Use the drop-down list to select an [Email Connection](/docs/assets/workflow-assets/connections/asset-connection-email) that should
 support this Email configuration. If it does not exist, you need to create it first.
 
 :::info
-Your [Email Connection](../connections/asset-connection-email) needs to have the following configured scope:
+Your [Email Connection](/docs/assets/workflow-assets/connections/asset-connection-email) needs to have the following configured scope:
 
 * mail.readwrite
   :::

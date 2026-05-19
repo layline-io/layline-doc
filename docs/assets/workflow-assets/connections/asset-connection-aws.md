@@ -22,13 +22,13 @@ To enable the connection to AWS cloud services or an AWS compatible endpoint.
 
 | Asset type | Link                                                          |
 |------------|---------------------------------------------------------------|
-| Source     | [S3 Source](../sources/asset-source-s3.md)             |
-|            | [SQS Source](../sources/asset-source-sqs.md)           |
-| Sink       | [S3 Sink](../sinks/asset-sink-s3)                   |
-|            | [SNS Sink](../sinks/asset-sink-sns)                 |
-|            | [SQS Sink](../sinks/asset-sink-sqs)                 |
-|            | [Kinesis Sink](../sinks/asset-sink-kinesis)         |
-|            | [EventBridge Sink](../sinks/asset-sink-eventbridge) |
+| Source     | [S3 Source](/docs/assets/workflow-assets/sources/asset-source-s3.md)             |
+|            | [SQS Source](/docs/assets/workflow-assets/sources/asset-source-sqs.md)           |
+| Sink       | [S3 Sink](/docs/assets/workflow-assets/sinks/asset-sink-s3)                   |
+|            | [SNS Sink](/docs/assets/workflow-assets/sinks/asset-sink-sns)                 |
+|            | [SQS Sink](/docs/assets/workflow-assets/sinks/asset-sink-sqs)                 |
+|            | [Kinesis Sink](/docs/assets/workflow-assets/sinks/asset-sink-kinesis)         |
+|            | [EventBridge Sink](/docs/assets/workflow-assets/sinks/asset-sink-eventbridge) |
       
 
 ## Configuration
@@ -165,8 +165,8 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 
 ### Internal
 
-* [S3 Source](../sources/asset-source-s3.md)
-* [S3 Sink](../sinks/asset-sink-s3)
+* [S3 Source](/docs/assets/workflow-assets/sources/asset-source-s3.md)
+* [S3 Sink](/docs/assets/workflow-assets/sinks/asset-sink-s3)
 * [Create and manage secrets](../resources/asset-resource-secret)
 
 ### External

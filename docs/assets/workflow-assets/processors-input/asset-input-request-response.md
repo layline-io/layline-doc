@@ -27,7 +27,7 @@ This Asset is used within a Workflow definition.
 
 You need:
 
-* [Http-Format](../formats/asset-format-http)
+* [Http-Format](/docs/assets/workflow-assets/formats/asset-format-http)
 * [Http-Source](../sources/asset-source-http.md)
 
 ## Configuration
@@ -49,8 +49,8 @@ and then click to follow, if any.
 
 ### Format
 
-Assign a [Http-Format](../formats/asset-format-http) which you have previously defined.
-This Input-Asset will process the requests and responses which are defined in that assigned [Http-Format](../formats/asset-format-http).
+Assign a [Http-Format](/docs/assets/workflow-assets/formats/asset-format-http) which you have previously defined.
+This Input-Asset will process the requests and responses which are defined in that assigned [Http-Format](/docs/assets/workflow-assets/formats/asset-format-http).
 The format will be applied on the incoming data so that it can be accessed via the data dictionary.
 
 ![Format Assignment (Input Request-Response)](.asset-input-request-response_images/4a80984c.png)

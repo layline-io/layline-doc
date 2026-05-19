@@ -20,8 +20,8 @@ Defines the connection parameters for a SMB endpoint.
 
 | Asset type | Link                                                |
 |------------|-----------------------------------------------------|
-| Source     | [SMB Source](../sources/asset-source-smb.md) |
-| Sink       | [SMB Sink](../sinks/asset-sink-smb)       |
+| Source     | [SMB Source](/docs/assets/workflow-assets/sources/asset-source-smb.md) |
+| Sink       | [SMB Sink](/docs/assets/workflow-assets/sinks/asset-sink-smb)       |
 
 ## Configuration
 

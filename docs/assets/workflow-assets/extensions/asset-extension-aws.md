@@ -106,6 +106,6 @@ Configure the **Parameter Store ARN** field to set a base ARN prefix. Then refer
 
 ## See Also
 
-- [Secret](../resources/asset-resource-secret) — Secure storage for sensitive values within layline.io
-- [Environment](../resources/asset-resource-environment) — Project-wide configuration values
+- [Secret](/docs/assets/workflow-assets/resources/asset-resource-secret) — Secure storage for sensitive values within layline.io
+- [Environment](/docs/assets/workflow-assets/resources/asset-resource-environment) — Project-wide configuration values
 - [Engine Configuration](../../deployment-assets/asset-deployment-engine) — Runtime configuration including "Other Resources"

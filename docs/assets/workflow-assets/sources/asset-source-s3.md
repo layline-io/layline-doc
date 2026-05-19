@@ -25,13 +25,13 @@ This UI helps to define the specific bucket and folder source of an S3 connected
 
 | Asset type       | Link                                                                       |
 |------------------|----------------------------------------------------------------------------|
-| Input Processors | [Stream Input Processor](../processors-input/asset-input-stream) |
+| Input Processors | [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream) |
 
 
 ## Prerequisite
 
 You need:
-* [AWS Connection](../connections/asset-connection-aws)
+* [AWS Connection](/docs/assets/workflow-assets/connections/asset-connection-aws)
 
 ## Configuration
 
@@ -64,7 +64,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ![](.asset-source-simages/3e8a642a.png "AWS Connection (S3 Source)")
 
-Select the previously configured [AWS Connection](../connections/asset-connection-aws) to use for this Source.
+Select the previously configured [AWS Connection](/docs/assets/workflow-assets/connections/asset-connection-aws) to use for this Source.
 
 ### S3 Bucket
 
@@ -97,7 +97,7 @@ This usually helps to resolve the issue.
 ## Related Topics
 
 ### Internal
-* [S3 Connection](../connections/asset-connection-aws)
+* [S3 Connection](/docs/assets/workflow-assets/connections/asset-connection-aws)
 * [S3 Sink](../sinks/asset-sink-s3)
 
 ### External

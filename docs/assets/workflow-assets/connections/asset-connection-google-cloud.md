@@ -89,8 +89,8 @@ All Google Cloud Settings fields can be overridden in child assets or inherited 
 
 ## See Also
 
-- [**GCS Sink**](../sinks/asset-sink-gcs) — Write objects to Google Cloud Storage
-- [**GCS Source**](../sources/asset-source-google-cloud-storage.md) — Read objects from Google Cloud Storage
+- [**GCS Sink**](/docs/assets/workflow-assets/sinks/asset-sink-gcs) — Write objects to Google Cloud Storage
+- [**GCS Source**](/docs/assets/workflow-assets/sources/asset-source-google-cloud-storage.md) — Read objects from Google Cloud Storage
 
 ---
 <WipDisclaimer></WipDisclaimer>

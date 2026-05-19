@@ -25,9 +25,9 @@ This Asset is used within a Workflow definition.
 You need:
 **A defined Format**
 
-* [Format Generic](../formats/asset-format-generic)
-* [Format Data Dictionary](../formats/asset-format-data-dictionary)
-* [Format ASN.1](../formats/asset-format-asn1)
+* [Format Generic](/docs/assets/workflow-assets/formats/asset-format-generic)
+* [Format Data Dictionary](/docs/assets/workflow-assets/formats/asset-format-data-dictionary)
+* [Format ASN.1](/docs/assets/workflow-assets/formats/asset-format-asn1)
 
 **A Kafka Sink:**
 
