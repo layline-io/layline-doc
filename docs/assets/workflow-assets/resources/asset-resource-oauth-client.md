@@ -46,7 +46,7 @@ The Secrets table stores one or more client secrets associated with this OAuth c
 
 **`Valid until`** — an optional expiry date. If set, the secret is considered invalid after this date.
 
-**`Secret`** — the secret value. Enable **Use a secret** to reference a value from [Secret Storage](../resources/asset-resource-secret), or disable it to enter a raw secret value directly.
+**`Secret`** — the secret value. Enable **Use a secret** to reference a value from [Secret Storage](/docs/assets/workflow-assets/resources/asset-resource-secret), or disable it to enter a raw secret value directly.
 
 **`Ops`** — remove this secret entry.
 
@@ -67,7 +67,7 @@ The Secrets table stores one or more client secrets associated with this OAuth c
 
 ## See Also
 
-- [Secret](../resources/asset-resource-secret) — for storing secret values in Secret Storage and referencing them in this Resource
+- [Secret](/docs/assets/workflow-assets/resources/asset-resource-secret) — for storing secret values in Secret Storage and referencing them in this Resource
 - [Secret Management (Concept)](../../../concept/advanced/secret-management.md) — overview of how layline.io manages credentials
 
 ---

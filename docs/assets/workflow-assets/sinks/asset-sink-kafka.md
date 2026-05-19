@@ -84,10 +84,10 @@ Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** in the new table 
 
 ### Internal
 
-* [Kafka Input Processor](../processors-input/asset-input-kafka)
-* [Kafka Source](../sources/asset-source-kafka.md)
+* [Kafka Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-kafka)
+* [Kafka Source](/docs/assets/workflow-assets/sources/asset-source-kafka.md)
 * [Frame Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-frame)
-* [Create and manage secrets](../resources/asset-resource-secret)
+* [Create and manage secrets](/docs/assets/workflow-assets/resources/asset-resource-secret)
 
 ### External
 

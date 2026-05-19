@@ -78,7 +78,7 @@ For FTP/SFTP, layline.io supports a number of different authentication methods:
   If - for example - your password is `pass_${env:MYVAR}_word` and you do not want the term `${env:MYVAR}` to be interpreted as a macro and then replaced with the MYVAR environment variable, then tick
   this box to keep the raw string value.
 
-* **`User/Secret`** : Enter a `Username` and select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](../resources/asset-resource-secret) to
+* **`User/Secret`** : Enter a `Username` and select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](/docs/assets/workflow-assets/resources/asset-resource-secret) to
   be
   able to assign it here.
 
@@ -115,9 +115,9 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 
 * [FTP Source](/docs/assets/workflow-assets/sources/asset-source-ftp.md)
 * [FTP Sink](/docs/assets/workflow-assets/sinks/asset-sink-ftp)
-* [Stream Input Processor](../processors-input/asset-input-stream)
-* [Stream Output Processor](../processors-output/asset-output-stream)
-* [Create and manage secrets](../resources/asset-resource-secret)
+* [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream)
+* [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream)
+* [Create and manage secrets](/docs/assets/workflow-assets/resources/asset-resource-secret)
 
 ---
 <WipDisclaimer></WipDisclaimer>

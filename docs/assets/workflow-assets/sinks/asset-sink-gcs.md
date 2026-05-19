@@ -135,7 +135,7 @@ If an object with that key already exists, it is replaced.
 ## See Also
 
 - [**Google Cloud Connection**](/docs/assets/workflow-assets/connections/asset-connection-google-cloud) — Authentication for GCS assets
-- [**GCS Source**](../sources/asset-source-google-cloud-storage.md) — Read objects from Google Cloud Storage
+- [**GCS Source**](/docs/assets/workflow-assets/sources/asset-source-google-cloud-storage.md) — Read objects from Google Cloud Storage
 
 ---
 <WipDisclaimer></WipDisclaimer>

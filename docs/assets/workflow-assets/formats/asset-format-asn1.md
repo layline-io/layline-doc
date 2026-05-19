@@ -38,11 +38,11 @@ We will ensure that your case will be accommodated in the short term.
 
 | Asset type        | Link                                                                       |
 |-------------------|----------------------------------------------------------------------------|
-| Input Processors  | [Kafka Input](../processors-input/asset-input-kafka)                       |
-|                   | [Request-Response Input](../processors-input/asset-input-request-response) |
-|                   | [Stream Input](../processors-input/asset-input-stream)                     |
-|                   | [Frame Input](../processors-input/asset-input-frame)                       |
-| Output Processors | [Stream Output](../processors-output/asset-output-stream)                  |
+| Input Processors  | [Kafka Input](/docs/assets/workflow-assets/processors-input/asset-input-kafka)                       |
+|                   | [Request-Response Input](/docs/assets/workflow-assets/processors-input/asset-input-request-response) |
+|                   | [Stream Input](/docs/assets/workflow-assets/processors-input/asset-input-stream)                     |
+|                   | [Frame Input](/docs/assets/workflow-assets/processors-input/asset-input-frame)                       |
+| Output Processors | [Stream Output](/docs/assets/workflow-assets/processors-output/asset-output-stream)                  |
 
 ## Configuration
 

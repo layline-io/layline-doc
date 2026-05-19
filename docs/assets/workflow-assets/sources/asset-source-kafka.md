@@ -80,8 +80,8 @@ Click **`ADD TOPIC`** to add new topics. Enter the **`Topic`** and **`Group Id`*
 ### Internal
 
 * [Kafka Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-kafka)
-* [Frame Output Processor](../processors-output/asset-output-frame)
-* [Kafka Sink](../sinks/asset-sink-kafka)
+* [Frame Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-frame)
+* [Kafka Sink](/docs/assets/workflow-assets/sinks/asset-sink-kafka)
 * [Kafka Connection](/docs/assets/workflow-assets/connections/asset-connection-kafka)
 
 ### External

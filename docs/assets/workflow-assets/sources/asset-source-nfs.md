@@ -67,7 +67,7 @@ The folder paths specified here are relative to the NFS export path configured i
 ### Internal
 
 * [NFS Connection](/docs/assets/workflow-assets/connections/asset-connection-nfs)
-* [NFS Sink](../sinks/asset-sink-nfs)
+* [NFS Sink](/docs/assets/workflow-assets/sinks/asset-sink-nfs)
 * [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream)
 
 ### External

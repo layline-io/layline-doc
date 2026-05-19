@@ -55,7 +55,7 @@ If it does not exist, you need to create it first.
 ### Internal
 
 * [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream)
-* [FTP Source](../sources/asset-source-ftp.md)
+* [FTP Source](/docs/assets/workflow-assets/sources/asset-source-ftp.md)
 * [FTP Connection](/docs/assets/workflow-assets/connections/asset-connection-ftp)
 
 ---

@@ -115,7 +115,7 @@ The **Access Coordinator** tracks which objects have been processed to prevent d
 ## See Also
 
 - [**Google Cloud Connection**](/docs/assets/workflow-assets/connections/asset-connection-google-cloud) — OAuth configuration for GCS access
-- [**GCS Sink**](../sinks/asset-sink-gcs) — Write objects to Google Cloud Storage
+- [**GCS Sink**](/docs/assets/workflow-assets/sinks/asset-sink-gcs) — Write objects to Google Cloud Storage
 - [**VFS Source**](asset-source-virtual-fs.md) — Read files from a Virtual File System mount
 
 ---

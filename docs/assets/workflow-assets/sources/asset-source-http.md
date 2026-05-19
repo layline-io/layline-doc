@@ -26,7 +26,7 @@ Defines the specific source parameters for a Http connected endpoint.
 
 ### Prerequisite
 
-* [Http-Format(s)](../formats/asset-format-http)
+* [Http-Format(s)](/docs/assets/workflow-assets/formats/asset-format-http)
 
 ## Configuration
 
@@ -42,7 +42,7 @@ Defines the specific source parameters for a Http connected endpoint.
 
 ### Format dependencies
 
-Assign 1-n configured [Http-Format(s)](../formats/asset-format-http) that should be handled through the configured Http-Server.
+Assign 1-n configured [Http-Format(s)](/docs/assets/workflow-assets/formats/asset-format-http) that should be handled through the configured Http-Server.
 You can assign more than one Http-Format in order to handle multiple "Request-Response"s through the configured Http-Server Port (see next).
 
 ![Format dependencies (Http Source)](./.asset-source-http_images/1715763201303.png "Format dependencies (Http Source)")

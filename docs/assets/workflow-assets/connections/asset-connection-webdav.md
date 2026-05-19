@@ -63,7 +63,7 @@ You should be able to obtain the necessary parameters from your webdav provider 
   Your username.
 
 * **`Secret`**:
-  Select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](../resources/asset-resource-secret) to be able to assign it here.
+  Select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](/docs/assets/workflow-assets/resources/asset-resource-secret) to be able to assign it here.
 
   Please [follow this link to "Advanced Concepts"](../../../concept/advanced/secret-management.md) to learn about the concept and use of the Security Storage.
 
@@ -107,5 +107,5 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 ---
 
 :::tip Fields marked with "**_macro supported_**"
-You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
 :::

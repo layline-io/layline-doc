@@ -26,7 +26,7 @@ Defines the connection parameters for various Microsoft application endpoints, f
 |            | [SharePoint Source](/docs/assets/workflow-assets/sources/asset-source-sharepoint.md) |
 | Sink       | [OneDrive Sink](/docs/assets/workflow-assets/sinks/asset-sink-onedrive)           |
 |            | [SharePoint Sink](/docs/assets/workflow-assets/sinks/asset-sink-sharepoint)       |
-| Service    | [Teams Service](../services/asset-service-teams)        |
+| Service    | [Teams Service](/docs/assets/workflow-assets/services/asset-service-teams)        |
 
 ## Configuration
 

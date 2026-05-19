@@ -85,8 +85,8 @@ When the Reactive Engine starts, it creates `input/`, `archive/`, and `error/` d
 
 ## See Also
 
-- [Secret](../resources/asset-resource-secret) — for managing sensitive credentials alongside directory paths
-- [Environment](../resources/asset-resource-environment) — for environment-specific variable substitution
+- [Secret](/docs/assets/workflow-assets/resources/asset-resource-secret) — for managing sensitive credentials alongside directory paths
+- [Environment](/docs/assets/workflow-assets/resources/asset-resource-environment) — for environment-specific variable substitution
 - [Macros](../../../language-reference/macros) — for using macros in directory paths and permission strings
 
 ---

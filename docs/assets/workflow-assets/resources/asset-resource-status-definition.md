@@ -194,8 +194,8 @@ params = status.parameters   # ['42', 'orders']
 
 ## See Also
 
-- [Secret](../resources/asset-resource-secret) — for storing secret values alongside status definitions
-- [Environment](../resources/asset-resource-environment) — for environment-specific configuration
+- [Secret](/docs/assets/workflow-assets/resources/asset-resource-secret) — for storing secret values alongside status definitions
+- [Environment](/docs/assets/workflow-assets/resources/asset-resource-environment) — for environment-specific configuration
 
 ---
 

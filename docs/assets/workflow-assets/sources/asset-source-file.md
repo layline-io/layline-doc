@@ -59,7 +59,7 @@ None
 ### Internal
 
 * [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream)
-* [File System Sink](../sinks/asset-sink-file)
+* [File System Sink](/docs/assets/workflow-assets/sinks/asset-sink-file)
 
 ### External
 

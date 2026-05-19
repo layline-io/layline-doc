@@ -51,7 +51,7 @@ The Directories section defines where files are written and how they are handled
   * **Absolute** — e.g., `/tmp/layline/output` or `C:\layline\output`
   * **Relative** — Relative to the working directory of the Reactive Engine cluster node executing the workflow
   
-  You can use `$\{...\}` macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+  You can use `$\{...\}` macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
 
 * **Output Prefix** — Prefix to add to the filename when writing to the output directory. E.g., `out_` will prepend `out_` to the filename.
 
@@ -143,8 +143,8 @@ This configuration:
 ## See Also
 
 * [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream)
-* [File System Source](../sources/asset-source-file.md)
-* [Environment Variables](../resources/asset-resource-environment)
+* [File System Source](/docs/assets/workflow-assets/sources/asset-source-file.md)
+* [Environment Variables](/docs/assets/workflow-assets/resources/asset-resource-environment)
 
 ---
 

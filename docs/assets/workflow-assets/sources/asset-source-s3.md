@@ -98,7 +98,7 @@ This usually helps to resolve the issue.
 
 ### Internal
 * [S3 Connection](/docs/assets/workflow-assets/connections/asset-connection-aws)
-* [S3 Sink](../sinks/asset-sink-s3)
+* [S3 Sink](/docs/assets/workflow-assets/sinks/asset-sink-s3)
 
 ### External
 * [Cron on Wikipedia](https://en.wikipedia.org/wiki/Cron)

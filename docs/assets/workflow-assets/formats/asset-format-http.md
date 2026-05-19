@@ -14,7 +14,7 @@ import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 
 ## Purpose
 
-The Http-Format Asset defines Http-Rest-Interfaces which can be used together with a [Request-Response Input](../processors-input/asset-input-request-response) Processor.
+The Http-Format Asset defines Http-Rest-Interfaces which can be used together with a [Request-Response Input](/docs/assets/workflow-assets/processors-input/asset-input-request-response) Processor.
 Essentially you will be defining all the ways, an external entity can invoke a layline.io Workflow through an Http-interface.
 Each call will generate a message with an optional payload (depending on how you configure the format).
 The message then starts traversing the Workflow and can be subsequently be reacted to.
@@ -29,14 +29,14 @@ Some examples:
   An external system wants to query a layline.io instance for specific data by way of an Http-interface.
   layline.io provides this interface to receive the query, retrieve the necessary information and respond back to the querying system through the Http-interface.
 
-Please check the [Request-Response Input](../processors-input/asset-input-request-response) Processor for more insight and adequate examples.
+Please check the [Request-Response Input](/docs/assets/workflow-assets/processors-input/asset-input-request-response) Processor for more insight and adequate examples.
 
 ### This Asset can be used by:
 
 | Asset type       | Link                                                                 |
 |------------------|----------------------------------------------------------------------|
-| Input Processors | [Request-Response](../processors-input/asset-input-request-response) |
-| Source           | [Http Source](../sources/asset-source-http.md)                          |
+| Input Processors | [Request-Response](/docs/assets/workflow-assets/processors-input/asset-input-request-response) |
+| Source           | [Http Source](/docs/assets/workflow-assets/sources/asset-source-http)                          |
 
 ## Configuration
 
@@ -108,7 +108,7 @@ A new path will be created with some default parameters.
 * **`Http Path`**: The actual http url part of the path under which the http methods can be reached.
 
   Example: Let's assume you have configured a workflow to handle incoming http requests.
-  The workflow has a [Request-Response Input](../processors-input/asset-input-request-response) which is bound to a Source Asset which opens port 4712 under address `https://mycluster.mydomain.com`.
+  The workflow has a [Request-Response Input](/docs/assets/workflow-assets/processors-input/asset-input-request-response) which is bound to a Source Asset which opens port 4712 under address `https://mycluster.mydomain.com`.
   Then given this path configuration you can access it under `htttps://mycluster.mydomain.com:4712/apaleo`.
 
 * **`Header Parameters`**: These are the header parameters which you would like to access in the course of handling the http-call.

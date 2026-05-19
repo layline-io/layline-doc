@@ -132,7 +132,7 @@ function publishOrderConfirmation(orderData) {
 
 For a complete example, see [Message Service](/docs/assets/workflow-assets/services/asset-service-message.md).
 
-For information on using JavaScript Processors, see [JavaScript Processor](../processors-flow/asset-flow-javascript.md).
+For information on using JavaScript Processors, see [JavaScript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript.md).
 
 ---
 

@@ -58,7 +58,7 @@ If it does not exist, you need to create it first.
 ### Internal
 
 * [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream)
-* [NFS Source](../sources/asset-source-nfs.md)
+* [NFS Source](/docs/assets/workflow-assets/sources/asset-source-nfs.md)
 * [NFS Connection](/docs/assets/workflow-assets/connections/asset-connection-nfs)
 
 ## Potential problems

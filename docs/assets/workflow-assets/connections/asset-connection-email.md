@@ -24,7 +24,7 @@ Defines the connection parameters for an Email endpoint.
 | Asset type | Link                                             |
 |------------|--------------------------------------------------|
 | Source     | [Email Source](/docs/assets/workflow-assets/sources/asset-source-email.md)    |
-| Service    | [Email Service](../services/asset-service-email) |
+| Service    | [Email Service](/docs/assets/workflow-assets/services/asset-service-email) |
 
 ## Configuration
 
@@ -172,7 +172,7 @@ For settings please see [Microsoft Client Credential Flow](#microsoft-oauth-clie
 ---
 
 :::tip Fields marked with "**_macro supported_**"
-You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
 :::
 
 ---

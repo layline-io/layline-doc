@@ -65,9 +65,9 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 * **`User`** : Username to authenticate against the remote cluster.
 
-* **`Password`** : Password to authenticate against the remote cluster. This field does **not** accept a plain-text password. It is a dropdown that lists all secrets defined in your project's [Secret](../resources/asset-resource-secret) assets. Select the named secret you want to use (e.g. `proxy-password`). The secret value is resolved at runtime — it is never stored in clear text in the project configuration.
+* **`Password`** : Password to authenticate against the remote cluster. This field does **not** accept a plain-text password. It is a dropdown that lists all secrets defined in your project's [Secret](/docs/assets/workflow-assets/resources/asset-resource-secret) assets. Select the named secret you want to use (e.g. `proxy-password`). The secret value is resolved at runtime — it is never stored in clear text in the project configuration.
 
-  To create or manage secrets, see the [Secret Asset](../resources/asset-resource-secret) documentation.
+  To create or manage secrets, see the [Secret Asset](/docs/assets/workflow-assets/resources/asset-resource-secret) documentation.
 
 * **`Remote urls`** : List of remote URLs to proxy to. Each URL is entered on a separate line. When multiple URLs are provided, requests are routed to one of them (behaviour depends on the target service configuration).
 
@@ -89,7 +89,7 @@ On Cluster B, the `MyDBService` has this function:
 
 ### Step 1 — Create a Secret for Authentication
 
-Create a [Secret Asset](../resources/asset-resource-secret) in your project (e.g. `ClusterB_Credentials`). Add a key-value pair:
+Create a [Secret Asset](/docs/assets/workflow-assets/resources/asset-resource-secret) in your project (e.g. `ClusterB_Credentials`). Add a key-value pair:
 
 | Key | Value |
 |-----|-------|
@@ -135,6 +135,6 @@ export function onMessage() {
 
 ## See Also
 
-- [Secret Asset](../resources/asset-resource-secret) — managing encrypted credentials
+- [Secret Asset](/docs/assets/workflow-assets/resources/asset-resource-secret) — managing encrypted credentials
 - [Service Asset Introduction](./asset-service-introduction) — how services work in general
 - [Javascript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript) — calling services from JavaScript

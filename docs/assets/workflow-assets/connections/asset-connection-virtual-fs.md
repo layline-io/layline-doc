@@ -119,8 +119,8 @@ Validation of mount point paths occurs when a child asset that uses this connect
 
 - [**VFS Source**](/docs/assets/workflow-assets/sources/asset-source-virtual-fs.md) — Read files from a VFS mount
 - [**VFS Sink**](/docs/assets/workflow-assets/sinks/asset-sink-virtual-fs) — Write files to a VFS mount
-- [**SMB Connection**](../connections/asset-connection-smb) — SMB/CIFS backend for VFS
-- [**NFS Connection**](../connections/asset-connection-nfs) — NFS backend for VFS
+- [**SMB Connection**](/docs/assets/workflow-assets/connections/asset-connection-smb) — SMB/CIFS backend for VFS
+- [**NFS Connection**](/docs/assets/workflow-assets/connections/asset-connection-nfs) — NFS backend for VFS
 
 ---
 <WipDisclaimer></WipDisclaimer>

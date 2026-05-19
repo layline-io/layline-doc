@@ -74,7 +74,7 @@ Select the previously configured [FTP Connection](/docs/assets/workflow-assets/c
 ### Internal
 
 * [FTP Connection](/docs/assets/workflow-assets/connections/asset-connection-ftp)
-* [FTP Sink](../sinks/asset-sink-ftp)
+* [FTP Sink](/docs/assets/workflow-assets/sinks/asset-sink-ftp)
 
 ### External
 

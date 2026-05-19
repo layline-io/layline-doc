@@ -66,7 +66,7 @@ If no OAuth Client resource exists in the project, you must create one first. Th
 407603625325-45ik7ma1elfme3qidga7jstkbfnfmhdu.apps.googleusercontent.com
 ```
 
-To use your own OAuth client (recommended for production), replace this with your client's client ID. You can also use a placeholder referencing an [Environment Resource](../resources/asset-resource-environment):
+To use your own OAuth client (recommended for production), replace this with your client's client ID. You can also use a placeholder referencing an [Environment Resource](/docs/assets/workflow-assets/resources/asset-resource-environment):
 
 ```
 ${GOOGLE_CLIENT_ID}

@@ -8,7 +8,7 @@ title: Resources
 
 ## Overview
 
-Resources in layline.io provide a way to externalize configuration from individual assets. Instead of hardcoding credentials, paths, or environment-specific values directly into Connections, Processors, or Services, you define them in a Resource and reference them using [macros](../../../language-reference/macros).
+Resources in layline.io provide a way to externalize configuration from individual assets. Instead of hardcoding credentials, paths, or environment-specific values directly into Connections, Processors, or Services, you define them in a Resource and reference them using [macros](/docs/language-reference/macros).
 
 This separation of configuration from logic enables:
 
@@ -79,6 +79,6 @@ Never hardcode credentials or environment-specific paths in asset configurations
 - [**Connections**](../connections/asset-connection-aws) — Reusable connection parameters for external systems (often reference Secrets and Environment variables)
 - [**Services**](/docs/assets/workflow-assets/services/asset-service-http) — External API and database integrations (use Resources for credentials and endpoint configuration)
 - [**Deployment Assets**](../../deployment-assets/) — How Resources are included in deployments and combined with environment-specific values
-- [**Macros**](../../../language-reference/macros) — Syntax for referencing Resource values in asset configurations
+- [**Macros**](/docs/language-reference/macros) — Syntax for referencing Resource values in asset configurations
 - [**Secret Management**](../../../concept/advanced/secret-management.md) — Architectural overview of credential encryption and storage
 

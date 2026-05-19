@@ -53,7 +53,7 @@ Some examples:
 
 | Asset type      | Link                                                                      |
 |-----------------|---------------------------------------------------------------------------|
-| Formats         | [Generic Format](../formats/asset-format-generic)               |
+| Formats         | [Generic Format](/docs/assets/workflow-assets/formats/asset-format-generic)               |
 | Flow Processors | [Filter & Routing](/docs/assets/workflow-assets/processors-flow/asset-flow-filterrouting) |
 |                 | [Javascript](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript)          |
 |                 | [Mapping](/docs/assets/workflow-assets/processors-flow/asset-flow-mapping)                |

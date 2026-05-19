@@ -72,8 +72,8 @@ Defines the connection parameters for an NFS (Network File System) endpoint.
 
 * [NFS Source](/docs/assets/workflow-assets/sources/asset-source-nfs.md)
 * [NFS Sink](/docs/assets/workflow-assets/sinks/asset-sink-nfs)
-* [Stream Input Processor](../processors-input/asset-input-stream)
-* [Stream Output Processor](../processors-output/asset-output-stream)
+* [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream)
+* [Stream Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-stream)
 
 ---
 <WipDisclaimer></WipDisclaimer>

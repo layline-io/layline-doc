@@ -54,7 +54,7 @@ support this SMB configuration. If it does not exist, you need to create it firs
 #### Share
 
 * **`Share`** : Configure your basic location information for your SMB endpoint.
-  You can use $\{...\} macros to expand variables defined in [environment variables](../resources/asset-resource-environment).
+  You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
 
 ### Directories
 

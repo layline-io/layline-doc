@@ -320,7 +320,7 @@ def on_stream_end():
 
 - [AI Trainer](/docs/assets/workflow-assets/processors-flow/asset-flow-ai-trainer) — train and store models in AI Storage
 - [AI Classifier](/docs/assets/workflow-assets/processors-flow/asset-flow-ai-classifier) — use a trained model directly within a Workflow stream
-- [AI Model Resource](../resources/asset-resource-ai-model.md) — define the model specification used for training and by this service
+- [AI Model Resource](/docs/assets/workflow-assets/resources/asset-resource-ai-model.md) — define the model specification used for training and by this service
 - [Using Artificial Intelligence in Workflows](../../../concept/advanced/artificial-intelligence.md) — conceptual overview of supervised learning in layline.io
 
 ---

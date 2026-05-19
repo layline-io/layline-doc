@@ -19,7 +19,7 @@ You can extend this global dictionary in two ways:
 
 The Resource exists for situations where you need a small data structure — for example a shared enum, a simple sequence used for internal bookkeeping, or a reusable type across Workflows — but where defining a complete Format Asset with input/output handling would be excessive.
 
-For full details of supported element types (Namespace, Sequence, Choice, Enumeration, Array, Map), see the [Data Dictionary Format](../formats/asset-format-data-dictionary.md) documentation.
+For full details of supported element types (Namespace, Sequence, Choice, Enumeration, Array, Map), see the [Data Dictionary Format](/docs/assets/workflow-assets/formats/asset-format-data-dictionary) documentation.
 
 ## Configuration
 
@@ -70,7 +70,7 @@ Once defined, any Asset in the Project can reference `Customer.Profile.CustomerI
 
 ## See Also
 
-- [Data Dictionary Format](../formats/asset-format-data-dictionary.md) — full reference for all element types, encoding configuration, and examples
+- [Data Dictionary Format](/docs/assets/workflow-assets/formats/asset-format-data-dictionary) — full reference for all element types, encoding configuration, and examples
 - [Data Dictionary Concept](../../../concept/data-dictionary.md) — architectural overview of how layline.io maintains and uses the global Data Dictionary
 
 ---

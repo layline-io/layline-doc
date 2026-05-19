@@ -51,11 +51,11 @@ We will explain all of this in this document.
 
 | Asset type        | Link                                                      |
 |-------------------|-----------------------------------------------------------|
-| Input Processors  | [Stream Input](../processors-input/asset-input-stream)    |
-|                   | [Frame Input](../processors-input/asset-input-frame)      |
-|                   | [Kafka Input](../processors-input/asset-input-kafka)      |
-| Output Processors | [Stream Output](../processors-output/asset-output-stream) |
-|                   | [Frame Output](../processors-output/asset-output-frame)   |
+| Input Processors  | [Stream Input](/docs/assets/workflow-assets/processors-input/asset-input-stream)    |
+|                   | [Frame Input](/docs/assets/workflow-assets/processors-input/asset-input-frame)      |
+|                   | [Kafka Input](/docs/assets/workflow-assets/processors-input/asset-input-kafka)      |
+| Output Processors | [Stream Output](/docs/assets/workflow-assets/processors-output/asset-output-stream) |
+|                   | [Frame Output](/docs/assets/workflow-assets/processors-output/asset-output-frame)   |
 
 ## Configuration
 
@@ -1772,14 +1772,14 @@ to set up your format!
 
 **Input Processors**
 
-* [Stream Input](../processors-input/asset-input-stream)
-* [Frame Input](../processors-input/asset-input-frame)
-* [Kafka Input](../processors-input/asset-input-kafka)
+* [Stream Input](/docs/assets/workflow-assets/processors-input/asset-input-stream)
+* [Frame Input](/docs/assets/workflow-assets/processors-input/asset-input-frame)
+* [Kafka Input](/docs/assets/workflow-assets/processors-input/asset-input-kafka)
 
 **Output Processors**
 
-* [Stream Output](../processors-output/asset-output-stream)
-* [Frame Output Processor](../processors-output/asset-output-frame)
+* [Stream Output](/docs/assets/workflow-assets/processors-output/asset-output-stream)
+* [Frame Output Processor](/docs/assets/workflow-assets/processors-output/asset-output-frame)
 
 ### External
 
