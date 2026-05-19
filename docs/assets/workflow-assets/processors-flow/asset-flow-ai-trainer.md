@@ -13,7 +13,7 @@ import OutputPorts from '../../../snippets/assets/_output-ports-single.md';
 
 The **AI Trainer** Processor trains one or more AI models using message data collected from a Workflow. It reads attribute values from incoming messages, assembles them into a training dataset, trains a machine learning model using the Weka library, and stores the trained model in the cluster's **AI Storage**.
 
-The trained model is then used by an [AI Classifier](./asset-flow-ai-classifier) Processor to classify new messages.
+The trained model is then used by an [AI Classifier](../asset-flow-ai-classifier) Processor to classify new messages.
 
 Use this Processor to:
 
@@ -220,7 +220,7 @@ The JavaScript Processor extracts and formats the relevant attributes from each 
 
 ## See Also
 
-- [AI Classifier](./asset-flow-ai-classifier) — for applying a trained model to classify new messages
+- [AI Classifier](../asset-flow-ai-classifier) — for applying a trained model to classify new messages
 - [AI Model Resource](/docs/assets/workflow-assets/resources/asset-resource-ai-model.md) — for defining the model's input/output schema, algorithm type, and hyperparameters
 - [AI Service](/docs/assets/workflow-assets/services/asset-service-ai) — for defining the interface to an AI model
 - [Operations → AI Storage](../../../operations/cluster/ai-storage.md) — for managing trained models in AI Storage
