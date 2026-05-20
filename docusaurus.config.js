@@ -131,10 +131,11 @@ const config = {
             // Replace with your project's social card
             image: 'img/social/6_h630_twitter.png',
             navbar: {
-                title: 'layline.io',
+                title: '',
                 logo: {
                     alt: 'layline.io',
-                    src: 'img/logo/layline_logo.svg',
+                    src: 'img/logo/logo_name_for_light_background.svg',
+                    srcDark: 'img/logo/logo_name_for_dark_background.svg',
                     href: 'https://layline.io',
                 },
                 items: [
@@ -153,37 +154,64 @@ const config = {
                 ],
             },
             footer: {
-                style: 'dark',
+                logo: {
+                    src: 'img/logo/logo_name_for_light_background.svg',
+                    srcDark: 'img/logo/logo_name_for_dark_background.svg',
+                    alt: 'layline.io',
+                    href: 'https://layline.io',
+                    width: 160,
+                    height: 40,
+                },
                 links: [
                     {
-                        title: 'Docs',
-                        // items: [
-                        //     {
-                        //         label: 'Documentation',
-                        //         to: '../index',
-                        //     },
-                        // ],
-                    },
-                    {
-                        title: 'layline.io',
+                        title: 'Product',
                         items: [
                             {
                                 label: 'Corporate Website',
                                 href: 'https://layline.io',
                             },
-                        ],
-                    },
-                    {
-                        title: 'More',
-                        items: [
                             {
                                 label: 'Blog',
                                 href: 'https://layline.io/blog',
                             },
+                            {
+                                label: 'Pricing',
+                                href: 'https://layline.io/pricing',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Documentation',
+                        items: [
+                            {
+                                label: 'Quickstart',
+                                to: '/docs/quickstart/quickstart-overview',
+                            },
+                            {
+                                label: 'Core Concepts',
+                                to: '/docs/concept',
+                            },
+                            {
+                                label: 'Language Reference',
+                                to: '/docs/language-reference',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Legal',
+                        items: [
+                            {
+                                label: 'Privacy Policy',
+                                href: 'https://layline.io/privacy-policy',
+                            },
+                            {
+                                label: 'Terms of Service',
+                                href: 'https://layline.io/terms-of-service',
+                            },
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} layline.io GmbH.`,
+                copyright: `© ${new Date().getFullYear()} layline.io GmbH. All rights reserved.`,
             },
             prism: {
                 theme: lightCodeTheme,
