@@ -73,13 +73,13 @@ Workflow assets are the building blocks of data processing pipelines in layline.
 
 - [**AI Trainer**](./processors-flow/asset-flow-ai-trainer) — Train machine learning models from your workflow data. Use when you need to create custom classification models based on your specific data patterns. Feeds labeled examples to improve classifier accuracy.
 
-- [**Filter & Routing**](./processors-flow/asset-flow-filterroutingx) — Route messages based on conditions or filter unwanted data. Use when you need if/then/else routing, content-based filtering, or to split a single input stream into multiple output paths based on message content.
+- [**Filter & Routing**](./processors-flow/asset-flow-filterrouting) — Route messages based on conditions or filter unwanted data. Use when you need if/then/else routing, content-based filtering, or to split a single input stream into multiple output paths based on message content.
 
 - [**Input Frame Committer**](./processors-flow/asset-flow-input-frame-committer) — Manage transaction boundaries and batch commits. Use when you need precise control over when input offsets are committed (e.g., ensuring data is fully processed before acknowledging Kafka messages).
 
 - [**Javascript**](./processors-flow/asset-flow-javascript) — Execute custom JavaScript code for data transformation. Use when built-in processors don't meet your needs — write custom logic, call external libraries, or implement complex transformations. Full ECMAScript support.
 
-- [**Mapping**](./processors-flow/asset-flow-mappingx) — Transform data structures between formats using visual mapping. Use when converting between different schemas (e.g., internal format to partner API format). Drag-and-drop field mapping with functions and lookups.
+- [**Mapping**](./processors-flow/asset-flow-mapping) — Transform data structures between formats using visual mapping. Use when converting between different schemas (e.g., internal format to partner API format). Drag-and-drop field mapping with functions and lookups.
 
 - [**Python**](./processors-flow/asset-flow-python) — Execute custom Python code for data processing. Use when you need Python libraries (pandas, numpy, custom ML), or when your team prefers Python over JavaScript for transformation logic.
 
@@ -269,7 +269,7 @@ Workflow assets are the building blocks of data processing pipelines in layline.
 
 **When to use:** Workflows orchestrate and coordinate data processing pipelines. The Workflow asset defines how inputs, processors, and outputs connect to form a complete data flow. Every processing pipeline needs at least one Workflow asset.
 
-- [**Workflow**](./workflows/asset-workflow) — Define a complete data processing pipeline. Use to connect Sources/Inputs to Processors to Sinks/Outputs. Defines the flow of data, error handling, parallelization, and resource allocation. Every data pipeline is a Workflow.
+- [**Workflow**](./workflows/index.md) — Define a complete data processing pipeline. Use to connect Sources/Inputs to Processors to Sinks/Outputs. Defines the flow of data, error handling, parallelization, and resource allocation. Every data pipeline is a Workflow.
 
 ---
 

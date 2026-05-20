@@ -141,6 +141,6 @@ Session timeout is configured by your cluster administrator. If you need longer 
 
 ## See Also
 
-- [**Cluster Overview**](./cluster-overview) — High-level cluster health and node status
-- [**Access Coordinator**](./access-coordinator) — Managing access to cluster sources and resources
-- [**Operations User Storage**]( ./operations-user-storage) — User-specific operational data and preferences
+- [**Cluster Overview**](./cluster-monitor.md) — High-level cluster health and node status
+- [**Access Coordinator**](./access-coordinator.md) — Managing access to cluster sources and resources
+- [**Operations User Storage**]( ./operations-user-storage.md) — User-specific operational data and preferences

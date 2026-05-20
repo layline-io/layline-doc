@@ -132,7 +132,7 @@ graph LR
 
 ## See Also
 
-* [Project](/docs/concept/projects-workflows/project) — Workflows are contained within Projects
-* [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream) — the required entry point of every Workflow
+* [Project](/docs/concept/projects-workflows/index.md) — Workflows are contained within Projects
+* [Stream Input Processor](/docs/assets/workflow-assets/processors-input/asset-input-stream.md) — the required entry point of every Workflow
 * [Deployment](../../../concept/projects-workflows/deployment.md) — how Workflows are deployed to an engine
-* [Alarm Center](../../../operations/cluster/alarm-center/alarm-center) — how alarming events are routed and handled
+* [Alarm Center](../../../operations/cluster/alarm-center/index.md) — how alarming events are routed and handled

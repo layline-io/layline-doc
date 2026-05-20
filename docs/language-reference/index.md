@@ -45,18 +45,18 @@ Each scripting language has a complete API reference documenting:
 ### JavaScript API
 
 The JavaScript API is organized into:
-- [Classes](./javascript/API/classes/) — Core processor and utility classes
-- [Interfaces](./javascript/API/interfaces/) — Type definitions for messages, streams, and configuration objects
-- [Enumerations](./javascript/API/enumerations/) — Constants for states, error codes, and configuration options
-- [Variables](./javascript/API/variables/) — Global variables available in the scripting context
+- [Classes](./javascript/API/classes/index.md) — Core processor and utility classes
+- [Interfaces](./javascript/API/interfaces/index.md) — Type definitions for messages, streams, and configuration objects
+- [Enumerations](./javascript/API/enumerations/index.md) — Constants for states, error codes, and configuration options
+- [Variables](./javascript/API/variables/index.md) — Global variables available in the scripting context
 
 ### Python API
 
 The Python API mirrors the JavaScript API with Pythonic naming conventions:
-- [Classes](./python/API/classes/) — Core processor classes (note: Python uses `snake_case` for lifecycle methods)
-- [Interfaces](./python/API/interfaces/) — Type definitions and protocols
-- [Enumerations](./python/API/enumerations/) — Constants and enums
-- [Variables](./python/API/variables/) — Global variables and constants
+- [Classes](./python/API/classes/index.md) — Core processor classes (note: Python uses `snake_case` for lifecycle methods)
+- [Interfaces](./python/API/interfaces/index.md) — Type definitions and protocols
+- [Enumerations](./python/API/enumerations//index.md — Constants and enums
+- [Variables](./python/API/variables/index.md) — Global variables and constants
 
 ---
 

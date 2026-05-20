@@ -77,7 +77,7 @@ Pick one installation method:
 | [Install via Docker](./install-docker) | 5 min | Quick evaluation, pre-installed samples, no system changes |
 
 :::tip Production Deployments
-For high-availability production deployments across multiple machines with clustering, see the [Multi-Node Cluster Setup](../concept/advanced/multi-node-cluster-setup) guide.
+For high-availability production deployments across multiple machines with clustering, see the [Multi-Node Cluster Setup](../concept/advanced/multi-node-cluster-setup.md) guide.
 :::
 
 ### 5. [Your First Workflow](./first-workflow)
