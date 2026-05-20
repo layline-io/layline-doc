@@ -205,7 +205,7 @@ Keep a sample message in your Project documentation:
 
 ## See Also
 
-- [**Formats**](../assets/workflow-assets/formats/index.mdx) — All format types and configuration
+- [**Formats**](../assets/workflow-assets/formats/index.md) — All format types and configuration
 - [**Audit Trail**](../operations/audit-trail/index.md) — Inspecting processed messages
 - [**JavaScript Processor**](../assets/workflow-assets/processors-flow/asset-flow-javascript.md) — Message transformation
 - [**Python Processor**](../assets/workflow-assets/processors-flow/asset-flow-python.md) — Message transformation

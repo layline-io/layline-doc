@@ -277,7 +277,7 @@ Each source type exposes different configuration and runtime details. Refer to t
 
 ## See Also
 
-- [Engine State Overview](./index.mdx) — Understanding the full Engine State interface
+- [Engine State Overview](./index.md) — Understanding the full Engine State interface
 - [Workflow State](./workflows.md) — Monitoring workflow instances
 - [Service State](./services.md) — Service-specific documentation
 - [Sink State](./sinks.md) — Monitoring output sinks

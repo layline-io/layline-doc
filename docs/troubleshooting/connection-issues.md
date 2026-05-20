@@ -193,6 +193,6 @@ If this fails, the issue is the connection itself.
 ## See Also
 
 - [**Sources**](../assets/workflow-assets/sources/index.md) — Source Asset documentation
-- [**Sinks**](../assets/workflow-assets/sinks/index.mdx) — Sink Asset documentation
+- [**Sinks**](../assets/workflow-assets/sinks/index.md) — Sink Asset documentation
 - [**Connections**](../assets/workflow-assets/connections/index.md) — Connection Asset types
 - [**Secret Storage**](../settings/secret-storage.md) — Managing credentials

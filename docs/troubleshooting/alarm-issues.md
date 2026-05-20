@@ -191,5 +191,5 @@ Some alarms may need manual clearing after verification.
 ## See Also
 
 - [**Alarm Center**](../operations/cluster/alarm-center/index.md) — Managing system alarms
-- [**Engine State**](../operations/engine-state/index.mdx) — Live system monitoring
+- [**Engine State**](../operations/engine-state/index.md) — Live system monitoring
 - [**Cluster Management**](../operations/cluster/index.md) — Cluster health and configuration

@@ -8,7 +8,7 @@ description: Short overview of installation and run options for layline.io.
 
 Welcome to layline.io. This section helps you get up and running on a single-instance standalone installation — either on your laptop or a standalone server. Distributed cluster setups and container orchestration (e.g. Kubernetes) are covered separately.
 
-If you are new to layline.io, start with [What is layline.io?](what-is-layline-io) to understand what the platform does and who it is for.
+If you are new to layline.io, start with [What is layline.io?](./what-is-layline-io.md) to understand what the platform does and who it is for.
 
 ### General Prerequisites
 

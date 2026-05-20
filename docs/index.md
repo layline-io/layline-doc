@@ -43,9 +43,9 @@ The **Project** tab is where you build. A Project contains all the Assets and Wo
 
 **What you'll find here:**
 
-- [**Assets Overview**](./assets) — All asset types: Sources, Sinks, Processors, Formats, Services, Connections, and more
-- [**Workflow Assets**](./assets/workflow-assets) — The building blocks of a Workflow: input, flow, and output processors
-- [**Deployment Assets**](./assets/deployment-assets) — Engine deployments, schedulers, tags, and cluster configuration
+- [**Assets Overview**](./assets/index.md) — All asset types: Sources, Sinks, Processors, Formats, Services, Connections, and more
+- [**Workflow Assets**](./assets/workflow-assets/index.md) — The building blocks of a Workflow: input, flow, and output processors
+- [**Deployment Assets**](./assets/deployment-assets/index.md) — Engine deployments, schedulers, tags, and cluster configuration
 
 **Key concepts:**
 - A **Workflow** has exactly one Input Processor as its driver, plus any number of Flow Processors and Output Processors
@@ -119,9 +119,9 @@ Users & Roles documentation is in progress. See [LAY-70](https://linear.app/layl
 | Goal | Start Here |
 |------|-----------|
 | Install and run your first pipeline | [Quickstart Overview](./quickstart/quickstart-overview) |
-| Install locally | [Local Installation](./quickstart/install-local) |
-| Install with Docker | [Docker Deployment](./quickstart/install-docker) |
-| Understand the core concepts | [Core Concepts](./quickstart/core-concepts) |
+| Install locally | [Local Installation](./quickstart/install-local.md) |
+| Install with Docker | [Docker Deployment](./quickstart/install-docker.md) |
+| Understand the core concepts | [Core Concepts](./quickstart/core-concepts.md) |
 
 ### Building Workflows
 

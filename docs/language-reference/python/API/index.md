@@ -1,8 +1,8 @@
-# JavaScript API Reference
+# Python API Reference
 
-Welcome to the **Layline JavaScript API** — your complete toolkit for building powerful workflow processors, services, and integrations.
+Welcome to the **Layline Python API** — your complete toolkit for building powerful workflow processors, services, and integrations in Python.
 
-Whether you're manipulating data, managing streams, sending emails, or orchestrating complex workflows, this API provides everything you need to write clean, efficient JavaScript code within the Layline platform.
+Whether you're manipulating data, managing streams, sending emails, or orchestrating complex workflows, this API provides everything you need to write clean, efficient Python code within the Layline platform.
 
 ---
 
@@ -29,16 +29,18 @@ The core building blocks of your applications — from data handling to workflow
 | [Counter](classes/Counter.md) | Thread-safe counting mechanisms |
 | [DataDictionary](classes/DataDictionary.md) | Structured data definitions and validation |
 | [DataDictionaryEntity](classes/DataDictionaryEntity.md) | Individual entities within a data dictionary |
+| [DataDictionaryTypes](classes/DataDictionaryTypes.md) | Type definitions for data dictionaries |
 | [DateTime](classes/DateTime.md) | Date and time manipulation |
 | [Duration](classes/Duration.md) | Time duration calculations |
 | [Email](classes/Email.md) | Email composition and sending |
-| [JavaScriptProcessor](classes/JavaScriptProcessor.md) | Base class for JavaScript-based processors |
 | [LocalDate](classes/LocalDate.md) | Locale-aware date handling |
 | [Message](classes/Message.md) | Message creation and manipulation |
+| [MessageNode](classes/MessageNode.md) | Message node structure for hierarchical data |
 | [Metrics](classes/Metrics.md) | Performance and operational metrics |
 | [OutputPort](classes/OutputPort.md) | Output port management for data flow |
 | [PackedMessage](classes/PackedMessage.md) | Optimized message packing for efficiency |
 | [Processor](classes/Processor.md) | Base processor functionality |
+| [PythonProcessor](classes/PythonProcessor.md) | Base class for Python-based processors |
 | [Service](classes/Service.md) | Service lifecycle management |
 | [Status](classes/Status.md) | Status tracking and reporting |
 | [StatusCode](classes/StatusCode.md) | Standardized status codes |
@@ -58,7 +60,6 @@ Contracts and type definitions for structured development:
 
 | Interface | Used For |
 |-----------|----------|
-| [DataDictionaryTypes](interfaces/DataDictionaryTypes.md) | Type definitions for data dictionaries |
 | [EmailMessage](interfaces/EmailMessage.md) | Email message structure |
 | [Temporal](interfaces/Temporal.md) | Time-based abstractions |
 | [TimerChoice](interfaces/TimerChoice.md) | Timer choice configurations |
@@ -69,7 +70,7 @@ Contracts and type definitions for structured development:
 
 ### 📦 Global Variables
 
-Instantly accessible objects available in your JavaScript environment:
+Instantly accessible objects available in your Python environment:
 
 | Variable | Description |
 |----------|-------------|
@@ -86,6 +87,7 @@ Instantly accessible objects available in your JavaScript environment:
 ## Quick Tips
 
 - **New to Layline?** Start with the [Workflow](classes/Workflow.md) and [Message](classes/Message.md) classes — they're the heart of most integrations.
+- **Building a Python processor?** Use [PythonProcessor](classes/PythonProcessor.md) as your base class.
 - **Working with schedules?** Check out [TimerService](classes/TimerService.md) and the timer interfaces for flexible scheduling options.
 - **Need to track performance?** The [Metrics](classes/Metrics.md) class and [metrics](variables/metrics.md) variable make it easy to monitor your code.
 

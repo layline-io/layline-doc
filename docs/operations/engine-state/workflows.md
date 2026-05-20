@@ -385,8 +385,8 @@ The auto-refresh pauses if the workflow is not in an active state to reduce serv
 
 ## See Also
 
-- [**Engine State Overview**](./index.mdx) — Introduction to the Engine State monitoring interface
+- [**Engine State Overview**](./index.md) — Introduction to the Engine State monitoring interface
 - [**Cluster Monitor**](../cluster/cluster-monitor.md) — Aggregate cluster health and statistics
 - [**Deployment Storage**](../cluster/deployment-storage.md) — Managing deployments and activations
-- [**Workflow Assets**](../../assets/workflow-assets/workflows/index.mdx) — Designing and configuring workflows
+- [**Workflow Assets**](../../assets/workflow-assets/workflows/index.md) — Designing and configuring workflows
 - [**Audit Trail**](../audit-trail/index.md) — Historical record of workflow executions

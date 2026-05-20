@@ -141,7 +141,7 @@ A **Node** is a host machine (physical or virtual) where a Reactive Engine runs.
 
 **Engine State** is the live view of what is currently running on a Reactive Engine or Cluster. It shows active workflows, services, sources, sinks, and their current status. Engine State is accessed through the Operations tab in the Configuration Center.
 
-See also: [Engine State](../operations/engine-state/index.mdx)
+See also: [Engine State](../operations/engine-state/index.md)
 
 ### Activation Digest
 
@@ -214,13 +214,13 @@ See also: [Sources](../assets/workflow-assets/sources/index.md)
 
 A **Sink** is an Asset that defines where data exits the system — such as a file, database, message queue, or API endpoint. Sinks are used by Output Processors to write results.
 
-See also: [Sinks](../assets/workflow-assets/sinks/index.mdx)
+See also: [Sinks](../assets/workflow-assets/sinks/index.md)
 
 ### Format
 
 A **Format** is an Asset that defines the structure of data — such as XML, JSON, ASN.1, or custom schemas. Formats enable layline.io to parse and validate incoming data and serialize outgoing data.
 
-See also: [Formats](../assets/workflow-assets/formats/index.mdx)
+See also: [Formats](../assets/workflow-assets/formats/index.md)
 
 ### Connection
 
@@ -232,7 +232,7 @@ See also: [Connections](../assets/workflow-assets/connections/index.md)
 
 A **Service** is an Asset that provides shared functionality — such as database access, HTTP clients, message queues, or AI/ML inference. Services can be called from Processors using the JavaScript or Python API.
 
-See also: [Services](../assets/workflow-assets/services/index.mdx)
+See also: [Services](../assets/workflow-assets/services/index.md)
 
 ### Message / Event
 
@@ -310,4 +310,4 @@ A **Digest** is a hash that uniquely identifies a specific version of a Deployme
 - [Core Concepts](../quickstart/core-concepts.md) — Mental models for understanding layline.io
 - [Architecture Overview](./architecture-overview.md) — System components and how they fit together
 - [What is layline.io?](./introduction.md) — Product overview and motivation
-- [Assets Overview](../assets/index.mdx) — Reference documentation for all Asset types
+- [Assets Overview](../assets/index.md) — Reference documentation for all Asset types

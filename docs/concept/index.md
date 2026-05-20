@@ -38,11 +38,11 @@ Global settings and storage management independent of individual projects.
 
 | Topic | Description |
 |-------|-------------|
-| [Introduction](./settings/introduction) | Overview of Configuration Server settings and organization. |
-| [User Storage](./settings/settings-user-storage) | Managing users, groups, roles, and access permissions. |
-| [Security Storage](./settings/settings-secret-storage) | Storing keys, certificates, and security credentials. |
-| [Cluster Storage](./settings/settings-cluster) | Defining and managing Reactive Engine clusters. |
-| [Application Settings](./settings/settings-application) | Configuration Center preferences and settings. |
+| [Introduction](../settings/index.md) | Overview of Configuration Server settings and organization. |
+| [User Storage](../settings/users-and-roles.md) | Managing users, groups, roles, and access permissions. |
+| [Security Storage](../settings/secret-storage.md) | Storing keys, certificates, and security credentials. |
+| [Cluster Storage](../settings/cluster-storage.md) | Defining and managing Reactive Engine clusters. |
+| [Application Settings](../settings/application.md) | Configuration Center preferences and settings. |
 
 ### Advanced Topics
 
@@ -50,19 +50,19 @@ Specialized concepts for advanced users and specific use cases.
 
 | Topic | Description |
 |-------|-------------|
-| [User Storage (Advanced)](./advanced/advanced-user-storage) | Advanced concepts for user storage management. |
-| [Security Storage](./advanced/secret-management) | Comprehensive guide to secret and certificate management. |
-| [Prometheus Extension](./advanced/prometheus-extension) | Monitoring and metrics integration with Prometheus. |
-| [Artificial Intelligence](./advanced/artificial-intelligence) | AI-powered features and capabilities in layline.io. |
+| [User Storage (Advanced)](./advanced/advanced-user-storage.md) | Advanced concepts for user storage management. |
+| [Security Storage](./advanced/secret-management.md) | Comprehensive guide to secret and certificate management. |
+| [Prometheus Extension](./advanced/prometheus-extension.md) | Monitoring and metrics integration with Prometheus. |
+| [Artificial Intelligence](./advanced/artificial-intelligence.md) | AI-powered features and capabilities in layline.io. |
 
 ## How to Navigate This Section
 
 | If you want to... | Start here |
 |-------------------|------------|
-| Understand the big picture | [What is layline.io?](./introduction) |
-| Learn about system components | [Architecture Overview](./architecture-overview) |
-| Understand data structures | [Data Dictionary](./data-dictionary) |
-| Configure your first workflow | [Getting Started](./projects-workflows/getting-started) |
-| Set up users and permissions | [User Storage](./settings/settings-user-storage) |
-| Configure monitoring | [Prometheus Extension](./advanced/prometheus-extension) |
+| Understand the big picture | [What is layline.io?](../quickstart/core-concepts.md) |
+| Learn about system components | [Architecture Overview](../concept/architecture-overview.md) |
+| Understand data structures | [Data Dictionary](../concept/data-dictionary.md) |
+| Configure your first workflow | [Getting Started](../quickstart/first-workflow.md) |
+| Set up users and permissions | [User Storage](../settings/users-and-roles.md) |
+| Configure monitoring | [Prometheus Extension](./advanced/prometheus-extension.md) |
 

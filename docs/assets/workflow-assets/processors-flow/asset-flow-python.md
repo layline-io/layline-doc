@@ -4,7 +4,7 @@ description: Python Asset. Use this to add custom logic to modify event content,
 ---
 
 import AssetDependency from '../../../snippets/assets/_asset-dependency.md';
-import FailureHandling from '../../../snippets/assets/_failure-handling-flow.mdx';
+import FailureHandling from '../../../snippets/assets/_failure-handling-flow.md';
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import InputPorts from '../../../snippets/assets/_input-ports.md';
 import OutputPorts from '../../../snippets/assets/_output-ports.md';

@@ -347,4 +347,4 @@ A page description shows the current message range.
 - [**Alarm Center**](../cluster/alarm-center) — Real-time alerts for operational issues
 - [**Stream Monitor**](../cluster/stream-monitor) — Controller-level stream observation and management
 - [**Cluster Node Detail**](../cluster/cluster-node-detail) — Deep-dive into node logs and metrics
-- [**Workflow Assets**](../../.index_images/workflow-assets/) — Designing the workflows you monitor in Audit Trail
+- [**Workflow Assets**](../../assets/workflow-assets/index.md) — Designing the workflows you monitor in Audit Trail

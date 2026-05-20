@@ -33,7 +33,7 @@ graph LR
 
 | Asset type | Link |
 |---|---|
-| Projects | [Project](../../../concept/projects-workflows/index.mdx) |
+| Projects | [Project](../../../concept/projects-workflows/index.md) |
 
 ## Configuration
 

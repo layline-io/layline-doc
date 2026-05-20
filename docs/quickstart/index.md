@@ -97,8 +97,8 @@ This is a hands-on tutorial — you'll create Assets, configure processors, and 
 
 Recommended paths after completing Quickstart:
 - Explore sample projects (Docker installations)
-- Browse the [Asset Reference](../assets/index.mdx)
-- Dive into [JavaScript/Python scripting](../language-reference/index.mdx)
+- Browse the [Asset Reference](../assets/index.md)
+- Dive into [JavaScript/Python scripting](../language-reference/index.md)
 - Contact support@layline.io for questions
 
 ---
@@ -130,7 +130,7 @@ The [Your First Workflow](./first-workflow) tutorial teaches patterns used throu
 
 **What if I get stuck?**
 
-- Check the [Asset Reference](../assets/index.mdx) for detailed configuration options
+- Check the [Asset Reference](../assets/index.md) for detailed configuration options
 - Review [Core Concepts](./core-concepts) if the terminology feels unfamiliar
 - Email [support@layline.io](mailto:support@layline.io) — the team responds to real questions
 
@@ -140,5 +140,5 @@ The [Your First Workflow](./first-workflow) tutorial teaches patterns used throu
 
 - [**Concepts**](../concept/introduction.md) — Deeper dive into layline.io's design philosophy and architecture
 - [**Project**](../project/index.md) — Working with projects in the Configuration Center
-- [**Assets**](../assets/index.mdx) — Complete reference for all source, processor, and sink types
+- [**Assets**](../assets/index.md) — Complete reference for all source, processor, and sink types
 - [**Operations**](../operations/) — Monitoring and managing running workflows

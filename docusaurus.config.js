@@ -65,9 +65,7 @@ const config = {
                         }
                     },
                     exclude: [
-                        '**/language-reference/javascript/API/globals.md', // exclude the auto-generated globals.md file from the API section
-                        // '**/**language-reference/**/globals.md', // exclude the auto-generated globals.md file from the API section
-                        '**/globals.md',
+                        // '**/globals.md', // Typedoc removed - no more auto-generated globals.md
                         'snippets/**', // exclude the snippets folder from sidebar generation
                     ],
                     // Please change this to your repo.
@@ -100,21 +98,22 @@ const config = {
                 ],
             },
         ],
-        ['docusaurus-plugin-typedoc',
-            {
-                id: 'v2.x',
-                out: './docs/language-reference/javascript/API',
-                entryPoints: ['./docs/projects/layline/src/javascript/index.ts'],
-                tsconfig: './docs/projects/tsconfig.json',
-                readme: './docs/projects/layline/src/javascript/index.mdx',
-                sidebar: {
-                    autoConfiguration: true,
-                },
-                watch: process.env.TYPEDOC_WATCH,
-                disableSources: true,
-                plugin: [require.resolve('./src/customCode/typedoc-custom-plugin.js')],
-            }
-        ],
+        // Typedoc plugin removed - API docs are now maintained manually
+        // ['docusaurus-plugin-typedoc',
+        //     {
+        //         id: 'v2.x',
+        //         out: './docs/language-reference/javascript/API',
+        //         entryPoints: ['./docs/projects/layline/src/javascript/index.ts'],
+        //         tsconfig: './docs/projects/tsconfig.json',
+        //         readme: 'none',
+        //         sidebar: {
+        //             autoConfiguration: true,
+        //         },
+        //         watch: process.env.TYPEDOC_WATCH,
+        //         disableSources: true,
+        //         plugin: [require.resolve('./src/customCode/typedoc-custom-plugin.js')],
+        //     }
+        // ],
         ['@docusaurus/plugin-ideal-image',
             {
                 quality: 70,
@@ -225,6 +224,6 @@ const config = {
     themes: ['@docusaurus/theme-mermaid'],
 };
 
-console.log(require.resolve('./src/customCode/typedoc-custom-plugin.js'));
+// console.log(require.resolve('./src/customCode/typedoc-custom-plugin.js')); // Typedoc removed
 
 module.exports = config;

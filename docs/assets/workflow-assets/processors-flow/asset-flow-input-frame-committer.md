@@ -4,7 +4,7 @@ description: Input Frame Committer Processor. Finalize and delete processed mess
 ---
 
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
-import FailureHandling from '../../../snippets/assets/_failure-handling-flow.mdx';
+import FailureHandling from '../../../snippets/assets/_failure-handling-flow.md';
 import InputPorts from '../../../snippets/assets/_input-ports-single.md';
 import OutputPorts from '../../../snippets/assets/_output-ports-single.md';
 
