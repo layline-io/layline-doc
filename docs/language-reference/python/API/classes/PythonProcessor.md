@@ -4,201 +4,259 @@ id: py-PythonProcessor
 
 # PythonProcessor
 
-This isn't an actual class, but a placeholder for _hooks_ which are available within a Python Asset.
-Hooks are automatically invoked as part of a Python Asset's normal lifecycle.
-Read more about Python-lifecycle in the [introduction](../../python_introduction).
+The `PythonProcessor` defines the lifecycle hooks available in a Python Asset. These hooks are automatically invoked by layline.io at key moments — startup, message arrival, stream boundaries, and shutdown.
 
-## Methods
+Implement only the hooks you need. The most commonly used are [`on_init()`](#on_init) (one-time setup) and [`on_message()`](#on_message) (per-message processing).
 
-### on_commit()
+---
 
-Invoked when a Stream is committed.
-Use this to perform potential final tasks when a stream ends.
+## Lifecycle Overview
 
-#### Example
-
-```python
-def on_commit():
-    if connection:
-        connection.commit_transaction()
-        connection.close_connection()
-        global connection
-        connection = None
 ```
+Project Startup
+    └── on_init()           ← Once, when project starts
+
+Stream Start
+    └── on_stream_start()   ← Per stream
+
+Message Arrives
+    └── on_message()        ← Per message (the heart of your logic)
+
+Downstream Ready
+    └── on_pull_message()   ← When downstream can receive more
+
+Stream Ends
+    └── on_stream_end()     ← Per stream
+
+Prepare Commit
+    └── on_prepare_commit() ← Before finalizing
+
+Commit
+    └── on_commit()         ← Finalize resources
+
+Rollback
+    └── on_rollback()       ← On failure, undo changes
+
+Prepare Retry
+    └── on_prepare_retry()  ← Before retry attempt
+```
+
+---
+
+## Hooks
 
 ### on_init()
 
-`on_init` is invoked upon instantiation of the Python Asset.
-Use this method to perform any initialization actions, e.g. acquiring a database connection, initializing data structures which are used within the script, etc.
-Note that this method is only invoked once upon startup of the Project.
-
-#### Example
+Called once when the project starts. Use for one-time initialization: resolving output ports, opening connections, loading configuration.
 
 ```python
+OUTPUT_PORT = None
+DB_CONNECTION = None
+
 def on_init():
-    global OUTPUT_PORT
-    OUTPUT_PORT = processor.get_output_port('Output')
+    global OUTPUT_PORT, DB_CONNECTION
+    OUTPUT_PORT = processor.getOutputPort('Output')
+
+    db_url = processor.expandString('${lay:DB_URL}')
+    DB_CONNECTION = open_database_connection(db_url)
 ```
 
 ### on_message()
 
-This is one of the most important methods which you will use every time within a Python Asset.
-layline.io is a reactive messaging system, meaning a script within a Python Asset is triggered by the delivery of a message to this Python Asset.
-You can consider the `onMessage` method as a starting point for processing within Python Asset.
-
-#### Example
+Called for every message that arrives at this processor. This is where your main processing logic lives.
 
 ```python
-# Get the output port
-OUTPUT_PORT = processor.get_output_port('MyOutput')
-
 def on_message():
-    if message.type_name == 'Header':
-        # do nothing
-    elif message.typeName == 'Trailer':
-        # do something with the trailer
+    # Branch by message type
+    if message.typeName == 'Header':
+        process_header(message)
     elif message.typeName == 'Detail':
-        # invoke a self-defined function which handles the message.
-        handle_detail(message)
+        process_detail(message)
+    elif message.typeName == 'Trailer':
+        process_trailer(message)
 
+    # Always emit to keep the flow moving
     stream.emit(message, OUTPUT_PORT)
 
-def handle_detail(detail):
-    # do something with the message
-```
-
-### on_prepare_commit()
-
-Invoked before a Stream is finally committed.
-Use this method to do any preparatory work before a Stream is finally committed.
-
-#### Example
-
-```python
-def on_prepare_commit():
-    # Invoke custom function to write errors which we gathered during stream processing
-    write_all_reject_errors()
-
-def write_all_reject_errors():
-    # ...
-```
-
-### on_prepare_retry()
-
-Invoked when a "prepare-retry" signal is emitted by layline.io.
-
-#### Example
-
-```python
-def on_prepare_retry():
-    global connection
-    if connection:
-        try:
-            connection.rollback_transaction()
-            connection.close_connection()
-        except Exception:
-            pass
-        finally:
-            connection = None
-```
-
-### on_pull_message()
-
-layline.io is a reactive system and works according to the principle of "dynamic push / pull mode".
-This means that in a network of Processors, each Processor can signal to connected Processors that it wants to push, or pull messages, thus managing smooth message flow without the risk of clogging.
-
-* **Push-mode**: the downstream processor ("Consumer") consumes messages at the same or even a faster rate than the source processor ("Producer") produces the messages (= Slow Producer, fast Consumer)
-* **Pull-mode**: the source processor produces messages faster than a downstream processor can consume them (= Fast Producer, slow Consumer)
-
-Using layline.io you usually do not have to think about "push"- or "pull"-mode and how it is applied throughout the Workflow processing.
-It is all built-in! Making use of the `onMessage` method will ensure that your Python processor is receiving available messages at an applicable signaling rate.
-
-Only in case your Python processor includes logic to become a "producer" of (additional) messages, there is a need to
-explicitly implement the `onPullMessage` method making sure to receive the signals for readiness to receive next messages
-from connected downstream Processors within your Workflow.
-
-**Practical example:**
-
-A Workflow is processing Streams.
-Each Stream has 100,000 messages where two records each need to be correlated to form a new message to then be sent downstream, resulting in a total of 50,000 downstream messages.
-You cannot correlate them, however until all 100,000 messages have been received.
-This implies, that no messages leave Processor A, until the Stream has been completely received (e.g. marked by an ending message) and all messages have been correlated.
-_(To not store all of them in memory, Processor A may use a queue Service for storage. See example below.)_
-During that phase Processor B is idling.
-
-Normally, you would say that once the last message has been received, we can instantly correlate all messages to then send the resulting 50,000 messages downstream to Processor B all in one go.
-A sudden spike of a wave of these messages is not economical for a reactive system and may take a toll on memory consumption and performance.
-To avoid this, instead of simply emitting messages when Processor A is ready, you can wait for Processor B to be ready and then send one message at a time until all messages have been emitted.
-
-This is what `onPullMessage` allows you to implement.
-
-#### Example
-
-```python
-# Invoked each time a downstream Processor is ready for the next message.
-def onPullMessage():
-    message = None
-    emitted = False
-    if stream_complete:  # Stream was fully received
-        message = queue.read_message()  # Read one message
-        if message:
-            stream.emit(message, MY_OUTPUT_PORT)  # emit the message
-
-    if not message:
-        queue.close_connection()
-        global queue
-        queue = None
-```
-
-**NOTE:**
-In case you have two or more downstream Processors connected to the current Python processor, you are unable to tell which of the downstream Processors is ready for the next message.
-This should be of no concern. You can simply send the next message out to the correct Processor.
-The system will behave in a balanced manner following standard reactive rules.
-
-### on_rollback()
-
-Invoked when a rollback signal is issued by the system.
-Perform any "undo" and cleanup tasks here.
-
-#### Example
-
-```python
-def on_rollback():
-    global connection
-    if connection:
-        try:
-            connection.rollback_transaction()
-            connection.close_connection()
-        except Exception:
-            pass
-        finally:
-            connection = None
-```
-
-### on_stream_end()
-
-Invoked when current stream ends.
-Use this to run potential clean up tasks.
-
-#### Example
-
-```python
-def on_stream_end():
-    # Report in case some customer data could not be found during stream processing
-    if num_customer_data_not_found > 0:
-        stream.log_info(f'{num_customer_data_not_found} customers could not be found in the database.')
+def process_detail(msg):
+    qty = msg.getInt(dataDictionary.type.Order.Detail.QUANTITY)
+    if qty <= 0:
+        msg.addStatus(Severity.ERROR, Status.create(VENDOR, 'INVALID_QTY', qty))
 ```
 
 ### on_stream_start()
 
-Invoked when current stream is starting.
-Use this to run potential stream startup initialization tasks on every new Stream.
-
-#### Example
+Called when a new stream begins. Use to reset per-stream counters or capture stream metadata.
 
 ```python
+stream_id = None
+file_name = None
+record_count = 0
+
 def on_stream_start():
-    global stream_id, file_name
-    stream_id = stream.get_id()
-    file_name = stream.get_name()
+    global stream_id, file_name, record_count
+    stream_id = stream.id
+    file_name = stream.name
+    record_count = 0
+
+    stream.logInfo(f'Starting stream {stream_id}: {file_name}')
 ```
+
+### on_stream_end()
+
+Called when the current stream ends. Use for cleanup, summary logging, or final batch operations.
+
+```python
+def on_stream_end():
+    stream.logInfo(f'Stream complete. Processed {record_count} records.')
+
+    if error_count > 0:
+        stream.logWarning(f'{error_count} records had errors.')
+```
+
+### on_prepare_commit()
+
+Called before the stream is committed. Use for any final preparatory work.
+
+```python
+def on_prepare_commit():
+    # Flush any buffered writes
+    flush_pending_records()
+```
+
+### on_commit()
+
+Called when the stream is successfully committed. Use to release resources.
+
+```python
+def on_commit():
+    global DB_CONNECTION
+    if DB_CONNECTION:
+        DB_CONNECTION.commitTransaction()
+        DB_CONNECTION.closeConnection()
+        DB_CONNECTION = None
+```
+
+### on_rollback()
+
+Called when a rollback is requested. Use to undo changes and clean up.
+
+```python
+def on_rollback():
+    global DB_CONNECTION
+    if DB_CONNECTION:
+        try:
+            DB_CONNECTION.rollbackTransaction()
+            DB_CONNECTION.closeConnection()
+        except Exception as e:
+            stream.logError(f'Rollback failed: {e}')
+        finally:
+            DB_CONNECTION = None
+```
+
+### on_prepare_retry()
+
+Called before a retry attempt. Use to reset state for the next attempt.
+
+```python
+def on_prepare_retry():
+    global DB_CONNECTION
+    if DB_CONNECTION:
+        try:
+            DB_CONNECTION.rollbackTransaction()
+            DB_CONNECTION.closeConnection()
+        except Exception:
+            # Ignore cleanup errors
+            pass
+        finally:
+            DB_CONNECTION = None
+```
+
+### on_pull_message()
+
+Called when a downstream processor signals readiness for more messages. Use this when your processor **produces** messages (e.g., from a queue or buffer) rather than just transforming incoming ones.
+
+**When to use:** If your processor accumulates messages and emits them later (aggregation, correlation, queue reading), implement `on_pull_message` to emit one message at a time in response to downstream demand. This prevents memory spikes and backpressure issues.
+
+```python
+message_queue = []
+
+def on_message():
+    # Accumulate messages instead of emitting immediately
+    message_queue.append(message.clone())
+
+def on_stream_end():
+    global stream_complete
+    stream_complete = True
+
+def on_pull_message():
+    # Emit one message when downstream is ready
+    if len(message_queue) > 0:
+        next_msg = message_queue.pop(0)
+        stream.emit(next_msg, OUTPUT_PORT)
+    elif stream_complete:
+        # Queue empty and stream done — clean up
+        close_queue_connection()
+```
+
+:::info Push vs Pull
+In most cases, layline.io handles flow control automatically. You only need `on_pull_message` when your processor acts as a **producer** that generates messages independently of direct input (e.g., reading from a queue, correlating batches).
+:::
+
+---
+
+## Complete Example
+
+A processor that validates orders, accumulates details, and writes a summary at stream end:
+
+```python
+OUTPUT_PORT = None
+ERROR_PORT = None
+
+order_total = 0
+item_count = 0
+error_count = 0
+
+def on_init():
+    global OUTPUT_PORT, ERROR_PORT
+    OUTPUT_PORT = processor.getOutputPort('Output')
+    ERROR_PORT = processor.getOutputPort('Error')
+
+def on_stream_start():
+    global order_total, item_count, error_count
+    order_total = 0
+    item_count = 0
+    error_count = 0
+
+def on_message():
+    if message.typeName == 'Detail':
+        qty = message.getInt(dataDictionary.type.Order.Detail.QUANTITY)
+        price = message.getDecimal(dataDictionary.type.Order.Detail.PRICE)
+
+        if qty > 0 and price > 0:
+            order_total += price * qty
+            item_count += 1
+            stream.emit(message, OUTPUT_PORT)
+        else:
+            error_count += 1
+            message.addStatus(Severity.ERROR, Status.create(VENDOR, 'INVALID_ITEM'))
+            stream.emit(message, ERROR_PORT)
+    else:
+        # Header and Trailer pass through
+        stream.emit(message, OUTPUT_PORT)
+
+def on_stream_end():
+    stream.logInfo(f'Stream summary: {item_count} items, total {order_total}, {error_count} errors')
+
+def on_rollback():
+    stream.logWarning('Stream rolled back — discarding accumulated state')
+```
+
+---
+
+## See Also
+
+- [Python Introduction](../../python_introduction) — Full guide to Python Assets
+- [`Processor`](Processor.md) — Access arguments, output ports, and logging
+- [`Stream`](Stream.md) — Emit messages and control stream flow
+- [`Message`](Message.md) — The data you process in `on_message()`

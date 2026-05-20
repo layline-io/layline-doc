@@ -4,56 +4,88 @@ id: py-Service
 
 # Service
 
-Service is an abstract class which is only instantiated by layline.io itself and not for your direct use.
-It is directly related to the Services which you can define within layline.io. Examples are
+Services in layline.io provide integrations with external systems — databases, message queues, HTTP APIs, email servers, and more. You configure services through Service Assets in the UI, then access them in Python via the `services` object.
 
-* Cassandra Service
-* JDBC Service
-* Hazelcast Service
-* HTTP Service
-* Aerospike Service
-* more
+Available service types include JDBC, HTTP, Email, Cassandra, Hazelcast, Aerospike, and more.
 
-When configuring a Python Asset, you may also define one or more Services for use within that Python Asset.
-layline.io then exposes these assigned Services to Python via the `services` pseudo-class.
+---
 
-Let's assume you have a Python Asset with two assigned Services `MyService_A` and `MyService_B`.
-You can then access these Services within Python like this:
+## At a Glance
 
 ```python
-SvcA = services.MyService_A
-SvcB = services.MyService_B
+# Access a configured service
+db_service = services.MyDBService
+email_service = services.EmailService
+
+# Open a connection (for connection-based services like JDBC)
+connection = db_service.openConnection()
+
+# Call service functions
+result = connection.MyQuery(message)
 ```
 
-The way layline.io exposes this class is by providing an object `services` within a Python Asset.
-This is then used to access linked Services and their configured functions.
+---
 
-**Let's look at this using an example:**
+## Accessing Services
 
-Let's assume we have configured a Python Asset which is linked to A JDBC Service Asset by the name of `MyDBService`.
-The Service `MyDBService` has one Function `MyInsert` which you have defined when you set up the JDBC Service Asset using the UI.
+Services linked to your Python Asset are available through the `services` object using their configured names.
 
-You can access all Services which you may have linked to a Python Asset by using the `services` keyword like so:
-
-**Opening a connection:**
 ```python
-OUTPUT_PORT = None
-connection = None
+# In your Python Asset configuration, you linked:
+# - MyDBService (JDBC Service)
+# - EmailService (Email Service)
 
-# Initial setup
-def on_init():
-    global OUTPUT_PORT
-    OUTPUT_PORT = processor.getOutputPort('MyOutput')
+db = services.MyDBService
+mail = services.EmailService
+```
+
+---
+
+## Connection-Based Services
+
+Some services (like JDBC) provide connections that support transactions:
+
+```python
+connection = None
 
 def on_stream_start():
     global connection
-    # Open a connection to the DB service
     if not connection:
         connection = services.MyDBService.openConnection()
     connection.beginTransaction()
+
+def on_commit():
+    global connection
+    if connection:
+        connection.commitTransaction()
+        connection.closeConnection()
+        connection = None
 ```
 
-Depending on the type of service you are addressing you have different options which you have to understand and know.
-A JDBC Service for example exposes a [Connection](Connection.md) whereas a HTTP Service does not.
+See [`Connection`](Connection.md) for full details on transactions and function calls.
 
-**Check the respective Service Asset documentation on how to use the Service within a Python Asset.**
+---
+
+## Direct Services
+
+Some services (like HTTP, Email) don't use connections — you call methods directly:
+
+```python
+# Send email
+services.EmailService.Send({
+    'from': 'alert@company.com',
+    'toList': 'admin@company.com',
+    'subject': 'System Alert',
+    'body': 'Processing completed.'
+})
+```
+
+See [`Email`](Email.md) for email-specific options.
+
+---
+
+## See Also
+
+- [`Connection`](Connection.md) — Connection lifecycle and transactions
+- [`Email`](Email.md) — Email service methods
+- [`TimerService`](TimerService.md) — Timer scheduling service

@@ -1,54 +1,106 @@
 # PackedMessage
 
-A packed message represents an ordinary [Message](Message.md), but in a compressed format.
-This is useful in case you need to retain a large number or messages in memory, and reduce memory overhead.
+A memory-efficient compressed representation of a [`Message`](Message.md). Use `PackedMessage` when you need to retain many messages in memory (e.g., buffering, aggregation, or caching) and want to reduce memory overhead.
 
-The only way to create a packed message is by invoking the '[Message.pack](./Message#pack)' method.
+Create a `PackedMessage` by calling [`message.pack()`](Message.md#pack). Unpack it back to a full `Message` when you need to access or modify the data.
+
+---
+
+## At a Glance
+
+```js
+// Pack a message for efficient storage
+const packed = message.pack();
+
+// Store in a buffer or cache
+messageBuffer.push(packed);
+
+// Later: unpack and process
+const restored = packed.unpack();
+stream.emit(restored, OUTPUT_PORT);
+```
+
+---
 
 ## Properties
 
-### type
+| Property | Type | Description |
+|----------|------|-------------|
+| `type` | [`DataDictionary`](DataDictionary.md) | Reference to the data dictionary used when packing |
 
-> **type**: [`DataDictionary`](DataDictionary.md)
-
-The type of the packed message.
-This is a reference to the data dictionary that was used to pack the message.
-
-#### Returns
-
-Unpacked [Message](Message.md)
-
-#### Example
-
-```ts
-// Pack message
-const packedMsg = message.pack();
-const type = packedMsg.type; // Returns the data dictionary used to pack the message
-
-// Unpack message
-const unpackedMsg = packedMsg.unpack();
+```js
+const packed = message.pack();
+stream.logInfo(`Packed type: ${packed.type}`);
 ```
+
+---
 
 ## Methods
 
 ### unpack()
 
-> **unpack**(): [`Message`](Message.md)
+Restores the packed message to a full [`Message`](Message.md) instance.
 
-Unpacks a previously packed message.
+**Returns:** [`Message`](Message.md)
 
-#### Returns
+```js
+const packed = message.pack();
+const restored = packed.unpack();
 
-[`Message`](Message.md)
-
-Unpacked [Message](Message.md)
-
-#### Example
-
-```ts
-// Pack message
-const packedMsg = message.pack();
-
-// Unpack message
-const unpackedMsg = packedMsg.unpack();
+// restored is a full Message with all methods available
+restored.getString(dataDictionary.type.Order.ID);
+restored.addStatus(Severity.INFO, Status.create(VENDOR, 'RESTORED'));
 ```
+
+---
+
+## When to Use
+
+| Scenario | Approach |
+|----------|----------|
+| Buffering messages for batch processing | Pack to reduce memory |
+| Caching messages in a queue service | Pack before storing |
+| Aggregating many records before emitting | Pack intermediate results |
+| Passing messages between processors | Use regular Message (no packing needed) |
+
+---
+
+## Complete Example
+
+```js
+let buffer = [];
+const BATCH_SIZE = 100;
+
+export function onMessage() {
+    // Pack and buffer
+    buffer.push(message.pack());
+
+    // When buffer is full, process batch
+    if (buffer.length >= BATCH_SIZE) {
+        processBatch(buffer);
+        buffer = [];
+    }
+}
+
+export function onStreamEnd() {
+    // Process remaining messages
+    if (buffer.length > 0) {
+        processBatch(buffer);
+    }
+}
+
+function processBatch(packedMessages) {
+    for (const packed of packedMessages) {
+        const msg = packed.unpack();
+        // Process...
+        stream.emit(msg, OUTPUT_PORT);
+    }
+}
+```
+
+---
+
+## See Also
+
+- [`Message#pack`](Message.md#pack) — Create a PackedMessage from a Message
+- [`Message#clone`](Message.md#clone) — Alternative: create a full copy instead of packing

@@ -4,262 +4,156 @@ id: py-StringUtils
 
 # StringUtils
 
-Utility class for string operations.
-This class cannot be instantiated and all methods are static.
+Utility class for common string operations: encoding, decoding, validation, and charset conversion. All methods are static.
 
-## Abstract
+---
 
-## Methods
-
-### base64Decode()
-
-> @staticmethod
-> **base64Decode**(value: str) -> List[int]
-
-Decodes a Base64 encoded string into an array of bytes.
-
-#### Parameters
-
-- **value**: str
-
-  The Base64 encoded string to decode.
-
-#### Returns
-
-List[int] - The decoded array of bytes.
-
-#### Example
+## At a Glance
 
 ```python
-# Decode Base64 string to bytes
-base64_string = "SGVsbG8="
-byte_array = StringUtils.base64Decode(base64_string)
-print(byte_array)  # Output: [72, 101, 108, 108, 111]
+# Validation
+if StringUtils.isNullOrBlank(message.getString(dataDictionary.type.Customer.EMAIL)):
+    message.addStatus(Severity.ERROR, Status.create(VENDOR, 'EMAIL_REQUIRED'))
+
+# Encoding
+bytes_arr = StringUtils.toBytes("Hello, World!")
+base64 = StringUtils.base64Encode(bytes_arr)
+
+# Decoding
+decoded = StringUtils.base64Decode(base64)
+text = StringUtils.fromBytes(decoded)
 ```
 
-### base64Encode()
+---
 
-> @staticmethod
-> **base64Encode**(bytes: List[int]) -> str
+## Validation
 
-Encodes an array of bytes into a Base64 string.
-
-#### Parameters
-
-- **bytes**: List[int]
-
-  The array of bytes to encode.
-
-#### Returns
-
-str - The Base64 encoded string.
-
-#### Example
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `isNullOrEmpty(value)` | `bool` | True if None or empty string `""` |
+| `isNullOrBlank(value)` | `bool` | True if None, empty, or whitespace only |
+| `isNumeric(value)` | `bool` | True if string contains only digits (0–9) |
 
 ```python
-# Encode bytes to Base64 string
-byte_array = [72, 101, 108, 108, 111]
-base64_string = StringUtils.base64Encode(byte_array)
-print(base64_string)  # Output: "SGVsbG8="
+StringUtils.isNullOrEmpty(None)       # True
+StringUtils.isNullOrEmpty("")         # True
+StringUtils.isNullOrEmpty("  ")       # False
+
+StringUtils.isNullOrBlank(None)       # True
+StringUtils.isNullOrBlank("  ")       # True
+
+StringUtils.isNumeric("12345")        # True
+StringUtils.isNumeric("12.3")         # False
+StringUtils.isNumeric("abc")          # False
 ```
 
-### fromBytes()
+---
 
-> @staticmethod
-> **fromBytes**(bytes: List[int], charset: str = None) -> str
+## Encoding & Decoding
 
-Converts a list of bytes to a string using the specified charset.
+### base64Encode(bytes)
 
-#### Parameters
+Encodes a byte array to a Base64 string.
 
-- **bytes**: List[int]
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `bytes` | `List[int]` | Byte array to encode |
 
-  The list of bytes to convert.
-
-- **charset**: str, optional
-
-  The charset to use for conversion. Defaults to UTF-8 if not specified.
-
-  | Charset |	Description |
-    | --- | --- |
-  | US-ASCII |	Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the Unicode character set |
-  | ISO-8859-1 | ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1 |
-  | UTF-8 | Eight-bit UCS Transformation Format |
-  | UTF-16BE |	Sixteen-bit UCS Transformation Format, big-endian byte order |
-  | UTF-16LE |	Sixteen-bit UCS Transformation Format, little-endian byte order |
-  | UTF-16 | Sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order mark |
-  | The UTF-8 | charset is specified by RFC 2279; the transformation format upon which it is based is specified in Amendment 2 of ISO 10646-1 and is also described in the Unicode Standard. |
-
-  The UTF-16 charsets are specified by RFC 2781; the transformation formats upon which they are based are specified in Amendment 1 of ISO 10646-1 and are also described in the Unicode Standard.
-
-  The UTF-16 charsets use sixteen-bit quantities and are therefore sensitive to byte order. In these encodings the byte order of a stream may be indicated by an initial byte-order mark represented by the Unicode character '\uFEFF'. Byte-order marks are handled as follows:
-
-  When decoding, the UTF-16BE and UTF-16LE charsets interpret the initial byte-order marks as a ZERO-WIDTH NON-BREAKING SPACE; when encoding, they do not write byte-order marks.
-
-  When decoding, the UTF-16 charset interprets the byte-order mark at the beginning of the input stream to indicate the byte-order of the stream but defaults to big-endian if there is no byte-order mark; when encoding, it uses big-endian byte order and writes a big-endian byte-order mark.
-
-  In any case, byte order marks occurring after the first element of an input sequence are not omitted since the same code is used to represent ZERO-WIDTH NON-BREAKING SPACE.
-  Every instance of the Java virtual machine has a default charset, which may or may not be one of the standard charsets. The default charset is determined during virtual-machine startup and typically depends upon the locale and charset being used by the underlying operating system.
-
-  The StandardCharsets class defines constants for each of the standard charsets.
-
-#### Returns
-
-str - The resulting string.
-
-#### Example
+**Returns:** `str`
 
 ```python
-# Convert bytes to string using default UTF-8 charset
-hello_array = [72, 101, 108, 108, 111]
-result = StringUtils.fromBytes(hello_array)  # Assuming some_byte_content is a list of bytes. Could be a bytes object or any other byte sequence.
-
-# Convert bytes to string using a specific charset
-result_with_charset = StringUtils.fromBytes(hello_array, "US-ASCII")
-print(result_with_charset)  # Output: "Hello"
+bytes_arr = StringUtils.toBytes("Hello")
+base64 = StringUtils.base64Encode(bytes_arr)  # "SGVsbG8="
 ```
 
-### toBytes()
+### base64Decode(value)
 
-> @staticmethod
-> **toBytes**(value: str, charset: str = None) -> List[int]
+Decodes a Base64 string to a byte array.
 
-Converts a string to an array of bytes using the specified charset.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `str` | Base64 string to decode |
 
-#### Parameters
-
-- **value**: str
-
-  The string to convert.
-
-- **charset**: str, optional
-
-  The charset to use for conversion. Defaults to UTF-8 if not specified.
-
-  | Charset |	Description |
-    | --- | --- |
-  | US-ASCII |	Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the Unicode character set |
-  | ISO-8859-1 | ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1 |
-  | UTF-8 | Eight-bit UCS Transformation Format |
-  | UTF-16BE |	Sixteen-bit UCS Transformation Format, big-endian byte order |
-  | UTF-16LE |	Sixteen-bit UCS Transformation Format, little-endian byte order |
-  | UTF-16 | Sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order mark |
-  | The UTF-8 | charset is specified by RFC 2279; the transformation format upon which it is based is specified in Amendment 2 of ISO 10646-1 and is also described in the Unicode Standard. |
-
-  The UTF-16 charsets are specified by RFC 2781; the transformation formats upon which they are based are specified in Amendment 1 of ISO 10646-1 and are also described in the Unicode Standard.
-
-  The UTF-16 charsets use sixteen-bit quantities and are therefore sensitive to byte order. In these encodings the byte order of a stream may be indicated by an initial byte-order mark represented by the Unicode character '\uFEFF'. Byte-order marks are handled as follows:
-
-  When decoding, the UTF-16BE and UTF-16LE charsets interpret the initial byte-order marks as a ZERO-WIDTH NON-BREAKING SPACE; when encoding, they do not write byte-order marks.
-
-  When decoding, the UTF-16 charset interprets the byte-order mark at the beginning of the input stream to indicate the byte-order of the stream but defaults to big-endian if there is no byte-order mark; when encoding, it uses big-endian byte order and writes a big-endian byte-order mark.
-
-  In any case, byte order marks occurring after the first element of an input sequence are not omitted since the same code is used to represent ZERO-WIDTH NON-BREAKING SPACE.
-  Every instance of the Java virtual machine has a default charset, which may or may not be one of the standard charsets. The default charset is determined during virtual-machine startup and typically depends upon the locale and charset being used by the underlying operating system.
-
-  The StandardCharsets class defines constants for each of the standard charsets.
-
-#### Returns
-
-List[int] - The resulting array of bytes.
-
-#### Example
+**Returns:** `List[int]`
 
 ```python
-# Convert string to bytes using default UTF-8 charset
-hello_string = "Hello"
-result = StringUtils.toBytes(hello_string)  # Assuming someStringContent is a string.
-
-# Convert string to bytes using a specific charset
-result_with_charset = StringUtils.toBytes(hello_string, "US-ASCII")
-print(result_with_charset)  # Output: [72, 101, 108, 108, 111]
+bytes_arr = StringUtils.base64Decode("SGVsbG8=")
+text = StringUtils.fromBytes(bytes_arr)  # "Hello"
 ```
 
-### isNullOrBlank()
+---
 
-> @staticmethod
-> **isNullOrBlank**(value: str) -> bool
+## Charset Conversion
 
-Checks if a string is None or contains only whitespace characters.
+### toBytes(value, charset?)
 
-#### Parameters
+Converts a string to a byte array.
 
-- **value**: str
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `str` | String to convert |
+| `charset` | `str` (optional) | Charset — defaults to UTF-8 |
 
-  The string to check.
-
-#### Returns
-
-bool - True if the string is None or contains only whitespace; otherwise, False.
-
-#### Example
+**Returns:** `List[int]`
 
 ```python
-# Returns True
-StringUtils.isNullOrBlank(None)
-StringUtils.isNullOrBlank("")
-StringUtils.isNullOrBlank("   ")
-
-# Returns False
-StringUtils.isNullOrBlank("Hello")
-StringUtils.isNullOrBlank(" Hello ")
+bytes_arr = StringUtils.toBytes("Hello")              # UTF-8
+ascii = StringUtils.toBytes("Hello", "US-ASCII")      # ASCII
 ```
 
-### isNullOrEmpty()
+### fromBytes(bytes, charset?)
 
-> @staticmethod
-> **isNullOrEmpty**(value: str) -> bool
+Converts a byte array to a string.
 
-Checks if a string is None or empty.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `bytes` | `List[int]` | Byte array to convert |
+| `charset` | `str` (optional) | Charset — defaults to UTF-8 |
 
-#### Parameters
-
-- **value**: str
-
-  The string to check.
-
-#### Returns
-
-bool - True if the string is None or empty; otherwise, False.
-
-#### Example
+**Returns:** `str`
 
 ```python
-# Returns True
-StringUtils.isNullOrEmpty(None)
-StringUtils.isNullOrEmpty("")
-
-# Returns False
-StringUtils.isNullOrEmpty("Hello")
-StringUtils.isNullOrEmpty(" ")
+text = StringUtils.fromBytes(bytes_arr)              # UTF-8
+text2 = StringUtils.fromBytes(bytes_arr, "ISO-8859-1")  # Latin-1
 ```
 
-### isNumeric()
+### Supported Charsets
 
-> @staticmethod
-> **isNumeric**(value: str) -> bool
+| Charset | Description |
+|---------|-------------|
+| `US-ASCII` | 7-bit ASCII |
+| `ISO-8859-1` | Latin-1 |
+| `UTF-8` | Default, 8-bit Unicode |
+| `UTF-16` | 16-bit Unicode (with BOM) |
+| `UTF-16BE` | Big-endian UTF-16 |
+| `UTF-16LE` | Little-endian UTF-16 |
 
-Checks if a string contains only numeric characters.
+---
 
-#### Parameters
-
-- **value**: str
-
-  The string to check.
-
-#### Returns
-
-bool - True if the string contains only numeric characters; otherwise, False.
-
-#### Example
+## Complete Example
 
 ```python
-# Returns True
-StringUtils.isNumeric("123")
-StringUtils.isNumeric("0")
+def on_message():
+    email = message.getString(dataDictionary.type.Customer.EMAIL)
 
-# Returns False
-StringUtils.isNumeric("12.3")
-StringUtils.isNumeric("abc")
-StringUtils.isNumeric("1a2b3c")
+    # Validate
+    if StringUtils.isNullOrBlank(email):
+        message.addStatus(Severity.ERROR, Status.create(VENDOR, 'EMAIL_REQUIRED'))
+    elif '@' not in email:
+        message.addStatus(Severity.ERROR, Status.create(VENDOR, 'EMAIL_INVALID'))
+
+    # Encode payload for external API
+    import json
+    payload = json.dumps({"email": email})
+    bytes_arr = StringUtils.toBytes(payload)
+    encoded = StringUtils.base64Encode(bytes_arr)
+    message.setString(dataDictionary.type.Customer.ENCODED_PAYLOAD, encoded)
+
+    stream.emit(message, OUTPUT_PORT)
 ```
+
+---
+
+## See Also
+
+- [`CompressionUtils`](CompressionUtils.md) — Compress and decompress byte arrays

@@ -2,57 +2,50 @@
 id: py-processor
 ---
 
-#  processor
+# processor
 
-> **processor**: Processor
+> `const` **processor**: [`Processor`](../classes/Processor.md)
 
-## What
-`processor` is an instance of the Processor class.
-It is automatically created for each Processor within a Workflow when a deployment is started.
-The Processor is the main entry point for processing data within a Workflow.
-It provides methods to access InputPorts, OutputPorts, and other Processor-specific functionality.
+The current processor instance. Provides access to ports, arguments, logging, and processor-specific configuration.
 
-## How to use
-Please check the [Processor](../classes/Processor.md) documentation for more information.
+---
 
-## Example
+## At a Glance
 
 ```python
-# Get the Processor's name
-processor_name = processor.getName()
-print(f"Current processor: {processor_name}")
-
-# Get an output port
-OUTPUT_PORT = processor.getOutputPort('MyOutput')
-
-# Get configured arguments
-args = processor.getArguments()
-my_custom_arg = args.get('myCustomArg')
-
-# Expand a string using environment variables
-expanded_string = processor.expandString('The username is ${lay:USERNAME}.')
-
-# Logging
-processor.logInfo("Processing started")
-processor.logWarning("Unusual data encountered")
-processor.logError("An error occurred during processing")
-
-# Using processor in lifecycle hooks
-def onInit():
+def on_init():
+    # Resolve output port once at init
     global OUTPUT_PORT
     OUTPUT_PORT = processor.getOutputPort('Output')
 
-def onMessage():
-    # Process the message
-    # ...
-    # Emit the processed message
-    stream.emit(message, OUTPUT_PORT)
+def on_message():
+    # Log with processor context
+    processor.logInfo(f'Processing message {message.id}')
 
-def onStreamStart():
-    processor.logInfo(f"Starting to process stream: {stream.getName()}")
+    # Access custom arguments
+    args = processor.getArguments()
+    timeout = args.get('timeoutMs', 5000)
 
-def onStreamEnd():
-    processor.logInfo(f"Finished processing stream: {stream.getName()}")
+    # Expand environment variables in strings
+    path = processor.expandString('${lay:DATA_DIR}/input.csv')
 ```
 
-Note: The exact methods and properties available on the `processor` object may vary depending on your specific layline.io configuration and the type of Processor being used. Always refer to the most up-to-date documentation provided by layline.io for the definitive guide on using the `processor` object in Python scripts.
+---
+
+## Common Tasks
+
+| Task | Method |
+|------|--------|
+| Get output port | `processor.getOutputPort(name)` |
+| Get input port | `processor.getInputPort(name)` |
+| Read arguments | `processor.getArguments()` |
+| Expand variables | `processor.expandString(template)` |
+| Log info | `processor.logInfo(msg)` |
+| Log warning | `processor.logWarning(msg)` |
+| Log error | `processor.logError(msg)` |
+
+---
+
+## See Also
+
+- [`Processor`](../classes/Processor.md) — Full class reference

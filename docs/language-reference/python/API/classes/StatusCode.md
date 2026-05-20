@@ -4,94 +4,67 @@ id: py-StatusCode
 
 # StatusCode
 
-## What
-StatusCodes are defined by creating a **Status Asset** within your Project.
-Within this Asset you can create one or more **Vendors** which in turn may have a number of `Status` entries.
+A `StatusCode` represents a single entry in a **Resource Status Definition Asset** — the template definition for a [`Status`](Status.md). It contains the code, message template, and language information.
 
-Each of those Status entries has the following structure:
-* ID: A unique number
-* Logical name: A name which uniquely identifies a Status, e.g. `FIELD_UNKNOWN`
-* Language: One of the supported language codes, e.g. `en`
-* Message: The actual Status message. The message may contain placeholders, e.g. `The field with name %1 is unknown`.
-  In this example, the placeholder `%1` is filled with the respective value when creating the *Status* using method [Status.create](Status.md#create).
+You typically don't create StatusCodes directly. Instead, access them through the global [`statusRegistry`](StatusRegistry.md) to inspect what statuses are available in your project.
 
-A StatusCode represents a single entry in the Status Asset.
-They are attached to [Vendor](Vendor.md) objects.
+---
 
-## How to use
+## At a Glance
 
-You typically do not create StatusCodes directly. Instead, you access them via the global `statusRegistry` object.
-Therein you access the `vendors` list which includes all defined StatusCodes for the specific vendor.
+```python
+# Browse all defined status codes for a vendor
+vendor = statusRegistry.vendors[0]  # Index 0 = internal "LAY" vendor
+codes = vendor.statusCodes
+
+for code in codes:
+    stream.log_info(f"{code.code}: {code.message}")
+```
+
+---
 
 ## Properties
 
-### code
-
-> **code**: int
-
-This is the number code that you have defined in the "**Resource Status Definition Asset**".
-For example, `11` for `FIELD_UNKNOWN` or 42 for `ILLEGAL_VALUE`, or whatever you have defined.
-
-#### Example
+| Property | Type | Description |
+|----------|------|-------------|
+| `code` | `int` | Numeric code (e.g., `11`, `42`) |
+| `message` | `str` | Message template with placeholders (e.g., `"Field '%1' is unknown"`) |
+| `vendor` | [`Vendor`](Vendor.md) | The vendor this code belongs to |
 
 ```python
-# You can access all defined StatusCodes via the global statusRegistry object.
-# The following will return a list of all defined StatusCodes for specific vendor:
+# Access the internal LAY vendor's status codes
+lay_codes = statusRegistry.vendors[0].statusCodes
 
-status_codes_for_vendor_LAY = statusRegistry.vendors[0].statusCodes
-
-# This returns a list of all defined StatusCodes for the vendor with index 0.
-# Index 0 is reserved and pre-filled by internal vendor "LAY" (layline.io).
-# You define additional vendors and status codes in the "**Resource Status Definition Asset**".
-
-# To return the code of the first status code for the vendor with index 0:
-
-code = statusRegistry.vendors[0].statusCodes[50].code  # Returns `251`
+code = lay_codes[50]
+stream.log_info(code.code)      # 251
+stream.log_info(code.message)   # "merge conflict at node %1"
+stream.log_info(code.vendor.id)  # 1
 ```
 
-### message
+---
 
-> **message**: str
-
-This is the message that you have defined in the "**Resource Status Definition Asset**".
-The message may contain placeholders, e.g. `The field with name %1 is unknown`.
-
-#### Example
+## Accessing StatusCodes
 
 ```python
-# You can access all defined StatusCodes via the global statusRegistry object.
-# The following will return a list of all defined StatusCodes for specific vendor:
+# All vendors
+vendors = statusRegistry.vendors
 
-status_codes_for_vendor_LAY = statusRegistry.vendors[0].statusCodes
+# Specific vendor by index
+lay_vendor = statusRegistry.vendors[0]      # Internal vendor
+my_vendor = statusRegistry.vendors[1]       # Your first custom vendor
 
-# This returns a list of all defined StatusCodes for the vendor with index 0.
-# Index 0 is reserved and pre-filled by internal vendor "LAY" (layline.io).
-# You define additional vendors and status codes in the "**Resource Status Definition Asset**".
+# All status codes for a vendor
+codes = my_vendor.statusCodes
 
-# To return the message of the status code at index 50 for the vendor with index 0:
-
-message = statusRegistry.vendors[0].statusCodes[50].message  # Returns `merge conflict at node %1`
+# Iterate
+for code in codes:
+    stream.log_info(f"{code.code}: {code.message}")
 ```
 
-### vendor
+---
 
-> **vendor**: [Vendor](Vendor.md)
+## See Also
 
-This returns the [Vendor](Vendor.md) object which is associated with this StatusCode as defined in the "**Resource Status Definition Asset**".
-
-#### Example
-
-```python
-# You can access all defined StatusCodes via the global statusRegistry object.
-# The following will return a list of all defined StatusCodes for specific vendor:
-
-status_codes_for_vendor_LAY = statusRegistry.vendors[0].statusCodes
-
-# This returns a list of all defined StatusCodes for the vendor with index 0.
-# Index 0 is reserved and pre-filled by internal vendor "LAY" (layline.io).
-# You define additional vendors and status codes in the "**Resource Status Definition Asset**".
-
-# To return the vendor of the status code at index 50 for the vendor with index 0:
-
-vendor = statusRegistry.vendors[0].statusCodes[50].vendor  # Returns `Vendor` object
-```
+- [`Status`](Status.md) — Runtime status instances created from these templates
+- [`StatusRegistry`](StatusRegistry.md) — Access all vendors and their codes
+- [`Vendor`](Vendor.md) — Vendor information and status code collections

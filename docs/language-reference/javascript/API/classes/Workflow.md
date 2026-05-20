@@ -1,93 +1,74 @@
 # Workflow
 
-## What
-A workflow is a collection of processors and connections that are used to process messages.
-It is a high-level abstraction that represents a business process.
+The `Workflow` class provides access to the current workflow's metadata — its name and data dictionary. It is available globally as `workflow` in every JavaScript processor.
 
-## How to use
-You typically use the Workflow class to access the data dictionary for a workflow.
+---
 
-## Example
+## At a Glance
 
-```ts
-// Accessing the name of the workflow
-const workflowName = workflow.getName();
-print(workflowName);
+```js
+// Log which workflow is processing this message
+stream.logInfo(`Running in workflow: ${workflow.name}`);
 
-// Accessing the data dictionary of the workflow
-const dataDict = workflow.getDataDictionary();
-print(dataDict);
+// Access the workflow's data dictionary for type introspection
+const dict = workflow.dataDictionary;
 ```
+
+---
 
 ## Properties
 
-### dataDictionary
-
-> **dataDictionary**: `any`
-
-The data dictionary associated with this workflow.
-This can contain various metadata and information about the workflow's structure and data processing.
-Same as [getDataDictionary](#getdatadictionary).
-
-#### Example
-
-```ts
-const dataDictionary = workflow.dataDictionary;
-```
-
-***
+| Property | Type | Description |
+|----------|------|-------------|
+| [`name`](#name) | `string` | The name of the current workflow |
+| [`dataDictionary`](#datadictionary) | `any` | The data dictionary associated with this workflow |
 
 ### name
 
-> **name**: `string`
+The workflow name as defined in the UI.
 
-The name of the workflow.
-Same as [getName](#getname).
-
-#### Example
-
-```ts
+```js
 const workflowName = workflow.name;
+stream.logInfo(`Processing in workflow: ${workflowName}`);
 ```
+
+### dataDictionary
+
+Access to the workflow's data dictionary. Same as the global [`dataDictionary`](DataDictionary.md) variable in most cases.
+
+```js
+const dict = workflow.dataDictionary;
+const types = Object.keys(dict.type);
+stream.logInfo(`Available types: ${types.join(', ')}`);
+```
+
+---
 
 ## Methods
 
-### getDataDictionary()
-
-> **getDataDictionary**(): [`DataDictionaryEntity`](DataDictionaryEntity.md)
-
-Retrieves the data dictionary entity associated with this workflow.
-The data dictionary provides detailed information about the data used within the workflow.
-
-#### Returns
-
-[`DataDictionaryEntity`](DataDictionaryEntity.md)
-
-The data dictionary entity for the workflow.
-
-#### Example
-
-```ts
-const dataDictEntity = workflow.getDataDictionary();
-```
-
-***
-
 ### getName()
 
-> **getName**(): `string`
+Returns the workflow name.
 
-Retrieves the name of the workflow.
+**Returns:** `string`
 
-#### Returns
-
-`string`
-
-The name of the workflow.
-
-#### Example
-
-```ts
-const workflowName = workflow.getName();
-print(workflowName); // Outputs the name of the workflow
+```js
+const name = workflow.getName();  // Same as workflow.name
 ```
+
+### getDataDictionary()
+
+Returns the data dictionary entity for this workflow.
+
+**Returns:** [`DataDictionaryEntity`](DataDictionaryEntity.md)
+
+```js
+const dict = workflow.getDataDictionary();
+```
+
+---
+
+## See Also
+
+- [`DataDictionary`](DataDictionary.md) — Create messages and access types
+- [`Processor`](Processor.md) — Access the current processor's properties

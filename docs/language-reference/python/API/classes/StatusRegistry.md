@@ -4,123 +4,74 @@ id: py-StatusRegistry
 
 # StatusRegistry
 
-## What
-The StatusRegistry class provides methods to access all defined Vendors and Languages for the current Project.
-You define additional vendors and languages in the "**Resource Status Definition Asset**".
+The `StatusRegistry` provides access to all defined vendors and status codes in your project. It is available globally as `statusRegistry`.
 
-## How to use
-The statusRegistry object is created automatically when the Project is started,
-based on the internal "LAY" vendor instance plus any additional vendors you have defined in the "**Resource Status Definition Asset**".
+Vendors and their status codes are defined in the **Resource Status Definition Asset**. Index 0 is reserved for the internal "LAY" (layline.io) vendor.
+
+---
+
+## At a Glance
+
+```python
+# List all supported languages
+languages = statusRegistry.languages  # ["en", "de", "fr"]
+
+# Find a vendor
+vendor = statusRegistry.getVendorByLongName('MyApplication')
+
+# Browse status codes
+for code in vendor.statusCodes:
+    stream.log_info(f"{code.code}: {code.message}")
+```
+
+---
 
 ## Properties
 
-### languages
-
-> **languages**: List[str]
-
-A list of defined and used [ISO 639-1](https://en.wikipedia.org/wiki/ISO_1) language codes for the current Project.
-You can access all defined languages via the global [statusRegistry](../variables/statusRegistry.md) constant.
+| Property | Type | Description |
+|----------|------|-------------|
+| `languages` | `List[str]` | ISO 639-1 language codes configured in the project |
+| `vendors` | [`Vendor`](Vendor.md)[] | All defined vendors (index 0 = internal "LAY") |
 
 ```python
-code = statusRegistry.languages
-# Returns a list of defined language codes, e.g. ["en", "de", "fr"]
+# Available languages
+stream.log_info(f"Languages: {', '.join(statusRegistry.languages)}")
+
+# Number of vendors
+stream.log_info(f"Vendors: {len(statusRegistry.vendors)}")
+
+# Access internal vendor
+lay = statusRegistry.vendors[0]
+stream.log_info(f"LAY vendor: {lay.longName}")
 ```
 
-### vendors
+---
 
-> **vendors**: List[Vendor]
+## Finding Vendors
 
-A list of all defined Vendors for the current Project.
-You can access all defined Vendors via the global [statusRegistry](../variables/statusRegistry.md) constant.
-Index 0 is reserved and pre-filled by internal vendor "LAY" (layline.io).
-You define additional vendors in the "**Resource Status Definition Asset**".
+| Method | Description |
+|--------|-------------|
+| `getVendorById(id)` | Find by numeric ID |
+| `getVendorByLongName(name)` | Find by long name |
+| `getVendorByShortName(name)` | Find by short name |
 
 ```python
-code = statusRegistry.vendors[0]
-# Returns a Vendor object
+# By ID
+v1 = statusRegistry.getVendorById(1)  # Internal LAY vendor
+v2 = statusRegistry.getVendorById(2)  # Your first custom vendor
+
+# By name
+my_app = statusRegistry.getVendorByLongName('MyApplication')
+my_app_short = statusRegistry.getVendorByShortName('MYAPP')
+
+# Use with Status.create
+status = Status.create(my_app, 'INVALID_FIELD', 'Email')
 ```
 
-## Methods
+---
 
-### getVendorById()
+## See Also
 
-> **getVendorById**(id: int) -> Vendor
-
-Get the vendor instance from the list of defined vendors according to the given ID of the vendor.
-You must have defined the vendor in a "**Resource Status Definition Asset**".
-The number passed in `statusRegistry.getVendorById(1)` is the ID of the Vendor definition within that Asset.
-Check documentation for "**Resource Status Definition Asset**" for more info.
-You can access all defined Vendors via the global [statusRegistry](../variables/statusRegistry.md) constant.
-
-#### Parameters
-
-- **id**: int
-
-  The ID of the vendor as defined in the specific "**Resource Status Definition Asset**".
-
-#### Returns
-
-Vendor - Instance of [Vendor](Vendor.md)
-
-#### Example
-
-```python
-VENDOR_ID = statusRegistry.getVendorById(1)
-# Returns the Vendor instance for the Vendor with the ID 1
-```
-
-### getVendorByLongName()
-
-> **getVendorByLongName**(vendor_long_name: str) -> Vendor
-
-Get the vendor instance from the list of defined vendors according to the given long name of the vendor.
-You must have defined the vendor in a "**Resource Status Definition Asset**".
-The string passed in `statusRegistry.getVendorByLongName('myVendorLongName')`
-is the long name of the Vendor definition within that Asset.
-Check documentation for "**Resource Status Definition Asset**" for more info.
-You can access all defined Vendors via the global [statusRegistry](../variables/statusRegistry.md) constant.
-
-#### Parameters
-
-- **vendor_long_name**: str
-
-  The long name of the vendor as defined in the specific "**Resource Status Definition Asset**".
-
-#### Returns
-
-Vendor - Instance of [Vendor](Vendor.md)
-
-#### Example
-
-```python
-VENDOR = statusRegistry.getVendorByLongName('MyVendorLongName')
-# Returns the Vendor instance for the Vendor with the long name 'MyVendorLongName'
-```
-
-### getVendorByShortName()
-
-> **getVendorByShortName**(vendor_short_name: str) -> Vendor
-
-Get the vendor instance from the list of defined vendors according to the given short name of the vendor.
-You must have defined the vendor in a "**Resource Status Definition Asset**".
-The string passed in `statusRegistry.getVendorByShortName('myVendorShortName')`
-is the short name of the Vendor definition within that Asset.
-Check documentation for "**Resource Status Definition Asset**" for more info.
-You can access all defined Vendors via the global [statusRegistry](../variables/statusRegistry.md) constant.
-
-#### Parameters
-
-- **vendor_short_name**: str
-
-  The short name of the vendor as defined in the specific "**Resource Status Definition Asset**".
-
-#### Returns
-
-Vendor - Instance of [Vendor](Vendor.md)
-
-#### Example
-
-```python
-VENDOR = statusRegistry.getVendorByShortName('MyVendorShortName')
-# Returns the Vendor instance for the Vendor with the short name 'MyVendorShortName'
-```
+- [`Status`](Status.md) — Create runtime status instances
+- [`StatusCode`](StatusCode.md) — Individual status code definitions
+- [`Vendor`](Vendor.md) — Vendor properties and status code collections

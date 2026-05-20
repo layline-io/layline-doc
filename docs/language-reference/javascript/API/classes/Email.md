@@ -1,67 +1,113 @@
 # Email
 
-Abstract class which defines a Email Service.
-This service must have been acquired via using the `services` keyword within a Javascript Asset script.
+Send emails through a configured Email Service. Access the service via `services.YourEmailServiceName`.
 
-**NOTE:** Only the Email Service is supports this class.
-Please refer to the documentation of the respective Service Asset to understand how to use it within Javascript.
+---
 
-## Methods
-
-### Send()
-
-> **Send**(`message`): `void`
-
-Sends an email.
+## At a Glance
 
 ```js
-// EmailService is the name which was assigned to the Email Service Asset in the Javascript Asset Configuration.
+// Simple text email
+services.EmailService.Send({
+    from: 'system@company.com',
+    toList: 'user@company.com',
+    subject: 'Order Confirmation',
+    body: 'Your order has been processed.'
+});
 
-// Example #1:
- services.EmailService.Send({
-     from: {
-         Address: "john.doe@example.com",
-         PersonalName: "John Doe"
-     },
-     to: [{
-         Address: "jane.doe@example.com",
-         PersonalName: "Jane Doe"
-     }],
-     cc: [{
-         Address: "cc@example.com",
-         PersonalName: "CC"
-     }],
-     subject: "Hello",
-     body: "Hello, world!"
- });
-
-// Example #2:
- services.EmailService.Send({
-     from: "john.doe@example.com",
-     toList: "jane.doe@example.com;kate.doe@example.com",
-     ccList: "cc@example.com",
-     bccList: "bcc@example.com",
-     subject: "Hello",
-     body: "Hello, world!"
- });
-     }],
-     subject: "Hello",
-     body: "Hello, world!"
- });
+// HTML email with multiple recipients
+services.EmailService.Send({
+    from: {
+        Address: 'noreply@company.com',
+        PersonalName: 'Company System'
+    },
+    to: [
+        { Address: 'user1@company.com', PersonalName: 'User One' },
+        { Address: 'user2@company.com', PersonalName: 'User Two' }
+    ],
+    cc: [{ Address: 'manager@company.com' }],
+    subject: 'Monthly Report',
+    body: '<h1>Report</h1><p>See attachment.</p>'
+});
 ```
 
-You can mix the use of `to` and `ccList` for example. Do not use similar properties like `to` and `toList` at the same time, for example, however.
+---
 
-#### Parameters
+## Send(params)
 
-##### message
+Sends an email. Two addressing styles are supported — don't mix similar properties (e.g., use `to` **or** `toList`, not both).
 
-[`EmailMessage`](../interfaces/EmailMessage.md)
+### Simple Address Strings
 
-The email message to send.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `from` | `string` | Sender email address |
+| `toList` | `string` | Semicolon-separated recipient addresses |
+| `ccList` | `string` (optional) | Semicolon-separated CC addresses |
+| `bccList` | `string` (optional) | Semicolon-separated BCC addresses |
+| `subject` | `string` | Email subject |
+| `body` | `string` | Email body (text or HTML) |
 
-#### Returns
+```js
+services.EmailService.Send({
+    from: 'alerts@company.com',
+    toList: 'team@company.com;manager@company.com',
+    ccList: 'archive@company.com',
+    subject: 'Alert: High Error Rate',
+    body: `Errors in last hour: ${errorCount}`
+});
+```
 
-`void`
+### Structured Addresses
 
-Nothing
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `from` | `object` | `{ Address, PersonalName }` |
+| `to` | `object[]` | Array of `{ Address, PersonalName }` |
+| `cc` | `object[]` (optional) | Array of `{ Address, PersonalName }` |
+| `bcc` | `object[]` (optional) | Array of `{ Address, PersonalName }` |
+| `subject` | `string` | Email subject |
+| `body` | `string` | Email body |
+
+```js
+services.EmailService.Send({
+    from: {
+        Address: 'noreply@company.com',
+        PersonalName: 'Order System'
+    },
+    to: [{
+        Address: 'customer@example.com',
+        PersonalName: 'John Doe'
+    }],
+    subject: 'Order #12345 Confirmed',
+    body: 'Thank you for your order!'
+});
+```
+
+---
+
+## Complete Example
+
+```js
+export function onMessage() {
+    const orderId = message.getString(dataDictionary.type.Order.ID);
+    const customerEmail = message.getString(dataDictionary.type.Order.CUSTOMER_EMAIL);
+
+    // Send confirmation
+    services.EmailService.Send({
+        from: 'orders@company.com',
+        toList: customerEmail,
+        subject: `Order ${orderId} Confirmed`,
+        body: `Your order ${orderId} has been received and is being processed.`
+    });
+
+    stream.emit(message, OUTPUT_PORT);
+}
+```
+
+---
+
+## See Also
+
+- [`EmailMessage`](../interfaces/EmailMessage.md) — Full message structure reference
+- [`Service`](Service.md) — Service access patterns

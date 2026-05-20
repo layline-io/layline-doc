@@ -4,102 +4,92 @@ id: py-ZoneOffset
 
 # ZoneOffset
 
-Represents a time zone offset from UTC.
-A `ZoneOffset` defines the difference in hours and minutes from UTC for a particular time zone.
+Represents a fixed offset from UTC — hours and minutes, with no daylight saving time changes. Use `ZoneOffset` when you need a constant offset rather than a named timezone.
 
-## Example
+---
+
+## At a Glance
 
 ```python
-# Creating a ZoneOffset for UTC+5:30
-offset = ZoneOffset.of(5, 30)
+# Common offsets
+utc = ZoneOffset.of(0)           # UTC+00:00
+india = ZoneOffset.of(5, 30)     # UTC+05:30
+pacific = ZoneOffset.of(-8)      # UTC-08:00
 
-# Using ZoneOffset with DateTime
-date_time = DateTime.parse("2023-12-01 12:34:56", "uuuu-MM-dd HH:mm:ss")
-date_time_with_offset = date_time.atZone(offset)
-print(date_time_with_offset.toString())  # Outputs the DateTime with the specified ZoneOffset "2023-12-01T12:34:56+05:30"
+# Use with DateTime
+dt = DateTime.of(2024, 3, 15, 10, 30, 0, 0, india)
+stream.log_info(dt.toString())  # "2024-03-15T10:30:00+05:30"
 ```
 
-## Constructors
-
-### __init__()
-
-> **__init__**() -> ZoneOffset
-
-#### Returns
-
-ZoneOffset
+---
 
 ## Properties
 
-### id
-
-> **id**: str
-
-The ID of the zone offset, typically in the format `+HH:MM` or `-HH:MM`.
-
-#### Example
+| Property | Type | Description |
+|----------|------|-------------|
+| `id` | `str` | Offset string (e.g., `"+05:30"`, `"-08:00"`) |
+| `totalSeconds` | `int` | Total offset in seconds from UTC |
 
 ```python
 offset = ZoneOffset.of(5, 30)
-print(offset.id)  # Outputs: "+05:30"
+print(offset.id)            # "+05:30"
+print(offset.totalSeconds)  # 19800 (5 * 3600 + 30 * 60)
 ```
 
-### totalSeconds
-
-> **totalSeconds**: int
-
-The total offset in seconds from UTC.
-This is calculated as `hours * 3600 + minutes * 60`.
-
-#### Example
-
-```python
-offset = ZoneOffset.of(-7)
-print(offset.totalSeconds)  # Outputs: -25200 (for UTC-7:00)
-```
+---
 
 ## Methods
 
+### of(hour, minute=0)
+
+Creates a `ZoneOffset` from hour and optional minute components.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `hour` | `int` | Hour offset (can be negative) |
+| `minute` | `int` (optional) | Minute offset, defaults to 0 |
+
+**Returns:** `ZoneOffset`
+
+```python
+utc = ZoneOffset.of(0)           # +00:00
+india = ZoneOffset.of(5, 30)     # +05:30
+japan = ZoneOffset.of(9)         # +09:00
+pacific = ZoneOffset.of(-8)      # -08:00
+newfoundland = ZoneOffset.of(-3, -30)  # -03:30
+```
+
 ### toString()
 
-> **toString**() -> str
+Returns the string representation.
 
-Returns the string representation of the zone offset.
-The format will be `+HH:MM` or `-HH:MM`.
-
-#### Returns
-
-str - The string representation of the zone offset.
-
-#### Example
+**Returns:** `str`
 
 ```python
 offset = ZoneOffset.of(2, 0)
-print(offset.toString())  # Outputs: "+02:00"
+print(offset.toString())  # "+02:00"
 ```
 
-### of()
+---
 
-> @staticmethod
-> **of**(hour: int, minute: int = 0) -> ZoneOffset
+## ZoneOffset vs TimeZone
 
-Creates a `ZoneOffset` based on the provided hour and minute values.
-
-#### Parameters
-
-- **hour**: int - The hour component of the offset (can be negative for west of UTC).
-- **minute**: int, optional - The minute component of the offset. Defaults to 0.
-
-#### Returns
-
-ZoneOffset - A `ZoneOffset` instance representing the specified offset.
-
-#### Example
+| Use | Class |
+|-----|-------|
+| Fixed offset (no DST) | `ZoneOffset` |
+| Named region with DST (e.g., Europe/Berlin) | [`TimeZone`](TimeZone.md) |
 
 ```python
-# Create a ZoneOffset for UTC+5:30
-offset = ZoneOffset.of(5, 30)
+# ZoneOffset: fixed, never changes
+fixed = ZoneOffset.of(1)  # Always +01:00
 
-# Create a ZoneOffset for UTC-7:00
-offset_negative = ZoneOffset.of(-7)
+# TimeZone: handles DST automatically
+berlin = TimeZone.of('Europe/Berlin')  # +01:00 or +02:00 depending on season
 ```
+
+---
+
+## See Also
+
+- [`TimeZone`](TimeZone.md) — Named timezones with daylight saving time
+- [`DateTime`](DateTime.md) — Use ZoneOffset in DateTime.of()

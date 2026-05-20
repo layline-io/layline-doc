@@ -1,116 +1,91 @@
 # ZoneOffset
 
-Represents a time zone offset from UTC.
-A `ZoneOffset` defines the difference in hours and minutes from UTC for a particular time zone.
+Represents a fixed offset from UTC — hours and minutes, with no daylight saving time changes. Use `ZoneOffset` when you need a constant offset rather than a named timezone.
 
-## Example
+---
 
-```ts
-// Creating a ZoneOffset for UTC+5:30
-const offset = ZoneOffset.of(5, 30);
+## At a Glance
 
-// Using ZoneOffset with DateTime
-const dateTime = DateTime.of(2023, 12, 1, 12, 34, 56, 0, offset;
-print(dateTime.toString()); // Outputs the DateTime with the specified ZoneOffset "2023-12-01T12:34:56+05:30"
+```js
+// Common offsets
+const utc = ZoneOffset.of(0);           // UTC+00:00
+const india = ZoneOffset.of(5, 30);     // UTC+05:30
+const pacific = ZoneOffset.of(-8);      // UTC-08:00
+
+// Use with DateTime
+const dt = DateTime.of(2024, 3, 15, 10, 30, 0, 0, india);
+stream.logInfo(dt.toString());  // "2024-03-15T10:30:00+05:30"
 ```
 
-## Constructors
-
-### Constructor
-
-> **new ZoneOffset**(): `ZoneOffset`
-
-#### Returns
-
-`ZoneOffset`
+---
 
 ## Properties
 
-### id
+| Property | Type | Description |
+|----------|------|-------------|
+| `id` | `string` | Offset string (e.g., `"+05:30"`, `"-08:00"`) |
+| `totalSeconds` | `number` | Total offset in seconds from UTC |
 
-> **id**: `string`
-
-The ID of the zone offset, typically in the format `+HH:MM` or `-HH:MM`.
-
-#### Example
-
-```ts
+```js
 const offset = ZoneOffset.of(5, 30);
-print(offset.id); // Outputs: "+05:30"
+stream.logInfo(offset.id);            // "+05:30"
+stream.logInfo(offset.totalSeconds);  // 19800 (5 * 3600 + 30 * 60)
 ```
 
-***
-
-### totalSeconds
-
-> **totalSeconds**: `number`
-
-The total offset in seconds from UTC.
-This is calculated as `hours * 3600 + minutes * 60`.
-
-#### Example
-
-```ts
-const offset = ZoneOffset.of(-7);
-print(offset.totalSeconds); // Outputs: -25200 (for UTC-7:00)
-```
+---
 
 ## Methods
 
+### of(hour, minute?)
+
+Creates a ZoneOffset from hour and optional minute components.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `hour` | `number` | Hour offset (can be negative) |
+| `minute` | `number` (optional) | Minute offset, defaults to 0 |
+
+**Returns:** `ZoneOffset`
+
+```js
+const utc = ZoneOffset.of(0);           // +00:00
+const india = ZoneOffset.of(5, 30);     // +05:30
+const japan = ZoneOffset.of(9);         // +09:00
+const pacific = ZoneOffset.of(-8);      // -08:00
+const newfoundland = ZoneOffset.of(-3, -30);  // -03:30
+```
+
 ### toString()
 
-> **toString**(): `string`
+Returns the string representation.
 
-Returns the string representation of the zone offset.
-The format will be `+HH:MM` or `-HH:MM`.
+**Returns:** `string`
 
-#### Returns
-
-`string`
-
-The string representation of the zone offset.
-
-#### Example
-
-```ts
+```js
 const offset = ZoneOffset.of(2, 0);
-print(offset.toString()); // Outputs: "+02:00"
+stream.logInfo(offset.toString());  // "+02:00"
 ```
 
-***
+---
 
-### of()
+## ZoneOffset vs TimeZone
 
-> `static` **of**(`hour`, `minute?`): `ZoneOffset`
+| Use | Class |
+|-----|-------|
+| Fixed offset (no DST) | `ZoneOffset` |
+| Named region with DST (e.g., Europe/Berlin) | [`TimeZone`](TimeZone.md) |
 
-Creates a `ZoneOffset` based on the provided hour and minute values.
+```js
+// ZoneOffset: fixed, never changes
+const fixed = ZoneOffset.of(1);  // Always +01:00
 
-#### Parameters
-
-##### hour
-
-`number`
-
-The hour component of the offset (can be negative for west of UTC).
-
-##### minute?
-
-`number` = `0`
-
-The minute component of the offset.
-
-#### Returns
-
-`ZoneOffset`
-
-A `ZoneOffset` instance representing the specified offset.
-
-#### Example
-
-```ts
-// Create a ZoneOffset for UTC+5:30
-const offset = ZoneOffset.of(5, 30);
-
-// Create a ZoneOffset for UTC-7:00
-const offsetNegative = ZoneOffset.of(-7);
+// TimeZone: handles DST automatically
+const berlin = TimeZone.of('Europe/Berlin');  // +01:00 or +02:00 depending on season
 ```
+
+---
+
+## See Also
+
+- [`TimeZone`](TimeZone.md) — Named timezones with daylight saving time
+- [`DateTime`](DateTime.md) — Use ZoneOffset in DateTime.of()

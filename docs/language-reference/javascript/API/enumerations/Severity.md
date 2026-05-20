@@ -1,35 +1,33 @@
 # Severity
 
-Enumeration for use of Severity levels in [Message](../classes/Message)
+Severity levels for message status tracking. Used with [`Message.addStatus()`](../classes/Message.md#adding-status) and related methods.
 
-Example use:
+---
+
+## At a Glance
+
 ```js
-// Adding a severity status to a message:
- if (error) {
-     message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_VALUE', valueString));
- }
+const VENDOR = Status.getVendorByName('MyVendor');
+
+if (error) {
+    message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_VALUE', value));
+}
 ```
+
+---
 
 ## Enumeration Members
 
-### ERROR
+| Member | Value | Description |
+|--------|-------|-------------|
+| `INFO` | `0` | Informational — no action required |
+| `WARNING` | `1` | Potential issue — worth reviewing |
+| `ERROR` | `2` | Processing error — may affect downstream handling |
+| `FATAL` | `3` | Critical failure — typically stops processing |
 
-> **ERROR**: `2`
+---
 
-***
+## See Also
 
-### FATAL
-
-> **FATAL**: `3`
-
-***
-
-### INFO
-
-> **INFO**: `0`
-
-***
-
-### WARNING
-
-> **WARNING**: `1`
+- [`Message`](../classes/Message.md) — Add and query status on messages
+- [`Status`](../classes/Status.md) — Status object details

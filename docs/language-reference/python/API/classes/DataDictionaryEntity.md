@@ -4,59 +4,98 @@ id: py-DataDictionaryEntity
 
 # DataDictionaryEntity
 
-Represents an individual node in a [Message](Message.md)'s data structure.
+A `DataDictionaryEntity` represents a single node in your data dictionary hierarchy — either an intermediate structure (like a record type) or a leaf field. You use these entities as type-safe accessors when reading from or writing to [`Message`](Message.md) fields.
 
-The DataDictionaryEntity class corresponds to a specific element within the hierarchical
-structure of a message's data dictionary. It can represent both intermediate nodes
-(like a record type) and leaf nodes (like individual fields).
+Think of it as a typed pointer: it tells the Message exactly which field to access and what type to expect.
 
-## Description
+---
 
-Assuming we have a data dictionary structure:
-```
-CSV
- ├── RECORD_TYPE
- ├── FIRST_NAME
- ├── LAST_NAME
- └── ...
-```
-Then:
-- `message.data.CSV` is a DataDictionaryEntity
-- `message.data.CSV.RECORD_TYPE` is also a DataDictionaryEntity
-
-## Examples
-
-### Accessing a DataDictionaryEntity
+## At a Glance
 
 ```python
-# Accessing a DataDictionaryEntity
-csv_entity = message.data.CSV
-record_type_entity = message.data.CSV.RECORD_TYPE
+# DataDictionaryEntity is the bridge between your dictionary and message data
+name_field = dataDictionary.type.Customer.Detail.NAME
 
-# Using DataDictionaryEntity with Message methods
-record_type = message.getString(record_type_entity)
-print(f"Record Type: {record_type}")
+# Use it with Message methods
+customer_name = message.getString(name_field)
+message.setString(name_field, "Acme Corp")
 ```
 
-### Using DataDictionaryEntity to check field existence and access values
+---
+
+## Understanding the Hierarchy
+
+Given a data dictionary structure like:
+
+```
+Customer
+├── Header
+│   ├── RECORD_TYPE
+│   └── TIMESTAMP
+└── Detail
+    ├── RECORD_TYPE
+    ├── FIRST_NAME
+    ├── LAST_NAME
+    └── EMAIL
+```
+
+You navigate it through `dataDictionary.type`:
 
 ```python
-# Using DataDictionaryEntity to check field existence and access values
-if message.exists(message.data.CSV.LAST_NAME):
-    last_name = message.getString(message.data.CSV.LAST_NAME)
-    print(f"Last Name: {last_name}")
-else:
-    print("Last Name field does not exist in this message")
+# Intermediate nodes (structures)
+customer_type = dataDictionary.type.Customer           # Customer root
+detail_type   = dataDictionary.type.Customer.Detail    # Detail record
+
+# Leaf nodes (fields) — these are DataDictionaryEntity instances
+first_name_field = dataDictionary.type.Customer.Detail.FIRST_NAME
+email_field     = dataDictionary.type.Customer.Detail.EMAIL
 ```
 
-## Notes
+---
 
-- In Python, attribute access is used to navigate the data dictionary structure (e.g., `message.data.CSV.LAST_NAME`).
-- The `exists()` method is used to check for the presence of a field in the message.
-- Methods like `getString()` are used to retrieve values from the message using DataDictionaryEntity as a reference.
+## Working with Messages
+
+### Reading Fields
+
+```python
+first_name = message.getString(dataDictionary.type.Customer.Detail.FIRST_NAME)
+age       = message.getInt(dataDictionary.type.Customer.Detail.AGE)
+```
+
+### Writing Fields
+
+```python
+message.setString(dataDictionary.type.Customer.Detail.FIRST_NAME, "John")
+message.setInt(dataDictionary.type.Customer.Detail.AGE, 42)
+```
+
+### Checking Existence
+
+```python
+# Check if a structure exists in the message
+if message.exists(dataDictionary.type.Customer.Detail):
+    # Detail record is present
+    pass
+
+# Check if a specific field exists
+if message.exists(dataDictionary.type.Customer.Detail.EMAIL):
+    email = message.getString(dataDictionary.type.Customer.Detail.EMAIL)
+```
+
+### Type Checking
+
+```python
+# Check if message matches a specific type
+if message.isType(dataDictionary.type.Customer.Detail):
+    # Process detail record
+    pass
+```
+
+---
 
 ## See Also
 
-- [Message](Message.md) for more information on how DataDictionaryEntity is used in message processing.
-- [Message.exists()](Message.md#exists) for checking the existence of a field in a message.
-- [Message.getString()](Message.md#getstring) for retrieving string values using DataDictionaryEntity.
+- [`DataDictionary`](DataDictionary.md) — Navigate the full type hierarchy
+- [`Message`](Message.md) — Read and write message data using DataDictionaryEntity accessors
+- [`Message.getString()`](Message.md) — Get string values
+- [`Message.exists()`](Message.md) — Check field existence

@@ -1,45 +1,21 @@
 # Temporal
 
-Interface representing a Temporal object, which includes methods for formatting the temporal data.
+Base interface for date/time objects that support standard string formatting.
+
+Implemented by [`DateTime`](../classes/DateTime.md) and [`LocalDate`](../classes/LocalDate.md).
+
+---
 
 ## Methods
 
-### toISOString()
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `toISOString()` | `string` | ISO 8601 representation |
+| `toString()` | `string` | Human-readable string representation |
 
-> **toISOString**(): `string`
+```js
+const dt = DateTime.now();
 
-Returns an ISO 8601 string representation of the Temporal instance.
-
-#### Returns
-
-`string`
-
-An ISO 8601 formatted string representing the Temporal instance.
-
-#### Example
-
-```ts
-const temporal = DateTime.now();
-print(temporal.toISOString()); // Outputs something like: "2024-09-03T12:34:56.789Z"
-```
-
-***
-
-### toString()
-
-> **toString**(): `string`
-
-Returns a string representation of the Temporal instance.
-
-#### Returns
-
-`string`
-
-A string representing the Temporal instance.
-
-#### Example
-
-```ts
-const temporal = DateTime.now();
-print(temporal.toString()); // Outputs something like: "2024-09-03T12:34:56.789Z"
+dt.toISOString();  // "2024-09-03T12:34:56.789Z"
+dt.toString();     // "2024-09-03T12:34:56.789Z"
 ```

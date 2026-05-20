@@ -4,112 +4,128 @@ id: py-Counter
 
 # Counter
 
-Represents a counter that can be incremented or decremented.
-This class cannot be instantiated directly, but is obtained through the metrics.getCounter method.
+A thread-safe counter for tracking numeric values — message counts, totals, or any incrementing/decrementing metric. Obtained through [`metrics.getCounter()`](Metrics.md).
+
+Counters support method chaining for fluent updates.
+
+---
+
+## At a Glance
+
+```python
+# Get or create a counter
+processed = metrics.getCounter('orders.processed')
+failed = metrics.getCounter('orders.failed')
+
+# Increment
+processed.increment()
+processed.increment(5)
+
+# Decrement
+failed.decrement()
+
+# Read value
+stream.logInfo(f"Processed: {processed.count}")
+```
+
+---
 
 ## Properties
 
-### count
-
-> **count**: `int`
-
-The current count value.
-Same as [getCount](#getcount).
-
-#### Example
+| Property | Type | Description |
+|----------|------|-------------|
+| `count` | `int` | Current counter value |
 
 ```python
-myCounter = metrics.getCounter("Counter.Signals.*.MyCounter")
-print(myCounter.count)  # Output: 0 (or whatever the initial value is)
-
-myCounter.increment()
-print(myCounter.count)  # Output: 1
+counter = metrics.getCounter('my.counter')
+stream.logInfo(counter.count)  # 0 (initially)
 ```
+
+---
 
 ## Methods
 
-### decrement()
+### increment(value)
 
-> **decrement**(value: int = 1) -> 'Counter'
+Increases the counter by 1 or the specified amount.
 
-Decrements the counter by the specified value or by 1 if no value is provided.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `int` (optional) | Amount to add — defaults to 1 |
 
-#### Parameters
-
-- **value** (int, optional): The value to decrement by. Defaults to 1 if not specified.
-
-#### Returns
-
-The Counter instance for method chaining.
-
-#### Example
+**Returns:** `Counter` (supports chaining)
 
 ```python
-myCounter = metrics.getCounter("Counter.Signals.*.MyCounter")
-myCounter.increment(10)  # Set initial value to 10
+c = metrics.getCounter('events')
 
-# Decrement by 1
-myCounter.decrement()
-print(myCounter.count)  # Output: 9
+c.increment()       # +1
+c.increment(5)      # +5
+c.increment(2).increment(3)  # chained: +5 total
+```
 
-# Decrement by a specific value
-myCounter.decrement(3)
-print(myCounter.count)  # Output: 6
+### decrement(value)
 
-# Method chaining
-myCounter.decrement(2).decrement()
-print(myCounter.count)  # Output: 3
+Decreases the counter by 1 or the specified amount.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `int` (optional) | Amount to subtract — defaults to 1 |
+
+**Returns:** `Counter` (supports chaining)
+
+```python
+c = metrics.getCounter('pending')
+
+c.decrement()       # -1
+c.decrement(3)      # -3
+c.decrement(2).decrement(1)  # chained: -3 total
 ```
 
 ### getCount()
 
-> **getCount**() -> int
+Returns the current count. Same as reading [`count`](#properties).
 
-Returns the current count value.
-Same as accessing the [count](#count) property directly.
-
-#### Returns
-
-The current count value.
-
-#### Example
+**Returns:** `int`
 
 ```python
-myCounter = metrics.getCounter("Counter.Signals.*.MyCounter")
-myCounter.increment(5)
-
-currentCount = myCounter.getCount()
-print(currentCount)  # Output: 5
+total = counter.getCount()
 ```
 
-### increment()
+---
 
-> **increment**(value: int = 1) -> 'Counter'
-
-Increments the counter by the specified value or by 1 if no value is provided.
-
-#### Parameters
-
-- **value** (int, optional): The value to increment by. Defaults to 1 if not specified.
-
-#### Returns
-
-The Counter instance for method chaining.
-
-#### Example
+## Complete Example
 
 ```python
-myCounter = metrics.getCounter("Counter.Signals.*.MyCounter")
+OUTPUT_PORT = None
+ERROR_PORT = None
 
-# Increment by 1
-myCounter.increment()
-print(myCounter.count)  # Output: 1
+def on_init():
+    global OUTPUT_PORT, ERROR_PORT
+    OUTPUT_PORT = processor.getOutputPort('Output')
+    ERROR_PORT  = processor.getOutputPort('Error')
 
-# Increment by a specific value
-myCounter.increment(5)
-print(myCounter.count)  # Output: 6
+def on_message():
+    processed = metrics.getCounter('stream.records.processed')
+    errors    = metrics.getCounter('stream.records.errors')
 
-# Method chaining
-myCounter.increment(2).increment(3)
-print(myCounter.count)  # Output: 11
+    try:
+        validate_record(message)
+        processed.increment()
+        stream.emit(message, OUTPUT_PORT)
+    except Exception as err:
+        errors.increment()
+        message.addStatus(Severity.ERROR, Status.create(VENDOR, 'VALIDATION_FAILED'))
+        stream.emit(message, ERROR_PORT)
+
+def on_stream_end():
+    processed = metrics.getCounter('stream.records.processed')
+    errors    = metrics.getCounter('stream.records.errors')
+
+    stream.logInfo(f"Stream complete: {processed.count} processed, {errors.count} errors")
 ```
+
+---
+
+## See Also
+
+- [`Metrics`](Metrics.md) — Create and manage counters

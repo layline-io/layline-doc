@@ -4,229 +4,162 @@ id: py-Processor
 
 # Processor
 
+The `Processor` class provides access to the current processor's configuration and runtime properties. It is available globally as `processor` in every Python processor.
+
+Use it to retrieve configured arguments, resolve output ports, expand environment macros, and log processor-specific messages.
+
+---
+
+## At a Glance
+
+```python
+# Get configured arguments from the UI
+args = processor.arguments
+timeout = args.get('timeout', 5000)
+
+# Resolve an output port for emitting messages
+OUTPUT_PORT = processor.getOutputPort('Output')
+
+# Expand environment variables in strings
+db_host = processor.expandString('${lay:DB_HOST}')
+```
+
+---
+
 ## Properties
+
+| Property | Type | Description |
+|----------|------|-------------|
+| [`arguments`](#arguments) | `dict` | JSON arguments configured in the Python Asset editor |
+| [`name`](#name) | `str` | The name of the current processor |
 
 ### arguments
 
-> **arguments**: dict
-
-Returns arguments which you have configured via the UI as part of a Python Asset.
-The list of provided arguments are in JSON-Format.
-You enter them using the Python Asset editor and then retrieve them using this method.
-
-#### Example
+Arguments entered via the Python Asset editor in the UI. Returned as a Python dictionary.
 
 ```python
-# Get the Processor's configured arguments:
 args = processor.arguments
 
-# Now access the individual arguments like this:
-my_prop = args['myProp']
+# Access individual properties
+max_retries = args.get('maxRetries', 3)
+api_endpoint = args.get('apiEndpoint')
+
+stream.logInfo(f'Configured retries: {max_retries}')
 ```
 
 ### name
 
-> **name**: str
-
-Get the name of the current Processor.
-Same as [getName](#getname)
-
-#### Example
+The processor name as defined in the workflow diagram.
 
 ```python
-# Get the Processor's name:
-name = processor.name  # Returns the name of the Processor, e.g. 'My-Processor'.
+processor_name = processor.name  # e.g., "Validate-Order"
 ```
+
+---
 
 ## Methods
 
-### expandString()
-
-> **expandString**(to_expand: str) -> str
-
-Expands all macros contained in a string.
-For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](../../../../assets/workflow-assets/resources/asset-resource-environment.md) you can do so like this:
-
-#### Parameters
-
-- **to_expand**: str
-
-#### Returns
-
-str - Expanded string
-
-#### Example
-
-```python
-# Get the username which is defined in one of your environment resources:
-username = processor.expandString('The username is ${lay:USERNAME}.')
-
-# Output: "The username is layline.", where "layline" is the value of the USERNAME environment variable.
-```
-
-Check out the [macro](../../../macros) documentation for more information on how to address expandable strings.
-
 ### getArguments()
 
-> **getArguments**() -> dict
+Returns the configured arguments. Same as [`arguments`](#arguments).
 
-Returns arguments which you have configured via the UI as part of a Python Asset.
-The list of provided arguments are in JSON-Format. You enter them using the Python Asset editor
-and then retrieve them using this method.
-
-#### Returns
-
-dict - Configured arguments as a Python dictionary
-
-#### Example
+**Returns:** `dict`
 
 ```python
-# Get the Processor's configured arguments:
 args = processor.getArguments()
-
-# Now access the individual arguments like this:
-my_prop = args['myProp']
 ```
 
 ### getName()
 
-> **getName**() -> str
+Returns the processor name. Same as [`name`](#name).
 
-Get the name of the current Processor.
-Same as [name](#name)
-
-#### Returns
-
-str - Processor name
-
-#### Example
+**Returns:** `str`
 
 ```python
-# Get the Processor's name:
-processor.getName()
+name = processor.getName()
 ```
 
-### getOutputPort()
+### getOutputPort(portName)
 
-> **getOutputPort**(port_name: str) -> OutputPort
+Returns an [`OutputPort`](OutputPort.md) instance for the given port name. Use this to obtain the port reference needed by [`stream.emit()`](Stream.md).
 
-Get the [OutputPort](OutputPort.md) information for a given output port.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `portName` | `str` | The name of the output port as defined in the workflow |
 
-#### Parameters
-
-- **port_name**: str
-
-#### Returns
-
-OutputPort - Output port instance information.
-
-#### Example
+**Returns:** [`OutputPort`](OutputPort.md)
 
 ```python
-# Set stream output name:
-OUTPUT_PORT = processor.getOutputPort('Output')  # Returns the OutputPort instance for the output port named 'Output'.
+# In on_init — resolve ports once
+OUTPUT_PORT = None
+ERROR_PORT = None
+
+def on_init():
+    global OUTPUT_PORT, ERROR_PORT
+    OUTPUT_PORT = processor.getOutputPort('Output')
+    ERROR_PORT = processor.getOutputPort('Error')
+
+def on_message():
+    if is_valid(message):
+        stream.emit(message, OUTPUT_PORT)
+    else:
+        stream.emit(message, ERROR_PORT)
 ```
 
-### logError()
+### expandString(toExpand)
 
-> **logError**(param: str | Status) -> None
+Expands macros within a string using environment variables, secrets, and other configured values.
 
-Logs a message with [Severity](../enumerations/Severity.md).ERROR to the processor log.
-You can view this both via the Audit Trail in the UI and output in the process terminal output.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `toExpand` | `str` | String containing `${lay:VARNAME}` style macros |
 
-#### Parameters
-
-- **param**: str | Status - Information you want to log. Can be either a string message or a Status object.
-
-#### Returns
-
-None
-
-#### Example
+**Returns:** `str` — The expanded string
 
 ```python
-# Log a simple string message
-processor.logError(f'Ran into the following problem: {problem}')
+# Expand environment variables
+db_url = processor.expandString('jdbc:postgresql://${lay:DB_HOST}:${lay:DB_PORT}/mydb')
+# Result: "jdbc:postgresql://db-server.internal:5432/mydb"
 
-# Log a Status object
-status = Status.create(VENDOR, 'ERROR_CODE', 'param1', 'param2')
-processor.logError(status)
+# Expand with defaults
+timeout = processor.expandString('${lay:TIMEOUT:-30000}')
 ```
 
-### logFatal()
+:::tip Macro Documentation
+See the [macro documentation](../../../macros) for all available macro types and syntax.
+:::
 
-> **logFatal**(param: str | Status) -> None
+---
 
-Logs a message with [Severity](../enumerations/Severity.md).FATAL to the processor log.
-You can view this both via the Audit Trail in the UI and output in the process terminal output.
+## Logging
 
-#### Parameters
+Log messages at different severity levels. These appear in the Audit Trail and processor terminal output.
 
-- **param**: str | Status - Information you want to log. Can be either a string message or a Status object.
+| Method | Severity | Use For |
+|--------|----------|---------|
+| `logInfo(param)` | [`INFO`](../enumerations/Severity.md) | General information, progress updates |
+| `logWarning(param)` | [`WARNING`](../enumerations/Severity.md) | Non-critical issues that need attention |
+| `logError(param)` | [`ERROR`](../enumerations/Severity.md) | Errors that affect processing |
+| `logFatal(param)` | [`FATAL`](../enumerations/Severity.md) | Critical failures requiring immediate action |
 
-#### Returns
-
-None
-
-#### Example
+Each method accepts either a `str` or a [`Status`](Status.md) object.
 
 ```python
-# Log a simple string message
-processor.logFatal(f'Ran into the following problem: {problem}')
+# Log a simple message
+processor.logInfo(f'Processing order {order_id}')
 
-# Log a Status object
-status = Status.create(VENDOR, 'FATAL_ERROR', 'param1', 'param2')
-processor.logFatal(status)
+# Log a warning with context
+processor.logWarning(f'Unexpected value: {value}')
+
+# Log an error as a Status object
+err_status = Status.create(VENDOR, 'VALIDATION_FAILED', field_name)
+processor.logError(err_status)
 ```
 
-### logInfo()
+---
 
-> **logInfo**(param: str | Status) -> None
+## See Also
 
-Logs a message with [Severity](../enumerations/Severity.md).INFO to the processor log.
-You can view this both via the Audit Trail in the UI and output in the process terminal output.
-
-#### Parameters
-
-- **param**: str | Status - Information you want to log. Can be either a string message or a Status object.
-
-#### Returns
-
-None
-
-#### Example
-
-```python
-# Log a simple string message
-processor.logInfo(f'Here is some interesting information: {info}')
-
-# Log a Status object
-status = Status.create(VENDOR, 'INFO_CODE', 'param1', 'param2')
-processor.logInfo(status)
-```
-
-### logWarning()
-
-> **logWarning**(param: str | Status) -> None
-
-Logs a message with [Severity](../enumerations/Severity.md).WARNING to the processor log.
-You can view this both via the Audit Trail in the UI and output in the process terminal output.
-
-#### Parameters
-
-- **param**: str | Status - Information you want to log. Can be either a string message or a Status object.
-
-#### Returns
-
-None
-
-#### Example
-
-```python
-# Log a simple string message
-processor.logWarning(f'Here is a warning: {warning}')
-
-# Log a Status object
-status = Status.create(VENDOR, 'WARNING_CODE', 'param1', 'param2')
-processor.logWarning(status)
-```
+- [`OutputPort`](OutputPort.md) — The ports you obtain and emit to
+- [`PythonProcessor`](PythonProcessor.md) — Lifecycle hooks (on_init, on_message, etc.)
+- [Macro documentation](../../../macros) — Full macro syntax reference

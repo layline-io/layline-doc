@@ -4,20 +4,27 @@ id: py-TimerOnce
 
 # TimerOnce
 
-Represents a timer element that is executed once.
+Single-execution timer fired at a specific point in time.
+
+---
 
 ## Properties
 
-### Payload
+| Property | Type | Description |
+|----------|------|-------------|
+| `When` | [`DateTime`](../classes/DateTime.md) | The exact time to fire the timer |
+| `Payload` | `any` | Data passed to the timer callback |
 
-> **Payload**: `any`
+```python
+{
+    "When": DateTime.now().plus_days(1).with_hour(9).with_minute(0),
+    "Payload": {"jobType": "daily-report"}
+}
+```
 
-The payload of the timer.
+---
 
-***
+## See Also
 
-### When
-
-> **When**: [`DateTime`](../classes/DateTime.md)
-
-The date and time of the timer.
+- [`TimerChoice`](TimerChoice.md) — Container for timer configurations
+- [`TimerResponse`](TimerResponse.md) — Register timers via the Timer API

@@ -1,107 +1,90 @@
 # TimeZone
 
-The abstract TimeZone class is a class that represents time zones, and is helpful when doing calendar arithmetics across time zones.
-It is used in conjunction with the [DateTime](DateTime.md), [Time](Time.md), and [LocalDate](LocalDate.md) classes.
+Represents a timezone for use with [`DateTime`](DateTime.md), [`LocalDate`](LocalDate.md), and [`Time`](Time.md). Timezones handle daylight saving time transitions and regional offsets automatically.
+
+---
+
+## At a Glance
+
+```js
+// Common timezones
+const utc = TimeZone.UTC;
+const berlin = TimeZone.of('Europe/Berlin');
+const tokyo = TimeZone.of('Asia/Tokyo');
+const ny = TimeZone.of('America/New_York');
+
+// System default
+const local = TimeZone.systemDefault();
+
+// Use with DateTime
+const now = DateTime.now(berlin);
+stream.logInfo(`Berlin: ${now.toString()}`);
+```
+
+---
 
 ## Properties
 
-### displayName
-
-> **displayName**: `string`
-
-This is the display name of the time zone.
-
-#### Example
+| Property | Type | Description |
+|----------|------|-------------|
+| `id` | `string` | Timezone identifier (e.g., `"Europe/Berlin"`) |
+| `displayName` | `string` | Human-readable name (e.g., `"Central European Time"`) |
 
 ```js
-const timeZone = TimeZone.of('America/New_York');
-// Returns the TimeZone instance for the time zone with the ID 'America/New_York'
-timeZone.displayName; // Returns "Eastern Time"
+const tz = TimeZone.of('America/New_York');
+stream.logInfo(tz.id);           // "America/New_York"
+stream.logInfo(tz.displayName);  // "Eastern Time"
 ```
 
-***
+---
 
-### id
-
-> **id**: `string`
-
-This is the unique identifier of the time zone.
-
-#### Example
-
-```js
-const timeZone = TimeZone.of('America/New_York');
-// Returns the TimeZone instance for the time zone with the ID 'America/New_York'
-timeZone.id; // Returns "America/New_York"
-```
-
-***
+## Static Properties
 
 ### UTC
 
-> `static` **UTC**: `TimeZone`
-
-Get the UTC time zone
-
-#### Returns
-
-#### Example
+The UTC timezone.
 
 ```js
-const timeZone = TimeZone.UTC();
-// Returns the UTC time zone
-timeZone.displayName; // Returns "Coordinated Universal Time"
-timeZone.id; // Returns "UTC"
+const utc = TimeZone.UTC;
+stream.logInfo(utc.id);  // "UTC"
 ```
+
+---
 
 ## Methods
 
-### of()
+### of(zoneId)
 
-> `static` **of**(`zoneId`): `TimeZone`
+Returns a TimeZone by its identifier.
 
-Get the [displayName](#displayname) and [id](#id) and id of the time zone
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `zoneId` | `string` | Timezone ID (e.g., `"Europe/Berlin"`, `"America/New_York"`) |
 
-#### Parameters
-
-##### zoneId
-
-`string`
-
-The long name (!) of the time zone. You can find a good list of all available time zones [here](https://howtodoinjava.com/java/date-time/supported-zone-ids-offsets/).
-
-#### Returns
-
-`TimeZone`
-
-#### Example
+**Returns:** `TimeZone`
 
 ```js
-const timeZone = TimeZone.of('America/New_York');
-// Returns the TimeZone instance for the time zone with the ID 'America/New_York'
-timeZone.displayName; // Returns "Eastern Time"
-timeZone.id; // Returns "America/New_York"
+const tz = TimeZone.of('Asia/Tokyo');
 ```
 
-***
+:::tip Finding Timezone IDs
+Use standard IANA timezone IDs. A complete list is available at [howtodoinjava.com](https://howtodoinjava.com/java/date-time/supported-zone-ids-offsets/).
+:::
 
 ### systemDefault()
 
-> `static` **systemDefault**(): `TimeZone`
+Returns the system's default timezone.
 
-Get the system default time zone
-
-#### Returns
-
-`TimeZone`
-
-The system default time zone
-
-#### Example
+**Returns:** `TimeZone`
 
 ```js
-const timeZone = TimeZone.systemDefault();
-// Returns the system default time zone
-timeZone.displayName; // Returns the display name of the system default time zone, e.g. "Eastern Time"
-timeZone.id; // Returns the ID of the system default time zone, e.g. "America/New_York"
+const local = TimeZone.systemDefault();
+stream.logInfo(`Running in: ${local.id}`);
 ```
+
+---
+
+## See Also
+
+- [`DateTime`](DateTime.md) — Use with DateTime.now(zone) and atZone(zone)
+- [`ZoneOffset`](ZoneOffset.md) — Fixed UTC offset (e.g., +05:30)

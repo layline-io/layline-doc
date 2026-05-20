@@ -1,33 +1,26 @@
 # DataDictionaryTypes
 
-Represents the dynamically generated structure of a data dictionary based on the specific configuration.
+Dynamically generated structure of a data dictionary. The available properties depend entirely on your project's data dictionary configuration and are resolved at runtime.
 
-This interface provides access to the root elements of the data dictionary, which are
-generated at runtime based on the individual setup. It allows for navigation through
-the hierarchical structure of the data dictionary using dot notation.
+---
 
-The actual properties available on this interface depend entirely on the specific
-configuration of the data dictionary in the layline.io project and are not known
-at compile time.
+## At a Glance
 
-## Examples
+```js
+// Access message types via dot notation
+const detailType = dataDictionary.type.SomeNamespace.Detail;
+const field      = dataDictionary.type.AnotherNamespace.Header.SomeField;
 
-```ts
-// Accessing elements of the data dictionary
-const someDetail = dataDictionary.type.SomeNamespace.Detail;
-const someField = dataDictionary.type.AnotherNamespace.Header.SomeField;
-```
-
-```ts
-// Using in a message processing context
+// Use with Message methods
 if (message.is(dataDictionary.type.SomeNamespace.SomeMessageType)) {
     // Process specific message type
 }
 ```
 
+---
+
 ## Indexable
 
 \[`key`: `string`\]: `any`
 
-Allows for dynamic properties based on the specific configuration.
-These can be namespaces, sequences, or other types of declarations.
+Allows dynamic property access based on your data dictionary configuration — namespaces, sequences, message types, and fields.

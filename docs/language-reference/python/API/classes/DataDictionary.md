@@ -4,66 +4,80 @@ id: py-DataDictionary
 
 # DataDictionary
 
-The DataDictionary class provides access to the data dictionary structures defined in your layline.io Project.
-It allows you to create messages based on these structures and access type definitions.
+The `DataDictionary` provides access to all data structures defined in your layline.io project — message types, record formats, and field definitions. It is available globally as `dataDictionary` in every Python processor.
 
-## Usage Notes
+Use it to create new messages, navigate type hierarchies, and access field metadata.
 
-1. The DataDictionary is automatically available in your scripts as the `dataDictionary` object.
-2. Use the `type` property to navigate through your data dictionary structure.
-3. The `createMessage` method is useful when you need to create new messages based on your defined structures, for example when splitting or aggregating messages.
+---
 
-Remember to refer to your Project's specific data dictionary structure when using these methods and properties.
+## At a Glance
+
+```python
+# Navigate to a specific type
+detail_type = dataDictionary.type.MyFormat.Detail
+
+# Create a new message from that type
+new_message = dataDictionary.createMessage(detail_type)
+
+# Populate and emit
+new_message.data.RECORD_TYPE = "D"
+stream.emit(new_message, OUTPUT_PORT)
+```
+
+---
 
 ## Properties
 
+| Property | Type | Description |
+|----------|------|-------------|
+| [`type`](#type) | [`DataDictionaryTypes`](DataDictionaryTypes.md) | Access all data dictionary types defined in your project |
+
 ### type
 
-> **type**: [DataDictionaryTypes](DataDictionaryTypes.md)
-
-The type of the data dictionary.
-Provides access to all data dictionary types defined in your Project.
-
-#### Example
+Navigate your data dictionary hierarchy through this property. The structure mirrors your project's format and data dictionary definitions.
 
 ```python
-# Accessing a specific type in the data dictionary
-my_record_type = dataDictionary.type.MyFormat.Detail
+# Access a specific record type
+header_type = dataDictionary.type.MyFormat.Header
+detail_type = dataDictionary.type.MyFormat.Detail
+
+# Access nested fields (returns DataDictionaryEntity for use with Message methods)
+record_type_field = dataDictionary.type.MyFormat.Detail.RECORD_TYPE
+name_field       = dataDictionary.type.MyFormat.Detail.NAME
+
+# Use with Message getters/setters
+name = message.getString(name_field)
 ```
+
+---
 
 ## Methods
 
-### createMessage()
+### createMessage(entity)
 
-> **createMessage**(entity: DataDictionaryEntity) -> Message
+Creates a new [`Message`](Message.md) from a data dictionary structure. Use this when you need to construct messages for splitting, aggregation, or transformation.
 
-Creates a message from a data dictionary access path.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `entity` | [`DataDictionaryEntity`](DataDictionaryEntity.md) | The data dictionary path to the structure you want to instantiate |
 
-All configured data formats and data dictionary structures which you have configured in your Project are compiled into one
-coherent overarching data dictionary.
-
-With this method you can create a message from such a data dictionary structure by providing the access path to the structure which you intend to create.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  DataDictionaryEntity. The data dictionary access path to the structure you want to create a message from.
-
-#### Returns
-
-Message - A new Message instance created from the data dictionary structure
-
-#### Example
+**Returns:** [`Message`](Message.md)
 
 ```python
-# Create a message based on a specific data dictionary structure
-new_message = dataDictionary.createMessage(dataDictionary.type.MyCorp.MyStructure.MySubstructure.Record)
+# Create a message from a specific type
+header = dataDictionary.createMessage(dataDictionary.type.MyFormat.Header)
 
-# You can then set values on this message
-new_message.data.MyFormat.Header.RECORD_TYPE = "HDR"
-new_message.data.MyFormat.Header.TIMESTAMP = DateTime.now()
+# Populate fields
+header.data.RECORD_TYPE = "HDR"
+header.data.TIMESTAMP   = DateTime.now()
 
-# Emit the message to an output port
-stream.emit(new_message, OUTPUT_PORT)
+# Emit
+stream.emit(header, OUTPUT_PORT)
 ```
+
+---
+
+## See Also
+
+- [`DataDictionaryEntity`](DataDictionaryEntity.md) — Individual nodes in the dictionary hierarchy
+- [`Message`](Message.md) — The messages you create and manipulate

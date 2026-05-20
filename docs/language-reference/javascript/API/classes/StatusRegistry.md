@@ -1,138 +1,74 @@
 # StatusRegistry
 
-## What
-The StatusRegistry class provides methods to access all defined Vendors and Languages for the current Project.
-You define additional vendors and languages in the "**Resource Status Definition Asset**".
+The `StatusRegistry` provides access to all defined vendors and status codes in your project. It is available globally as `statusRegistry`.
 
-## How to use
-The statusRegistry object is created automatically when the Project is started,
-based on the internal "LAY" vendor instance plus any additional vendors you have defined in the "**Resource Status Definition Asset**".
+Vendors and their status codes are defined in the **Resource Status Definition Asset**. Index 0 is reserved for the internal "LAY" (layline.io) vendor.
+
+---
+
+## At a Glance
+
+```js
+// List all supported languages
+const languages = statusRegistry.languages;  // ["en", "de", "fr"]
+
+// Find a vendor
+const vendor = statusRegistry.getVendorByLongName('MyApplication');
+
+// Browse status codes
+vendor.statusCodes.forEach(code => {
+    stream.logInfo(`${code.code}: ${code.message}`);
+});
+```
+
+---
 
 ## Properties
 
-### languages
-
-> **languages**: `string`[]
-
-An array of defined and used [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language codes for the current Project.
-You can access all defined languages via the global [statusRegistry](../variables/statusRegistry.md) constant.
+| Property | Type | Description |
+|----------|------|-------------|
+| `languages` | `string[]` | ISO 639-1 language codes configured in the project |
+| `vendors` | [`Vendor`](Vendor.md)[] | All defined vendors (index 0 = internal "LAY") |
 
 ```js
-const code = statusRegistry.languages
-// Returns an array of defined language codes, eg. ["en", "de", "fr"]
+// Available languages
+stream.logInfo(`Languages: ${statusRegistry.languages.join(', ')}`);
+
+// Number of vendors
+stream.logInfo(`Vendors: ${statusRegistry.vendors.length}`);
+
+// Access internal vendor
+const lay = statusRegistry.vendors[0];
+stream.logInfo(`LAY vendor: ${lay.longName}`);
 ```
 
-***
+---
 
-### vendors
+## Finding Vendors
 
-> **vendors**: [`Vendor`](Vendor.md)[]
-
-An array of all defined Vendors for the current Project.
-You can access all defined Vendors via the global [statusRegistry](../variables/statusRegistry.md) constant.
-Index 0 is reserved and pre-filled by internal vendor "LAY" (layline.io).
-You define additional vendors in the "**Resource Status Definition Asset**".
+| Method | Description |
+|--------|-------------|
+| `getVendorById(id)` | Find by numeric ID |
+| `getVendorByLongName(name)` | Find by long name |
+| `getVendorByShortName(name)` | Find by short name |
 
 ```js
-const code = statusRegistry.vendors[0]
-// Returns a Vendor object
+// By ID
+const v1 = statusRegistry.getVendorById(1);  // Internal LAY vendor
+const v2 = statusRegistry.getVendorById(2);  // Your first custom vendor
+
+// By name
+const myApp = statusRegistry.getVendorByLongName('MyApplication');
+const myAppShort = statusRegistry.getVendorByShortName('MYAPP');
+
+// Use with Status.create
+const status = Status.create(myApp, 'INVALID_FIELD', 'Email');
 ```
 
-## Methods
+---
 
-### getVendorById()
+## See Also
 
-> **getVendorById**(`id`): [`Vendor`](Vendor.md)
-
-Get the vendor instance from the list of defined vendors according to the given ID of the vendor.
-You must have defined the vendor in a "**Resource Status Definition Asset**".
-The number passed in `statusRegistry.getVendorById(1)` is the ID of the Vendor definition within that Asset.
-Check documentation for "**Resource Status Definition Asset**" for more info.
-You can access all defined Vendors via the global [statusRegistry](../variables/statusRegistry.md) constant.
-
-#### Parameters
-
-##### id
-
-`number`
-
-The ID of the vendor as defined in the specific "**Resource Status Definition Asset**".
-
-#### Returns
-
-[`Vendor`](Vendor.md)
-
-Instance of [Vendor](Vendor.md)
-
-#### Example
-
-```js
-const VENDOR_ID = statusRegistry.getVendorById(1);
-// Returns the Vendor instance for the Vendor with the ID 1
-```
-
-***
-
-### getVendorByLongName()
-
-> **getVendorByLongName**(`vendorLongName`): [`Vendor`](Vendor.md)
-
-Get the vendor instance from the list of defined vendors according to the given long name of the vendor.
-You must have defined the vendor in a "**Resource Status Definition Asset**".
-The string passed in `statusRegistry.getVendorByLongName('myVendorLongName')`
-is the long name of the Vendor definition within that Asset.
-Check documentation for "**Resource Status Definition Asset**" for more info.
-You can access all defined Vendors via the global [statusRegistry](../variables/statusRegistry.md) constant.
-
-#### Parameters
-
-##### vendorLongName
-
-`string`
-
-The long name of the vendor as defined in the specific "**Resource Status Definition Asset**".
-
-#### Returns
-
-[`Vendor`](Vendor.md)
-
-Instance of [Vendor](Vendor.md)
-
-#### Example
-
-```js
-const VENDOR = statusRegistry.getVendorByLongName('MyVendorLongName');
-// Returns the Vendor instance for the Vendor with the long name 'MyVendorLongName'
-```
-
-***
-
-### getVendorByShortName()
-
-> **getVendorByShortName**(`vendorShortName`): [`Vendor`](Vendor.md)
-
-Get the vendor instance from the list of defined vendors according to the given short name of the vendor.
-You must have defined the vendor in a "**Resource Status Definition Asset**".
-The string passed in `statusRegistry.getVendorByShortName('myVendorShortName')`
-is the short name of the Vendor definition within that Asset.
-Check documentation for "**Resource Status Definition Asset**" for more info.
-You can access all defined Vendors via the global [statusRegistry](../variables/statusRegistry.md) constant.
-
-#### Parameters
-
-##### vendorShortName
-
-`string`
-
-#### Returns
-
-[`Vendor`](Vendor.md)
-
-Instance of [Vendor](Vendor.md)
-
-#### Example
-
-```js
-const VENDOR = statusRegistry.getVendorByShortName('MyVendorShortName');
-// Returns the Vendor instance for the Vendor with the short name 'MyVendorShortName'
-```
+- [`Status`](Status.md) — Create runtime status instances
+- [`StatusCode`](StatusCode.md) — Individual status code definitions
+- [`Vendor`](Vendor.md) — Vendor properties and status code collections

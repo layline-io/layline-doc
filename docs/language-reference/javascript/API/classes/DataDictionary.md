@@ -1,69 +1,79 @@
 # DataDictionary
 
-The DataDictionary class provides access to the data dictionary structures defined in your layline.io Project.
-It allows you to create messages based on these structures and access type definitions.
+The `DataDictionary` provides access to all data structures defined in your layline.io project — message types, record formats, and field definitions. It is available globally as `dataDictionary` in every JavaScript processor.
 
-## Usage Notes
+Use it to create new messages, navigate type hierarchies, and access field metadata.
 
-1. The DataDictionary is automatically available in your scripts as the `dataDictionary` object.
-2. Use the `type` property to navigate through your data dictionary structure.
-3. The `createMessage` method is useful when you need to create new messages based on your defined structures, for example when splitting or aggregating messages.
+---
 
-Remember to refer to your Project's specific data dictionary structure when using these methods and properties.
+## At a Glance
+
+```js
+// Navigate to a specific type
+const detailType = dataDictionary.type.MyFormat.Detail;
+
+// Create a new message from that type
+const newMessage = dataDictionary.createMessage(detailType);
+
+// Populate and emit
+newMessage.data.RECORD_TYPE = "D";
+stream.emit(newMessage, OUTPUT_PORT);
+```
+
+---
 
 ## Properties
 
+| Property | Type | Description |
+|----------|------|-------------|
+| [`type`](#type) | [`DataDictionaryTypes`](../interfaces/DataDictionaryTypes.md) | Access all data dictionary types defined in your project |
+
 ### type
 
-> **type**: [`DataDictionaryTypes`](../interfaces/DataDictionaryTypes.md)
+Navigate your data dictionary hierarchy through this property. The structure mirrors your project's format and data dictionary definitions.
 
-The type of the data dictionary.
-Provides access to all data dictionary types defined in your Project.
+```js
+// Access a specific record type
+const headerType = dataDictionary.type.MyFormat.Header;
+const detailType = dataDictionary.type.MyFormat.Detail;
 
-#### Example
+// Access nested fields (returns DataDictionaryEntity for use with Message methods)
+const recordTypeField = dataDictionary.type.MyFormat.Detail.RECORD_TYPE;
+const nameField       = dataDictionary.type.MyFormat.Detail.NAME;
 
-```ts
-// Accessing a specific type in the data dictionary
-const myRecordType = dataDictionary.type.MyFormat.Detail;
+// Use with Message getters/setters
+const name = message.getString(nameField);
 ```
+
+---
 
 ## Methods
 
-### createMessage()
+### createMessage(entity)
 
-> **createMessage**(`entity`): [`Message`](Message.md)
+Creates a new [`Message`](Message.md) from a data dictionary structure. Use this when you need to construct messages for splitting, aggregation, or transformation.
 
-Creates a message from a data dictionary access path.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `entity` | [`DataDictionaryEntity`](DataDictionaryEntity.md) | The data dictionary path to the structure you want to instantiate |
 
-All configured data formats and data dictionary structures which you have configured in your Project are compiled into one
-coherent overarching data dictionary.
+**Returns:** [`Message`](Message.md)
 
-With this method you can create a message from such a data dictionary structure by providing the access path to the structure which you intend to create.
+```js
+// Create a message from a specific type
+const header = dataDictionary.createMessage(dataDictionary.type.MyFormat.Header);
 
-#### Parameters
+// Populate fields
+header.data.RECORD_TYPE = "HDR";
+header.data.TIMESTAMP   = new Date();
 
-##### entity
-
-[`DataDictionaryEntity`](DataDictionaryEntity.md)
-
-DataDictionaryEntity. The data dictionary access path to the structure you want to create a message from.
-
-#### Returns
-
-[`Message`](Message.md)
-
-A new Message instance created from the data dictionary structure
-
-#### Example
-
-```ts
-// Create a message based on a specific data dictionary structure
-const newMessage = dataDictionary.createMessage(dataDictionary.type.MyCorp.MyStructure.MySubstructure.Record);
-
-// You can then set values on this message
-newMessage.data.MyFormat.Header.RECORD_TYPE = "HDR";
-newMessage.data.MyFormat.Header.TIMESTAMP = new Date();
-
-// Emit the message to an output port
-stream.emit(newMessage, OUTPUT_PORT);
+// Emit
+stream.emit(header, OUTPUT_PORT);
 ```
+
+---
+
+## See Also
+
+- [`DataDictionaryEntity`](DataDictionaryEntity.md) — Individual nodes in the dictionary hierarchy
+- [`Message`](Message.md) — The messages you create and manipulate

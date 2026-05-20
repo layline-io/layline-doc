@@ -4,43 +4,88 @@ id: py-Metrics
 
 # Metrics
 
-Abstract class representing a metrics system.
-Provides methods to interact with various types of metrics like counters.
-This class should not be instantiated directly.
-Instead, use the internal constant [`metrics`](../variables/metrics.md) to access the methods.
+The `Metrics` class provides access to performance counters and operational metrics. It is available globally as `metrics` in every Python processor.
+
+Currently supports counters — more metric types may be added in future releases.
+
+---
+
+## At a Glance
+
+```python
+# Get or create a counter
+processed = metrics.getCounter('orders.processed')
+errors = metrics.getCounter('orders.errors')
+
+# Update counters
+processed.increment()
+errors.increment(5)
+
+# Read values
+stream.logInfo(f'Processed: {processed.count}')
+```
+
+---
 
 ## Methods
 
-### getCounter()
+### getCounter(name)
 
-> @staticmethod
-> **getCounter**(name: str) -> [Counter](Counter.md)
+Retrieves or creates a counter metric.
 
-Retrieves a counter metric by name.
-A counter is a metric that can be incremented or decremented to track counts.
-You access it using the internal constant `metrics`.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `name` | `str` | Counter identifier |
 
-#### Parameters
-
-- **name**: str
-
-  The name of the counter metric.
-
-#### Returns
-
-[Counter](Counter.md)
-
-A Counter instance associated with the given name.
-
-#### Example
+**Returns:** [`Counter`](Counter.md)
 
 ```python
-# Retrieve a counter named 'Counter.Workflow.*.Instances'
-signal_count = metrics.getCounter('Counter.Signals.*.MyCounter')
+total_messages = metrics.getCounter('stream.messages.total')
+failed_messages = metrics.getCounter('stream.messages.failed')
 
-# Increment the counter by 1
-signal_count.increment()
-
-# Decrement the counter by 1
-signal_count.decrement()
+total_messages.increment()
+if has_error:
+    failed_messages.increment()
 ```
+
+---
+
+## Complete Example
+
+```python
+OUTPUT_PORT = None
+ERROR_PORT = None
+
+def on_init():
+    global OUTPUT_PORT, ERROR_PORT
+    OUTPUT_PORT = processor.getOutputPort('Output')
+    ERROR_PORT = processor.getOutputPort('Error')
+
+def on_message():
+    processed = metrics.getCounter('workflow.records.processed')
+    errors = metrics.getCounter('workflow.records.errors')
+
+    try:
+        validate_and_transform(message)
+        processed.increment()
+        stream.emit(message, OUTPUT_PORT)
+    except Exception:
+        errors.increment()
+        message.addStatus(Severity.ERROR, Status.create(VENDOR, 'PROCESSING_FAILED'))
+        stream.emit(message, ERROR_PORT)
+
+def on_stream_end():
+    processed = metrics.getCounter('workflow.records.processed')
+    errors = metrics.getCounter('workflow.records.errors')
+
+    total = processed.count + errors.count
+    rate = (processed.count / total * 100) if total > 0 else 0
+
+    stream.logInfo(f'Stream complete: {processed.count} ok, {errors.count} errors ({rate:.1f}% success)')
+```
+
+---
+
+## See Also
+
+- [`Counter`](Counter.md) — Counter operations (increment, decrement, chaining)

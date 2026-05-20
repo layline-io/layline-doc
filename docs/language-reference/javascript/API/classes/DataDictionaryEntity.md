@@ -1,47 +1,98 @@
 # DataDictionaryEntity
 
-Represents an individual node in a [Message](Message.md)'s data structure.
+A `DataDictionaryEntity` represents a single node in your data dictionary hierarchy — either an intermediate structure (like a record type) or a leaf field. You use these entities as type-safe accessors when reading from or writing to [`Message`](Message.md) fields.
 
-The DataDictionaryEntity class corresponds to a specific element within the hierarchical
-structure of a message's data dictionary. It can represent both intermediate nodes
-(like a record type) and leaf nodes (like individual fields).
+Think of it as a typed pointer: it tells the Message exactly which field to access and what type to expect.
 
-## Examples
+---
 
-Assuming we have a data dictionary structure:
-```
-CSV
- ├── RECORD_TYPE
- ├── FIRST_NAME
- ├── LAST_NAME
- └── ...
-```
-Then:
-- `message.data.CSV` is a DataDictionaryEntity
-- `message.data.CSV.RECORD_TYPE` is also a DataDictionaryEntity
+## At a Glance
 
-```ts
-// Accessing a DataDictionaryEntity
-const csvEntity = message.data.CSV;
-const recordTypeEntity = message.data.CSV.RECORD_TYPE;
+```js
+// DataDictionaryEntity is the bridge between your dictionary and message data
+const nameField = dataDictionary.type.Customer.Detail.NAME;
 
-// Using DataDictionaryEntity with Message methods
-const recordType = message.getString(recordTypeEntity);
-print(`Record Type: ` + recordType);
+// Use it with Message methods
+const customerName = message.getString(nameField);
+message.setString(nameField, "Acme Corp");
 ```
 
-```ts
-// Using DataDictionaryEntity to check field existence and access values
-if (message.exists(message.data.CSV.LAST_NAME)) {
-    const lastName = message.getString(message.data.CSV.LAST_NAME);
-    print(`Last Name: ` + lastName);
-} else {
-    print("Last Name field does not exist in this message");
+---
+
+## Understanding the Hierarchy
+
+Given a data dictionary structure like:
+
+```
+Customer
+├── Header
+│   ├── RECORD_TYPE
+│   └── TIMESTAMP
+└── Detail
+    ├── RECORD_TYPE
+    ├── FIRST_NAME
+    ├── LAST_NAME
+    └── EMAIL
+```
+
+You navigate it through `dataDictionary.type`:
+
+```js
+// Intermediate nodes (structures)
+const customerType = dataDictionary.type.Customer;           // Customer root
+const detailType   = dataDictionary.type.Customer.Detail;    // Detail record
+
+// Leaf nodes (fields) — these are DataDictionaryEntity instances
+const firstNameField = dataDictionary.type.Customer.Detail.FIRST_NAME;
+const emailField     = dataDictionary.type.Customer.Detail.EMAIL;
+```
+
+---
+
+## Working with Messages
+
+### Reading Fields
+
+```js
+const firstName = message.getString(dataDictionary.type.Customer.Detail.FIRST_NAME);
+const age       = message.getInt(dataDictionary.type.Customer.Detail.AGE);
+```
+
+### Writing Fields
+
+```js
+message.setString(dataDictionary.type.Customer.Detail.FIRST_NAME, "John");
+message.setInt(dataDictionary.type.Customer.Detail.AGE, 42);
+```
+
+### Checking Existence
+
+```js
+// Check if a structure exists in the message
+if (message.exists(dataDictionary.type.Customer.Detail)) {
+    // Detail record is present
+}
+
+// Check if a specific field exists
+if (message.exists(dataDictionary.type.Customer.Detail.EMAIL)) {
+    const email = message.getString(dataDictionary.type.Customer.Detail.EMAIL);
 }
 ```
 
-## See
+### Type Checking
 
- - [Message](Message.md) for more information on how DataDictionaryEntity is used in message processing.
- - [Message#exists](Message.md#exists) for checking the existence of a field in a message.
- - [Message#getString](Message.md#getstring) for retrieving string values using DataDictionaryEntity.
+```js
+// Check if message matches a specific type
+if (message.is(dataDictionary.type.Customer.Detail)) {
+    // Process detail record
+}
+```
+
+---
+
+## See Also
+
+- [`DataDictionary`](DataDictionary.md) — Navigate the full type hierarchy
+- [`Message`](Message.md) — Read and write message data using DataDictionaryEntity accessors
+- [`Message#getString`](Message.md) — Get string values
+- [`Message#exists`](Message.md) — Check field existence

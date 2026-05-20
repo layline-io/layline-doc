@@ -4,68 +4,113 @@ id: py-Email
 
 # Email
 
-Abstract class which defines a Email Service.
-This service must have been acquired via using the `services` keyword within a Javascript Asset script.
+Send emails through a configured Email Service. Access the service via `services.YourEmailServiceName`.
 
-**NOTE:** Only the Email Service is supports this class.
-Please refer to the documentation of the respective Service Asset to understand how to use it within Javascript.
+---
 
-## Abstract
+## At a Glance
 
-## Methods
+```python
+# Simple text email
+services.EmailService.send({
+    "from": "system@company.com",
+    "toList": "user@company.com",
+    "subject": "Order Confirmation",
+    "body": "Your order has been processed."
+})
 
-### Send()
-
-> **Send**(`message`): `void`
-
-Sends an email.
-
-```js
-// EmailService is the name which was assigned to the Email Service Asset in the Javascript Asset Configuration.
-
-// Example #1:
- services.EmailService.Send({
-     From: {
-         Address: "john.doe@example.com",
-         PersonalName: "John Doe"
-     },
-     To: [{
-         Address: "jane.doe@example.com",
-         PersonalName: "Jane Doe"
-     }],
-     Cc: [{
-         Address: "cc@example.com",
-         PersonalName: "CC"
-     }],
-     Subject: "Hello",
-     Body: "Hello, world!"
- });
-
-// Example #2:
- services.EmailService.Send({
-     From: "john.doe@example.com",
-     ToList: "jane.doe@example.com;kate.doe@example.com",
-     CcList: "cc@example.com",
-     BccList: "bcc@example.com",
-     Subject: "Hello",
-     Body: "Hello, world!"
- });
-     }],
-     Subject: "Hello",
-     Body: "Hello, world!"
- });
+# HTML email with multiple recipients
+services.EmailService.send({
+    "from": {
+        "Address": "noreply@company.com",
+        "PersonalName": "Company System"
+    },
+    "to": [
+        {"Address": "user1@company.com", "PersonalName": "User One"},
+        {"Address": "user2@company.com", "PersonalName": "User Two"}
+    ],
+    "cc": [{"Address": "manager@company.com"}],
+    "subject": "Monthly Report",
+    "body": "<h1>Report</h1><p>See attachment.</p>"
+})
 ```
 
-You can mix the use of `to` and `ccList` for example. Do not use similar properties like `to` and `toList` at the same time, for example, however.
+---
 
-#### Parameters
+## Send(params)
 
-• **message**: [`EmailMessage`](../interfaces/EmailMessage.md)
+Sends an email. Two addressing styles are supported — don't mix similar properties (e.g., use `to` **or** `toList`, not both).
 
-The email message to send.
+### Simple Address Strings
 
-#### Returns
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `from` | `str` | Sender email address |
+| `toList` | `str` | Semicolon-separated recipient addresses |
+| `ccList` | `str` (optional) | Semicolon-separated CC addresses |
+| `bccList` | `str` (optional) | Semicolon-separated BCC addresses |
+| `subject` | `str` | Email subject |
+| `body` | `str` | Email body (text or HTML) |
 
-`void`
+```python
+services.EmailService.send({
+    "from": "alerts@company.com",
+    "toList": "team@company.com;manager@company.com",
+    "ccList": "archive@company.com",
+    "subject": "Alert: High Error Rate",
+    "body": f"Errors in last hour: {error_count}"
+})
+```
 
-Nothing
+### Structured Addresses
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `from` | `dict` | `{"Address": str, "PersonalName": str}` |
+| `to` | `List[dict]` | Array of `{"Address": str, "PersonalName": str}` |
+| `cc` | `List[dict]` (optional) | Array of `{"Address": str, "PersonalName": str}` |
+| `bcc` | `List[dict]` (optional) | Array of `{"Address": str, "PersonalName": str}` |
+| `subject` | `str` | Email subject |
+| `body` | `str` | Email body |
+
+```python
+services.EmailService.send({
+    "from": {
+        "Address": "noreply@company.com",
+        "PersonalName": "Order System"
+    },
+    "to": [{
+        "Address": "customer@example.com",
+        "PersonalName": "John Doe"
+    }],
+    "subject": "Order #12345 Confirmed",
+    "body": "Thank you for your order!"
+})
+```
+
+---
+
+## Complete Example
+
+```python
+def on_message():
+    order_id = message.getString(dataDictionary.type.Order.ID)
+    customer_email = message.getString(dataDictionary.type.Order.CUSTOMER_EMAIL)
+
+    # Send confirmation
+    services.EmailService.send({
+        "from": "orders@company.com",
+        "toList": customer_email,
+        "subject": f"Order {order_id} Confirmed",
+        "body": f"Your order {order_id} has been received and is being processed."
+    })
+
+    stream.emit(message, OUTPUT_PORT)
+```
+
+---
+
+## See Also
+
+- [`EmailMessage`](../interfaces/EmailMessage.md) — Full message structure reference
+- [`Service`](Service.md) — Service access patterns

@@ -2,77 +2,47 @@
 
 > `const` **stream**: [`Stream`](../classes/Stream.md)
 
-## What
-`stream` represents the stream which is being processed at the time.
-The `stream` object is available in any script-based Processor, e.g. the JavaScript Processor.
+The current stream being processed. Controls message flow, logging, and lifecycle operations like retry and rollback.
 
-## How to use
-You can access it directly without the need to instantiate it.
-It provides a number of functions which can - and sometimes have to - be invoked to control stream processing.
+---
 
-Please check the [Stream](../classes/Stream.md) documentation for more information.
-
-## Example
+## At a Glance
 
 ```js
-// Get stream information
-const streamId = stream.getId();
-const streamName = stream.getName();
-
-// Emit a message to an output port
-const outputPort = processor.getOutputPort('MyOutput');
-stream.emit(message, outputPort);
-
-// Log information
-stream.logInfo('Processing stream: ' + streamName);
-stream.logWarning('Unusual data encountered in stream');
-stream.logError('An error occurred during stream processing');
-
-// Get stream metadata
-const metadata = stream.getMetadata();
-const fileSize = metadata.data.Size;  // For a file-based stream
-
-// Set stream properties
-stream.setOutputName('new_stream_name');
-stream.setOutputPath('/new/output/path');
-
-// Request retry or rollback
-if (errorCondition) {
-    stream.requestRetry(Status.create(VENDOR, 'TEMPORARY_ERROR'), 30000);  // Retry after 30 seconds
-}
-if (fatalError) {
-    stream.requestRollback(Status.create(VENDOR, 'FATAL_ERROR'));
-}
-
-// Using stream in lifecycle hooks
 export function onStreamStart() {
-    const streamId = stream.getId();
-    const fileName = stream.getName();
-    stream.logInfo('Started processing stream: ' + fileName);
-}
-
-export function onStreamEnd() {
-    stream.logInfo('Finished processing stream: ' + fileName);
+    stream.logInfo('Started: ' + stream.getName());
 }
 
 export function onMessage() {
-    // Process the message
-    // ...
-    // Emit the processed message
-    stream.emit(message, outputPort);
+    // Process and emit
+    stream.emit(message, OUTPUT_PORT);
 }
 
-export function onCommit() {
-    stream.logInfo('Stream ' + streamId + ' committed successfully');
-}
-
-export function onRollback() {
-    stream.logError('Stream ' + streamId + ' rolled back due to errors');
+export function onStreamEnd() {
+    stream.logInfo('Finished: ' + stream.getName());
 }
 ```
 
-Note: The exact methods and properties available on the `stream` object may vary depending on your specific layline.io configuration and the type of stream being processed. Always refer to the most up-to-date documentation provided by layline.io for the definitive guide on using the `stream` object in JavaScript scripts.
+---
 
-## Global
+## Common Tasks
 
-## Constant
+| Task | Method |
+|------|--------|
+| Emit message | `stream.emit(message, port)` |
+| Log info | `stream.logInfo(msg)` |
+| Log warning | `stream.logWarning(msg)` |
+| Log error | `stream.logError(msg)` |
+| Get stream name | `stream.getName()` |
+| Get stream ID | `stream.getId()` |
+| Get metadata | `stream.getMetadata()` |
+| Set output name | `stream.setOutputName(name)` |
+| Set output path | `stream.setOutputPath(path)` |
+| Request retry | `stream.requestRetry(status, delayMs)` |
+| Request rollback | `stream.requestRollback(status)` |
+
+---
+
+## See Also
+
+- [`Stream`](../classes/Stream.md) — Full class reference

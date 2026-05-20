@@ -1,143 +1,124 @@
 # OutputPort
 
-Instance of an output port of a Processor.
-This class represents the output port through which data is sent from a processor to another processor's input port.
+An `OutputPort` represents a connection from one processor to another within a workflow. You obtain output ports through [`processor.getOutputPort()`](Processor.md), then use them with [`stream.emit()`](Stream.md) to send messages downstream.
+
+---
+
+## At a Glance
+
+```js
+// Get an output port by name (typically done in onInit)
+const OUTPUT_PORT = processor.getOutputPort('Output');
+
+// Emit a message to it
+stream.emit(message, OUTPUT_PORT);
+```
+
+---
 
 ## Properties
 
+| Property | Type | Description |
+|----------|------|-------------|
+| [`name`](#name) | `string` | The name of this output port |
+| [`peerPortName`](#peerportname) | `string` | The name of the connected input port on the downstream processor |
+| [`peerProcessorName`](#peerprocessorname) | `string` | The name of the downstream processor |
+
 ### name
 
-> **name**: `string`
+The output port name as defined in the workflow diagram.
 
-The name of this output port.
-Same as [getName](#getname).
-
-#### Example
-
-```ts
-const outputPortName = outputPort.name; // Returns the name of the output port, e.g. 'My-Output-Port'.
+```js
+const portName = outputPort.name;  // e.g., "Output", "Error", "Valid"
 ```
-
-***
 
 ### peerPortName
 
-> **peerPortName**: `string`
+The name of the input port on the connected downstream processor.
 
-The name of the peer port (input port of the connected processor) that this output port is connected to.
-
-#### Example
-
-```ts
-const peerPortName = outputPort.peerPortName; // Returns the name of the peer port, e.g. 'My-Input-Port'.
+```js
+const connectedTo = outputPort.peerPortName;  // e.g., "Input"
 ```
-
-***
 
 ### peerProcessorName
 
-> **peerProcessorName**: `string`
+The name of the processor this port connects to.
 
-The name of the processor to which this output port's peer port belongs.
-
-#### Example
-
-```ts
-const connectedProcessorName = outputPort.peerProcessorName; // Returns the name of the processor to which the peer port belongs, e.g. 'My-Processor'.
+```js
+const nextProcessor = outputPort.peerProcessorName;  // e.g., "Transform-Data"
 ```
+
+---
 
 ## Methods
 
 ### getName()
 
-> **getName**(): `string`
+Returns the output port name. Same as [`name`](#name).
 
-Returns the name of this output port.
+**Returns:** `string`
 
-#### Returns
-
-`string`
-
-The name of the output port.
-
-#### Example
-
-```ts
-// Get the output port by name
-const outputPort = processor.getOutputPort('My-Output-Port');
-
-// Get the name of the output port
-const name = outputPort.getName(); // Returns the name of the output port, e.g. 'My-Output-Port'.
+```js
+const name = outputPort.getName();
 ```
-
-***
 
 ### getPeerPort()
 
-> **getPeerPort**(): `string`
+Returns the name of the connected peer input port. Same as [`peerPortName`](#peerportname).
 
-Returns the name of the peer port (input port of the connected processor) that this output port is connected to.
+**Returns:** `string`
 
-#### Returns
-
-`string`
-
-The name of the peer port.
-
-#### Example
-
-```ts
-// Get the output port by name
-const outputPort = processor.getOutputPort('My-Output-Port');
-
-// Get the name of the peer port
-const peerPort = outputPort.getPeePort(); // Returns the name of the peer port, e.g. 'My-Input-Port'.
+```js
+const peer = outputPort.getPeerPort();
 ```
-
-***
 
 ### getPeerProcessorName()
 
-> **getPeerProcessorName**(): `string`
+Returns the name of the downstream processor. Same as [`peerProcessorName`](#peerprocessorname).
 
-Returns the name of the processor that this output port is connected to.
+**Returns:** `string`
 
-#### Returns
-
-`string`
-
-The name of the processor to which this output port is connected.
-
-#### Example
-
-```ts
-// Get the output port by name
-const outputPort = processor.getOutputPort('My-Output-Port');
-
-// Now get the name of the processor that this output port is connected to
-const peerProcessorName = outputPort.getPeerProcessorName(); // Returns the name of the connected processor, e.g. 'My-Processor'.
+```js
+const processorName = outputPort.getPeerProcessorName();
 ```
-
-***
 
 ### getProcessorName()
 
-> **getProcessorName**(): `string`
+Returns the name of the processor that owns this output port (the current processor).
 
-Returns the name of the processor to which this output port belongs.
+**Returns:** `string`
 
-#### Returns
-
-`string`
-
-The name of the processor that owns this output port.
-
-#### Example
-
-```ts
-// Get the output port by name
-const outputPort = processor.getOutputPort('My-Output-Port');
-
-// Get the name of the processor that owns this output port
-const processorName = outputPort.getProcessorName(); // Returns the name of the processor, e.g. 'My-Processor'.
+```js
+const myName = outputPort.getProcessorName();
 ```
+
+---
+
+## Complete Example
+
+```js
+// Initialize ports in onInit
+let OUTPUT_PORT;
+let ERROR_PORT;
+
+export function onInit() {
+    OUTPUT_PORT = processor.getOutputPort('Output');
+    ERROR_PORT  = processor.getOutputPort('Error');
+}
+
+export function onMessage() {
+    // Route based on validation
+    if (message.hasStatusAttached(Severity.ERROR)) {
+        stream.emit(message, ERROR_PORT);
+    } else {
+        stream.emit(message, OUTPUT_PORT);
+    }
+}
+```
+
+---
+
+## See Also
+
+- [`Processor#getOutputPort`](Processor.md) — Obtain output ports by name
+- [`Stream#emit`](Stream.md) — Send messages through output ports

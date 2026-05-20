@@ -1,283 +1,277 @@
 # JavaScriptProcessor
 
-This isn't an actual class, but a placeholder for _hooks_ which are available within a Javascript Asset.
-Hooks are automatically invoked as part of a Javascript Assets normal lifecycle.
-Read more about JS-lifecycle in the [introduction](../../javascript_introduction).
+The `JavaScriptProcessor` defines the lifecycle hooks available in a JavaScript Asset. These hooks are automatically invoked by layline.io at key moments — startup, message arrival, stream boundaries, and shutdown.
 
-## Methods
+Implement only the hooks you need. The most commonly used are [`onInit()`](#oninit) (one-time setup) and [`onMessage()`](#onmessage) (per-message processing).
 
-### onCommit()
+---
 
-> **onCommit**(): `void`
+## Lifecycle Overview
 
-Invoked when a Stream is committed.
-Use this to perform potential final tasks when a stream ends.
+```
+Project Startup
+    └── onInit()           ← Once, when project starts
 
-#### Returns
+Stream Start
+    └── onStreamStart()    ← Per stream
 
-`void`
+Message Arrives
+    └── onMessage()        ← Per message (the heart of your logic)
 
-#### Example
+Downstream Ready
+    └── onPullMessage()    ← When downstream can receive more
+
+Stream Ends
+    └── onStreamEnd()      ← Per stream
+
+Prepare Commit
+    └── onPrepareCommit()  ← Before finalizing
+
+Commit
+    └── onCommit()         ← Finalize resources
+
+Rollback
+    └── onRollback()       ← On failure, undo changes
+
+Prepare Retry
+    └── onPrepareRetry()   ← Before retry attempt
+```
+
+---
+
+## Hooks
+
+### onInit()
+
+Called once when the project starts. Use for one-time initialization: resolving output ports, opening connections, loading configuration.
 
 ```js
-export function onCommit() {
-    if (connection) {
-        connection.commitTransaction();
-        connection.closeConnection();
-        connection = null;
+let OUTPUT_PORT;
+let DB_CONNECTION;
+
+export function onInit() {
+    OUTPUT_PORT = processor.getOutputPort('Output');
+
+    const dbUrl = processor.expandString('${lay:DB_URL}');
+    DB_CONNECTION = openDatabaseConnection(dbUrl);
+}
+```
+
+### onMessage()
+
+Called for every message that arrives at this processor. This is where your main processing logic lives.
+
+```js
+export function onMessage() {
+    // Branch by message type
+    if (message.typeName === 'Header') {
+        processHeader(message);
+    } else if (message.typeName === 'Detail') {
+        processDetail(message);
+    } else if (message.typeName === 'Trailer') {
+        processTrailer(message);
+    }
+
+    // Always emit to keep the flow moving
+    stream.emit(message, OUTPUT_PORT);
+}
+
+function processDetail(msg) {
+    const qty = msg.getInt(dataDictionary.type.Order.Detail.QUANTITY);
+    if (qty <= 0) {
+        msg.addStatus(Severity.ERROR, Status.create(VENDOR, 'INVALID_QTY', qty));
     }
 }
 ```
 
-***
+### onStreamStart()
 
-### onInit()
-
-> **onInit**(): `void`
-
-`onInit` is invoked upon instantiation of the Javascript Asset.
-Use this method to perform any initialization actions, e.g. acquiring a database connection, initializing data structures which are used within the script, etc.
-Note, that this method is only invoked one upon startup of the Project.
+Called when a new stream begins. Use to reset per-stream counters or capture stream metadata.
 
 ```js
-export function onInit() {
-    OUTPUT_PORT = processor.getOutputPort('Output');
+let streamId;
+let fileName;
+let recordCount = 0;
+
+export function onStreamStart() {
+    streamId   = stream.id;
+    fileName   = stream.name;
+    recordCount = 0;
+
+    stream.logInfo(`Starting stream ${streamId}: ${fileName}`);
 }
 ```
 
-#### Returns
+### onStreamEnd()
 
-`void`
-
-***
-
-### onMessage()
-
-> **onMessage**(): `void`
-
-This is one of the most important methods which you will use every time within a Javascript Asset.
-layline.io is a reactive messaging system, meaning a script within a Javascript Asset is triggered by the delivery of a message to this Javascript Asset.
-You can consider the `onMessage` method as a starting point for processing within Javascript Asset.
-
-#### Returns
-
-`void`
-
-#### Example
+Called when the current stream ends. Use for cleanup, summary logging, or final batch operations.
 
 ```js
+export function onStreamEnd() {
+    stream.logInfo(`Stream complete. Processed ${recordCount} records.`);
 
-// Get the output port
-const OUTPUT_PORT = processor.getOutputPort('MyOutput');
-
-export function onMessage() {
-   if (message.typeName === 'Header') {
-       // do nothing
-   } else if (message.typeName === 'Trailer') {
-       // do something with the trailer
-   } else if (message.typeName === 'Detail') {
-        // invoke a self-defined function which handles the message.
-        handleDetail(message);
-   }
-
-   stream.emit(message, OUTPUT_PORT);
+    if (errorCount > 0) {
+        stream.logWarning(`${errorCount} records had errors.`);
+    }
 }
-
-function handleDetail(detail) {
-    // do something with the message
-}
-
 ```
-
-***
 
 ### onPrepareCommit()
 
-> **onPrepareCommit**(): `void`
-
-Invoked before a Stream is finally committed.
-Use this method to do any preparatory work before a Stream is finally committed.
-
-#### Returns
-
-`void`
-
-#### Example
+Called before the stream is committed. Use for any final preparatory work.
 
 ```js
 export function onPrepareCommit() {
-    // Invoke custom function to write errors which we gathered during stream processing
-    WriteAllRejectErrors();
-}
-
-functionWriteAllRejectErrors () {
-    // ...
+    // Flush any buffered writes
+    flushPendingRecords();
 }
 ```
 
-***
+### onCommit()
 
-### onPrepareRetry()
-
-> **onPrepareRetry**(): `void`
-
-Invoked when a "prepare-retry" signal is emitted by layline.io.
-
-#### Returns
-
-`void`
-
-#### Example
+Called when the stream is successfully committed. Use to release resources.
 
 ```js
-export function onPrepareRetry() {
-    if (connection) {
+export function onCommit() {
+    if (DB_CONNECTION) {
+        DB_CONNECTION.commitTransaction();
+        DB_CONNECTION.closeConnection();
+        DB_CONNECTION = null;
+    }
+}
+```
+
+### onRollback()
+
+Called when a rollback is requested. Use to undo changes and clean up.
+
+```js
+export function onRollback() {
+    if (DB_CONNECTION) {
         try {
-            connection.rollbackTransaction();
-            connection.closeConnection();
+            DB_CONNECTION.rollbackTransaction();
+            DB_CONNECTION.closeConnection();
         } catch (err) {
+            stream.logError(`Rollback failed: ${err}`);
         } finally {
-            connection = null;
+            DB_CONNECTION = null;
         }
     }
 }
 ```
 
-***
+### onPrepareRetry()
+
+Called before a retry attempt. Use to reset state for the next attempt.
+
+```js
+export function onPrepareRetry() {
+    if (DB_CONNECTION) {
+        try {
+            DB_CONNECTION.rollbackTransaction();
+            DB_CONNECTION.closeConnection();
+        } catch (err) {
+            // Ignore cleanup errors
+        } finally {
+            DB_CONNECTION = null;
+        }
+    }
+}
+```
 
 ### onPullMessage()
 
-> **onPullMessage**(): `void`
+Called when a downstream processor signals readiness for more messages. Use this when your processor **produces** messages (e.g., from a queue or buffer) rather than just transforming incoming ones.
 
-layline.io is a reactive system and works according to the principle of “dynamic push / pull mode”.
-This means, that in a network of Processors, each Processor can signal to connected Processors that it wants to push, or pull messages, thus managing smooth message flow without the risk of clogging.
-
-* **Push-mode**: the downstream processor (“Consumer”) consumes messages at the same or even a faster rate than the source processor (“Producer”) produces the messages (= Slow Producer, fast Consumer)
-* **Pull-mode**: the source processor produces messages faster than a downstream processor can consume them (= Fast Producer, slow Consumer)
-
-Using layline.io you usually do not have to think about “push”- or “pull”-mode and how it is applied throughout the Workflow processing.
-It is all built-in! Making use of the [onMessage](#onmessage) method will ensure that your JavaScript processor is receiving available messages at an applicable signaling rate.
-
-Only in case your JavaScript processor includes logic to become a “producer” of (additional) messages, there is a need to
-explicitly implement the `onPullMessage` method making sure to receive the signals for readiness to receive next messages
-from connected downstream Processors within your Workflow.
-
-**Practical example:**
-
-A Workflow is processing Streams.
-Each Stream has 100,000 messages where two records each need to be correlated to form a new message to then be sent downstream, resulting in a total of 50,000 downstream messages.
-You cannot correlate them, however until all 100,000 messages have been received.
-This implies, that no messages leave Processor A, until the Stream has been completely received (e.g. marked by an ending message) and all messages have been correlated.
-_(To not store all of them in memory, Processor A may use a queue Service for storage. See example below.)_
-During that phase Processor B is idling.
-
-Normally, you would say that once the last message has been received, we can instantly correlate all messages to then send the resulting 50,000 messages downstream to Processor B all in one go.
-A sudden spike of a wave of these messages is not economical for a reactive system and may take a toll on memory consumption and performance.
-To avoid this, instead of simply emitting messages when Processor A is ready, you can wait for Processor B to be ready and then send one message at a time until all messages have been emitted.
-
-This is what `onPullMessage` allows you to implement.
-
-#### Returns
-
-`void`
-
-#### Example
+**When to use:** If your processor accumulates messages and emits them later (aggregation, correlation, queue reading), implement `onPullMessage` to emit one message at a time in response to downstream demand. This prevents memory spikes and backpressure issues.
 
 ```js
-// Invoked each a downstream Processor is ready for the next message.
-export function onPullMessage() {
-    let message = null;
-    let emitted = false;
-    if (streamComplete) { // Stream was fully received
-       message = queue.ReadMessage(); // Read one message
-       if (message) {
-           stream.emit(message, MY_OUTPUT_PORT); // emit the message
-       }
-    }
+let messageQueue = [];
 
-    if (!message) {
-        queue.closeConnection();
-        queue = null;
-    }
+export function onMessage() {
+    // Accumulate messages instead of emitting immediately
+    messageQueue.push(message.clone());
 }
-```
 
-**NOTE:**
-In case you have two or more downstream Processors connected to the current Javascript processor, you are unable to tell which of the downstream Processors is ready for the next message.
-This should be of no concern. You can simply send the next message out to the correct Processor.
-The system will behave in a balanced manner following standard reactive rules.
-
-***
-
-### onRollback()
-
-> **onRollback**(): `void`
-
-Invoked when a rollback signal is issued by the system.
-Perform and "undo" and cleanup tasks here.
-
-#### Returns
-
-`void`
-
-#### Example
-
-```js
-export function onRollback() {
-  if (connection) {
-      try {
-          connection.rollbackTransaction();
-          connection.closeConnection();
-      } catch (err) {
-      } finally {
-          connection = null;
-      }
-  }
-}
-```
-
-***
-
-### onStreamEnd()
-
-> **onStreamEnd**(): `void`
-
-Invoked when current stream ends.
-Use this to run potential clean up tasks.
-
-#### Returns
-
-`void`
-
-#### Example
-
-```js
 export function onStreamEnd() {
-     // Report in case some customer data could not be found during stream processing
-     if (numCustomerDataNotFound > 0) {
-         stream.logInfo(numCustomerDataNotFound + ' customers could not be found in the database.')
-     }
+    streamComplete = true;
+}
+
+export function onPullMessage() {
+    // Emit one message when downstream is ready
+    if (messageQueue.length > 0) {
+        const next = messageQueue.shift();
+        stream.emit(next, OUTPUT_PORT);
+    } else if (streamComplete) {
+        // Queue empty and stream done — clean up
+        closeQueueConnection();
+    }
 }
 ```
 
-***
+:::info Push vs Pull
+In most cases, layline.io handles flow control automatically. You only need `onPullMessage` when your processor acts as a **producer** that generates messages independently of direct input (e.g., reading from a queue, correlating batches).
+:::
 
-### onStreamStart()
+---
 
-> **onStreamStart**(): `void`
+## Complete Example
 
-Invoked when current stream is starting.
-Use this to run potential stream startup initialization tasks on every new Stream.
-
-#### Returns
-
-`void`
-
-#### Example
+A processor that validates orders, accumulates details, and writes a summary at stream end:
 
 ```js
+let OUTPUT_PORT;
+let ERROR_PORT;
+
+let orderTotal = 0;
+let itemCount  = 0;
+let errorCount = 0;
+
+export function onInit() {
+    OUTPUT_PORT = processor.getOutputPort('Output');
+    ERROR_PORT  = processor.getOutputPort('Error');
+}
+
 export function onStreamStart() {
-    streamId = stream.getId();
-    fileName = stream.getName();
+    orderTotal = 0;
+    itemCount  = 0;
+    errorCount = 0;
+}
+
+export function onMessage() {
+    if (message.typeName === 'Detail') {
+        const qty   = message.getInt(dataDictionary.type.Order.Detail.QUANTITY);
+        const price = message.getDecimal(dataDictionary.type.Order.Detail.PRICE);
+
+        if (qty > 0 && price.compareTo(new BigDecimal("0")) > 0) {
+            orderTotal += price.multiply(new BigDecimal(qty)).doubleValue();
+            itemCount++;
+            stream.emit(message, OUTPUT_PORT);
+        } else {
+            errorCount++;
+            message.addStatus(Severity.ERROR, Status.create(VENDOR, 'INVALID_ITEM'));
+            stream.emit(message, ERROR_PORT);
+        }
+    } else {
+        // Header and Trailer pass through
+        stream.emit(message, OUTPUT_PORT);
+    }
+}
+
+export function onStreamEnd() {
+    stream.logInfo(`Stream summary: ${itemCount} items, total ${orderTotal}, ${errorCount} errors`);
+}
+
+export function onRollback() {
+    stream.logWarning('Stream rolled back — discarding accumulated state');
 }
 ```
+
+---
+
+## See Also
+
+- [JavaScript Introduction](../../javascript_introduction) — Full guide to JavaScript Assets
+- [`Processor`](Processor.md) — Access arguments, output ports, and logging
+- [`Stream`](Stream.md) — Emit messages and control stream flow
+- [`Message`](Message.md) — The data you process in `onMessage()`

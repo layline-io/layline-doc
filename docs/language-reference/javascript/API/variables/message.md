@@ -2,10 +2,27 @@
 
 > `const` **message**: [`Message`](../classes/Message.md)
 
-## What
-message is an instance of the [Message](../classes/Message.md) class.
-It is automatically created for each message that is processed, and directly accessible within a script.
-It provides methods to interact with the message, like getting and setting message attributes.
+The current message being processed. Automatically available in every JavaScript processor — no import needed.
 
-## How to use
-Please check the [Message](../classes/Message.md) documentation for more information.
+---
+
+## At a Glance
+
+```js
+export function onMessage() {
+    // Read fields
+    const name = message.getString(dataDictionary.type.Order.NAME);
+
+    // Write fields
+    message.setString(dataDictionary.type.Order.STATUS, 'processed');
+
+    // Forward to next processor
+    stream.emit(message, OUTPUT_PORT);
+}
+```
+
+---
+
+## See Also
+
+- [`Message`](../classes/Message.md) — Full class reference with all methods and properties
