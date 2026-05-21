@@ -126,7 +126,7 @@ Tag Settings Assets support the standard layline.io inheritance model:
 
 ### Use with Deployments
 
-Tag Settings Assets are typically referenced in [Engine Configuration](asset-deployment-engine) assets. The tags defined here determine:
+Tag Settings Assets are typically referenced in [Engine Configuration](./asset-deployment-engine.md) assets. The tags defined here determine:
 - Which filters apply to the engine in Operations views
 - How deployments are organized in the management interface
 - Visibility and grouping in monitoring and logging

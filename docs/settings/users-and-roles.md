@@ -17,7 +17,7 @@ layline.io manages Users and Roles in two separate places:
 
 These two sets of users and roles are **completely independent**. A user account on the Configuration Server is not the same as a user account on a Reactive Engine Cluster, and the privileges available in each area are different.
 
-This page covers the **Configuration Server** side. For cluster-level user management, see [**Operations > User Storage**](/docs/operations/cluster/operations-user-storage).
+This page covers the **Configuration Server** side. For cluster-level user management, see [**Operations > User Storage**](/docs/operations/cluster/operations-user-storage.md).
 
 The Users & Roles section lives under **Settings > User Storage**. It is accessible to the `admin` account and to users who hold the *Read users & roles* privilege on the Configuration Server.
 
@@ -137,7 +137,7 @@ The role name cannot be changed after a role is created.
 
 ## Privileges Reference
 
-The following privileges are available for roles on the **Configuration Server**. These are distinct from the privileges available on a Reactive Engine Cluster (managed under [Operations > User Storage](/docs/operations/cluster/operations-user-storage)).
+The following privileges are available for roles on the **Configuration Server**. These are distinct from the privileges available on a Reactive Engine Cluster (managed under [Operations > User Storage](/docs/operations/cluster/operations-user-storage.md)).
 
 | Category | Privilege | Description |
 |----------|-----------|-------------|
@@ -166,6 +166,6 @@ The `admin` account always has full access regardless of role assignments. All o
 
 ## See Also
 
-- [**Operations > User Storage**](/docs/operations/cluster/operations-user-storage) — User and role management for a Reactive Engine Cluster (separate from Configuration Server users)
-- [**Security Storage**](/docs/settings) — Managing cryptographic keys and certificates
-- [**Settings**](/docs/settings) — Overview of all Settings sections
+- [**Operations > User Storage**](/docs/operations/cluster/operations-user-storage.md) — User and role management for a Reactive Engine Cluster (separate from Configuration Server users)
+- [**Security Storage**](/docs/settings/secret-storage.md) — Managing cryptographic keys and certificates
+- [**Settings**](/docs/settings/index.md) — Overview of all Settings sections

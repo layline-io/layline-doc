@@ -67,7 +67,7 @@ If a Resource is already deployed as part of another Workflow in the same deploy
 
 ### Alarming
 
-Configure notifications for Workflow lifecycle events. Each event type uses the [Alarm Center](../../../operations/cluster/alarm-center) to route alerts.
+Configure notifications for Workflow lifecycle events. Each event type uses the [Alarm Center](../../../operations/cluster/alarm-center/index.md) to route alerts.
 
 | Event | When it fires |
 |-------|-------------|

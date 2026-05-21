@@ -133,7 +133,7 @@ Operations provides powerful visibility into running systems. Access is typicall
 - **Operational access** — Restart workflows, acknowledge alarms, trigger deployments (typical for ops engineers)
 - **Administrative access** — Full control including user management and audit log access (typical for admins)
 
-See [**Access Coordinator**](/docs/operations/cluster/operations-user-storage) for details on permission management.
+See [**Access Coordinator**](/docs/operations/cluster/operations-user-storage.md) for details on permission management.
 
 ## See Also
 

@@ -29,7 +29,7 @@ Learn how to configure, deploy, and manage workflows in layline.io.
 |-------|-------------|
 | [Getting Started](./projects-workflows/getting-started) | Quick start guide for creating your first workflow. |
 | [Workflow Configuration](./projects-workflows/configuration) | Detailed guide to configuring workflows, assets, and connections. |
-| [Workflow Deployment](./projects-workflows/deployment) | How to deploy workflows to Reactive Engine clusters. |
+| [Workflow Deployment](./projects-workflows/deployment.md) | How to deploy workflows to Reactive Engine clusters. |
 | [Server Config Settings](./projects-workflows/server-config-settings) | Reference for server configuration settings. |
 
 ### Configuration Server

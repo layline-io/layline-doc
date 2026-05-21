@@ -58,7 +58,7 @@ Understand the six concepts that cover 90% of what layline.io does:
 
 Read this before installing — it makes the Configuration Center UI much clearer.
 
-### 3. [Installation Overview](./quickstart-overview)
+### 3. [Installation Overview](./quickstart-overview.md)
 **Time: 2 minutes**
 
 Review your installation options:

@@ -221,7 +221,7 @@ The "_**AI Storage**_" is a process (Controller) which manages AI models.
 
 ### User Storage
 
-To learn how to manage Users, Roles and permissions within layline.io, please check [User Storage](./operations-user-storage) for user management on the cluster.
+To learn how to manage Users, Roles and permissions within layline.io, please check [User Storage](./operations-user-storage.md) for user management on the cluster.
 
 ### Security Storage
 
