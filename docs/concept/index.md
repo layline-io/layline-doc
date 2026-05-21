@@ -1,6 +1,7 @@
 ---
 title: Concept
 sidebar_position: 7
+description: Core concepts and architectural foundations of layline.io — understand the platform's design philosophy, data flow, and key abstractions.
 ---
 
 # Concept
@@ -54,6 +55,15 @@ Specialized concepts for advanced users and specific use cases.
 | [Security Storage](./advanced/secret-management.md) | Comprehensive guide to secret and certificate management. |
 | [Prometheus Extension](./advanced/prometheus-extension.md) | Monitoring and metrics integration with Prometheus. |
 | [Artificial Intelligence](./advanced/artificial-intelligence.md) | AI-powered features and capabilities in layline.io. |
+
+### Platform Comparisons & Use Cases
+
+Understand how layline.io fits into the broader data processing landscape and explore real-world applications.
+
+| Topic | Description |
+|-------|-------------|
+| [layline.io vs Alternatives](./comparison) | Compare layline.io with Apache Flink, Kafka Streams, Airbyte, and other platforms. |
+| [Common Use Cases](./use-cases) | Real-world scenarios — ETL, event processing, API integration, monitoring, and more. |
 
 ## How to Navigate This Section
 

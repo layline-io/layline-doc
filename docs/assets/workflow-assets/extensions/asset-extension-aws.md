@@ -1,3 +1,7 @@
+---
+description: AWS Extension Asset for layline.io — integrate AWS Lambda functions into your data processing workflows.
+---
+
 # Extension AWS
 
 > Deploys an AWS macro resolver that provides `${aws:...}` macros for accessing

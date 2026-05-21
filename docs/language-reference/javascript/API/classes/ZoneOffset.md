@@ -1,3 +1,7 @@
+---
+description: Represents a fixed offset from UTC — hours and minutes, with no daylight saving time changes. Use `ZoneOffset` when you need a constant offset rather than a ...
+---
+
 # ZoneOffset
 
 Represents a fixed offset from UTC — hours and minutes, with no daylight saving time changes. Use `ZoneOffset` when you need a constant offset rather than a named timezone.

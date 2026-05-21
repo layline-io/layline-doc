@@ -1,3 +1,8 @@
+---
+description: >-
+  > const statusRegistry: StatusRegistry(../classes/StatusRegistry.md).
+---
+
 # statusRegistry
 
 > `const` **statusRegistry**: [`StatusRegistry`](../classes/StatusRegistry.md)

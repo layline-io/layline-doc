@@ -1,3 +1,7 @@
+---
+description: Performs correct 64-bit arithmetic and bitwise operations in JavaScript. Use `Arith64` when working with large integers (above `Number.MAX_SAFE_INTEGER` = 9,...
+---
+
 # Arith64
 
 Performs correct 64-bit arithmetic and bitwise operations in JavaScript. Use `Arith64` when working with large integers (above `Number.MAX_SAFE_INTEGER` = 9,007,199,254,740,991) or when bitwise operations need more than 32 bits.

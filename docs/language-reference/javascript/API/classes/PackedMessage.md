@@ -1,3 +1,7 @@
+---
+description: A memory-efficient compressed representation of a [`Message. Use `PackedMessage` when you need to retain many messages in memory (e.g., buffering, aggregatio...
+---
+
 # PackedMessage
 
 A memory-efficient compressed representation of a [`Message`](Message.md). Use `PackedMessage` when you need to retain many messages in memory (e.g., buffering, aggregation, or caching) and want to reduce memory overhead.

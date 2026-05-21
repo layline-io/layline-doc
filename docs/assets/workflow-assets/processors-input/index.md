@@ -1,5 +1,6 @@
 ---
 title: Input Processors
+description: Input Processor Assets in layline.io — ingest data from sources with Kafka, File, HTTP, Message, and Stream input processors.
 ---
 
 # Input Processors

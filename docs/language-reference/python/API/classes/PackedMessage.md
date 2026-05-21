@@ -1,4 +1,8 @@
 ---
+description: A memory-efficient compressed representation of a [`Message. Use `PackedMessage` when you need to retain many messages in memory (e.g., buffering, aggregatio...
+---
+
+---
 id: py-PackedMessage
 ---
 

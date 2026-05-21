@@ -1,3 +1,7 @@
+---
+description: Represents a timezone for use with `DateTime, [`LocalDate`, and `Time`. Timezones handle daylight saving time transitions and regional offsets automatically.
+---
+
 # TimeZone
 
 Represents a timezone for use with [`DateTime`](DateTime.md), [`LocalDate`](LocalDate.md), and [`Time`](Time.md). Timezones handle daylight saving time transitions and regional offsets automatically.

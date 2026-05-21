@@ -1,4 +1,8 @@
 ---
+description: A `DataDictionaryEntity` represents a single node in your data dictionary hierarchy — either an intermediate structure (like a record type) or a leaf field. ...
+---
+
+---
 id: py-DataDictionaryEntity
 ---
 

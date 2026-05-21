@@ -1,4 +1,8 @@
 ---
+description: 'StatusRegistry provides access to all defined vendors and status codes in your project. It is available globally as `statusRegistry`.'
+---
+
+---
 id: py-StatusRegistry
 ---
 

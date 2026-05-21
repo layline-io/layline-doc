@@ -1,3 +1,7 @@
+---
+description: An `OutputPort` represents a connection from one processor to another within a workflow. You obtain output ports through `processor.getOutputPort(), then use...
+---
+
 # OutputPort
 
 An `OutputPort` represents a connection from one processor to another within a workflow. You obtain output ports through [`processor.getOutputPort()`](Processor.md), then use them with [`stream.emit()`](Stream.md) to send messages downstream.

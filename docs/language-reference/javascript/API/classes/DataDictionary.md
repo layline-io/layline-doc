@@ -1,3 +1,7 @@
+---
+description: 'DataDictionary provides access to all data structures defined in your layline.io project — message types, record formats, and field definitions. It is avai...'
+---
+
 # DataDictionary
 
 The `DataDictionary` provides access to all data structures defined in your layline.io project — message types, record formats, and field definitions. It is available globally as `dataDictionary` in every JavaScript processor.

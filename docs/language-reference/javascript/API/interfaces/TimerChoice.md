@@ -1,3 +1,7 @@
+---
+description: Union of timer configurations. Use one of `Cron`, `FixedRate`, or `Once` when defining a timer.
+---
+
 # TimerChoice
 
 Union of timer configurations. Use one of `Cron`, `FixedRate`, or `Once` when defining a timer.

@@ -1,3 +1,7 @@
+---
+description: JavaScript class reference for layline.io — Workflow, Processor, Stream, Message, Service, and more.
+---
+
 # Classes
 
 The core building blocks of your Layline JavaScript applications — from data handling and time manipulation to workflow orchestration and external service integration.

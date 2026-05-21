@@ -1,3 +1,7 @@
+---
+description: Complete Python API reference for layline.io — classes, interfaces, enumerations, and variables for workflow scripting.
+---
+
 # Python API Reference
 
 Welcome to the **Layline Python API** — your complete toolkit for building powerful workflow processors, services, and integrations in Python.

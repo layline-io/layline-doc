@@ -1,3 +1,7 @@
+---
+description: A `Vendor` groups related `StatusCode definitions together. Vendors are defined in the Resource Status Definition Asset and accessed through [`StatusRegistry...
+---
+
 # Vendor
 
 A `Vendor` groups related [`StatusCode`](StatusCode.md) definitions together. Vendors are defined in the **Resource Status Definition Asset** and accessed through [`StatusRegistry`](StatusRegistry.md) or [`Status`](Status.md) lookup methods.

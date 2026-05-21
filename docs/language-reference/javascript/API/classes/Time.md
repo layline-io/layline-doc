@@ -1,3 +1,7 @@
+---
+description: Represents a time of day without date or timezone — just hour, minute, second, and nanosecond. Use `Time` for daily schedules, business hours, or time-of-day...
+---
+
 # Time
 
 Represents a time of day without date or timezone — just hour, minute, second, and nanosecond. Use `Time` for daily schedules, business hours, or time-of-day comparisons.

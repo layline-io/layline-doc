@@ -1,4 +1,8 @@
 ---
+description: Email structure used with [`Email.send().
+---
+
+---
 id: py-EmailMessage
 ---
 

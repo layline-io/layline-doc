@@ -1,4 +1,8 @@
 ---
+description: Represents a point in time with date, time, and timezone offset information. Use `DateTime` when you need to work with timestamps, compare moments, or format...
+---
+
+---
 id: py-DateTime
 ---
 

@@ -1,3 +1,7 @@
+---
+description: Recurring timer that fires at a fixed interval.
+---
+
 # TimerFixedRate
 
 Recurring timer that fires at a fixed interval.

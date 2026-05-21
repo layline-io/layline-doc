@@ -1,3 +1,8 @@
+---
+description: >-
+  > const workflow: Workflow(../classes/Workflow.md).
+---
+
 # workflow
 
 > `const` **workflow**: [`Workflow`](../classes/Workflow.md)

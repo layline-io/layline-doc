@@ -68,6 +68,8 @@ const config = {
                         // '**/globals.md', // Typedoc removed - no more auto-generated globals.md
                         'snippets/**', // exclude the snippets folder from sidebar generation
                     ],
+                    showLastUpdateAuthor: false,
+                    showLastUpdateTime: true,
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
@@ -222,6 +224,9 @@ const config = {
                 maxHeadingLevel: 5,
             },
 
+            metadata: [
+                { name: 'keywords', content: 'event processing, data pipeline, ETL, real-time streaming, low-code, workflow automation, data integration, stream processing, layline.io' },
+            ],
             algolia: {
                 // The application ID provided by Algolia
                 appId: '6XU9IX6WDZ',

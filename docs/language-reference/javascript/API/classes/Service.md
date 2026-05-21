@@ -1,3 +1,7 @@
+---
+description: Services in layline.io provide integrations with external systems — databases, message queues, HTTP APIs, email servers, and more. You configure services thr...
+---
+
 # Service
 
 Services in layline.io provide integrations with external systems — databases, message queues, HTTP APIs, email servers, and more. You configure services through Service Assets in the UI, then access them in JavaScript via the `services` object.

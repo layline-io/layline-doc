@@ -1,5 +1,6 @@
 ---
 title: Resources
+description: Resource Assets in layline.io — manage environments, secrets, directories, OAuth, AI models, and scheduler settings.
 ---
 
 # Resources

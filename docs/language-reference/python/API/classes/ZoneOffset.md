@@ -1,4 +1,8 @@
 ---
+description: Represents a fixed offset from UTC — hours and minutes, with no daylight saving time changes. Use `ZoneOffset` when you need a constant offset rather than a ...
+---
+
+---
 id: py-ZoneOffset
 ---
 

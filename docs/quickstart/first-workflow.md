@@ -1,6 +1,7 @@
 ---
 title: Your First Workflow
 sidebar_position: 5
+description: Build your first data processing workflow with layline.io — a step-by-step tutorial to read, transform, filter, and route data.
 ---
 
 # Your First Workflow

@@ -1,4 +1,8 @@
 ---
+description: 'Message class is the central data structure in layline.io. Every event that flows through a workflow is encapsulated as a Message — a typed envelope carryi...'
+---
+
+---
 id: py-Message
 ---
 

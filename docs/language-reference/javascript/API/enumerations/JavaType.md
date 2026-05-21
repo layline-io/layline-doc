@@ -1,3 +1,7 @@
+---
+description: Maps layline.io's primitive data types to their Java equivalents. Use this reference when defining data formats or working with the [JavaScript Flow Processor.
+---
+
 # JavaType
 
 Maps layline.io's primitive data types to their Java equivalents. Use this reference when defining data formats or working with the [JavaScript Flow Processor](../../../../assets/workflow-assets/processors-flow/asset-flow-javascript.md).

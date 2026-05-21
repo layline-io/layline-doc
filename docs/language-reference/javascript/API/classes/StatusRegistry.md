@@ -1,3 +1,7 @@
+---
+description: 'StatusRegistry provides access to all defined vendors and status codes in your project. It is available globally as `statusRegistry`.'
+---
+
 # StatusRegistry
 
 The `StatusRegistry` provides access to all defined vendors and status codes in your project. It is available globally as `statusRegistry`.

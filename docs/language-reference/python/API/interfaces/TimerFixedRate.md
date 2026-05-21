@@ -1,4 +1,8 @@
 ---
+description: Recurring timer that fires at a fixed interval.
+---
+
+---
 id: py-TimerFixedRate
 ---
 

@@ -1,3 +1,8 @@
+---
+description: >-
+  > const metrics: Metrics(../classes/Metrics.md).
+---
+
 # metrics
 
 > `const` **metrics**: [`Metrics`](../classes/Metrics.md)

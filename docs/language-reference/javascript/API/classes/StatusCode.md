@@ -1,3 +1,7 @@
+---
+description: A `StatusCode` represents a single entry in a Resource Status Definition Asset — the template definition for a [`Status. It contains the code, message templa...
+---
+
 # StatusCode
 
 A `StatusCode` represents a single entry in a **Resource Status Definition Asset** — the template definition for a [`Status`](Status.md). It contains the code, message template, and language information.

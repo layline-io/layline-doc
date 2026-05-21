@@ -1,5 +1,6 @@
 ---
 title: Output Processors
+description: Output Processor Assets in layline.io — deliver processed data to sinks with format conversion and delivery confirmation.
 ---
 
 # Output Processors

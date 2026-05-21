@@ -1,6 +1,7 @@
 ---
 title: Core Concepts in 5 Minutes
 sidebar_position: 2
+description: Master the six core concepts of layline.io in 5 minutes — Projects, Assets, Workflows, Data Formats, and Deployment.
 ---
 
 # Core Concepts in 5 Minutes

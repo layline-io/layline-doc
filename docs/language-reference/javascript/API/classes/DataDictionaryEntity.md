@@ -1,3 +1,7 @@
+---
+description: A `DataDictionaryEntity` represents a single node in your data dictionary hierarchy — either an intermediate structure (like a record type) or a leaf field. ...
+---
+
 # DataDictionaryEntity
 
 A `DataDictionaryEntity` represents a single node in your data dictionary hierarchy — either an intermediate structure (like a record type) or a leaf field. You use these entities as type-safe accessors when reading from or writing to [`Message`](Message.md) fields.

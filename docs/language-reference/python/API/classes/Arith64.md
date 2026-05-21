@@ -1,4 +1,8 @@
 ---
+description: Performs correct 64-bit arithmetic and bitwise operations. Use `Arith64` when working with large integers or when bitwise operations need more than 32 bits.
+---
+
+---
 id: py-Arith64
 ---
 

@@ -1,4 +1,8 @@
 ---
+description: 'Metrics class provides access to performance counters and operational metrics. It is available globally as `metrics` in every Python processor.'
+---
+
+---
 id: py-Metrics
 ---
 

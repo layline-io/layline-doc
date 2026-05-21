@@ -1,6 +1,7 @@
 ---
 title: layline.io at a Glance
 sidebar_position: 1
+description: layline.io is an opinionated event data processor for real-time and batch data pipelines. Learn what it does and how it works in 5 minutes.
 ---
 
 # layline.io at a Glance

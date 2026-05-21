@@ -1,6 +1,7 @@
 ---
 title: Workflow Assets
 sidebar_position: 1
+description: Workflow Assets are the building blocks of data processing pipelines in layline.io — sources, sinks, processors, formats, services, connections, and more.
 ---
 
 # Workflow Assets

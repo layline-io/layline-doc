@@ -1,3 +1,7 @@
+---
+description: 'JavaScriptProcessor defines the lifecycle hooks available in a JavaScript Asset. These hooks are automatically invoked by layline.io at key moments — start...'
+---
+
 # JavaScriptProcessor
 
 The `JavaScriptProcessor` defines the lifecycle hooks available in a JavaScript Asset. These hooks are automatically invoked by layline.io at key moments — startup, message arrival, stream boundaries, and shutdown.

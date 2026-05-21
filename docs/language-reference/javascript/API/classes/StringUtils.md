@@ -1,3 +1,8 @@
+---
+description: >-
+  Utility class for common string operations: encoding, decoding, validation, and charset conversion. All methods are static.
+---
+
 # StringUtils
 
 Utility class for common string operations: encoding, decoding, validation, and charset conversion. All methods are static.

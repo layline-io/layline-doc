@@ -1,4 +1,8 @@
 ---
+description: Send emails through a configured Email Service. Access the service via `services.YourEmailServiceName`.
+---
+
+---
 id: py-Email
 ---
 

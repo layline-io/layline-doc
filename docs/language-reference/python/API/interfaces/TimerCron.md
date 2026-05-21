@@ -1,4 +1,8 @@
 ---
+description: Recurring timer driven by a cron expression.
+---
+
+---
 id: py-TimerCron
 ---
 

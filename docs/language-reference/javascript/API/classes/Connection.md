@@ -1,3 +1,7 @@
+---
+description: A `Connection` represents an active link to a service (e.g., JDBC database, HTTP endpoint). Connections are obtained through the `services` object and suppor...
+---
+
 # Connection
 
 A `Connection` represents an active link to a service (e.g., JDBC database, HTTP endpoint). Connections are obtained through the `services` object and support transactions for compatible services.

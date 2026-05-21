@@ -1,4 +1,8 @@
 ---
+description: Represents an amount of time — days, hours, minutes, seconds, milliseconds, or nanoseconds. Use `Duration` to measure elapsed time, set timeouts, or calculat...
+---
+
+---
 id: py-Duration
 ---
 

@@ -1,3 +1,8 @@
+---
+description: >-
+  > const stream: Stream(../classes/Stream.md).
+---
+
 # stream
 
 > `const` **stream**: [`Stream`](../classes/Stream.md)

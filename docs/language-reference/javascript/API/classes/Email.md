@@ -1,3 +1,7 @@
+---
+description: Send emails through a configured Email Service. Access the service via `services.YourEmailServiceName`.
+---
+
 # Email
 
 Send emails through a configured Email Service. Access the service via `services.YourEmailServiceName`.

@@ -1,3 +1,7 @@
+---
+description: Python interface reference for layline.io — type definitions for EmailMessage, Temporal, Timer, and more.
+---
+
 # Interfaces
 
 Contracts and type definitions for structured development — email structures, time-based abstractions, and timer configurations.

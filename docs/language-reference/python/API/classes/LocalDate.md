@@ -1,4 +1,8 @@
 ---
+description: Represents a date without time or timezone — just year, month, and day. Use `LocalDate` for birthdays, anniversaries, or any date-only value where time doesn...
+---
+
+---
 id: py-LocalDate
 ---
 

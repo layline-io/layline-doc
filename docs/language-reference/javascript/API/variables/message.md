@@ -1,3 +1,8 @@
+---
+description: >-
+  > const message: Message(../classes/Message.md).
+---
+
 # message
 
 > `const` **message**: [`Message`](../classes/Message.md)

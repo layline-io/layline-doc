@@ -1,5 +1,6 @@
 ---
 title: Flow Processors
+description: Flow Processor Assets in layline.io — transform, filter, route, and throttle data between input and output.
 ---
 
 # Flow Processors

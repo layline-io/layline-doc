@@ -1,6 +1,7 @@
 ---
 title: Language Reference
 sidebar_position: 8
+description: Language reference for layline.io — JavaScript, Python, and QuickScript APIs for building workflow processors.
 ---
 
 # Language Reference

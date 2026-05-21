@@ -1,3 +1,7 @@
+---
+description: 'Stream class represents the current data stream being processed. It is available globally as `stream` in every JavaScript processor.'
+---
+
 # Stream
 
 The `Stream` class represents the current data stream being processed. It is available globally as `stream` in every JavaScript processor.

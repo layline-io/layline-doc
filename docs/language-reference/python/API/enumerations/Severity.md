@@ -1,4 +1,8 @@
 ---
+description: Severity levels for message status tracking. Used with [`Message.addStatus() and related methods.
+---
+
+---
 id: py-Severity
 ---
 

@@ -1,3 +1,7 @@
+---
+description: Recurring timer driven by a cron expression.
+---
+
 # TimerCron
 
 Recurring timer driven by a cron expression.

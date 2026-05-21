@@ -1,3 +1,8 @@
+---
+description: >-
+  > const processor: Processor(../classes/Processor.md).
+---
+
 # processor
 
 > `const` **processor**: [`Processor`](../classes/Processor.md)

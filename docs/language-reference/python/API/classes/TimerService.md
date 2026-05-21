@@ -1,4 +1,8 @@
 ---
+description: Schedule and manage timers that trigger workflows at specific times or intervals. Timers are configured through a [Timer Service Asset and accessed via the `...
+---
+
+---
 id: py-TimerService
 ---
 

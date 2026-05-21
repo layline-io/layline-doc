@@ -1,3 +1,7 @@
+---
+description: Dynamically generated structure of a data dictionary. The available properties depend entirely on your project's data dictionary configuration and are resolv...
+---
+
 # DataDictionaryTypes
 
 Dynamically generated structure of a data dictionary. The available properties depend entirely on your project's data dictionary configuration and are resolved at runtime.

@@ -1,4 +1,8 @@
 ---
+description: A `StatusCode` represents a single entry in a Resource Status Definition Asset — the template definition for a [`Status. It contains the code, message templa...
+---
+
+---
 id: py-StatusCode
 ---
 

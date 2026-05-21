@@ -1,3 +1,7 @@
+---
+description: Represents an amount of time — days, hours, minutes, seconds, milliseconds, or nanoseconds. Use `Duration` to measure elapsed time, set timeouts, or calculat...
+---
+
 # Duration
 
 Represents an amount of time — days, hours, minutes, seconds, milliseconds, or nanoseconds. Use `Duration` to measure elapsed time, set timeouts, or calculate differences between temporal objects.

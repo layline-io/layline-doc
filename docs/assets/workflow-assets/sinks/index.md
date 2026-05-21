@@ -1,5 +1,6 @@
 ---
 title: Sinks
+description: Sink Assets in layline.io — configure outbound data destinations for Kafka, S3, File, WebSocket, EventBridge, and 10+ other systems.
 ---
 
 # Sinks

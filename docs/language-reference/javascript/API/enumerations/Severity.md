@@ -1,3 +1,7 @@
+---
+description: Severity levels for message status tracking. Used with [`Message.addStatus() and related methods.
+---
+
 # Severity
 
 Severity levels for message status tracking. Used with [`Message.addStatus()`](../classes/Message.md#adding-status) and related methods.

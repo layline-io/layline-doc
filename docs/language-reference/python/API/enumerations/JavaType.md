@@ -1,4 +1,8 @@
 ---
+description: Maps layline.io's primitive data types to their Java equivalents. Use this reference when defining data formats or working with the [Python Flow Processor.
+---
+
+---
 id: py-JavaType
 ---
 

@@ -1,3 +1,8 @@
+---
+description: >-
+  The Workflow class provides access to the current workflow's metadata — its name and data dictionary. It is available globally as workflow in every JavaScrip...
+---
+
 # Workflow
 
 The `Workflow` class provides access to the current workflow's metadata — its name and data dictionary. It is available globally as `workflow` in every JavaScript processor.

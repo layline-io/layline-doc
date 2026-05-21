@@ -1,4 +1,8 @@
 ---
+description: 'DataDictionary provides access to all data structures defined in your layline.io project — message types, record formats, and field definitions. It is avai...'
+---
+
+---
 id: py-DataDictionary
 ---
 

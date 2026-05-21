@@ -1,3 +1,7 @@
+---
+description: A thread-safe counter for tracking numeric values — message counts, totals, or any incrementing/decrementing metric. Obtained through [`metrics.getCounter().
+---
+
 # Counter
 
 A thread-safe counter for tracking numeric values — message counts, totals, or any incrementing/decrementing metric. Obtained through [`metrics.getCounter()`](Metrics.md).

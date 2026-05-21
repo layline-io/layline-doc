@@ -1,3 +1,8 @@
+---
+description: >-
+  The Processor class provides access to the current processor's configuration and runtime properties. It is available globally as processor in every JavaScrip...
+---
+
 # Processor
 
 The `Processor` class provides access to the current processor's configuration and runtime properties. It is available globally as `processor` in every JavaScript processor.

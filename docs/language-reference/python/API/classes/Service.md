@@ -1,4 +1,8 @@
 ---
+description: Services in layline.io provide integrations with external systems — databases, message queues, HTTP APIs, email servers, and more. You configure services thr...
+---
+
+---
 id: py-Service
 ---
 

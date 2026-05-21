@@ -1,4 +1,8 @@
 ---
+description: Base interface for date/time objects that support standard string formatting.
+---
+
+---
 id: py-Temporal
 ---
 

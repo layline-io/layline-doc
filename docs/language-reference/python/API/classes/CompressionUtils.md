@@ -1,4 +1,8 @@
 ---
+description: Utility class for compressing and decompressing data, plus reading ZIP archives. All methods are static.
+---
+
+---
 id: py-CompressionUtils
 ---
 

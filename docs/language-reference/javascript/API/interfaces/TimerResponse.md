@@ -1,3 +1,7 @@
+---
+description: Timer registration structure used with [`TimerService.
+---
+
 # TimerResponse
 
 Timer registration structure used with [`TimerService`](../classes/TimerService.md).

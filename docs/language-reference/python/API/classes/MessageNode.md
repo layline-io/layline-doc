@@ -1,4 +1,8 @@
 ---
+description: Individual node of a [`Message.
+---
+
+---
 id: py-MessageNode
 ---
 

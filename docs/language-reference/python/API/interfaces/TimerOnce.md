@@ -1,4 +1,8 @@
 ---
+description: Single-execution timer fired at a specific point in time.
+---
+
+---
 id: py-TimerOnce
 ---
 

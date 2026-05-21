@@ -1,3 +1,7 @@
+---
+description: Complete JavaScript API reference for layline.io — classes, interfaces, enumerations, and variables for workflow scripting.
+---
+
 # JavaScript API Reference
 
 Welcome to the **Layline JavaScript API** — your complete toolkit for building powerful workflow processors, services, and integrations.

@@ -1,6 +1,7 @@
 ---
 title: Advanced Concepts
 sidebar_position: 6
+description: Advanced topics for production layline.io deployments — security, clustering, monitoring, and AI integration.
 ---
 
 # Advanced Concepts

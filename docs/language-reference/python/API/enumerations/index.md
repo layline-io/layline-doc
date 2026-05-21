@@ -1,3 +1,7 @@
+---
+description: Python enumeration reference for layline.io — JavaType, Severity, and other constants.
+---
+
 # Enumerations
 
 Typed constants for cross-platform compatibility and message status tracking.

@@ -1,4 +1,8 @@
 ---
+description: 'PythonProcessor defines the lifecycle hooks available in a Python Asset. These hooks are automatically invoked by layline.io at key moments — startup, mess...'
+---
+
+---
 id: py-PythonProcessor
 ---
 

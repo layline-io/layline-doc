@@ -1,3 +1,7 @@
+---
+description: Email structure used with [`Email.
+---
+
 # EmailMessage
 
 Email structure used with [`Email`](../classes/Email.md).

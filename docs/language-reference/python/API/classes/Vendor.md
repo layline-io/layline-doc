@@ -1,4 +1,8 @@
 ---
+description: A `Vendor` groups related `StatusCode definitions together. Vendors are defined in the Resource Status Definition Asset and accessed through [`StatusRegistry...
+---
+
+---
 id: py-Vendor
 ---
 

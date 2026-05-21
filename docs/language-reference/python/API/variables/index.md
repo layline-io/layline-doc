@@ -1,3 +1,7 @@
+---
+description: Python global variable reference for layline.io — workflow, processor, stream, message, metrics, and more.
+---
+
 # Global Variables
 
 Instantly accessible objects available in every Python processor environment — no import needed.

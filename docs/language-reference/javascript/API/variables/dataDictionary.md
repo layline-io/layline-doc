@@ -1,3 +1,8 @@
+---
+description: >-
+  > const dataDictionary: DataDictionary(../classes/DataDictionary.md).
+---
+
 # dataDictionary
 
 > `const` **dataDictionary**: [`DataDictionary`](../classes/DataDictionary.md)

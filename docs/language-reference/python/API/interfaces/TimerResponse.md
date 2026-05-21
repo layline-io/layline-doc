@@ -1,4 +1,8 @@
 ---
+description: Timer registration structure used with [`TimerService.
+---
+
+---
 id: py-TimerResponse
 ---
 

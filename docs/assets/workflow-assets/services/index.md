@@ -1,5 +1,6 @@
 ---
 title: Services
+description: Service Assets in layline.io — connect to databases, message queues, APIs, and external systems from your workflows.
 ---
 
 # Services

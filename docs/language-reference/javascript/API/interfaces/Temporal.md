@@ -1,3 +1,7 @@
+---
+description: Base interface for date/time objects that support standard string formatting.
+---
+
 # Temporal
 
 Base interface for date/time objects that support standard string formatting.

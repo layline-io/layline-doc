@@ -1,4 +1,8 @@
 ---
+description: 'Stream class represents the current data stream being processed. It is available globally as `stream` in every Python processor.'
+---
+
+---
 id: py-Stream
 ---
 

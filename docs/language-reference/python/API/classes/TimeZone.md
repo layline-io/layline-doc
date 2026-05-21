@@ -1,4 +1,8 @@
 ---
+description: Represents a timezone for use with `DateTime, [`LocalDate`, and `Time`. Timezones handle daylight saving time transitions and regional offsets automatically.
+---
+
+---
 id: py-TimeZone
 ---
 

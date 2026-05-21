@@ -1,5 +1,6 @@
 ---
 title: Extensions
+description: Extension Assets in layline.io — extend platform capabilities with AWS Lambda and Prometheus monitoring integrations.
 ---
 
 # Extensions

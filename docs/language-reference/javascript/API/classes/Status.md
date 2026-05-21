@@ -1,3 +1,7 @@
+---
+description: A `Status` represents a structured error, warning, or informational message that can be attached to a [`Message or used to signal stream events like retries ...
+---
+
 # Status
 
 A `Status` represents a structured error, warning, or informational message that can be attached to a [`Message`](Message.md) or used to signal stream events like retries and rollbacks.
