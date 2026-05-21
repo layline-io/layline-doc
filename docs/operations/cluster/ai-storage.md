@@ -228,7 +228,7 @@ The [**AI Classifier**](/docs/assets/workflow-assets/processors-flow/asset-flow-
 
 ### AI Model Resource
 
-Both the AI Trainer and AI Classifier require an [**AI Model Resource**](/docs/assets/workflow-assets/resources/asset-resource-ai-model) asset. This Resource defines:
+Both the AI Trainer and AI Classifier require an [**AI Model Resource**](../../assets/workflow-assets/resources/asset-resource-ai-model.md) asset. This Resource defines:
 - The model type (e.g., J48 Decision Tree, Multilayer Perceptron)
 - Input and output attribute schemas
 - Training hyperparameters
@@ -237,14 +237,14 @@ The AI Model Resource is the **schema contract** — AI Storage holds the **trai
 
 ### AI Service
 
-The [**AI Service**](/docs/assets/workflow-assets/services/asset-service-ai) provides additional AI capabilities for workflows, such as accessing external AI models or services. Unlike the Classifier/Trainer which use models from AI Storage directly, the AI Service may interact with external AI endpoints.
+The [**AI Service**](../../assets/workflow-assets/services/asset-service-ai.md) provides additional AI capabilities for workflows, such as accessing external AI models or services. Unlike the Classifier/Trainer which use models from AI Storage directly, the AI Service may interact with external AI endpoints.
 
 ---
 
 ## See Also
 
-- [**Cluster Login**](cluster-login.md) — How to connect to a cluster
-- [**AI Service**](/docs/assets/workflow-assets/services/asset-service-ai) — Service for executing AI models in workflows
-- [**AI Classifier Processor**](/docs/assets/workflow-assets/processors-flow/asset-flow-ai-classifier) — Flow processor for real-time classification using AI models
-- [**AI Trainer Processor**](/docs/assets/workflow-assets/processors-flow/asset-flow-ai-trainer) — Flow processor for training models from streaming data
-- [**AI Model Resource**](/docs/assets/workflow-assets/resources/asset-resource-ai-model) — Resource asset for managing AI model configurations
+- [**Cluster Login**](./cluster-login.md) — How to connect to a cluster
+- [**AI Service**](../../assets/workflow-assets/services/asset-service-ai.md) — Service for executing AI models in workflows
+- [**AI Classifier Processor**](../../assets/workflow-assets/processors-flow/asset-flow-ai-classifier.md) — Flow processor for real-time classification using AI models
+- [**AI Trainer Processor**](../../assets/workflow-assets/processors-flow/asset-flow-ai-trainer.md) — Flow processor for training models from streaming data
+- [**AI Model Resource**](../../assets/workflow-assets/resources/asset-resource-ai-model.md) — Resource asset for managing AI model configurations

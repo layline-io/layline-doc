@@ -19,12 +19,12 @@ Extensions are configured as assets in your project, then assigned at deployment
 
 | Extension | Purpose |
 |-----------|---------|
-| [Extension AWS](./asset-extension-aws) | Deploys an AWS macro resolver that provides `${aws:...}` macros for accessing AWS Systems Manager Parameter Store and AWS Secrets Manager values at runtime |
-| [Extension Prometheus](./asset-prometheus) | Exports layline.io processing metrics to Prometheus for monitoring and visualization |
+| [Extension AWS](./asset-extension-aws.md) | Deploys an AWS macro resolver that provides `${aws:...}` macros for accessing AWS Systems Manager Parameter Store and AWS Secrets Manager values at runtime |
+| [Extension Prometheus](./asset-prometheus.md) | Exports layline.io processing metrics to Prometheus for monitoring and visualization |
 
 ## How to Choose an Extension
 
 | If you need to... | Use this Extension |
 |-------------------|-------------------|
-| Reference secrets stored in AWS (SSM Parameter Store or Secrets Manager) | [Extension AWS](./asset-extension-aws) |
-| Export workflow metrics to Prometheus for monitoring | [Extension Prometheus](./asset-prometheus) |
+| Reference secrets stored in AWS (SSM Parameter Store or Secrets Manager) | [Extension AWS](./asset-extension-aws.md) |
+| Export workflow metrics to Prometheus for monitoring | [Extension Prometheus](./asset-prometheus.md) |

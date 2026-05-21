@@ -3,8 +3,6 @@ title: Sources
 description: Monitor and inspect input sources running on your cluster, including connection status, read positions, throughput metrics, and folder configurations.
 ---
 
-import VersionedLink from '@site/src/components/VersionedLink';
-
 # Source State
 
 > Real-time monitoring of input sources — File, Kafka, FTP, S3, and more — including their connection status, processing metrics, and folder-level controls.
@@ -247,33 +245,33 @@ The Sources category in Engine State includes all source assets deployed to your
 
 | Source Type | Purpose |
 |-------------|---------|
-| **File System** | <VersionedLink to="/assets/sources/asset-source-file">Local and mounted filesystem polling</VersionedLink> |
-| **FTP/SFTP** | <VersionedLink to="/assets/sources/asset-source-ftp">Remote file transfer protocol sources</VersionedLink> |
-| **S3** | <VersionedLink to="/assets/sources/asset-source-s3">Amazon S3 bucket polling</VersionedLink> |
-| **GCS** | <VersionedLink to="/assets/sources/asset-source-google-cloud-storage">Google Cloud Storage bucket polling</VersionedLink> |
+| **File System** | [Local and mounted filesystem polling](../../assets/workflow-assets/sources/asset-source-file.md) |
+| **FTP/SFTP** | [Remote file transfer protocol sources](../../assets/workflow-assets/sources/asset-source-ftp.md) |
+| **S3** | [Amazon S3 bucket polling](../../assets/workflow-assets/sources/asset-source-s3.md) |
+| **GCS** | [Google Cloud Storage bucket polling](../../assets/workflow-assets/sources/asset-source-google-cloud-storage.md) |
 | **Azure Blob** | Azure Blob Storage sources |
-| **Kafka** | <VersionedLink to="/assets/sources/asset-source-kafka">Apache Kafka consumer</VersionedLink> |
-| **HTTP** | <VersionedLink to="/assets/sources/asset-source-http">HTTP endpoint polling</VersionedLink> |
-| **Timer** | <VersionedLink to="/assets/sources/asset-source-timer">Scheduled/triggered execution</VersionedLink> |
-| **Message Queue** | <VersionedLink to="/assets/sources/asset-source-message">JMS, SQS, and other message queues</VersionedLink> |
-| **UDP** | <VersionedLink to="/assets/sources/asset-source-udp">UDP socket listener</VersionedLink> |
-| **OneDrive** | <VersionedLink to="/assets/sources/asset-source-onedrive">Microsoft OneDrive integration</VersionedLink> |
-| **SMB/NFS** | <VersionedLink to="/assets/sources/asset-source-smb">Network file share polling</VersionedLink> |
+| **Kafka** | [Apache Kafka consumer](../../assets/workflow-assets/sources/asset-source-kafka.md) |
+| **HTTP** | [HTTP endpoint polling](../../assets/workflow-assets/sources/asset-source-http.md) |
+| **Timer** | [Scheduled/triggered execution](../../assets/workflow-assets/sources/asset-source-timer.md) |
+| **Message Queue** | [JMS, SQS, and other message queues](../../assets/workflow-assets/sources/asset-source-message.md) |
+| **UDP** | [UDP socket listener](../../assets/workflow-assets/sources/asset-source-udp.md) |
+| **OneDrive** | [Microsoft OneDrive integration](../../assets/workflow-assets/sources/asset-source-onedrive.md) |
+| **SMB/NFS** | [Network file share polling](../../assets/workflow-assets/sources/asset-source-smb.md) |
 | **Custom Sources** | Extension-provided source types |
-| **File System** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-file">Local and mounted filesystem polling</VersionedLink> |
-| **FTP/SFTP** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-ftp">Remote file transfer protocol sources</VersionedLink> |
-| **S3** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-s3">Amazon S3 bucket polling</VersionedLink> |
-| **GCS** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-google-cloud-storage">Google Cloud Storage bucket polling</VersionedLink> |
+| **File System** | [Local and mounted filesystem polling](../../assets/workflow-assets/sources/asset-source-file.md) |
+| **FTP/SFTP** | [Remote file transfer protocol sources](../../assets/workflow-assets/sources/asset-source-ftp.md) |
+| **S3** | [Amazon S3 bucket polling](../../assets/workflow-assets/sources/asset-source-s3.md) |
+| **GCS** | [Google Cloud Storage bucket polling](../../assets/workflow-assets/sources/asset-source-google-cloud-storage.md) |
 | **Azure Blob** | Azure Blob Storage sources |
-| **Kafka** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-kafka">Apache Kafka consumer</VersionedLink> |
-| **HTTP** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-http">HTTP endpoint polling</VersionedLink> |
-| **Timer** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-timer">Scheduled/triggered execution</VersionedLink> |
-| **Message Queue** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-message">JMS, SQS, and other message queues</VersionedLink> |
-| **UDP** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-udp">UDP socket listener</VersionedLink> |
-| **OneDrive** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-onedrive">Microsoft OneDrive integration</VersionedLink> |
-| **SMB/NFS** | <VersionedLink to="/assets/workflow-assets/sources/asset-source-smb">Network file share polling</VersionedLink> |
+| **Kafka** | [Apache Kafka consumer](../../assets/workflow-assets/sources/asset-source-kafka.md) |
+| **HTTP** | [HTTP endpoint polling](../../assets/workflow-assets/sources/asset-source-http.md) |
+| **Timer** | [Scheduled/triggered execution](../../assets/workflow-assets/sources/asset-source-timer.md) |
+| **Message Queue** | [JMS, SQS, and other message queues](../../assets/workflow-assets/sources/asset-source-message.md) |
+| **UDP** | [UDP socket listener](../../assets/workflow-assets/sources/asset-source-udp.md) |
+| **OneDrive** | [Microsoft OneDrive integration](../../assets/workflow-assets/sources/asset-source-onedrive.md) |
+| **SMB/NFS** | [Network file share polling](../../assets/workflow-assets/sources/asset-source-smb.md) |
 | **Custom Sources** | Extension-provided source types |
-Each source type exposes different configuration and runtime details. Refer to the source-specific documentation in [Source Assets](../../assets/source-assets/) for configuration details.
+Each source type exposes different configuration and runtime details. Refer to the source-specific documentation in [Source Assets](../../assets/workflow-assets/sources/index.md) for configuration details.
 
 ## See Also
 
@@ -282,4 +280,4 @@ Each source type exposes different configuration and runtime details. Refer to t
 - [Service State](./services.md) — Service-specific documentation
 - [Sink State](./sinks.md) — Monitoring output sinks
 - [Cluster Monitor](../cluster/cluster-monitor.md) — Infrastructure-level cluster health
-- [Source Assets](../../assets/source-assets/) — Configuring sources in projects
+- [Source Assets](../../assets/workflow-assets/sources/index.md) — Configuring sources in projects

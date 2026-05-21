@@ -163,4 +163,4 @@ Missing any of these will prevent the AI chat from functioning.
 
 - [**Users & Roles**](/docs/settings/users-and-roles) — Managing user accounts and privileges
 - [**Cluster Storage**](/docs/settings/cluster-storage) — Configuring global cluster definitions
-- [**Operations → Alarm Center**](/docs/operations/alarm-center) — Where log settings affect log display
+- [**Operations → Alarm Center**](/docs/operations/cluster/alarm-center) — Where log settings affect log display

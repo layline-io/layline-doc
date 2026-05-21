@@ -71,6 +71,6 @@ To create or interact with sniffer sessions, use the [Sniffer Sessions tab in th
 
 ## See Also
 
-- [**Audit Trail**](../../audit-trail/) — Create and manage sniffer sessions, inspect captured messages
+- [**Audit Trail**](../audit-trail/index.md) — Create and manage sniffer sessions, inspect captured messages
 - [**Cluster Overview**](./index.md) — Introduction to the cluster operations panel
-- [**Alarm Center**](./alarm-center/) — Real-time alerts for operational issues including storage capacity
+- [**Alarm Center**](./alarm-center//index.md) — Real-time alerts for operational issues including storage capacity

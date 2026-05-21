@@ -57,6 +57,6 @@ The log view uses the same shared log component as other Operations pages. Event
 
 ## See Also
 
-- [**Cluster Overview**](/docs/operations/cluster/cluster-overview) — Introduction to the cluster operations panel
-- [**Engine State**](/docs/operations/cluster/engine-state) — View the runtime state of workflow engines on the cluster
-- [**Audit Trail**](/docs/operations/cluster/audit-trail) — Review the history of operational events on the cluster
+- [**Cluster Overview**](/docs/operations/cluster) — Introduction to the cluster operations panel
+- [**Engine State**](/docs/operations/engine-state) — View the runtime state of workflow engines on the cluster
+- [**Audit Trail**](/docs/operations/audit-trail) — Review the history of operational events on the cluster
