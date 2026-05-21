@@ -205,7 +205,7 @@ Projects that imported the old version keep their copies unchanged.
 
 ## See Also
 
-- [**Categories**](./categories) — Top-level organization (Assets and Messages)
-- [**Folders**](./folders) — Secondary organization
-- [**Navigation**](./navigation) — Finding Elements efficiently
-- [**Shelf Overview**](./) — Introduction to the Shelf concept
+- [**Categories**](./categories.md) — Top-level organization (Assets and Messages)
+- [**Folders**](./folders.md) — Secondary organization
+- [**Navigation**](./navigation.md) — Finding Elements efficiently
+- [**Shelf Overview**](./index.md) — Introduction to the Shelf concept

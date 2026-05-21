@@ -271,7 +271,7 @@ export function onRollback() {
 
 ## See Also
 
-- [JavaScript Introduction](../../javascript_introduction) — Full guide to JavaScript Assets
+- [JavaScript Introduction](../../javascript_introduction.md) — Full guide to JavaScript Assets
 - [`Processor`](Processor.md) — Access arguments, output ports, and logging
 - [`Stream`](Stream.md) — Emit messages and control stream flow
 - [`Message`](Message.md) — The data you process in `onMessage()`

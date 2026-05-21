@@ -240,7 +240,7 @@ The JavaScript Processor first extracts and validates the raw fields. The AI Cla
 
 ## See Also
 
-- [AI Trainer](./asset-flow-ai-trainer) — for training new AI models before using them with this Processor
+- [AI Trainer](./asset-flow-ai-trainer.md) — for training new AI models before using them with this Processor
 - [AI Model Resource](/docs/assets/workflow-assets/resources/asset-resource-ai-model.md) — for defining the model's input/output schema, algorithm type, and hyperparameters
 - [AI Service](/docs/assets/workflow-assets/services/asset-service-ai.md) — for defining the interface to an AI model
 - [QuickScript Language Reference](../../../language-reference/quickscript/index.md) — for the expression language used in rule conditions

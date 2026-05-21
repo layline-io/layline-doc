@@ -22,7 +22,7 @@ Define a service to interact as client towards UDP APIs.
 
 You need a Format:
 
-* [Format](../formats)
+* [Format](../formats/)
 
 ## Configuration
 

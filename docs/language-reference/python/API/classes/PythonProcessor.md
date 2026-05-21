@@ -256,7 +256,7 @@ def on_rollback():
 
 ## See Also
 
-- [Python Introduction](../../python_introduction) — Full guide to Python Assets
+- [Python Introduction](../../python_introduction.md) — Full guide to Python Assets
 - [`Processor`](Processor.md) — Access arguments, output ports, and logging
 - [`Stream`](Stream.md) — Emit messages and control stream flow
 - [`Message`](Message.md) — The data you process in `on_message()`

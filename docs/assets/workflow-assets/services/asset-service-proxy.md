@@ -135,6 +135,6 @@ export function onMessage() {
 
 ## See Also
 
-- [Secret Asset](/docs/assets/workflow-assets/resources/asset-resource-secret) — managing encrypted credentials
-- [Service Asset Introduction](./asset-service-introduction) — how services work in general
-- [Javascript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript) — calling services from JavaScript
+- [Secret Asset](/docs/assets/workflow-assets/resources/asset-resource-secret.md) — managing encrypted credentials
+- [Service Asset Introduction](./asset-service-introduction.md) — how services work in general
+- [Javascript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript.md) — calling services from JavaScript

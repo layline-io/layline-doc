@@ -241,10 +241,10 @@ Only records whose `Category` field matches the filter value are emitted. Record
 ## See Also
 
 
-- [Python Language Reference](../../../language-reference/python/python_introduction) — full Python language guide for layline.io
-- [PythonProcessor API](../../../language-reference/python/API/classes/PythonProcessor) — available hooks and lifecycle methods
-- [DataDictionary API (Python)](../../../language-reference/python/API/classes/DataDictionary) — working with Reference Data in Python scripts
-- [PackedMessage API (Python)](../../../language-reference/python/API/classes/PackedMessage) — reading and writing message fields
+- [Python Language Reference](../../../language-reference/python/python_introduction.md) — full Python language guide for layline.io
+- [PythonProcessor API](../../../language-reference/python/API/classes/PythonProcessor.md) — available hooks and lifecycle methods
+- [DataDictionary API (Python)](../../../language-reference/python/API/classes/DataDictionary.md) — working with Reference Data in Python scripts
+- [PackedMessage API (Python)](../../../language-reference/python/API/classes/PackedMessage.md) — reading and writing message fields
 - [Service Mappings](#service-mappings) — connecting external services (HTTP, DB, etc.) to a Python Asset
 
 Please see section [Forced Errors](../../../language-reference/python/python_introduction.md#forced-errors) to understand how to use these settings.

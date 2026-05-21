@@ -104,6 +104,6 @@ The Category structure (Assets vs Messages) remains consistent across all Projec
 
 ## See Also
 
-- [**Folders**](./folders) — Organizing Elements within Categories
-- [**Elements**](./elements) — The Assets and Messages stored in Categories
-- [**Shelf Overview**](./) — Introduction to the Shelf concept
+- [**Folders**](./folders.md) — Organizing Elements within Categories
+- [**Elements**](./elements.md) — The Assets and Messages stored in Categories
+- [**Shelf Overview**](./index.md) — Introduction to the Shelf concept
