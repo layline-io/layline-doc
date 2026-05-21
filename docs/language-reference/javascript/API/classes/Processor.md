@@ -124,7 +124,7 @@ const timeout = processor.expandString('${lay:TIMEOUT:-30000}');
 ```
 
 :::tip Macro Documentation
-See the [macro documentation](../../../macros) for all available macro types and syntax.
+See the [macro documentation](../../../macros.md) for all available macro types and syntax.
 :::
 
 ---
@@ -160,4 +160,4 @@ processor.logError(errStatus);
 
 - [`OutputPort`](OutputPort.md) — The ports you obtain and emit to
 - [`JavaScriptProcessor`](JavaScriptProcessor.md) — Lifecycle hooks (onInit, onMessage, etc.)
-- [Macro documentation](../../../macros) — Full macro syntax reference
+- [Macro documentation](../../../macros.md) — Full macro syntax reference

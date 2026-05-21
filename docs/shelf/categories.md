@@ -84,7 +84,7 @@ Since Categories are fixed, all organization happens at the Folder level:
 - Use clear, descriptive Folder names
 - Consider organizing by project, environment, or function
 
-See [Folders](./folders) for detailed guidance on Folder organization.
+See [Folders](./folders.md) for detailed guidance on Folder organization.
 
 ## Copying Between Projects
 

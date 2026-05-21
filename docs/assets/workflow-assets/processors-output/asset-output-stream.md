@@ -24,7 +24,7 @@ You need:
 
 **A defined Format**
 
-* [Formats](../formats)
+* [Formats](../formats/index.md)
 
 **A Stream Sink:**
 

@@ -32,7 +32,7 @@ You need:
 
 * A Source Script which should be executed within this asset.
 * Knowledge on how to work with Python in layline.io. Please check
-  the [Python Language Reference](../../../language-reference/python/python_introduction) to learn about this.
+  the [Python Language Reference](../../../language-reference/python/python_introduction.md) to learn about this.
 
 ## Configuration
 
@@ -72,7 +72,7 @@ The root script to be executed within this Asset is then selected here:
 
 :::tip Python Language Reference
 To understand how a Source must be structured to work in a Python Asset, please consult
-the [Python Language Reference](../../../language-reference/python/python_introduction).
+the [Python Language Reference](../../../language-reference/python/python_introduction.md).
 :::
 
 ### Service Mappings
