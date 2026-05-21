@@ -51,7 +51,7 @@ const websiteSchema = {
 
 export default function Home() {
   return (
-    <Layout title="layline.io Documentation | Event Data Processing Platform" description="Master event data processing with layline.io — a low-code platform for real-time and batch data pipelines. Build scalable workflows with 50+ connectors.">
+    <Layout title="Event Data Processing Platform" description="Master event data processing with layline.io — a low-code platform for real-time and batch data pipelines. Build scalable workflows with 50+ connectors.">
       <Head>
         <script type="application/ld+json">
           {JSON.stringify(softwareApplicationSchema)}

@@ -4,6 +4,63 @@ sidebar_position: 10
 description: Diagnose and resolve common issues with layline.io deployments, workflows, and configurations.
 ---
 
+import SchemaMarkup from '@site/src/components/SchemaMarkup';
+
+<SchemaMarkup schema={{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "My deployment won't start. What should I check?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check for configuration errors in Assets or Workflows, missing Environment/Secret Assets, missing resource dependencies, or validation failures. See the Deployment Issues guide for step-by-step diagnosis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My workflow is running but not processing data. What's wrong?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common causes include: source not producing data, format parsing errors, processor exceptions, or output sink misconfiguration. Check the Workflow Processing Issues guide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I'm getting connection errors to my source or sink. How do I fix this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Verify connection parameters (host, port, credentials), check network connectivity, ensure the external system is reachable, and review authentication settings. See the Connection Issues guide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My JavaScript or Python processor is throwing errors. How do I debug it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check for syntax errors in the code editor, review runtime exceptions in the Audit Trail, verify API usage against the Language Reference, and test with sample data. See the Processor Script Issues guide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I'm seeing alarms in the Operations view. What do they mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alarms indicate system issues ranging from minor warnings to critical errors. Check the Alarm Center for severity breakdown and detailed error messages. See the Alarms and Error States guide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Messages are failing to parse. How do I fix format issues?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Verify the format grammar matches your data structure, check character encoding settings, ensure schema validation rules are correct, and test parsing with sample data in the Configuration Center. See the Format and Parsing Issues guide."
+      }
+    }
+  ]
+}} />
+
 # Troubleshooting
 
 > When something isn't working, start here. Symptom-based guides to get you back on track.

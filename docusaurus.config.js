@@ -11,6 +11,24 @@ const config = {
     favicon: 'img/favicons/favicon.ico',
     noIndex: false,
 
+    headTags: [
+        {
+            tagName: 'meta',
+            attributes: {
+                name: 'theme-color',
+                content: '#1a1a1a',
+            },
+        },
+        {
+            tagName: 'link',
+            attributes: {
+                rel: 'apple-touch-icon',
+                sizes: '180x180',
+                href: '/img/favicons/apple-icon-180x180.png',
+            },
+        },
+    ],
+
     // Set the production url of your site here
     url: 'https://doc.layline.io',
     // Set the /<baseUrl>/ pathname under which your site is served
@@ -131,7 +149,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             // Replace with your project's social card
-            image: 'img/social/6_h630_twitter.png',
+            image: 'img/social/layline-doc-og.jpg',
             navbar: {
                 title: '',
                 logo: {
@@ -226,6 +244,7 @@ const config = {
 
             metadata: [
                 { name: 'keywords', content: 'event processing, data pipeline, ETL, real-time streaming, low-code, workflow automation, data integration, stream processing, layline.io' },
+                { name: 'author', content: 'layline.io GmbH' },
             ],
             algolia: {
                 // The application ID provided by Algolia
