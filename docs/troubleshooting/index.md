@@ -177,7 +177,7 @@ If the guides here don't resolve your issue:
 
 ## See Also
 
-- [**Operations Overview**](../operations) — Monitoring and controlling deployments
-- [**Engine State**](../operations/engine-state) — Live view of running workflows
-- [**Alarm Center**](../operations/cluster/alarm-center) — Managing system alarms
-- [**Audit Trail**](../operations/audit-trail) — Execution history and diagnostics
+- [**Operations Overview**](../operations/index.md) — Monitoring and controlling deployments
+- [**Engine State**](../operations/engine-state/index.md) — Live view of running workflows
+- [**Alarm Center**](../operations/cluster/alarm-center/index.md) — Managing system alarms
+- [**Audit Trail**](../operations/audit-trail/index.md) — Execution history and diagnostics

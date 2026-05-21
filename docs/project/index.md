@@ -63,7 +63,7 @@ Click **Add Project**. On success, a confirmation banner appears with an **Open*
 
 ### Import from Archive
 
-Import a project from a ZIP archive — useful for sharing projects or restoring from an export. [→ Detailed steps](import-project)
+Import a project from a ZIP archive — useful for sharing projects or restoring from an export. [→ Detailed steps](./import-project.md)
 
 | Field | Description |
 |-------|-------------|
@@ -122,10 +122,10 @@ All Asset classes are part of a Project. When you deploy, you select which Workf
 
 ## See Also
 
-- [**Create New Project**](create-project) — step-by-step guide for creating a project from scratch
-- [**Add Existing Project**](add-existing-project) — register an existing project folder
-- [**Import from Archive**](import-project) — restore a project from a ZIP archive
-- [**Building Workflows**](building-workflows) — how to assemble a Workflow in the visual editor
-- [**Assets Reference**](../assets) — reference documentation for all asset types
-- [**Core Concepts**](../quickstart/core-concepts) — mental models for Projects, Workflows, and Deployments
-- [**Quickstart**](../quickstart) — step-by-step guide to your first pipeline
+- [**Create New Project**](./create-project.md) — step-by-step guide for creating a project from scratch
+- [**Add Existing Project**](./add-existing-project.md) — register an existing project folder
+- [**Import from Archive**](./import-project.md) — restore a project from a ZIP archive
+- [**Building Workflows**](./building-workflows.md) — how to assemble a Workflow in the visual editor
+- [**Assets Reference**](../assets/index.md) — reference documentation for all asset types
+- [**Core Concepts**](../quickstart/core-concepts.md) — mental models for Projects, Workflows, and Deployments
+- [**Quickstart**](../quickstart/index.md) — step-by-step guide to your first pipeline

@@ -147,8 +147,8 @@ The **Mail Ops Editor** shows a splitter:
 | **CC** | Carbon-copy recipients. |
 | **BCC** | Blind carbon-copy recipients. |
 | **Use HTML** | Enables HTML formatting for this mail. |
-| **Subject Template** | Name of a template defined in the [Templates](./templates) tab. Used for the email subject. |
-| **Body Template** | Name of a template defined in the [Templates](./templates) tab. Used for the email body. |
+| **Subject Template** | Name of a template defined in the [Templates](./templates.md) tab. Used for the email subject. |
+| **Body Template** | Name of a template defined in the [Templates](./templates.md) tab. Used for the email body. |
 
 ![Email target Recipients section showing the Mail Ops Editor](.targets_images/email-target-recipients.png)
 
@@ -194,7 +194,7 @@ The **Chats** section lets you define one or more group chats that will receive 
 | **Description** | Optional description. |
 | **Members** | List of member identifiers (emails or user IDs). Press Enter after each entry. |
 | **Use HTML** | Enables HTML formatting for chat messages. |
-| **Body Template** | Name of a template defined in the [Templates](./templates) tab. Used for the chat message body. |
+| **Body Template** | Name of a template defined in the [Templates](./templates.mds) tab. Used for the chat message body. |
 
 ![Teams target Chats section showing SupportChat with members andrew and stefan](.targets_images/teams-target-chats.png)
 

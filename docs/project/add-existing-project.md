@@ -39,6 +39,6 @@ If the path does not exist, is not a valid layline.io project folder, or cannot 
 
 ## See Also
 
-- [**Create New Project**](create-project) — Start a fresh project from scratch
-- [**Import from Archive**](import-project) — Restore a project from a ZIP archive
-- [**Project Hub**](index.md) — Overview of the Project tab
+- [**Create New Project**](./create-project.md) — Start a fresh project from scratch
+- [**Import from Archive**](./import-project.md) — Restore a project from a ZIP archive
+- [**Project Hub**](./index.md) — Overview of the Project tab

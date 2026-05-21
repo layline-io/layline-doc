@@ -28,7 +28,7 @@ Processors for training and applying machine learning models to your message str
 | Processor | Description |
 |-----------|-------------|
 | [AI Classifier](./asset-flow-ai-classifier) | Classify messages using trained AI models. Applies supervised learning models to predict categories, detect patterns, or make decisions based on message attributes. |
-| [AI Trainer](./asset-flow-ai-trainer) | Train AI models from your message data. Collects training datasets from live message streams and trains classification models using the Weka library. |
+| [AI Trainer](./asset-flow-ai-trainer.md) | Train AI models from your message data. Collects training datasets from live message streams and trains classification models using the Weka library. |
 
 ### Data Transformation
 
@@ -36,9 +36,9 @@ Processors for modifying, mapping, and enriching message content.
 
 | Processor | Description |
 |-----------|-------------|
-| [Mapping](./asset-flow-mapping) | Map fields from one format to another using visual mapping rules. Transform data structures without writing code using the built-in mapping UI with Intellisense support. |
-| [JavaScript](./asset-flow-javascript) | Add custom logic with JavaScript. Write scripts to transform, filter, enrich, or route messages using the full power of JavaScript and the layline.io API. |
-| [Python](./asset-flow-python) | Add custom logic with Python. Write Python scripts to process messages, integrate with external systems, or perform complex data manipulations. |
+| [Mapping](./asset-flow-mapping.mdx) | Map fields from one format to another using visual mapping rules. Transform data structures without writing code using the built-in mapping UI with Intellisense support. |
+| [JavaScript](./asset-flow-javascript.md) | Add custom logic with JavaScript. Write scripts to transform, filter, enrich, or route messages using the full power of JavaScript and the layline.io API. |
+| [Python](./asset-flow-python.md) | Add custom logic with Python. Write Python scripts to process messages, integrate with external systems, or perform complex data manipulations. |
 
 ### Routing & Flow Control
 
@@ -46,8 +46,8 @@ Processors for directing message flow and managing stream behavior.
 
 | Processor | Description |
 |-----------|-------------|
-| [Filter & Routing](./asset-flow-filterrouting) | Filter unwanted messages and route based on content. Define simple routing rules in the UI to control which messages continue and where they go. |
-| [Stream Boundary](./asset-flow-streamboundary) | Split continuous streams into discrete chunks. Define conditions to group consecutive messages into bounded streams for batch processing or file output. |
+| [Filter & Routing](./asset-flow-filterrouting.mdx) | Filter unwanted messages and route based on content. Define simple routing rules in the UI to control which messages continue and where they go. |
+| [Stream Boundary](./asset-flow-streamboundary.md) | Split continuous streams into discrete chunks. Define conditions to group consecutive messages into bounded streams for batch processing or file output. |
 | [Throttle](./asset-flow-throttle) | Control processing speed and rate limiting. Slow down message processing to prevent overloading downstream systems or external APIs. |
 
 ### Message Queue Integration
@@ -62,14 +62,14 @@ Processors for managing message queue semantics and delivery guarantees.
 
 | If you need to... | Use this Processor |
 |-------------------|-------------------|
-| Transform data formats visually | [Mapping](./asset-flow-mapping) |
-| Write custom transformation logic | [JavaScript](./asset-flow-javascript) or [Python](./asset-flow-python) |
-| Route messages based on conditions | [Filter & Routing](./asset-flow-filterrouting) |
-| Classify messages with AI | [AI Classifier](./asset-flow-ai-classifier) |
-| Train a custom AI model | [AI Trainer](./asset-flow-ai-trainer) |
-| Split streams into batches | [Stream Boundary](./asset-flow-streamboundary) |
-| Rate-limit message flow | [Throttle](./asset-flow-throttle) |
-| Commit processed queue messages | [Input Frame Committer](./asset-flow-input-frame-committer) |
+| Transform data formats visually | [Mapping](./asset-flow-mapping.mdx) |
+| Write custom transformation logic | [JavaScript](./asset-flow-javascript.md) or [Python](./asset-flow-python.md) |
+| Route messages based on conditions | [Filter & Routing](./asset-flow-filterrouting.mdx) |
+| Classify messages with AI | [AI Classifier](./asset-flow-ai-classifier.md) |
+| Train a custom AI model | [AI Trainer](./asset-flow-ai-trainer.md) |
+| Split streams into batches | [Stream Boundary](./asset-flow-streamboundary.md) |
+| Rate-limit message flow | [Throttle](./asset-flow-throttle.md) |
+| Commit processed queue messages | [Input Frame Committer](./asset-flow-input-frame-committer.md) |
 
 ## Common Flow Patterns
 
@@ -110,8 +110,8 @@ flowchart LR
 
 ## See Also
 
-- [**Input Processors**](../processors-input/) — Bring data into your Workflows from external sources
-- [**Output Processors**](../processors-output/) — Send processed data to Sinks
-- [**Sources**](../sources/) — Connection endpoints for reading data
-- [**Sinks**](../sinks/) — Connection endpoints for writing data
-- [**Workflows**](../workflows/) — Orchestrate Processors into complete processing pipelines
+- [**Input Processors**](../processors-input/index.md) — Bring data into your Workflows from external sources
+- [**Output Processors**](../processors-output/index.md) — Send processed data to Sinks
+- [**Sources**](../sources/index.md) — Connection endpoints for reading data
+- [**Sinks**](../sinks/index.md) — Connection endpoints for writing data
+- [**Workflows**](../workflows/index.md) — Orchestrate Processors into complete processing pipelines

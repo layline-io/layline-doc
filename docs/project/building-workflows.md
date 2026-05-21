@@ -40,7 +40,7 @@ Unlike hardcoded configuration, Assets are:
 - **Inheritable** — Create specialized Assets that inherit and extend base configurations
 - **Environment-agnostic** — Use Environment Variables within Assets to change behavior based on deployment target (dev, staging, production)
 
-For a complete list of available Asset types, see [**Assets Overview**](../assets).
+For a complete list of available Asset types, see [**Assets Overview**](../assets/index.md).
 
 #### The Asset-Processor Relationship
 

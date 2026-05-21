@@ -119,7 +119,7 @@ Click **+ ADD MODEL** to add a new model configuration. Each row has:
 | Column | Description |
 |--------|-------------|
 | **Model name** | A human-readable name for this trained model (e.g., `VoiceClassifier-v2`) |
-| **Path in AI Storage** | The path in AI Storage where the trained model will be stored (e.g., `models/my-classifier`). Supports [macros](../../../language-reference/macros) for per-environment values. |
+| **Path in AI Storage** | The path in AI Storage where the trained model will be stored (e.g., `models/my-classifier`). Supports [macros](../../../language-reference/macros.md) for per-environment values. |
 | **AI Model** | Reference to an existing **AI Model Resource** in the Project — defines the input/output schema, model type, and hyperparameters |
 | **Model type** | The Weka algorithm to use (read from the selected AI Model Resource, e.g., `J48 Decision Tree`, `Multilayer Perceptron`) |
 

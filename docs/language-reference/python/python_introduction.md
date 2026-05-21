@@ -53,7 +53,7 @@ One of the key methods here is [onMessage](./API/classes/PythonProcessor.md#on_m
 Just like `onMessage` is a _hook_, the Python Asset provides a number of additional hooks which are automatically
 invoked as part of a Python Asset's lifecycle.
 A complete list of these hooks can be found in
-the [Python Processor Reference](./API/classes/PythonProcessor).
+the [Python Processor Reference](./API/classes/PythonProcessor.md).
 
 The following sequence graph shows a typical lifecycle of a Python Processor:
 
@@ -185,7 +185,7 @@ def handle_detail(detail):
     # do something with the message
 ```
 
-As you can see the current message is accessible via the global and reserved `message` variable which is an instance of the [`Message` class](./API/classes/Message).
+As you can see the current message is accessible via the global and reserved `message` variable which is an instance of the [`Message` class](./API/classes/Message.md).
 
 
 **5. on_stream_end()**

@@ -132,7 +132,7 @@ Please note that the notation follows [HOCON format](https://www.w3schools.io/fi
 :::
 
 :::note Use of macros
-As you can see from the example above, you can use [Macros](../../../language-reference/macros) within the Typesafe Configuration.
+As you can see from the example above, you can use [Macros](../../../language-reference/macros.md) within the Typesafe Configuration.
 :::
 
 <DataDictionaryCard />

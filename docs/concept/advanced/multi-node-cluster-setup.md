@@ -901,7 +901,7 @@ layline {
 }
 ```
 
-See [Gathering Statistics through Metrics](../../assets/workflow-assets/extensions/asset-prometheus) for details.
+See [Gathering Statistics through Metrics](../../assets/workflow-assets/extensions/asset-prometheus.md) for details.
 
 ---
 
