@@ -164,7 +164,7 @@ When viewing detailed state in the right panel, data continues to update in real
 
 ## See Also
 
-- [**Cluster Login**](./cluster/cluster-login) — How to connect to a cluster
+- [**Cluster Login**](../cluster/cluster-login.md) — How to connect to a cluster
 - [**Workflow State**](./workflows.md) — Detailed workflow monitoring
 - [**Service State**](./services.md) — Service-specific documentation
 - [**Audit Trail**](../audit-trail) — Historical record of executions

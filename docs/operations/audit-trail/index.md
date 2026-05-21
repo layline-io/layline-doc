@@ -26,7 +26,7 @@ The Audit Trail is organized into three distinct views, each serving a different
 
 Before using the Audit Trail, you need:
 
-- A connected [cluster](../cluster/cluster-login) with running workflows
+- A connected [cluster](../cluster/cluster-login.md) with running workflows
 - Workflows deployed and actively processing data (for meaningful data to appear)
 - Appropriate permissions to view operational data
 

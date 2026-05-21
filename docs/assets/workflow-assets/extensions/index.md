@@ -8,12 +8,10 @@ title: Extensions
 
 ## Overview
 
-Extensions are optional runtime components that you attach to a [Project](../../project/asset-project) or [Engine Configuration](../../deployment-assets/asset-deployment-engine.md). Unlike processors or connections that handle data flow, Extensions provide cross-cutting infrastructure services:
+Extensions are optional runtime components that you attach to a [Project](../../../project/index.md) or [Engine Configuration](../../deployment-assets/asset-deployment-engine.md). Unlike processors or connections that handle data flow, Extensions provide cross-cutting infrastructure services:
 
-- **Secret resolution** — Fetch secrets from external vaults at runtime using macros
-- **Metrics export** — Expose internal processing metrics to external monitoring systems
 
-Extensions are configured as assets in your project, then assigned at deployment time to become active in the running engine.
+For details on creating and managing projects, refer to [Project](../../../project/index.md).
 
 ## Available Extensions
 

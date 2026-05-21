@@ -102,7 +102,7 @@ You can define multiple bootstrap nodes for high availability. The Configuration
 
 ## Relationship to Deployment Assets
 
-Clusters defined in Cluster Storage appear as options in the **Cluster Configuration** dropdown within [Deployment assets](/docs/assets/deployment-assets).
+Clusters defined in Cluster Storage appear as options in the **Cluster Configuration** dropdown within [Deployment assets](../assets/deployment-assets/index.md).
 
 When configuring a Deployment asset:
 
@@ -139,6 +139,6 @@ Cluster assets support the standard layline.io inheritance model when used withi
 
 ## See Also
 
-- [**Users & Roles**](/docs/settings/users-and-roles) — Managing privileges for cluster configuration access
-- [**Deployment Assets**](/docs/assets/deployment-assets) — Using cluster definitions when configuring deployments
-- [**Operations → Cluster**](/docs/operations/cluster) — Monitoring and managing running clusters
+- [**Users & Roles**](./users-and-roles.md) — Managing privileges for cluster configuration access
+- [**Deployment Assets**](../assets/deployment-assets/index.md) — Using cluster definitions when configuring deployments
+- [**Operations → Cluster**](../operations/cluster/index.md) — Monitoring and managing running clusters

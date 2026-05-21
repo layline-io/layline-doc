@@ -192,4 +192,4 @@ When viewing the Log tab, new entries appear automatically as they are generated
 - [**Engine State Overview**](./index.md) — High-level monitoring of all asset types
 - [**Source State**](./sources.md) — Monitoring input sources that use formats
 - [**Sink State**](./sinks.md) — Monitoring output sinks that use formats
-- [**Format Assets**](../../assets/formats/) — Designing and configuring formats
+- [**Format Assets**](../../assets/workflow-assets/formats/index.md) — Designing and configuring formats

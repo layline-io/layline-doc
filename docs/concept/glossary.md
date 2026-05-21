@@ -70,7 +70,7 @@ See also: [Core Concepts](../quickstart/core-concepts.md#5-deployment)
 
 The **Data Dictionary** is a unified schema built from all configured Format Assets in a Project. It represents the superset of all data structures, allowing data to flow through the system without intermediate mapping steps.
 
-See also: [Data Dictionary](../data-dictionary)
+See also: [Data Dictionary](./data-dictionary.md)
 
 ---
 
