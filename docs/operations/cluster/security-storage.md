@@ -177,7 +177,20 @@ A table of OAuth client registrations that the cluster can use when authenticati
 - **Client id** — Application client ID from the provider.
 - **Token endpoint** — Full URL of the provider's token endpoint (if not auto-discoverable from the authority).
 - **Device authorization endpoint** — Full URL of the device authorization endpoint, for device-flow authentication.
+- **Redirect URL** — Optional callback URL for the authorization code flow. If not specified, the platform uses a default redirect URL.
 - **Secrets** — One or more client secrets, each with a description and an optional expiry date (`Valid until`). Secrets whose value is already stored are shown as `***`; new entries require the secret value to be entered.
+
+#### OAuth Flow Types
+
+When an access token is requested, the cluster uses one of three OAuth 2.0 flows based on the token configuration:
+
+| Flow Type | Description | Use Case |
+|-----------|-------------|----------|
+| **Authorization Code** | The client exchanges an authorization code for tokens. Uses PKCE (Proof Key for Code Exchange) to prevent authorization code interception attacks. | Interactive user authentication where the user logs in via a browser and the application receives a callback. |
+| **Client Credentials** | The client authenticates directly with its client ID and secret to obtain a token. | Server-to-server authentication without user involvement. |
+| **Device Code** | The user authenticates on a separate device by entering a user code at a verification URL. | Input-constrained devices (e.g., IoT, smart TVs) where entering credentials directly is impractical. |
+
+**PKCE Enhancement:** The authorization code flow now uses PKCE (RFC 7636) by default. This security enhancement protects against authorization code interception attacks by adding a code challenge and verifier to the token exchange. No configuration is required — the platform automatically generates and validates PKCE parameters.
 
 #### Access tokens
 
