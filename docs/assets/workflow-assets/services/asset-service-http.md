@@ -1,10 +1,11 @@
 ---
 title: HTTP Service
-description: HTTP Service Asset. Use this to connect to a HTTP-based data source.
+description: Connect to REST APIs from your workflows. Configure endpoints, authentication, and reusable functions.
 tags:
   - http
   - rest
   - service
+  - api
 ---
 
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
@@ -15,314 +16,280 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import DataDictionaryCard from '../../../snippets/assets/data-dictionary-card.md';
 
-
 # HTTP Service
 
-## Purpose
+Use the **HTTP Service** asset to call REST APIs from within your workflows.
+It lets you define reusable API operations—complete with authentication, request parameters, and response handling—that you can invoke from a JavaScript or Python processor.
 
-Define a service to interact with Http Rest APIs.
+![](.asset-service-http_images/4f73fcc6.png "How the HTTP Service fits into a workflow")
 
-![](.asset-service-http_images/4f73fcc6.png "Asset Dependency Graph (Service Http)")
+**Typical use cases:**
 
-## Prerequisites
+- Fetching reference data from an external API to enrich records
+- Posting processed events to a third-party system
+- Triggering webhooks or callbacks
 
-None
+---
 
-## Configuration
+## What You'll Configure
 
-### Name & Description
+An HTTP Service is built from three pieces:
 
-![](.asset-service-http_images/bc40e6ae.png)
+1. **Requests** — define the URL, HTTP method, and parameters for each API call
+2. **Responses** — describe what the API returns (success and error cases)
+3. **Functions** — bundle a Request with its possible Responses into a callable operation you use in code
 
-* **`Name`** : Name of the Asset. Spaces are not allowed in the name.
+![](.asset-service-http_images/488d261b.png "A Function combines a Request and possible Responses")
 
-* **`Description`** : Enter a description.
+---
 
-The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it.
-Click to expand and then click to follow, if any.
+## Step 1: Name and Describe the Asset
 
-### Required roles
+![](.asset-service-http_images/bc40e6ae.png "Name and Description")
+
+| Field | Description |
+|-------|-------------|
+| **Name** | Asset identifier. No spaces allowed. |
+| **Description** | Optional summary of what this service connects to. |
+| **Asset Usage** | Shows where this asset is referenced in your project. Click to expand and jump to those locations. |
 
 <RequiredRoles></RequiredRoles>
 
-### Host / Credentials
+---
 
-#### Host
+## Step 2: Configure the Host and Authentication
 
-This is where you define the connection parameters for the Http Host that you want to connect to.
+### Host
 
-![](.asset-service-http_images/c558d56d.png "Host / Credentials (Service Http)")
+Enter the base URL of the API you want to call. Every request you define later will be appended to this host.
 
-* **`Default Host`**: The default host to use when connecting to the Http service. This is the host that will be used
-  when no other host is specified in the configuration.
+![](.asset-service-http_images/c558d56d.png "Host and Credentials")
 
-#### Credentials
+| Field | Description |
+|-------|-------------|
+| **Default Host** | Base URL, e.g. `https://api.example.com`. Used when no other host is specified. |
 
-The credential type defines the authentication method/flow to be applied.
+### Credentials
 
-The Http Connection Asset supports the following credential flows:
+Choose how the service authenticates with the API:
 
-1. None
-2. User/Password
-2. OAuth (Client Credentials)
-3. OAuth (Device Flow)
+| Type | When to Use |
+|------|-------------|
+| **None** | The API requires no authentication. |
+| **User/Password** | Basic HTTP authentication. |
+| **OAuth (Client Credentials)** | Machine-to-machine OAuth 2.0 flows. |
+| **OAuth (Device Flow)** | OAuth for input-constrained devices. |
 
-##### None
+#### User/Password
 
-No authentication is performed.
+![](.asset-service-http_images/1714384629141.png "User and Password")
 
-##### User/Password
+| Field | Description |
+|-------|-------------|
+| **Credential Type** | Select `User/Password`. |
+| **Username** | Your API username. Macros supported. |
+| **Password** | Your API password. Macros supported. |
+| **Do not substitute macro terms in password** | Check if your literal password contains `${...}` that should **not** be interpreted as a macro. |
 
-![User and Password (Service Http)](./.asset-service-http_images/1714384629141.png "User and Password (Service Http)")
+#### OAuth (Client Credentials)
 
+The Client Credentials flow exchanges a client ID and secret for an access token.
+See [Auth0's documentation](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow) for a detailed explanation.
 
-* **`Credential Type`**:
-  Select `User/Passsword` from the drop-down box.
+![](.asset-service-http_images/1714383772881.png "OAuth Client Credentials")
 
-* **`Username`** (_macro supported_):
-  Your username.
+| Field | Description |
+|-------|-------------|
+| **Authority** | The OAuth token endpoint provided by the API vendor. |
+| **Client ID** | ID issued by the authenticating authority. |
+| **Scopes** | Space-separated list of permissions to request. Must be granted by the authority or authentication will fail. |
 
-* **`Password`** (_macro supported_):
-  Your Http password.
+#### OAuth (Device Flow)
 
-* **`Do not substitute macro terms in password`**:
-  Check this box, if your password contains wording which could be mistaken as a macro (`${...}`) but should not be replaced by layline.io.
+For devices that cannot easily capture user input, this flow asks the user to authorize the device via a separate browser or phone.
+See [Auth0's documentation](https://auth0.com/docs/get-started/authentication-and-authorization-flow/device-authorization-flow).
 
+The settings are the same as [OAuth (Client Credentials)](#oauth-client-credentials) above.
 
-##### OAuth (Client Credentials)
+---
 
-The Client Credentials Flow involves an application exchanging its application credentials, such as client ID and client secret, for an access token.
-You can check the [Auth0 documentation](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow) for an example description.
+## Step 3: Define Requests
 
-![OAuth Client Credential Flow (Connection Http)](./.asset-service-http_images/1714383772881.png "OAuth Client Credential Flow (Connection Http)")
+A **Request** describes a single API call: the path, HTTP method, and any parameters.
 
+Requests live inside a **Namespace**, which groups related requests together and prevents naming conflicts.
 
-* **`Authority`**:
-  The authority URL as provided by the party to connect to. This is the endpoint which authorizes the connection and issues a respective token.
+![](.asset-service-http_images/16.png "Requests namespace")
 
-* **`Client ID`**:
-  An ID issued by the authenticating authority.
+Click **+ Add Request** to create one.
 
-* **`Scopes`**:
-  These are the authentication scopes requested by the connection and which ust be granted by the authenticating authority.
-  This is typically defined by the issuing authority in the context of the client id.
-  I.e. if the other party has granted the access scopes which you define here, they authentication will be successful.
-  Otherwise, the authentication may fail.
+![](.asset-service-http_images/17.png "Adding a request")
 
-##### OAuth (Device Flow)
+| Field | Description |
+|-------|-------------|
+| **Request Name** | Identifier used to reference this request later. |
+| **Description** | Optional summary. |
+| **Path** | URL fragment appended to the **Default Host**.<br/>Example: host `https://myhost.com` + path `/api/v1/customers` → `https://myhost.com/api/v1/customers` |
+| **Method** | `GET`, `POST`, `PUT`, or `DELETE`. |
 
-With input-constrained devices that connect to the internet, rather than authenticate the user directly, the device asks the user to go to a link on their computer or smartphone and authorize the
-device.
-This avoids a poor user experience for devices that do not have an easy way to enter text.
-To do this, device apps use the Device Authorization Flow, in which they pass along their Client ID to initiate the authorization process and get a token.
+### Request Parameters
 
-You can check the [Auth0 documentation](https://auth0.com/docs/get-started/authentication-and-authorization-flow/device-authorization-flow) for an example description.
+After creating a request, add the parameters it requires.
 
-For settings please see [Client Credential Flow](#oauth-client-credentials).
+![](.asset-service-http_images/27-18.png "Request parameters")
 
-### Functions
+Click **+ Add Parameter** and fill in the table:
 
-Like with most Services, you define **Functions** to work with the API.
-These Functions can then be invoked within the Workflow.
+| Column | Description |
+|--------|-------------|
+| **Name** | Parameter identifier. Special characters `[`, `]`, and `.` are supported (e.g. `users[0][name]` or `filter.user.role`). |
+| **Type** | Where the parameter is sent:<br/>• `Path` — substituted into the URL path<br/>• `Query` — appended as a query string<br/>• `Header` — added as an HTTP header<br/>• `Body Simple Type` — plain value in the body<br/>• `Body Simple JSON` — JSON object in the body |
+| **Data Type** | System type of the value (e.g. `System.String`). |
+| **Optional** | Whether the parameter can be omitted. |
+| **Description** | Human-readable explanation. |
 
-A Function references a [Request](#requests) and a number of possible [Responses](#responses).
-Both Requests and Responses are defined further down on the UI but are necessary to be configured so that they can be referenced here.
-
-![](.asset-service-http_images/488d261b.png) "Functions (Service Http)")
-
-To stay in the flow of the documentation, we will first describe how to define a Function and then how to define Requests and Responses.
-
-* **`Namespace`**:
-  The namespace is a logical grouping of Functions. It is used to organize the Functions and to avoid name clashes.
-  For example, you could define a namespace `Customer` and then define Functions `Get`, `Create`, `Update`, and `Delete` within this namespace.
-  This would result in the following Function names:
-    * `Customer.Get`
-    * `Customer.Create`
-    * `Customer.Update`
-    * `Customer.Delete`
-
-#### Function Definition
-
-To create a new Function click on the `+ Add Function` button.
-
-![](.asset-service-http_images/10.png "Add Function (Service Http)")
-
-A new Function will be added to the list of Functions, and you can now define the Function name and the Request and Response types.
-
-![](.asset-service-http_images/11.png "Function Definition (Service Http)")
-
-* **`Function Name`**: The name of the Function. This is the name that you will use to reference the Function, e,g, within a Javascript Source.
-
-* **`Description`**: A description of the Function.
-
-* **`Request Type`**: The type of Request that this Function will use.
-  This is one of the Requests that you will define further down in the UI.
-
-Let's fill some data into the Function definition:
-
-![](.asset-service-http_images/12.png "Function Definition filled in (Service Http)")
-
-Note how the `Http Request` is a drop-down list from which we have selected a Request which we have already defined for the purpose of demonstration (1).
-
-Let's add some Responses. Responses represent the possible responses that the Http service can return.
-They are defined further down in the UI.
-
-![](.asset-service-http_images/13.png "Add Response (Service Http)")
-
-Click on the `+ Add Response` button to add a new Response.
-
-![](.asset-service-http_images/14.png "Response Definition (Service Http)")
-
-Select a Response from the drop-down list. You can select from Responses which you have defined further down in the UI.
-
-![](.asset-service-http_images/15.png)
-
-At this point we have fully defined a Function.
-You can add additional Functions by repeating the steps above.
-
-### Requests
-
-Requests represent the possible requests that the Http service can issue to a ReST endpoint.
-They are part of the Function definition and are referenced by the Function.
-By defining them individually, it is possible that you can reuse them across multiple Functions.
-
-![](.asset-service-http_images/16.png "Requests (Service Http)")
-
-* **`Namespace`**: The namespace is a logical grouping of Requests. It is used to organize the Requests and to avoid name clashes.
-  It makes most sense to use the same namespace as the Function that will use the Request and add a suffix to it, e.g. `Customer.Requests`.
-
-To create a new Request click on the `+ Add Request` button.
-
-![](.asset-service-http_images/17.png "Add Request (Service Http)")
-
-A new Request will be added to the list of Requests, and you can now define the Request name and the Request type.
-
-* **`Request Name`**: The name of the Request. This is the name that you will use to reference the Request, e,g, within a Javascript Source.
-
-* **`Description`**: A description of the Request.
-
-* **`Path`**: The path of the Request. 
-  This is the path fragment that will be added to the `Default Host` address which we have defined above.
-    For example, if the `Default Host` is `https://myhost.com` and the `Path` is `/api/v1/customers` then the full URL will be `https://myhost.com/api/v1/customers`.
-
-* **`Method`**: The HTTP method to use for the Request. This is one of the following:
-    * `GET`
-    * `POST`
-    * `PUT`
-    * `DELETE`
-
-Subsequently, as part of the Request definition, you can define the Request parameters.
-
-![](.asset-service-http_images/18.png "Request Parameters (Service Http)")
-
-Click on the `+ Add Parameter` button to add a new Request parameter.
-In the table below please enter the respective parameter details.
-Add as many parameters as you need.
-
-![](.asset-service-http_images/18.png "Request Parameters (Service Http)")
-
-* **`Parameter Name`**: The name of the parameter. This is the name that you will use to reference the parameter.
-* **`Parameter Type`**: The type of the parameter. This is one of the following:
-    * `Path`: The parameter will be added to the path of the Request.
-    * `Query`: The parameter will be added to the query string of the Request.
-    * `Header`: The parameter will be added to the header of the Request.
-    * `Body Simple Type`: The parameter will be added to the body of the Request as a simple type, e.g. a string or a number.
-    * `Body Simple JSON`: The parameter will be added to the body of the Request as a JSON object.
-* **`Data Type`**: The data type of the parameter.
-* **`Optionsl`**: Whether the parameter is optional or not.
-* **`Description`**: A description of the parameter.
-
-Add as many parameters as required by the interface of the ReST endpoint.
-
-### Responses
-
-Responses represent the possible responses that the Http service can return.
-These are usually positives that include a status code and a body which contains the actual data, or negatives which include a status code and an error message.
-
-![](.asset-service-http_images/19.png "Responses Namespace (Service Http)")
-
-* **`Namespace`**: The namespace is a logical grouping of Responses.
-  It is used to organize the Responses and to avoid name clashes.
-  It makes most sense to use the same namespace as the Function that will use the Response and add a suffix to it, e.g. `Customer.Responses`.
-
-To create a new Response click on the `+ Add Response` button.
-
-![](.asset-service-http_images/20.png "Add Response (Service Http)")
-
-A new Response will be added to the list of Responses, and you can now define the necessary parameters:
-
-* **`Response Name`**: The name of the Response. This is the name that you will use to reference the Response, e,g, within a Javascript Source.
-* **`Status Code Pattern`**: This is equivalent to the expected [HTML status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
-  You can use a wildcard `x` to match any status code. 
-  For example to match all 2xx status codes you can use `2xx`.
-  Or to match all errors you can use `4xx`.
-* **`Content Type Pattern`**: This is equivalent to the expected [Content Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type).
-  You can use a wildcard `*` to match any content type.
-  For example to match all JSON content types you can use `application/json`.
-  Or to match all XML content types you can use `application/xml`. 
-  To match anything you can use `*/*`.
-* **`Data Type`**: The data type of the Response. Pick `System.AnyMap` if you want to match a JSON structure.
-* **`Description`**: A description of the Response.
-
-![](.asset-service-http_images/21.png "Response Definition (Service Http)")
-
-<DataDictionaryCard />
-
-## Example: Using the Http Service
-
-The Http Service can be used from within a JavaScript Asset.
-In our example we have a simple Workflow which reads a file with customer-related data (1), then in the next step (2) reads the corresponding full customer data from a Http source,
-and simply outputs this data to the log.
-There is no other purpose in this Workflow than to demonstrate how to use the Service.
-
-
-![](.asset-service-http_images/8b2ea12c.png "Example Workflow (Service Http)")
-
-In the middle of the Workflow we find a JavaScript Processor by the name of “_EnrichCustomer_”.
-This Processor reads additional customer information from a ReST endpoint using the Http Service.
-
-How is it configured?
-
-### Link EnrichCustomer Processor to Http Service
-
-To use the Http Service in the JavaScript Processor, we first have to **assign the Service within the JavaScript
-Processor** like so:
-
-![](.asset-service-http_images/22.png "Link Service to JavaScript Asset (Service Http)")
-
-* **`Physical Service`**: The Http Service which we have configured above.
-
-* **`Logical Service Name`**: The name by which we want to use the Service within JavaScript. This could be the
-  exact same name as the Service or a name which you can choose. Must not include whitespaces.
-
-### Access the Service from within a Script Processor
-
-Now let's use the service within a script processor:
-
-
-#### Reading from ReST endpoint
-
-Example: `services.MyHttpService.GetCustomerById({id: customer_id})`
+:::tip Special Characters in Parameter Names
+You can use brackets and dots directly in parameter names without any extra configuration. This is useful for Ruby on Rails-style APIs (`users[0][name]`) or nested filters (`query.date.range`).
+:::
 
 <Tabs>
   <TabItem value="javascript" label="JavaScript">
 
 ```javascript
-let httpData = null; // will receive a message type
-let customer_id = 1234;
+// Bracket notation for arrays
+const params = {
+  "users[0][name]": "John Doe",
+  "users[1][name]": "Jane Doe"
+};
+
+// Dot notation for nested fields
+const filters = {
+  "filter.user.role": "admin"
+};
+
+services.MyHttpService.CreateUsers(params);
+```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+params = {
+    "users[0][name]": "John Doe",
+    "filter.user.role": "admin"
+}
+services.MyHttpService.CreateUsers(params)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Step 4: Define Responses
+
+A **Response** maps an HTTP status code and content type to a data type in your workflow.
+You typically need at least one success response (e.g. `200`) and may want error responses (e.g. `4xx`).
+
+Responses also live in a **Namespace**.
+
+![](.asset-service-http_images/19.png "Responses namespace")
+
+Click **+ Add Response** to create one.
+
+![](.asset-service-http_images/20.png "Adding a response")
+
+| Field | Description |
+|-------|-------------|
+| **Response Name** | Identifier for this response. |
+| **Status Code Pattern** | Match HTTP status codes. Use `x` as a wildcard.<br/>Examples: `2xx` (any success), `404` (not found), `4xx` (any client error). |
+| **Content Type Pattern** | Match the `Content-Type` header. Use `*` as a wildcard.<br/>Examples: `application/json`, `application/xml`, `*/*` (match anything). |
+| **Data Type** | Type to deserialize the body into. Use `System.AnyMap` for JSON objects. |
+| **Description** | Human-readable explanation. |
+
+![](.asset-service-http_images/21.png "Response definition")
+
+<DataDictionaryCard />
+
+---
+
+## Step 5: Bundle into Functions
+
+A **Function** is what you actually call from your workflow code. It ties together:
+
+- One **Request** (what to send)
+- One or more **Responses** (what might come back)
+
+Functions are grouped in a **Namespace**. A common pattern is to use the domain as the namespace and the operation as the function name, e.g. `Customer.Get` or `Customer.Create`.
+
+![](.asset-service-http_images/488d261b.png "A Function combines a Request and Responses")
+
+Click **+ Add Function**.
+
+![](.asset-service-http_images/10.png "Adding a function")
+
+Fill in the details:
+
+| Field | Description |
+|-------|-------------|
+| **Function Name** | Name you will call in code (e.g. `GetCustomerById`). |
+| **Description** | Optional summary. |
+| **Request Type** | The request to send (defined in Step 3). |
+| **Response Types** | One or more possible responses (defined in Step 4). |
+
+![](.asset-service-http_images/11.png "Function definition")
+
+Select the request from the dropdown:
+
+![](.asset-service-http_images/12.png "Selecting a request")
+
+Then add responses by clicking **+ Add Response** and choosing from your defined responses:
+
+![](.asset-service-http_images/14.png "Adding a response to a function")
+
+![](.asset-service-http_images/15.png "Response selected")
+
+You can add as many functions as your integration requires.
+
+---
+
+## Example: Call a REST API from JavaScript
+
+Here is a complete example. The workflow reads a file with customer IDs (1), enriches each record by calling a REST API (2), and outputs the result.
+
+![](.asset-service-http_images/8b2ea12c.png "Example workflow: Customer-Input → Enrich-Customer → Kafka-Out")
+
+### 1. Link the Service to Your Processor
+
+Open the JavaScript processor (in this case *EnrichCustomer*) and assign the HTTP Service:
+
+![](.asset-service-http_images/22.png "Linking the service to a JavaScript processor")
+
+| Field | Description |
+|-------|-------------|
+| **Physical Service** | The HTTP Service asset you configured above. |
+| **Logical Service Name** | The name you will use to call it in code. No spaces allowed. |
+
+### 2. Call the Service in Code
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
+```javascript
+let httpData = null;
+const customer_id = 1234;
+
 try {
-    // Invoke service function.
-    httpData = services.MyHttpService.GetCustomerById({id: customer_id});
+    httpData = services.MyHttpService.GetCustomerById({ id: customer_id });
 } catch (error) {
-    // handle error
+    processor.logError("API call failed: " + error);
 }
 
-// Output the customer data to the processor log
 if (httpData && httpData.data.length > 0) {
-    processor.logInfo('Name: ' + httpData.data[0].Name);
-    processor.logInfo('Address: ' + httpData.data[0].Address);
+    processor.logInfo("Name: " + httpData.data[0].Name);
+    processor.logInfo("Address: " + httpData.data[0].Address);
 } else {
-    processor.logInfo('No customer data found for customer ID ' + customer_id);
+    processor.logInfo("No customer data found for ID " + customer_id);
 }
 ```
 
@@ -330,21 +297,19 @@ if (httpData && httpData.data.length > 0) {
   <TabItem value="python" label="Python">
 
 ```python
-http_data = None  # will receive a message type
+http_data = None
 customer_id = 1234
-try:
-    # Invoke service function.
-    http_data = services.MyHttpService.GetCustomerById({'id': customer_id})
-except error:
-    # handle error
-    pass
 
-# Output the customer data to the processor log
+try:
+    http_data = services.MyHttpService.GetCustomerById({ 'id': customer_id })
+except Exception as error:
+    processor.log_error("API call failed: " + str(error))
+
 if http_data and http_data.data.length > 0:
-    processor.log_info('Name: ' + http_data.data[0].Name)
-    processor.log_info('Address: ' + http_data.data[0].Address)
+    processor.log_info("Name: " + http_data.data[0].Name)
+    processor.log_info("Address: " + http_data.data[0].Address)
 else:
-    processor.log_info('No customer data found for customer ID ' + str(customer_id))
+    processor.log_info("No customer data found for ID " + str(customer_id))
 ```
 
   </TabItem>
