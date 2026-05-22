@@ -8,12 +8,13 @@ tags:
 ---
 
 import Testcase from '../../../snippets/assets/_asset-service-test.md';
+import SinceVersion from '../../../src/components/SinceVersion';
 
 # Virtual File System Service
 
 ## Purpose
 
-The Virtual File System Service provides file operations — read, write, copy, move, delete — against the Virtual File System from within a Javascript or Python Processor. It allows you to manage files programmatically in your script code, independent of any VFS Source or Sink.
+The Virtual File System Service provides file operations — read, write, copy, move, delete, list, and zip directories — against the Virtual File System from within a Javascript or Python Processor. It allows you to manage files and directories programmatically in your script code, independent of any VFS Source or Sink.
 
 :::info
 The Virtual File System Service is a pure script-facing service. It has no input/output ports and cannot be used as a standalone processing step in a Workflow. It must be invoked from a [Javascript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript) or a [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python).
@@ -43,14 +44,17 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 The Virtual File System Service provides the following built-in functions:
 
-| Function | Description |
-|----------|-------------|
-| `CopyFile` | Copy a file from one location to another in the virtual file system |
-| `DeleteFile` | Delete a file from the virtual file system |
-| `FileExists` | Check if a file exists within the virtual file system; returns a boolean |
-| `MoveFile` | Move a file from one location to another |
-| `ReadFile` | Read a file from the virtual file system and return its content |
-| `WriteFile` | Write a file into the virtual file system |
+| Function | Description | Available Since |
+|----------|-------------|-----------------|
+| `CopyFile` | Copy a file from one location to another in the virtual file system | 2.5.0 |
+| `DeleteFile` | Delete a file from the virtual file system | 2.5.0 |
+| `DeleteDir` | Delete a directory and all its contents recursively <SinceVersion version="2.5.10" /> | 2.5.10 |
+| `FileExists` | Check if a file exists within the virtual file system; returns a boolean | 2.5.0 |
+| `ListDir` | List the contents of a directory <SinceVersion version="2.5.10" /> | 2.5.10 |
+| `MoveFile` | Move a file from one location to another | 2.5.0 |
+| `ReadFile` | Read a file from the virtual file system and return its content | 2.5.0 |
+| `WriteFile` | Write a file into the virtual file system | 2.5.0 |
+| `ZipDir` | Create a zip archive from a directory <SinceVersion version="2.5.10" /> | 2.5.10 |
 
 ## Example — Using Virtual File System from a Script
 
@@ -218,6 +222,132 @@ def on_message():
 :::note
 The parameter names (`sourcePath`, `targetPath`, `path`, `content`) match the service function definitions in the source. Confirm these with the UI or Service Testing tab if they differ in your version.
 :::
+
+### New Functions in 2.5.10
+
+#### ListDir <SinceVersion version="2.5.10" />
+
+Lists the contents of a directory, returning file and subdirectory information.
+
+**Parameters:**
+- `path` (string, required): The directory path to list
+- `recursive` (boolean, optional): If true, lists contents recursively. Default: false
+
+**Returns:** Array of file/directory entries with:
+- `name`: Filename or directory name
+- `path`: Full path
+- `isDirectory`: Boolean indicating if entry is a directory
+- `size`: File size in bytes (files only)
+- `modified`: Last modified timestamp
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
+```javascript
+export function onMessage() {
+    const listing = services.MyVfsService.ListDir({
+        path: '/data/inbox',
+        recursive: false
+    });
+
+    if (listing && listing.data) {
+        listing.data.forEach(entry => {
+            processor.logInfo(`Found: ${entry.name} (${entry.isDirectory ? 'directory' : 'file'})`);
+        });
+    }
+}
+```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def on_message():
+    listing = services.MyVfsService.ListDir({
+        'path': '/data/inbox',
+        'recursive': False
+    })
+
+    if listing and listing.data:
+        for entry in listing.data:
+            entry_type = 'directory' if entry.isDirectory else 'file'
+            processor.log_info(f"Found: {entry.name} ({entry_type})")
+```
+
+  </TabItem>
+</Tabs>
+
+#### DeleteDir <SinceVersion version="2.5.10" />
+
+Deletes a directory and all its contents recursively. Use with caution — this operation cannot be undone.
+
+**Parameters:**
+- `path` (string, required): The directory path to delete
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
+```javascript
+export function onMessage() {
+    // Delete a temporary processing directory
+    services.MyVfsService.DeleteDir({
+        path: '/data/temp/processing-batch-001'
+    });
+}
+```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def on_message():
+    # Delete a temporary processing directory
+    services.MyVfsService.DeleteDir({
+        'path': '/data/temp/processing-batch-001'
+    })
+```
+
+  </TabItem>
+</Tabs>
+
+#### ZipDir <SinceVersion version="2.5.10" />
+
+Creates a zip archive from a directory, optionally including all subdirectories.
+
+**Parameters:**
+- `sourcePath` (string, required): The directory path to zip
+- `targetPath` (string, required): The output zip file path
+- `includeSubdirectories` (boolean, optional): If true, includes subdirectories. Default: true
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
+```javascript
+export function onMessage() {
+    // Create a zip archive of processed files
+    services.MyVfsService.ZipDir({
+        sourcePath: '/data/outbox/invoice-batch-001',
+        targetPath: '/data/archive/invoice-batch-001.zip',
+        includeSubdirectories: true
+    });
+}
+```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+def on_message():
+    # Create a zip archive of processed files
+    services.MyVfsService.ZipDir({
+        'sourcePath': '/data/outbox/invoice-batch-001',
+        'targetPath': '/data/archive/invoice-batch-001.zip',
+        'includeSubdirectories': True
+    })
+```
+
+  </TabItem>
+</Tabs>
 
 ## Service Testing
 
