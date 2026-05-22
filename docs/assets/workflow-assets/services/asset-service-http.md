@@ -234,6 +234,72 @@ Add as many parameters as you need.
 
 Add as many parameters as required by the interface of the ReST endpoint.
 
+#### Special Characters in Parameter Names
+
+The HTTP Service supports parameters with special characters including square brackets `[`, `]`, and dots `.` in parameter names and values.
+This allows for more flexible parameter naming conventions, particularly when working with APIs that use bracket notation for arrays or nested objects.
+
+##### Use Cases
+
+This feature is particularly useful when integrating with:
+
+* **Ruby on Rails-style APIs** using bracket notation for arrays (e.g., `users[0][name]`)
+* **GraphQL query parameters** with nested structures
+* **Legacy systems** with dot-notation field names (e.g., `filter.user.name`)
+
+##### Examples
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
+```javascript
+// Using bracket notation for array parameters
+const arrayParams = {
+  "users[0][name]": "John Doe",
+  "users[0][email]": "john@example.com",
+  "users[1][name]": "Jane Doe",
+  "users[1][email]": "jane@example.com"
+};
+
+// Using dots in parameter names
+const dotParams = {
+  "filter.user.name": "admin",
+  "filter.user.role": "superuser",
+  "query.date.range": "2024-01-01..2024-12-31"
+};
+
+// Invoke the service
+let response = services.MyHttpService.CreateUsers(arrayParams);
+```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+# Using bracket notation for array parameters
+array_params = {
+    "users[0][name]": "John Doe",
+    "users[0][email]": "john@example.com",
+    "users[1][name]": "Jane Doe",
+    "users[1][email]": "jane@example.com"
+}
+
+# Using dots in parameter names
+dot_params = {
+    "filter.user.name": "admin",
+    "filter.user.role": "superuser",
+    "query.date.range": "2024-01-01..2024-12-31"
+}
+
+# Invoke the service
+response = services.MyHttpService.CreateUsers(array_params)
+```
+
+  </TabItem>
+</Tabs>
+
+No configuration changes are required - this feature is automatically enabled for all HTTP Service requests.
+
 ### Responses
 
 Responses represent the possible responses that the Http service can return.
