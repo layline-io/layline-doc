@@ -3,6 +3,8 @@ title: Resources
 description: Monitor and inspect resource instances running on your cluster, including Data Dictionaries, Directories, Environment, Secrets, OAuth, AlarmRules, AlarmTargets, and Status Settings.
 ---
 
+import SinceVersion from '../../../src/components/SinceVersion.js'
+
 # Resource State
 
 > Real-time monitoring of resource instances — Data Dictionaries, Directories, Environment variables, and Secrets — including their runtime state, initialization health, and configuration details.
