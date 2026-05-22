@@ -160,7 +160,7 @@ Close the detail view by:
 
 ## See Also
 
-- [**Categories**](./categories) — Top-level organization
-- [**Folders**](./folders) — Secondary organization
-- [**Elements**](./elements) — Working with Shelf Elements
-- [**Shelf Overview**](./) — Introduction to the Shelf concept
+- [**Categories**](./categories.md) — Top-level organization
+- [**Folders**](./folders.md) — Secondary organization
+- [**Elements**](./elements.md) — Working with Shelf Elements
+- [**Shelf Overview**](./index.md) — Introduction to the Shelf concept

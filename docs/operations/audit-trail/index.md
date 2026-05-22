@@ -26,7 +26,7 @@ The Audit Trail is organized into three distinct views, each serving a different
 
 Before using the Audit Trail, you need:
 
-- A connected [cluster](../cluster/cluster-login) with running workflows
+- A connected [cluster](../cluster/cluster-login.md) with running workflows
 - Workflows deployed and actively processing data (for meaningful data to appear)
 - Appropriate permissions to view operational data
 
@@ -343,8 +343,8 @@ A page description shows the current message range.
 
 ## See Also
 
-- [**Engine State**](../engine-state/) — View current runtime state of workflows, services, and connections
-- [**Alarm Center**](../cluster/alarm-center) — Real-time alerts for operational issues
-- [**Stream Monitor**](../cluster/stream-monitor) — Controller-level stream observation and management
-- [**Cluster Node Detail**](../cluster/cluster-node-detail) — Deep-dive into node logs and metrics
-- [**Workflow Assets**](../../.index_images/workflow-assets/) — Designing the workflows you monitor in Audit Trail
+- [**Engine State**](../engine-state/index.md) — View current runtime state of workflows, services, and connections
+- [**Alarm Center**](../cluster/alarm-center/index.md) — Real-time alerts for operational issues
+- [**Stream Monitor**](../cluster/stream-monitor.md) — Controller-level stream observation and management
+- [**Cluster Node Detail**](../cluster/cluster-node-detail.md) — Deep-dive into node logs and metrics
+- [**Workflow Assets**](../../assets/workflow-assets/index.md) — Designing the workflows you monitor in Audit Trail

@@ -159,6 +159,6 @@ Each Folder displays:
 
 ## See Also
 
-- [**Categories**](./categories) — Top-level Shelf organization
-- [**Elements**](./elements) — The Assets and Messages stored in Folders
-- [**Shelf Overview**](./) — Introduction to the Shelf concept
+- [**Categories**](./categories.md) — Top-level Shelf organization
+- [**Elements**](./elements.md) — The Assets and Messages stored in Folders
+- [**Shelf Overview**](./index.md) — Introduction to the Shelf concept

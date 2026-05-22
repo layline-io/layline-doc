@@ -1,310 +1,162 @@
+---
+description: >-
+  Utility class for common string operations: encoding, decoding, validation, and charset conversion. All methods are static.
+---
+
 # StringUtils
 
-Utility class for string operations.
-This class cannot be instantiated and all methods are static.
+Utility class for common string operations: encoding, decoding, validation, and charset conversion. All methods are static.
 
-## Methods
+---
 
-### base64Decode()
+## At a Glance
 
-> `static` **base64Decode**(`value`): `Uint8Array`[]
+```js
+// Validation
+if (StringUtils.isNullOrBlank(message.getString(dataDictionary.type.Customer.EMAIL))) {
+    message.addStatus(Severity.ERROR, Status.create(VENDOR, 'EMAIL_REQUIRED'));
+}
 
-Decodes a Base64 encoded string into an array of bytes.
+// Encoding
+const bytes = StringUtils.toBytes("Hello, World!");
+const base64 = StringUtils.base64Encode(bytes);
 
-#### Parameters
-
-##### value
-
-`string`
-
-The Base64 encoded string to decode.
-
-#### Returns
-
-`Uint8Array`[]
-
-The decoded array of bytes.
-
-#### Static
-
-#### Example
-
-```ts
-// Decode Base64 string to bytes
-const base64String = "SGVsbG8=";
-const byteArray = StringUtils.base64Decode(base64String);
-console.log(byteArray); // Output: Uint8Array([72, 101, 108, 108, 111])
+// Decoding
+const decoded = StringUtils.base64Decode(base64);
+const text = StringUtils.fromBytes(decoded);
 ```
 
-***
+---
 
-### base64Encode()
+## Validation
 
-> `static` **base64Encode**(`bytes`): `string`
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `isNullOrEmpty(value)` | `boolean` | True if null, undefined, or empty string `""` |
+| `isNullOrBlank(value)` | `boolean` | True if null, undefined, empty, or whitespace only |
+| `isNumeric(value)` | `boolean` | True if string contains only digits (0–9) |
 
-Encodes an array of bytes into a Base64 string.
+```js
+StringUtils.isNullOrEmpty(null);       // true
+StringUtils.isNullOrEmpty("");         // true
+StringUtils.isNullOrEmpty("  ");       // false
 
-#### Parameters
+StringUtils.isNullOrBlank(null);       // true
+StringUtils.isNullOrBlank("  ");       // true
 
-##### bytes
-
-`Uint8Array`[]
-
-The array of bytes to encode.
-
-#### Returns
-
-`string`
-
-The Base64 encoded string.
-
-#### Static
-
-#### Example
-
-```ts
-// Encode bytes to Base64 string
-const byteArray = new Uint8Array([72, 101, 108, 108, 111]);
-const base64String = StringUtils.base64Encode(byteArray);
-console.log(base64String); // Output: "SGVsbG8="
+StringUtils.isNumeric("12345");        // true
+StringUtils.isNumeric("12.3");         // false
+StringUtils.isNumeric("abc");          // false
 ```
 
-***
+---
 
-### fromBytes()
+## Encoding & Decoding
 
-> `static` **fromBytes**(`bytes`, `charset?`): `string`
+### base64Encode(bytes)
 
-Converts an array of bytes to a string using the specified charset.
+Encodes a byte array to a Base64 string.
 
-#### Parameters
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `bytes` | `Uint8Array` | Byte array to encode |
 
-##### bytes
+**Returns:** `string`
 
-`Uint8Array`[]
-
-The array of bytes to convert.
-
-##### charset?
-
-`string`
-
-The charset to use for conversion. Defaults to UTF-8 if not specified.
-| Charset |	Description |
-| --- | --- |
-| US-ASCII |	Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the Unicode character set |
-| ISO-8859-1 | ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1 |
-| UTF-8 | Eight-bit UCS Transformation Format |
-| UTF-16BE |	Sixteen-bit UCS Transformation Format, big-endian byte order |
-| UTF-16LE |	Sixteen-bit UCS Transformation Format, little-endian byte order |
-| UTF-16 | Sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order mark |
-| The UTF-8 | charset is specified by RFC 2279; the transformation format upon which it is based is specified in Amendment 2 of ISO 10646-1 and is also described in the Unicode Standard. |
-
-The UTF-16 charsets are specified by RFC 2781; the transformation formats upon which they are based are specified in Amendment 1 of ISO 10646-1 and are also described in the Unicode Standard.
-
-The UTF-16 charsets use sixteen-bit quantities and are therefore sensitive to byte order. In these encodings the byte order of a stream may be indicated by an initial byte-order mark represented by the Unicode character '\uFEFF'. Byte-order marks are handled as follows:
-
-When decoding, the UTF-16BE and UTF-16LE charsets interpret the initial byte-order marks as a ZERO-WIDTH NON-BREAKING SPACE; when encoding, they do not write byte-order marks.
-
-When decoding, the UTF-16 charset interprets the byte-order mark at the beginning of the input stream to indicate the byte-order of the stream but defaults to big-endian if there is no byte-order mark; when encoding, it uses big-endian byte order and writes a big-endian byte-order mark.
-
-In any case, byte order marks occurring after the first element of an input sequence are not omitted since the same code is used to represent ZERO-WIDTH NON-BREAKING SPACE.
-Every instance of the Java virtual machine has a default charset, which may or may not be one of the standard charsets. The default charset is determined during virtual-machine startup and typically depends upon the locale and charset being used by the underlying operating system.
-
-The StandardCharsets class defines constants for each of the standard charsets.
-
-#### Returns
-
-`string`
-
-The resulting string.
-
-#### Static
-
-#### Example
-
-```ts
-// Convert bytes to string using default UTF-8 charset
-const helloArray = new Uint8Array([72, 101, 108, 108, 111]);
-const result = StringUtils.fromBytes(helloArray); // Assuming someByteContent is a Uint8Array of bytes. Could be a buffer or any other byte array.
-
-// Convert bytes to string using a specific charset
-const resultWithCharset = StringUtils.fromBytes(helloArray, "US-ASCII");
-console.log(resultWithCharset); // Output: "Hello"
+```js
+const bytes = StringUtils.toBytes("Hello");
+const base64 = StringUtils.base64Encode(bytes);  // "SGVsbG8="
 ```
 
-***
+### base64Decode(value)
 
-### isNullOrBlank()
+Decodes a Base64 string to a byte array.
 
-> `static` **isNullOrBlank**(`value`): `boolean`
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | Base64 string to decode |
 
-Checks if a string is null, undefined, or contains only whitespace characters.
+**Returns:** `Uint8Array`
 
-#### Parameters
-
-##### value
-
-`string`
-
-The string to check.
-
-#### Returns
-
-`boolean`
-
-True if the string is null, undefined, or contains only whitespace; otherwise, false.
-
-#### Static
-
-#### Example
-
-```ts
-// Returns true
-StringUtils.isNullOrBlank(null);
-StringUtils.isNullOrBlank(undefined);
-StringUtils.isNullOrBlank("");
-StringUtils.isNullOrBlank("   ");
-
-// Returns false
-StringUtils.isNullOrBlank("Hello");
-StringUtils.isNullOrBlank(" Hello ");
+```js
+const bytes = StringUtils.base64Decode("SGVsbG8=");
+const text = StringUtils.fromBytes(bytes);  // "Hello"
 ```
 
-***
+---
 
-### isNullOrEmpty()
+## Charset Conversion
 
-> `static` **isNullOrEmpty**(`value`): `boolean`
+### toBytes(value, charset?)
 
-Checks if a string is null, undefined, or empty.
+Converts a string to a byte array.
 
-#### Parameters
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `string` | String to convert |
+| `charset` | `string` (optional) | Charset — defaults to UTF-8 |
 
-##### value
+**Returns:** `Uint8Array`
 
-`string`
-
-The string to check.
-
-#### Returns
-
-`boolean`
-
-True if the string is null, undefined, or empty; otherwise, false.
-
-#### Static
-
-#### Example
-
-```ts
-// Returns true
-StringUtils.isNullOrEmpty(null);
-StringUtils.isNullOrEmpty(undefined);
-StringUtils.isNullOrEmpty("");
-
-// Returns false
-StringUtils.isNullOrEmpty("Hello");
-StringUtils.isNullOrEmpty(" ");
+```js
+const bytes = StringUtils.toBytes("Hello");              // UTF-8
+const ascii = StringUtils.toBytes("Hello", "US-ASCII");  // ASCII
 ```
 
-***
+### fromBytes(bytes, charset?)
 
-### isNumeric()
+Converts a byte array to a string.
 
-> `static` **isNumeric**(`value`): `boolean`
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `bytes` | `Uint8Array` | Byte array to convert |
+| `charset` | `string` (optional) | Charset — defaults to UTF-8 |
 
-Checks if a string contains only numeric characters.
+**Returns:** `string`
 
-#### Parameters
-
-##### value
-
-`string`
-
-The string to check.
-
-#### Returns
-
-`boolean`
-
-True if the string contains only numeric characters; otherwise, false.
-
-#### Static
-
-#### Example
-
-```ts
-// Returns true
-StringUtils.isNumeric("123");
-StringUtils.isNumeric("0");
-
-// Returns false
-StringUtils.isNumeric("12.3");
-StringUtils.isNumeric("abc");
-StringUtils.isNumeric("1a2b3c");
+```js
+const text = StringUtils.fromBytes(bytes);              // UTF-8
+const text2 = StringUtils.fromBytes(bytes, "ISO-8859-1");  // Latin-1
 ```
 
-***
+### Supported Charsets
 
-### toBytes()
+| Charset | Description |
+|---------|-------------|
+| `US-ASCII` | 7-bit ASCII |
+| `ISO-8859-1` | Latin-1 |
+| `UTF-8` | Default, 8-bit Unicode |
+| `UTF-16` | 16-bit Unicode (with BOM) |
+| `UTF-16BE` | Big-endian UTF-16 |
+| `UTF-16LE` | Little-endian UTF-16 |
 
-> `static` **toBytes**(`value`, `charset?`): `Uint8Array`[]
+---
 
-Converts a string to an array of bytes using the specified charset.
+## Complete Example
 
-#### Parameters
+```js
+export function onMessage() {
+    const email = message.getString(dataDictionary.type.Customer.EMAIL);
 
-##### value
+    // Validate
+    if (StringUtils.isNullOrBlank(email)) {
+        message.addStatus(Severity.ERROR, Status.create(VENDOR, 'EMAIL_REQUIRED'));
+    } else if (!email.includes('@')) {
+        message.addStatus(Severity.ERROR, Status.create(VENDOR, 'EMAIL_INVALID'));
+    }
 
-`string`
+    // Encode payload for external API
+    const payload = JSON.stringify({ email: email });
+    const bytes = StringUtils.toBytes(payload);
+    const encoded = StringUtils.base64Encode(bytes);
+    message.setString(dataDictionary.type.Customer.ENCODED_PAYLOAD, encoded);
 
-The string to convert.
-
-##### charset?
-
-`string`
-
-The charset to use for conversion. Defaults to UTF-8 if not specified.
-| Charset |	Description |
-| --- | --- |
-| US-ASCII |	Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the Unicode character set |
-| ISO-8859-1 | ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1 |
-| UTF-8 | Eight-bit UCS Transformation Format |
-| UTF-16BE |	Sixteen-bit UCS Transformation Format, big-endian byte order |
-| UTF-16LE |	Sixteen-bit UCS Transformation Format, little-endian byte order |
-| UTF-16 | Sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order mark |
-| The UTF-8 | charset is specified by RFC 2279; the transformation format upon which it is based is specified in Amendment 2 of ISO 10646-1 and is also described in the Unicode Standard. |
-
-The UTF-16 charsets are specified by RFC 2781; the transformation formats upon which they are based are specified in Amendment 1 of ISO 10646-1 and are also described in the Unicode Standard.
-
-The UTF-16 charsets use sixteen-bit quantities and are therefore sensitive to byte order. In these encodings the byte order of a stream may be indicated by an initial byte-order mark represented by the Unicode character '\uFEFF'. Byte-order marks are handled as follows:
-
-When decoding, the UTF-16BE and UTF-16LE charsets interpret the initial byte-order marks as a ZERO-WIDTH NON-BREAKING SPACE; when encoding, they do not write byte-order marks.
-
-When decoding, the UTF-16 charset interprets the byte-order mark at the beginning of the input stream to indicate the byte-order of the stream but defaults to big-endian if there is no byte-order mark; when encoding, it uses big-endian byte order and writes a big-endian byte-order mark.
-
-In any case, byte order marks occurring after the first element of an input sequence are not omitted since the same code is used to represent ZERO-WIDTH NON-BREAKING SPACE.
-Every instance of the Java virtual machine has a default charset, which may or may not be one of the standard charsets. The default charset is determined during virtual-machine startup and typically depends upon the locale and charset being used by the underlying operating system.
-
-The StandardCharsets class defines constants for each of the standard charsets.
-
-#### Returns
-
-`Uint8Array`[]
-
-The resulting array of bytes.
-
-#### Static
-
-#### Example
-
-```ts
-// Convert string to bytes using default UTF-8 charset
-const helloString = "Hello";
-const result = StringUtils.toBytes(helloString); // Assuming someStringContent is a string.
-
-// Convert string to bytes using a specific charset
-const resultWithCharset = StringUtils.toBytes(helloString, "US-ASCII");
-console.log(resultWithCharset); // Output: [72, 101, 108, 108, 111]
+    stream.emit(message, OUTPUT_PORT);
+}
 ```
+
+---
+
+## See Also
+
+- [`CompressionUtils`](CompressionUtils.md) — Compress and decompress byte arrays

@@ -40,7 +40,7 @@ Unlike hardcoded configuration, Assets are:
 - **Inheritable** — Create specialized Assets that inherit and extend base configurations
 - **Environment-agnostic** — Use Environment Variables within Assets to change behavior based on deployment target (dev, staging, production)
 
-For a complete list of available Asset types, see [**Assets Overview**](../assets).
+For a complete list of available Asset types, see [**Assets Overview**](../assets/index.md).
 
 #### The Asset-Processor Relationship
 
@@ -368,7 +368,7 @@ flowchart LR
 
 ## See Also
 
-- [**Your First Workflow**](../quickstart/first-workflow) — Step-by-step tutorial for building your first pipeline
-- [**Assets Overview**](../assets) — Complete guide to all asset types
-- [**Deployment Assets**](../assets/deployment-assets) — How to deploy Workflows to production
-- [**Reactive Clusters**](../operations/clusters) — Understanding the runtime environment
+- [**Your First Workflow**](../quickstart/first-workflow.md) — Step-by-step tutorial for building your first pipeline
+- [**Assets Overview**](../assets/index.md) — Complete guide to all asset types
+- [**Deployment Assets**](../assets/deployment-assets/index.md) — How to deploy Workflows to production
+- [**Reactive Clusters**](../operations/cluster/index.md) — Understanding the runtime environment

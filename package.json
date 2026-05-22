@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "TYPEDOC_WATCH=true docusaurus start",
-    "start-no-typedoc": "docusaurus start",
+    "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -30,7 +29,6 @@
     "@docusaurus/module-type-aliases": "3.10.0",
     "@docusaurus/tsconfig": "3.10.0",
     "@docusaurus/types": "3.10.0",
-    "docusaurus-plugin-typedoc": "^1.4.2",
     "typescript": "~5.2.2"
   },
   "overrides": {

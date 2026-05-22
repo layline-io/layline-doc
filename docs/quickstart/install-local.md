@@ -26,7 +26,7 @@ or
 `curl -O https://download.layline.io/releases/layline-linux-arm-<currentVersion>.sh`
 :::
 
-You can check recent changes in our [Release Notes](../release-notes/release.mdx).
+<!-- Release Notes link hidden: ../release-notes/release.mdx -->
 
 ## Installation
 
@@ -513,7 +513,7 @@ The problem should be fixed.
 
 This guide covers single-machine installation for development and testing. For production deployments requiring high availability and scalability, see:
 
-- [**Multi-Node Cluster Setup**](../concept/advanced/multi-node-cluster-setup) — Deploy across multiple machines with MySQL persistence and reactive clustering
+- [**Multi-Node Cluster Setup**](../concept/advanced/multi-node-cluster-setup.md) — Deploy across multiple machines with MySQL persistence and reactive clustering
 
 ---
 

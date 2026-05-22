@@ -1,898 +1,410 @@
 ---
+description: 'Message class is the central data structure in layline.io. Every event that flows through a workflow is encapsulated as a Message — a typed envelope carryi...'
+---
+
+---
 id: py-Message
 ---
 
 # Message
 
-Events traversing layline.io Workflows are instantiated as a [Message](Message.md).
-This class exposes a number of properties and methods to extract and set data within messages.
+The `Message` class is the central data structure in layline.io. Every event that flows through a workflow is encapsulated as a Message — a typed envelope carrying structured data, metadata, and a history of processing status.
 
-To understand the anatomy of a message please read the respective [chapter in the documentation](../../../../concept/data-dictionary.md).
+In every Python processor, the current message is available as the global variable `message`. No import or setup required.
 
-## Example Message Structure
-Assume we have the following data dictionary structure
-* Header
-    * IOT
-        * RECORD_TYPE
-        * DEVICE_NO
-* Detail
-    * IOT
-        * RECORD_TYPE
-        * TIME
-        * MEASUREMENT
-* Trailer
-    * IOT
-        * RECORD_TYPE
-        * COUNT
+---
 
-Then in a Python processor we can do this:
+## At a Glance
 
 ```python
 def on_message():
-    if message.typeName ==  'Header':
+    # Every message has an identity, a type, and data
+    stream.log_info(f"Processing message {message.id} of type '{message.typeName}'")
+
+    # Branch by message type
+    if message.typeName == 'Header':
         on_header(message)
     elif message.typeName == 'Detail':
         on_detail(message)
-    elif message.typeName == 'Trailer':
-        on_detail(message)
 
-    # send the message on through OUTPUT_PORT of Processor
+    # Forward to the next processor
     stream.emit(message, OUTPUT_PORT)
-
 ```
 
-And this:
-
-```python
-# Handle a detail record type
-def on_detail(message):
-    m = message.data.IOT.MEASUREMENT
-
-    VENDOR = Status.getVendorByName('MyVendorLongName')
-
-    if m < 0:
-         message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_MEASUREMENT', m))
-
-```
+---
 
 ## Properties
 
+| Property | Type | Description |
+|----------|------|-------------|
+| [`data`](#data) | `object` | The message payload — a nested object reflecting your data dictionary structure |
+| [`id`](#id) | `str` | Unique message identifier (e.g., `"1"`, `"1.1"`, `"1.2"` for clones) |
+| [`typeName`](#typename) | `str` | The data dictionary type this message represents |
+
 ### data
 
-> **data**: `object`
-
-The data of the message.
-It is a nested object structure that reflects the structure of the data dictionary of this message.
-
-#### Example
+The message payload. Its structure mirrors the data dictionary definition for this message type.
 
 ```python
-# Create Detail
-detailMessage = dataDictionary.createMessage(dataDictionary.type.Detail);
-detailMessage.data.PRODUCT = {
-    "RECORD_TYPE"       : "D",
-    "ID"                : message.data.Id,
-    "CODE"              : message.data.Code,
-    "NAME"              : message.data.Name,
-    "CATEGORY"          : message.data.Category,
-    "PRICE"             : message.data.Price,
-    "STOCK_QUANTITY"    : message.data.StockQuantity,
-    "COLOR"             : message.data.Color,
-    "LAUNCH_DATE"       : message.data.LaunchDate,
-}
-# stream.logInfo(f"detailMessage: {detailMessage.toJson()})")
-stream.emit(detailMessage, OUTPUT_PORT);
-```
+# Read nested fields directly
+product_name = message.data.PRODUCT.NAME
+price = message.data.PRODUCT.PRICE
 
-***
+# Create a new message and populate it
+detail = dataDictionary.createMessage(dataDictionary.type.Detail)
+detail.data.PRODUCT = {
+    "RECORD_TYPE": "D",
+    "ID": message.data.Id,
+    "NAME": message.data.Name,
+    "PRICE": message.data.Price,
+}
+
+stream.emit(detail, OUTPUT_PORT)
+```
 
 ### id
 
-> **id**: `string`
-
-The unique identifier of the message.
-This is a consecutive number starting with "1" for the first message.
-It is used to uniquely identify a message within a stream.
-Cloning a message will generate a new id, whereas the original message will keep its id and the cloned message will have the original message number appended by a "." and a new consecutive number.
-For example, "1.1", "1.2", "1.3", ... for each clone of the original message.
-
-#### Example
+A unique identifier assigned to each message. The first message in a stream is `"1"`, the second `"2"`, and so on. When you [clone](#clone) a message, the clone gets a suffix: `"1.1"`, `"1.2"`, etc.
 
 ```python
-# Accessing the id of a message
-id = message.id;
+msg_id = message.id  # "42" or "42.3"
 ```
-
-***
 
 ### typeName
 
-> **typeName**: `string`
-
-The type name of the message.
-This is the name of the data dictionary type that the message represents.
-
-#### Example
+The name of the data dictionary type this message was created from. Use this to branch your processing logic.
 
 ```python
-typeName = message.typeName;
-# e.g, If in your data dictionary you have a type called "MyType", then this will return "MyType"
-if typeName == 'MyType':
-    # do something
+if message.typeName == 'MyType':
+    # Handle this specific type
+    pass
 ```
 
+---
 
+## Type Checking
 
-## Methods
+### is(type)
 
-### addStatus()
-
-> **addStatus**(severity: Severity, status: Status, add_to_log: bool = True) -> None
-
-Adds a [Status](Status.md) to a message.
-The [Status](Status.md) must have been created with [Status.create](Status.md#create) or otherwise instantiated.
-
-#### Parameters
-
-- **severity**: Severity
-
-  [Severity](../enumerations/Severity.md) value.
-
-- **status**: Status
-
-  The [Status](Status.md) which should be added.
-
-- **add_to_log**: bool, optional
-
-  Signals whether the [Status](Status.md) shall also be added to the log, or not. Will be added by default if not specified.
-  If `True` then the Status will be visible in the Stream Log of the Audit Trail.
-
-#### Returns
-
-None
-
-#### Example
+Check if a message matches a specific data dictionary type.
 
 ```python
-if error:
-    message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_VALUE', value_string))
+if message.is(dataDictionary.type.Detail.CSV):
+    # Message is a Detail CSV record
+    pass
 ```
 
-### clone()
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `type` | [`DataDictionaryEntity`](DataDictionaryEntity.md) | The type to check against |
 
-> **clone**() -> Message
+**Returns:** `bool`
 
-Creates a full clone of a [Message](Message.md)
+### exists(entity)
+
+Check if a specific data structure is present within the message. Useful when a format defines optional structures.
 
 ```python
-cloned_message = message.clone()
+record_type = dataDictionary.type.MyFormat.Detail
+
+if message.exists(record_type):
+    # This message contains a Detail structure
+    pass
 ```
 
-#### Returns
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `entity` | [`DataDictionaryEntity`](DataDictionaryEntity.md) | Path to the structure to test |
 
-Message - A copy of a Message
+**Returns:** `bool`
 
-### commit()
+---
 
-> **commit**() -> Message
+## Reading Data
 
-Commits the message, typically used with message queues or streaming platforms.
+Message fields are accessed through typed getter methods. Each method takes a [`DataDictionaryEntity`](DataDictionaryEntity.md) that describes the path to the field.
 
-This method is used to acknowledge the successful processing of a message.
-The exact behavior depends on the underlying system:
+### Text & Boolean
 
-- For an SQS queue, it deletes the message from the queue.
-- For a Kafka topic, it commits the offset of the consumer.
-
-Calling this method indicates that the message has been successfully processed
-and should not be redelivered.
-
-#### Returns
-
-Message - Returns the message instance for method chaining.
-
-#### Example
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `getString(entity)` | `str` | Read a string value |
+| `getBoolean(entity)` | `bool` | Read a boolean value |
 
 ```python
-def on_message():
-    try:
-        # Process the message
-        result = process_message(message)
-        
-        if result['success']:
-            # If processing was successful, commit the message
-            message.commit()
-            print("Message processed and committed successfully")
-        else:
-            print("Message processing failed, not committing")
-    except Exception as error:
-        print(f"Error processing message: {error}")
-        # In case of an error, you might choose not to commit
-        # so that the message can be reprocessed
-
-def process_message(msg):
-    # Implement your message processing logic here
-    # Return a dictionary indicating success or failure
-    return {'success': True}
+name = message.getString(dataDictionary.type.Detail.CSV.NAME)
+is_active = message.getBoolean(dataDictionary.type.Detail.CSV.IS_ACTIVE)
 ```
 
-In this example, we demonstrate a common pattern for message processing:
+### Numbers
 
-1. We attempt to process the message.
-2. If processing is successful, we commit the message to acknowledge its completion.
-3. If processing fails or an error occurs, we don't commit the message, allowing it to be reprocessed.
-
-This approach helps ensure message reliability and prevents data loss in distributed systems.
-
-### exists()
-
-> **exists**(entity_declaration: DataDictionaryEntity) -> bool
-
-Checks if a known data structure is recognized within a given [Message](Message.md).
-Data structures are spawned into existence by the definition of data formats (Format Assets).
-You can test a particular [Message](Message.md) on whether a specific structure is present within
-a message by using this method.
-
-This is typically used to check whether a message is of a certain type, or not.
-
-#### Parameters
-
-- **entity_declaration**: DataDictionaryEntity
-
-  Path to data dictionary structure which you want to test for existence in the message ([DataDictionaryEntity](DataDictionaryEntity.md).)
-
-#### Returns
-
-bool - True, if it exists, else false.
-
-#### Example
+| Method | Returns | Python Type | Use When... |
+|--------|---------|-------------|-------------|
+| `getInt(entity)` | `int` | `int` | Whole number, typical range |
+| `getLong(entity)` | `int` | `int` | Whole number, larger range |
+| `getDouble(entity)` | `float` | `float` | Floating point, precision not critical |
+| `getDecimal(entity)` | `Decimal` | `Decimal` | Decimal with exact precision (money, rates) |
+| `getBigInteger(entity)` | `int` | `int` | Arbitrary-size whole numbers |
 
 ```python
-# Get the access path to a structure within the compiled data dictionary
-MY_RECORD_TYPE = dataDictionary.type.MyFormat.Detail
+from decimal import Decimal
 
-# Test message against the existence of the data dictionary structure.
-if message.exists(MY_RECORD_TYPE):
-    ...
+count = message.getInt(dataDictionary.type.Order.QUANTITY)
+timestamp = message.getLong(dataDictionary.type.Order.TS_EPOCH)
+price = message.getDecimal(dataDictionary.type.Order.UNIT_PRICE)
 ```
 
-### findStatus()
+:::tip Python Integers
+`getBigInteger()` and `getLong()` return Python `int` objects, which have arbitrary precision. No special handling needed.
+:::
 
-> **findStatus**(value: Vendor | Severity | (status: Status) => boolean) -> List[Status]
+### Date & Time
 
-Finds and returns a list of status entries attached to the message based on the provided filter.
-
-This method allows you to search for status entries using three different approaches:
-1. By Vendor: Find all statuses from a specific vendor.
-2. By Severity: Find all statuses of a specific severity level.
-3. By Custom Function: Use a custom filter function to find statuses based on any criteria.
-
-#### Parameters
-
-- **value**: Union[Vendor, Severity, Callable[[Status], bool]]
-  - If a [`Vendor`](Vendor.md) is provided, it returns all statuses from that vendor.
-  - If a [`Severity`](../enumerations/Severity.md) is provided, it returns all statuses of that severity level.
-  - If a function is provided, it should take a `Status` as input and return a boolean. The method will return all statuses for which this function returns `True`.
-
-#### Returns
-
-List[Status] - A list of Status objects that match the provided filter. Returns an empty list if no matching statuses are found.
-
-#### Examples
-
-1. Finding statuses by Vendor:
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `getDate(entity)` | [`LocalDate`](LocalDate.md) | Date without timezone (e.g., `2024-03-15`) |
+| `getDateTime(entity)` | [`DateTime`](DateTime.md) | Date-time with UTC offset (e.g., `2024-03-15T10:30:00+01:00`) |
 
 ```python
-# Assume we have a vendor defined
-VENDOR = Status.getVendorByName('MyVendorName')
-
-# Find all statuses from this vendor
-vendor_statuses = message.findStatus(VENDOR)
-for status in vendor_statuses:
-    print(f"Found status: {status.code} - {status.message}")
+birth_date = message.getDate(dataDictionary.type.Customer.BIRTH_DATE)
+created_at = message.getDateTime(dataDictionary.type.Order.CREATED_AT)
 ```
 
-2. Finding statuses by Severity:
+### Binary & Specialized
+
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `getByte(entity)` | `int` | Single byte value (0-255) |
+| `getByteString(entity)` | `bytes` | Byte array |
+| `getCharacter(entity)` | `str` | Single character |
+| `getObject(entity)` | `Any` | Generic object (use sparingly) |
+
+### Checksums
+
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `getCrc64(node)` | `str` | CRC-64 checksum of the specified node |
+| `getMessageDigest(algorithm?, to_lower_case?, accessors?)` | `str` | MD5 digest of full or partial message |
 
 ```python
-# Find all ERROR statuses
-error_statuses = message.findStatus(Severity.ERROR)
-if error_statuses:
-    print(f"Message has {len(error_statuses)} error statuses")
-```
+# CRC-64 of a specific structure
+crc = message.getCrc64(message.data.CSV)
 
-3. Finding statuses using a custom filter function:
+# MD5 of the entire message
+digest = message.getMessageDigest()
 
-```python
-# Find all statuses with a specific code
-def has_specific_code(status):
-    return status.code == "SPECIFIC_CODE"
-
-specific_statuses = message.findStatus(has_specific_code)
-for status in specific_statuses:
-    print(f"Found status with specific code: {status.message}")
-```
-
-4. Using a lambda function for filtering:
-
-```python
-# Find all WARNING or ERROR statuses
-high_priority_statuses = message.findStatus(lambda s: s.severity in [Severity.WARNING, Severity.ERROR])
-for status in high_priority_statuses:
-    print(f"High priority status: {s.severity} - {s.message}")
-```
-
-#### Notes
-
-- The method returns an empty list if no statuses match the provided filter.
-- When using a custom filter function, you have full flexibility to implement complex filtering logic based on any properties of the Status object.
-- This method is particularly useful for error handling, logging, and conditional processing based on the statuses attached to a message.
-
-### getBigInteger()
-
-> **getBigInteger**(entity: DataDictionaryEntity) -> int
-
-Return a BigInteger typed value from a message field.
-Important!: Please note that this method returns a Python `int` object, which can handle arbitrarily large integers.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-int - Python integer (which can handle arbitrarily large values).
-
-#### Example
-
-```python
-n = message.getBigInteger(dataDictionary.type.Detail.CSV.A_REALLY_BIG_NUMBER_FIELD)
-
-# Compare BigInteger to another BigInteger
-x = 123  # x is now a Python int, which can handle arbitrarily large values
-
-x == 123  # -> True
-```
-
-### getBoolean()
-
-> **getBoolean**(entity: DataDictionaryEntity, default_value: bool) -> bool
-
-Retrieves a Boolean value from a specific field in the message's data dictionary.
-
-This method accesses a boolean value from the message using the provided data dictionary entity.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  The data dictionary entity that specifies the path to the boolean value in the message.
-
-#### Returns
-
-bool - The boolean value from the specified field in the message.
-
-#### Examples
-
-Basic usage:
-
-```python
-# Assuming we have a data dictionary entity for an "is_active" field
-is_active_entity = dataDictionary.type.MyFormat.Detail.IS_ACTIVE
-
-# Get the boolean value, defaulting to False if not found
-is_active = message.getBoolean(is_active_entity)
-
-if is_active:
-    print("The item is active")
-else:
-    print("The item is not active")
-```
-
-### getByte()
-
-> **getByte**(entity: DataDictionaryEntity) -> int
-
-Return the Byte typed value from a message field.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-int - Python integer representing a byte value (0-255).
-
-#### Example
-
-```python
-b = message.getByte(dataDictionary.type.Detail.CSV.A_BYTE_FIELD)
-```
-
-### getByteString()
-
-> **getByteString**(entity: DataDictionaryEntity) -> bytes
-
-Return the ByteString typed value from a message field.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-bytes - Python bytes object.
-
-#### Example
-
-```python
-b = message.getByteString(dataDictionary.type.Detail.CSV.FIELD)
-```
-
-### getCharacter()
-
-> **getCharacter**(entity: DataDictionaryEntity) -> str
-
-Return a Character typed value from a message field.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-str - Python string of length 1.
-
-#### Example
-
-```python
-c = message.getCharacter(dataDictionary.type.Detail.CSV.FIELD)
-```
-
-### getCrc64()
-
-> **getCrc64**(message: MessageNode) -> str
-
-Creates a CRC 64 checksum from specified node within a [Message](Message.md).
-
-#### Parameters
-
-- **message**: MessageNode
-
-  [MessageNode](MessageNode.md) for which to create the CRC64 checksum.
-
-#### Returns
-
-str - CRC 64 checksum
-
-#### Example
-
-```python
-crc64 = message.getCrc64(message.data.CSV)
-```
-
-### getDate()
-
-> **getDate**(entity: DataDictionaryEntity) -> [LocalDate](LocalDate.md)
-
-Return a [LocalDate](LocalDate.md) typed value from a message field.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-[LocalDate](LocalDate.md) - A date-time with an offset from UTC/Greenwich.
-
-#### Example
-
-```python
-dt = message.getDateTime(dataDictionary.type.Detail.CSV.A_DATE_FIELD)
-```
-
-### getDateTime()
-
-> **getDateTime**(entity: DataDictionaryEntity) -> [DateTime](DateTime.md)
-
-Return a [DateTime](DateTime.md) typed value from a message field.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-[DateTime](DateTime.md) - A date-time with an offset from UTC/Greenwich.
-
-#### Example
-
-```python
-dt = message.getDateTime(dataDictionary.type.Detail.CSV.FIELD)
-```
-
-### getDecimal()
-
-> **getDecimal**(entity: DataDictionaryEntity) -> Decimal
-
-Return a Decimal typed value from a message field.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-Decimal - Python Decimal type.
-
-#### Example
-
-```python
-dec = message.getDecimal(dataDictionary.type.Detail.CSV.FIELD)
-```
-
-### getDouble()
-
-> **getDouble**(entity: DataDictionaryEntity) -> float
-
-Return a Double typed value from a message field.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-float - Python float type.
-
-#### Example
-
-```python
-dbl = message.getDouble(dataDictionary.type.Detail.CSV.FIELD)
-```
-
-### getInt()
-
-> **getInt**(entity: DataDictionaryEntity) -> int
-
-Return an Int typed value from a message field.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-int - Python int type.
-
-#### Example
-
-```python
-integer = message.getInt(dataDictionary.type.Detail.CSV.FIELD)
-```
-
-### getLong()
-
-> **getLong**(entity: DataDictionaryEntity) -> int
-
-Return a Long typed value from a message field.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-int - Python int type (which can handle arbitrarily large values).
-
-#### Example
-
-```python
-l = message.getLong(dataDictionary.type.Detail.CSV.FIELD)
-```
-
-### getMessageDigest()
-
-> **getMessageDigest**(algorithm: str = "MD5", to_lower_case: bool = False, accessor_array: List[DataDictionaryEntity] = None) -> str
-
-Returns a calculated digest for a given message
-
-#### Parameters
-
-- **algorithm**: str, optional
-
-  Algorithm with which to calculate the digest. Currently only supports "MD5".
-
-- **to_lower_case**: bool, optional
-
-  Set to true if digest should be lower-case only.
-
-- **accessor_array**: List[DataDictionaryEntity], optional
-
-  List of [DataDictionaryEntity](DataDictionaryEntity.md) on which to calculate the digest.
-
-#### Returns
-
-str
-
-#### Example
-
-```python
-# Option: 1. Return digest considering complete message content.
-# Digest calculation defaults to MD5 hash and no lower case.
-md5_digest_full = message.getMessageDigest()
-
-# Option: 2. Return digest for full message content based on MD5 hash.
-# Returned digest will be lower case only.
-md5_digest_full_lower = message.getMessageDigest("MD5", True)
-
-# Option: 3. Calculate digest considering specific data structures within message only.
-record_accessor_for_md5 = [
+# MD5 of selected fields only
+fields = [
     dataDictionary.type.Detail.CSV.RECORD_TYPE,
     dataDictionary.type.Detail.CSV.LAST_NAME,
     dataDictionary.type.Detail.CSV.FIRST_NAME
 ]
-
-md5_digest = message.getMessageDigest("MD5", True, record_accessor_for_md5)
+partial_digest = message.getMessageDigest("MD5", True, fields)
 ```
 
-#### Returns
+---
 
-int - Number of States attached to the message.
+## Writing Data
 
-### getObject()
+All setters follow the same pattern: `setX(entity, value)`. The `value` can often be a Python primitive — layline.io handles the conversion.
 
-> **getObject**(entity: DataDictionaryEntity) -> Any
+### Quick Reference
 
-Return an Object value from a message field.
+| Category | Setter | Accepts | Example |
+|----------|--------|---------|---------|
+| **Text** | `setString(entity, value)` | `str` | `message.setString(path, "Hello")` |
+| | `setCharacter(entity, value)` | `str` (single char) | `message.setCharacter(path, 'A')` |
+| | `setByteString(entity, value)` | `bytes` | `message.setByteString(path, b"XYZ")` |
+| **Boolean** | `setBoolean(entity, value)` | `bool` | `message.setBoolean(path, True)` |
+| **Numbers** | `setInt(entity, value)` | `int` | `message.setInt(path, 42)` |
+| | `setLong(entity, value)` | `int` | `message.setLong(path, 9999999999)` |
+| | `setDouble(entity, value)` | `float` | `message.setDouble(path, 3.14159)` |
+| | `setDecimal(entity, value)` | `Decimal`, `str`, `float` | `message.setDecimal(path, Decimal("123.45"))` |
+| | `setBigInteger(entity, value)` | `int` | `message.setBigInteger(path, 9007199254740993)` |
+| **Binary** | `setByte(entity, value)` | `int`, `str` | `message.setByte(path, 7)` |
+| **Date/Time** | `setDate(entity, value)` | [`LocalDate`](LocalDate.md) | `message.setDate(path, local_date)` |
+| | `setDateTime(entity, value)` | [`DateTime`](DateTime.md) | `message.setDateTime(path, dt)` |
+| **Generic** | `setObject(entity, value)` | `Any` | `message.setObject(path, [1, 2, 3])` |
 
-#### Parameters
+### Direct Assignment Shortcut
 
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-Any - Python object.
-
-#### Example
+For simple cases, assign directly via `data`:
 
 ```python
-o = message.getObject(dataDictionary.type.Detail.CSV.FIELD)
+# These are equivalent:
+message.setString(dataDictionary.type.Detail.CSV.NAME, "Acme Corp")
+message.data.CSV.NAME = "Acme Corp"
 ```
 
-### getStatus()
+---
 
-> **getStatus**(index: int) -> Status
+## Status Management
 
-Retrieves a Status by index from the list of States attached to a message.
-A message keeps track of related States in a Status array attached to it.
-This list may be empty or filled with one or more States.
+Messages carry a [`Status`](Status.md) array that tracks processing events — errors, warnings, or custom business states.
 
-#### Parameters
-
-- **index**: int
-
-  Index of Status to retrieve.
-
-#### Returns
-
-Status - Status or None if no Status found with that index.
-
-#### Example
+### Adding Status
 
 ```python
-# Retrieve the first Status from the list of States attached to the message.
-status = message.getStatus(0)
+VENDOR = Status.getVendorByName('MyVendor')
+
+if measurement < 0:
+    message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_MEASUREMENT', measurement))
 ```
 
-### getString()
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `severity` | [`Severity`](../enumerations/Severity.md) | `INFO`, `WARNING`, `ERROR`, etc. |
+| `status` | [`Status`](Status.md) | The status object to attach |
+| `add_to_log` | `bool` (default: `True`) | Also log to the audit trail? |
 
-> **getString**(entity: DataDictionaryEntity) -> str
+### Querying Status
 
-Return a String typed value from a message field.
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-#### Returns
-
-str - The value as string.
-
-#### Example
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `numStatusAttached()` | `int` | Count of attached statuses |
+| `hasStatusAttached(severity?)` | `bool` | Check for any (or specific severity) status |
+| `getStatus(index)` | [`Status`](Status.md) \| `None` | Get status by index |
+| `findStatus(filter)` | `List[Status]` | Find statuses matching a filter |
 
 ```python
-s = message.getString(dataDictionary.type.Detail.CSV.FIELD)
+# Check for errors
+if message.hasStatusAttached(Severity.ERROR):
+    stream.log_error("Message has errors — routing to failure port")
+    stream.emit(message, ERROR_PORT)
+    return
+
+# Find all warnings
+warnings = message.findStatus(Severity.WARNING)
+for s in warnings:
+    stream.log_warn(f"{s.code}: {s.message}")
+
+# Find statuses from a specific vendor
+vendor_statuses = message.findStatus(VENDOR)
+
+# Custom filter
+critical = message.findStatus(lambda s: s.code == 'CRITICAL')
 ```
 
-### hasStatusAttached()
+---
 
-> **hasStatusAttached**(severity: Severity) -> bool
+## Message Lifecycle
 
-Checks if a message has a [Status](Status.md) attached which matches a particular Severity.
+### clone()
+
+Creates a deep copy of the message with a new ID suffix.
 
 ```python
-result = message.hasStatusAttached(Severity.ERROR)
+original = message           # id: "5"
+copy = message.clone()       # id: "5.1"
+another = message.clone()    # id: "5.2"
 ```
 
-#### Parameters
-
-- **severity**: [`Severity`](../enumerations/Severity.md)
-
-  Optional severity to check against.
-
-#### Returns
-
-bool - True, if match found, else False.
+**Returns:** `Message` — the cloned instance
 
 ### pack()
 
-> **pack**() -> PackedMessage
-
-Packs the message into a memory efficient format.
+Compresses the message into a memory-efficient [`PackedMessage`](PackedMessage.md) for storage or transmission.
 
 ```python
-# Pack message
-packed_msg = message.pack()
-
-# Unpack message
-unpacked_msg = packed_msg.unpack()
+packed = message.pack()      # Compact representation
+restored = packed.unpack()   # Back to full Message
 ```
 
-#### Returns
+**Returns:** [`PackedMessage`](PackedMessage.md)
 
-PackedMessage - Packed message.
+### commit()
 
+Acknowledges successful processing. Behavior depends on the source:
 
-### numStatusAttached
-
-> **numStatusAttached**() -> `number`
-
-Gets the number of States [Status](../../../python/API/classes/Status.md) attached.
+- **SQS:** Deletes the message from the queue
+- **Kafka:** Commits the consumer offset
+- **File:** Marks the file as processed
 
 ```python
-result = message.numStatusAttached();
+try:
+    process_message(message)
+    message.commit()  # Acknowledge success
+except Exception as err:
+    # Don't commit — message will be redelivered
+    message.addStatus(Severity.ERROR, Status.create(VENDOR, 'PROCESSING_FAILED', str(err)))
 ```
 
-#### Returns
+**Returns:** `Message` (supports chaining)
 
-int - Number of States attached to the message.
+---
 
-***
+## Serialization
 
-
-
-### setBigInteger()
-
-> **setBigInteger**(entity: DataDictionaryEntity, value: int) -> None
-
-Sets a BigInteger value in a message target field.
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `toJson()` | `str` | JSON representation of the message |
+| `toString()` | `str` | Human-readable string representation |
 
 ```python
-big_int = 123  # Python int can handle arbitrarily large integers
-
-message.setBigInteger(dataDictionary.type.Detail.CSV.FIELD, big_int)
+stream.log_info("Received: " + message.toJson())
+stream.log_debug("Message dump: " + message.toString())
 ```
 
-#### Parameters
+---
 
-- **entity**: DataDictionaryEntity
+## Complete Example
 
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-- **value**: int
-
-  A Python int value (which can handle arbitrarily large integers).
-
-#### Returns
-
-None
-
-### setBoolean()
-
-> **setBoolean**(entity: DataDictionaryEntity, value: bool) -> None
-
-Sets a Boolean value in a message target field.
+A realistic order processor demonstrating type checking, field access, validation, cloning, and status:
 
 ```python
-message.setBoolean(dataDictionary.type.Detail.CSV.FIELD, True)
+from decimal import Decimal
+
+def on_message():
+    # Only process Detail records
+    if not message.is(dataDictionary.type.Order.Detail):
+        stream.emit(message, OUTPUT_PORT)
+        return
+
+    # Extract fields
+    order_id = message.getString(dataDictionary.type.Order.Detail.ORDER_ID)
+    quantity = message.getInt(dataDictionary.type.Order.Detail.QUANTITY)
+    unit_price = message.getDecimal(dataDictionary.type.Order.Detail.UNIT_PRICE)
+
+    stream.log_info(f"Processing order {order_id} (message {message.id})")
+
+    # Business validation
+    VENDOR = Status.getVendorByName('OrderValidation')
+
+    if quantity <= 0:
+        message.addStatus(Severity.ERROR, Status.create(VENDOR, 'INVALID_QUANTITY', quantity))
+
+    if unit_price <= Decimal("0"):
+        message.addStatus(Severity.ERROR, Status.create(VENDOR, 'INVALID_PRICE', str(unit_price)))
+
+    # If valid, enrich and clone for fulfillment
+    if not message.hasStatusAttached(Severity.ERROR):
+        total = unit_price * quantity
+        message.setDecimal(dataDictionary.type.Order.Detail.TOTAL, total)
+
+        # Clone for parallel fulfillment pipeline
+        fulfillment = message.clone()
+        stream.emit(fulfillment, FULFILLMENT_PORT)
+
+    # Always emit original for audit trail
+    stream.emit(message, OUTPUT_PORT)
 ```
 
-#### Parameters
+---
 
-- **entity**: DataDictionaryEntity
+## Common Pitfalls
 
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
+| Problem | Cause | Solution |
+|---------|-------|----------|
+| Field appears missing | Optional structure not present in this message | Use [`exists()`](#existsentity) before accessing |
+| `getDecimal()` returns `Decimal`, not `float` | Mixing with `float` causes comparison issues | Use `Decimal()` for comparisons: `d == Decimal("0.1")` |
+| `message.data.X = Y` doesn't persist | Direct assignment bypasses type validation | Use `setX()` methods for type safety |
+| Status not visible in audit trail | `add_to_log` parameter set to `False` | Omit the parameter (defaults to `True`) |
 
-- **value**: bool
+---
 
-  A Python bool value.
+## See Also
 
-#### Returns
-
-None
-
-### setByte()
-
-> **setByte**(entity: DataDictionaryEntity, value: Union[int, str]) -> None
-
-Sets a Byte value in a message target field.
-
-```python
-message.setByte(dataDictionary.type.Detail.CSV.FIELD, 7)
-# or
-message.setByte(dataDictionary.type.Detail.CSV.FIELD, 'X')
-```
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-- **value**: Union[int, str]
-
-  A value which can be represented as a Byte (0-255 or a single character).
-
-#### Returns
-
-None
-
-### setByteString()
-
-> **setByteString**(entity: DataDictionaryEntity, value: bytes) -> None
-
-Sets a ByteString value in a message target field.
-
-```python
-b = b"XYZ"  # b is now a Python bytes object
-
-message.setByteString(dataDictionary.type.Detail.CSV.FIELD, b)
-```
-
-#### Parameters
-
-- **entity**: DataDictionaryEntity
-
-  [DataDictionaryEntity](DataDictionaryEntity.md) describing the access path to the field value.
-
-- **value**: bytes
-
-  A Python bytes object.
-
-#### Returns
-
-None
-
-### setCharacter()
-
-> **setCharacter**(entity: DataDictionaryEntity, value: str) -> None
-
-Sets a Character value in a message target field.
-
-```python
-message.setCharacter(dataDictionary.type.Detail.CSV.FIELD, 'c
+- [`DataDictionary`](DataDictionary.md) — Create messages from dictionary definitions
+- [`DataDictionaryEntity`](DataDictionaryEntity.md) — Type-safe field accessors
+- [`Status`](Status.md) & [`Severity`](../enumerations/Severity.md) — Message status tracking
+- [`PackedMessage`](PackedMessage.md) — Compact message serialization

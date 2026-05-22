@@ -4,7 +4,7 @@ description: Python Asset. Use this to add custom logic to modify event content,
 ---
 
 import AssetDependency from '../../../snippets/assets/_asset-dependency.md';
-import FailureHandling from '../../../snippets/assets/_failure-handling-flow.mdx';
+import FailureHandling from '../../../snippets/assets/_failure-handling-flow.md';
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import InputPorts from '../../../snippets/assets/_input-ports.md';
 import OutputPorts from '../../../snippets/assets/_output-ports.md';
@@ -32,7 +32,7 @@ You need:
 
 * A Source Script which should be executed within this asset.
 * Knowledge on how to work with Python in layline.io. Please check
-  the [Python Language Reference](../../../language-reference/python/python_introduction) to learn about this.
+  the [Python Language Reference](../../../language-reference/python/python_introduction.md) to learn about this.
 
 ## Configuration
 
@@ -72,7 +72,7 @@ The root script to be executed within this Asset is then selected here:
 
 :::tip Python Language Reference
 To understand how a Source must be structured to work in a Python Asset, please consult
-the [Python Language Reference](../../../language-reference/python/python_introduction).
+the [Python Language Reference](../../../language-reference/python/python_introduction.md).
 :::
 
 ### Service Mappings
@@ -241,10 +241,10 @@ Only records whose `Category` field matches the filter value are emitted. Record
 ## See Also
 
 
-- [Python Language Reference](../../../language-reference/python/python_introduction) — full Python language guide for layline.io
-- [PythonProcessor API](../../../language-reference/python/API/classes/PythonProcessor) — available hooks and lifecycle methods
-- [DataDictionary API (Python)](../../../language-reference/python/API/classes/DataDictionary) — working with Reference Data in Python scripts
-- [PackedMessage API (Python)](../../../language-reference/python/API/classes/PackedMessage) — reading and writing message fields
+- [Python Language Reference](../../../language-reference/python/python_introduction.md) — full Python language guide for layline.io
+- [PythonProcessor API](../../../language-reference/python/API/classes/PythonProcessor.md) — available hooks and lifecycle methods
+- [DataDictionary API (Python)](../../../language-reference/python/API/classes/DataDictionary.md) — working with Reference Data in Python scripts
+- [PackedMessage API (Python)](../../../language-reference/python/API/classes/PackedMessage.md) — reading and writing message fields
 - [Service Mappings](#service-mappings) — connecting external services (HTTP, DB, etc.) to a Python Asset
 
 Please see section [Forced Errors](../../../language-reference/python/python_introduction.md#forced-errors) to understand how to use these settings.

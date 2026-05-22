@@ -171,6 +171,6 @@ The log provides visibility into:
 
 ## See Also
 
-- [**Cluster Monitor**](/docs/operations/cluster/cluster-monitor) — Monitor the overall cluster controller state
-- [**Engine State**](/docs/operations/engine-state) — Drill into individual workflow and component states per engine
-- [**Scheduler**](/docs/operations/cluster/scheduler) — Understand how workloads are distributed across nodes
+- [**Cluster Monitor**](../../operations/cluster/cluster-monitor.md) — Monitor the overall cluster controller state
+- [**Engine State**](../../operations/engine-state/index.md) — Drill into individual workflow and component states per engine
+- [**Scheduler**](../../operations/cluster/scheduler.md) — Understand how workloads are distributed across nodes

@@ -4,7 +4,7 @@ description: Learn about how to use Javascript in your layline.io Projects.
 sidebar_position: 0
 ---
 
-import FailureHandling from '../../snippets/assets/_failure-handling-flow.mdx';
+import FailureHandling from '../../snippets/assets/_failure-handling-flow.md';
 
 ## Introduction
 
@@ -57,7 +57,7 @@ One of the key methods here is [onMessage](./API/classes/JavaScriptProcessor.md#
 Just like `onMessage` is a _hook_, the Javascript Asset provides a number of additional hooks which are automatically
 invoked as part of a Javascript Asset's lifecycle.
 A complete list of these hooks can be found in
-the [JavaScript Processor Reference](./API/classes/JavaScriptProcessor).
+the [JavaScript Processor Reference](./API/classes/JavaScriptProcessor.md).
 
 The following sequence graph shows a typical lifecycle of a Javascript Processor:
 

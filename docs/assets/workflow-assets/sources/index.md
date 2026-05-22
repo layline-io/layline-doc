@@ -1,5 +1,6 @@
 ---
 title: Sources
+description: Source Assets in layline.io — configure inbound data connections for Kafka, HTTP, File, S3, FTP, Email, and 10+ other systems.
 ---
 
 # Sources

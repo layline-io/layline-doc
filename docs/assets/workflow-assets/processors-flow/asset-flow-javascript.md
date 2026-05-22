@@ -4,7 +4,7 @@ description: Javascript Asset. Use this to add custom logic to modify event cont
 ---
 
 import AssetDependency from '../../../snippets/assets/_asset-dependency.md';
-import FailureHandling from '../../../snippets/assets/_failure-handling-flow.mdx';
+import FailureHandling from '../../../snippets/assets/_failure-handling-flow.md';
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import InputPorts from '../../../snippets/assets/_input-ports.md';
 import OutputPorts from '../../../snippets/assets/_output-ports.md';
@@ -32,7 +32,7 @@ You need:
 
 * A Source Script which should be executed within this asset.
 * Knowledge on how to work with Javascript in layline.io. Please check
-  the [Javascript Language Reference](../../../language-reference/javascript/javascript_introduction) to learn about this.
+  the [Javascript Language Reference](../../../language-reference/javascript/javascript_introduction.md) to learn about this.
 
 ## Configuration
 
@@ -72,7 +72,7 @@ The root script to be executed within this Asset is then selected here:
 
 :::tip Javascript Language Reference
 To understand how a Source must be structured to work in a Javascript Asset, please consult
-the [Javascript Language Reference](../../../language-reference/javascript/javascript_introduction).
+the [Javascript Language Reference](../../../language-reference/javascript/javascript_introduction.md).
 :::
 
 ### Service Mappings
@@ -233,7 +233,7 @@ Only records whose `Category` field matches the filter value are emitted. Record
 
 ## See Also
 
-- [JavaScript Language Reference](../../../language-reference/javascript/javascript_introduction) — full JavaScript language guide for layline.io
+- [JavaScript Language Reference](../../../language-reference/javascript/javascript_introduction.md) — full JavaScript language guide for layline.io
 - [JavaScriptProcessor API](../../../language-reference/javascript/API/classes/JavaScriptProcessor.md) — available hooks and lifecycle methods
 - [DataDictionary API](../../../language-reference/javascript/API/classes/DataDictionary.md) — working with Reference Data in scripts
 - [PackedMessage API](../../../language-reference/javascript/API/classes/PackedMessage.md) — reading and writing message fields

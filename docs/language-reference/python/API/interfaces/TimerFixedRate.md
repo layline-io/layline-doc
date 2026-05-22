@@ -1,31 +1,36 @@
 ---
+description: Recurring timer that fires at a fixed interval.
+---
+
+---
 id: py-TimerFixedRate
 ---
 
 # TimerFixedRate
 
-Represents a timer element that is executed at a fixed rate.
+Recurring timer that fires at a fixed interval.
+
+---
 
 ## Properties
 
-### Payload
+| Property | Type | Description |
+|----------|------|-------------|
+| `Period` | `int` | Interval in milliseconds |
+| `Payload` | `any` | Data passed to the timer callback |
+| `StartAt` | [`DateTime`](../classes/DateTime.md) | Optional — delay first execution until this time |
 
-> **Payload**: `any`
+```python
+{
+    "Period": 60000,               # Every 60 seconds
+    "Payload": {"jobType": "heartbeat"},
+    "StartAt": DateTime.now().plus_minutes(5)
+}
+```
 
-The payload of the timer.
+---
 
-***
+## See Also
 
-### Period
-
-> **Period**: `BigInt`
-
-The period of the timer in milliseconds.
-
-***
-
-### StartAt
-
-> **StartAt**: [`DateTime`](../classes/DateTime.md)
-
-The start date and time of the timer.
+- [`TimerChoice`](TimerChoice.md) — Container for timer configurations
+- [`TimerResponse`](TimerResponse.md) — Register timers via the Timer API

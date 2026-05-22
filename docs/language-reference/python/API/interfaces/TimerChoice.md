@@ -1,31 +1,27 @@
 ---
+description: Union of timer configurations. Use one of `Cron`, `FixedRate`, or `Once` when defining a timer.
+---
+
+---
 id: py-TimerChoice
 ---
 
 # TimerChoice
 
-Represents a timer choice.
+Union of timer configurations. Use one of `Cron`, `FixedRate`, or `Once` when defining a timer.
+
+---
 
 ## Properties
 
-### Cron
+| Property | Type | Description |
+|----------|------|-------------|
+| `Cron` | [`TimerCron`](TimerCron.md) | Recurring timer driven by a cron expression |
+| `FixedRate` | [`TimerFixedRate`](TimerFixedRate.md) | Recurring timer at a fixed interval |
+| `Once` | [`TimerOnce`](TimerOnce.md) | Single execution at a specific time |
 
-> **Cron**: [`TimerCron`](./TimerCron.md)
+---
 
-Structure for a timer element that is executed according to a cron expression.
+## See Also
 
-***
-
-### FixedRate
-
-> **FixedRate**: [`TimerFixedRate`](./TimerFixedRate.md)
-
-Structure for a timer element that is executed at a fixed rate.
-
-***
-
-### Once
-
-> **Once**: [`TimerOnce`](./TimerOnce.md)
-
-Structure for a timer element that is executed once.
+- [`TimerResponse`](TimerResponse.md) — Register timers via the Timer API

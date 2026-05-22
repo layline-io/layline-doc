@@ -309,7 +309,7 @@ stream.logInfo('4. Exiting processor');
 
 ## See Also
 
-- [**JavaScript Language Reference**](../language-reference/javascript/index.mdx) — Complete API documentation
-- [**Python Language Reference**](../language-reference/python/index.mdx) — Complete API documentation
+- [**JavaScript Language Reference**](../language-reference/javascript/index.md) — Complete API documentation
+- [**Python Language Reference**](../language-reference/python/index.md) — Complete API documentation
 - [**JavaScript Processor**](../assets/workflow-assets/processors-flow/asset-flow-javascript.md) — Asset configuration
 - [**Python Processor**](../assets/workflow-assets/processors-flow/asset-flow-python.md) — Asset configuration

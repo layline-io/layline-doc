@@ -1,4 +1,8 @@
 ---
+description: Represents the dynamically generated structure of a data dictionary based on the specific configuration.
+---
+
+---
 id: py-DataDictionaryTypes
 ---
 

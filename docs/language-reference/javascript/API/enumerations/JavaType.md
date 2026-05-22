@@ -1,98 +1,29 @@
+---
+description: Maps layline.io's primitive data types to their Java equivalents. Use this reference when defining data formats or working with the [JavaScript Flow Processor.
+---
+
 # JavaType
 
-layline.io's primitive data types are based on Java's primitve data types. This is important to understand when working with data within layline.io
-This is for example both relevant when
-* defining data formats (e.g. [Generic Formats](../../../../assets/workflow-assets/formats/asset-format-generic.md))
-* working with Javascript in the context of the [Javascript Flow Processor](../../../../assets/workflow-assets/processors-flow/asset-flow-javascript.md)
+Maps layline.io's primitive data types to their Java equivalents. Use this reference when defining data formats or working with the [JavaScript Flow Processor](../../../../assets/workflow-assets/processors-flow/asset-flow-javascript.md).
 
-This enumeration definition is simply to provide a map from layline.io's data types to the respective Java primitive data types.
+:::caution
+These values are for reference only. Do **not** use `JavaType.BigDecimal` or similar in your code — it will not work.
+:::
 
-Do not use e.g. "`JavaType.BigDecimal`" anywhere. It will not work.
+---
 
 ## Enumeration Members
 
-### BigDecimal
-
-> **BigDecimal**: `"java.math.BigDecimal"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html)
-
-***
-
-### BigInteger
-
-> **BigInteger**: `"java.math.BigInteger"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html)
-
-***
-
-### Byte
-
-> **Byte**: `"java.lang.Byte"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html)
-
-***
-
-### ByteString
-
-> **ByteString**: `"java.lang.ByteString"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html)
-
-***
-
-### Character
-
-> **Character**: `"java.lang.Character"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/lang/Character.html)
-
-***
-
-### Double
-
-> **Double**: `"java.lang.Double"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html)
-
-***
-
-### Integer
-
-> **Integer**: `"java.lang.Integer"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)
-
-***
-
-### Long
-
-> **Long**: `"java.lang.Long"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html)
-
-***
-
-### Number
-
-> **Number**: `"java.lang.Number"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/lang/Number.html)
-
-***
-
-### OffsetDateTime
-
-> **OffsetDateTime**: `"java.time.OffsetDateTime"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html)
-
-***
-
-### String
-
-> **String**: `"java.lang.String"`
-
-[Click here for java reference](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
+| Member | Value | Java Reference |
+|--------|-------|----------------|
+| `BigDecimal` | `java.math.BigDecimal` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html) |
+| `BigInteger` | `java.math.BigInteger` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html) |
+| `Byte` | `java.lang.Byte` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html) |
+| `ByteString` | `java.lang.ByteString` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html) |
+| `Character` | `java.lang.Character` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/Character.html) |
+| `Double` | `java.lang.Double` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html) |
+| `Integer` | `java.lang.Integer` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html) |
+| `Long` | `java.lang.Long` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html) |
+| `Number` | `java.lang.Number` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/Number.html) |
+| `OffsetDateTime` | `java.time.OffsetDateTime` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) |
+| `String` | `java.lang.String` | [Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) |

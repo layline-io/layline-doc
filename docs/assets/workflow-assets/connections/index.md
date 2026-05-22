@@ -1,5 +1,6 @@
 ---
 title: Connections
+description: Connection Assets in layline.io — reusable credentials and connection parameters for AWS, Kafka, databases, email, and more.
 ---
 
 # Connections

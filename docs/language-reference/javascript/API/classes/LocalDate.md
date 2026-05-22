@@ -1,755 +1,194 @@
+---
+description: Represents a date without time or timezone — just year, month, and day. Use `LocalDate` for birthdays, anniversaries, or any date-only value where time doesn...
+---
+
 # LocalDate
 
-Represents a date without a time-zone in the ISO-8601 calendar system.
-This is an abstract class and cannot be instantiated directly.
+Represents a date without time or timezone — just year, month, and day. Use `LocalDate` for birthdays, anniversaries, or any date-only value where time doesn't matter.
+
+`LocalDate` instances are immutable — all modification methods return new instances.
+
+---
+
+## At a Glance
+
+```js
+// Today
+const today = LocalDate.now();
+
+// Specific date
+const birthday = LocalDate.of(1990, 5, 15);
+
+// From a string
+const parsed = LocalDate.parse('2024-12-25');
+
+// Read from a message
+const orderDate = message.getDate(dataDictionary.type.Order.ORDER_DATE);
+```
+
+---
 
 ## Properties
 
-### dayOfMonth
+| Property | Type | Description |
+|----------|------|-------------|
+| `year` | `number` | Year (e.g., 2024) |
+| `month` | `number` | Month of year, 1–12 |
+| `dayOfMonth` | `number` | Day of month, 1–31 |
+| `dayOfWeek` | `number` | Day of week, 1 (Monday) – 7 (Sunday) |
+| `dayOfYear` | `number` | Day of year, 1–366 |
 
-> **dayOfMonth**: `number`
+```js
+const date = LocalDate.of(2024, 3, 15);
 
-The day of the month, from 1 to 31.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 9, 15);
-print(date.dayOfMonth); // Output: 15
+stream.logInfo(`${date.year}-${date.month}-${date.dayOfMonth}`);  // "2024-3-15"
+stream.logInfo(`Day ${date.dayOfYear} of ${date.year}`);          // "Day 75 of 2024"
+stream.logInfo(`Day of week: ${date.dayOfWeek}`);                 // 5 (Friday)
 ```
 
-***
+---
 
-### dayOfWeek
+## Creating LocalDate
 
-> **dayOfWeek**: `number`
+### now(zone?)
 
-The day of the week, from 1 (Monday) to 7 (Sunday).
+Returns the current date.
 
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 9, 15); // September 15, 2023 is a Friday
-print(date.dayOfWeek); // Output: 5
-```
-
-***
-
-### dayOfYear
-
-> **dayOfYear**: `number`
-
-The day of the year, from 1 to 365 (or 366 in a leap year).
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 9, 15);
-print(date.dayOfYear); // Output: 258 (as September 15 is the 258th day of 2023)
-```
-
-***
-
-### month
-
-> **month**: `number`
-
-The month of the year, from 1 (January) to 12 (December).
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 9, 15);
-print(date.month); // Output: 9
-```
-
-***
-
-### year
-
-> **year**: `number`
-
-The year.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 9, 15);
-print(date.year); // Output: 2023
-```
-
-## Methods
-
-### add()
-
-> **add**(`duration`): `LocalDate`
-
-Adds a specified duration to this date.
-
-#### Parameters
-
-##### duration
-
-[`Duration`](Duration.md)
-
-The duration to add.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-// Assuming we have a LocalDate instance 'date' and a Duration 'duration'
-const newDate = date.add(duration);
-```
-
-***
-
-### compareTo()
-
-> **compareTo**(`other`): `number`
-
-Compares this date to another.
-
-#### Parameters
-
-##### other
-
-`LocalDate`
-
-The date to compare to.
-
-#### Returns
-
-`number`
-
-A negative integer, zero, or a positive integer if this date is before, equal to, or after the given date.
-
-#### Example
-
-```ts
-const date1 = LocalDate.of(2023, 1, 1);
-const date2 = LocalDate.of(2023, 1, 2);
-print(date1.compareTo(date2)); // Output: -1
-```
-
-***
-
-### isAfter()
-
-> **isAfter**(`other`): `boolean`
-
-Checks if this date is after the specified date.
-
-#### Parameters
-
-##### other
-
-`LocalDate`
-
-The date to compare to.
-
-#### Returns
-
-`boolean`
-
-True if this date is after the specified date.
-
-#### Example
-
-```ts
-const date1 = LocalDate.of(2023, 1, 2);
-const date2 = LocalDate.of(2023, 1, 1);
-print(date1.isAfter(date2)); // Output: true
-```
-
-***
-
-### isBefore()
-
-> **isBefore**(`other`): `boolean`
-
-Checks if this date is before the specified date.
-
-#### Parameters
-
-##### other
-
-`LocalDate`
-
-The date to compare to.
-
-#### Returns
-
-`boolean`
-
-True if this date is before the specified date.
-
-#### Example
-
-```ts
-const date1 = LocalDate.of(2023, 1, 1);
-const date2 = LocalDate.of(2023, 1, 2);
-print(date1.isBefore(date2)); // Output: true
-```
-
-***
-
-### isEqual()
-
-> **isEqual**(`other`): `boolean`
-
-Checks if this date is equal to the specified date.
-
-#### Parameters
-
-##### other
-
-`LocalDate`
-
-The date to compare to.
-
-#### Returns
-
-`boolean`
-
-True if the dates are equal.
-
-#### Example
-
-```ts
-const date1 = LocalDate.of(2023, 1, 1);
-const date2 = LocalDate.of(2023, 1, 1);
-print(date1.isEqual(date2)); // Output: true
-```
-
-***
-
-### minus()
-
-> **minus**(`duration`): `LocalDate`
-
-Returns a copy of this date minus the specified duration.
-
-#### Parameters
-
-##### duration
-
-[`Duration`](Duration.md)
-
-The duration to subtract.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-// Assuming we have a LocalDate instance 'date' and a Duration 'duration'
-const newDate = date.minus(duration);
-```
-
-***
-
-### minusDays()
-
-> **minusDays**(`days`): `LocalDate`
-
-Returns a copy of this date minus the specified number of days.
-
-#### Parameters
-
-##### days
-
-`number`
-
-The number of days to subtract.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 10);
-const newDate = date.minusDays(5);
-print(newDate.toString()); // Output: "2023-01-05"
-```
-
-***
-
-### minusMonths()
-
-> **minusMonths**(`months`): `LocalDate`
-
-Returns a copy of this date minus the specified number of months.
-
-#### Parameters
-
-##### months
-
-`number`
-
-The number of months to subtract.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 3, 15);
-const newDate = date.minusMonths(2);
-print(newDate.toString()); // Output: "2023-01-15"
-```
-
-***
-
-### minusWeeks()
-
-> **minusWeeks**(`weeks`): `LocalDate`
-
-Returns a copy of this date minus the specified number of weeks.
-
-#### Parameters
-
-##### weeks
-
-`number`
-
-The number of weeks to subtract.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 15);
-const newDate = date.minusWeeks(2);
-print(newDate.toString()); // Output: "2023-01-01"
-```
-
-***
-
-### minusYears()
-
-> **minusYears**(`years`): `LocalDate`
-
-Returns a copy of this date minus the specified number of years.
-
-#### Parameters
-
-##### years
-
-`number`
-
-The number of years to subtract.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 1);
-const newDate = date.minusYears(3);
-print(newDate.toString()); // Output: "2020-01-01"
-```
-
-***
-
-### plus()
-
-> **plus**(`duration`): `LocalDate`
-
-Returns a copy of this date plus the specified duration.
-
-#### Parameters
-
-##### duration
-
-[`Duration`](Duration.md)
-
-The duration to add.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-// Assuming we have a LocalDate instance 'date' and a Duration 'duration'
-const newDate = date.plus(duration);
-```
-
-***
-
-### plusDays()
-
-> **plusDays**(`days`): `LocalDate`
-
-Returns a copy of this date plus the specified number of days.
-
-#### Parameters
-
-##### days
-
-`number`
-
-The number of days to add.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 1);
-const newDate = date.plusDays(5);
-print(newDate.toString()); // Output: "2023-01-06"
-```
-
-***
-
-### plusMonths()
-
-> **plusMonths**(`months`): `LocalDate`
-
-Returns a copy of this date plus the specified number of months.
-
-#### Parameters
-
-##### months
-
-`number`
-
-The number of months to add.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 15);
-const newDate = date.plusMonths(2);
-print(newDate.toString()); // Output: "2023-03-15"
-```
-
-***
-
-### plusWeeks()
-
-> **plusWeeks**(`weeks`): `LocalDate`
-
-Returns a copy of this date plus the specified number of weeks.
-
-#### Parameters
-
-##### weeks
-
-`number`
-
-The number of weeks to add.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 1);
-const newDate = date.plusWeeks(2);
-print(newDate.toString()); // Output: "2023-01-15"
-```
-
-***
-
-### plusYears()
-
-> **plusYears**(`years`): `LocalDate`
-
-Returns a copy of this date plus the specified number of years.
-
-#### Parameters
-
-##### years
-
-`number`
-
-The number of years to add.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 1);
-const newDate = date.plusYears(3);
-print(newDate.toString()); // Output: "2026-01-01"
-```
-
-***
-
-### toString()
-
-> **toString**(`format?`): `string`
-
-Converts this date to a string representation.
-
-#### Parameters
-
-##### format?
-
-`string`
-
-The format to use for the string representation.
-
-#### Returns
-
-`string`
-
-A string representation of this date.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 15);
-print(date.toString()); // Output: "2023-01-15"
-print(date.toString("dd/MM/uuuu")); // Output: "15/01/2023"
-```
-
-***
-
-### withDayOfMonth()
-
-> **withDayOfMonth**(`day`): `LocalDate`
-
-Returns a copy of this date with the day of month altered.
-
-#### Parameters
-
-##### day
-
-`number`
-
-The new day of the month.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 15);
-const newDate = date.withDayOfMonth(20);
-print(newDate.toString()); // Output: "2023-01-20"
-```
-
-***
-
-### withMonth()
-
-> **withMonth**(`month`): `LocalDate`
-
-Returns a copy of this date with the month altered.
-
-#### Parameters
-
-##### month
-
-`number`
-
-The new month of the year.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 15);
-const newDate = date.withMonth(3);
-print(newDate.toString()); // Output: "2023-03-15"
-```
-
-***
-
-### withYear()
-
-> **withYear**(`year`): `LocalDate`
-
-Returns a copy of this date with the year altered.
-
-#### Parameters
-
-##### year
-
-`number`
-
-The new year.
-
-#### Returns
-
-`LocalDate`
-
-A new LocalDate representing the result.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 1, 15);
-const newDate = date.withYear(2024);
-print(newDate.toString()); // Output: "2024-01-15"
-```
-
-***
-
-### now()
-
-> `static` **now**(`zone?`): `LocalDate`
-
-Obtains the current date from the system clock in the default time-zone.
-
-#### Parameters
-
-##### zone?
-
-[`TimeZone`](TimeZone.md)
-
-The time zone to use, defaults to the system default if not specified.
-
-#### Returns
-
-`LocalDate`
-
-The current date.
-
-#### Example
-
-```ts
+```js
 const today = LocalDate.now();
-print(today.toString()); // Output: Current date, e.g., "2023-09-03"
+const nyToday = LocalDate.now(TimeZone.of('America/New_York'));
 ```
 
-***
+### of(year, month?, day?)
 
-### of()
+Creates a LocalDate from components.
 
-> `static` **of**(`year`, `month?`, `day?`): `LocalDate`
-
-Obtains an instance of LocalDate from year, month, and day values.
-
-#### Parameters
-
-##### year
-
-`number`
-
-The year to represent.
-
-##### month?
-
-`number`
-
-The month-of-year to represent, from 1 (January) to 12 (December).
-
-##### day?
-
-`number`
-
-The day-of-month to represent, from 1 to 31.
-
-#### Returns
-
-`LocalDate`
-
-The local date.
-
-#### Example
-
-```ts
-const date = LocalDate.of(2023, 9, 3);
-print(date.toString()); // Output: "2023-09-03"
+```js
+const date1 = LocalDate.of(2024);           // 2024-01-01
+const date2 = LocalDate.of(2024, 3);        // 2024-03-01
+const date3 = LocalDate.of(2024, 3, 15);    // 2024-03-15
 ```
 
-***
+### parse(value, format?)
 
-### parse()
+Parses a string into a LocalDate.
 
-> `static` **parse**(`value`, `format?`): `LocalDate`
+```js
+// ISO format (default)
+const d1 = LocalDate.parse('2024-12-25');
 
-Obtains an instance of LocalDate from a text string using a specific format.
-
-#### Parameters
-
-##### value
-
-`string`
-
-The text to parse.
-
-##### format?
-
-`string`
-
-The format to use for parsing.
-See [Java Documentation for DateTimeFormatter](https://docs.oracle.com/en%2Fjava%2Fjavase%2F22%2Fdocs%2Fapi%2F%2F/java.base/java/time/format/DateTimeFormatter.html) for more information on supported date and time patterns.
-
-#### Returns
-
-`LocalDate`
-
-The parsed local date.
-
-#### Example
-
-```ts
-const date = LocalDate.parse("2023-09-03");
-print(date.toString()); // Output: "2023-09-03"
-
-const customDate = LocalDate.parse("03/09/2023", "dd/MM/uuuu");
-print(customDate.toString()); // Output: "2023-09-03"
+// Custom format
+const d2 = LocalDate.parse('25/12/2024', 'dd/MM/uuuu');
 ```
+
+---
+
+## Comparing Dates
+
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `isAfter(other)` | `boolean` | This date is later |
+| `isBefore(other)` | `boolean` | This date is earlier |
+| `isEqual(other)` | `boolean` | Same date |
+| `compareTo(other)` | `number` | Negative, zero, or positive |
+
+```js
+const start = LocalDate.of(2024, 1, 1);
+const end = LocalDate.of(2024, 12, 31);
+
+if (end.isAfter(start)) {
+    stream.logInfo('End is after start');
+}
+
+// Sorting
+const dates = [LocalDate.of(2024, 3, 1), LocalDate.of(2024, 1, 1)];
+dates.sort((a, b) => a.compareTo(b));
+```
+
+---
+
+## Adding Time
+
+| Method | Description |
+|--------|-------------|
+| `plusYears(years)` | Add years |
+| `plusMonths(months)` | Add months |
+| `plusWeeks(weeks)` | Add weeks |
+| `plusDays(days)` | Add days |
+| `plus(duration)` | Add a [`Duration`](Duration.md) |
+
+```js
+const today = LocalDate.now();
+
+const tomorrow = today.plusDays(1);
+const nextWeek = today.plusWeeks(1);
+const nextMonth = today.plusMonths(1);
+
+// Calculate expiry
+const expiry = today.plusDays(30);
+message.setDate(dataDictionary.type.Subscription.EXPIRY, expiry);
+```
+
+---
+
+## Subtracting Time
+
+| Method | Description |
+|--------|-------------|
+| `minusYears(years)` | Subtract years |
+| `minusMonths(months)` | Subtract months |
+| `minusWeeks(weeks)` | Subtract weeks |
+| `minusDays(days)` | Subtract days |
+| `minus(duration)` | Subtract a [`Duration`](Duration.md) |
+
+```js
+const today = LocalDate.now();
+const yesterday = today.minusDays(1);
+const lastMonth = today.minusMonths(1);
+
+// Check age requirement (must be 18+)
+const birthDate = message.getDate(dataDictionary.type.Customer.BIRTH_DATE);
+const age18 = today.minusYears(18);
+if (birthDate.isAfter(age18)) {
+    message.addStatus(Severity.ERROR, Status.create(VENDOR, 'UNDERAGE'));
+}
+```
+
+---
+
+## Changing Components
+
+| Method | Description |
+|--------|-------------|
+| `withYear(year)` | Set year |
+| `withMonth(month)` | Set month (1–12) |
+| `withDayOfMonth(day)` | Set day of month (1–31) |
+
+```js
+const date = LocalDate.of(2024, 3, 15);
+const firstOfMonth = date.withDayOfMonth(1);
+const nextYear = date.withYear(2025);
+```
+
+---
+
+## Formatting
+
+### toString(format?)
+
+```js
+const date = LocalDate.of(2024, 12, 25);
+
+date.toString();                        // "2024-12-25"
+date.toString('uuuu-MM-dd');            // "2024-12-25"
+date.toString('dd/MM/uuuu');            // "25/12/2024"
+date.toString('EEEE, MMMM dd uuuu');    // "Wednesday, December 25 2024"
+```
+
+---
+
+## See Also
+
+- [`DateTime`](DateTime.md) — Date with time and timezone
+- [`Time`](Time.md) — Time without date
+- [`Duration`](Duration.md) — Amount of time between two dates

@@ -65,8 +65,8 @@ Before starting, ensure you have:
 
 :::tip New to layline.io?
 This guide covers production multi-node deployment. For single-machine development setup, see:
-- [Install Locally](../quickstart/install-local) — Full local installation for development
-- [Install with Docker](../quickstart/install-docker) — Quick evaluation via Docker
+- [Install Locally](../../quickstart/install-local.md) — Full local installation for development
+- [Install with Docker](../../quickstart/install-docker.md) — Quick evaluation via Docker
 :::
 
 ### Hostname Configuration
@@ -901,7 +901,7 @@ layline {
 }
 ```
 
-See [Gathering Statistics through Metrics](../../assets/workflow-assets/extensions/asset-prometheus) for details.
+See [Gathering Statistics through Metrics](../../assets/workflow-assets/extensions/asset-prometheus.md) for details.
 
 ---
 

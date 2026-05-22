@@ -10,7 +10,7 @@ description: Monitor the Sniffer Directory controller's storage capacity and hea
 
 ## Purpose
 
-The Sniffer Directory controller manages the persistent storage used by [sniffer sessions](../../audit-trail/#sniffer-sessions-tab) to capture and retain workflow messages. While sniffer sessions themselves are created and managed in the [Audit Trail](../../audit-trail/), the Sniffer Directory page shows the underlying storage controller's health and capacity metrics. Use it to verify that sufficient storage is available for diagnostic captures and to check that the controller is running properly.
+The Sniffer Directory controller manages the persistent storage used by [sniffer sessions](../audit-trail/index.md#sniffer-sessions-tab) to capture and retain workflow messages. While sniffer sessions themselves are created and managed in the [Audit Trail](../audit-trail/index.md), the Sniffer Directory page shows the underlying storage controller's health and capacity metrics. Use it to verify that sufficient storage is available for diagnostic captures and to check that the controller is running properly.
 
 ## Tabs
 
@@ -67,10 +67,10 @@ The Sniffer Directory controller is the infrastructure that enables sniffer sess
 | **Sniffer Directory** (Cluster tab) | Monitor storage capacity and controller health |
 | **Sniffer Sessions** (Audit Trail tab) | Create, manage, and inspect captured messages |
 
-To create or interact with sniffer sessions, use the [Sniffer Sessions tab in the Audit Trail](../../audit-trail/#sniffer-sessions-tab).
+To create or interact with sniffer sessions, use the [Sniffer Sessions tab in the Audit Trail](../audit-trail/index.md#sniffer-sessions-tab).
 
 ## See Also
 
-- [**Audit Trail**](../../audit-trail/) — Create and manage sniffer sessions, inspect captured messages
+- [**Audit Trail**](../audit-trail/index.md) — Create and manage sniffer sessions, inspect captured messages
 - [**Cluster Overview**](./index.md) — Introduction to the cluster operations panel
-- [**Alarm Center**](./alarm-center/) — Real-time alerts for operational issues including storage capacity
+- [**Alarm Center**](./alarm-center//index.md) — Real-time alerts for operational issues including storage capacity

@@ -1,97 +1,72 @@
+---
+description: A `StatusCode` represents a single entry in a Resource Status Definition Asset — the template definition for a [`Status. It contains the code, message templa...
+---
+
 # StatusCode
 
-## What
-StatusCodes are defined by creating a **Status Asset** within your Project.
-Within this Asset you can create one or more **Vendors** which in turn may have a number of `Status` entries.
+A `StatusCode` represents a single entry in a **Resource Status Definition Asset** — the template definition for a [`Status`](Status.md). It contains the code, message template, and language information.
 
-Each of those Status entries has the following structure:
-* ID: A unique number
-* Logical name: A name which uniquely identifies a Status, e.g. `FIELD_UNKNOWN`
-* Language: One of the supported language codes, e.g. `en`
-* Message: The actual Status message. The message may contain placeholders, e.g. `The field with name %1 is unknown`.
-  In this example, the placeholder `%1` is filled with the respective value when creating the *Status* using method [Status.create](Status.md#create).
+You typically don't create StatusCodes directly. Instead, access them through the global [`statusRegistry`](StatusRegistry.md) to inspect what statuses are available in your project.
 
-A StatusCode represents a single entry in the Status Asset.
-They are attached to [Vendor](Vendor.md) objects.
+---
 
-## How to use
+## At a Glance
 
-You typically do not create StatusCodes directly. Instead, you access them via the global `statusRegistry` object.
-Therein you access the `vendors` array which includes all defined StatusCodes for the specific vendor.
+```js
+// Browse all defined status codes for a vendor
+const vendor = statusRegistry.vendors[0];  // Index 0 = internal "LAY" vendor
+const codes = vendor.statusCodes;
+
+codes.forEach(code => {
+    stream.logInfo(`${code.code}: ${code.message}`);
+});
+```
+
+---
 
 ## Properties
 
-### code
-
-> **code**: `number`
-
-This is the number code that you have defined in the "**Resource Status Definition Asset**".
-For example, `11` for `FIELD_UNKNOWN` or 42 for `ILLEGAL_VALUE`, or whatever you have defined.
-
-#### Example
+| Property | Type | Description |
+|----------|------|-------------|
+| `code` | `number` | Numeric code (e.g., `11`, `42`) |
+| `message` | `string` | Message template with placeholders (e.g., `"Field '%1' is unknown"`) |
+| `vendor` | [`Vendor`](Vendor.md) | The vendor this code belongs to |
 
 ```js
-// You can access all defined StatusCodes via the global statusRegistry object.
-// The following will return an array of all defined StatusCodes for specific vendor:
+// Access the internal LAY vendor's status codes
+const layCodes = statusRegistry.vendors[0].statusCodes;
 
-const statusCodesForVendorLAY = statusRegistry.vendors[0].statusCodes
-
-// This returns an array of all defined StatusCodes for the vendor with index 0.
-// Index 0 is reserved and pre-filled by internal vendor "LAY" (layline.io).
-// You define additional vendors and status codes in the "**Resource Status Definition Asset**".
-
-// To return the code of the first status code for the vendor with index 0:
-
-const code = statusRegistry.vendors[0].statusCodes[50].code // Returns `251`
+const code = layCodes[50];
+stream.logInfo(code.code);     // 251
+stream.logInfo(code.message);  // "merge conflict at node %1"
+stream.logInfo(code.vendor.id); // 1
 ```
 
-***
+---
 
-### message
-
-> **message**: `string`
-
-This is the message that you have defined in the "**Resource Status Definition Asset**".
-The message may contain placeholders, e.g. `The field with name %1 is unknown`.
-
-#### Example
+## Accessing StatusCodes
 
 ```js
-// You can access all defined StatusCodes via the global statusRegistry object.
-// The following will return an array of all defined StatusCodes for specific vendor:
+// All vendors
+const vendors = statusRegistry.vendors;
 
-const statusCodesForVendorLAY = statusRegistry.vendors[0].statusCodes
+// Specific vendor by index
+const layVendor = statusRegistry.vendors[0];      // Internal vendor
+const myVendor = statusRegistry.vendors[1];       // Your first custom vendor
 
-// This returns an array of all defined StatusCodes for the vendor with index 0.
-// Index 0 is reserved and pre-filled by internal vendor "LAY" (layline.io).
-// You define additional vendors and status codes in the "**Resource Status Definition Asset**".
+// All status codes for a vendor
+const codes = myVendor.statusCodes;
 
-// To return the code of the first status code for the vendor with index 0:
-
-const code = statusRegistry.vendors[0].statusCodes[50].message // Returns `merge conflict at node %1`
+// Iterate
+for (const code of codes) {
+    stream.logInfo(`${code.code}: ${code.message}`);
+}
 ```
 
-***
+---
 
-### vendor
+## See Also
 
-> **vendor**: [`Vendor`](Vendor.md)
-
-This returns the [Vendor](Vendor.md) object which is associated with this StatusCode as defined in the "**Resource Status Definition Asset**".
-
-#### Example
-
-```js
-// You can access all defined StatusCodes via the global statusRegistry object.
-// The following will return an array of all defined StatusCodes for specific vendor:
-
-const statusCodesForVendorLAY = statusRegistry.vendors[0].statusCodes
-
-// This returns an array of all defined StatusCodes for the vendor with index 0.
-// Index 0 is reserved and pre-filled by internal vendor "LAY" (layline.io).
-// You define additional vendors and status codes in the "**Resource Status Definition Asset**".
-
-// To return the code of the first status code for the vendor with index 0:
-
-const vendor = statusRegistry.vendors[0].statusCodes[50].vendor // Returns `Vendor` object
-```
+- [`Status`](Status.md) — Runtime status instances created from these templates
+- [`StatusRegistry`](StatusRegistry.md) — Access all vendors and their codes
+- [`Vendor`](Vendor.md) — Vendor information and status code collections

@@ -1,104 +1,98 @@
 ---
+description: Represents a timezone for use with `DateTime, [`LocalDate`, and `Time`. Timezones handle daylight saving time transitions and regional offsets automatically.
+---
+
+---
 id: py-TimeZone
 ---
 
 # TimeZone
 
-The abstract TimeZone class is a class that represents time zones, and is helpful when doing calendar arithmetics across time zones.
-It is used in conjunction with the [DateTime](DateTime.md), [Time](Time.md), and [LocalDate](LocalDate.md) classes.
+Represents a timezone for use with [`DateTime`](DateTime.md), [`LocalDate`](LocalDate.md), and [`Time`](Time.md). Timezones handle daylight saving time transitions and regional offsets automatically.
 
-## Abstract
+---
+
+## At a Glance
+
+```python
+# Common timezones
+utc = TimeZone.UTC()
+berlin = TimeZone.of('Europe/Berlin')
+tokyo = TimeZone.of('Asia/Tokyo')
+ny = TimeZone.of('America/New_York')
+
+# System default
+local = TimeZone.systemDefault()
+
+# Use with DateTime
+now = DateTime.now(berlin)
+stream.log_info(f"Berlin: {now.toString()}")
+```
+
+---
 
 ## Properties
 
-### displayName
-
-> **displayName**: str
-
-This is the display name of the time zone.
-
-#### Example
+| Property | Type | Description |
+|----------|------|-------------|
+| `id` | `str` | Timezone identifier (e.g., `"Europe/Berlin"`) |
+| `displayName` | `str` | Human-readable name (e.g., `"Central European Time"`) |
 
 ```python
-time_zone = TimeZone.of('America/New_York')
-# Returns the TimeZone instance for the time zone with the ID 'America/New_York'
-print(time_zone.displayName)  # Returns "Eastern Time"
+tz = TimeZone.of('America/New_York')
+stream.log_info(tz.id)           # "America/New_York"
+stream.log_info(tz.displayName)  # "Eastern Time"
 ```
 
-### id
+---
 
-> **id**: str
+## Static Properties
 
-This is the unique identifier of the time zone.
+### UTC()
 
-#### Example
+The UTC timezone.
 
 ```python
-time_zone = TimeZone.of('America/New_York')
-# Returns the TimeZone instance for the time zone with the ID 'America/New_York'
-print(time_zone.id)  # Returns "America/New_York"
+utc = TimeZone.UTC()
+stream.log_info(utc.id)  # "UTC"
 ```
 
-### UTC
-
-> @staticmethod
-> **UTC**() -> [TimeZone](TimeZone.md)
-
-Get the UTC time zone
-
-#### Example
-
-```python
-time_zone = TimeZone.UTC()
-# Returns the UTC time zone
-print(time_zone.displayName)  # Returns "Coordinated Universal Time"
-print(time_zone.id)  # Returns "UTC"
-```
+---
 
 ## Methods
 
-### of()
+### of(zoneId)
 
-> @staticmethod
-> **of**(zone_id: str) -> [TimeZone](TimeZone.md)
+Returns a TimeZone by its identifier.
 
-Get the [displayName](#displayname) and [id](#id) of the time zone
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `zoneId` | `str` | Timezone ID (e.g., `"Europe/Berlin"`, `"America/New_York"`) |
 
-#### Parameters
-
-- **zone_id**: str
-
-  The long name (!) of the time zone. You can find a good list of all available time zones [here](https://howtodoinjava.com/java/date-time/supported-zone-ids-offsets/).
-
-#### Returns
-
-[TimeZone](TimeZone.md)
-
-#### Example
+**Returns:** `TimeZone`
 
 ```python
-time_zone = TimeZone.of('America/New_York')
-# Returns the TimeZone instance for the time zone with the ID 'America/New_York'
-print(time_zone.displayName)  # Returns "Eastern Time"
-print(time_zone.id)  # Returns "America/New_York"
+tz = TimeZone.of('Asia/Tokyo')
 ```
+
+:::tip Finding Timezone IDs
+Use standard IANA timezone IDs. A complete list is available at [howtodoinjava.com](https://howtodoinjava.com/java/date-time/supported-zone-ids-offsets/).
+:::
 
 ### systemDefault()
 
-> @staticmethod
-> **systemDefault**() -> [TimeZone](TimeZone.md)
+Returns the system's default timezone.
 
-Get the system default time zone
-
-#### Returns
-
-[TimeZone](TimeZone.md) - The system default time zone
-
-#### Example
+**Returns:** `TimeZone`
 
 ```python
-time_zone = TimeZone.systemDefault()
-# Returns the system default time zone
-print(time_zone.displayName)  # Returns the display name of the system default time zone, e.g. "Eastern Time"
-print(time_zone.id)  # Returns the ID of the system default time zone, e.g. "America/New_York"
+local = TimeZone.systemDefault()
+stream.log_info(f"Running in: {local.id}")
 ```
+
+---
+
+## See Also
+
+- [`DateTime`](DateTime.md) — Use with DateTime.now(zone) and atZone(zone)
+- [`ZoneOffset`](ZoneOffset.md) — Fixed UTC offset (e.g., +05:30)

@@ -289,7 +289,7 @@ You will probably have simple rules most of the time, however.
 In case the conditions are met, the message is then forwarded to the topic and in the format you define.
 
 * **`Format`**: Pick a format in which you would like to output the data to Kafka.
-  You must have pre-defined the format [here](../formats).
+  You must have pre-defined the format [here](../formats/index.md)).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` to `B´ in a previous step (e.g. by way of
   the [Mapping Asset](/docs/assets/workflow-assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript)).
@@ -361,7 +361,7 @@ If exclusive access cannot be obtained, you will receive an error.
 ![Exclusive Partition (Output Frame)](.asset-output-frame_images/81cb2984.png)
 
 * **`Format`**: Pick a format in which you would like to output the data to Kafka.
-  You must have pre-defined the format [here](../formats).
+  You must have pre-defined the format [here](../formats/index.md).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` to `B´ in a previous step (e.g. by way of
   the [Mapping Asset](/docs/assets/workflow-assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript)).
@@ -426,7 +426,7 @@ You will probably have simple rules most of the time, however.
 In case the conditions are met, the message is then forwarded to SNS in the format you define.
 
 * **`Format`**: Pick a format in which you would like to output the data to Kinesis.
-  You must have pre-defined the format [here](../formats).
+  You must have pre-defined the format [here](../formats/index.md)).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` tpo `B´ in a previous step (e.g. by way of
   the [Mapping Asset](/docs/assets/workflow-assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript)).
@@ -531,7 +531,7 @@ You will probably have simple rules most of the time, however.
 In case the conditions are met, the message is then forwarded to SNS in the format you define.
 
 * **`Format`**: Pick a format in which you would like to output the data to SNS.
-  You must have pre-defined the format [here](../formats).
+  You must have pre-defined the format [here](../formats/index.md)).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` tpo `B´ in a previous step (e.g. by way of
   the [Mapping Asset](/docs/assets/workflow-assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript)).
@@ -737,7 +737,7 @@ You will probably have simple rules most of the time, however.
 In case the conditions are met, the message is then forwarded to SQS in the format you define.
 
 * **`Format`**: Pick a format in which you would like to output the data to SQS.
-  You must have pre-defined the format [here](../formats).
+  You must have pre-defined the format [here](../formats/index.md)).
   Please note that only the data which is part of the format in the data dictionary which you pick here will be written.
   So if you read the data in format `A`, but then want to output format `B`, then the relevant data must have been mapped from `A` tpo `B´ in a previous step (e.g. by way of
   the [Mapping Asset](/docs/assets/workflow-assets/processors-flow/asset-flow-mapping) or via [Javascript](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript)).

@@ -1,3 +1,7 @@
+---
+description: AWS Extension Asset for layline.io — integrate AWS Lambda functions into your data processing workflows.
+---
+
 # Extension AWS
 
 > Deploys an AWS macro resolver that provides `${aws:...}` macros for accessing
@@ -106,6 +110,6 @@ Configure the **Parameter Store ARN** field to set a base ARN prefix. Then refer
 
 ## See Also
 
-- [Secret](/docs/assets/workflow-assets/resources/asset-resource-secret) — Secure storage for sensitive values within layline.io
-- [Environment](/docs/assets/workflow-assets/resources/asset-resource-environment) — Project-wide configuration values
-- [Engine Configuration](../../deployment-assets/asset-deployment-engine) — Runtime configuration including "Other Resources"
+- [Secret](/docs/assets/workflow-assets/resources/asset-resource-secret.md) — Secure storage for sensitive values within layline.io
+- [Environment](/docs/assets/workflow-assets/resources/asset-resource-environment.md) — Project-wide configuration values
+- [Engine Configuration](../../deployment-assets/asset-deployment-engine.md) — Runtime configuration including "Other Resources"

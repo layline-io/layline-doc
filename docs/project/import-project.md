@@ -48,6 +48,6 @@ Correct the issue and try again. Use **Dismiss** on the failure banner to clear 
 
 ## See Also
 
-- [**Create New Project**](create-project) — Start a fresh project from scratch
-- [**Add Existing Project**](add-existing-project) — Register an existing project folder without importing
-- [**Project Hub**](index.md) — Overview of the Project tab
+- [**Create New Project**](./create-project.md) — Start a fresh project from scratch
+- [**Add Existing Project**](./add-existing-project.md) — Register an existing project folder without importing
+- [**Project Hub**](./index.md) — Overview of the Project tab

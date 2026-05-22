@@ -1,38 +1,44 @@
+---
+description: >-
+  > const dataDictionary: DataDictionary(../classes/DataDictionary.md).
+---
+
 # dataDictionary
 
 > `const` **dataDictionary**: [`DataDictionary`](../classes/DataDictionary.md)
 
-## What
-`dataDictionary` is an instance of the DataDictionary class.
-It is automatically created and made available in any script-based Processor within layline.io, such as the Python Processor.
-The dataDictionary provides access to the data dictionary structures defined in your Project and allows you to create messages based on these structures.
+Global instance providing access to your project's data dictionary structures. Use it to navigate types and create new messages.
 
-## Usage Notes
+---
 
-1. The dataDictionary variable is globally available in your Python scripts within layline.io.
-2. You can access it directly without the need to instantiate it.
-3. Use the type property to navigate through your data dictionary structure.
-4. The createMessage method is particularly useful when you need to create new messages based on your defined structures, for example when splitting or aggregating messages.
-5. Always refer to your Project's specific data dictionary structure when using dataDictionary.
-6. The dataDictionary object is read-only. You cannot modify the data dictionary structure through this object; it's used for accessing the structure and creating messages based on it.
+## At a Glance
 
-Remember that the exact structure accessible through dataDictionary.type depends on the data formats and structures you've defined in your layline.io Project. Always consult your Project's configuration to understand the available types and structures.
+```js
+// Navigate to a type
+const detailType = dataDictionary.type.MyFormat.Detail;
 
-Please check the [DataDictionary](../classes/DataDictionary.md) documentation for more information on available methods and properties.
+// Create a message from a data dictionary structure
+const newMessage = dataDictionary.createMessage(dataDictionary.type.MyCorp.MyStructure.Record);
 
-## Example
-
-```ts
-# Accessing a specific type in the data dictionary
-my_record_type = dataDictionary.type.MyFormat.Detail
-
-# Creating a new message based on a data dictionary structure
-new_message = dataDictionary.createMessage(dataDictionary.type.MyCorp.MyStructure.MySubstructure.Record)
-
-# Setting values on the new message
-new_message.data.MyFormat.Header.RECORD_TYPE = "HDR"
-new_message.data.MyFormat.Header.TIMESTAMP = DateTime.now()
-
-# Emitting the new message
-stream.emit(new_message, OUTPUT_PORT)
+// Populate and emit
+newMessage.data.HEADER.RECORD_TYPE = 'HDR';
+newMessage.data.HEADER.TIMESTAMP = DateTime.now();
+stream.emit(newMessage, OUTPUT_PORT);
 ```
+
+---
+
+## Key Points
+
+| | |
+|---|---|
+| **Scope** | Globally available in all script-based processors |
+| **Read-only** | The structure itself cannot be modified at runtime |
+| **Dynamic** | `dataDictionary.type.*` reflects your project's specific configuration |
+
+---
+
+## See Also
+
+- [`DataDictionary`](../classes/DataDictionary.md) — Full class reference
+- [`Message`](../classes/Message.md) — Working with messages

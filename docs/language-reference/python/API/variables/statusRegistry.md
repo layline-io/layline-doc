@@ -1,33 +1,47 @@
 ---
+description: >-
+  ---.
+---
+
+---
 id: py-statusRegistry
 ---
 
-#  statusRegistry
+# statusRegistry
 
-> **statusRegistry**: StatusRegistry
+> `const` **statusRegistry**: [`StatusRegistry`](../classes/StatusRegistry.md)
 
-## What
-statusRegistry is an instance of the StatusRegistry class.
-It is automatically created when a deployment is started.
+Global registry of all defined status vendors and codes for the current project. Includes the built-in "LAY" vendor plus any custom vendors defined in Resource Status Definition Assets.
 
-## How to use
-Please check the [StatusRegistry](../classes/StatusRegistry.md) documentation on the properties and methods available.
+---
 
-## Example
+## At a Glance
 
 ```python
-# Access all defined Vendors via the global statusRegistry object
-vendors = statusRegistry.vendors
+VENDOR = Status.getVendorByName('MyCompany')
 
-# Access the StatusCodes for the first vendor (index 0)
-status_codes_for_vendor = statusRegistry.vendors[0].statusCodes
-
-# Get the code of a specific StatusCode (e.g., index 50) for the first vendor
-code = statusRegistry.vendors[0].statusCodes[50].code
-
-# Get the message of a specific StatusCode (e.g., index 50) for the first vendor
-message = statusRegistry.vendors[0].statusCodes[50].message
-
-# Get the Vendor object associated with a specific StatusCode
-vendor = statusRegistry.vendors[0].statusCodes[50].vendor
+def on_message():
+    if invalid:
+        message.addStatus(Severity.ERROR, Status.create(VENDOR, 'INVALID_DATA', reason))
 ```
+
+---
+
+## Common Tasks
+
+| Task | Method / Property |
+|------|-----------------|
+| Get all vendors | `statusRegistry.vendors` |
+| Get vendor by ID | `statusRegistry.getVendorById(0)` |
+| Get vendor by long name | `statusRegistry.getVendorByLongName('MyCompany')` |
+| Get vendor by short name | `statusRegistry.getVendorByShortName('MYCO')` |
+| Get language codes | `statusRegistry.languages` |
+| Access status codes | `statusRegistry.vendors[0].statusCodes` |
+
+---
+
+## See Also
+
+- [`StatusRegistry`](../classes/StatusRegistry.md) — Full class reference
+- [`Status`](../classes/Status.md) — Creating status objects
+- [`Severity`](../enumerations/Severity.md) — Severity levels

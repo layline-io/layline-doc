@@ -8,7 +8,7 @@ description: Short overview of installation and run options for layline.io.
 
 Welcome to layline.io. This section helps you get up and running on a single-instance standalone installation — either on your laptop or a standalone server. Distributed cluster setups and container orchestration (e.g. Kubernetes) are covered separately.
 
-If you are new to layline.io, start with [What is layline.io?](what-is-layline-io) to understand what the platform does and who it is for.
+If you are new to layline.io, start with [What is layline.io?](./what-is-layline-io.md) to understand what the platform does and who it is for.
 
 ### General Prerequisites
 
@@ -38,13 +38,13 @@ We provide two ways to get started quickly:
 
 | # | Option                                      | Advantages                                                                                    | Limitations                                                          |
 |---|---------------------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| 1 | [Full local installation](install-local)    | Complete setup · Persistent state · Run multiple versions side-by-side | No pre-installed sample projects (can be imported manually) |
-| 2 | [Docker image](install-docker) | No installer required · Pre-installed sample projects · Non-intrusive | Requires Docker · State is not persisted on shutdown |
+| 1 | [Full local installation](./install-local.md)    | Complete setup · Persistent state · Run multiple versions side-by-side | No pre-installed sample projects (can be imported manually) |
+| 2 | [Docker image](./install-docker.md) | No installer required · Pre-installed sample projects · Non-intrusive | Requires Docker · State is not persisted on shutdown |
 
 If you do not have [Docker](https://docs.docker.com/get-docker/) installed, choose **Full local installation**.
 
 ### Running layline.io
 
-After a local installation, follow the [start-up instructions](install-local.md#starting-everything) to launch the Configuration Server and Reactive Engine.
+After a local installation, follow the [start-up instructions](./install-local.md#starting-everything) to launch the Configuration Server and Reactive Engine.
 
 When using the Docker image, both components start automatically — no additional steps required.

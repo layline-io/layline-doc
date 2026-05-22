@@ -138,8 +138,8 @@ Temporary files that remain in the Temporary Directory after no active processin
 ## See Also
 
 - [**VFS Source**](/docs/assets/workflow-assets/sources/asset-source-virtual-fs.md) — Read files from a VFS mount
-- [**VFS Connection**](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs) — VFS connection configuration
-- [**SMB Sink**](/docs/assets/workflow-assets/sinks/asset-sink-smb) — Write files to SMB/CIFS shares
+- [**VFS Connection**](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs.md) — VFS connection configuration
+- [**SMB Sink**](../sinks/asset-sink-smb.md) — Write files to SMB/CIFS shares
 
 ---
 <WipDisclaimer></WipDisclaimer>

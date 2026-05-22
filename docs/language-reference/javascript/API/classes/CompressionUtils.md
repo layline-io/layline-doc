@@ -1,193 +1,141 @@
+---
+description: Utility class for compressing and decompressing data, plus reading ZIP archives. All methods are static.
+---
+
 # CompressionUtils
 
-This abstract class provides utility functions for compression and decompression of data.
+Utility class for compressing and decompressing data, plus reading ZIP archives. All methods are static.
 
-## Methods
+---
 
-### compress()
-
-> `static` **compress**(`algorithm`, `data`): `Uint8Array`[]
-
-The purpose of this function is to provide a way to programmatically compress data using a specific algorithm.
-This functionality can be useful in scenarios where you need to compress data before storing it or sending it over a network.
-The function takes an array of Uint8Array objects as input and returns an array of compressed Uint8Array objects.
-The algorithm parameter specifies the compression algorithm to use, such as "gzip" or "deflate".
-If the algorithm is not supported, the function will throw an error.
-
-#### Parameters
-
-##### algorithm
-
-`string`
-
-The compression algorithm to use, such as "gzip" or "deflate".
-The following algorithms are supported:
-- `bz`, "bzip2: Bzip2 compression algorithm.
-- `deflate`: Deflate compression algorithm.
-- `gz`, "gzip": Gzip compression algorithm.
-- `lz4framed`: LZ4 compression algorithm.
-- `lz4block`": LZ4 block compression algorithm.
-- `lzma`: LZMA compression algorithm.
-- `snappy`: Snappy compression algorithm.
-- `xz`: XZ compression algorithm.
-- `zstd`: Zstandard compression algorithm.
-
-##### data
-
-`Uint8Array`[]
-
-An array of Uint8Array objects to compress.
-
-#### Returns
-
-`Uint8Array`[]
-
-- An array of compressed Uint8Array objects.
-
-#### Example
+## At a Glance
 
 ```js
-// Compress data using the gzip algorithm.
-const data = getUncompressedData(); // Assume this returns the data as a byte array
-const compressedData = CompressionUtils.compress('gzip', [data]);
+// Compress data before sending
+const data = StringUtils.toBytes("Large payload...");
+const compressed = CompressionUtils.compress('gzip', data);
+
+// Decompress received data
+const decompressed = CompressionUtils.decompress('gzip', compressed);
+
+// Read ZIP archive contents
+const files = CompressionUtils.zipList(zipData);
+const content = CompressionUtils.zipRead(zipData, 'data.csv');
 ```
 
-***
+---
 
-### decompress()
+## Compression
 
-> `static` **decompress**(`algorithm`, `data`): `Uint8Array`[]
+### compress(algorithm, data)
 
-The purpose of this function is to provide a way to programmatically decompress data using a specific algorithm.
-This functionality can be useful in scenarios where you need to decompress data that was previously compressed.
-The function takes an array of Uint8Array objects as input and returns an array of decompressed Uint8Array objects.
-The algorithm parameter specifies the compression algorithm to use, such as "gzip" or "deflate".
-If the algorithm is not supported, the function will throw an error.
+Compresses a byte array using the specified algorithm.
 
-#### Parameters
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `algorithm` | `string` | Compression algorithm |
+| `data` | `Uint8Array` | Byte array to compress |
 
-##### algorithm
-
-`string`
-
-The compression algorithm to use, such as "gzip" or "deflate".
-The following algorithms are supported:
-- `auto`: Automatically detect the compression algorithm.
-- `brotli`: Brotli compression algorithm.
-- `bz`, "bzip2: Bzip2 compression algorithm.
-- `deflate`: Deflate compression algorithm.
-- `deflate64`: Deflate64 compression algorithm.
-- `gz`, "gzip": Gzip compression algorithm.
-- `lz4framed`: LZ4 compression algorithm.
-- `lz4block`": LZ4 block compression algorithm.
-- `lzma`: LZMA compression algorithm.
-- `snappy`: Snappy compression algorithm.
-- `xz`: XZ compression algorithm.
-- `z`: Zlib compression algorithm.
-- `zstd`: Zstandard compression algorithm.
-
-##### data
-
-`Uint8Array`[]
-
-An array of Uint8Array objects to decompress.
-
-#### Returns
-
-`Uint8Array`[]
-
-- An array of decompressed Uint8Array objects.
-
-#### Example
+**Returns:** `Uint8Array`
 
 ```js
-// Decompress data using the gzip algorithm.
-const compressedData = getCompressedData(); // Assume this returns the compressed data as a byte array
-const decompressedData = CompressionUtils.decompress('gzip', [compressedData]);
+const data = StringUtils.toBytes("Hello, World!");
+const compressed = CompressionUtils.compress('gzip', data);
 ```
 
-***
+### decompress(algorithm, data)
 
-### zipList()
+Decompresses a byte array.
 
-> `static` **zipList**(`data`, `password?`): `string`[]
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `algorithm` | `string` | Compression algorithm (or `'auto'` to detect) |
+| `data` | `Uint8Array` | Compressed byte array |
 
-The purpose of this code is to provide a way to extract the list of file names from a zip archive, optionally using a password to decrypt the content.
-This functionality can be useful in scenarios where you need to programmatically access the contents of a zip file without actually extracting the entire archive.
-
-#### Parameters
-
-##### data
-
-`Uint8Array`[]
-
-The zip archive data as a Uint8Array.
-
-##### password?
-
-`string`
-
-Optional password to use for reading the zip archive.
-
-#### Returns
-
-`string`[]
-
-- The list of file names in the zip archive.
-
-#### Example
+**Returns:** `Uint8Array`
 
 ```js
-// Extract the list of file names from a zip archive.
-const zipData = getZipData(); // Assume this returns the zip file as a byte array
-const fileNames = CompressionUtils.zipList(zipData);
+const decompressed = CompressionUtils.decompress('gzip', compressed);
+const text = StringUtils.fromBytes(decompressed);
 ```
 
-***
+### Supported Algorithms
 
-### zipRead()
+| Algorithm | Description |
+|-----------|-------------|
+| `gzip` / `gz` | Gzip (most common) |
+| `deflate` | Deflate |
+| `bzip2` / `bz` | Bzip2 |
+| `lz4framed` | LZ4 framed |
+| `lz4block` | LZ4 block |
+| `lzma` | LZMA |
+| `snappy` | Snappy (fast) |
+| `xz` | XZ |
+| `zstd` | Zstandard |
+| `auto` | Auto-detect (decompress only) |
 
-> `static` **zipRead**(`data`, `file`, `password?`): `string`[]
+---
 
-The purpose of this function is to provide a way to read the contents of a specific file from a zip archive, either with or without a password.
-This functionality can be useful in scenarios where you need to programmatically access the contents of a file inside a zip archive without extracting the entire archive.
+## ZIP Archives
 
-#### Parameters
+### zipList(data, password?)
 
-##### data
+Lists all file names in a ZIP archive.
 
-`Uint8Array`[]
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `data` | `Uint8Array` | ZIP archive bytes |
+| `password` | `string` (optional) | Password if encrypted |
 
-The zip archive data as a Uint8Array.
-
-##### file
-
-`string`
-
-The name of the file to read from the zip archive.
-
-##### password?
-
-`string`
-
-Optional password to use for reading the zip archive.
-
-#### Returns
-
-`string`[]
-
-- The contents of the file as a string array.
-
-#### Example
+**Returns:** `string[]`
 
 ```js
-// Read the contents of a file from a zip archive.
-const zipData = getZipData(); // Assume this returns the zip file as a byte array
-const fileContents = CompressionUtils.zipRead(zipData, 'file.txt');
+const files = CompressionUtils.zipList(zipData);
+stream.logInfo(`Files in archive: ${files.join(', ')}`);
 ```
 
+### zipRead(data, file, password?)
+
+Reads a specific file from a ZIP archive.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `data` | `Uint8Array` | ZIP archive bytes |
+| `file` | `string` | File name to extract |
+| `password` | `string` (optional) | Password if encrypted |
+
+**Returns:** `string[]`
+
 ```js
-// Reading a file with password
-const zipData = getZipData(); // Assume this returns the zip file as a byte array
-const fileContent = CompressionUtils.zipRead(zipData, "example.txt", "password123");
+// Read a file
+const lines = CompressionUtils.zipRead(zipData, 'data.csv');
+for (const line of lines) {
+    stream.logInfo(line);
+}
+
+// Read with password
+const lines = CompressionUtils.zipRead(zipData, 'sensitive.csv', 'password123');
 ```
+
+---
+
+## Complete Example
+
+```js
+export function onMessage() {
+    const fileContent = message.getByteString(dataDictionary.type.File.RAW_CONTENT);
+    const bytes = StringUtils.toBytes(fileContent);
+
+    // Compress for storage
+    const compressed = CompressionUtils.compress('zstd', bytes);
+    message.setByteString(dataDictionary.type.File.COMPRESSED, compressed);
+
+    stream.emit(message, OUTPUT_PORT);
+}
+```
+
+---
+
+## See Also
+
+- [`StringUtils`](StringUtils.md) — Convert between strings and bytes

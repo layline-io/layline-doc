@@ -1,6 +1,7 @@
 ---
 title: layline.io at a Glance
 sidebar_position: 1
+description: layline.io is an opinionated event data processor for real-time and batch data pipelines. Learn what it does and how it works in 5 minutes.
 ---
 
 # layline.io at a Glance
@@ -50,7 +51,7 @@ Projects you design in the Configuration Center are stored by the Configuration 
 
 ## Ready to go deeper?
 
-- **[Core Concepts in 5 Minutes](core-concepts)** — understand Projects, Assets, Workflows, and Deployment
-- **[Install locally](install-local)** — full installation on your machine (Windows, macOS, Linux)
-- **[Run via Docker](install-docker)** — get up and running quickly with a pre-configured image
+- **[Core Concepts in 5 Minutes](./core-concepts.md)** — understand Projects, Assets, Workflows, and Deployment
+- **[Install locally](./install-local.md)** — full installation on your machine (Windows, macOS, Linux)
+- **[Run via Docker](./install-docker.md)** — get up and running quickly with a pre-configured image
 - **[What is layline.io? (full)](../concept/introduction.md)** — motivation, design philosophy, and feature overview

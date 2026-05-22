@@ -8,7 +8,7 @@ description: Getting started with Workflows
 
 ## Download, Installation & Start
 
-In case you haven't installed layline.io yet, then check [here](../../quickstart/quickstart-overview) for
+In case you haven't installed layline.io yet, then check [here](../../quickstart/quickstart-overview.md) for
 * where to download 
 * how to install, and
 * how to start. 

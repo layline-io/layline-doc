@@ -11,6 +11,24 @@ const config = {
     favicon: 'img/favicons/favicon.ico',
     noIndex: false,
 
+    headTags: [
+        {
+            tagName: 'meta',
+            attributes: {
+                name: 'theme-color',
+                content: '#1a1a1a',
+            },
+        },
+        {
+            tagName: 'link',
+            attributes: {
+                rel: 'apple-touch-icon',
+                sizes: '180x180',
+                href: '/img/favicons/apple-icon-180x180.png',
+            },
+        },
+    ],
+
     // Set the production url of your site here
     url: 'https://doc.layline.io',
     // Set the /<baseUrl>/ pathname under which your site is served
@@ -65,11 +83,11 @@ const config = {
                         }
                     },
                     exclude: [
-                        '**/language-reference/javascript/API/globals.md', // exclude the auto-generated globals.md file from the API section
-                        // '**/**language-reference/**/globals.md', // exclude the auto-generated globals.md file from the API section
-                        '**/globals.md',
+                        // '**/globals.md', // Typedoc removed - no more auto-generated globals.md
                         'snippets/**', // exclude the snippets folder from sidebar generation
                     ],
+                    showLastUpdateAuthor: false,
+                    showLastUpdateTime: true,
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
@@ -100,21 +118,22 @@ const config = {
                 ],
             },
         ],
-        ['docusaurus-plugin-typedoc',
-            {
-                id: 'v2.x',
-                out: './docs/language-reference/javascript/API',
-                entryPoints: ['./docs/projects/layline/src/javascript/index.ts'],
-                tsconfig: './docs/projects/tsconfig.json',
-                readme: './docs/projects/layline/src/javascript/index.mdx',
-                sidebar: {
-                    autoConfiguration: true,
-                },
-                watch: process.env.TYPEDOC_WATCH,
-                disableSources: true,
-                plugin: [require.resolve('./src/customCode/typedoc-custom-plugin.js')],
-            }
-        ],
+        // Typedoc plugin removed - API docs are now maintained manually
+        // ['docusaurus-plugin-typedoc',
+        //     {
+        //         id: 'v2.x',
+        //         out: './docs/language-reference/javascript/API',
+        //         entryPoints: ['./docs/projects/layline/src/javascript/index.ts'],
+        //         tsconfig: './docs/projects/tsconfig.json',
+        //         readme: 'none',
+        //         sidebar: {
+        //             autoConfiguration: true,
+        //         },
+        //         watch: process.env.TYPEDOC_WATCH,
+        //         disableSources: true,
+        //         plugin: [require.resolve('./src/customCode/typedoc-custom-plugin.js')],
+        //     }
+        // ],
         ['@docusaurus/plugin-ideal-image',
             {
                 quality: 70,
@@ -130,12 +149,13 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             // Replace with your project's social card
-            image: 'img/social/6_h630_twitter.png',
+            image: 'img/social/layline-doc-og.jpg',
             navbar: {
-                title: 'layline.io',
+                title: '',
                 logo: {
                     alt: 'layline.io',
-                    src: 'img/logo/layline_logo.svg',
+                    src: 'img/logo/logo_name_for_light_background.svg',
+                    srcDark: 'img/logo/logo_name_for_dark_background.svg',
                     href: 'https://layline.io',
                 },
                 items: [
@@ -154,37 +174,64 @@ const config = {
                 ],
             },
             footer: {
-                style: 'dark',
+                logo: {
+                    src: 'img/logo/logo_name_for_light_background.svg',
+                    srcDark: 'img/logo/logo_name_for_dark_background.svg',
+                    alt: 'layline.io',
+                    href: 'https://layline.io',
+                    width: 160,
+                    height: 40,
+                },
                 links: [
                     {
-                        title: 'Docs',
-                        // items: [
-                        //     {
-                        //         label: 'Documentation',
-                        //         to: '../index',
-                        //     },
-                        // ],
-                    },
-                    {
-                        title: 'layline.io',
+                        title: 'Product',
                         items: [
                             {
                                 label: 'Corporate Website',
                                 href: 'https://layline.io',
                             },
-                        ],
-                    },
-                    {
-                        title: 'More',
-                        items: [
                             {
                                 label: 'Blog',
                                 href: 'https://layline.io/blog',
                             },
+                            {
+                                label: 'Pricing',
+                                href: 'https://layline.io/pricing',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Documentation',
+                        items: [
+                            {
+                                label: 'Quickstart',
+                                to: '/docs/quickstart/quickstart-overview',
+                            },
+                            {
+                                label: 'Core Concepts',
+                                to: '/docs/concept',
+                            },
+                            {
+                                label: 'Language Reference',
+                                to: '/docs/language-reference',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Legal',
+                        items: [
+                            {
+                                label: 'Privacy Policy',
+                                href: 'https://layline.io/privacy-policy',
+                            },
+                            {
+                                label: 'Terms of Service',
+                                href: 'https://layline.io/terms-of-service',
+                            },
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} layline.io GmbH.`,
+                copyright: `© ${new Date().getFullYear()} layline.io GmbH. All rights reserved.`,
             },
             prism: {
                 theme: lightCodeTheme,
@@ -195,6 +242,10 @@ const config = {
                 maxHeadingLevel: 5,
             },
 
+            metadata: [
+                { name: 'keywords', content: 'event processing, data pipeline, ETL, real-time streaming, low-code, workflow automation, data integration, stream processing, layline.io' },
+                { name: 'author', content: 'layline.io GmbH' },
+            ],
             algolia: {
                 // The application ID provided by Algolia
                 appId: '6XU9IX6WDZ',
@@ -225,6 +276,6 @@ const config = {
     themes: ['@docusaurus/theme-mermaid'],
 };
 
-console.log(require.resolve('./src/customCode/typedoc-custom-plugin.js'));
+// console.log(require.resolve('./src/customCode/typedoc-custom-plugin.js')); // Typedoc removed
 
 module.exports = config;

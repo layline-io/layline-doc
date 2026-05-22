@@ -423,9 +423,9 @@ When viewing the Log tab, new entries appear automatically as they are generated
 
 ## See Also
 
-- [**Engine State Overview**](./index.mdx) — High-level monitoring of all asset types
+- [**Engine State Overview**](./index.md) — High-level monitoring of all asset types
 - [**Data Dictionary Assets**](../../assets/workflow-assets/resources/asset-resource-data-dictionary-updates.md) — Designing and configuring data dictionaries
 - [**Directory Assets**](../../assets/workflow-assets/resources/asset-resource-directories.md) — Configuring directory access
 - [**Environment Assets**](../../assets/workflow-assets/resources/asset-resource-environment.md) — Managing environment variables
 - [**Secret Assets**](../../assets/workflow-assets/resources/asset-resource-secret.md) — Managing sensitive credentials
-- [**Deployment Assets**](../../../assets/deployment-assets) — Understanding how resources are deployed
+- [**Deployment Assets**](../../assets/deployment-assets/index.md) — Understanding how resources are deployed

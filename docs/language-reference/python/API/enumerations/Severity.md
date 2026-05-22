@@ -1,72 +1,40 @@
 ---
+description: Severity levels for message status tracking. Used with [`Message.addStatus() and related methods.
+---
+
+---
 id: py-Severity
 ---
 
 # Severity
 
-Enumeration for use of Severity levels in [Message](../classes/Message)
+Severity levels for message status tracking. Used with [`Message.addStatus()`](../classes/Message.md) and related methods.
 
-Example use:
+---
+
+## At a Glance
+
 ```python
-# Adding a severity status to a message:
+VENDOR = Status.getVendorByName('MyVendor')
+
 if error:
-    message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_VALUE', value_string))
+    message.addStatus(Severity.ERROR, Status.create(VENDOR, 'ILLEGAL_VALUE', value))
 ```
+
+---
 
 ## Enumeration Members
 
-### ERROR
+| Member | Value | Description |
+|--------|-------|-------------|
+| `INFO` | `0` | Informational — no action required |
+| `WARNING` | `1` | Potential issue — worth reviewing |
+| `ERROR` | `2` | Processing error — may affect downstream handling |
+| `FATAL` | `3` | Critical failure — typically stops processing |
 
-> **ERROR**: 2
+---
 
-### FATAL
+## See Also
 
-> **FATAL**: 3
-
-### INFO
-
-> **INFO**: 0
-
-### WARNING
-
-> **WARNING**: 1
-
-## Usage
-
-In Python, this enumeration would typically be implemented using the `Enum` class from the `enum` module. Here's how it might be defined:
-
-```python
-from enum import IntEnum
-
-class Severity(IntEnum):
-    INFO = 0
-    WARNING = 1
-    ERROR = 2
-    FATAL = 3
-```
-
-You can then use it in your code like this:
-
-```python
-from severity import Severity
-
-# Using the enumeration
-current_severity = Severity.ERROR
-
-# Comparing severity levels
-if current_severity >= Severity.ERROR:
-    print("This is a high severity issue!")
-
-# Switch-case equivalent using a dictionary
-severity_actions = {
-    Severity.INFO: lambda: print("Info message"),
-    Severity.WARNING: lambda: print("Warning message"),
-    Severity.ERROR: lambda: print("Error message"),
-    Severity.FATAL: lambda: print("Fatal error message"),
-}
-
-# Perform action based on severity
-severity_actions[current_severity]()
-```
-
-This implementation allows for easy comparison of severity levels and provides a type-safe way to work with severity in your Python code.
+- [`Message`](../classes/Message.md) — Add and query status on messages
+- [`Status`](../classes/Status.md) — Status object details

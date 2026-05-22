@@ -84,7 +84,7 @@ Since Categories are fixed, all organization happens at the Folder level:
 - Use clear, descriptive Folder names
 - Consider organizing by project, environment, or function
 
-See [Folders](./folders) for detailed guidance on Folder organization.
+See [Folders](./folders.md) for detailed guidance on Folder organization.
 
 ## Copying Between Projects
 
@@ -104,6 +104,6 @@ The Category structure (Assets vs Messages) remains consistent across all Projec
 
 ## See Also
 
-- [**Folders**](./folders) — Organizing Elements within Categories
-- [**Elements**](./elements) — The Assets and Messages stored in Categories
-- [**Shelf Overview**](./) — Introduction to the Shelf concept
+- [**Folders**](./folders.md) — Organizing Elements within Categories
+- [**Elements**](./elements.md) — The Assets and Messages stored in Categories
+- [**Shelf Overview**](./index.md) — Introduction to the Shelf concept

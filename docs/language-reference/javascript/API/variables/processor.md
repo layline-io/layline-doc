@@ -1,61 +1,53 @@
+---
+description: >-
+  > const processor: Processor(../classes/Processor.md).
+---
+
 # processor
 
 > `const` **processor**: [`Processor`](../classes/Processor.md)
 
-## What
-`processor` is an instance of the Processor class.
-It is automatically created for each Processor within a Workflow when a deployment is started.
-The Processor is the main entry point for processing data within a Workflow.
-It provides methods to access InputPorts, OutputPorts, and other Processor-specific functionality.
+The current processor instance. Provides access to ports, arguments, logging, and processor-specific configuration.
 
-## How to use
-Please check the [Processor](../classes/Processor.md) documentation for more information.
+---
 
-## Example
+## At a Glance
 
 ```js
-// Get the Processor's name
-const processorName = processor.getName();
-print('Current processor: ' + processorName);
-
-// Get an output port
-const OUTPUT_PORT = processor.getOutputPort('MyOutput');
-
-// Get configured arguments
-const args = processor.getArguments();
-const myCustomArg = args.myCustomArg;
-
-// Expand a string using environment variables
-const expandedString = processor.expandString('The username is ${lay:USERNAME}.');
-
-// Logging
-processor.logInfo('Processing started');
-processor.logWarning('Unusual data encountered');
-processor.logError('An error occurred during processing');
-
-// Using processor in lifecycle hooks
 export function onInit() {
+    // Resolve output port once at init
     OUTPUT_PORT = processor.getOutputPort('Output');
 }
 
 export function onMessage() {
-    // Process the message
-    // ...
-    // Emit the processed message
-    stream.emit(message, OUTPUT_PORT);
-}
+    // Log with processor context
+    processor.logInfo('Processing message ' + message.id);
 
-export function onStreamStart() {
-    processor.logInfo('Starting to process stream: ' + stream.getName());
-}
+    // Access custom arguments
+    const args = processor.getArguments();
+    const timeout = args.timeoutMs || 5000;
 
-export function onStreamEnd() {
-    processor.logInfo('Finished processing stream: ' + stream.getName());
+    // Expand environment variables in strings
+    const path = processor.expandString('${lay:DATA_DIR}/input.csv');
 }
 ```
 
-Note: The exact methods and properties available on the `processor` object may vary depending on your specific layline.io configuration and the type of Processor being used. Always refer to the most up-to-date documentation provided by layline.io for the definitive guide on using the `processor` object in JavaScript scripts.
+---
 
-## Global
+## Common Tasks
 
-## Constant
+| Task | Method |
+|------|--------|
+| Get output port | `processor.getOutputPort(name)` |
+| Get input port | `processor.getInputPort(name)` |
+| Read arguments | `processor.getArguments()` |
+| Expand variables | `processor.expandString(template)` |
+| Log info | `processor.logInfo(msg)` |
+| Log warning | `processor.logWarning(msg)` |
+| Log error | `processor.logError(msg)` |
+
+---
+
+## See Also
+
+- [`Processor`](../classes/Processor.md) — Full class reference

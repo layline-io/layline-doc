@@ -1,133 +1,68 @@
 ---
+description: Email structure used with [`Email.send().
+---
+
+---
 id: py-EmailMessage
 ---
 
 # EmailMessage
 
-Interface representing an email message structure.
-Used by the Email service to send emails.
-Used in the [`Email.Send()`](../classes/Email.md#send) method.
+Email structure used with [`Email.send()`](../classes/Email.md).
+
+---
+
+## At a Glance
+
+```python
+Email.send({
+    "From": [{"Address": "sender@example.com", "PersonalName": "Sender Name"}],
+    "To":   [{"Address": "recipient@example.com", "PersonalName": "Recipient Name"}],
+    "Subject": "Hello from layline.io",
+    "Body": "This is the email body."
+})
+```
+
+---
 
 ## Properties
 
-### Bcc
+### To / Cc / Bcc
 
-> **Bcc**: `list[{Address: str, PersonalName: str}]`
+Array of recipient objects, each with `Address` and `PersonalName`.
 
-List of BCC recipient information with address and personal name.
+| Property | Type | Description |
+|----------|------|-------------|
+| `Address` | `str` | Email address |
+| `PersonalName` | `str` | Display name |
 
-Each entry in the list should contain:
-- `Address`: The email address
-- `PersonalName`: The personal name (optional)
+```python
+"To": [
+    {"Address": "alice@example.com", "PersonalName": "Alice"},
+    {"Address": "bob@example.com",   "PersonalName": "Bob"}
+]
+```
 
-***
+### ToList / CcList / BccList
 
-### BccList
+Comma or semicolon separated string of email addresses. Use as a shortcut when you don't need display names.
 
-> **BccList**: `str`
-
-Comma or semicolon separated list of BCC recipient email addresses.
-
-***
-
-### Body
-
-> **Body**: `str`
-
-The body content of the email.
-
-***
-
-### Cc
-
-> **Cc**: `list[{Address: str, PersonalName: str}]`
-
-List of CC recipient information with address and personal name.
-
-Each entry in the list should contain:
-- `Address`: The email address
-- `PersonalName`: The personal name (optional)
-
-***
-
-### CcList
-
-> **CcList**: `str`
-
-Comma or semicolon separated list of CC recipient email addresses.
-
-***
+```python
+"ToList": "alice@example.com; bob@example.com"
+```
 
 ### From
 
-> **From**: `list[{Address: str, PersonalName: str}]`
+Array of sender objects with the same structure as `To`.
 
-List of sender information with address and personal name.
-
-Each entry in the list should contain:
-- `Address`: The email address
-- `PersonalName`: The personal name (optional)
-
-***
+```python
+"From": [{"Address": "noreply@example.com", "PersonalName": "System"}]
+```
 
 ### Subject
 
-> **Subject**: `str`
+`str` — The email subject line.
 
-The subject line of the email.
+### Body
 
-***
-
-### To
-
-> **To**: `list[{Address: str, PersonalName: str}]`
-
-List of recipient information with address and personal name.
-
-Each entry in the list should contain:
-- `Address`: The email address
-- `PersonalName`: The personal name (optional)
-
-***
-
-### ToList
-
-> **ToList**: `str`
-
-Comma or semicolon separated list of recipient email addresses.
-
-## Example
-
-```python
-# Example email message structure
-email_message = {
-    "From": [{
-        "Address": "sender@example.com",
-        "PersonalName": "John Doe"
-    }],
-    "To": [{
-        "Address": "recipient@example.com",
-        "PersonalName": "Jane Doe"
-    }],
-    "Cc": [{
-        "Address": "cc@example.com",
-        "PersonalName": "CC Recipient"
-    }],
-    "Bcc": [{
-        "Address": "bcc@example.com",
-        "PersonalName": "BCC Recipient"
-    }],
-    "Subject": "Test Email",
-    "Body": "This is a test email message."
-}
-
-# Alternative using string lists
-email_message_simple = {
-    "From": "sender@example.com",
-    "ToList": "recipient1@example.com;recipient2@example.com",
-    "CcList": "cc@example.com",
-    "BccList": "bcc@example.com",
-    "Subject": "Test Email",
-    "Body": "This is a test email message."
-}
-```
+`str` — The email body content.

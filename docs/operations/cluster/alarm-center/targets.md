@@ -147,13 +147,13 @@ The **Mail Ops Editor** shows a splitter:
 | **CC** | Carbon-copy recipients. |
 | **BCC** | Blind carbon-copy recipients. |
 | **Use HTML** | Enables HTML formatting for this mail. |
-| **Subject Template** | Name of a template defined in the [Templates](./templates) tab. Used for the email subject. |
-| **Body Template** | Name of a template defined in the [Templates](./templates) tab. Used for the email body. |
+| **Subject Template** | Name of a template defined in the [Templates](./templates.md) tab. Used for the email subject. |
+| **Body Template** | Name of a template defined in the [Templates](./templates.md) tab. Used for the email body. |
 
 ![Email target Recipients section showing the Mail Ops Editor](.targets_images/email-target-recipients.png)
 
 :::tip
-Templates can reference alarm variables. See [Templates](./templates) for the available variables and syntax.
+Templates can reference alarm variables. See [Templates](./templates.md) for the available variables and syntax.
 :::
 
 ---
@@ -194,7 +194,7 @@ The **Chats** section lets you define one or more group chats that will receive 
 | **Description** | Optional description. |
 | **Members** | List of member identifiers (emails or user IDs). Press Enter after each entry. |
 | **Use HTML** | Enables HTML formatting for chat messages. |
-| **Body Template** | Name of a template defined in the [Templates](./templates) tab. Used for the chat message body. |
+| **Body Template** | Name of a template defined in the [Templates](./templates.md) tab. Used for the chat message body. |
 
 ![Teams target Chats section showing SupportChat with members andrew and stefan](.targets_images/teams-target-chats.png)
 
@@ -209,7 +209,7 @@ The **Channels** section lets you define one or more Teams channels.
 | **Team Name or ID** | The Microsoft Teams team name or its internal ID. |
 | **Channel Name or ID** | The channel name or its internal ID. |
 | **Use HTML** | Enables HTML formatting for channel messages. |
-| **Body Template** | Name of a template defined in the [Templates](./templates) tab. Used for the channel message body. |
+| **Body Template** | Name of a template defined in the [Templates](./templates.md) tab. Used for the channel message body. |
 
 ![Teams target Channels section showing SupportChannel with team and channel identifiers](.targets_images/teams-target-channels.png)
 

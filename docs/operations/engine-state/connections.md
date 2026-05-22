@@ -249,7 +249,7 @@ When viewing the Log tab, new entries appear automatically as they are generated
 
 ## See Also
 
-- [**Engine State Overview**](./index.mdx) — High-level monitoring of all asset types
+- [**Engine State Overview**](./index.md) — High-level monitoring of all asset types
 - [**Service State**](./services.md) — Runtime service monitoring
 - [**Source State**](./sources.md) — Monitoring input sources
 - [**Sink State**](./sinks.md) — Monitoring output sinks

@@ -1,6 +1,7 @@
 ---
 title: Core Concepts in 5 Minutes
 sidebar_position: 2
+description: Master the six core concepts of layline.io in 5 minutes — Projects, Assets, Workflows, Data Formats, and Deployment.
 ---
 
 # Core Concepts in 5 Minutes
@@ -131,6 +132,6 @@ graph TD
 
 ## Next steps
 
-- **[Install layline.io](install-local)** — get it running on your machine
-- **[Your First Workflow](first-workflow)** — walk through a complete end-to-end example
-- **[Asset Reference](../assets/index.mdx)** — browse all available source, processor, and sink types
+- **[Install layline.io](./install-local.md)** — get it running on your machine
+- **[Your First Workflow](./first-workflow.md)** — walk through a complete end-to-end example
+- **[Asset Reference](../assets/index.md)** — browse all available source, processor, and sink types

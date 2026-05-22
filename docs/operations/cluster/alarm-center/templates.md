@@ -42,7 +42,7 @@ Click **Add Template**, enter a unique name, and confirm. The new template is cr
 Select the template and click the trash icon, then confirm. Deleting a template breaks any target or mail configuration that references it by name.
 
 :::warning
-Before deleting a template, check your [Alarm Targets](./targets) to make sure no mail, chat, or channel is still using it.
+Before deleting a template, check your [Alarm Targets](./targets.md) to make sure no mail, chat, or channel is still using it.
 :::
 
 ## Template details

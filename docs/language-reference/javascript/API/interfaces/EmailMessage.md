@@ -1,108 +1,64 @@
+---
+description: Email structure used with [`Email.
+---
+
 # EmailMessage
 
-Interface representing an email message structure.
-Used in the [`Email.Send()`](../classes/Email.md#send) method.
+Email structure used with [`Email`](../classes/Email.md).
+
+---
+
+## At a Glance
+
+```js
+Email.send({
+    From: [{ Address: 'sender@example.com', PersonalName: 'Sender Name' }],
+    To:   [{ Address: 'recipient@example.com', PersonalName: 'Recipient Name' }],
+    Subject: 'Hello from layline.io',
+    Body: 'This is the email body.'
+});
+```
+
+---
 
 ## Properties
 
-### Bcc
+### To / Cc / Bcc
 
-> **Bcc**: `object`[]
+Array of recipient objects, each with `Address` and `PersonalName`.
 
-Array of BCC recipient information with address and personal name.
+| Property | Type | Description |
+|----------|------|-------------|
+| `Address` | `string` | Email address |
+| `PersonalName` | `string` | Display name |
 
-#### Address
+```js
+To: [
+    { Address: 'alice@example.com', PersonalName: 'Alice' },
+    { Address: 'bob@example.com',   PersonalName: 'Bob' }
+]
+```
 
-> **Address**: `string`
+### ToList / CcList / BccList
 
-#### PersonalName
+Comma or semicolon separated string of email addresses. Use as a shortcut when you don't need display names.
 
-> **PersonalName**: `string`
-
-***
-
-### BccList
-
-> **BccList**: `string`
-
-Comma or semicolon separated list of BCC recipient email addresses.
-
-***
-
-### Body
-
-> **Body**: `string`
-
-The body content of the email.
-
-***
-
-### Cc
-
-> **Cc**: `object`[]
-
-Array of CC recipient information with address and personal name.
-
-#### Address
-
-> **Address**: `string`
-
-#### PersonalName
-
-> **PersonalName**: `string`
-
-***
-
-### CcList
-
-> **CcList**: `string`
-
-Comma or semicolon separated list of CC recipient email addresses.
-
-***
+```js
+ToList: 'alice@example.com; bob@example.com'
+```
 
 ### From
 
-> **From**: `object`[]
+Array of sender objects with the same structure as `To`.
 
-Array of sender information with address and personal name.
-
-#### Address
-
-> **Address**: `string`
-
-#### PersonalName
-
-> **PersonalName**: `string`
-
-***
+```js
+From: [{ Address: 'noreply@example.com', PersonalName: 'System' }]
+```
 
 ### Subject
 
-> **Subject**: `string`
+`string` — The email subject line.
 
-The subject line of the email.
+### Body
 
-***
-
-### To
-
-> **To**: `object`[]
-
-Array of recipient information with address and personal name.
-
-#### Address
-
-> **Address**: `string`
-
-#### PersonalName
-
-> **PersonalName**: `string`
-
-***
-
-### ToList
-
-> **ToList**: `string`
-
-Comma or semicolon separated list of recipient email addresses.
+`string` — The email body content.

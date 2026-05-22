@@ -268,7 +268,7 @@ The auto-refresh ensures you always see current service health and metrics.
 
 ## See Also
 
-- [**Engine State Overview**](./index.mdx) — Introduction to the Engine State monitoring interface
+- [**Engine State Overview**](./index.md) — Introduction to the Engine State monitoring interface
 - [**Workflow State**](./workflows.md) — Monitoring workflows that use services
 - [**Connections**](./connections.md) — Connection assets used by services
-- [**Service Assets**](../../assets/services/) — Designing and configuring services
+- [**Service Assets**](../../assets/workflow-assets/services/index.md) — Designing and configuring services

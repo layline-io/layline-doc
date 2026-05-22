@@ -1,129 +1,134 @@
+---
+description: A thread-safe counter for tracking numeric values — message counts, totals, or any incrementing/decrementing metric. Obtained through [`metrics.getCounter().
+---
+
 # Counter
 
-Represents a counter that can be incremented or decremented.
-This class cannot be instantiated directly, but is obtained through the metrics.getCounter method.
+A thread-safe counter for tracking numeric values — message counts, totals, or any incrementing/decrementing metric. Obtained through [`metrics.getCounter()`](Metrics.md).
+
+Counters support method chaining for fluent updates.
+
+---
+
+## At a Glance
+
+```js
+// Get or create a counter
+const processed = metrics.getCounter('orders.processed');
+const failed = metrics.getCounter('orders.failed');
+
+// Increment
+processed.increment();
+processed.increment(5);
+
+// Decrement
+failed.decrement();
+
+// Read value
+stream.logInfo(`Processed: ${processed.count}`);
+```
+
+---
 
 ## Properties
 
-### count
+| Property | Type | Description |
+|----------|------|-------------|
+| `count` | `number` | Current counter value |
 
-> **count**: `number`
-
-The current count value.
-Same as [getCount](#getcount).
-
-#### Example
-
-```ts
-const myCounter = metrics.getCounter("Counter.Signals.*.MyCounter");
-print(myCounter.count); // Output: 0 (or whatever the initial value is)
-
-myCounter.increment();
-print(myCounter.count); // Output: 1
+```js
+const counter = metrics.getCounter('my.counter');
+stream.logInfo(counter.count);  // 0 (initially)
 ```
+
+---
 
 ## Methods
 
-### decrement()
+### increment(value?)
 
-> **decrement**(`value?`): `Counter`
+Increases the counter by 1 or the specified amount.
 
-Decrements the counter by the specified value or by 1 if no value is provided.
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `number` (optional) | Amount to add — defaults to 1 |
 
-#### Parameters
+**Returns:** `Counter` (supports chaining)
 
-##### value?
+```js
+const c = metrics.getCounter('events');
 
-`number`
-
-The value to decrement by. Defaults to 1 if not specified.
-
-#### Returns
-
-`Counter`
-
-The Counter instance for method chaining.
-
-#### Example
-
-```ts
-const myCounter = metrics.getCounter("Counter.Signals.*.MyCounter");
-myCounter.increment(10); // Set initial value to 10
-
-// Decrement by 1
-myCounter.decrement();
-print(myCounter.count); // Output: 9
-
-// Decrement by a specific value
-myCounter.decrement(3);
-print(myCounter.count); // Output: 6
-
-// Method chaining
-myCounter.decrement(2).decrement();
-print(myCounter.count); // Output: 3
+c.increment();       // +1
+c.increment(5);      // +5
+c.increment(2).increment(3);  // chained: +5 total
 ```
 
-***
+### decrement(value?)
+
+Decreases the counter by 1 or the specified amount.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `number` (optional) | Amount to subtract — defaults to 1 |
+
+**Returns:** `Counter` (supports chaining)
+
+```js
+const c = metrics.getCounter('pending');
+
+c.decrement();       // -1
+c.decrement(3);      // -3
+c.decrement(2).decrement(1);  // chained: -3 total
+```
 
 ### getCount()
 
-> **getCount**(): `number`
+Returns the current count. Same as reading [`count`](#properties).
 
-Returns the current count value.
-Same as accessing the [count](#count) property directly.
+**Returns:** `number`
 
-#### Returns
-
-`number`
-
-The current count value.
-
-#### Example
-
-```ts
-const myCounter = metrics.getCounter("Counter.Signals.*.MyCounter");
-myCounter.increment(5);
-
-const currentCount = myCounter.getCount();
-print(currentCount); // Output: 5
+```js
+const total = counter.getCount();
 ```
 
-***
+---
 
-### increment()
+## Complete Example
 
-> **increment**(`value?`): `Counter`
+```js
+let OUTPUT_PORT;
+let ERROR_PORT;
 
-Increments the counter by the specified value or by 1 if no value is provided.
+export function onInit() {
+    OUTPUT_PORT = processor.getOutputPort('Output');
+    ERROR_PORT  = processor.getOutputPort('Error');
+}
 
-#### Parameters
+export function onMessage() {
+    const processed = metrics.getCounter('stream.records.processed');
+    const errors    = metrics.getCounter('stream.records.errors');
 
-##### value?
+    try {
+        validateRecord(message);
+        processed.increment();
+        stream.emit(message, OUTPUT_PORT);
+    } catch (err) {
+        errors.increment();
+        message.addStatus(Severity.ERROR, Status.create(VENDOR, 'VALIDATION_FAILED'));
+        stream.emit(message, ERROR_PORT);
+    }
+}
 
-`number`
+export function onStreamEnd() {
+    const processed = metrics.getCounter('stream.records.processed');
+    const errors    = metrics.getCounter('stream.records.errors');
 
-The value to increment by. Defaults to 1 if not specified.
-
-#### Returns
-
-`Counter`
-
-The Counter instance for method chaining.
-
-#### Example
-
-```ts
-const myCounter = metrics.getCounter("Counter.Signals.*.MyCounter");
-
-// Increment by 1
-myCounter.increment();
-print(myCounter.count); // Output: 1
-
-// Increment by a specific value
-myCounter.increment(5);
-print(myCounter.count); // Output: 6
-
-// Method chaining
-myCounter.increment(2).increment(3);
-print(myCounter.count); // Output: 11
+    stream.logInfo(`Stream complete: ${processed.count} processed, ${errors.count} errors`);
+}
 ```
+
+---
+
+## See Also
+
+- [`Metrics`](Metrics.md) — Create and manage counters

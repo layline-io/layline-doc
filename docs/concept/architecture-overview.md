@@ -276,8 +276,8 @@ Multiple clusters in different geographic regions, all managed from a central Co
 
 ## See Also
 
-- [**What is layline.io?**](./introduction) — Product philosophy and motivation
-- [**Workflow Configurations**](./projects-workflows) — Design-time concepts and building workflows
-- [**Operations**](../operations) — Runtime monitoring and cluster management
-- [**Quickstart**](../quickstart) — Hands-on guide to your first deployment
-- [**Multi-Node Cluster Setup**](./advanced/multi-node-cluster-setup) — Detailed cluster configuration guide
+- [**What is layline.io?**](./introduction.md) — Product philosophy and motivation
+- [**Workflow Configurations**](../project/building-workflows.md) — Design-time concepts and building workflows
+- [**Operations**](../operations/index.md) — Runtime monitoring and cluster management
+- [**Quickstart**](../quickstart/index.md) — Hands-on guide to your first deployment
+- [**Multi-Node Cluster Setup**](./advanced/multi-node-cluster-setup.md) — Detailed cluster configuration guide

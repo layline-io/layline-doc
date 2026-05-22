@@ -27,7 +27,7 @@ You need:
 
 **A Format**
 
-* [Format](../formats)
+* [Format](../formats/index.md)
 
 **A Stream Source, of either**
 

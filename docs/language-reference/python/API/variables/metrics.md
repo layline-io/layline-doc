@@ -1,28 +1,36 @@
 ---
+description: >-
+  ---.
+---
+
+---
 id: py-metrics
 ---
 
-#  metrics
+# metrics
 
-> **metrics**: Metrics
+> `const` **metrics**: [`Metrics`](../classes/Metrics.md)
 
-## What
-metrics is an instance of the [Metrics](../classes/Metrics.md) class.
-It is automatically created when a deployment is started.
-It provides methods to interact with various types of metrics like counters.
+Global metrics instance for tracking counters and other metrics across your deployment.
 
-## How to use
-Please check the [Metrics](../classes/Metrics.md) documentation for more information.
+---
 
-## Example
+## At a Glance
 
 ```python
-# Retrieve a counter named 'Counter.Workflow.*.Instances'
-signal_count = metrics.getCounter('Counter.Signals.*.MyCounter')
+# Get or create a counter
+counter = metrics.getCounter('Counter.Signals.*.MyCounter')
 
-# Increment the counter by 1
-signal_count.increment()
+# Increment / decrement
+counter.increment()
+counter.decrement()
 
-# Decrement the counter by 1
-signal_count.decrement()
+# Increment by a specific amount
+counter.increment(5)
 ```
+
+---
+
+## See Also
+
+- [`Metrics`](../classes/Metrics.md) — Full class reference

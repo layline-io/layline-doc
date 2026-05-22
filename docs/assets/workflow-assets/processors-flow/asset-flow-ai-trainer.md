@@ -13,7 +13,7 @@ import OutputPorts from '../../../snippets/assets/_output-ports-single.md';
 
 The **AI Trainer** Processor trains one or more AI models using message data collected from a Workflow. It reads attribute values from incoming messages, assembles them into a training dataset, trains a machine learning model using the Weka library, and stores the trained model in the cluster's **AI Storage**.
 
-The trained model is then used by an [AI Classifier](../asset-flow-ai-classifier) Processor to classify new messages.
+The trained model is then used by an [AI Classifier](./asset-flow-ai-classifier.md) Processor to classify new messages.
 
 Use this Processor to:
 
@@ -119,7 +119,7 @@ Click **+ ADD MODEL** to add a new model configuration. Each row has:
 | Column | Description |
 |--------|-------------|
 | **Model name** | A human-readable name for this trained model (e.g., `VoiceClassifier-v2`) |
-| **Path in AI Storage** | The path in AI Storage where the trained model will be stored (e.g., `models/my-classifier`). Supports [macros](../../../language-reference/macros) for per-environment values. |
+| **Path in AI Storage** | The path in AI Storage where the trained model will be stored (e.g., `models/my-classifier`). Supports [macros](../../../language-reference/macros.md) for per-environment values. |
 | **AI Model** | Reference to an existing **AI Model Resource** in the Project — defines the input/output schema, model type, and hyperparameters |
 | **Model type** | The Weka algorithm to use (read from the selected AI Model Resource, e.g., `J48 Decision Tree`, `Multilayer Perceptron`) |
 
@@ -220,11 +220,11 @@ The JavaScript Processor extracts and formats the relevant attributes from each 
 
 ## See Also
 
-- [AI Classifier](../asset-flow-ai-classifier) — for applying a trained model to classify new messages
+- [AI Classifier](./asset-flow-ai-classifier.md) — for applying a trained model to classify new messages
 - [AI Model Resource](/docs/assets/workflow-assets/resources/asset-resource-ai-model.md) — for defining the model's input/output schema, algorithm type, and hyperparameters
 - [AI Service](/docs/assets/workflow-assets/services/asset-service-ai) — for defining the interface to an AI model
 - [Operations → AI Storage](../../../operations/cluster/ai-storage.md) — for managing trained models in AI Storage
-- [Using Artificial Intelligence in Workflows](../../../concept/advanced/artificial-intelligence) — conceptual overview of supervised learning in layline.io
+- [Using Artificial Intelligence in Workflows](../../../concept/advanced/artificial-intelligence.md) — conceptual overview of supervised learning in layline.io
 
 ---
 

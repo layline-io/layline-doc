@@ -1,280 +1,168 @@
+---
+description: >-
+  The Processor class provides access to the current processor's configuration and runtime properties. It is available globally as processor in every JavaScrip...
+---
+
 # Processor
+
+The `Processor` class provides access to the current processor's configuration and runtime properties. It is available globally as `processor` in every JavaScript processor.
+
+Use it to retrieve configured arguments, resolve output ports, expand environment macros, and log processor-specific messages.
+
+---
+
+## At a Glance
+
+```js
+// Get configured arguments from the UI
+const args = processor.arguments;
+const timeout = args.timeout || 5000;
+
+// Resolve an output port for emitting messages
+const OUTPUT_PORT = processor.getOutputPort('Output');
+
+// Expand environment variables in strings
+const dbHost = processor.expandString('${lay:DB_HOST}');
+```
+
+---
 
 ## Properties
 
+| Property | Type | Description |
+|----------|------|-------------|
+| [`arguments`](#arguments) | `object` | JSON arguments configured in the JavaScript Asset editor |
+| [`name`](#name) | `string` | The name of the current processor |
+
 ### arguments
 
-> **arguments**: `object`
-
-Returns arguments which you have configured via the UI as part of a Javascript Asset.
-The list of provided arguments are in JSON-Format.
-You enter them using the Javascript Asset editor and then retrieve them using this method.
-
-#### Example
+Arguments entered via the JavaScript Asset editor in the UI. Returned as a plain JavaScript object.
 
 ```js
-// Get the Processor's configured arguments:
 const args = processor.arguments;
 
-// Now access the individual arguments like this:
-let myProp = args.myProp;
+// Access individual properties
+const maxRetries = args.maxRetries || 3;
+const apiEndpoint = args.apiEndpoint;
+
+stream.logInfo(`Configured retries: ${maxRetries}`);
 ```
-
-#### Returns
-
-Configured arguments as a Javascript object
-
-***
 
 ### name
 
-> **name**: `string`
-
-Get the name of the current Processor.
-Same as [getName](#getname)
-
-#### Example
+The processor name as defined in the workflow diagram.
 
 ```js
-// Get the Processor's name:
-const name = processor.name; // Returns the name of the Processor, e.g. 'My-Processor'.
+const processorName = processor.name;  // e.g., "Validate-Order"
 ```
 
-#### Returns
-
-Processor name
+---
 
 ## Methods
 
-### expandString()
-
-> **expandString**(`toExpand`): `string`
-
-Expands all macros contained in a string.
-For example, if you want to use the `USERNAME` environment variable, which you have defined in an [Environment Resource](../../../../assets/workflow-assets/resources/asset-resource-environment.md) you can do so like this:
-
-#### Parameters
-
-##### toExpand
-
-`string`
-
-#### Returns
-
-`string`
-
-Expanded string
-
-#### Example
-
-```js
-// Get the username which is defined in one of your environment resources:
-let username = processor.expandString('The username is ${lay:USERNAME}.');
-
-// Output: "The username is layline.", where "layline" is the value of the USERNAME environment variable.
-```
-
-Check out the [macro](../../../macros) documentation for more information on how to address expandable strings.
-
-***
-
 ### getArguments()
 
-> **getArguments**(): `object`
+Returns the configured arguments. Same as [`arguments`](#arguments).
 
-Returns arguments which you have configured via the UI as part of a Javascript Asset.
-The list of provided arguments are in JSON-Format. You enter them using the Javascript Asset editor
-and then retrieve them using this method.
-
-#### Returns
-
-`object`
-
-Configured arguments as a Javascript object
-
-#### Example
+**Returns:** `object`
 
 ```js
-// Get the Processor's configured arguments:
 const args = processor.getArguments();
-
-// Now access the individual arguments like this:
-let myProp = args.myProp;
 ```
-
-***
 
 ### getName()
 
-> **getName**(): `string`
+Returns the processor name. Same as [`name`](#name).
 
-Get the name of the current Processor.
-Same as [name](#name)
-
-#### Returns
-
-`string`
-
-Processor name
-
-#### Example
+**Returns:** `string`
 
 ```js
-// Get the Processor's name:
-processor.getName();
+const name = processor.getName();
 ```
 
-***
+### getOutputPort(portName)
 
-### getOutputPort()
+Returns an [`OutputPort`](OutputPort.md) instance for the given port name. Use this to obtain the port reference needed by [`stream.emit()`](Stream.md).
 
-> **getOutputPort**(`portName`): [`OutputPort`](OutputPort.md)
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `portName` | `string` | The name of the output port as defined in the workflow |
 
-Get the [OutputPort](OutputPort.md) information for a given output port.
-
-#### Parameters
-
-##### portName
-
-`string`
-
-#### Returns
-
-[`OutputPort`](OutputPort.md)
-
-Output port instance information.
-
-#### Example
+**Returns:** [`OutputPort`](OutputPort.md)
 
 ```js
-// Set stream output name:
-let OUTPUT_PORT = processor.getOutputPort('Output'); // Returns the OutputPort instance for the output port named 'Output'.
+// In onInit — resolve ports once
+let OUTPUT_PORT;
+let ERROR_PORT;
+
+export function onInit() {
+    OUTPUT_PORT = processor.getOutputPort('Output');
+    ERROR_PORT  = processor.getOutputPort('Error');
+}
+
+export function onMessage() {
+    if (isValid(message)) {
+        stream.emit(message, OUTPUT_PORT);
+    } else {
+        stream.emit(message, ERROR_PORT);
+    }
+}
 ```
 
-***
+### expandString(toExpand)
 
-### logError()
+Expands macros within a string using environment variables, secrets, and other configured values.
 
-> **logError**(`param`): `void`
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `toExpand` | `string` | String containing `${lay:VARNAME}` style macros |
 
-Logs a message with [Severity](../enumerations/Severity.md).ERROR to the processor log.
-You can view this both via the Audit Trail in the UI and output in the process terminal output.
-
-#### Parameters
-
-##### param
-
-`string` \| [`Status`](Status.md)
-
-Information you want to log. Can be either a string message or a Status object.
-
-#### Returns
-
-`void`
-
-#### Example
+**Returns:** `string` — The expanded string
 
 ```js
-// Log a simple string message
-processor.logError('Ran into the following problem: ' + problem);
+// Expand environment variables
+const dbUrl = processor.expandString('jdbc:postgresql://${lay:DB_HOST}:${lay:DB_PORT}/mydb');
+// Result: "jdbc:postgresql://db-server.internal:5432/mydb"
 
-// Log a Status object
-const status = Status.create(VENDOR, 'ERROR_CODE', 'param1', 'param2');
-processor.logError(status);
+// Expand with defaults
+const timeout = processor.expandString('${lay:TIMEOUT:-30000}');
 ```
 
-***
+:::tip Macro Documentation
+See the [macro documentation](../../../macros.md) for all available macro types and syntax.
+:::
 
-### logFatal()
+---
 
-> **logFatal**(`param`): `void`
+## Logging
 
-Logs a message with [Severity](../enumerations/Severity.md).FATAL to the processor log.
-You can view this both via the Audit Trail in the UI and output in the process terminal output.
+Log messages at different severity levels. These appear in the Audit Trail and processor terminal output.
 
-#### Parameters
+| Method | Severity | Use For |
+|--------|----------|---------|
+| `logInfo(param)` | `INFO` | General information, progress updates |
+| `logWarning(param)` | `WARNING` | Non-critical issues that need attention |
+| `logError(param)` | `ERROR` | Errors that affect processing |
+| `logFatal(param)` | `FATAL` | Critical failures requiring immediate action |
 
-##### param
-
-`string` \| [`Status`](Status.md)
-
-Information you want to log. Can be either a string message or a Status object.
-
-#### Returns
-
-`void`
-
-#### Example
+Each method accepts either a `string` or a [`Status`](Status.md) object.
 
 ```js
-// Log a simple string message
-processor.logFatal('Ran into the following problem: ' + problem);
+// Log a simple message
+processor.logInfo(`Processing order ${orderId}`);
 
-// Log a Status object
-const status = Status.create(VENDOR, 'FATAL_ERROR', 'param1', 'param2');
-processor.logFatal(status);
+// Log a warning with context
+processor.logWarning(`Unexpected value: ${value}`);
+
+// Log an error as a Status object
+const errStatus = Status.create(VENDOR, 'VALIDATION_FAILED', fieldName);
+processor.logError(errStatus);
 ```
 
-***
+---
 
-### logInfo()
+## See Also
 
-> **logInfo**(`param`): `void`
-
-Logs a message with [Severity](../enumerations/Severity.md).INFO to the processor log.
-You can view this both via the Audit Trail in the UI and output in the process terminal output.
-
-#### Parameters
-
-##### param
-
-`string` \| [`Status`](Status.md)
-
-Information you want to log. Can be either a string message or a Status object.
-
-#### Returns
-
-`void`
-
-#### Example
-
-```js
-// Log a simple string message
-processor.logInfo('Here is some interesting information: ' + info);
-
-// Log a Status object
-const status = Status.create(VENDOR, 'INFO_CODE', 'param1', 'param2');
-processor.logInfo(status);
-```
-
-***
-
-### logWarning()
-
-> **logWarning**(`param`): `void`
-
-Logs a message with [Severity](../enumerations/Severity.md).WARNING to the processor log.
-You can view this both via the Audit Trail in the UI and output in the process terminal output.
-
-#### Parameters
-
-##### param
-
-`string` \| [`Status`](Status.md)
-
-Information you want to log. Can be either a string message or a Status object.
-
-#### Returns
-
-`void`
-
-#### Example
-
-```js
-// Log a simple string message
-processor.logWarning('Here is a warning: ' + warning);
-
-// Log a Status object
-const status = Status.create(VENDOR, 'WARNING_CODE', 'param1', 'param2');
-processor.logWarning(status);
-```
+- [`OutputPort`](OutputPort.md) — The ports you obtain and emit to
+- [`JavaScriptProcessor`](JavaScriptProcessor.md) — Lifecycle hooks (onInit, onMessage, etc.)
+- [Macro documentation](../../../macros.md) — Full macro syntax reference

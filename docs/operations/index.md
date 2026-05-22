@@ -30,31 +30,31 @@ The Operations section is organized around three core concepts:
 
 The cluster is the foundation — a collection of nodes running layline.io engines. This section covers:
 
-- [**Cluster Login**](./cluster/cluster-login) — How to connect to and authenticate with a cluster
-- [**Cluster Tab Overview**](./cluster/cluster-tab-overview) — Navigating the cluster-level interface
-- [**Alarm Center**](./cluster/alarm-center) — Real-time alerts, thresholds, and notification routing
-- [**Deployment Storage**](./cluster/deployment-storage) — Where deployment configurations live and how to manage them
-- [**Scheduler**](./cluster/scheduler) — Workflow scheduling and execution history
-- [**Stream Monitor**](./cluster/stream-monitor) — Controller to observe and manage data streams, throughput, and backpressure
-- [**Sniffer Directory**](./cluster/sniffer-directory) — Controller to observer and manage message sniffing
-- [**Access Coordinator**](./cluster/access-coordinator) — Managing access to sources and resources
-- [**Operations User Storage**](./cluster/operations-user-storage) — User- and role-specific operational data and preferences
-- [**Operations Secret Storage**](./cluster/operations-secret-storage) — Secure credential management for operations
-- [**AI Storage**](./cluster/ai-storage) — Storage for AI/ML model artifacts and training data
-- [**Cluster Node Detail**](./cluster/cluster-node-detail) — Deep-dive into individual node metrics and logs, as well as switching debugging context to a specific node
+- [**Cluster Login**](./cluster/cluster-login.md) — How to connect to and authenticate with a cluster
+- [**Cluster Tab Overview**](./cluster/index.md) — Navigating the cluster-level interface
+- [**Alarm Center**](./cluster/alarm-center/index.md) — Real-time alerts, thresholds, and notification routing
+- [**Deployment Storage**](./cluster/deployment-storage.md) — Where deployment configurations live and how to manage them
+- [**Scheduler**](./cluster/scheduler.md) — Workflow scheduling and execution history
+- [**Stream Monitor**](./cluster/stream-monitor.md) — Controller to observe and manage data streams, throughput, and backpressure
+- [**Sniffer Directory**](./cluster/sniffer-directory.md) — Controller to observer and manage message sniffing
+- [**Access Coordinator**](./cluster/access-coordinator.md) — Managing access to sources and resources
+- [**Operations User Storage**](./cluster/operations-user-storage.md) — User- and role-specific operational data and preferences
+- [**Operations Secret Storage**](./cluster/security-storage.md) — Secure credential management for operations
+- [**AI Storage**](./cluster/ai-storage.md) — Storage for AI/ML model artifacts and training data
+- [**Cluster Node Detail**](./cluster/cluster-node-detail.md) — Deep-dive into individual node metrics and logs, as well as switching debugging context to a specific node
 
 ### Engine State
 
 While Cluster Management shows you the infrastructure, Engine State shows you what's actually running on it. This is the live runtime view:
 
-- [**Engine State Overview**](./engine-state/) — The main dashboard for runtime monitoring
-- [**Workflow State**](./engine-state/workflow) — Active workflows, their status, and execution context
-- [**Service State**](./engine-state/services) — Running services and their health
-- [**Connection State**](./engine-state/connections) — Active connections to external systems
-- [**Source State**](./engine-state/sources) — Input sources and their folders, read positions, etc.
-- [**Sink State**](./engine-state/sinks) — Output sinks and their write status
-- [**Format State**](./engine-state/formats) — Format parsers and logs
-- [**Resource State**](./engine-state/resources) — Resource status and detail configs
+- [**Engine State Overview**](./engine-state//index.md — The main dashboard for runtime monitoring
+- [**Workflow State**](./engine-state/workflows.md) — Active workflows, their status, and execution context
+- [**Service State**](./engine-state/services.md) — Running services and their health
+- [**Connection State**](./engine-state/connections.md) — Active connections to external systems
+- [**Source State**](./engine-state/sources.md) — Input sources and their folders, read positions, etc.
+- [**Sink State**](./engine-state/sinks.md) — Output sinks and their write status
+- [**Format State**](./engine-state/formats.md) — Format parsers and logs
+- [**Resource State**](./engine-state/resources.md) — Resource status and detail configs
 
 Engine State is particularly useful for debugging: You can see whether all Assets are running as expected, and look at the detailed state of each as well as their configurations.
 
@@ -62,7 +62,7 @@ Engine State is particularly useful for debugging: You can see whether all Asset
 
 The Audit Trail provides a comprehensive record of all workflow and stream related actions taken within the system:
 
-- [**Audit Trail Overview**](/docs/operations/audit-trail) — Understanding the audit log structure and retention
+- [**Audit Trail Overview**](/docs/operations/audit-trail/index.md) — Understanding the audit log structure and retention
 
 Audit logs capture:
 - Workflow executions (start, completion, failure)
@@ -88,18 +88,18 @@ Most operational screens follow a similar layout:
 ### Investigating an Alarm
 
 1. Alarm fires → Notification sent (email/Teams)
-2. Open [**Alarm Center**](./cluster/alarm-center) to see the alert details
-3. Check [**Cluster Overview**](./cluster/cluster-overview) for node health
-4. Drill into [**Engine State**](./engine-state) to find the affected workflow
-5. Review [**Audit Trail**](./audit-trail) for recent changes
+2. Open [**Alarm Center**](./cluster/alarm-center/index.md) to see the alert details
+3. Check [**Cluster Overview**](./cluster/index.md) for node health
+4. Drill into [**Engine State**](./engine-state/index.md) to find the affected workflow
+5. Review [**Audit Trail**](./audit-trail/index.md) for recent changes
 6. Take corrective action (restart, redeploy, or escalate)
 
 ### Tracing a Data Flow Issue
 
-1. Start in [**Audit Trail Workflow**]( ./audit-trail) to identify workflow instances with errors
-2. Check [**Audit Trail Stream**](./audit-trail) to confirm data is arriving and is being processed
-3. Review [**Engine State**](./engine-state) to check workflow and service health
-4. Use [**Cluster Node Detail**](./cluster/cluster-node-detail) to inspect logs and metrics on the node running the affected workflow
+1. Start in [**Audit Trail Workflow**]( ./audit-trail/index.md) to identify workflow instances with errors
+2. Check [**Audit Trail Stream**](./audit-trail/index.md) to confirm data is arriving and is being processed
+3. Review [**Engine State**](./engine-state/index.md) to check workflow and service health
+4. Use [**Cluster Node Detail**](./cluster/cluster-node-detail.md) to inspect logs and metrics on the node running the affected workflow
 5. Identify bottlenecks or failures and take action (e.g., restart workflow, adjust resources, or fix configuration)
 
 ## Key Concepts
@@ -133,10 +133,10 @@ Operations provides powerful visibility into running systems. Access is typicall
 - **Operational access** — Restart workflows, acknowledge alarms, trigger deployments (typical for ops engineers)
 - **Administrative access** — Full control including user management and audit log access (typical for admins)
 
-See [**Access Coordinator**](/docs/operations/cluster/operations-user-storage) for details on permission management.
+See [**Access Coordinator**](/docs/operations/cluster/operations-user-storage.md) for details on permission management.
 
 ## See Also
 
-- [**Deployment**](../assets/deployment-assets) — How deployments are configured and created
-- [**Workflow**](../assets/workflow-assets) — Workflow design and configuration
-- [**Assets Overview**](../assets) — Building the components that run in Operations
+- [**Deployment**](../assets/deployment-assets/index.md) — How deployments are configured and created
+- [**Workflow**](../assets/workflow-assets/index.md) — Workflow design and configuration
+- [**Assets Overview**](../assets/index.md) — Building the components that run in Operations

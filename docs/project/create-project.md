@@ -37,6 +37,6 @@ Common failure causes:
 
 ## See Also
 
-- [**Add Existing Project**](add-existing-project) — Register an existing project folder instead of creating a new one
-- [**Import from Archive**](import-project) — Restore a project from a ZIP archive
-- [**Project Hub**](index.md) — Overview of the Project tab
+- [**Add Existing Project**](./add-existing-project.md) — Register an existing project folder instead of creating a new one
+- [**Import from Archive**](./add-existing-project.md) — Restore a project from a ZIP archive
+- [**Project Hub**](./index.md) — Overview of the Project tab

@@ -100,7 +100,7 @@ If the Id is `4711`, then the complete expanded stream name would turn out to be
 Note how we are using the Data Dictionary Accessor Path `Vehicle.Boat.Id` to access the field content.
 
 :::tip
-If you are not familiar with the message format and data dictionary then please take a look at the [Data Dictionary concept](../concept/data-dictionary).
+If you are not familiar with the message format and data dictionary then please take a look at the [Data Dictionary concept](../concept/data-dictionary.md).
 :::
 
 ### build:

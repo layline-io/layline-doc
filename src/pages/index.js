@@ -1,10 +1,68 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import Head from '@docusaurus/Head';
+
+const softwareApplicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "layline.io",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Linux, Docker, Kubernetes, Windows, macOS",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "A low-code platform for real-time and batch event data processing. Build scalable workflows with 50+ pre-built connectors.",
+  "url": "https://layline.io",
+  "featureList": [
+    "Real-time event processing",
+    "Batch data pipelines",
+    "50+ pre-built connectors",
+    "JavaScript and Python scripting",
+    "Visual workflow designer",
+    "Cluster deployment and monitoring"
+  ]
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "layline.io GmbH",
+  "url": "https://layline.io",
+  "logo": "https://doc.layline.io/img/logo/logo_name_for_light_background.svg",
+  "sameAs": [
+    "https://layline.io"
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "layline.io Documentation",
+  "url": "https://doc.layline.io",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://doc.layline.io/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
 
 export default function Home() {
   return (
-    <Layout title="layline.io Documentation" description="Master event data processing with layline.io">
+    <Layout title="Event Data Processing Platform" description="Master event data processing with layline.io — a low-code platform for real-time and batch data pipelines. Build scalable workflows with 50+ connectors.">
+      <Head>
+        <script type="application/ld+json">
+          {JSON.stringify(softwareApplicationSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </script>
+      </Head>
       <header className="hero-section">
         <div className="hero-content">
           <h1>Get Started with layline.io</h1>

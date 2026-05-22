@@ -44,12 +44,12 @@ The Alarm Center is divided into six tabs. Each tab has a dedicated documentatio
 
 | Tab | Purpose |
 |-----|---------|
-| [**Alarms**](./alarms) | View, filter, confirm, and inspect active and historical alarms. |
-| [**Alarm Targets**](./targets) | Configure notification endpoints such as Email (SMTP or MS 365) and Microsoft Teams. |
-| [**Target Groups**](./target-groups) | Organize targets into named groups so rules can route to multiple recipients at once. |
-| [**Rules**](./rules) | Define regex-based rules that match alarm names and route them to specific targets or target groups. |
-| [**Templates**](./templates) | Create plain-text and HTML templates that control the content of alarm notifications. |
-| [**Log**](./log) | Inspect the runtime log of the Alarm Center component itself. |
+| [**Alarms**](./alarms.md) | View, filter, confirm, and inspect active and historical alarms. |
+| [**Alarm Targets**](./targets.md) | Configure notification endpoints such as Email (SMTP or MS 365) and Microsoft Teams. |
+| [**Target Groups**](./target-groups.md) | Organize targets into named groups so rules can route to multiple recipients at once. |
+| [**Rules**](./rules.md) | Define regex-based rules that match alarm names and route them to specific targets or target groups. |
+| [**Templates**](./templates.md) | Create plain-text and HTML templates that control the content of alarm notifications. |
+| [**Log**](./log.md) | Inspect the runtime log of the Alarm Center component itself. |
 
 ## Typical workflow
 

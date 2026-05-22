@@ -1,32 +1,45 @@
 ---
+description: Timer registration structure used with [`TimerService.
+---
+
+---
 id: py-TimerResponse
 ---
 
 # TimerResponse
 
-Represents a timer response.
+Timer registration structure used with [`TimerService`](../classes/TimerService.md).
+
+---
 
 ## Properties
 
-### Group
+| Property | Type | Description |
+|----------|------|-------------|
+| `Group` | `str` | Logical group name for the timer |
+| `Name` | `str` | Unique identifier within the group |
+| `Timer` | [`TimerChoice`](TimerChoice.md) | The timer configuration |
 
-> **Group**: `str`
+```python
+TimerService.register({
+    "Group": "maintenance",
+    "Name":  "nightly-cleanup",
+    "Timer": {
+        "Cron": {
+            "Expression": "0 2 * * *",
+            "Payload": {"task": "cleanup"}
+        }
+    }
+})
+```
 
-The group name of the timer.
+:::caution
+The `Name` must be unique within its `Group`. Registering with the same `Group` + `Name` replaces the existing timer.
+:::
 
-***
+---
 
-### Name
+## See Also
 
-> **Name**: `str`
-
-Name of the timer that will be used to identify the timer in the group.
-The name must be unique within the group.
-
-***
-
-### Timer
-
-> **Timer**: [`TimerChoice`](./TimerChoice.md)
-
-The respective timer [TimerChoice](./TimerChoice.md).
+- [`TimerChoice`](TimerChoice.md) — Union of timer types
+- [`TimerService`](../classes/TimerService.md) — Timer API class
