@@ -1,113 +1,93 @@
 ---
-title: Connection SMB
-description: Connection SMB
+title: SMB Connection
+description: Configure a connection to Windows file shares (SMB/CIFS) for use with SMB Sources and Sinks.
 tags:
   - connection
   - smb
+  - cifs
   - windows
+  - file-share
 ---
 
 import NameAndDescription from '../../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../../snippets/assets/_asset-required-roles.md';
 
-# Connection SMB
+# SMB Connection
 
-## Purpose
+Use the **SMB Connection** asset to connect to Windows file shares (SMB/CIFS) from your workflows.
+Once configured, this connection can be used by an [SMB Source](../sources/asset-source-smb.md) to read files or an [SMB Sink](../sinks/asset-sink-smb.md) to write them.
 
-Defines the connection parameters for a SMB endpoint.
+## Prerequisites
 
-### This Asset can be used by:
+- Network reachability from the layline.io Configuration Server to the SMB host
+- Valid credentials (username/password or username/secret) for the share
 
-| Asset type | Link                                                |
-|------------|-----------------------------------------------------|
-| Source     | [SMB Source](/docs/assets/workflow-assets/sources/asset-source-smb.md) |
-| Sink       | [SMB Sink](/docs/assets/workflow-assets/sinks/asset-sink-smb)       |
+---
 
-## Configuration
+## Step 1: Name and Describe the Asset
 
-### Name & Description
-
-![Name & Description (Connection SMB)](.asset-connection-smb_images/0243a9e1.png)
+![Name & Description](.asset-connection-smb_images/0243a9e1.png)
 
 <NameAndDescription></NameAndDescription>
 
-### Required roles
-
 <RequiredRoles></RequiredRoles>
 
-### SMB Settings
+---
 
-This is where you specify the individual connection parameters for your specific SMB connection.
+## Step 2: Configure SMB Settings
 
-* **`Host`**:
-  SMB Share computer name, hostname, or IP address.
+Enter the connection details for your SMB server.
 
-* **`Port`**:
-  IP Port. Typically `139` or `445`.
+| Field | Description |
+|-------|-------------|
+| **Host** | SMB share computer name, hostname, or IP address. |
+| **Port** | IP port. Common values are `139` (NetBIOS) or `445` (Direct SMB over TCP). |
+| **Domain** | Optional Windows domain name. |
+| **Max. parallel SMB commands** | Number of concurrent SMB operations allowed. Increase this when the same connection is shared across multiple sources or sinks to improve throughput. |
 
-* **`Domain`**:
-  Optional domain name.
+### Authentication
 
-* **`Max. parallel SMB commands`**:
-  Number of SMB commands which may be in flux in parallel.
-  Use this to scale SMB access, e.g. when using the same connection in multiple SMB sources and sinks.
+Choose one of two authentication methods.
 
-#### Authentication
+#### Username and Password
 
-You have two options to authenticate against the SMB endpoint:
+![Username and Password](.asset-connection-smb_images/bdbf6d1b.png)
 
-1. Username and Password: Use this for simple username and password authentication.
-2. Username and Secret:
+| Field | Description |
+|-------|-------------|
+| **Credential Type** | Select `User/Password`. |
+| **Username** (_macro supported_) | Your SMB username. |
+| **Password** (_macro supported_) | Your SMB password. |
+| **Do not substitute macro terms in password** | Check if your password literally contains `${...}` and you do **not** want it treated as a macro. |
 
-##### Username and Password
+#### Username and Secret
 
-![Username and Password (Connection SMB)](.asset-connection-smb_images/bdbf6d1b.png)
+| Field | Description |
+|-------|-------------|
+| **Credential Type** | Select `User/Secret`. |
+| **Username** (_macro supported_) | Your SMB username. |
+| **Secret** | Choose a secret from the drop-down. If the list is empty, [create a secret](../resources/asset-resource-secret.md) first. |
 
-* **`Credential Type`**:
-  Select `User/Passsword` from the drop-down box.
-
-* **`Username`** (_macro supported_):
-  Your username.
-
-* **`Password`** (_macro supported_):
-  Your SMB password.
-
-* **`Do not substitute macro terms in password`**:
-  Check this box, if your password contains wording which could be mistaken as a macro (`${...}`) but should not be replaced by layline.io.
-
-##### Username and Secret
-
-* **`Credential Type`**:
-  Select `User/Secret` from the drop-down box.
-
-* **`Username`** (_macro supported_):
-  Your username.
-
-* **`Secret`**:
-  Select a `Secret` from the drop-down list. If the list is empty, then you need to first [create a secret](/docs/assets/workflow-assets/resources/asset-resource-secret) to be able to assign it here.
-
-  Please [follow this link to "Advanced Concepts"](../../../concept/advanced/secret-management.md) to learn about the concept and use of the Security Storage.
-
-#### Connection Test Result:
-
-While you are entering and changing Kafka Settings parameters, layline.io frequently tries to connect to the endpoint.
-The status of these attempts are displayed at the bottom of the Settings group box.
-
-In case of error, you can hover the mouse over the red output and view what the problem is:
-
-![Connection Test Result negative (Connection SMB)](.asset-connection-smb_images/38c3b2ba.png)
-
-This usually helps to resolve the issue.
-
-:::info Attention: Connection is not tested between browser and endpoint
-Please note that the connection test is not performed between your web browser and the backend.
-Connection data is rather sent to the Configuration Server first, which then tries to establish the connection between itself and the endpoint.
-In case you run into a connection error, please therefore check whether the endpoint can be reached from the viewpoint of the Configuration Server.
-
-This also does not warrant, that a connection can be established from your deployment on a Reactive Engine, as this will only be evaluated at runtime of the Workflow utilizing this Connection Asset.
-The Reactive Engine must be able to reach the configured endpoint, or otherwise connection at runtime will fail.
+:::tip About Secrets
+For details on how secrets are stored and managed, see [Secret Management](../../../concept/advanced/secret-management.md).
 :::
 
-:::tip Fields marked with "**macro supported**"
-You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
+---
+
+## Connection Test
+
+As you enter settings, layline.io continuously attempts to connect to the SMB server.
+The result appears at the bottom of the settings panel:
+
+| Status | Appearance |
+|--------|------------|
+| **Success** | ![Connection successful](.asset-connection-smb_images/f905dfed.png) |
+| **Failure** | ![Connection failed](.asset-connection-smb_images/38c3b2ba.png) |
+
+Hover over a red error message to see the full details — this usually points directly to the problem (wrong host, invalid port, authentication failure, etc.).
+
+:::info How the test works
+- The test is **not** run from your web browser. The Configuration Server performs the test from the server side.
+- If you see a connection error, verify that the Configuration Server can reach the SMB host (firewall rules, DNS, routing).
+- A successful test here **does not guarantee** that the Reactive Engine can connect at runtime. The engine running your workflow must also have network access to the SMB host.
 :::
