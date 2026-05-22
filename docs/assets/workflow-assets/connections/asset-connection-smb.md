@@ -111,3 +111,31 @@ The Reactive Engine must be able to reach the configured endpoint, or otherwise 
 :::tip Fields marked with "**macro supported**"
 You can use $\{...\} macros to expand variables defined in [environment variables](/docs/assets/workflow-assets/resources/asset-resource-environment).
 :::
+
+## Windows Server Path Handling
+
+When using SMB connections with Windows servers, path handling has been improved to properly handle leading slashes in target paths.
+
+### Path Normalization
+
+Release 2.5.14 includes fixes for SMB mount point file operations on Windows servers where leading slashes in target paths previously caused rename operations to fail. The Virtual File System now properly normalizes path separators when working with SMB mount points on Windows servers.
+
+### What This Means
+
+Users working with SMB mount points on Windows servers will no longer encounter failures when:
+
+- **Renaming files** on SMB shares
+- **Moving files** between directories on Windows SMB servers  
+- Using paths with **mixed or leading slash characters**
+
+### Example Path Formats
+
+The following path formats are now handled correctly:
+
+| Path Format | Description |
+|-------------|-------------|
+| `/folder/file.txt` | Standard absolute path with leading slash |
+| `\\server\share\folder` | UNC-style paths (when applicable) |
+| `folder/subfolder/` | Relative paths without leading slash |
+
+No configuration changes are required — existing SMB connection configurations will work without modification. File operations now work reliably across all supported SMB server configurations, including Windows Server environments.
