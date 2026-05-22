@@ -1,360 +1,287 @@
 ---
 title: Virtual File System Service
-description: Virtual File System Service Asset. Use this to perform file operations against a Virtual File System from within a JavaScript or Python Processor.
+description: Perform file and directory operations (read, write, copy, move, delete, list, zip) programmatically from JavaScript or Python.
 tags:
   - service
   - virtual file system
   - vfs
+  - file operations
 ---
 
 import Testcase from '../../../snippets/assets/_asset-service-test.md';
-import SinceVersion from '../../../src/components/SinceVersion';
+import SinceVersion from '../../../../src/components/SinceVersion';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Virtual File System Service
 
-## Purpose
+Perform file and directory operations — read, write, copy, move, delete, list, and zip — programmatically from a [JavaScript Processor](../processors-flow/asset-flow-javascript.md) or [Python Processor](../processors-flow/asset-flow-python.md).
 
-The Virtual File System Service provides file operations — read, write, copy, move, delete, list, and zip directories — against the Virtual File System from within a Javascript or Python Processor. It allows you to manage files and directories programmatically in your script code, independent of any VFS Source or Sink.
-
-:::info
-The Virtual File System Service is a pure script-facing service. It has no input/output ports and cannot be used as a standalone processing step in a Workflow. It must be invoked from a [Javascript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript) or a [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python).
+:::info Script-only service
+The Virtual File System Service has no input/output ports and cannot be used as a standalone Workflow step. It must be invoked from script code.
 :::
+
+---
+
+## What You'll Need
+
+1. A [Virtual File System Connection](../connections/asset-connection-virtual-fs.md) with at least one mount point configured
+2. A Script Processor to call the service from
+
+---
 
 ## Configuration
 
 ### Name & Description
 
-* **`Virtual FS Service name`** : Name of the Asset. This is the name you will use in your script to reference this service (e.g. `services.MyVfsService`). Spaces are not allowed in the name.
+| Field | Description |
+|-------|-------------|
+| **Virtual FS Service name** | Asset identifier. This is the name you use in script code (e.g. `services.MyVfsService`). No spaces allowed. |
+| **Virtual FS Service description** | Optional summary. |
+| **Asset Usage** | Shows where this asset is referenced. Click to expand and jump to those locations. |
 
-* **`Virtual FS Service description`** : Enter a description.
-
-The **`Asset Usage`** box shows how many times this Asset is used and which parts are referencing it.
-Click to expand and then click to follow, if any.
-
-### Required Roles
+### Required Rolesx
 
 In case you are deploying to a Cluster which is running (a) Reactive Engine Nodes which have (b) specific Roles configured, then you **can** restrict use of this Asset to those Nodes with matching roles.
 If you want this restriction, then enter the names of the `Required Roles` here. Otherwise, leave empty to match all Nodes (no restriction).
 
 ### Virtual FS Service Settings
 
-* **`Connection`** : Select the [Virtual File System Connection](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs) asset to use. This connection defines the mount points and storage backends (local filesystem, SMB, OneDrive, SharePoint, etc.) accessible to this service. The service will only be able to operate within the paths defined by that connection's mount points.
+| Field | Description |
+|-------|-------------|
+| **Connection** | The [Virtual File System Connection](../connections/asset-connection-virtual-fs.md) that defines which mount points and storage backends (local, SMB, OneDrive, SharePoint, etc.) this service can access. |
+
+---
 
 ## Service Functions
 
-The Virtual File System Service provides the following built-in functions:
+<Tabs>
+  <TabItem value="file" label="File Operations">
 
-| Function | Description | Available Since |
-|----------|-------------|-----------------|
-| `CopyFile` | Copy a file from one location to another in the virtual file system | 2.5.0 |
-| `DeleteFile` | Delete a file from the virtual file system | 2.5.0 |
-| `DeleteDir` | Delete a directory and all its contents recursively <SinceVersion version="2.5.10" /> | 2.5.10 |
-| `FileExists` | Check if a file exists within the virtual file system; returns a boolean | 2.5.0 |
-| `ListDir` | List the contents of a directory <SinceVersion version="2.5.10" /> | 2.5.10 |
-| `MoveFile` | Move a file from one location to another | 2.5.0 |
-| `ReadFile` | Read a file from the virtual file system and return its content | 2.5.0 |
-| `WriteFile` | Write a file into the virtual file system | 2.5.0 |
-| `ZipDir` | Create a zip archive from a directory <SinceVersion version="2.5.10" /> | 2.5.10 |
+| Function | Description |
+|----------|-------------|
+| `CopyFile` | Copy a file from one location to another. |
+| `MoveFile` | Move or rename a file. |
+| `DeleteFile` | Delete a file. |
+| `FileExists` | Check whether a file exists. Returns a boolean in the response `data`. |
+| `ReadFile` | Read a file and return its contents. |
+| `WriteFile` | Write data to a file. Creates the file if it does not exist. |
 
-## Example — Using Virtual File System from a Script
+  </TabItem>
+  <TabItem value="directory" label="Directory Operations">
+
+| Function | Description |
+|----------|-------------|
+| `ListDir` | List the contents of a directory. <SinceVersion version="2.5.10" /> |
+| `DeleteDir` | Delete a directory and all contents **recursively**. Use with caution. <SinceVersion version="2.5.10" /> |
+| `ZipDir` | Create a zip archive from a directory. <SinceVersion version="2.5.10" /> |
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Quickstart
 
 ### Step 1 — Create a Virtual File System Connection
 
-Before using the Virtual File System Service, configure a [Virtual File System Connection](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs) with the mount points you need to access. This connection defines which filesystem backends (local paths, SMB shares, OneDrive, SharePoint) are available.
+Configure a [Virtual File System Connection](../connections/asset-connection-virtual-fs.md) with the mount points you need (e.g. `/data/inbox`, `/data/archive`).
 
-### Step 2 — Create the Virtual File System Service
+### Step 2 — Create the Service Asset
 
-Create a new **Virtual File System Service** Asset. In **Virtual FS Service Settings**, select your Virtual File System Connection.
+Create a **Virtual File System Service** asset and select your connection in **Virtual FS Service Settings**.
 
 ### Step 3 — Map the Service in a Script Processor
 
-In your [Javascript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript) or [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python), add a **Service Mapping**:
+In your JavaScript or Python Processor, add a **Service Mapping**:
 
-* **Service**: Select your Virtual File System Service
-* **Logical Service Name**: `MyVfsService` (or any name you will use in your script)
+| Field | Value |
+|-------|-------|
+| **Service** | Your Virtual File System Service asset |
+| **Logical Service Name** | Any valid identifier, e.g. `MyVfsService` (no spaces) |
 
-### Step 4 — Use in Your Script
+### Step 4 — Call the Service
 
-You can now call any of the service functions from your script. The functions are invoked identically to any other service.
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+All functions follow the same pattern:
 
 <Tabs>
   <TabItem value="javascript" label="JavaScript">
 
-**Copy a file:**
 ```javascript
-export function onMessage() {
-    services.MyVfsService.CopyFile({
-        sourcePath: '/data/inbox/report.pdf',
-        targetPath: '/data/archive/report.pdf'
-    });
-}
-```
-
-**Check if a file exists:**
-```javascript
-export function onMessage() {
-    const exists = services.MyVfsService.FileExists({
-        path: '/data/inbox/report.pdf'
-    });
-
-    if (!exists.data) {
-        processor.logWarning('File not found, skipping');
-        return;
-    }
-
-    // Continue processing...
-}
-```
-
-**Read and process a file:**
-```javascript
-export function onMessage() {
-    const fileContent = services.MyVfsService.ReadFile({
-        path: '/data/inbox/data.json'
-    });
-
-    if (fileContent && fileContent.data) {
-        const records = JSON.parse(fileContent.data.content);
-        processor.logInfo('Loaded ' + records.length + ' records');
-    }
-}
-```
-
-**Write a file:**
-```javascript
-export function onMessage() {
-    services.MyVfsService.WriteFile({
-        path: '/data/outbox/result.json',
-        content: JSON.stringify(resultData)
-    });
-}
-```
-
-**Move a file:**
-```javascript
-export function onMessage() {
-    services.MyVfsService.MoveFile({
-        sourcePath: '/data/inbox/report.pdf',
-        targetPath: '/data/archive/report.pdf'
-    });
-}
-```
-
-**Delete a file:**
-```javascript
-export function onMessage() {
-    services.MyVfsService.DeleteFile({
-        path: '/data/inbox/report.pdf'
-    });
-}
+// In your processor's onMessage() function:
+const result = services.MyVfsService.FunctionName({
+    param1: 'value',
+    param2: 'value'
+});
 ```
 
   </TabItem>
   <TabItem value="python" label="Python">
 
-**Copy a file:**
 ```python
-def on_message():
-    services.MyVfsService.CopyFile({
-        'sourcePath': '/data/inbox/report.pdf',
-        'targetPath': '/data/archive/report.pdf'
-    })
+# In your processor's on_message() function:
+result = services.MyVfsService.FunctionName({
+    'param1': 'value',
+    'param2': 'value'
+})
 ```
 
-**Check if a file exists:**
-```python
-def on_message():
-    exists = services.MyVfsService.FileExists({
-        'path': '/data/inbox/report.pdf'
-    })
+  </TabItem>
+</Tabs>
 
-    if not exists.data:
-        processor.log_warning('File not found, skipping')
-        return
+---
 
-    # Continue processing...
+## Function Reference
+
+The examples below assume your service is mapped as `MyVfsService`.
+
+<Tabs>
+  <TabItem value="javascript" label="JavaScript">
+
+```javascript
+// Copy a file
+services.MyVfsService.CopyFile({
+    sourcePath: '/data/inbox/report.pdf',
+    targetPath: '/data/archive/report.pdf'
+});
+
+// Move a file
+services.MyVfsService.MoveFile({
+    sourcePath: '/data/inbox/report.pdf',
+    targetPath: '/data/archive/report.pdf'
+});
+
+// Delete a file
+services.MyVfsService.DeleteFile({
+    path: '/data/inbox/report.pdf'
+});
+
+// Check if a file exists
+const exists = services.MyVfsService.FileExists({ path: '/data/inbox/report.pdf' });
+if (!exists.data) {
+    processor.logWarning('File not found');
+}
+
+// Read a file
+const file = services.MyVfsService.ReadFile({ path: '/data/inbox/data.json' });
+const records = JSON.parse(file.data.content);
+
+// Write a file
+services.MyVfsService.WriteFile({
+    path: '/data/outbox/result.json',
+    content: JSON.stringify(records)
+});
+
+// List a directory (2.5.10+)
+const listing = services.MyVfsService.ListDir({
+    path: '/data/inbox',
+    recursive: false        // set true to include subdirectories
+});
+listing.data.forEach(entry => {
+    processor.logInfo(`${entry.name} (${entry.isDirectory ? 'dir' : 'file'})`);
+});
+
+// Delete a directory recursively (2.5.10+)
+services.MyVfsService.DeleteDir({
+    path: '/data/temp/batch-001'
+});
+
+// Zip a directory (2.5.10+)
+services.MyVfsService.ZipDir({
+    sourcePath: '/data/outbox/invoice-batch-001',
+    targetPath: '/data/archive/invoice-batch-001.zip',
+    includeSubdirectories: true
+});
 ```
 
-**Read and process a file:**
-```python
-def on_message():
-    file_content = services.MyVfsService.ReadFile({
-        'path': '/data/inbox/data.json'
-    })
+  </TabItem>
+  <TabItem value="python" label="Python">
 
-    if file_content and file_content.data:
-        records = json.loads(file_content.data.content)
-        processor.log_info('Loaded ' + str(len(records)) + ' records')
-```
-
-**Write a file:**
 ```python
-def on_message():
-    services.MyVfsService.WriteFile({
-        'path': '/data/outbox/result.json',
-        'content': json.dumps(result_data)
-    })
-```
+import json
 
-**Move a file:**
-```python
-def on_message():
-    services.MyVfsService.MoveFile({
-        'sourcePath': '/data/inbox/report.pdf',
-        'targetPath': '/data/archive/report.pdf'
-    })
-```
+# Copy a file
+services.MyVfsService.CopyFile({
+    'sourcePath': '/data/inbox/report.pdf',
+    'targetPath': '/data/archive/report.pdf'
+})
 
-**Delete a file:**
-```python
-def on_message():
-    services.MyVfsService.DeleteFile({
-        'path': '/data/inbox/report.pdf'
-    })
+# Move a file
+services.MyVfsService.MoveFile({
+    'sourcePath': '/data/inbox/report.pdf',
+    'targetPath': '/data/archive/report.pdf'
+})
+
+# Delete a file
+services.MyVfsService.DeleteFile({
+    'path': '/data/inbox/report.pdf'
+})
+
+# Check if a file exists
+exists = services.MyVfsService.FileExists({'path': '/data/inbox/report.pdf'})
+if not exists.data:
+    processor.log_warning('File not found')
+
+# Read a file
+file = services.MyVfsService.ReadFile({'path': '/data/inbox/data.json'})
+records = json.loads(file.data.content)
+
+# Write a file
+services.MyVfsService.WriteFile({
+    'path': '/data/outbox/result.json',
+    'content': json.dumps(records)
+})
+
+# List a directory (2.5.10+)
+listing = services.MyVfsService.ListDir({
+    'path': '/data/inbox',
+    'recursive': False      # set True to include subdirectories
+})
+for entry in listing.data:
+    entry_type = 'dir' if entry.isDirectory else 'file'
+    processor.log_info(f"{entry.name} ({entry_type})")
+
+# Delete a directory recursively (2.5.10+)
+services.MyVfsService.DeleteDir({
+    'path': '/data/temp/batch-001'
+})
+
+# Zip a directory (2.5.10+)
+services.MyVfsService.ZipDir({
+    'sourcePath': '/data/outbox/invoice-batch-001',
+    'targetPath': '/data/archive/invoice-batch-001.zip',
+    'includeSubdirectories': True
+})
 ```
 
   </TabItem>
 </Tabs>
 
 :::note
-The parameter names (`sourcePath`, `targetPath`, `path`, `content`) match the service function definitions in the source. Confirm these with the UI or Service Testing tab if they differ in your version.
+Parameter names (`sourcePath`, `targetPath`, `path`, `content`, `recursive`, `includeSubdirectories`) must match the service function definitions. Confirm these in the UI or Service Testing tab if they differ in your version.
 :::
 
-### New Functions in 2.5.10
+### Return Values
 
-#### ListDir <SinceVersion version="2.5.10" />
+Most functions return a response object with a `data` field:
 
-Lists the contents of a directory, returning file and subdirectory information.
+| Function | `data` contents |
+|----------|-----------------|
+| `FileExists` | `true` or `false` |
+| `ReadFile` | Object with `content` (string) and `contentType` |
+| `ListDir` | Array of entries. Each entry has `name`, `path`, `isDirectory`, `size`, and `modified`. |
+| `CopyFile`, `MoveFile`, `DeleteFile`, `WriteFile`, `DeleteDir`, `ZipDir` | Typically empty or null on success. Check for exceptions to detect errors. |
 
-**Parameters:**
-- `path` (string, required): The directory path to list
-- `recursive` (boolean, optional): If true, lists contents recursively. Default: false
-
-**Returns:** Array of file/directory entries with:
-- `name`: Filename or directory name
-- `path`: Full path
-- `isDirectory`: Boolean indicating if entry is a directory
-- `size`: File size in bytes (files only)
-- `modified`: Last modified timestamp
-
-<Tabs>
-  <TabItem value="javascript" label="JavaScript">
-
-```javascript
-export function onMessage() {
-    const listing = services.MyVfsService.ListDir({
-        path: '/data/inbox',
-        recursive: false
-    });
-
-    if (listing && listing.data) {
-        listing.data.forEach(entry => {
-            processor.logInfo(`Found: ${entry.name} (${entry.isDirectory ? 'directory' : 'file'})`);
-        });
-    }
-}
-```
-
-  </TabItem>
-  <TabItem value="python" label="Python">
-
-```python
-def on_message():
-    listing = services.MyVfsService.ListDir({
-        'path': '/data/inbox',
-        'recursive': False
-    })
-
-    if listing and listing.data:
-        for entry in listing.data:
-            entry_type = 'directory' if entry.isDirectory else 'file'
-            processor.log_info(f"Found: {entry.name} ({entry_type})")
-```
-
-  </TabItem>
-</Tabs>
-
-#### DeleteDir <SinceVersion version="2.5.10" />
-
-Deletes a directory and all its contents recursively. Use with caution — this operation cannot be undone.
-
-**Parameters:**
-- `path` (string, required): The directory path to delete
-
-<Tabs>
-  <TabItem value="javascript" label="JavaScript">
-
-```javascript
-export function onMessage() {
-    // Delete a temporary processing directory
-    services.MyVfsService.DeleteDir({
-        path: '/data/temp/processing-batch-001'
-    });
-}
-```
-
-  </TabItem>
-  <TabItem value="python" label="Python">
-
-```python
-def on_message():
-    # Delete a temporary processing directory
-    services.MyVfsService.DeleteDir({
-        'path': '/data/temp/processing-batch-001'
-    })
-```
-
-  </TabItem>
-</Tabs>
-
-#### ZipDir <SinceVersion version="2.5.10" />
-
-Creates a zip archive from a directory, optionally including all subdirectories.
-
-**Parameters:**
-- `sourcePath` (string, required): The directory path to zip
-- `targetPath` (string, required): The output zip file path
-- `includeSubdirectories` (boolean, optional): If true, includes subdirectories. Default: true
-
-<Tabs>
-  <TabItem value="javascript" label="JavaScript">
-
-```javascript
-export function onMessage() {
-    // Create a zip archive of processed files
-    services.MyVfsService.ZipDir({
-        sourcePath: '/data/outbox/invoice-batch-001',
-        targetPath: '/data/archive/invoice-batch-001.zip',
-        includeSubdirectories: true
-    });
-}
-```
-
-  </TabItem>
-  <TabItem value="python" label="Python">
-
-```python
-def on_message():
-    # Create a zip archive of processed files
-    services.MyVfsService.ZipDir({
-        'sourcePath': '/data/outbox/invoice-batch-001',
-        'targetPath': '/data/archive/invoice-batch-001.zip',
-        'includeSubdirectories': True
-    })
-```
-
-  </TabItem>
-</Tabs>
+---
 
 ## Service Testing
 
 <Testcase></Testcase>
 
+---
+
 ## See Also
 
-- [Virtual File System Connection](/docs/assets/workflow-assets/connections/asset-connection-virtual-fs) — configuring mount points and storage backends
-- [JavaScript Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript) — calling services from JavaScript
-- [Python Processor](/docs/assets/workflow-assets/processors-flow/asset-flow-python) — calling services from Python
+- [Virtual File System Connection](../connections/asset-connection-virtual-fs) — configuring mount points and storage backends
+- [JavaScript Processor](../processors-flow/asset-flow-javascript) — calling services from JavaScript
+- [Python Processor](../processors-flow/asset-flow-python) — calling services from Python
