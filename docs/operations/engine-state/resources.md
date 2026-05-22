@@ -306,11 +306,46 @@ OAuth resources manage OAuth 2.0 client credentials for authenticating with exte
 - Tests connectivity to authorization and token endpoints
 - Performs initial token exchange (if using client credentials flow)
 
+#### PKCE Support <SinceVersion version="2.5.16" />
+
+The OAuth authorization code flow now supports PKCE (Proof Key for Code Exchange) for enhanced security. This is particularly important for public clients where the client secret cannot be securely stored.
+
+**What is PKCE?**
+PKCE (pronounced "pixy") is an extension to the OAuth 2.0 authorization code flow that prevents authorization code interception attacks. It adds a cryptographic challenge-verification step that ensures the client requesting the token is the same one that initiated the authorization request.
+
+**Benefits:**
+- Protects against authorization code interception attacks
+- Enables secure OAuth flows for mobile and single-page applications
+- No need to store client secrets in public clients
+
+**How it works:**
+1. The client generates a cryptographically random code verifier
+2. Creates a code challenge by hashing the verifier (SHA-256)
+3. Sends the code challenge with the authorization request
+4. Includes the original code verifier when exchanging the authorization code for tokens
+5. The authorization server verifies the code verifier matches the challenge
+
+**Configuration:**
+PKCE is automatically used when the OAuth flow type is set to "Authorization Code" and the client indicates PKCE support. No additional configuration is required.
+
+#### Optional Redirect URL <SinceVersion version="2.5.16" />
+
+You can now optionally specify a custom redirect URL for OAuth authorization code flows. This allows for more flexible authentication scenarios where the default redirect URL needs to be overridden.
+
+**Use cases:**
+- Multiple application instances with different callback URLs
+- Testing environments with localhost callbacks
+- Proxied or load-balanced deployments
+
+**Configuration:**
+The redirect URL can be provided through the UI when configuring OAuth resources. If not specified, the system uses the default redirect URL configured at the application level.
+
 **Common issues:**
 - Invalid client credentials
 - Authorization server unreachable
 - Incorrect token endpoint URL
 - Scope not authorized for client
+- PKCE verification failure (code verifier mismatch)
 
 **In Resource State view:**
 Monitor token status and expiry. When a token is near expiry or shows as expired, the system typically auto-refreshes it. Check the Log tab for refresh failures.
