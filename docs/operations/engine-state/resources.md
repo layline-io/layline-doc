@@ -3,7 +3,7 @@ title: Resources
 description: Monitor and inspect resource instances running on your cluster, including Data Dictionaries, Directories, Environment, Secrets, OAuth, AlarmRules, AlarmTargets, and Status Settings.
 ---
 
-import SinceVersion from '../../../src/components/SinceVersion.js'
+import SinceVersion from '../../../src/components/SinceVersion';
 
 # Resource State
 
