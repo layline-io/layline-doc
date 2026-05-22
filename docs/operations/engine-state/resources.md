@@ -328,28 +328,6 @@ PKCE (pronounced "pixy") is an extension to the OAuth 2.0 authorization code flo
 **Configuration:**
 PKCE is automatically used when the OAuth flow type is set to "Authorization Code" and the client indicates PKCE support. No additional configuration is required.
 
-#### Optional Redirect URL <SinceVersion version="2.5.16" />
-
-You can now optionally specify a custom redirect URL for OAuth authorization code flows. This allows for more flexible authentication scenarios where the default redirect URL needs to be overridden.
-
-**Use cases:**
-- Multiple application instances with different callback URLs
-- Testing environments with localhost callbacks
-- Proxied or load-balanced deployments
-
-**Configuration:**
-The redirect URL can be provided through the UI when configuring OAuth resources. If not specified, the system uses the default redirect URL configured at the application level.
-
-**Common issues:**
-- Invalid client credentials
-- Authorization server unreachable
-- Incorrect token endpoint URL
-- Scope not authorized for client
-- PKCE verification failure (code verifier mismatch)
-
-**In Resource State view:**
-Monitor token status and expiry. When a token is near expiry or shows as expired, the system typically auto-refreshes it. Check the Log tab for refresh failures.
-
 ### AlarmRules
 
 AlarmRules define conditions that trigger alerts when thresholds are breached or specific events occur.
