@@ -19,6 +19,9 @@ const now = DateTime.now();
 // Specific moment
 const meeting = DateTime.of(2024, 12, 25, 14, 30);
 
+// From Unix epoch timestamp
+const fromEpoch = DateTime.ofEpochSecond(1700000000);
+
 // From a string
 const parsed = DateTime.parse('2024-12-25 14:30:00', 'uuuu-MM-dd HH:mm:ss');
 
@@ -86,6 +89,34 @@ const precise = DateTime.of(2024, 12, 25, 14, 30, 0, 0);
 
 // With timezone offset
 const indiaTime = DateTime.of(2024, 12, 25, 14, 30, 0, 0, ZoneOffset.of(5, 30));
+```
+
+### ofEpochSecond(epochSecond, zoneOffset?)
+
+Creates a DateTime from a Unix epoch timestamp in seconds.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `epochSecond` | `number` | Seconds since Unix epoch (1970-01-01T00:00:00Z) |
+| `zoneOffset` (optional) | [`ZoneOffset`](ZoneOffset.md) | UTC offset; defaults to UTC |
+
+```js
+const utc = DateTime.ofEpochSecond(1700000000);
+const indiaTime = DateTime.ofEpochSecond(1700000000, ZoneOffset.of(5, 30));
+```
+
+### ofEpochMilli(epochMilli, zoneOffset?)
+
+Creates a DateTime from a Unix epoch timestamp in milliseconds.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `epochMilli` | `number` | Milliseconds since Unix epoch (1970-01-01T00:00:00Z) |
+| `zoneOffset` (optional) | [`ZoneOffset`](ZoneOffset.md) | UTC offset; defaults to UTC |
+
+```js
+const utc = DateTime.ofEpochMilli(1700000000000);
+const indiaTime = DateTime.ofEpochMilli(1700000000000, ZoneOffset.of(5, 30));
 ```
 
 ### parse(value, format?)

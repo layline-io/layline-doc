@@ -23,6 +23,9 @@ now = DateTime.now()
 # Specific moment
 meeting = DateTime.of(2024, 12, 25, 14, 30)
 
+# From Unix epoch timestamp
+from_epoch = DateTime.ofEpochSecond(1700000000)
+
 # From a string
 parsed = DateTime.parse('2024-12-25 14:30:00', 'uuuu-MM-dd HH:mm:ss')
 
@@ -90,6 +93,34 @@ precise = DateTime.of(2024, 12, 25, 14, 30, 0, 0)
 
 # With timezone offset
 india_time = DateTime.of(2024, 12, 25, 14, 30, 0, 0, ZoneOffset.of(5, 30))
+```
+
+### ofEpochSecond(epochSecond, zoneOffset?)
+
+Creates a DateTime from a Unix epoch timestamp in seconds.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `epochSecond` | `int` | Seconds since Unix epoch (1970-01-01T00:00:00Z) |
+| `zoneOffset` (optional) | [`ZoneOffset`](ZoneOffset.md) | UTC offset; defaults to UTC |
+
+```python
+utc = DateTime.ofEpochSecond(1700000000)
+india_time = DateTime.ofEpochSecond(1700000000, ZoneOffset.of(5, 30))
+```
+
+### ofEpochMilli(epochMilli, zoneOffset?)
+
+Creates a DateTime from a Unix epoch timestamp in milliseconds.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `epochMilli` | `int` | Milliseconds since Unix epoch (1970-01-01T00:00:00Z) |
+| `zoneOffset` (optional) | [`ZoneOffset`](ZoneOffset.md) | UTC offset; defaults to UTC |
+
+```python
+utc = DateTime.ofEpochMilli(1700000000000)
+india_time = DateTime.ofEpochMilli(1700000000000, ZoneOffset.of(5, 30))
 ```
 
 ### parse(value, format?)
