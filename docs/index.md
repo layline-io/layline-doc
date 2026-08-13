@@ -1,7 +1,7 @@
 ---
 title: Documentation Home
 sidebar_position: 0
-slug: /docs
+slug: /
 description: layline.io documentation — organized around the four main sections of the Configuration Center.
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: QuickScript Language Reference
-slug: /docs/language-reference/quickscript/quickscript
+slug: /language-reference/quickscript/quickscript
 sidebar_position: 1
 description: QuickScript language reference.
 ---

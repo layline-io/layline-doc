@@ -72,7 +72,7 @@ Separated ::=
   '{'
     (
       'name' '=' string |
-      'type = "ListTerminal"' |
+      'type = "Separated"' |
       ('mapping' '=' MessageMapping)? |
       'regular-expression' '=' string |
       ('states' '=' '[' ( string ','? )+ ']' )? |
@@ -82,7 +82,7 @@ Separated ::=
       'terminator-regular-expression' '=' string |
       'terminator' '=' string |
       'parts' '=' ('[' (ElementPart ','? )+ ']' ) |
-      'reference' '=' ('[' ( ElementReference ','? )+ ']')
+      'references' '=' ('[' ( ElementReference ','? )+ ']')
     )+
   '}'
 

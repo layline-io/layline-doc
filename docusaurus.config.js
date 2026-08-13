@@ -4,6 +4,42 @@
 const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 
+function stripTrailingSlash(path) {
+    return path === '/' ? path : path.replace(/\/+$/, '');
+}
+
+function addRedirect(redirects, from) {
+    const normalizedFrom = stripTrailingSlash(from);
+
+    if (normalizedFrom) {
+        redirects.push(normalizedFrom);
+    }
+}
+
+function addPrefixedRedirects(redirects, path, currentPrefix, legacyPrefixes) {
+    if (!path.startsWith(currentPrefix)) {
+        return;
+    }
+
+    const suffix = path.slice(currentPrefix.length);
+
+    legacyPrefixes.forEach((legacyPrefix) => {
+        addRedirect(redirects, `${legacyPrefix}${suffix}`);
+    });
+}
+
+function addVersionedRedirects(redirects, path, currentPrefix, legacyPrefixes) {
+    if (!path.startsWith(currentPrefix)) {
+        return;
+    }
+
+    const suffix = path.slice(currentPrefix.length);
+
+    legacyPrefixes.forEach((legacyPrefix) => {
+        addRedirect(redirects, `/docs/1.2.28${legacyPrefix}${suffix}`);
+    });
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'layline.io Documentation',
@@ -116,6 +152,155 @@ const config = {
                     { from: '/docs/08-release-notes', to: '/docs/release-notes' },
                     // Add more specific redirects if needed
                 ],
+                createRedirects(path) {
+                    const redirects = [];
+
+                    if (path === '/docs/') {
+                        addRedirect(redirects, '/docs/docs/');
+                    }
+
+                    if (path === '/docs/language-reference/quickscript/quickscript/') {
+                        addRedirect(redirects, '/docs/docs/language-reference/quickscript/quickscript/');
+                    }
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/connections/', [
+                        '/docs/assets/connections/',
+                        '/docs/assets/workflow-assets/sources/connections/',
+                        '/docs/assets/workflow-assets/sinks/connections/',
+                        '/docs/assets/workflow-assets/services/connections/',
+                    ]);
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/extensions/', [
+                        '/docs/assets/extensions/',
+                    ]);
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/formats/', [
+                        '/docs/assets/formats/',
+                        '/docs/assets/workflow-assets/processors-flow/formats/',
+                        '/docs/assets/workflow-assets/processors-input/formats/',
+                        '/docs/assets/workflow-assets/processors-output/formats/',
+                        '/docs/assets/workflow-assets/workflows/formats/',
+                    ]);
+                    addVersionedRedirects(redirects, path, '/docs/assets/workflow-assets/formats/', [
+                        '/assets/formats/',
+                    ]);
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/processors-flow/', [
+                        '/docs/assets/processors-flow/',
+                        '/docs/assets/workflow-assets/formats/processors-flow/',
+                        '/docs/assets/workflow-assets/processors-output/processors-flow/',
+                        '/docs/assets/workflow-assets/services/processors-flow/',
+                        '/docs/assets/workflow-assets/sources/processors-flow/',
+                    ]);
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/processors-input/', [
+                        '/docs/assets/processors-input/',
+                        '/docs/assets/workflow-assets/formats/processors-input/',
+                        '/docs/assets/workflow-assets/sinks/processors-input/',
+                        '/docs/assets/workflow-assets/sources/processors-input/',
+                    ]);
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/processors-output/', [
+                        '/docs/assets/processors-output/',
+                        '/docs/assets/workflow-assets/sources/processors-output/',
+                    ]);
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/resources/', [
+                        '/docs/assets/resources/',
+                        '/docs/assets/workflow-assets/extensions/resources/',
+                        '/docs/assets/workflow-assets/processors-output/resources/',
+                        '/docs/assets/workflow-assets/sinks/resources/',
+                        '/docs/assets/workflow-assets/sources/resources/',
+                    ]);
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/services/', [
+                        '/docs/assets/services/',
+                        '/docs/assets/workflow-assets/sources/services/',
+                    ]);
+
+                    if (path.startsWith('/docs/assets/workflow-assets/services/asset-service-proxy/')) {
+                        addRedirect(redirects, '/docs/assets/workflow-assets/services/asset-service-proxy/asset-service-introduction/');
+                    }
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/sinks/', [
+                        '/docs/assets/sinks/',
+                        '/docs/assets/workflow-assets/processors-output/sinks/',
+                        '/docs/assets/workflow-assets/sources/sinks/',
+                    ]);
+                    addVersionedRedirects(redirects, path, '/docs/assets/workflow-assets/sinks/', [
+                        '/assets/sinks/',
+                    ]);
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/sources/', [
+                        '/docs/assets/sources/',
+                    ]);
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/workflows/', [
+                        '/docs/assets/workflows/',
+                    ]);
+
+                    addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/deployment-assets/', [
+                        '/docs/assets/deployment-assets/',
+                    ]);
+
+                    if (path === '/docs/operations/cluster/') {
+                        addRedirect(redirects, '/docs/operations/cluster/cluster-overview/');
+                        addRedirect(redirects, '/docs/operations/cluster/cluster-tab-overview/');
+                    }
+
+                    if (path.startsWith('/docs/operations/cluster/') && path !== '/docs/operations/cluster/') {
+                        addRedirect(redirects, `/docs/operations/cluster/cluster/${path.slice('/docs/operations/cluster/'.length)}`);
+                    }
+
+                    if (path === '/docs/operations/cluster/security-storage/') {
+                        addRedirect(redirects, '/docs/operations/cluster/operations-secret-storage/');
+                    }
+
+                    if (path === '/docs/settings/') {
+                        addRedirect(redirects, '/docs/concept/settings/introduction/');
+                    }
+
+                    if (path === '/docs/settings/application/') {
+                        addRedirect(redirects, '/docs/concept/settings/introduction/settings-application/');
+                        addRedirect(redirects, '/docs/concept/settings/settings-application/');
+                    }
+
+                    if (path === '/docs/settings/cluster-storage/') {
+                        addRedirect(redirects, '/docs/concept/settings/introduction/settings-cluster/');
+                        addRedirect(redirects, '/docs/concept/settings/settings-cluster/');
+                    }
+
+                    if (path === '/docs/settings/secret-storage/') {
+                        addRedirect(redirects, '/docs/concept/settings/settings-secret-storage/');
+                    }
+
+                    if (path === '/docs/settings/users-and-roles/') {
+                        addRedirect(redirects, '/docs/concept/settings/settings-user-storage/');
+                        addRedirect(redirects, '/docs/concept/advanced/settings/settings-user-storage/');
+                    }
+
+                    if (path === '/docs/concept/projects-workflows/deployment/') {
+                        addRedirect(redirects, '/docs/concept/advanced/projects-workflows/deployment/');
+                    }
+
+                    if (path === '/docs/assets/') {
+                        addRedirect(redirects, '/docs/1.2.28/assets/');
+                    }
+
+                    if (path === '/docs/concept/') {
+                        addRedirect(redirects, '/docs/1.2.28/concept/');
+                    }
+
+                    if (path === '/docs/language-reference/') {
+                        addRedirect(redirects, '/docs/1.2.28/language-reference/');
+                    }
+
+                    if (path === '/docs/release-notes/') {
+                        addRedirect(redirects, '/docs/1.2.28/release/');
+                    }
+
+                    return redirects;
+                },
             },
         ],
         // Typedoc plugin removed - API docs are now maintained manually
