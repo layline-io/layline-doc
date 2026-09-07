@@ -34,7 +34,7 @@ You need:
 
 ### Name & Description
 
-![Name & Description (NFS Sink)](.asset-sink-nfs_images/image_02.png "Name & Description (NFS Sink)")
+![Name & Description (NFS Sink)](.asset-sink-nfs_images/image_2025-04-03-17-49-02.png "Name & Description (NFS Sink)")
 
 <NameAndDescription></NameAndDescription>
 
@@ -42,9 +42,9 @@ You need:
 
 <RequiredRoles></RequiredRoles>
 
-### NFS Connection
+### NFS ConnectionF
 
-![NFS Connection (NFS Sink)](.asset-sink-nfs_images/image_47.png "NFS Connection (NFS Sink)")
+![NFS Connection (NFS Sink)](.asset-sink-nfs_images/image_2025-04-03-17-49-47.png "NFS Connection (NFS Sink)")
 
 Select the [NFS Connection](/docs/assets/workflow-assets/connections/asset-connection-nfs) that you want to use with this Asset.
 If it does not exist, you need to create it first.

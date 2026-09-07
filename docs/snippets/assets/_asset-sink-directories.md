@@ -8,7 +8,7 @@ This sink allows the definition of three different directories, all relative to 
 
 #### Output Directory
 
-![Output Directory](./._asset-sink-directories_images/image_27.png "Output Directory")
+![Output Directory](./._asset-sink-directories_images/image_2025-04-04-10-25-27.png "Output Directory")
 
 * **`Output Directory`** : The directory to write output files to.
   The path must be relative to the connection mount point and accessible to the Reactive Engine.
