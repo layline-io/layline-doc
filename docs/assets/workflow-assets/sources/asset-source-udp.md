@@ -47,7 +47,7 @@ None
 
 :::tip Please note:
 At this stage Source UDP can only be used to retrieve data (requests), for instance in an IoT use case scenario where usually no responses are expected. 
-Please don't hesitate to contact us at support@layline.io in case you are in need of UDP response handling!
+Please don't hesitate to contact us at support [at] layline.io in case you are in need of UDP response handling!
 :::
 
 ### Stream Settings

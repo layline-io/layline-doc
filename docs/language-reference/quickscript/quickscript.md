@@ -18,7 +18,7 @@ QuickScript is a limited language, which introduces
 
 The language is simple and quick to use - as the name implies - and customized to the application.
 Functionality and methods will be added over time.
-If you have suggestions, then please submit them to [support@layline.io](mailto: support@layline.io).
+If you have suggestions, then please submit them to [support [at] layline.io](mailto: support [at] layline.io).
 
 ## Where can I use QuickScript?
 

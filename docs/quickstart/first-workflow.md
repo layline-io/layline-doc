@@ -707,7 +707,7 @@ You can not investigate the project yourself using the previous steps as a guide
 
 ## Getting help
 
-If you are interested in layline.io and need help getting started, you can always contact us at support@layline.io.
+If you are interested in layline.io and need help getting started, you can always contact us at support [at] layline.io.
 
 
 

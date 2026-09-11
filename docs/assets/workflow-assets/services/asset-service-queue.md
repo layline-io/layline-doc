@@ -40,7 +40,7 @@ None
 
 * **`Queue Type`**: Select the type of queue from the drop-down box. At this stage `File Queue` is the only available type. It is working by FIFO (First-In-First-Out) principle.
 In theory, `Queue Type` can be other storages like RDBMS, Kafka, et al. as well. 
-Please don't hesitate to contact us at support@layline.io in case you are in need of other `Queue Type`.
+Please don't hesitate to contact us at support [at] layline.io in case you are in need of other `Queue Type`.
 
 * **`Queue Directory`** (_macro supported_): the directory used to store the file-based queue data. 
 

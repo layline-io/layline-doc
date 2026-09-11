@@ -18,7 +18,7 @@ Now that layline.io is running, here are the recommended next steps:
 
 4. **Dive into the reference** — Browse the [Asset Reference](../assets/index.md) to see all available sources, processors, and sinks. Check the [Language Reference](../language-reference/index.md) for JavaScript and Python scripting APIs.
 
-5. **Talk to us** — We are a team of real people and we welcome feedback. Reach out at [support@layline.io](mailto:support@layline.io) to share questions or schedule a call.
+5. **Talk to us** — We are a team of real people and we welcome feedback. Reach out at [support [at] layline.io](mailto:support [at] layline.io) to share questions or schedule a call.
 
 ---
 

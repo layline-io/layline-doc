@@ -134,7 +134,7 @@ pekko {
 
 ```
 
-In case of questions, please don't hesitate to contact us at support@layline.io.
+In case of questions, please don't hesitate to contact us at support [at] layline.io.
 
 ### Javascript: Nashorn to GraalVM switch
 

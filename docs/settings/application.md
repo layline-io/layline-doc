@@ -124,7 +124,7 @@ Your personal API key for accessing the AI chat service.
 :::caution
 If no API key is configured, a warning appears:
 
-> "In order to use the AI-Chat, you must have a valid API key. To obtain one, please contact layline.io at support@layline.io."
+> "In order to use the AI-Chat, you must have a valid API key. To obtain one, please contact layline.io at support [at] layline.io."
 :::
 
 ---

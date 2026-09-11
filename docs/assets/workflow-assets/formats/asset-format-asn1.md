@@ -30,7 +30,7 @@ We will explain all of this in this document.
 
 :::warning Not all ASN.1 types are supported yet.
 While most of the ASN.1 language is supported, there may be edge cases which layline.io may yet not be able to handle successfullly.
-Should you encounter such a case, then please let us know at support@layline.io.
+Should you encounter such a case, then please let us know at support [at] layline.io.
 We will ensure that your case will be accommodated in the short term.
 :::
 
