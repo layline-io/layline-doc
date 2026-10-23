@@ -282,6 +282,6 @@ Most functions return a response object with a `data` field:
 
 ## See Also
 
-- [Virtual File System Connection](../connections/asset-connection-virtual-fs) — configuring mount points and storage backends
-- [JavaScript Processor](../processors-flow/asset-flow-javascript) — calling services from JavaScript
-- [Python Processor](../processors-flow/asset-flow-python) — calling services from Python
+- [Virtual File System Connection](../connections/asset-connection-virtual-fs.md) — configuring mount points and storage backends
+- [JavaScript Processor](../processors-flow/asset-flow-javascript.md) — calling services from JavaScript
+- [Python Processor](../processors-flow/asset-flow-python.md) — calling services from Python

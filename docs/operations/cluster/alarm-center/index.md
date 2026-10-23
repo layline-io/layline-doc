@@ -2,7 +2,6 @@
 sidebar_position: 4
 title: Alarm Center
 description: Monitor, manage, and configure alarms for your layline.io cluster.
-slug: alarm-center
 ---
 
 # Alarm Center

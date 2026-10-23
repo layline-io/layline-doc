@@ -2,7 +2,6 @@
 title: Cluster 
 sidebar_position: 2
 description: Get an overview of the Cluster concept and its components in layline.io.
-slug: cluster
 ---
 
 import WipDisclaimer from '../../snippets/common/_wip-disclaimer.md'

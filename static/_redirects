@@ -1,0 +1,216 @@
+# Cloudflare Pages HTTP redirects (301) for SEO.
+# Copied into build/ by Docusaurus from static/.
+# https://developers.cloudflare.com/pages/configuration/redirects/
+#
+# Order matters: specific static rules before dynamic splat rules.
+# Keep dynamic rules (lines with * or :placeholder) under the 100-rule limit.
+# Client-side redirects in docusaurus.config.js remain as a non-CF fallback.
+
+# ---------------------------------------------------------------------------
+# Static one-offs (GSC / Phase A–B)
+# ---------------------------------------------------------------------------
+
+# Mistaken relative slugs on category index pages
+/docs/operations/cluster/cluster /docs/operations/cluster/ 301
+/docs/operations/cluster/cluster/ /docs/operations/cluster/ 301
+/docs/operations/cluster/alarm-center/alarm-center /docs/operations/cluster/alarm-center/ 301
+/docs/operations/cluster/alarm-center/alarm-center/ /docs/operations/cluster/alarm-center/ 301
+
+# Draft release.mdx unpublished
+/docs/release-notes/release /docs/current/releases/changelog/ 301
+/docs/release-notes/release/ /docs/current/releases/changelog/ 301
+
+# Doubled /docs that does not map 1:1 after stripping
+/docs/docs/configuration /docs/concept/projects-workflows/configuration/ 301
+/docs/docs/configuration/ /docs/concept/projects-workflows/configuration/ 301
+
+# Path renames
+/docs/migration-version2 /docs/release-notes/migration-version2/ 301
+/docs/migration-version2/ /docs/release-notes/migration-version2/ 301
+/docs/operations/cluster/audit-trail /docs/operations/audit-trail/ 301
+/docs/operations/cluster/audit-trail/ /docs/operations/audit-trail/ 301
+/docs/operations/engine-state/engine-state /docs/operations/engine-state/ 301
+/docs/operations/engine-state/engine-state/ /docs/operations/engine-state/ 301
+/docs/operations/assets/formats /docs/operations/engine-state/formats/ 301
+/docs/operations/assets/formats/ /docs/operations/engine-state/formats/ 301
+/docs/operations/assets/services /docs/operations/engine-state/services/ 301
+/docs/operations/assets/services/ /docs/operations/engine-state/services/ 301
+/docs/operations/assets/source-assets /docs/operations/engine-state/sources/ 301
+/docs/operations/assets/source-assets/ /docs/operations/engine-state/sources/ 301
+/docs/operations/cluster/cluster-overview /docs/operations/cluster/ 301
+/docs/operations/cluster/cluster-overview/ /docs/operations/cluster/ 301
+/docs/operations/cluster/cluster-tab-overview /docs/operations/cluster/ 301
+/docs/operations/cluster/cluster-tab-overview/ /docs/operations/cluster/ 301
+/docs/operations/cluster/operations-secret-storage /docs/operations/cluster/security-storage/ 301
+/docs/operations/cluster/operations-secret-storage/ /docs/operations/cluster/security-storage/ 301
+/docs/assets/language-reference/macros /docs/language-reference/macros/ 301
+/docs/assets/language-reference/macros/ /docs/language-reference/macros/ 301
+/docs/assets/settings/cluster-storage /docs/settings/cluster-storage/ 301
+/docs/assets/settings/cluster-storage/ /docs/settings/cluster-storage/ 301
+/docs/assets/workflow-assets/workflows/asset-workflow /docs/assets/workflow-assets/workflows/ 301
+/docs/assets/workflow-assets/workflows/asset-workflow/ /docs/assets/workflow-assets/workflows/ 301
+/docs/concept/wf-config/server-config-settings /docs/concept/projects-workflows/server-config-settings/ 301
+/docs/concept/wf-config/server-config-settings/ /docs/concept/projects-workflows/server-config-settings/ 301
+/docs/concept/advanced/projects-workflows/deployment /docs/concept/projects-workflows/deployment/ 301
+/docs/concept/advanced/projects-workflows/deployment/ /docs/concept/projects-workflows/deployment/ 301
+/docs/language-reference/javascript/javascript_introduction/API/classes/JavaScriptProcessor /docs/language-reference/javascript/API/classes/JavaScriptProcessor/ 301
+/docs/language-reference/javascript/javascript_introduction/API/classes/JavaScriptProcessor/ /docs/language-reference/javascript/API/classes/JavaScriptProcessor/ 301
+
+# Settings moved out of concept/
+/docs/concept/settings/introduction /docs/settings/ 301
+/docs/concept/settings/introduction/ /docs/settings/ 301
+/docs/concept/settings/settings-application /docs/settings/application/ 301
+/docs/concept/settings/settings-application/ /docs/settings/application/ 301
+/docs/concept/settings/introduction/settings-application /docs/settings/application/ 301
+/docs/concept/settings/introduction/settings-application/ /docs/settings/application/ 301
+/docs/concept/settings/settings-cluster /docs/settings/cluster-storage/ 301
+/docs/concept/settings/settings-cluster/ /docs/settings/cluster-storage/ 301
+/docs/concept/settings/introduction/settings-cluster /docs/settings/cluster-storage/ 301
+/docs/concept/settings/introduction/settings-cluster/ /docs/settings/cluster-storage/ 301
+/docs/concept/settings/settings-secret-storage /docs/settings/secret-storage/ 301
+/docs/concept/settings/settings-secret-storage/ /docs/settings/secret-storage/ 301
+/docs/concept/settings/settings-user-storage /docs/settings/users-and-roles/ 301
+/docs/concept/settings/settings-user-storage/ /docs/settings/users-and-roles/ 301
+/docs/concept/advanced/settings/settings-user-storage /docs/settings/users-and-roles/ 301
+/docs/concept/advanced/settings/settings-user-storage/ /docs/settings/users-and-roles/ 301
+
+# Pre-Docusaurus / stray hosts paths
+/quickstart /docs/quickstart/ 301
+/quickstart/ /docs/quickstart/ 301
+/assets/formats/asset-format-generic.html /docs/assets/workflow-assets/formats/asset-format-generic/ 301
+/doc/wf-config/configuration.html /docs/concept/projects-workflows/configuration/ 301
+/solutions/edge-processing https://layline.io/solutions/ 301
+/solutions/edge-processing/ https://layline.io/solutions/ 301
+
+# Removed / renamed tags
+/docs/tags/ai /docs/tags/ 301
+/docs/tags/ai/ /docs/tags/ 301
+/docs/tags/configuration-server /docs/tags/ 301
+/docs/tags/configuration-server/ /docs/tags/ 301
+/docs/tags/securitystorage /docs/tags/ 301
+/docs/tags/securitystorage/ /docs/tags/ 301
+/docs/tags/settings /docs/tags/ 301
+/docs/tags/settings/ /docs/tags/ 301
+/docs/tags/userstorage /docs/tags/ 301
+/docs/tags/userstorage/ /docs/tags/ 301
+
+# Numbered section prefixes (roots)
+/docs/01-quickstart /docs/quickstart/ 301
+/docs/01-quickstart/ /docs/quickstart/ 301
+/docs/02-concept /docs/concept/ 301
+/docs/02-concept/ /docs/concept/ 301
+/docs/03-assets /docs/assets/ 301
+/docs/03-assets/ /docs/assets/ 301
+/docs/04-language-reference /docs/language-reference/ 301
+/docs/04-language-reference/ /docs/language-reference/ 301
+/docs/07-operations /docs/operations/ 301
+/docs/07-operations/ /docs/operations/ 301
+/docs/08-release-notes /docs/release-notes/ 301
+/docs/08-release-notes/ /docs/release-notes/ 301
+
+# Legacy asset category index pages (no trailing child)
+/docs/assets/connections /docs/assets/workflow-assets/connections/ 301
+/docs/assets/connections/ /docs/assets/workflow-assets/connections/ 301
+/docs/assets/extensions /docs/assets/workflow-assets/extensions/ 301
+/docs/assets/extensions/ /docs/assets/workflow-assets/extensions/ 301
+/docs/assets/formats /docs/assets/workflow-assets/formats/ 301
+/docs/assets/formats/ /docs/assets/workflow-assets/formats/ 301
+/docs/assets/processors-flow /docs/assets/workflow-assets/processors-flow/ 301
+/docs/assets/processors-flow/ /docs/assets/workflow-assets/processors-flow/ 301
+/docs/assets/processors-input /docs/assets/workflow-assets/processors-input/ 301
+/docs/assets/processors-input/ /docs/assets/workflow-assets/processors-input/ 301
+/docs/assets/processors-output /docs/assets/workflow-assets/processors-output/ 301
+/docs/assets/processors-output/ /docs/assets/workflow-assets/processors-output/ 301
+/docs/assets/resources /docs/assets/workflow-assets/resources/ 301
+/docs/assets/resources/ /docs/assets/workflow-assets/resources/ 301
+/docs/assets/services /docs/assets/workflow-assets/services/ 301
+/docs/assets/services/ /docs/assets/workflow-assets/services/ 301
+/docs/assets/sinks /docs/assets/workflow-assets/sinks/ 301
+/docs/assets/sinks/ /docs/assets/workflow-assets/sinks/ 301
+/docs/assets/sources /docs/assets/workflow-assets/sources/ 301
+/docs/assets/sources/ /docs/assets/workflow-assets/sources/ 301
+/docs/assets/workflows /docs/assets/workflow-assets/workflows/ 301
+/docs/assets/workflows/ /docs/assets/workflow-assets/workflows/ 301
+
+# Removed version roots
+/docs/1.2.28/assets /docs/assets/ 301
+/docs/1.2.28/assets/ /docs/assets/ 301
+/docs/1.2.28/concept /docs/concept/ 301
+/docs/1.2.28/concept/ /docs/concept/ 301
+/docs/1.2.28/language-reference /docs/language-reference/ 301
+/docs/1.2.28/language-reference/ /docs/language-reference/ 301
+/docs/1.2.28/release /docs/release-notes/ 301
+/docs/1.2.28/release/ /docs/release-notes/ 301
+
+# ---------------------------------------------------------------------------
+# Dynamic splat rules (max 100) — more specific patterns first
+# ---------------------------------------------------------------------------
+
+# Doubled /docs/docs/... (after the configuration special-case above)
+/docs/docs/* /docs/:splat 301
+
+# Numbered section prefixes (children)
+/docs/01-quickstart/* /docs/quickstart/:splat 301
+/docs/02-concept/* /docs/concept/:splat 301
+/docs/03-assets/* /docs/assets/:splat 301
+/docs/04-language-reference/* /docs/language-reference/:splat 301
+/docs/07-operations/* /docs/operations/:splat 301
+/docs/08-release-notes/* /docs/release-notes/:splat 301
+
+# Legacy assets without workflow-assets/
+/docs/assets/connections/* /docs/assets/workflow-assets/connections/:splat 301
+/docs/assets/extensions/* /docs/assets/workflow-assets/extensions/:splat 301
+/docs/assets/formats/* /docs/assets/workflow-assets/formats/:splat 301
+/docs/assets/processors-flow/* /docs/assets/workflow-assets/processors-flow/:splat 301
+/docs/assets/processors-input/* /docs/assets/workflow-assets/processors-input/:splat 301
+/docs/assets/processors-output/* /docs/assets/workflow-assets/processors-output/:splat 301
+/docs/assets/resources/* /docs/assets/workflow-assets/resources/:splat 301
+/docs/assets/services/* /docs/assets/workflow-assets/services/:splat 301
+/docs/assets/sinks/* /docs/assets/workflow-assets/sinks/:splat 301
+/docs/assets/sources/* /docs/assets/workflow-assets/sources/:splat 301
+/docs/assets/workflows/* /docs/assets/workflow-assets/workflows/:splat 301
+
+# Nested wrong-category mashups under workflow-assets/
+/docs/assets/workflow-assets/sources/connections/* /docs/assets/workflow-assets/connections/:splat 301
+/docs/assets/workflow-assets/sinks/connections/* /docs/assets/workflow-assets/connections/:splat 301
+/docs/assets/workflow-assets/services/connections/* /docs/assets/workflow-assets/connections/:splat 301
+/docs/assets/workflow-assets/processors-flow/formats/* /docs/assets/workflow-assets/formats/:splat 301
+/docs/assets/workflow-assets/processors-input/formats/* /docs/assets/workflow-assets/formats/:splat 301
+/docs/assets/workflow-assets/processors-output/formats/* /docs/assets/workflow-assets/formats/:splat 301
+/docs/assets/workflow-assets/workflows/formats/* /docs/assets/workflow-assets/formats/:splat 301
+/docs/assets/workflow-assets/formats/processors-flow/* /docs/assets/workflow-assets/processors-flow/:splat 301
+/docs/assets/workflow-assets/processors-flow/processors-flow/* /docs/assets/workflow-assets/processors-flow/:splat 301
+/docs/assets/workflow-assets/processors-input/processors-flow/* /docs/assets/workflow-assets/processors-flow/:splat 301
+/docs/assets/workflow-assets/processors-output/processors-flow/* /docs/assets/workflow-assets/processors-flow/:splat 301
+/docs/assets/workflow-assets/services/processors-flow/* /docs/assets/workflow-assets/processors-flow/:splat 301
+/docs/assets/workflow-assets/sources/processors-flow/* /docs/assets/workflow-assets/processors-flow/:splat 301
+/docs/assets/workflow-assets/formats/processors-input/* /docs/assets/workflow-assets/processors-input/:splat 301
+/docs/assets/workflow-assets/sinks/processors-input/* /docs/assets/workflow-assets/processors-input/:splat 301
+/docs/assets/workflow-assets/sources/processors-input/* /docs/assets/workflow-assets/processors-input/:splat 301
+/docs/assets/workflow-assets/sources/processors-output/* /docs/assets/workflow-assets/processors-output/:splat 301
+/docs/assets/workflow-assets/extensions/resources/* /docs/assets/workflow-assets/resources/:splat 301
+/docs/assets/workflow-assets/processors-output/resources/* /docs/assets/workflow-assets/resources/:splat 301
+/docs/assets/workflow-assets/services/resources/* /docs/assets/workflow-assets/resources/:splat 301
+/docs/assets/workflow-assets/sinks/resources/* /docs/assets/workflow-assets/resources/:splat 301
+/docs/assets/workflow-assets/sources/resources/* /docs/assets/workflow-assets/resources/:splat 301
+/docs/assets/workflow-assets/processors-flow/services/* /docs/assets/workflow-assets/services/:splat 301
+/docs/assets/workflow-assets/sources/services/* /docs/assets/workflow-assets/services/:splat 301
+/docs/assets/workflow-assets/connections/sinks/* /docs/assets/workflow-assets/sinks/:splat 301
+/docs/assets/workflow-assets/processors-output/sinks/* /docs/assets/workflow-assets/sinks/:splat 301
+/docs/assets/workflow-assets/sources/sinks/* /docs/assets/workflow-assets/sinks/:splat 301
+
+# Shelf sibling mashups (/docs/shelf/categories/elements/ → /docs/shelf/elements/)
+/docs/shelf/categories/* /docs/shelf/:splat 301
+/docs/shelf/elements/* /docs/shelf/:splat 301
+/docs/shelf/folders/* /docs/shelf/:splat 301
+/docs/shelf/navigation/* /docs/shelf/:splat 301
+
+# Mistaken /cluster/cluster/... nesting for child pages
+/docs/operations/cluster/cluster/* /docs/operations/cluster/:splat 301
+
+# Removed versioned asset paths
+/docs/1.2.28/assets/formats/* /docs/assets/workflow-assets/formats/:splat 301
+/docs/1.2.28/assets/sinks/* /docs/assets/workflow-assets/sinks/:splat 301
+/docs/1.2.28/assets/* /docs/assets/:splat 301
+/docs/1.2.28/concept/* /docs/concept/:splat 301
+/docs/1.2.28/language-reference/* /docs/language-reference/:splat 301
