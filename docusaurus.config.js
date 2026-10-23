@@ -77,8 +77,7 @@ const config = {
     // organizationName: 'facebook', // Usually your GitHub org/user name.
     // projectName: 'docusaurus', // Usually your repo name.
 
-    // onBrokenLinks: 'warn',
-    onBrokenLinks: 'ignore',
+    onBrokenLinks: 'throw',
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
@@ -140,6 +139,7 @@ const config = {
 
     plugins: [
         [
+            // HTML/meta-refresh fallback. Prefer Cloudflare Pages 301s in static/_redirects (Phase C).
             '@docusaurus/plugin-client-redirects',
             {
                 redirects: [
@@ -150,17 +150,29 @@ const config = {
                     { from: '/docs/04-language-reference', to: '/docs/language-reference' },
                     { from: '/docs/07-operations', to: '/docs/operations' },
                     { from: '/docs/08-release-notes', to: '/docs/release-notes' },
-                    // Add more specific redirects if needed
+                    // Mistaken relative slugs on category index pages (pre-fix URLs)
+                    { from: '/docs/operations/cluster/cluster', to: '/docs/operations/cluster' },
+                    { from: '/docs/operations/cluster/alarm-center/alarm-center', to: '/docs/operations/cluster/alarm-center' },
+                    // Draft release.mdx is unpublished; send old release URL to changelog
+                    { from: '/docs/release-notes/release', to: '/docs/current/releases/changelog' },
+                    // Paths that cannot be expressed via createRedirects (no matching target page / special suffixes)
+                    { from: '/docs/docs/configuration', to: '/docs/concept/projects-workflows/configuration' },
+                    { from: '/assets/formats/asset-format-generic.html', to: '/docs/assets/workflow-assets/formats/asset-format-generic' },
+                    { from: '/doc/wf-config/configuration.html', to: '/docs/concept/projects-workflows/configuration' },
+                    { from: '/solutions/edge-processing', to: 'https://layline.io/solutions/' },
+                    // Removed / renamed tags → tags index
+                    { from: '/docs/tags/ai', to: '/docs/tags' },
+                    { from: '/docs/tags/configuration-server', to: '/docs/tags' },
+                    { from: '/docs/tags/securitystorage', to: '/docs/tags' },
+                    { from: '/docs/tags/settings', to: '/docs/tags' },
+                    { from: '/docs/tags/userstorage', to: '/docs/tags' },
                 ],
                 createRedirects(path) {
                     const redirects = [];
 
-                    if (path === '/docs/') {
-                        addRedirect(redirects, '/docs/docs/');
-                    }
-
-                    if (path === '/docs/language-reference/quickscript/quickscript/') {
-                        addRedirect(redirects, '/docs/docs/language-reference/quickscript/quickscript/');
+                    // Doubled /docs/docs/... from absolute /docs links resolved under /docs
+                    if (path.startsWith('/docs/')) {
+                        addRedirect(redirects, `/docs/docs/${path.slice('/docs/'.length)}`);
                     }
 
                     addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/connections/', [
@@ -188,6 +200,8 @@ const config = {
                     addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/processors-flow/', [
                         '/docs/assets/processors-flow/',
                         '/docs/assets/workflow-assets/formats/processors-flow/',
+                        '/docs/assets/workflow-assets/processors-flow/processors-flow/',
+                        '/docs/assets/workflow-assets/processors-input/processors-flow/',
                         '/docs/assets/workflow-assets/processors-output/processors-flow/',
                         '/docs/assets/workflow-assets/services/processors-flow/',
                         '/docs/assets/workflow-assets/sources/processors-flow/',
@@ -209,12 +223,14 @@ const config = {
                         '/docs/assets/resources/',
                         '/docs/assets/workflow-assets/extensions/resources/',
                         '/docs/assets/workflow-assets/processors-output/resources/',
+                        '/docs/assets/workflow-assets/services/resources/',
                         '/docs/assets/workflow-assets/sinks/resources/',
                         '/docs/assets/workflow-assets/sources/resources/',
                     ]);
 
                     addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/services/', [
                         '/docs/assets/services/',
+                        '/docs/assets/workflow-assets/processors-flow/services/',
                         '/docs/assets/workflow-assets/sources/services/',
                     ]);
 
@@ -224,6 +240,7 @@ const config = {
 
                     addPrefixedRedirects(redirects, path, '/docs/assets/workflow-assets/sinks/', [
                         '/docs/assets/sinks/',
+                        '/docs/assets/workflow-assets/connections/sinks/',
                         '/docs/assets/workflow-assets/processors-output/sinks/',
                         '/docs/assets/workflow-assets/sources/sinks/',
                     ]);
@@ -243,6 +260,18 @@ const config = {
                         '/docs/assets/deployment-assets/',
                     ]);
 
+                    // Shelf sibling mashups (e.g. /docs/shelf/categories/elements/ → /docs/shelf/elements/)
+                    const shelfSegments = ['categories', 'elements', 'folders', 'navigation'];
+                    for (const segment of shelfSegments) {
+                        if (path === `/docs/shelf/${segment}/`) {
+                            for (const other of shelfSegments) {
+                                if (other !== segment) {
+                                    addRedirect(redirects, `/docs/shelf/${other}/${segment}/`);
+                                }
+                            }
+                        }
+                    }
+
                     if (path === '/docs/operations/cluster/') {
                         addRedirect(redirects, '/docs/operations/cluster/cluster-overview/');
                         addRedirect(redirects, '/docs/operations/cluster/cluster-tab-overview/');
@@ -254,6 +283,26 @@ const config = {
 
                     if (path === '/docs/operations/cluster/security-storage/') {
                         addRedirect(redirects, '/docs/operations/cluster/operations-secret-storage/');
+                    }
+
+                    if (path === '/docs/operations/audit-trail/') {
+                        addRedirect(redirects, '/docs/operations/cluster/audit-trail/');
+                    }
+
+                    if (path === '/docs/operations/engine-state/') {
+                        addRedirect(redirects, '/docs/operations/engine-state/engine-state/');
+                    }
+
+                    if (path === '/docs/operations/engine-state/formats/') {
+                        addRedirect(redirects, '/docs/operations/assets/formats/');
+                    }
+
+                    if (path === '/docs/operations/engine-state/services/') {
+                        addRedirect(redirects, '/docs/operations/assets/services/');
+                    }
+
+                    if (path === '/docs/operations/engine-state/sources/') {
+                        addRedirect(redirects, '/docs/operations/assets/source-assets/');
                     }
 
                     if (path === '/docs/settings/') {
@@ -268,6 +317,7 @@ const config = {
                     if (path === '/docs/settings/cluster-storage/') {
                         addRedirect(redirects, '/docs/concept/settings/introduction/settings-cluster/');
                         addRedirect(redirects, '/docs/concept/settings/settings-cluster/');
+                        addRedirect(redirects, '/docs/assets/settings/cluster-storage/');
                     }
 
                     if (path === '/docs/settings/secret-storage/') {
@@ -281,6 +331,30 @@ const config = {
 
                     if (path === '/docs/concept/projects-workflows/deployment/') {
                         addRedirect(redirects, '/docs/concept/advanced/projects-workflows/deployment/');
+                    }
+
+                    if (path === '/docs/concept/projects-workflows/server-config-settings/') {
+                        addRedirect(redirects, '/docs/concept/wf-config/server-config-settings/');
+                    }
+
+                    if (path === '/docs/language-reference/macros/') {
+                        addRedirect(redirects, '/docs/assets/language-reference/macros/');
+                    }
+
+                    if (path === '/docs/language-reference/javascript/API/classes/JavaScriptProcessor/') {
+                        addRedirect(redirects, '/docs/language-reference/javascript/javascript_introduction/API/classes/JavaScriptProcessor/');
+                    }
+
+                    if (path === '/docs/assets/workflow-assets/workflows/') {
+                        addRedirect(redirects, '/docs/assets/workflow-assets/workflows/asset-workflow/');
+                    }
+
+                    if (path === '/docs/release-notes/migration-version2/') {
+                        addRedirect(redirects, '/docs/migration-version2/');
+                    }
+
+                    if (path === '/docs/quickstart/') {
+                        addRedirect(redirects, '/quickstart/');
                     }
 
                     if (path === '/docs/assets/') {
