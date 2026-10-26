@@ -60,9 +60,11 @@ AWS Systems Manager (SSM) Parameter Store or AWS Secrets Manager.
 
 ### Other settings
 
-**Log single parameter lookups** <SinceVersion version="2.5.21" /> — An inheritable checkbox that controls whether each parameter and secret lookup is logged at INFO level. When enabled, every lookup emits an audit log entry showing which parameter or secret was requested and whether it succeeded. When disabled, lookups run silently without audit traces. Defaults to **enabled**.
+![AWS Extension Other settings section](./.asset-extension-aws_images/aws-extension-other-settings.png)
 
-This setting is useful when you need to debug macro resolution or audit which secrets are being accessed, and can be inherited from a parent AWS Extension or set explicitly on the child.
+**Log single parameter lookups** <SinceVersion version="2.5.21" /> — A checkbox that controls whether each parameter and secret lookup is logged at INFO level. When enabled, every lookup emits an audit log entry showing which parameter or secret was requested and whether it succeeded. When disabled, lookups run silently without audit traces. Defaults to **enabled**.
+
+This setting is useful when you need to debug macro resolution or audit which secrets are being accessed.
 
 ## Usage
 
