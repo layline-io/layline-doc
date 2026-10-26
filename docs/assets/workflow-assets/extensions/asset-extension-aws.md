@@ -2,6 +2,8 @@
 description: AWS Extension Asset for layline.io — integrate AWS Lambda functions into your data processing workflows.
 ---
 
+import SinceVersion from '../../../../src/components/SinceVersion';
+
 # Extension AWS
 
 > Deploys an AWS macro resolver that provides `${aws:...}` macros for accessing
@@ -56,6 +58,14 @@ AWS Systems Manager (SSM) Parameter Store or AWS Secrets Manager.
 
 ![AWS Extension AWS credentials section](./.asset-extension-aws_images/aws-extension-credentials.png)
 
+### Other settings
+
+![AWS Extension Other settings section](./.asset-extension-aws_images/aws-extension-other-settings.png)
+
+**Log single parameter lookups** <SinceVersion version="2.5.21" /> — A checkbox that controls whether each parameter and secret lookup is logged at INFO level. When enabled, every lookup emits an audit log entry showing which parameter or secret was requested and whether it succeeded. When disabled, lookups run silently without audit traces. Defaults to **enabled**.
+
+This setting is useful when you need to debug macro resolution or audit which secrets are being accessed.
+
 ## Usage
 
 Once deployed as an Engine Configuration "Other Resource", reference AWS values using macros throughout your project:
@@ -93,6 +103,7 @@ Configure the **Parameter Store ARN** field to set a base ARN prefix. Then refer
 - Parameter Store values are retrieved using the GetParameter API
 - Secrets Manager values are retrieved using the GetSecretValue API
 - Encrypted SSM parameters are automatically decrypted (requires appropriate IAM permissions)
+- Secret ARNs without a path suffix are now accepted <SinceVersion version="2.5.21" />. Previously, Secrets Manager ARNs required a `/suffix` path (e.g. `arn:aws:secretsmanager:eu-central-1:123456789012:secret:my-secret/path`). Simple ARNs such as `arn:aws:secretsmanager:eu-central-1:123456789012:secret:my-secret` are now valid.
 
 ## Example
 
