@@ -71,8 +71,8 @@ in [environment variables](/docs/assets/workflow-assets/resources/asset-resource
 
 ![](.asset-service-jdbc_images/8d1cf687.png "JDBC Connection with placeholders (Service JDBC)")
 
-:::warning **Password expansion failure** <SinceVersion version="2.5.21" />
-If a `$\{...\}` macro in the password cannot be expanded (for example, the referenced environment variable does not exist), the JDBC service will fail to start. 
+:::warning **Password expansion failure** <SinceVersion version="2.5.18" />
+If a `$\{...\}` macro in the password cannot be expanded (for example, the referenced environment variable does not exist), the JDBC service fails to start. URL and username macros still substitute without failing startup. Ensure every password substitution is resolvable before you deploy.
 :::
 
 ### Service Functions
