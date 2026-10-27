@@ -1,6 +1,5 @@
 ---
 title: Changelog
-sidebar_position: 0.5
 description: User-facing release notes for layline.io — breaking changes, features, improvements, and bug fixes.
 ---
 
