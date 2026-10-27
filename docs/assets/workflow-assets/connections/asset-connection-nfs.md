@@ -11,6 +11,7 @@ tags:
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import NameAndDescription from '../../../snippets/assets/_asset-name-and-description.md';
 import RequiredRoles from '../../../snippets/assets/_asset-required-roles.md';
+import SinceVersion from '../../../../src/components/SinceVersion';
 
 # Connection NFS
 
@@ -65,6 +66,15 @@ Defines the connection parameters for an NFS (Network File System) endpoint.
 
 * **`Max. parallel NFS commands (per cluster node)`** : The maximum number of parallel NFS commands that can be executed by each node in the cluster. Use this to limit the number of concurrent NFS operations on the server and avoid overload.
 
+## Behavior
+
+NFS Sources and Sinks share this connection's command executor. Commands (list, move, copy, housekeeping, and similar) run one after another on a reused NFS session. After a period of inactivity the executor closes that session so idle mounts do not linger.
+
+### Long-running commands <SinceVersion version="2.5.18" />
+
+The idle check used to look only at when the session was last *started*. A command that ran longer than the inactivity window could then be cancelled mid-flight when the timer fired and dropped the connection.
+
+From 2.5.18, the executor disconnects on idle only when no command is still queued or running. Large listings, copies, and housekeeping jobs complete instead of failing because the connection went idle underneath them.
 
 ## Related Topics
 
