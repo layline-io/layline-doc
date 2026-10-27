@@ -11,6 +11,7 @@ tags:
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import PollingAndProcessing from '../../../snippets/assets/_asset-source-polling-and-processing.md';
 import ThrottlingAndFailure from '../../../snippets/assets/_asset-source-throttling-and-failure.md';
+import SinceVersion from '../../../../src/components/SinceVersion';
 
 # Source S3
 
@@ -93,6 +94,11 @@ In case of error, you can hover the mouse over the red output and view what the 
 
 This usually helps to resolve the issue.
 
+## Behavior
+
+### Early stream completion <SinceVersion version="2.5.19" />
+
+If a workflow finishes or cancels reading an S3 object before the full object is consumed, the S3 source completes cleanly. Previously this could crash the source with a Pekko `SubscriptionWithCancelException` (`NoMoreElementsNeeded`).
 
 ## Related Topics
 
