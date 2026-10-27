@@ -62,9 +62,9 @@ AWS Systems Manager (SSM) Parameter Store or AWS Secrets Manager.
 
 ![AWS Extension Other settings section](./.asset-extension-aws_images/aws-extension-other-settings.png)
 
-**Log single parameter lookups** <SinceVersion version="2.5.21" /> — A checkbox that controls whether each parameter and secret lookup is logged at INFO level. When enabled, every lookup emits an audit log entry showing which parameter or secret was requested and whether it succeeded. When disabled, lookups run silently without audit traces. Defaults to **enabled**.
+**Log single parameter lookups** <SinceVersion version="2.5.18" /> — An inheritable checkbox that controls whether each parameter and secret lookup is logged at INFO level. When enabled, every lookup emits an audit log entry showing which parameter or secret was requested and whether it succeeded. When disabled, lookups run silently without audit traces. Defaults to **enabled**.
 
-This setting is useful when you need to debug macro resolution or audit which secrets are being accessed.
+This setting is useful when you need to debug macro resolution or audit which secrets are being accessed, and can be inherited from a parent AWS Extension or set explicitly on the child.
 
 ## Usage
 
@@ -103,7 +103,9 @@ Configure the **Parameter Store ARN** field to set a base ARN prefix. Then refer
 - Parameter Store values are retrieved using the GetParameter API
 - Secrets Manager values are retrieved using the GetSecretValue API
 - Encrypted SSM parameters are automatically decrypted (requires appropriate IAM permissions)
-- Secret ARNs without a path suffix are now accepted <SinceVersion version="2.5.21" />. Previously, Secrets Manager ARNs required a `/suffix` path (e.g. `arn:aws:secretsmanager:eu-central-1:123456789012:secret:my-secret/path`). Simple ARNs such as `arn:aws:secretsmanager:eu-central-1:123456789012:secret:my-secret` are now valid.
+- Secret ARNs without a path suffix are now accepted <SinceVersion version="2.5.18" />. Previously, Secrets Manager ARNs required a `/suffix` path (e.g. `arn:aws:secretsmanager:eu-central-1:123456789012:secret:my-secret/path`). Simple ARNs such as `arn:aws:secretsmanager:eu-central-1:123456789012:secret:my-secret` are now valid.
+- Lookup failures are logged at ERROR level <SinceVersion version="2.5.18" />. When a parameter or secret cannot be resolved, the error details are written to the engine log to aid debugging.
+- Ask timeouts and other transient exceptions are caught and retried automatically <SinceVersion version="2.5.18" />. The AWS Extension attempts each lookup up to 3 times before giving up, improving resilience against temporary AWS API unavailability.
 
 ## Example
 
