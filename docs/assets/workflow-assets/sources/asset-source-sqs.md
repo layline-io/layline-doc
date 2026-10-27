@@ -54,15 +54,15 @@ Configure connection-level parameters for the SQS endpoint. Queue-specific setti
 
 <!-- SCREENSHOT: SQS Source editor, "SQS settings" group box, showing Connection, Parallel requests, and Number of retry attempts. Do not include the queue list. Save as docs/assets/workflow-assets/sources/.asset-source-sqs_images/sqs-settings.png -->
 
-#### Connection *(inheritable)*
+#### Connection
 
 Use the drop-down list to select an [AWS Connection](/docs/assets/workflow-assets/connections/asset-connection-aws) that should support this Asset. If it does not exist, you need to create it first.
 
-#### Parallel requests *(inheritable)*
+#### Parallel requests
 
 How many receive requests this Source may run at the same time. Default: `1`.
 
-#### Number of retry attempts *(inheritable)*
+#### Number of retry attempts
 
 How many times a failed receive is retried. Default: `0`.
 
@@ -74,7 +74,7 @@ The Source must contain at least one queue. Queue names must be unique within th
 
 Existing Sources that were configured with a single queue URL are migrated automatically to one queue named **DefaultQueue**, keeping the previous polling, message-count, and visibility values.
 
-<!-- SCREENSHOT: SQS Source editor, "SQS Queues" group. Left: queue list with at least two named queues, one selected. Toolbar showing Add a queue, sort, copy, paste. Right: "Queue data" panel with Queue name, Queue description, SQS Queue URL, Polling duration [sec], Maximum message count, Visibility timeout [sec]. Save as docs/assets/workflow-assets/sources/.asset-source-sqs_images/sqs-queues.png -->
+![](.asset-source-sqs_images/image_2026-10-27-21-30-32.png)
 
 Use **Add a queue** to add an entry. New queues are named `NewQueue` (`NewQueue2`, `NewQueue3`, … if that name is already taken). Select a queue in the list to edit it. You can sort the list A–Z / Z–A, copy a queue, and paste it as a new entry.
 
@@ -82,23 +82,23 @@ Once you pick an SQS Connection above, the system tries to test the connection a
 
 #### Queue data
 
-**Queue name *(inheritable)*** — Display name for this queue inside the Source. Must be unique.
+- **Queue name** — Display name for this queue inside the Source. Must be unique.
 
-**Queue description *(inheritable)*** — Optional caption shown under the name in the queue list.
+- **Queue description** — Optional caption shown under the name in the queue list.
 
-**SQS Queue URL *(inheritable)*** — The queue to read from. Select from the drop-down or enter a URL / macro.
+- **SQS Queue URL** — The queue to read from. Select from the drop-down or enter a URL / macro.
 
-**Polling duration [sec] *(inheritable)*** — Configuring the value 0 in here, SQS "short polling" is activated and the request will only query a subset of the servers to find messages.
+- **Polling duration [sec]** — Configuring the value 0 in here, SQS "short polling" is activated and the request will only query a subset of the servers to find messages.
 Amazon SQS sends the response right away, even if the query found no messages.
 Configuring any value greater than 0 in here, SQS "long polling" is activated and the request will query all of the servers for messages.
 Amazon SQS sends a response after it collects at least one available message, up to the `Maximum message count` specified in the request.
 Amazon SQS sends an empty response only if the here configured polling wait time expires. Find more details about [SQS Short and Long Polling](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html) through the link.
 Default if empty: `20`. Values are clamped to 0–20 seconds (Amazon SQS long-poll maximum).
 
-**Maximum message count *(inheritable)*** — Relates to the message polling behavior described above: whichever configured limit is reached first, the querying of messages will end after `Maximum message count` or elapsed `Polling duration [sec]`.
+- **Maximum message count** — Relates to the message polling behavior described above: whichever configured limit is reached first, the querying of messages will end after `Maximum message count` or elapsed `Polling duration [sec]`.
 Default: `10`. Values are clamped to 1–10.
 
-**Visibility timeout [sec] *(inheritable)*** — The visibility timeout begins when Amazon SQS returns a message. During this time, the consumer has to process and delete the message.
+- **Visibility timeout [sec]** — The visibility timeout begins when Amazon SQS returns a message. During this time, the consumer has to process and delete the message.
 You can define this timeout period here. After the visibility timeout period the message becomes visible to other consumers again if it is not deleted.
 If a message must be received only once, your consumer should delete it within the duration of the visibility timeout. (see also [SQS Visibility Timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)).
 Within layline.io you need to ensure this behavior by adding the [Input Frame Committer](/docs/assets/workflow-assets/processors-flow/asset-flow-input-frame-committer) processor into your workflow since this is the instance that would finally delete the message from the queue.
