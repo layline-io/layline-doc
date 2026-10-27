@@ -7,6 +7,13 @@ description: User-facing release notes for layline.io — breaking changes, feat
 
 All notable changes to layline.io by release.
 
+## [2.5.23] - 2026-09-30
+
+### Features
+- **Docker images**: Official images are now published for both AMD64 and ARM64. The container build selects the installer via `TARGETARCH` instead of being amd64-only.
+
+---
+
 ## [2.5.21] - 2026-07-16
 
 ### Bug Fixes
