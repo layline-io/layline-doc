@@ -28,7 +28,7 @@ All notable changes to layline.io by release.
 - **AWS Extension — Error Logging**: Enhanced error logging for AWS operations. Lookup failures are now logged at `ERROR` level with detailed context.
 - **AWS Extension — Retry Handling**: Ask timeout exceptions are now included in the retry mechanism, improving resilience against transient AWS API timeouts.
 - **AWS Extension — Parameter Lookup Resilience**: Enhanced logging and retry logic for AWS parameter lookups, providing better diagnostics when lookups fail.
-- **Engine — Activation Environment**: The activation environment is now recreated after all extensions have been initialized, ensuring a consistent runtime state.
+- **Engine — Activation Environment**: After a deployment activation, the engine now rebuilds the activation environment once all extensions have finished initializing. Remaining configuration (resources, formats, connections, sources, sinks, services, and workflows) is applied against that fresh environment, not one that extensions may have mutated during startup.
 
 ### Bug Fixes
 - **NFS Connection**: Long-running NFS operations are no longer dropped when the connection's inactivity timeout fires while a command is still running. The executor now only disconnects when the command queue is empty.
