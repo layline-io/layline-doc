@@ -154,7 +154,8 @@ const config = {
                     { from: '/docs/operations/cluster/cluster', to: '/docs/operations/cluster' },
                     { from: '/docs/operations/cluster/alarm-center/alarm-center', to: '/docs/operations/cluster/alarm-center' },
                     // Draft release.mdx is unpublished; send old release URL to changelog
-                    { from: '/docs/release-notes/release', to: '/docs/current/releases/changelog' },
+                    { from: '/docs/release-notes/release', to: '/docs/changelog' },
+                    { from: '/docs/current/releases/changelog', to: '/docs/changelog' },
                     // Paths that cannot be expressed via createRedirects (no matching target page / special suffixes)
                     { from: '/docs/docs/configuration', to: '/docs/concept/projects-workflows/configuration' },
                     { from: '/assets/formats/asset-format-generic.html', to: '/docs/assets/workflow-assets/formats/asset-format-generic' },

@@ -17,8 +17,12 @@
 /docs/operations/cluster/alarm-center/alarm-center/ /docs/operations/cluster/alarm-center/ 301
 
 # Draft release.mdx unpublished
-/docs/release-notes/release /docs/current/releases/changelog/ 301
-/docs/release-notes/release/ /docs/current/releases/changelog/ 301
+/docs/release-notes/release /docs/changelog/ 301
+/docs/release-notes/release/ /docs/changelog/ 301
+
+# Changelog moved from current/releases to top-level docs
+/docs/current/releases/changelog /docs/changelog/ 301
+/docs/current/releases/changelog/ /docs/changelog/ 301
 
 # Doubled /docs that does not map 1:1 after stripping
 /docs/docs/configuration /docs/concept/projects-workflows/configuration/ 301
