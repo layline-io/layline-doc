@@ -30,7 +30,7 @@ All notable changes to layline.io by release.
 - **Engine — Activation Environment**: The activation environment is now recreated after all extensions have been initialized, ensuring a consistent runtime state.
 
 ### Bug Fixes
-- **NFS Command Executor**: Long-running NFS commands are no longer prematurely cancelled by the command executor.
+- **NFS Connection**: Long-running NFS operations are no longer dropped when the connection's inactivity timeout fires while a command is still running. The executor now only disconnects when the command queue is empty.
 - **OAuth Storage**: Unexpected errors during OAuth token operations are now logged instead of crashing the OAuth storage actor. Previously those unhandled errors caused periodic restarts and interrupted token refresh.
 - **AWS Extension — Secret ARN Validation**: Secret ARN pattern matching now correctly accepts simple ARNs without path suffixes.
 - **AWS Extension — Race Condition**: Fixed a possible race condition during AWS extension initialization and shutdown.
