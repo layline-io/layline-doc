@@ -31,7 +31,7 @@ All notable changes to layline.io by release.
 
 ### Bug Fixes
 - **NFS Command Executor**: Long-running NFS commands are no longer prematurely cancelled by the command executor.
-- **OAuth Storage**: Fixed periodic restart of the OAuth storage caused by unhandled errors.
+- **OAuth Storage**: Unexpected errors during OAuth token operations are now logged instead of crashing the OAuth storage actor. Previously those unhandled errors caused periodic restarts and interrupted token refresh.
 - **AWS Extension — Secret ARN Validation**: Secret ARN pattern matching now correctly accepts simple ARNs without path suffixes.
 - **AWS Extension — Race Condition**: Fixed a possible race condition during AWS extension initialization and shutdown.
 
