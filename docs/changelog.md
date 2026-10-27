@@ -1,3 +1,8 @@
+---
+title: Changelog
+description: User-facing release notes for layline.io — breaking changes, features, improvements, and bug fixes.
+---
+
 # Changelog
 
 All notable changes to layline.io by release.

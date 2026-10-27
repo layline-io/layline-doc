@@ -20,6 +20,11 @@ const sidebars = {
             dirName: '.'
         },
         {
+            type: 'doc',
+            id: 'changelog',
+            label: 'Changelog',
+        },
+        {
             type: 'link',
             label: 'Corporate website',
             href: 'https://layline.io'
