@@ -7,6 +7,13 @@ description: User-facing release notes for layline.io — breaking changes, feat
 
 All notable changes to layline.io by release.
 
+## [2.5.24] - 2026-10-21
+
+### Features
+- **SQS Source**: A single SQS Source can now read from multiple queues. Queue URL, polling duration, maximum message count, and visibility timeout are configured per queue instead of once for the whole source.
+
+---
+
 ## [2.5.23] - 2026-09-30
 
 ### Features
