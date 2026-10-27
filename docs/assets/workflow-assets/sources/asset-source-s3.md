@@ -11,7 +11,6 @@ tags:
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
 import PollingAndProcessing from '../../../snippets/assets/_asset-source-polling-and-processing.md';
 import ThrottlingAndFailure from '../../../snippets/assets/_asset-source-throttling-and-failure.md';
-import SinceVersion from '../../../../src/components/SinceVersion';
 
 # Source S3
 
@@ -38,7 +37,7 @@ You need:
 
 ### Name & Description
 
-![](.asset-source-simages/bb090d93.png "Name & Description (S3 Source)")
+![](.asset-source-s3-images/bb090d93.png "Name & Description (S3 Source)")
 
 **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
@@ -63,13 +62,13 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ### S3 Connection
 
-![](.asset-source-simages/3e8a642a.png "AWS Connection (S3 Source)")
+![](.asset-source-s3-images/3e8a642a.png "AWS Connection (S3 Source)")
 
 Select the previously configured [AWS Connection](/docs/assets/workflow-assets/connections/asset-connection-aws) to use for this Source.
 
 ### S3 Bucket
 
-![](.asset-source-simages/14e005bb.png "S3 Bucket (S3 Source)")
+![](.asset-source-s3-images/14e005bb.png "S3 Bucket (S3 Source)")
 
 * **`S3 bucket name (1)`**: Once you picked a S3 Connection above the system will try to test the connection and list bucket names it can find.
 These will be available for selection here. You can check how many buckets could be found at (5)
@@ -86,19 +85,14 @@ This means that all objects from sub-folders within a bucket/prefix combination 
 While you are entering and changing S3 bucket parameters, layline.io frequently tries to connect to the endpoint and retrieve bucket and prefix information.
 The status of these attempts is displayed at the bottom of the group box.
 
-![](.asset-source-simages/952672a7.png "S3 bucket connection success (S3 Source)")
+![](.asset-source-s3-images/952672a7.png "S3 bucket connection success (S3 Source)")
 
 In case of error, you can hover the mouse over the red output and view what the problem is:
 
-![](.asset-source-simages/229867cd.png "S3 bucket connection failure (S3 Source)")
+![](.asset-source-s3-images/229867cd.png "S3 bucket connection failure (S3 Source)")
 
 This usually helps to resolve the issue.
 
-## Behavior
-
-### Early stream completion <SinceVersion version="2.5.19" />
-
-If a workflow finishes or cancels reading an S3 object before the full object is consumed, the S3 source completes cleanly. Previously this could crash the source with a Pekko `SubscriptionWithCancelException` (`NoMoreElementsNeeded`).
 
 ## Related Topics
 
