@@ -4,8 +4,6 @@ description: Configure Email and Microsoft Teams notification endpoints in the A
 sidebar_position: 3
 ---
 
-import SinceVersion from '../../../../src/components/SinceVersion';
-
 # Alarm Targets
 
 **Alarm Targets** are the destinations where alarm notifications are sent. They can be configured at runtime through the Alarm Center, or defined as project assets and deployed with your project. The Alarm Center supports two target types:
@@ -70,10 +68,6 @@ The **Target** tab displays runtime information and editable configuration.
 | **Initialization status** | Lists any startup failures. If no problems are reported, a green checkmark is shown. |
 
 A **Restart Target** button in the header lets you restart the target service on the cluster. This is useful after changing credentials or network settings.
-
-#### Description field <SinceVersion version="2.5.21" />
-
-Creating or saving an alarm target now persists and returns the **Description** you entered. Previously the target name was returned in place of the description, so a new or edited description did not show up after save.
 
 ![Alarm Targets tab with an MS 365 Email target selected](.targets_images/targets-tab-overview.png)
 
