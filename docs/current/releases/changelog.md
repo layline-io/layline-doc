@@ -6,7 +6,6 @@ All notable changes to layline.io by release.
 
 ### Bug Fixes
 - **Alarm Targets**: Creating or saving an alarm target now stores and displays the description. Previously the name was returned in place of the description.
-- **Pekko S3 Source**: Fixed `SubscriptionWithCancelException$NoMoreElementsNeeded$` exception that caused the S3 source to crash during streaming operations.
 - **SPA — Workflow Instance View**: Fixed `guiState.workflowInstanceView.splitterOrientation` access error that threw exceptions in the workflow instance viewer.
 
 ---
@@ -14,7 +13,7 @@ All notable changes to layline.io by release.
 ## [2.5.19] - 2026-06-22
 
 ### Bug Fixes
-- **Pekko S3 Source**: Fixed `SubscriptionWithCancelException$NoMoreElementsNeeded$` exception that caused the S3 source to crash during streaming operations.
+- **S3 Source**: Reading an S3 object no longer crashes the source when the workflow finishes or cancels the stream before the whole object is consumed. Previously this failed with Pekko `SubscriptionWithCancelException$NoMoreElementsNeeded$`.
 
 ---
 
