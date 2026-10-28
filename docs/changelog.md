@@ -24,7 +24,7 @@ All notable changes to layline.io by release.
 ## [2.5.22] - 2026-07-21
 
 ### Bug Fixes
-- **Generic Format**: Parsing a ListTerminal with empty columns no longer exhausts memory. A missing separator or terminator now fails with a clear error instead of looping.
+- **Generic Format**: Parsing a ListTerminal with empty columns no longer exhausts memory. If neither a separator nor a terminator is found, parsing fails with `no separator or terminator found after reading ... at stream position ...` instead of looping.
 
 ---
 
