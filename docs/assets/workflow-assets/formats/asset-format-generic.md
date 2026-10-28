@@ -11,7 +11,6 @@ tags:
 ---
 
 import WipDisclaimer from '../../../snippets/common/_wip-disclaimer.md'
-import SinceVersion from '../../../../src/components/SinceVersion';
 
 # Generic Format
 
@@ -565,8 +564,6 @@ Id,Name,Surname,Street,City                      // First line contains column h
 | terminator                    | [string](#string)                        | Terminator to use when the element is written                                          |    X     | "\n"        |
 | element                       | [ElementPart](#element-parts)            | Element part which describes the elements in the list. One part defines alle elements. |          |             |
 | references                    | [ElementReference](#element-reference)[] | Array of referenced elements behind the list                                           |    X     | Empty array |
-
-**Missing separator or terminator** <SinceVersion version="2.5.22" /> — After each list field, the parser must match either the separator or the terminator. If neither is found — for example an empty last column with no record terminator — parsing fails with `no separator or terminator found after reading ... at stream position ...`. Previously this case could loop until the process ran out of memory.
 
 **Example:**
 This example works for the example data above.
