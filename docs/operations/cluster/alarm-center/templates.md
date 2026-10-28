@@ -121,3 +121,10 @@ If a target has **Use HTML** enabled but the HTML Content of the template is emp
 ### Saving changes
 
 When you edit either content area, an **Apply Changes** button appears in the bottom-right corner. Click it to save the template to the cluster.
+
+## See Also
+
+- [**Alarm Targets**](/docs/operations/cluster/alarm-center/targets) — Where template names are referenced
+- [**Alarm Rules**](/docs/operations/cluster/alarm-center/rules) — Which alarms reach those targets
+- [**Alarm Center**](/docs/operations/cluster/alarm-center) — Overview of the alarming pipeline
+- [**Troubleshooting alarms**](/docs/troubleshooting/alarm-issues) — Empty HTML bodies and missing templates

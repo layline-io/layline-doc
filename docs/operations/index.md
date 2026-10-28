@@ -140,3 +140,6 @@ See [**Access Coordinator**](/docs/operations/cluster/operations-user-storage.md
 - [**Deployment**](../assets/deployment-assets/index.md) — How deployments are configured and created
 - [**Workflow**](../assets/workflow-assets/index.md) — Workflow design and configuration
 - [**Assets Overview**](../assets/index.md) — Building the components that run in Operations
+- [**Architecture Overview**](/docs/concept/architecture-overview) — How Configuration Center and engine clusters relate
+- [**Troubleshooting**](/docs/troubleshooting) — Workflow, deployment, connection, and alarm failures
+

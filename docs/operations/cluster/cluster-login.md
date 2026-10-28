@@ -144,3 +144,5 @@ Session timeout is configured by your cluster administrator. If you need longer 
 - [**Cluster Overview**](./cluster-monitor.md) — High-level cluster health and node status
 - [**Access Coordinator**](./access-coordinator.md) — Managing access to cluster sources and resources
 - [**Operations User Storage**]( ./operations-user-storage.md) — User-specific operational data and preferences
+- [**Architecture Overview**](/docs/concept/architecture-overview) — What you are logging in to
+

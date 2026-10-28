@@ -151,3 +151,6 @@ The Known hosts tab manages SSH known-hosts entries, which layline.io uses to ve
 
 - [**Cluster Security Storage**](/docs/operations/cluster/security-storage) — Cluster-level view of the same cryptographic material with additional operational controls
 - [**Application Settings**](/docs/settings/application) — Configure application-level settings and defaults
+- [**Secret Management (concept)**](/docs/concept/advanced/secret-management) — How secrets are stored, referenced, and resolved
+- [**Users & Roles**](/docs/settings/users-and-roles) — Who can manage cryptographic material
+

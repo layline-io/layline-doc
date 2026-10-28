@@ -177,3 +177,5 @@ Claims on the Reactive Engine Cluster are grouped by area:
 
 - [**Settings → Users & Roles**](../../settings/users-and-roles.md) — Managing users and roles on the Configuration Server
 - [**Operations → Security Storage**](./security-storage.md) — Managing key pairs on the cluster
+- [**User Storage (advanced)**](/docs/concept/advanced/advanced-user-storage) — Cluster user-storage concepts vs Configuration Server users
+

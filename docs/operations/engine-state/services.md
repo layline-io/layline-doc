@@ -272,3 +272,5 @@ The auto-refresh ensures you always see current service health and metrics.
 - [**Workflow State**](./workflows.md) — Monitoring workflows that use services
 - [**Connections**](./connections.md) — Connection assets used by services
 - [**Service Assets**](../../assets/workflow-assets/services/index.md) — Designing and configuring services
+- [**Projects & Workflows (concept)**](/docs/concept/projects-workflows) — Services as shared Workflow capabilities
+

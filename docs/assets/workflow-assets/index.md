@@ -317,3 +317,10 @@ Workflow assets are the building blocks of data processing pipelines in layline.
 **Need to reuse credentials?** → Connections
 
 **Need custom logic?** → Javascript or Python Flow Processors, or Extensions
+
+## See Also
+
+- [**Assets Overview**](/docs/assets) — Workflow Assets vs Deployment Assets
+- [**Building Workflows**](/docs/project/building-workflows) — Wiring Sources, processors, and Sinks
+- [**Core Concepts**](/docs/quickstart/core-concepts) — How Assets relate to Projects and Deployments
+- [**Operations**](/docs/operations) — Inspect the same Assets at runtime

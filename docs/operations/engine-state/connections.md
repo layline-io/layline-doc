@@ -254,3 +254,5 @@ When viewing the Log tab, new entries appear automatically as they are generated
 - [**Source State**](./sources.md) — Monitoring input sources
 - [**Sink State**](./sinks.md) — Monitoring output sinks
 - [**Cluster**](../cluster/index.md) — Infrastructure and node management
+- [**Architecture Overview**](/docs/concept/architecture-overview) — External systems vs the engine runtime
+

@@ -34,3 +34,6 @@ Entries can be filtered by date range using the **From** and **To** fields.
 
 - [**Engine State**](/docs/operations/engine-state) — Drill into individual workflow and component states per engine
 - [**Scheduler**](/docs/operations/cluster/scheduler) — Understand how workloads are distributed across nodes
+- [**Architecture Overview**](/docs/concept/architecture-overview) — Cluster vs engine vs Workflow
+- [**Multi-Node Cluster Setup**](/docs/concept/advanced/multi-node-cluster-setup) — Distributing nodes
+

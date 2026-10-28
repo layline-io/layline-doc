@@ -76,3 +76,9 @@ Understand how layline.io fits into the broader data processing landscape and ex
 | Set up users and permissions | [User Storage](../settings/users-and-roles.md) |
 | Configure monitoring | [Prometheus Extension](./advanced/prometheus-extension.md) |
 
+## See Also
+
+- [**Quickstart**](/docs/quickstart) — Install and run your first pipeline
+- [**Project**](/docs/project) — Create, import, and assemble Workflows
+- [**Assets**](/docs/assets) — Reference for every source, processor, and sink
+- [**Operations**](/docs/operations) — Monitor what you just designed

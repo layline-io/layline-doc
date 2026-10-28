@@ -444,3 +444,5 @@ When viewing the Log tab, new entries appear automatically as they are generated
 - [**Environment Assets**](../../assets/workflow-assets/resources/asset-resource-environment.md) — Managing environment variables
 - [**Secret Assets**](../../assets/workflow-assets/resources/asset-resource-secret.md) — Managing sensitive credentials
 - [**Deployment Assets**](../../assets/deployment-assets/index.md) — Understanding how resources are deployed
+- [**Secret Management (concept)**](/docs/concept/advanced/secret-management) — Secrets and environment values at runtime
+

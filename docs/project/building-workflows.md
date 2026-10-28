@@ -26,6 +26,8 @@ Every Workflow is assembled from three fundamental processor types:
 | **Flow Processor** | Transforms, routes, or enriches data in transit | Mappers, filters, aggregators, validators |
 | **Output Processor** | Delivers processed data to destinations | File writers, message publishers, database loaders |
 
+Learn more: [**Input Processors**](/docs/assets/workflow-assets/processors-input) · [**Flow Processors**](/docs/assets/workflow-assets/processors-flow) · [**Output Processors**](/docs/assets/workflow-assets/processors-output)
+
 These processors are not hardcoded components — they are **Asset instances**. You define Sources, Sinks, Formats, and Services as reusable Assets in your Project, then reference them when configuring processors in your Workflow.
 
 ### Assets as Building Blocks
@@ -368,7 +370,8 @@ flowchart LR
 
 ## See Also
 
-- [**Your First Workflow**](../quickstart/first-workflow.md) — Step-by-step tutorial for building your first pipeline
-- [**Assets Overview**](../assets/index.md) — Complete guide to all asset types
-- [**Deployment Assets**](../assets/deployment-assets/index.md) — How to deploy Workflows to production
-- [**Reactive Clusters**](../operations/cluster/index.md) — Understanding the runtime environment
+- [**Core Concepts**](/docs/quickstart/core-concepts) — Mental models for Projects, Workflows, Assets, and Deployments
+- [**Input Processors**](/docs/assets/workflow-assets/processors-input) — How data enters a Workflow
+- [**Output Processors**](/docs/assets/workflow-assets/processors-output) — How processed data leaves a Workflow
+- [**Troubleshooting**](/docs/troubleshooting) — Diagnose Workflow, connection, format, and deployment issues
+- [**Your First Workflow**](/docs/quickstart/first-workflow) — Step-by-step tutorial for building your first pipeline

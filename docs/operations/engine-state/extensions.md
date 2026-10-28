@@ -148,3 +148,5 @@ When viewing the Log tab, new entries appear automatically as they are generated
 - [**Workflow State**](./workflows.md) — Monitoring workflows that may use extensions
 - [**Service State**](./services.md) — Monitoring services that may interact with extensions
 - [**Project Extensions**](../../assets/workflow-assets/extensions/index.md) — Configuring extensions in projects
+- [**Prometheus Extension (concept)**](/docs/concept/advanced/prometheus-extension) — Metrics export architecture
+

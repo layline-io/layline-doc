@@ -317,3 +317,6 @@ Debugging adds overhead to workflow execution. Always disable debugging when you
 - [**Cluster Login**](./cluster-login.md) — Connect to a cluster to access node details
 - [**Cluster Tab Overview**](../index.md) — Overview of the Operations Cluster tab
 - [**Engine State**](../engine-state/index.md) — Monitor workflows and resources across the cluster
+- [**Architecture Overview**](/docs/concept/architecture-overview) — Nodes, engines, and the Configuration Center
+- [**Multi-Node Cluster Setup**](/docs/concept/advanced/multi-node-cluster-setup) — Running more than one engine host
+

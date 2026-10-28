@@ -248,3 +248,5 @@ The [**AI Service**](../../assets/workflow-assets/services/asset-service-ai.md) 
 - [**AI Classifier Processor**](../../assets/workflow-assets/processors-flow/asset-flow-ai-classifier.md) — Flow processor for real-time classification using AI models
 - [**AI Trainer Processor**](../../assets/workflow-assets/processors-flow/asset-flow-ai-trainer.md) — Flow processor for training models from streaming data
 - [**AI Model Resource**](../../assets/workflow-assets/resources/asset-resource-ai-model.md) — Resource asset for managing AI model configurations
+- [**Artificial Intelligence (concept)**](/docs/concept/advanced/artificial-intelligence) — How AI models and processors fit the platform
+

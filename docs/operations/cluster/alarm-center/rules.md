@@ -101,3 +101,10 @@ Rules are independent. An alarm can match multiple rules and therefore be sent t
 | `all-errors` | `.*` | `Error` | `email-oncall` | Every error alarm goes to the on-call email target. |
 | `connection-issues` | `Connection.*` | (any) | `teams-ops`, `email-ops` | Any alarm whose name starts with "Connection" goes to both targets. |
 | `scheduler-warnings` | `Scheduler.*` | `Warning` | `ops-group` | Scheduler warnings go to the `ops-group` target group. |
+
+## See Also
+
+- [**Alarm Center**](/docs/operations/cluster/alarm-center) — End-to-end alarming workflow
+- [**Alarm Targets**](/docs/operations/cluster/alarm-center/targets) — Destinations a rule can send to
+- [**Target Groups**](/docs/operations/cluster/alarm-center/target-groups) — Fan-out to several targets
+- [**Alarms**](/docs/operations/cluster/alarm-center/alarms) — The events rules match against
