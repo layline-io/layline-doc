@@ -66,3 +66,10 @@ The member names must match target names exactly. If you mistype a name, the rul
 ### Saving changes
 
 When you modify the member list, an **Apply Changes** button appears in the bottom-right corner. Click it to persist the changes to the cluster. If any member is empty or duplicated, validation will prevent the save.
+
+## See Also
+
+- [**Alarm Targets**](/docs/operations/cluster/alarm-center/targets) — Individual destinations you add as members
+- [**Alarm Rules**](/docs/operations/cluster/alarm-center/rules) — Where groups are attached
+- [**Alarm Center**](/docs/operations/cluster/alarm-center) — Recommended setup order
+- [**Troubleshooting alarms**](/docs/troubleshooting/alarm-issues) — When a group member name does not resolve

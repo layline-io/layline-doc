@@ -390,3 +390,5 @@ The auto-refresh pauses if the workflow is not in an active state to reduce serv
 - [**Deployment Storage**](../cluster/deployment-storage.md) — Managing deployments and activations
 - [**Workflow Assets**](../../assets/workflow-assets/workflows/index.md) — Designing and configuring workflows
 - [**Audit Trail**](../audit-trail/index.md) — Historical record of workflow executions
+- [**Projects & Workflows (concept)**](/docs/concept/projects-workflows) — Design-time counterpart to this runtime view
+

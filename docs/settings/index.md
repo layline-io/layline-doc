@@ -28,5 +28,7 @@ See [**Users & Roles**](/docs/settings/users-and-roles) for the full reference.
 
 ## See Also
 
-- [**Operations**](/docs/operations) — Runtime monitoring and control (Operations-level access)
+- [**Users & Roles**](/docs/settings/users-and-roles) — Configuration Server accounts and privileges
+- [**Secret Storage**](/docs/settings/secret-storage) — Keys and certificates for the installation
+- [**Operations**](/docs/operations) — Runtime monitoring and control
 - [**Project**](/docs/project) — Working with Projects (developer-level access)

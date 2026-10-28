@@ -27,3 +27,10 @@ For details on creating and managing projects, refer to [Project](../../../proje
 |-------------------|-------------------|
 | Reference secrets stored in AWS (SSM Parameter Store or Secrets Manager) | [Extension AWS](./asset-extension-aws.md) |
 | Export workflow metrics to Prometheus for monitoring | [Extension Prometheus](./asset-prometheus.md) |
+
+## See Also
+
+- [**Engine State → Extensions**](/docs/operations/engine-state/extensions) — Runtime status of deployed extensions
+- [**Secret Management**](/docs/concept/advanced/secret-management) — How secrets are resolved at runtime
+- [**Prometheus Extension (concept)**](/docs/concept/advanced/prometheus-extension) — Metrics export architecture
+- [**Engine Configuration**](/docs/assets/deployment-assets) — Where extensions are attached for a deployment

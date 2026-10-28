@@ -224,3 +224,5 @@ When viewing the Log tab, new entries appear automatically as they are generated
 - [**Service State**](./services.md) — Runtime service monitoring
 - [**Connection State**](./connections.md) — Connection health and pool status
 - [**Cluster**](../cluster/index.md) — Infrastructure and node management
+- [**Projects & Workflows (concept)**](/docs/concept/projects-workflows) — How Sinks participate in a Workflow
+

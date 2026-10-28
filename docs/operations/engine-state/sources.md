@@ -281,3 +281,5 @@ Each source type exposes different configuration and runtime details. Refer to t
 - [Sink State](./sinks.md) — Monitoring output sinks
 - [Cluster Monitor](../cluster/cluster-monitor.md) — Infrastructure-level cluster health
 - [Source Assets](../../assets/workflow-assets/sources/index.md) — Configuring sources in projects
+- [**Projects & Workflows (concept)**](/docs/concept/projects-workflows) — How Sources feed a Workflow
+

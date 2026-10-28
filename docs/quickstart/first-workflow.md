@@ -48,6 +48,8 @@ flowchart LR
 1. Enter the path to the directory you created plus the directory name of the project you want to create (e.g., `/Users/<yourname>/layline-projects/simple-filter`).
 1. Click **Create**.
 
+Learn more: [**Creating Projects**](/docs/project/create-project) — project folders, naming, and opening an existing Project.
+
 You are now inside an empty project.
 
 ![Created Project](.first-workflow_images/image.png)
@@ -713,9 +715,11 @@ If you are interested in layline.io and need help getting started, you can alway
 
 ---
 
-## Next steps
+## See Also
 
-- **[Concepts in depth](../concept/index.md)** — understand the architecture and data model in detail
-- **[Asset Reference](../assets/index.md)** — explore all available source, processor, and sink types
-- **[Mapping Processor](../assets/workflow-assets/processors-flow/asset-flow-mapping.mdx)** — learn about data transformation
-- **[Router](../assets/workflow-assets/processors-flow/asset-flow-filterrouting.mdx)** — learn about routing logic
+- [**Create a Project**](/docs/project/create-project) — Full reference for creating and opening Projects
+- [**Building Workflows**](/docs/project/building-workflows) — How Workflows are assembled from processors and Assets
+- [**Assets Overview**](/docs/assets) — Source, processor, sink, and service reference
+- [**Core Concepts**](/docs/quickstart/core-concepts) — Architecture and data-model mental models
+- [**Mapping Processor**](/docs/assets/workflow-assets/processors-flow/asset-flow-mapping) — Data transformation in depth
+- [**Router**](/docs/assets/workflow-assets/processors-flow/asset-flow-filterrouting) — Content-based routing

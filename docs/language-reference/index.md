@@ -56,10 +56,18 @@ The JavaScript API is organized into:
 The Python API mirrors the JavaScript API with Pythonic naming conventions:
 - [Classes](./python/API/classes/index.md) — Core processor classes (note: Python uses `snake_case` for lifecycle methods)
 - [Interfaces](./python/API/interfaces/index.md) — Type definitions and protocols
-- [Enumerations](./python/API/enumerations//index.md — Constants and enums
+- [Enumerations](/docs/language-reference/python/API/enumerations) — Constants and enums
 - [Variables](./python/API/variables/index.md) — Global variables and constants
 
 ---
+
+
+## See Also
+
+- [**JavaScript Flow Processor**](/docs/assets/workflow-assets/processors-flow/asset-flow-javascript) — Where JavaScript runs in a Workflow
+- [**Python Flow Processor**](/docs/assets/workflow-assets/processors-flow/asset-flow-python) — Where Python runs in a Workflow
+- [**Building Workflows**](/docs/project/building-workflows) — How processors are wired together
+- [**Script troubleshooting**](/docs/troubleshooting/script-issues) — Common scripting failures
 
 import DocCardList from '@theme/DocCardList';
 

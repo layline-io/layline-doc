@@ -168,3 +168,5 @@ When viewing detailed state in the right panel, data continues to update in real
 - [**Workflow State**](./workflows.md) — Detailed workflow monitoring
 - [**Service State**](./services.md) — Service-specific documentation
 - [**Audit Trail**](../audit-trail) — Historical record of executions
+- [**Architecture Overview**](/docs/concept/architecture-overview) — Engines as the runtime for designed Workflows
+

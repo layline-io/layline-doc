@@ -348,3 +348,5 @@ A page description shows the current message range.
 - [**Stream Monitor**](../cluster/stream-monitor.md) — Controller-level stream observation and management
 - [**Cluster Node Detail**](../cluster/cluster-node-detail.md) — Deep-dive into node logs and metrics
 - [**Workflow Assets**](../../assets/workflow-assets/index.md) — Designing the workflows you monitor in Audit Trail
+- [**Architecture Overview**](/docs/concept/architecture-overview) — Why executions are recorded at cluster level
+

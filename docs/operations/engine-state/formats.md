@@ -193,3 +193,5 @@ When viewing the Log tab, new entries appear automatically as they are generated
 - [**Source State**](./sources.md) — Monitoring input sources that use formats
 - [**Sink State**](./sinks.md) — Monitoring output sinks that use formats
 - [**Format Assets**](../../assets/workflow-assets/formats/index.md) — Designing and configuring formats
+- [**Data Dictionary (concept)**](/docs/concept/data-dictionary) — How parsed data is structured after a Format runs
+

@@ -199,3 +199,5 @@ To upload it to the cluster:
 - [**Cluster Login**](./cluster-login.md) — Connect to a cluster to access Deployment Storage
 - [**Engine Deployment**](../../assets/deployment-assets/asset-deployment-engine.md) — Asset for configuring deployment settings
 - [**Engine State**](../engine-state/index.md) — Monitor running engines and their deployments
+- [**Deployment (concept)**](/docs/concept/projects-workflows/deployment) — What a Deployment contains and how activation works
+

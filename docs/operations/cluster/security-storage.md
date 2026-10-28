@@ -238,3 +238,5 @@ The log view uses the same shared log component as other Operations pages. Event
 - [**Cluster Overview**](./index.md) — Introduction to the cluster operations panel
 - [**Access Coordinator**](./access-coordinator.md) — Manages resource and source coordination across cluster nodes
 - [**OAuthClient Resource**](../../assets/workflow-assets/resources/asset-resource-oauth-client.md) — Configures OAuth clients for use within workflow assets
+- [**Secret Management (concept)**](/docs/concept/advanced/secret-management) — Credential and certificate model
+

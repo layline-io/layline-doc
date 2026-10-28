@@ -60,3 +60,5 @@ The log view uses the same shared log component as other Operations pages. Event
 - [**Cluster Overview**](./index.md) — Introduction to the cluster operations panel
 - [**Engine State**](../engine-state/index.md) — View the runtime state of workflow engines on the cluster
 - [**Audit Trail**](../audit-trail/index.md) — Review the history of operational events on the cluster
+- [**Architecture Overview**](/docs/concept/architecture-overview) — Streams in the context of engines and clusters
+

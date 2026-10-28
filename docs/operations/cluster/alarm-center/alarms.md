@@ -135,3 +135,10 @@ The Alarm Center recognizes three severity levels:
 | `Info` | Green | Informational events that do not indicate a problem, such as successful operations or minor state changes. |
 
 The tab badge on **Alarms** shows the count of unconfirmed `Error` and `Warning` alarms so you can spot critical issues at a glance.
+
+## See Also
+
+- [**Alarm Center**](/docs/operations/cluster/alarm-center) — Setup order: targets, rules, then monitoring
+- [**Alarm Rules**](/docs/operations/cluster/alarm-center/rules) — Which alarms get routed where
+- [**Alarm Log**](/docs/operations/cluster/alarm-center/log) — Delivery and evaluation failures
+- [**Troubleshooting alarms**](/docs/troubleshooting/alarm-issues) — Common alarm-center failures
