@@ -80,7 +80,7 @@ Choosing this option ensures metrics are exported in any Engine Configuration.
 
 (2) Add the created Extension to your _**Engine Configurations Asset**_
 
-![Extension Include via Deployments Engine Configuration](./.prometheus-extension_images/Screenshot19-04-2024ExtensionIncludeEngineConfig.png "Extension Include via Deployments Engine Configuration")
+![Extension Include via Deployments Engine Configuration](./.prometheus-extension_images/Screensho19-04-2024ExtensionIncludeEngineConfig.png "Extension Include via Deployments Engine Configuration")
 
 Choosing this option allows to decide per Engine Configuration whether metrics exports should be performed.
 

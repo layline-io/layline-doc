@@ -110,12 +110,12 @@ Public/private key-pairs can be created in three ways:
 
 To create a key select `Create Key`:
 
-![Create a key-pair (Secret Management)](.secret-management_images/54.png "Create a key-pair (Secret Management)")
+![Create a key-pair (Secret Management)](.secret-management_images/12-12-08-54.png "Create a key-pair (Secret Management)")
 
 Enter a name and description. The new key will be created on the Configuration Server. The key-pair itself will not be presented back to you. A fingerprint identifying the key-pair is automatically
 generated. The fingerprint is later used to match encrypted values to the correct key-pair. The fingerprint itself also contains the public key.
 
-![Create a key-pair result (Secret Management)](.secret-management_images/03.png "Create a key-pair result (Secret Management)")
+![Create a key-pair result (Secret Management)](.secret-management_images/12-12-10-03.png "Create a key-pair result (Secret Management)")
 
 ###### Import a key-pair **(6)**
 
@@ -123,14 +123,14 @@ It is possible to import a key-pair which was created externally by [ssh-keygen]
 open:
 
 
-![Import a key-pair (Secret Management)](.secret-management_images/09.png "Import a key-pair (Secret Management)")
+![Import a key-pair (Secret Management)](.secret-management_images/18-09-20-09.png "Import a key-pair (Secret Management)")
 
 Enter a name and description for the new key-pair. Select whether your key-pair is in one file or in separate files **(1)**. The example above uses one file which contains both public and private key
 for import. You can either drag and drop the file(s) onto the respective landing-zones in the dialog **(2)**, or select them by hitting the "+"-key in the landing-zone. Click `OK` to accept.
 
 You should have a new entry in the list of keys **(1)**:
 
-![Import a key-pair result (Secret Management)](.secret-management_images/14.png "Import a key-pair result (Secret Management)")
+![Import a key-pair result (Secret Management)](.secret-management_images/13-11-45-14.png "Import a key-pair result (Secret Management)")
 
 ###### Paste a key-pair (7)
 
@@ -146,7 +146,7 @@ Please note, that key-pairs added to the Configuration Server are specific to lo
 Find the correct interface under Operations **(1)** --> Cluster **(2)** --> KeyStorage **(3)**. Make sure you have selected the correct Cluster **(2)** The "_Controller_" **(4)** which Cluster node is
 currently responsible for the Key Storage. Under "_Keys_" **(5)** you will find existing keys and can manage them.
 
-![Creation of Key-Pairs on the Reactive Engine Cluster (Secret Management)](.secret-management_images/09.png "Creation of Key-Pairs on the Reactive Engine Cluster (Secret Management)")
+![Creation of Key-Pairs on the Reactive Engine Cluster (Secret Management)](.secret-management_images/12-11-48-09.png "Creation of Key-Pairs on the Reactive Engine Cluster (Secret Management)")
 
 The management of the key-pairs is exactly the same as with the key-pairs in the Configuration Server, except that it all happens on a Cluster. To learn how to create or import a key please refer
 to [here](#creation-of-key-pairs-on-the-configuration-server).
@@ -167,11 +167,11 @@ Secret Asset B on the contrary references key-pair **fpZ** from the Configuratio
 
 To create a Secrets Asset as part of a Project navigate to `Assets`, select Resources in the tree and then add a new **Secret Asset** **(2) or (3)**:
 
-![Creating the Secret Asset (Secret Management)](.secret-management_images/33.png "Creating the Secret Asset (Secret Management)")
+![Creating the Secret Asset (Secret Management)](.secret-management_images/13-12-22-33.png "Creating the Secret Asset (Secret Management)")
 
 A new Secret Asset is created:
 
-![Newly created Secret Asset (Secret Management)](.secret-management_images/23.png "Newly created Secret Asset (Secret Management)")
+![Newly created Secret Asset (Secret Management)](.secret-management_images/13-12-39-23.png "Newly created Secret Asset (Secret Management)")
 
 The Asset is lacking a key-pair, as can be seen in **(1)**.
 
@@ -179,18 +179,18 @@ The Asset is lacking a key-pair, as can be seen in **(1)**.
 
 To assign a key-pair click `Select Encryption Key` **(2)**. A dialog will open.
 
-![Assigning a Key-Pair (Secret Management)](.secret-management_images/51.png "Assigning a Key-Pair (Secret Management)")
+![Assigning a Key-Pair (Secret Management)](.secret-management_images/13-12-33-51.png "Assigning a Key-Pair (Secret Management)")
 
 On the left side you can see all available Clusters, including the Configuration Server on top of the list **(1)**. Selecting one of the entries in the list will show the known keys on that respective
 entity **(2)**. You can select one of these keys to be used in the Secret Asset. Click `OK` to confirm your choice.
 
 The key is then added to the Secret Asset **(1)**. We are now ready to add Secrets **(2)**
 
-![Adding Secrets (Secret Management)](.secret-management_images/50.png "Adding Secrets (Secret Management)")
+![Adding Secrets (Secret Management)](.secret-management_images/13-12-45-50.png "Adding Secrets (Secret Management)")
 
 Click on `Add a Secret` to create the first Secret.
 
-![Add a Secret (Secret Management)](.secret-management_images/42.png "Add a Secret (Secret Management)")
+![Add a Secret (Secret Management)](.secret-management_images/13-12-47-42.png "Add a Secret (Secret Management)")
 
 The Property name will be filled with a default **(1)**. You can enter the value "_password_" **(2)** or whatever your secret value is. The entry will be obscured, unless you click the eye to the
 right of the field. In that case the entry will be clear.
@@ -201,7 +201,7 @@ text which rely on a key-pair coming from a cluster.
 
 In this case you can only overwrite the values. Click on the text: `Value can not be decrypted. Overwrite with new value.` and then overwrite the value.
 
-![Overwrite secret with new value (Secret Management)](.secret-management_images/41.png "Overwrite secret with new value (Secret Management)")
+![Overwrite secret with new value (Secret Management)](.secret-management_images/13-12-57-41.png "Overwrite secret with new value (Secret Management)")
 :::
 
 #### How to use Secrets
@@ -210,11 +210,11 @@ Once Secrets have been defined as part of a Project, the question then is, how y
 
 The way to use Secrets is similar to how to use Environment Variables. Let's say we have three Secrets "_username_", "_password_" and "_url_":
 
-![How to use Secrets (Secret Management)](.secret-management_images/16.png "How to use Secrets (Secret Management)")
+![How to use Secrets (Secret Management)](.secret-management_images/16-12-55-16.png "How to use Secrets (Secret Management)")
 
 We can then use them in a JDBC Service Asset like this:
 
-![Using a secret (Secret Management)](.secret-management_images/32.png "Using a secret (Secret Management)")
+![Using a secret (Secret Management)](.secret-management_images/18-09-31-32.png "Using a secret (Secret Management)")
 
 Secrets can be referenced by `?{sec:<property-name>}`. This is similar to how Environment Variables are referenced, except the prefix is "**sec:**" instead of "**lay:**".
 
@@ -239,11 +239,11 @@ Let's look at an example:
 
 We have configured a Project and in that we create a Deployment which includes a Workflow "_**FileMapping**_" together with an "_**My-Secrets**_" **(1)** with a fingerprint "**fpX**".
 
-![A. Deployment of Secrets with same key-pair as Cluster (Secret Management)](.secret-management_images/43.png "A. Deployment of Secrets with same key-pair as Cluster (Secret Management)")
+![A. Deployment of Secrets with same key-pair as Cluster (Secret Management)](.secret-management_images/16-13-23-43.png "A. Deployment of Secrets with same key-pair as Cluster (Secret Management)")
 
 We then execute the Deployment, which means compiling it and transferring it to the Cluster.
 
-![A. Execute Deployment (Secret Management)](.secret-management_images/20.png "A. Execute Deployment (Secret Management)")
+![A. Execute Deployment (Secret Management)](.secret-management_images/16-13-24-20.png "A. Execute Deployment (Secret Management)")
 
 Then this is what happens:
 
@@ -268,7 +268,7 @@ with fingerprint **fpZ** will be re-encrypted with the fingerprint **fpX** key-p
 
 We can now instruct layline.io via the Deployment to translate the keys to that of the Cluster:
 
-![B. Deployment of Secrets with the same key-pair as on the Cluster (Secret Management)](.secret-management_images/40.png "B. Deployment of Secrets with the same key-pair as on the Cluster (Secret Management)")
+![B. Deployment of Secrets with the same key-pair as on the Cluster (Secret Management)](.secret-management_images/16-15-21-40.png "B. Deployment of Secrets with the same key-pair as on the Cluster (Secret Management)")
 
 We have our Secrets to deploy in **(1)**. We can then select "_Encryption target keys_" in **(2)**.
 The Secrets we deploy in **(1)** will all be re-encrypted with all target keys selected in **(2)** upon deployment:

@@ -28,7 +28,7 @@ layline.io Clusters have a number of _**Controllers**_ which provide services to
 
 This Controller manages the Deployments in the selected Cluster.
 
-![](.index_images/25.png "Deployment Storage (Operations --> ")
+![](.index_images/01-16-59-25.png "Deployment Storage (Operations --> ")
 
 Let's go through the parts:
 
@@ -45,7 +45,7 @@ For the next steps it is important to understand how Deployments are stored in a
 - All _**initial**_ Deployments are based on the so-called "_**Deployment Root**_" as you can tell from the example above. 
 - If you change an existing Deployment "_D.1.1_" you can let layline.io know upon Deployment, that this new Deployment "_D.1.2_" is based on the previous Deployment "_D.1.1_". The tree will reflect such dependencies:
 
-![](.index_images/18.png "How Deployments are stored (Operations --> ")
+![](.index_images/03-16-31-18.png "How Deployments are stored (Operations --> ")
 
 In the above example the both the yellow and green Deployment are based on the purple Deployment. The concept is similar to modern Version Control Systems like Git. layline.io also stores the data in a similar fashion in that it only store the differences from version to version.
 :::
@@ -58,7 +58,7 @@ In the above example the both the yellow and green Deployment are based on the p
 
 The Deployment Configuration gives you an overview over the Deployments which are available on the Cluster, and allows you to operate them. Let's take a look:
 
-![](.index_images/43.png "Deployment Configuration (Operations --> Cluster)")
+![](.index_images/03-16-51-43.png "Deployment Configuration (Operations --> Cluster)")
 
 There are two tabs "_**Deployments**_" **(1)** and "**Node Assignments**" **(2)**.
 
@@ -77,7 +77,7 @@ The Box "_**Assignment Details**_" **(6)** shows which Nodes (Engines) the selec
 
 _Node Assignments_ **(1)** shows which which Nodes run which Deployments. In our example there is only one Node. This Node was directly assigned the displayed Sample-Mapping Deployment **(2)**. 
 
-![](.index_images/53.png "Node Assignment Tab (Operations --> Cluster)")
+![](.index_images/04-16-57-53.png "Node Assignment Tab (Operations --> Cluster)")
 
 
 #### Activating / Deactivating a Deployment
@@ -93,7 +93,7 @@ Deployments are activated by
 
 **Making a Deployment a Default Deployment**
 
-![](.index_images/43.png "Making a Deployment a Default Deployment (Operations --> Cluster)")
+![](.index_images/03-17-37-43.png "Making a Deployment a Default Deployment (Operations --> Cluster)")
 
 In many cases (if not most) one Cluster will only run one Deployment at a time, and do so on all available Reactive Engines.
 
@@ -113,7 +113,7 @@ To do so
 
 In the dialog that opens, you can assign the Deployment to one or more available Reactive Engines. If you want to assign it to all Engines, you can just make it the default (see above).
 
-![](.index_images/43.png "Activating a Deployment on selected Nodes (Operations --> Cluster)")
+![](.index_images/03-17-49-43.png "Activating a Deployment on selected Nodes (Operations --> Cluster)")
 
 :::warning One Deployment per Engine
 One Reactive Engine can only process one Deployment. If the Engine has been previously assigned a Deployment _D1_ and is now assigned another Deployment _D2_, the Engine will discard D1 and start activating D2.
@@ -129,15 +129,15 @@ You can only delete Deployments which are not active. It is also not possible to
 
 As explained [here](../../concept/projects-workflows/deployment.md#deploy-to-file) a Deployment can be written to a file. To install this Deployment on the Cluster you can select `Upload Deployments` **(1)**:
 
-![](.index_images/59.png "Deploy from File (Operations --> Cluster)")
+![](.index_images/04-15-59-59.png "Deploy from File (Operations --> Cluster)")
 
 A upload dialog will open. You can add the Deployment file through the "_+_" sign **(1)** or via drag and drop **(2)**.
 
-![](.index_images/58.png "Upload Deployment from File (Operations --> Cluster)")
+![](.index_images/04-16-04-58.png "Upload Deployment from File (Operations --> Cluster)")
 
 Upon successful upload **(1)** the dialog will expand to show the meta data of the Deployment file under "_Contained Deployment Tag and Description_".
 
-![](.index_images/11.png "Upload Deployment --> Confirmation (Operations --> Cluster)")
+![](.index_images/04-16-09-11.png "Upload Deployment --> Confirmation (Operations --> Cluster)")
 
 You can override the Tag name **(2)** as well as the Description **(3)**. Remember that the tag name must be unique to the Cluster.
 
@@ -147,7 +147,7 @@ You can change the base Deployment by selecting it from `Browse by Tags` **(5)**
 
 Finally, click `Apply Deployment` **(6)** to execute the Deployment.
 
-![](.index_images/10.png "Execute Deployment (Operations --> Cluster)")
+![](.index_images/04-16-51-10.png "Execute Deployment (Operations --> Cluster)")
 
 
 
@@ -173,7 +173,7 @@ It supports you in:
 
 **Resources** **(3)** are Sources and Sinks which are static and limited in nature. A great example is a partitioned Kafka topic with a fixes number of partitions. Each partition can then be reserved and released as required. If all partitions are reserved, the resource is depleted until released.
 
-![](.index_images/04.png "Access Coordinator (Operations --> Cluster)")
+![](.index_images/08-15-24-04.png "Access Coordinator (Operations --> Cluster)")
 
 
 On the Access Coordinator section you can see whether all moving parts are operational. In our example we see:
@@ -197,7 +197,7 @@ We may want to remove an item from the processing history of a given Source so t
 
 To remove the item select the it from the list **(6)** and then click `Reset selected`. To delete the complete list, select `Reset all`. If you then resupply the item you deleted from the list, it will be reprocessed. 
 
-![](.index_images/10.png "Removing an item from the Source list (Operations --> Cluster)")
+![](.index_images/08-15-40-10.png "Removing an item from the Source list (Operations --> Cluster)")
 
 #### Resources Coordinator (3)
 
@@ -210,7 +210,7 @@ On the left is the list of individual Resource Groups. Again, selecting an entry
 To free up a resource you need to select it **(5)** and click `Revoke selected` **(6)**. Click `Revoke all`  **(7)** to reset all partitions in this example.
 
 
-![](.index_images/53.png "Freeing up resources (Operations --> Cluster)")
+![](.index_images/08-17-26-53.png "Freeing up resources (Operations --> Cluster)")
 
 
 ### AI Storage

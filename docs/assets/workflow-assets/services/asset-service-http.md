@@ -119,11 +119,11 @@ A **Request** describes a single API call: the path, HTTP method, and any parame
 
 Requests live inside a **Namespace**, which groups related requests together and prevents naming conflicts.
 
-![](.asset-service-http_images/16.png "Requests namespace")
+![](.asset-service-http_images/27-16.png "Requests namespace")
 
 Click **+ Add Request** to create one.
 
-![](.asset-service-http_images/17.png "Adding a request")
+![](.asset-service-http_images/27-17.png "Adding a request")
 
 | Field | Description |
 |-------|-------------|
@@ -193,11 +193,11 @@ You typically need at least one success response (e.g. `200`) and may want error
 
 Responses also live in a **Namespace**.
 
-![](.asset-service-http_images/19.png "Responses namespace")
+![](.asset-service-http_images/27-19.png "Responses namespace")
 
 Click **+ Add Response** to create one.
 
-![](.asset-service-http_images/20.png "Adding a response")
+![](.asset-service-http_images/27-20.png "Adding a response")
 
 | Field | Description |
 |-------|-------------|
@@ -207,7 +207,7 @@ Click **+ Add Response** to create one.
 | **Data Type** | Type to deserialize the body into. Use `System.AnyMap` for JSON objects. |
 | **Description** | Human-readable explanation. |
 
-![](.asset-service-http_images/21.png "Response definition")
+![](.asset-service-http_images/27-21.png "Response definition")
 
 <DataDictionaryCard />
 
@@ -226,7 +226,7 @@ Functions are grouped in a **Namespace**. A common pattern is to use the domain 
 
 Click **+ Add Function**.
 
-![](.asset-service-http_images/10.png "Adding a function")
+![](.asset-service-http_images/27-10.png "Adding a function")
 
 Fill in the details:
 
@@ -237,17 +237,17 @@ Fill in the details:
 | **Request Type** | The request to send (defined in Step 3). |
 | **Response Types** | One or more possible responses (defined in Step 4). |
 
-![](.asset-service-http_images/11.png "Function definition")
+![](.asset-service-http_images/27-11.png "Function definition")
 
 Select the request from the dropdown:
 
-![](.asset-service-http_images/12.png "Selecting a request")
+![](.asset-service-http_images/27-12.png "Selecting a request")
 
 Then add responses by clicking **+ Add Response** and choosing from your defined responses:
 
-![](.asset-service-http_images/14.png "Adding a response to a function")
+![](.asset-service-http_images/27-14.png "Adding a response to a function")
 
-![](.asset-service-http_images/15.png "Response selected")
+![](.asset-service-http_images/27-15.png "Response selected")
 
 You can add as many functions as your integration requires.
 
@@ -263,7 +263,7 @@ Here is a complete example. The workflow reads a file with customer IDs (1), enr
 
 Open the JavaScript processor (in this case *EnrichCustomer*) and assign the HTTP Service:
 
-![](.asset-service-http_images/22.png "Linking the service to a JavaScript processor")
+![](.asset-service-http_images/27-22.png "Linking the service to a JavaScript processor")
 
 | Field | Description |
 |-------|-------------|

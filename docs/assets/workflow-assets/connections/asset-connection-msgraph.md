@@ -32,7 +32,7 @@ Defines the connection parameters for various Microsoft application endpoints, f
 
 ### Name & Description
 
-![Name & Description (Connection MS Graph)](.asset-connection-msgraph_images/Screenshot24ConnectionMSGraphName.png "Name & Description (Connection MS Graph)")
+![Name & Description (Connection MS Graph)](.asset-connection-msgraph_images/Screenshot2024-04-24ConnectionMSGraphName.png "Name & Description (Connection MS Graph)")
 
 **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
@@ -53,7 +53,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 The MS Graph connection Asset supports the Microsoft 365 connection protocol.
 Note, that this is proprietary to Microsoft.
 
-![Microsoft Graph Settings (Connection MS Graph)](.asset-connection-msgraph_images/Screenshot25SettingsMSGraph.png)
+![Microsoft Graph Settings (Connection MS Graph)](.asset-connection-msgraph_images/Screenshot2024-04-25SettingsMSGraph.png)
 
 #### Credential type
 
@@ -69,7 +69,7 @@ Please check with your Microsoft endpoint which authentication flow is appropria
 The Client Credentials Flow involves an application exchanging its application credentials, such as client ID and client secret, for an access token.
 You can check the [Auth0 documentation](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow) for an example description.
 
-![Microsoft OAuth Client Credential Flow (Connection MS Graph)](.asset-connection-msgraph_images/Screenshot25OAuthCredentailFlow.png)
+![Microsoft OAuth Client Credential Flow (Connection MS Graph)](.asset-connection-msgraph_images/Screenshot2024-04-25OAuthCredentailFlow.png)
 
 * **`Authority`**:
   The authority URL as provided by the party to connect to. This is the endpoint which authorizes the connection and issues a respective token.

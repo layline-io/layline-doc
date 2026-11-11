@@ -28,7 +28,7 @@ So you could have a JDBC Servivce Asset that you use as an inpput Service for th
 Depending on their setup other Service Assets like [Http](/docs/assets/workflow-assets/services/asset-service-http) or [SOAP](/docs/assets/workflow-assets/services/asset-service-soap) might also serve the input data aspect. 
 Basically layline.io allows any Service Asset to be used as a Service Source. Though, you need to check whether an available service reflects a reasonable input source respectively other approaches might be more applicable (e.g.: Email Service vs. Email Source).     
 
-![Service Source Asset](.asset-source-service_images/image_25.png "Service Source Asset")
+![Service Source Asset](.asset-source-service_images/image_2025-03-26-22-09-25.png "Service Source Asset")
 
 ### This Asset can be used by:
 
@@ -83,7 +83,7 @@ Choose the Service Asset you want to use and press `OK`.
 
 ### Polling & Processing
 
-![Polling and Processing (Service Source)](.asset-source-service_images/image_00.png "Polling and Processing (Service Source)")
+![Polling and Processing (Service Source)](.asset-source-service_images/image_2025-03-26-17-59-00.png "Polling and Processing (Service Source)")
 Using Services as a source you need to define how often you want to trigger the lookup for new data to process. 
 Performing this lookup is done by the [Data Functions](#data-functions) which in return receive their lookup input parameter(s) as defined in the [Polling mode](#polling-mode).
 

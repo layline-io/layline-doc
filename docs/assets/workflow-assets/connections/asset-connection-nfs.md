@@ -30,7 +30,7 @@ Defines the connection parameters for an NFS (Network File System) endpoint.
 
 ### Name & Description
 
-![Name & Description (Connection NFS)](.asset-connection-nfs_images/image_19.png "Name & Description (Connection NFS)")
+![Name & Description (Connection NFS)](.asset-connection-nfs_images/image_2025-04-03-17-19-19.png "Name & Description (Connection NFS)")
 
 <NameAndDescription></NameAndDescription>
 
@@ -42,7 +42,7 @@ Defines the connection parameters for an NFS (Network File System) endpoint.
 
 #### Server Configuration
 
-![NFS Settings (Connection NFS)](.asset-connection-nfs_images/image_41.png "NFS Settings (Connection NFS)")
+![NFS Settings (Connection NFS)](.asset-connection-nfs_images/image_2025-04-04-09-59-41.png "NFS Settings (Connection NFS)")
 
 
 * **`Server`** : Hostname or IP address of the NFS server, e.g. 'nfs.myserver.com' or '192.168.1.100'.
