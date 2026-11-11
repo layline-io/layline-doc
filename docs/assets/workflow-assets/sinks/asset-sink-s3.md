@@ -35,7 +35,7 @@ You need:
 
 ### Name & Description
 
-![](.asset-sink-s3_images/Screenshot2024NameandDescription_S3_Sink_Asset.png "Name & Description (S3 Sink Asset)")
+![](.asset-sink-s3_images/Screenshot22-04-2024NameandDescription_S3_Sink_Asset.png "Name & Description (S3 Sink Asset)")
 
 **`Name`** : Name of the Asset. Spaces are not allowed in the name.
 
@@ -53,7 +53,7 @@ If you want this restriction, then enter the names of the `Required Roles` here.
 
 ### S3 Settings
 
-![](.asset-sink-s3_images/Screenshot2024SSink-Settings.png "S3 Settings (S3 Sink Asset)")
+![](.asset-sink-s3_images/Screenshot23-04-2024S3-Sink-Settings.png "S3 Settings (S3 Sink Asset)")
 
 #### S3 Connection (A)
 
@@ -71,7 +71,7 @@ Select the [AWS Connection](/docs/assets/workflow-assets/connections/asset-conne
 
 * **`"Object already exists"-Handling (3)`**: Define your required handling in case the object "in process" already exists.
 
-![](.asset-sink-s3_images/Screenshot23SSink-ObjectExistsHandling.png "S3 Settings - Object Exists Handling (S3 Sink Asset)")
+![](.asset-sink-s3_images/Screenshot2024-04-23S3-Sink-ObjectExistsHandling.png "S3 Settings - Object Exists Handling (S3 Sink Asset)")
 
 * **`Use path style bucket access (4)`**: The S3 API allows accessing objects via legacy "_path style_" or "_virtual hosted style_".
   Check this box if you want to access objects via legacy path style access. You can read more about this [here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html)

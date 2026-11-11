@@ -150,6 +150,7 @@ See [Java DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/java/time
 | `isAfter(other)` | `boolean` | This moment is later than `other` |
 | `isBefore(other)` | `boolean` | This moment is earlier than `other` |
 | `isEqual(other)` | `boolean` | Same moment in time |
+| `compareTo(other)` | `number` | Negative if earlier, zero if equal, positive if later |
 
 ```js
 const start = DateTime.parse('2024-01-01T00:00:00');
@@ -158,6 +159,18 @@ const end   = DateTime.parse('2024-12-31T23:59:59');
 if (end.isAfter(start)) {
     stream.logInfo('End is after start');
 }
+
+// Ordering: -1 / 0 / 1
+const earlier = start.compareTo(end);   // -1
+const later   = end.compareTo(start);   // 1
+const same    = start.compareTo(start); // 0
+
+// Sorting
+const times = [
+    DateTime.of(2024, 3, 1, 10, 0),
+    DateTime.of(2024, 1, 1, 9, 0),
+];
+times.sort((a, b) => a.compareTo(b));
 
 // Check if within business hours
 const now = DateTime.now();

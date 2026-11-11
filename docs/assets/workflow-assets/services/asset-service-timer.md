@@ -33,7 +33,7 @@ The Timer Service allows you to schedule the message's payload (or any other pay
 
 Let's explain this with an example:
 
-![Example Timer Service Workflow Setup](.asset-service-timer_images/image_08.png "Example Timer Service Workflow Setup")
+![Example Timer Service Workflow Setup](.asset-service-timer_images/image_2025-02-27-12-24-08.png "Example Timer Service Workflow Setup")
 *Figure: Example Timer Service Workflow Setup*
 
 - `Step 1`: We have a "Workflow A" which is processing a message. For some reason the message cannot or should not be processed at the time of processing and we need to hold on to the message's payload for a period of time before we can process it again.
@@ -67,7 +67,7 @@ None
 
 ### Name & Description
 
-![Timer Service Name & Description](.asset-service-timer_images/image_40.png "Timer Service Name & Description")
+![Timer Service Name & Description](.asset-service-timer_images/image_2025-02-25-13-55-40.png "Timer Service Name & Description")
 *Figure: Timer Service Name & Description*
 
 <NameAndDescription></NameAndDescription>
@@ -81,7 +81,7 @@ None
 Timer Groups are used to group messages together which should be treated the same way in terms of their timer settings.
 They also represent different storage areas within a Reactive Cluster deployment.
 
-![Timer Group Configuration](.asset-service-timer_images/image_37.png "Timer Group Configuration")
+![Timer Group Configuration](.asset-service-timer_images/image_2025-02-25-14-19-37.png "Timer Group Configuration")
 *Figure: Timer Group Configuration*
 
 A Timer Group can have the following parameters:
@@ -117,17 +117,17 @@ Please note, that the number of partitions cannot be changed later once a deploy
 
 Let's revisit our example from the introduction. In it we have a Workflow A which is processing messages. How would we go about using the Timer Service to schedule a message's payload for a configurable period of time?
 
-![Example Workflow to schedule messages using the Timer Service](.asset-service-timer_images/image_03.png "Example Workflow to schedule messages using the Timer Service")
+![Example Workflow to schedule messages using the Timer Service](.asset-service-timer_images/image_2025-02-25-16-38-03.png "Example Workflow to schedule messages using the Timer Service")
 *Figure: Example Workflow to schedule messages using the Timer Service*
 
 First of all we have configured a Timer Service asset by the name of `MyTimerService` with a Timer Group by the name of `MyTimerGroup` like so:
 
-![Timer Service Configuration](.asset-service-timer_images/image_03.png)
+![Timer Service Configuration](.asset-service-timer_images/image_2025-02-25-15-33-12.png)
 *Figure: Example Configuration for `MyTimerService`*
 
 We also have a Javascript Processor which is processing messages. We will use this Processor to check and schedule the message's payload for a configurable period of time. In order for this to work, we need to subscribe to the `Timer Service` asset from within the Javscript Processor:
 
-![Link Timer Service to JavaScript Asset](.asset-service-timer_images/image_09.png)
+![Link Timer Service to JavaScript Asset](.asset-service-timer_images/image_2025-02-25-15-43-34.png)
 *Figure: Link Timer Service to JavaScript Asset*
 
 Workflow A contains this JavasScript Processor (could be Python, too).
@@ -199,7 +199,7 @@ For a full description of the methods please refer to the [TimerService API](../
 Now that we have scheduled a message's payload to be re-presented back to the Javascript Processor in 3600 seconds (1 hour), we can consume it in a different workflow when it is due.
 
 For this purpose we will create a new Workflow (B).
-![Example Workflow to consume messages using the Timer Service](.asset-service-timer_images/image_23.png "Example Workflow to consume messages using the Timer Service")
+![Example Workflow to consume messages using the Timer Service](.asset-service-timer_images/image_2025-02-25-16-46-23.png "Example Workflow to consume messages using the Timer Service")
 *Figure: Example Workflow to consume messages using the Timer Service*
 
 In this Workflow we have a "Frame Input Processor" `MyFrameInput` [5] which relies on the "Timer Source" `MyTimerSource` [4], which in turn is subscribed to the "Timer Service" `MyTimerService` [3].
@@ -208,14 +208,14 @@ In this Workflow we have a "Frame Input Processor" `MyFrameInput` [5] which reli
 
 The Timer Source is set to operations mode `Using timer service` and references the Timer Service that this source should subscribe to.
 
-![Example Timer Source Configuration](.asset-service-timer_images/image_09.png "Example Timer Source Configuration")
+![Example Timer Source Configuration](.asset-service-timer_images/image_2025-02-26-16-06-09.png "Example Timer Source Configuration")
 *Figure: Example Configuration for `MyTimerSource`*
 
 **Configuration of `MyFrameInput` (partially shown):**
 
 The Frame Input Processor is configured to receive messages from the Timer Source.
 
-![Example Frame Input Processor Configuration](.asset-service-timer_images/image_03.png "Example Frame Input Processor Configuration")
+![Example Frame Input Processor Configuration](.asset-service-timer_images/image_2025-02-26-16-17-12.png "Example Frame Input Processor Configuration")
 *Figure: Example Configuration for `MyFrameInput`*
 
 Note that not only the Timer Source is configured to use the Timer Service, but we also specifically select the Timer Groups which should be consumed by this Frame Input Processor.

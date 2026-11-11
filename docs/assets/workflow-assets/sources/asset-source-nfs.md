@@ -36,7 +36,7 @@ You need:
 
 ### Name & Description
 
-![Name & Description (NFS Source)](.asset-source-nfs_images/image_25.png "Name & Description (NFS Source)")
+![Name & Description (NFS Source)](.asset-source-nfs_images/image_2025-04-03-17-21-25.png "Name & Description (NFS Source)")
 
 ### Required roles
 
@@ -52,7 +52,7 @@ You need:
 
 ### NFS Settings
 
-![NFS Settings (NFS Source)](.asset-source-nfs_images/image_37.png "NFS Settings (NFS Source)")
+![NFS Settings (NFS Source)](.asset-source-nfs_images/image_2025-04-03-17-46-37.png "NFS Settings (NFS Source)")
 
 Select the previously configured [NFS Connection](/docs/assets/workflow-assets/connections/asset-connection-nfs) that you want to use for this Source.
 

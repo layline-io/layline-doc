@@ -49,7 +49,7 @@ What will be relevant is that something should happen, and the timer source make
 
 A Timer Source can operate in two different modes:
 
-![Operation Mode (Timer Source)](.asset-source-timer_images/image_06.png "Operation Mode (Timer Source)")
+![Operation Mode (Timer Source)](.asset-source-timer_images/image_2025-03-18-09-28-06.png "Operation Mode (Timer Source)")
 
 
 **1. Stand alone source:** The Timer Source will operate independently of the timer service. It will use its own internal timer to trigger messages. Relevant timers are defined in the `Timers` section within this Asset.
@@ -125,13 +125,13 @@ In this mode, the Timer Source will not use its own internal timer but will rely
 
 So instead of defining timers within the Timer Source, you will define them in the [Timer Service](/docs/assets/workflow-assets/services/asset-service-timer).
 
-![Using timer service (Timer Source)](.asset-source-timer_images/image_44.png "Using timer service (Timer Source)")
+![Using timer service (Timer Source)](.asset-source-timer_images/image_2025-03-18-16-53-44.png "Using timer service (Timer Source)")
 
 #### Stream Settings
 
 In this section you define whether you want to create timed batches, or timed events.
 
-![Stream Type (Timer Source)](.asset-source-timer_images/image_43.png "Stream Type (Timer Source)")
+![Stream Type (Timer Source)](.asset-source-timer_images/image_2025-03-18-16-34-43.png "Stream Type (Timer Source)")
 
 - **Batches** are the synthetic equivalent of reading individual files.
 - **Events** have no batch beginning or end, but are issued based on the defined timers.
@@ -145,7 +145,7 @@ Select to create a timer triggered batch stream, if you want to
 2. Create a trigger only, disregarding any potential payload within the batch.
    In essence, you only get a `onStreamStart` event which you can react to.
 
-![Batch Stream (Timer Source)](.asset-source-timer_images/image_51.png "Batch Stream (Timer Source)")
+![Batch Stream (Timer Source)](.asset-source-timer_images/image_2025-03-18-16-37-51.png "Batch Stream (Timer Source)")
 
 * **`Stream type`** : Select `Batch Stream` here.
 
@@ -193,7 +193,7 @@ Instead, messages will be issued based on the defined timers below.
 If you have a Workflow with a Javascript Processor, you can react to those messages by way of `onMessage(message)`.
 The payload is defined in the timers below. A downstream script can then identify by the timer name which timer was fired and also retrieve the payload, if any.
 
-![Event Stream (Timer Source)](.asset-source-timer_images/image_40.png "Event Stream (Timer Source)")
+![Event Stream (Timer Source)](.asset-source-timer_images/image_2025-03-18-16-39-40.png "Event Stream (Timer Source)")
 
 * **`Stream name`** : Provide an individual name for the event stream.
   This will show up in the batch payload which can be processed downstream in a Workflow.

@@ -16,7 +16,7 @@ import OutputPorts from '../../../snippets/assets/_output-ports-single.md';
 
 ## Purpose
 
-![Throttle Asset (Throttle Flow Asset)](.asset-flow-throttle_images/57.png)
+![Throttle Asset (Throttle Flow Asset)](.asset-flow-throttle_images/14-16-56-57.png)
 
 The Throttle Asset allows you to slow down processing speed within the leg of a Workflow where this Processor is inserted.
 
@@ -56,7 +56,7 @@ The **`Asset Usage`** box shows how many times this Asset is used and which part
 This is where you define how to actually throttle the flow.
 The paradigm is that you define how many messages per time interval should be allowed to pass.
 
-![Throttle Settings (Throttle Flow Asset)](.asset-flow-throttle_images/59.png)
+![Throttle Settings (Throttle Flow Asset)](.asset-flow-throttle_images/15-10-30-59.png)
 
 What does this setting define?:
 ***"Throttle the processing flow to 500 messages for every one second."***

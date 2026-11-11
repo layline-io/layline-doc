@@ -40,7 +40,7 @@ The **`Asset Usage`** box shows how many times this Asset is used and which part
 
 ### Email Connection Type
 
-![Email Connection Type](.asset-connection-email_images/Screenshot24Email_Connection_Type.png)
+![Email Connection Type](.asset-connection-email_images/Screenshot2024-04-24Email_Connection_Type.png)
 
 The Email connection Asset supports two different types of Email connections:
 

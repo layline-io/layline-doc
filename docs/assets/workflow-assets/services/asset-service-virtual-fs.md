@@ -189,8 +189,7 @@ services.MyVfsService.DeleteDir({
 // Zip a directory (2.5.10+)
 services.MyVfsService.ZipDir({
     sourcePath: '/data/outbox/invoice-batch-001',
-    targetPath: '/data/archive/invoice-batch-001.zip',
-    includeSubdirectories: true
+    targetPath: '/data/archive/invoice-batch-001.zip'
 });
 ```
 
@@ -249,8 +248,7 @@ services.MyVfsService.DeleteDir({
 # Zip a directory (2.5.10+)
 services.MyVfsService.ZipDir({
     'sourcePath': '/data/outbox/invoice-batch-001',
-    'targetPath': '/data/archive/invoice-batch-001.zip',
-    'includeSubdirectories': True
+    'targetPath': '/data/archive/invoice-batch-001.zip'
 })
 ```
 
@@ -258,7 +256,7 @@ services.MyVfsService.ZipDir({
 </Tabs>
 
 :::note
-Parameter names (`sourcePath`, `targetPath`, `path`, `content`, `recursive`, `includeSubdirectories`) must match the service function definitions. Confirm these in the UI or Service Testing tab if they differ in your version.
+Parameter names (`sourcePath`, `targetPath`, `path`, `content`, `recursive`) must match the service function definitions. Confirm these in the UI or Service Testing tab if they differ in your version.
 :::
 
 ### Return Values

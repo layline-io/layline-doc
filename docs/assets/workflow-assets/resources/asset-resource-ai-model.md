@@ -64,7 +64,7 @@ Defines the input schema and output (class) attribute for the model. These must 
 
 <div className="frame">
 
-![Attributes — class attribute and input attribute table](.asset-resource-ai-model_images/ai-model-jsettings.png)
+![Attributes — class attribute and input attribute table](.asset-resource-ai-model_images/ai-model-j48-settings.png)
 
 </div>
 
