@@ -154,6 +154,7 @@ See [Java DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/java/time
 | `isAfter(other)` | `bool` | This moment is later than `other` |
 | `isBefore(other)` | `bool` | This moment is earlier than `other` |
 | `isEqual(other)` | `bool` | Same moment in time |
+| `compareTo(other)` | `int` | Negative if earlier, zero if equal, positive if later |
 
 ```python
 start = DateTime.parse('2024-01-01T00:00:00')
@@ -161,6 +162,19 @@ end = DateTime.parse('2024-12-31T23:59:59')
 
 if end.isAfter(start):
     stream.log_info('End is after start')
+
+# Ordering: -1 / 0 / 1
+earlier = start.compareTo(end)   # -1
+later = end.compareTo(start)     # 1
+same = start.compareTo(start)    # 0
+
+# Sorting
+from functools import cmp_to_key
+times = [
+    DateTime.of(2024, 3, 1, 10, 0),
+    DateTime.of(2024, 1, 1, 9, 0),
+]
+times.sort(key=cmp_to_key(lambda a, b: a.compareTo(b)))
 
 # Check if within business hours
 now = DateTime.now()
